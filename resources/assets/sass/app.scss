@@ -1,0 +1,114 @@
+// Fonts
+@import "../css/roboto.css";
+@import "../css/roboto-condensed.css";
+// Font-Awesome
+@import "../css/fontawesome-all.min.css";
+// Ionicons
+@import "../css/ionicons.css";
+
+// The container horizontal gap, which acts as the offset for breakpoints
+$gap: 30px;
+
+// Bulma initial variables
+@import "node_modules/bulma/sass/utilities/initial-variables";
+@import "node_modules/bulma/sass/utilities/functions";
+
+// Variables
+
+$family-serif: "Roboto", sans-serif;
+$roboto-condensed: "Roboto Condensed";
+
+$red: #f40c38;
+$green: #4caf50;
+$primary: #037eba;
+$primary-invert: #fff;
+$link: $primary;
+$family-primary: $family-serif;
+$weight-thin: 100;
+
+$primary-light: #0994d8;
+$primary-light-invert: findColorInvert($primary-light);
+
+$brown: #968b83;
+$brown-invert: findColorInvert($brown);
+
+$orange: #ea652e;
+$orange-invert: findColorInvert($orange);
+
+$orange-light: #f2852c;
+$orange-light-invert: findColorInvert($orange-light);
+
+$orange-lighter: #f7931a;
+$orange-lighter-invert: findColorInvert($orange-lighter);
+
+@import "node_modules/bulma/sass/utilities/derived-variables";
+$addColors: (
+	"primary-light":($primary-light, $primary-light-invert),
+  	"brown":($brown, $brown-invert),
+  	"orange":($orange, $orange-invert),
+  	"orange-light":($orange-light, $orange-light-invert),
+  	"orange-lighter":($orange-lighter, $orange-lighter-invert)
+);
+$colors: map-merge($colors, $addColors);
+
+$menu-item-radius: 0;
+$menu-item-hover-background-color: rgba($primary, 0.2);
+$menu-item-active-color: $primary;
+$menu-item-active-background-color: rgba($primary, 0.2);
+
+$body-background-color: #e9eaec !default;
+$body-size: 14px !default;
+$body-rendering: optimizeLegibility !default;
+$body-family: $family-primary !default;
+$body-weight: $weight-normal !default;
+$body-line-height: 1.5 !default;
+
+//Pagination
+$pagination-color: $grey-darker !default;
+$pagination-border-color: $grey-lighter !default;
+$pagination-margin: -0.25rem !default;
+$pagination-hover-color: $primary !default;
+$pagination-hover-border-color: $primary !default;
+$pagination-focus-color: $primary !default;
+$pagination-focus-border-color: $primary !default;
+$pagination-active-color: $primary !default;
+$pagination-active-border-color: $primary !default;
+$pagination-disabled-color: $grey !default;
+$pagination-disabled-background-color: $grey-lighter !default;
+$pagination-disabled-border-color: $grey-lighter !default;
+$pagination-current-color: $white !default;
+$pagination-current-background-color: $primary !default;
+$pagination-current-border-color: $primary !default;
+$pagination-ellipsis-color: $grey-light !default;
+$pagination-shadow-inset: inset 0 1px 2px rgba($black, 0.2);
+
+//Modal
+$modal-card-head-background-color: $primary;
+$modal-background-background-color: rgba($black, 0.5);
+
+// Label
+$label-color: $grey;
+$label-size: 1rem;
+
+// Input
+$input-color: $black-ter;
+$input-icon-color: $grey-light;
+$input-shadow: none;
+$input-focus-box-shadow-size: 0;
+$input-arrow: $grey-darker;
+$input-disabled-color: $black-ter;
+$input-disabled-background-color: $background;
+$input-disabled-border-color: $grey-lighter;
+
+// Bulma
+@import "node_modules/bulma/bulma.sass";
+
+@import "node_modules/bulma-extensions/bulma-checkradio/dist/css//bulma-checkradio.sass";
+@import "node_modules/bulma-extensions/bulma-switch/dist/css/bulma-switch.sass";
+@import "node_modules/bulma-extensions/bulma-steps/dist/css/bulma-steps.sass";
+
+// Custom scss
+@import "calendar.sass";
+
+// Custom scss
+@import "style";

@@ -1,0 +1,129 @@
+$themeColor: #fff
+
+$headerPadding: 0.5rem 1rem
+$headerBorderWidth: 1px
+$headerBorderStyle: solid
+$headerBorderColor: #aaaaaa
+$headerBackground: $themeColor
+$headerColor: $black
+
+$weekdayPadding: 0.4rem 0
+$weekdayColor: #7a7a7a
+$weekdayBorderWidth: 1px
+$weekdayBorderStyle: solid
+$weekdayBorderColor: #aaaaaa
+$weekdayBackground: #eaeaea
+
+$dayColor: #3a3a3a
+$dayBorder: solid 1px #aaaaaa
+$dayBackgroundColor: white
+$dayWidth: 14.2857%
+$dayHeight: 50px
+
+$todayColor: white
+$todayBackgroundColor: $themeColor
+
+.calendar
+  display: flex
+  flex-direction: column
+  height: 100%;
+  border-right: 2px solid $grey-lighter
+
+.calendar-header
+  display: flex
+  justify-content: stretch
+  align-items: center
+  border-width: 0
+  padding: 1rem 1rem
+  
+  =pointer()
+    cursor: pointer
+    &:hover
+      color: #dcdcdc
+  
+  .calendar-arrow
+    +pointer
+    padding: 0 0.4em 0 0.4em
+    font-size: 1.8rem
+    font-weight: 500
+    user-select: none
+    flex-grow: 0
+    
+  .calendar-title
+    flex-grow: 1
+    font-size: 2rem
+    font-weight: $weight-light
+    color: $black
+    line-height: 1
+
+.calendar-weekdays
+  display: flex
+  padding: 1rem 0
+  
+.calendar-weekday
+  width: $dayWidth
+  display: flex
+  justify-content: center
+  align-items: center  
+  font-size: 1.25rem;
+  color: $black
+  
+.calendar-week
+  display: flex
+  
+.calendar-day
+  position: relative
+  width: $dayWidth
+  display: flex
+  justify-content: center
+  align-items: center
+  border-width: 0
+  cursor: pointer
+  padding: 1rem 0;
+
+  &:hover
+    span
+      background-color: $white-ter
+
+  small
+    position: absolute
+    bottom: 3px
+    left: 50%
+    transform: translateX(-50%)
+    background-color: $success
+    border-radius: 50%
+    color: $white
+    display: block
+    height: 20px
+    line-height: 20px
+    width: 20px
+    text-align: center
+
+    &.is-older
+      background-color: $grey
+
+
+  span 
+    background-color: transparent
+    display: flex;
+    width: 2.5rem;
+    height: 2.5rem;
+    align-items: center
+    justify-content: center
+    color: $black
+    border-radius: 50%
+    font-size: 1.25rem
+
+.calendar-today
+  span
+    color: $primary
+    background-color: $white-ter
+
+.not-in-month
+  span
+    color: $grey
+
+.this-day
+  span
+    color: $primary-invert
+    background-color: $primary

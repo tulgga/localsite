@@ -11,6 +11,14 @@
 |
 */
 
-Route::get('/', function () {
+
+
+Route::get('/adminPanel/{vue_capture?}',function(){
     return view('welcome');
+})->where('vue_capture', '[\/\w\.-]*');
+
+
+
+Route::domain('{account}.bayankhongor.local')->group(function () {
+    Route::get('/', 'SubDomainController@index');
 });
