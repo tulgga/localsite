@@ -27,16 +27,16 @@ Route::middleware('auth:admin-api')->namespace('Admin')->prefix('admin')->group(
     Route::resource('admins','AdminAdminsController');
 
     //news_category
-    Route::post('news_category','AdminNewsCategoryController@action');
-    Route::post('news_category/delete','AdminNewsCategoryController@delete');
-    Route::post('news_category/change','AdminNewsCategoryController@change');
+    Route::post('news_category_save/{site_id}','AdminNewsCategoryController@save');
     Route::get('news_category/{site_id}','AdminNewsCategoryController@index');
 
     //file_category
-    Route::post('file_category','AdminFileCategoryController@action');
-    Route::post('file_category/delete','AdminFileCategoryController@delete');
-    Route::post('file_category/change','AdminFileCategoryController@change');
+    Route::post('file_category_save/{site_id}','AdminFileCategoryController@save');
     Route::get('file_category/{site_id}','AdminFileCategoryController@index');
+
+    //zar_category
+    Route::post('zar_category_save/{site_id}','AdminZarCategoryController@save');
+    Route::get('zar_category/{site_id}','AdminZarCategoryController@index');
 
     //pages
     Route::post('pages','AdminPagesController@insert');

@@ -1,33 +1,71 @@
 <template>
-    <div :class="['tree-node', { 'empty-node': amIEmptyNode }]"
-         :draggable="amIEmptyNode ? undefined : true"
-         @dragstart.stop="handleDragStart"
-         @dragenter.stop="handleDragEnter"
-         @dragover.stop="handleDragOver"
-         @drop.stop="handleDrop"
-         @dragleave.stop="handleDragLeave"
-         @dragend.stop="handleDragEnd">
-        <template v-if="amIEmptyNode===false">
-            <div class="tree-content">
-                <div class="columns ">
-                    <div class="column is-9">
-                        {{ data.label }}
+    <div>
+        <div :class="['tree-node', { 'empty-node': amIEmptyNode }]"
+             :draggable="amIEmptyNode ? undefined : true"
+             @dragstart.stop="handleDragStart"
+             @dragenter.stop="handleDragEnter"
+             @dragover.stop="handleDragOver"
+             @drop.stop="handleDrop"
+             @dragleave.stop="handleDragLeave"
+             @dragend.stop="handleDragEnd">
+            <template v-if="amIEmptyNode===false">
+                <div  class="tree-content">
+                    <div  v-if="vmIdx" class="columns ">
+                        <div class="column is-1 has-text-centered">
+                            <span style="cursor: move;" class="button">
+                                <span class="icon is-small">
+                                    <i class="fas fa-arrows-alt"></i>
+                                </span>
+                            </span>
+                        </div>
+                        <div class="column is-10">
+                            <input type="text" v-model="data.name" class="input" style="border:none"/>
+                        </div>
+                        <div  class="column is-1 has-text-right">
+                             <span @click="deletemodal=true" class="button">
+                                <span class="icon is-small">
+                                    <i class="fas fa-trash"></i>
+                                </span>
+                            </span>
+                        </div>
                     </div>
-                    <div class="column is-3 has-text-right">
-                        <a v-if=" data.id!=-1" >delete</a>
-                    </div>
+                    <div v-else class="boxed-item-center title" style="font-size: 1.75rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: 0; padding:0.5em">{{data.name}}</div>
                 </div>
+            </template>
+            <div v-if="displayedChildren.length" class="tree-node-children">
+                <tree-node
+                        v-for="(child, idx) in displayedChildren"
+                        :data="child"
+                        :shared="shared"
+                        :vm-idx="idx">
+                </tree-node>
             </div>
-        </template>
-        <div v-if="displayedChildren.length" class="tree-node-children">
-            <tree-node
-                    v-for="(child, idx) in displayedChildren"
-                    :data="child"
-                    :shared="shared"
-                    :vm-idx="idx">
-            </tree-node>
+        </div>
+        <!-- Delete modal -->
+        <div class="modal is-active" v-if="deletemodal">
+            <div class="modal-background" v-on:click="deletemodal = false"></div>
+            <div class="modal-card modal-card-small">
+                <header class="modal-card-head">
+                    <p class="modal-card-title">Aнгилал устгах</p>
+                </header>
+                <section class="modal-card-body">
+                    <p class="has-text-centered">Та итгэлтэй байна уу?</p>
+                </section>
+                <footer class="modal-card-foot">
+                    <button class="button is-text" v-on:click="deletemodal = false">Буцах</button>
+                    <button class="button is-danger add_button" v-on:click="remove(); deletemodal = false" >
+                        <span>Устгах</span>
+                    </button>
+                </footer>
+            </div>
         </div>
     </div>
+
+
 </template>
 <script>
     export default {
@@ -37,10 +75,16 @@
             shared: { type: Object, default: () => ({/* draggingVm: VueInstance */}) }, // shared data for all the instances
             vmIdx: Number // current instance's index in v-for (if exists)
         },
+        data() {
+            return {
+                deletemodal:false,
+            }
+        },
         computed: {
             amIEmptyNode () {
                 // data of an empty node is an empty object: {}
-                return !this.data.label
+
+                 return !this.data.id
             },
             /**
              * Generate adjacent empty nodes for each real node, in order to implement insertion actions
@@ -103,6 +147,10 @@
             /**
              * @context {this} - instance of drop-into node
              */
+            remove(){
+                const { draggingVm } = this.shared
+                this.$parent.data.children.splice(this.vmIdx / 2, 1)
+            },
             handleDrop () {
                 this.revertClass()
                 if (!this.isAllowedToDrop()) return

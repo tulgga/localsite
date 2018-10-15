@@ -102,7 +102,7 @@ CRUD Edit, Create form
             return {
                 ck_config: {
                     height: 500,
-                    // filebrowserBrowseUrl: window.surl+'/elfinder/ckeditor',
+                    filebrowserBrowseUrl: window.surl+'/elfinder/ckeditor',
                 },
                 siteUrl: window.surl,
                 site_id: 0,

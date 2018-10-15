@@ -12,9 +12,9 @@ import Employees from '../modules/admin/employee/Employees'
 import EmployeesForm from '../modules/admin/employee/EmployeesForm'
 
 
-import newsCategory from '../modules/admin/newsCategory/index'
-import newsCategoryTest from '../modules/admin/newsCategory/test'
-import fileCategory from '../modules/admin/fileCategory/fileCategory'
+import newsCategory from '../modules/admin/newsCategory/newsCategory'
+import zarCategory from '../modules/admin/zarCategory/zarCategory'
+import fileCategory from '../modules/admin/fileCategory/fileCategoryNew'
 
 import Pages from '../modules/admin/pages/Pages'
 import PagesForm from '../modules/admin/pages/PagesForm'
@@ -72,27 +72,30 @@ let routes = [
             bread_crumbs: [
                 {
                     title: 'Мэдээ',
-                    rname: 'home'
+                    rname: 'news'
                 }
             ]
         },
     },
 
     {
-        path: '/news_category_test',
-        name: 'newsCategoryTest',
-        component: newsCategoryTest,
+        path: '/zar_category',
+        name: 'zarCategory',
+        component: zarCategory,
         meta: {
             requiresAuth: true,
-            page_title: 'Мэдээний ангилал',
+            page_title: 'Зарын ангилал',
             bread_crumbs: [
                 {
-                    title: 'Мэдээ',
-                    rname: 'home'
+                    title: 'Зар',
+                    rname: 'zar'
                 }
             ]
         },
     },
+
+
+
 
     {
         path: '/file_category',
@@ -104,7 +107,7 @@ let routes = [
             bread_crumbs: [
                 {
                     title: 'файлын сан',
-                    rname: 'home'
+                    rname: 'files'
                 }
             ]
         },
