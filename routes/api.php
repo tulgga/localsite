@@ -13,7 +13,9 @@ use App\Http\Controllers\Auth;
 | is assigned the "api" middleware group. Enjoy building your API!
 */
 
-
+Route::namespace('Api')->group(function (){
+    Route::get('news','ApiNewsController@news');
+});
 
 Route::middleware('auth:admin-api')->namespace('Admin')->prefix('admin')->group(function () {
     Route::get('user','AdminUserController@index');
