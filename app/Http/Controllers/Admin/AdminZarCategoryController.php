@@ -10,8 +10,23 @@ class AdminZarCategoryController extends Controller
 
     public function index($site_id)
     {
-        $cats= Zar_category::where('site_id',$site_id)->orderBy('order_num', 'asc')->get();
+        $cats= Zar_category::where('site_id',$site_id)->select('zar_category.*', 'zar_category.name as label')->orderBy('order_num', 'asc')->get();
         return response()->json([ 'success' => $this->buildTree($cats) ]);
+    }
+
+    public function zar_category_select(){
+        $data = $this->index(0);
+        return response()->json([ 'success' => $this->extractSelect($data->getData()->success) ]);
+    }
+
+    public function extractSelect($data, $depth=0, $return=[]){
+        foreach ($data as $d){
+            $return[]=['id'=>$d->id, 'text'=>str_repeat("-", $depth).$d->name];
+            if(isset($d->children)){
+                $return=$this->extractSelect($d->children,$depth+1, $return);
+            }
+        }
+       return $return;
     }
 
 

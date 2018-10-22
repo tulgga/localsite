@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\File;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use App\File_to_category;
+use App\File_category;
+use App\Img;
 
 class AdminFileController extends Controller
 {
@@ -32,7 +36,7 @@ class AdminFileController extends Controller
             $result = $result->orderBy('id', 'desc');
         }
 
-        $result = $result->paginate($limit);
+        $result = $result->with('Category')->paginate($limit);
         return response()->json(
             ['success'=>$result]
         );
@@ -91,16 +95,42 @@ class AdminFileController extends Controller
         $data = $request->get('data');
         $data = json_decode($data, true);
 
+        $file=Img::file($request, 'file');
+
         $info = new File();
         $info->name=$data['name'];
+        $info->status=$data['status'];
+        $info->cart_number=$data['cart_number'];
+        $info->publish_date=$data['publish_date'];
+        $info->active_date=$data['active_date'];
         $info->content=$data['content'];
-        $info->cat_id=$data['cat_id'];
         $info->site_id=$data['site_id'];
+        $info->file=$file;
         $info->save();
+
+        $this->save_to_category($data['cat_id'],$info->id);
 
         return response()->json([
             'success' => $info,
         ]);
+    }
+
+    public function save_to_category($cats, $file_id){
+        foreach ($cats as $cat){
+            $toCat=new File_to_category();
+            $toCat->file_id=$file_id;
+            $toCat->cat_id=$cat;
+            $toCat->save();
+
+//            $file_cats=File_category::where('parent_id', $cat)->get();
+//            if(count($file_cats)!=0){
+//                $send=[];
+//                foreach ($file_cats as $file_cat){
+//                    $send[]=$file_cat['id'];
+//                }
+//                $this->save_to_category($send, $file_id);
+//            }
+        }
     }
 
     /**
@@ -111,7 +141,15 @@ class AdminFileController extends Controller
      */
     public function show($id)
     {
-        //
+        $file=File::with('Category')->find($id);
+
+        $ids=[];
+        foreach ($file->category as $c){$ids[]=$c->cat_id;}
+        $file->cat_id=$ids;
+
+        return response()->json([
+            'success' => $file,
+        ]);
     }
 
     /**
@@ -134,7 +172,29 @@ class AdminFileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->get('data');
+        $data = json_decode($data, true);
+
+        $file=Img::file($request, 'file');
+
+        $info =File::find($id);
+        $info->name=$data['name'];
+        $info->status=$data['status'];
+        $info->cart_number=$data['cart_number'];
+        $info->publish_date=$data['publish_date'];
+        $info->active_date=$data['active_date'];
+        $info->content=$data['content'];
+        $info->site_id=$data['site_id'];
+        if(!is_null($file)){ $info->file=$file; }
+        $info->save();
+
+        File_to_category::where('file_id', $id)->delete();
+
+        $this->save_to_category($data['cat_id'],$id);
+
+        return response()->json([
+            'success' => $info,
+        ]);
     }
 
     /**
@@ -145,6 +205,11 @@ class AdminFileController extends Controller
      */
     public function destroy($id)
     {
-        File::where('id', $id)->delete();
+        $file=File::find($id);
+        if(!is_null($file->file)){
+            Img::file_delete($file->file);
+        }
+        $file->delete();
+        File_to_category::where('file_id', $id)->delete();
     }
 }

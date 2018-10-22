@@ -20,7 +20,7 @@
 <script>
     import TreeNode from '../../../components/helpers/tree'
     export default {
-        components: { TreeNode },
+        components: { TreeNode},
         data: () => ({
             fetched:false,
             is_loading:false,

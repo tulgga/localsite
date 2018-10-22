@@ -11,7 +11,7 @@ use App\Site;
 class AdminSiteController extends Controller
 {
     public  function index(){
-        $results=Site::orderBy('id', 'desc')->select('id','name','domain')->get();
+        $results=Site::where('id','!=', 0)->orderBy('id', 'desc')->select('id','name','domain')->get();
         return response()->json([ 'success' => $results ]);
     }
 
@@ -27,6 +27,14 @@ class AdminSiteController extends Controller
         return response()->json([
             'success' => $info
         ]);
+    }
+
+    public function site_sidebar(Request $request, $id){
+        $data = $request->get('data');
+        $data = json_decode($data, true);
+        $info = Site::findOrFail($id);
+        $info->sidebar = $data['sidebar'];
+        $info->save();
     }
 
     public function update(Request $request, $id)

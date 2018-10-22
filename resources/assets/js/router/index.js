@@ -26,6 +26,18 @@ import LinkCategoryForm from '../modules/admin/linkCategory/LinkCategoryForm'
 import Files from '../modules/admin/file/file';
 import fileForm from '../modules/admin/file/fileForm';
 
+import News from '../modules/admin/news/news';
+import newsForm from '../modules/admin/news/newsForm';
+
+import Urgudul from '../modules/admin/urgudul/urgudul';
+import Sidebar from '../modules/admin/sidebar/sidebar';
+
+import Poll from '../modules/admin/poll/poll';
+import pollForm from '../modules/admin/poll/pollForm';
+
+import Zar from '../modules/admin/zar/zar';
+import zarForm from '../modules/admin/zar/zarForm';
+
 import Link from '../modules/admin/Links/Link'
 import LinkForm from '../modules/admin/Links/LinkForm'
 
@@ -225,6 +237,191 @@ let routes = [
     },
 
 
+
+
+    {
+        path: '/news',
+        name: 'news',
+        component: News,
+        meta: {
+            requiresAuth: true,
+            page_title: 'Мэдээ',
+            bread_crumbs: [
+                {
+                    title: 'Мэдээ',
+                    rname: ''
+                }
+            ]
+        },
+        children: [
+            {
+                path: 'create',
+                component: newsForm,
+                name: 'create_news',
+                meta: {
+                    page_title: 'Нэмэх',
+                    bread_crumbs: [
+                        {
+                            title: 'Мэдээ',
+                            rname: ''
+                        }
+                    ],
+                    notloading: true,
+                    is_modal: true,
+                }
+            },
+            {
+                path: ':id/update',
+                component: fileForm,
+                name: 'update_news',
+                meta: {
+                    page_title: 'Засах',
+                    bread_crumbs: [
+                        {
+                            title: 'Мэдээ',
+                            rname: ''
+                        }
+                    ],
+                    notloading: true,
+                    is_modal: true,
+                }
+            },
+        ]
+    },
+
+
+    {
+        path: '/poll',
+        name: 'poll',
+        component: Poll,
+        meta: {
+            requiresAuth: true,
+            page_title: 'Санал асуулга',
+            bread_crumbs: [
+                {
+                    title: 'Бусад',
+                    rname: ''
+                }
+            ]
+        },
+        children: [
+            {
+                path: 'create',
+                component: pollForm,
+                name: 'create_poll',
+                meta: {
+                    page_title: 'Нэмэх',
+                    bread_crumbs: [
+                        {
+                            title: 'Бусад',
+                            rname: ''
+                        }
+                    ],
+                    notloading: true,
+                    is_modal: true,
+                }
+            },
+            {
+                path: ':id/update',
+                component: pollForm,
+                name: 'update_poll',
+                meta: {
+                    page_title: 'Засах',
+                    bread_crumbs: [
+                        {
+                            title: 'Бусад',
+                            rname: ''
+                        }
+                    ],
+                    notloading: true,
+                    is_modal: true,
+                }
+            },
+        ]
+    },
+
+    {
+        path: '/urgudul',
+        name: 'urgudul',
+        component: Urgudul,
+        meta: {
+            requiresAuth: true,
+            page_title: 'Санал хүсэлт',
+            bread_crumbs: [
+                {
+                    title: 'Бусад',
+                    rname: ''
+                }
+            ]
+        }
+    },
+
+
+    {
+        path: '/sidebar',
+        name: 'sidebar',
+        component: Sidebar,
+        meta: {
+            requiresAuth: true,
+            page_title: 'Сурталчилгаа',
+            bread_crumbs: [
+                {
+                    title: 'Тохиргоо',
+                    rname: ''
+                }
+            ]
+        }
+    },
+
+    {
+        path: '/zar',
+        name: 'zar',
+        component: Zar,
+        meta: {
+            requiresAuth: true,
+            page_title: 'Зар',
+            bread_crumbs: [
+                {
+                    title: 'Зар',
+                    rname: ''
+                }
+            ]
+        },
+        children: [
+            {
+                path: 'create',
+                component: zarForm,
+                name: 'create_zar',
+                meta: {
+                    page_title: 'Нэмэх',
+                    bread_crumbs: [
+                        {
+                            title: 'Зар',
+                            rname: 'zar'
+                        }
+                    ],
+                    notloading: true,
+                    is_modal: true,
+                }
+            },
+            {
+                path: ':id/update',
+                component: zarForm,
+                name: 'update_zar',
+                meta: {
+                    page_title: 'Зар засах',
+                    bread_crumbs: [
+                        {
+                            title: 'Зар',
+                            rname: 'zar'
+                        }
+                    ],
+                    notloading: true,
+                    is_modal: true,
+                }
+            },
+        ]
+    },
 
 
 

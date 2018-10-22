@@ -25,9 +25,13 @@ import * as VueGoogleMaps from 'vue2-google-maps';
 import VeeValidate from 'vee-validate';
 import VueCroppie from 'vue-croppie';
 
-import AmountCurrency from './components/helpers/Amount.vue';
-import Currency from './components/helpers/Currency.vue';
 import ToggleButton from 'vue-js-toggle-button';
+import Treeselect from '@riophae/vue-treeselect'
+import '@riophae/vue-treeselect/dist/vue-treeselect.css'
+
+
+
+import VueSelect from 'vue-select'
 
 Vue.use(ToggleButton);
 
@@ -149,8 +153,9 @@ import 'flatpickr/dist/flatpickr.css';
 
 Vue.component('flatPickr', flatPickr);
 Vue.component('SiteApp', require('./App.vue').default);
-Vue.component('AmountCurrency', AmountCurrency);
-Vue.component('Currency', Currency);
+Vue.component('Treeselect', Treeselect);
+Vue.component('v-select', VueSelect);
+
 
 
 const app = new Vue({

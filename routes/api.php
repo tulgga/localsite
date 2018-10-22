@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use App\Http\Controllers\Auth;
 
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -20,6 +21,7 @@ Route::middleware('auth:admin-api')->namespace('Admin')->prefix('admin')->group(
     //ded site
     Route::resource('site','AdminSiteController');
     Route::post('site/{id}','AdminSiteController@update');
+    Route::post('site_sidebar/{id}','AdminSiteController@site_sidebar');
 
     //admin user controller
     Route::post('admins/change_status','AdminAdminsController@change_status');
@@ -37,6 +39,7 @@ Route::middleware('auth:admin-api')->namespace('Admin')->prefix('admin')->group(
     //zar_category
     Route::post('zar_category_save/{site_id}','AdminZarCategoryController@save');
     Route::get('zar_category/{site_id}','AdminZarCategoryController@index');
+    Route::get('zar_category_select','AdminZarCategoryController@zar_category_select');
 
     //pages
     Route::post('pages','AdminPagesController@insert');
@@ -61,6 +64,29 @@ Route::middleware('auth:admin-api')->namespace('Admin')->prefix('admin')->group(
     Route::resource('file','AdminFileController');
     Route::get('file_show/{site_id}','AdminFileController@index');
     Route::post('file/{id}','AdminFileController@update');
+
+
+    //news
+    Route::resource('news','AdminNewsController');
+    Route::get('news_show/{site_id}','AdminNewsController@index');
+    Route::post('news/{id}','AdminNewsController@update');
+    Route::post('news_primary','AdminNewsController@change_primary');
+    Route::post('news_status','AdminNewsController@change_status');
+
+
+    //poll
+    Route::resource('poll','AdminPollController');
+    Route::get('poll_show/{site_id}','AdminPollController@index');
+    Route::post('poll/{id}','AdminPollController@update');
+    Route::post('poll_status','AdminPollController@change_status');
+
+    //urgudul
+    Route::resource('urgudul','AdminUrgudulController');
+    Route::post('urgudul/{id}','AdminUrgudulController@update');
+
+    //zar
+    Route::resource('zar','AdminZarController');
+    Route::post('zar/{id}','AdminZarController@update');
 
 });
 

@@ -12,7 +12,7 @@ pd-l-2 {
 }
 
 label.label {
-	font-size: 14px;
+	font-size: 13px;
 }
 .modal {
 	z-index: 9999 !important;
@@ -28,8 +28,10 @@ label.label {
 	display: flex;
 }
 
-.table-responsive .category.table td {
+.table-responsive .category.table td, .table-responsive .category.table th {
 	height: auto;
+    padding: 6px;
+	
 }
 
 tr.is-grey {
@@ -262,7 +264,7 @@ tr.is-grey {
 
 				p {
 					margin-bottom: 1.5rem;
-					font-size: 14px;
+					font-size: 13px;
 				}
 
 				.flex-growni {
@@ -475,7 +477,7 @@ tr.is-grey {
 		}
 
 		.auth-footer {
-			font-size: 14px;
+			font-size: 13px;
 			margin-top: 1.5rem;
 
 			p {
@@ -1364,9 +1366,8 @@ aside.menu {
 				background-color: transparent;
 				border-width: 0;
 				color: $white;
-				font-size: 14px;
+				font-size: 13px;
 				font-weight: $weight-normal;
-				text-transform: uppercase;
 				overflow: hidden;
 				white-space: nowrap;
 
@@ -1383,7 +1384,7 @@ aside.menu {
 							top: 50%;
 							transform: translateY(-50%);
 							padding-right: 10px;
-							font-size: 14px;
+							font-size: 13px;
 						    transition: all $speed $easing;
 						}
 
@@ -1493,7 +1494,7 @@ aside.menu {
 		}
 
 		td {
-			height: 63px;
+			height: 55px;
 			vertical-align: middle;
 			line-height: 1.2;
 
@@ -1657,7 +1658,7 @@ aside.menu {
 .report-table {
 
 	tbody {
-		font-size: 14px;
+		font-size: 13px;
 
 		tr {
 
@@ -5923,7 +5924,6 @@ aside.menu {
 .table thead th {
 	background: #e9eaec;
 	color: #b1b1b1;
-	text-transform: uppercase;
 	font-weigth: normal;
 }
 
@@ -5949,3 +5949,24 @@ aside.menu {
 	margin-bottom: 0.5em;
 }
 
+.vue-treeselect__control {
+	height: 45.5px !important;
+}
+.vue-treeselect__placeholder, .vue-treeselect__single-value {
+	top:5px !important;
+}
+
+.modal-card-full {
+	width: 100%;
+	max-height: 100%;
+	height: 100%;
+	margin:0px;
+}
+.modal-card-full .modal-card-head {
+	border-radius: 0;
+	height: 50px;
+}
+.modal-card-full .modal-card-foot {
+	padding: 1rem 2em;
+	border-radius: 0;
+}

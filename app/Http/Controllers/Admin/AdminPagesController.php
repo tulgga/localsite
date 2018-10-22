@@ -67,8 +67,9 @@ class AdminPagesController extends Controller
     public function insert(Request $request){
         $data = $request->get('data');
         $data = json_decode($data, true);
+
         if($request->hasFile('image')){
-            $data['image'] = $request->image->store('images');
+            $data['image'] =Img::upload($request);
         }else{
             $data['image'] = null;
         }

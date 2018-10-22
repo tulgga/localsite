@@ -4,13 +4,23 @@
 
         <!-- Data table -->
         <div class="boxed">
-
             <div class="boxed-title">
             	<div class="boxed-item-center title">Файлын сан</div>
             </div>
 
 			<v-server-table ref="tableni" :url="url" v-if="fetched" :columns="columns" :options="options">
+                <div slot="cat" slot-scope="props" >
+                    <template v-for="cat in props.row.category">
+                        <span class="tag is-primary" style="margin-right: 5px; margin-bottom:5px;">{{cat.name}}</span>
+                    </template>
+                </div>
+                <div slot="type" slot-scope="props" >
+                        <span class="tag is-success" >{{fileType(props.row.file)}}</span>
+                </div>
                 <div slot="action" slot-scope="props" class="data-action">
+                    <div @click="showmodal=true; file=siteUrl+'/file_viewer/?file='+props.row.file" ><i class="fas fa-eye"></i></div>
+                    <a :href="siteUrl+'/uploads/'+props.row.file" download><i class="fas fa-download"></i></a>
+                    <router-link :to="'files/'+props.row.id+'/update'" ><i class="fas fa-pencil-alt"></i></router-link>
                     <div @click="deleting(props.row)">
                         <i class="fas fa-trash"></i>
                     </div>
@@ -46,17 +56,30 @@
             </div>
         </div>
 
+        <!-- show modal -->
+        <div class="modal is-active" v-if="showmodal">
+            <div class="modal-background" v-on:click="showmodal = false"></div>
+            <div class="modal-card ">
+                <section class="modal-card-body pd0">
+                    <iframe :src="file"  style="width: 100%; height: 600px;"></iframe>
+                </section>
+            </div>
 
+        </div>
 
     </div>
+
 
 </template>
 <script>
     export default {
         data(){
             return {
+                siteUrl: window.surl,
                 lists: [],
                 url: '/file_show/'+this.$store.getters.domain.id,
+                showmodal:false,
+                file: false,
                 deletemodal:false,
                 deleteid: false,
                 statuschangemodal:false,
@@ -64,7 +87,7 @@
                 fetched:true,
                 is_loading:false,
                 user:false,
-                columns: ['id', 'name', 'content',  'cat_id', 'created_at', 'action'],
+                columns: ['id', 'name', 'content',  'status', 'cat', 'active_date', 'publish_date', 'cart_number', 'type',  'action'],
                 options: {
                     perPage: 25,
                     perPageValues: [25,50,100],
@@ -72,19 +95,35 @@
                     headings: {
                         id: '№',
                         name: "Гарчиг",
+                        cat: "Ангилал",
                         content: "Агууллага",
-                        cat_id: "Ангилал",
-                        created_at: "огноо",
+                        cart_number: "Актын дугаар",
+                        status: "Төлөв",
+                        active_date: "Мөрдөх огноо",
+                        publish_date: "Батлагдсан огноо",
+                        type: "төрөл",
                         action: " ",
                     },
                     filterByColumn: true,
-                    sortable: ['id', 'name', 'content',  'cat_id', 'created_at'],
-                    filterable: ['name', 'content', 'cat_id'],
+                    sortable: ['id', 'name', 'content',  'status',   ],
+                    filterable: ['name', 'content', 'status', ],
                     sortIcon: {
                         base:'fas', 
                         up:'fa-sort-up', 
                         down:'fa-sort-down', 
                         is:'fa-sort' 
+                    },
+                    listColumns: {
+                        status: [
+                            {
+                                id: 0,
+                                text: 'Хүчингүй'
+                            },
+                            {
+                                id: 1,
+                                text: 'Хүчинтэй'
+                            }
+                        ]
                     },
                     texts:{
                         count : this.$store.getters.lang.table.count,
@@ -151,6 +190,10 @@
                     this.is_loading = false;
                     this.$toasted.global.toast_success({message: this.$store.getters.lang.messages.is_deleted_text}); // delete success toast
                 })
+            },
+            fileType(file){
+                var pieces = file.split(/[\s.]+/)
+              return pieces[pieces.length-1]
             },
             deleting(row){
                 this.deleteid = row;
