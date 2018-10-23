@@ -90,7 +90,7 @@
 
 
                     <div slot="action" slot-scope="props" class="data-action">
-                        <router-link :to="'news/'+props.row.id+'/update'" ><i class="fas fa-pencil-alt"></i></router-link>
+                        <router-link :to="'sub_news/'+props.row.id+'/update'" ><i class="fas fa-pencil-alt"></i></router-link>
                         <div @click="deleting(props.row)">
                             <i class="fas fa-trash"></i>
                         </div>
@@ -100,7 +100,7 @@
             <div v-else class="main-bodoh is-loading"></div>
 
             <div class="boxed-item-center absolute">
-                 <router-link :to="{ name: 'create_news'}" class="add_button">+</router-link>
+                 <router-link :to="{ name: 'create_sub_news'}" class="add_button">+</router-link>
             </div>
 
             <router-view></router-view>
@@ -194,7 +194,7 @@
                 fetched:false,
                 is_loading:false,
                 user:false,
-                columns: ['id',  'image',  'title',  'cat', 'site',   'type', 'is_primary',   'status',   'created_at', 'view_count', 'action'],
+                columns: ['id',  'image',  'title',  'cat', 'main_site_publish',   'type', 'is_primary',   'status',   'created_at', 'view_count', 'action'],
                 options: {
                     perPage: 25,
                     perPageValues: [25,50,100],
@@ -204,7 +204,7 @@
                         image: "зураг",
                         cat: "ангилал",
                         title: "Гарчиг",
-                        site: "дэд сайтууд",
+                        main_site_publish: "Үндсэн сайт",
                         type: "төрөл",
                         is_primary: "онцлох",
                         status: "төлөв",
@@ -213,8 +213,8 @@
                         action: " ",
                     },
                     filterByColumn: true,
-                    sortable: [  'title',    'type',  'status',  'is_primary', 'view_count', 'created_at'  ],
-                    filterable: [   'title',    'type',  'status',  'is_primary',  ],
+                    sortable: [  'title',    'type',  'main_site_publish', 'status',  'is_primary', 'view_count', 'created_at'  ],
+                    filterable: [   'title',    'type',  'main_site_publish', 'status',  'is_primary',  ],
                     sortIcon: {
                         base:'fas', 
                         up:'fa-sort-up', 
@@ -229,6 +229,20 @@
                             },
                             {
                                 id: 1,
+                                text: 'нийтлэгдсэн'
+                            }
+                        ],
+                        main_site_publish: [
+                            {
+                                id: 0,
+                                text: 'үгүй'
+                            },
+                            {
+                                id: 1,
+                                text: 'хүлээгдэж буй'
+                            },
+                            {
+                                id: 2,
                                 text: 'нийтлэгдсэн'
                             }
                         ],
@@ -411,7 +425,6 @@
     }
 </script>
 <style>
-
 
 
     tr td:nth-child(0){

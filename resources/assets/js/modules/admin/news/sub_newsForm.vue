@@ -49,8 +49,13 @@ CRUD Edit, Create form
                                 </div>
 
                                 <div class="field">
-                                    <label class="label">Нийтлэх дэд сайтууд</label>
-                                    <treeselect v-model="form.sites" :flat="true"  :default-expand-level="10" :multiple="true" :options="sites" />
+                                    <label class="label">Үндсэн сайтад нийтлэх хүсэлт</label>
+                                    <div class="control select">
+                                        <select class="input"  v-model="form.main_site_publish" >
+                                            <option value="0">үгүй</option>
+                                            <option value="1">тийм</option>
+                                        </select>
+                                    </div>
                                 </div>
 
                                 <div class="field">
@@ -196,7 +201,7 @@ CRUD Edit, Create form
                         this.form.status = response.data.success.status;
                         this.form.is_primary = response.data.success.is_primary;
                         this.form.cat_id = response.data.success.category;
-                        this.form.sites = response.data.success.site;
+                        this.form.main_site_publish=response.data.success.main_site_publish;
 
                         if (response.data.success.image) {
                             this.imageni = this.siteUrl+'/uploads/'+response.data.success.image.replace('images/', 'medium/');
@@ -225,13 +230,13 @@ CRUD Edit, Create form
                         if (this.m_id) {
                             axios.post('/news/'+this.m_id, formData)
                                 .then((response) => {
-                                     this.$router.push('/news');
+                                     this.$router.push('/sub_news');
                                     this.$toasted.global.toast_success({message: this.$store.getters.lang.messages.is_created_text});
                                 });
                         } else {
                             axios.post('/news', formData)
                                 .then((response) => {
-                                     this.$router.push('/news');
+                                     this.$router.push('/sub_news');
                                     this.$toasted.global.toast_success({message: this.$store.getters.lang.messages.is_created_text});
                                 });
                         }

@@ -11,7 +11,7 @@ use App\Site;
 class AdminSiteController extends Controller
 {
     public  function index(){
-        $results=Site::where('id','!=', 0)->orderBy('id', 'desc')->select('id','name','domain')->get();
+        $results=Site::where('id','!=', 0)->orderBy('id', 'desc')->select('id','name','domain', 'name as label', 'name as text')->get();
         return response()->json([ 'success' => $results ]);
     }
 

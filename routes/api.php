@@ -13,6 +13,7 @@ use App\Http\Controllers\Auth;
 | is assigned the "api" middleware group. Enjoy building your API!
 */
 
+
 Route::namespace('Api')->group(function (){
     //Мэдээллийг 20 бичлэгээр хуудаслаж авна
     Route::get('news','ApiNewsController@news');
@@ -29,6 +30,8 @@ Route::namespace('Api')->group(function (){
     //Зөвхөн нэг санал асуулгын ID өгсөн тохиолдолд санал асуулгыг асуулт, хариултын хамт илгээнэ
     Route::get('poll/{id}','ApiPollController@getById');
 });
+
+
 
 Route::middleware('auth:admin-api')->namespace('Admin')->prefix('admin')->group(function () {
     Route::get('user','AdminUserController@index');
@@ -83,10 +86,14 @@ Route::middleware('auth:admin-api')->namespace('Admin')->prefix('admin')->group(
 
     //news
     Route::resource('news','AdminNewsController');
-    Route::get('news_show/{site_id}','AdminNewsController@index');
+    Route::get('news_show/{site_id}/{cat_id?}','AdminNewsController@index');
+    Route::get('sub_news_publish','AdminNewsController@sub_news_publish');
+
     Route::post('news/{id}','AdminNewsController@update');
     Route::post('news_primary','AdminNewsController@change_primary');
     Route::post('news_status','AdminNewsController@change_status');
+    Route::post('main_site_publish','AdminNewsController@main_site_publish');
+
 
 
     //poll

@@ -29,6 +29,13 @@ import fileForm from '../modules/admin/file/fileForm';
 import News from '../modules/admin/news/news';
 import newsForm from '../modules/admin/news/newsForm';
 
+
+import subNewsPublish from '../modules/admin/news/sub_news_to_main';
+
+
+import subNews from '../modules/admin/news/sub_news';
+import subNewsForm from '../modules/admin/news/sub_newsForm';
+
 import Urgudul from '../modules/admin/urgudul/urgudul';
 import Sidebar from '../modules/admin/sidebar/sidebar';
 
@@ -124,6 +131,26 @@ let routes = [
             ]
         },
     },
+
+
+    {
+        path: '/sub_news_publish',
+        name: 'subNewsPublish',
+        component: subNewsPublish,
+        meta: {
+            requiresAuth: true,
+            page_title: 'Орон нутгийн мэдээ',
+            bread_crumbs: [
+                {
+                    title: 'Мэдээ',
+                    rname: ''
+                }
+            ]
+        },
+    },
+
+
+
 
     {
         path: '/pages',
@@ -272,8 +299,58 @@ let routes = [
             },
             {
                 path: ':id/update',
-                component: fileForm,
+                component: newsForm,
                 name: 'update_news',
+                meta: {
+                    page_title: 'Засах',
+                    bread_crumbs: [
+                        {
+                            title: 'Мэдээ',
+                            rname: ''
+                        }
+                    ],
+                    notloading: true,
+                    is_modal: true,
+                }
+            },
+        ]
+    },
+
+    {
+        path: '/sub_news',
+        name: 'sub_news',
+        component: subNews,
+        meta: {
+            requiresAuth: true,
+            page_title: 'Мэдээ',
+            bread_crumbs: [
+                {
+                    title: 'Мэдээ',
+                    rname: ''
+                }
+            ]
+        },
+        children: [
+            {
+                path: 'create',
+                component: subNewsForm,
+                name: 'create_sub_news',
+                meta: {
+                    page_title: 'Нэмэх',
+                    bread_crumbs: [
+                        {
+                            title: 'Мэдээ',
+                            rname: ''
+                        }
+                    ],
+                    notloading: true,
+                    is_modal: true,
+                }
+            },
+            {
+                path: ':id/update',
+                component: subNewsForm,
+                name: 'update_sub_news',
                 meta: {
                     page_title: 'Засах',
                     bread_crumbs: [
