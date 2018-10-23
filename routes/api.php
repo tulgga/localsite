@@ -14,7 +14,20 @@ use App\Http\Controllers\Auth;
 */
 
 Route::namespace('Api')->group(function (){
+    //Мэдээллийг 20 бичлэгээр хуудаслаж авна
     Route::get('news','ApiNewsController@news');
+    //Өргөдөлийг 20 бичлэгээр хуудаслаж авна
+    Route::get('urgudul','ApiUrgudulController@urgudul');
+    //Зарыг 20 бичлэгээр хуудаслаж авна
+    Route::get('zar','ApiZarController@zar');
+    //Бүх зарын ангилалыг авна
+    Route::get('zarCategory','ApiZarCategoryController@zarCategory');
+    //Зарын ангилалаас зөвхөн нэг ангилалыг хүүхдүүдийн хамт
+    Route::get('zarCategory/{id}','ApiZarCategoryController@getById');
+    //Бүх санал асуулга хэлбэржүүлж авах
+    Route::get('poll','ApiPollController@poll');
+    //Зөвхөн нэг санал асуулгын ID өгсөн тохиолдолд санал асуулгыг асуулт, хариултын хамт илгээнэ
+    Route::get('poll/{id}','ApiPollController@getById');
 });
 
 Route::middleware('auth:admin-api')->namespace('Admin')->prefix('admin')->group(function () {
