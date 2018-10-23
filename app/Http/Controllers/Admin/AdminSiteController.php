@@ -37,6 +37,18 @@ class AdminSiteController extends Controller
         $info->save();
     }
 
+    public function get_menu($id){
+        $info = Site::findOrFail($id);
+        return $info->menu;
+    }
+
+    public function site_menu(Request $request, $id){
+        $info = Site::findOrFail($id);
+        $info->menu =  $request->get('data');
+        $info->save();
+    }
+
+
     public function update(Request $request, $id)
     {
         $data = $request->get('data');

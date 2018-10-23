@@ -17534,17 +17534,20 @@ module.exports = copyObject;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__modules_admin_news_sub_news_to_main__ = __webpack_require__(363);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__modules_admin_news_sub_news__ = __webpack_require__(365);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__modules_admin_news_sub_newsForm__ = __webpack_require__(369);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__modules_admin_urgudul_urgudul__ = __webpack_require__(371);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__modules_admin_sidebar_sidebar__ = __webpack_require__(373);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__modules_admin_poll_poll__ = __webpack_require__(377);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__modules_admin_poll_pollForm__ = __webpack_require__(379);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__modules_admin_zar_zar__ = __webpack_require__(381);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__modules_admin_zar_zarForm__ = __webpack_require__(383);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__modules_admin_Links_Link__ = __webpack_require__(385);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__modules_admin_Links_LinkForm__ = __webpack_require__(389);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__modules_admin_employee_Profile__ = __webpack_require__(808);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__modules_auth_Login__ = __webpack_require__(391);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__modules_system_NotFound__ = __webpack_require__(393);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__modules_admin_menu_menu__ = __webpack_require__(811);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__modules_admin_urgudul_urgudul__ = __webpack_require__(371);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__modules_admin_sidebar_sidebar__ = __webpack_require__(373);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__modules_admin_poll_poll__ = __webpack_require__(377);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__modules_admin_poll_pollForm__ = __webpack_require__(379);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__modules_admin_zar_zar__ = __webpack_require__(381);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__modules_admin_zar_zarForm__ = __webpack_require__(383);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__modules_admin_Links_Link__ = __webpack_require__(385);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__modules_admin_Links_LinkForm__ = __webpack_require__(389);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__modules_admin_employee_Profile__ = __webpack_require__(808);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__modules_auth_Login__ = __webpack_require__(391);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__modules_system_NotFound__ = __webpack_require__(393);
+
+
 
 
 
@@ -17602,8 +17605,8 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_
 var routes = [{
     path: '/login',
     name: 'login',
-    component: __WEBPACK_IMPORTED_MODULE_31__modules_auth_Login__["a" /* default */]
-}, { path: "*", component: __WEBPACK_IMPORTED_MODULE_32__modules_system_NotFound__["a" /* default */] }, {
+    component: __WEBPACK_IMPORTED_MODULE_32__modules_auth_Login__["a" /* default */]
+}, { path: "*", component: __WEBPACK_IMPORTED_MODULE_33__modules_system_NotFound__["a" /* default */] }, {
     path: '/',
     name: 'home',
     component: __WEBPACK_IMPORTED_MODULE_3__modules_admin_Dashboard__["a" /* default */],
@@ -17640,6 +17643,18 @@ var routes = [{
         }]
     }
 }, {
+    path: '/menu',
+    name: 'menu',
+    component: __WEBPACK_IMPORTED_MODULE_22__modules_admin_menu_menu__["a" /* default */],
+    meta: {
+        requiresAuth: true,
+        page_title: 'Цэс',
+        bread_crumbs: [{
+            title: 'Тохиргоо',
+            rname: ''
+        }]
+    }
+}, {
     path: '/file_category',
     name: 'fileCategory',
     component: __WEBPACK_IMPORTED_MODULE_10__modules_admin_fileCategory_fileCategoryNew__["a" /* default */],
@@ -17666,7 +17681,7 @@ var routes = [{
 }, {
     path: '/profile',
     name: 'profile',
-    component: __WEBPACK_IMPORTED_MODULE_30__modules_admin_employee_Profile__["a" /* default */],
+    component: __WEBPACK_IMPORTED_MODULE_31__modules_admin_employee_Profile__["a" /* default */],
     meta: {
         requiresAuth: true,
         page_title: 'Миний профайл',
@@ -17837,7 +17852,7 @@ var routes = [{
 }, {
     path: '/poll',
     name: 'poll',
-    component: __WEBPACK_IMPORTED_MODULE_24__modules_admin_poll_poll__["a" /* default */],
+    component: __WEBPACK_IMPORTED_MODULE_25__modules_admin_poll_poll__["a" /* default */],
     meta: {
         requiresAuth: true,
         page_title: 'Санал асуулга',
@@ -17848,7 +17863,7 @@ var routes = [{
     },
     children: [{
         path: 'create',
-        component: __WEBPACK_IMPORTED_MODULE_25__modules_admin_poll_pollForm__["a" /* default */],
+        component: __WEBPACK_IMPORTED_MODULE_26__modules_admin_poll_pollForm__["a" /* default */],
         name: 'create_poll',
         meta: {
             page_title: 'Нэмэх',
@@ -17861,7 +17876,7 @@ var routes = [{
         }
     }, {
         path: ':id/update',
-        component: __WEBPACK_IMPORTED_MODULE_25__modules_admin_poll_pollForm__["a" /* default */],
+        component: __WEBPACK_IMPORTED_MODULE_26__modules_admin_poll_pollForm__["a" /* default */],
         name: 'update_poll',
         meta: {
             page_title: 'Засах',
@@ -17876,7 +17891,7 @@ var routes = [{
 }, {
     path: '/urgudul',
     name: 'urgudul',
-    component: __WEBPACK_IMPORTED_MODULE_22__modules_admin_urgudul_urgudul__["a" /* default */],
+    component: __WEBPACK_IMPORTED_MODULE_23__modules_admin_urgudul_urgudul__["a" /* default */],
     meta: {
         requiresAuth: true,
         page_title: 'Санал хүсэлт',
@@ -17888,7 +17903,7 @@ var routes = [{
 }, {
     path: '/sidebar',
     name: 'sidebar',
-    component: __WEBPACK_IMPORTED_MODULE_23__modules_admin_sidebar_sidebar__["a" /* default */],
+    component: __WEBPACK_IMPORTED_MODULE_24__modules_admin_sidebar_sidebar__["a" /* default */],
     meta: {
         requiresAuth: true,
         page_title: 'Сурталчилгаа',
@@ -17900,7 +17915,7 @@ var routes = [{
 }, {
     path: '/zar',
     name: 'zar',
-    component: __WEBPACK_IMPORTED_MODULE_26__modules_admin_zar_zar__["a" /* default */],
+    component: __WEBPACK_IMPORTED_MODULE_27__modules_admin_zar_zar__["a" /* default */],
     meta: {
         requiresAuth: true,
         page_title: 'Зар',
@@ -17911,7 +17926,7 @@ var routes = [{
     },
     children: [{
         path: 'create',
-        component: __WEBPACK_IMPORTED_MODULE_27__modules_admin_zar_zarForm__["a" /* default */],
+        component: __WEBPACK_IMPORTED_MODULE_28__modules_admin_zar_zarForm__["a" /* default */],
         name: 'create_zar',
         meta: {
             page_title: 'Нэмэх',
@@ -17924,7 +17939,7 @@ var routes = [{
         }
     }, {
         path: ':id/update',
-        component: __WEBPACK_IMPORTED_MODULE_27__modules_admin_zar_zarForm__["a" /* default */],
+        component: __WEBPACK_IMPORTED_MODULE_28__modules_admin_zar_zarForm__["a" /* default */],
         name: 'update_zar',
         meta: {
             page_title: 'Зар засах',
@@ -18029,7 +18044,7 @@ var routes = [{
 }, {
     path: '/link',
     name: 'link',
-    component: __WEBPACK_IMPORTED_MODULE_28__modules_admin_Links_Link__["a" /* default */],
+    component: __WEBPACK_IMPORTED_MODULE_29__modules_admin_Links_Link__["a" /* default */],
     meta: {
         requiresAuth: true,
         page_title: 'Холбоос',
@@ -18040,7 +18055,7 @@ var routes = [{
     },
     children: [{
         path: 'create',
-        component: __WEBPACK_IMPORTED_MODULE_29__modules_admin_Links_LinkForm__["a" /* default */],
+        component: __WEBPACK_IMPORTED_MODULE_30__modules_admin_Links_LinkForm__["a" /* default */],
         name: 'link_create',
         meta: {
             page_title: 'Нэмэх',
@@ -18056,7 +18071,7 @@ var routes = [{
         }
     }, {
         path: ':id/update',
-        component: __WEBPACK_IMPORTED_MODULE_29__modules_admin_Links_LinkForm__["a" /* default */],
+        component: __WEBPACK_IMPORTED_MODULE_30__modules_admin_Links_LinkForm__["a" /* default */],
         name: 'link_update',
         meta: {
             page_title: 'Засах',
@@ -45713,10 +45728,10 @@ function updateLink (link, options, obj) {
             domain: [],
             domainmodal: false,
             user: false,
-            items: [{ subheader: 'Ерөнхий', role: 0 }, { title: 'Дэд сайтууд', icon: 'fas fa-th', path: '/sites', role: 0 }, { title: 'Админ / ажилтан', icon: 'fas fa-users', path: '/employees', role: 0 }, { subheader: 'Тохиргоо', role: 1 }, { title: 'Тохиргоо', icon: 'fas fa-sliders-h', path: '/setting', role: 1 }, { title: "Цэс", icon: 'fas fa-bars', path: '/menu', role: 1 }, { title: "Сутралчилгаа", icon: 'fab fa-goodreads', path: '/sidebar', role: 1 }, { subheader: 'Мэдээ', role: 1 }, { title: 'Мэдээний ангилал', icon: 'fas fa-code-branch', path: '/news_category', role: 1 }, { title: "Мэдээ", icon: 'fas fa-newspaper', path: '/news', role: 1 }, { title: "Орон нутгийн мэдээ", icon: 'fas fa-newspaper', path: '/sub_news_publish', role: 1 }, { title: 'Хуудас', icon: 'far fa-file-alt', path: '/pages', role: 1 }, { subheader: 'Файлын сан', role: 1 }, { title: "Файлын ангилал", icon: 'fas fa-code-branch', path: '/file_category', role: 1 }, { title: "Файлын сан", icon: 'fas fa-folder', path: '/files', role: 1 }, { subheader: 'Холбоос', role: 1 }, { title: "Холбоос ангилал", icon: 'fas fa-code-branch', path: '/link_category', role: 1 }, { title: "Холбоос", icon: 'fas fa-link', path: '/link', role: 1 }, { subheader: 'Зар', role: 1 }, { title: "Зарийн ангилал", icon: 'fas fa-code-branch', path: '/zar_category', role: 1 }, { title: "Зар", icon: 'fas fa-chart-bar', path: '/zar', role: 1 }, { subheader: 'Бусад', role: 1 }, { title: "Санал асуулга", icon: 'fas fa-code-branch', path: '/poll', role: 1 }, { title: 'Санал хүсэлт', icon: 'far fa-comments', path: '/urgudul', role: 1 },
+            items: [{ subheader: 'Ерөнхий', role: 0 }, { title: 'Дэд сайтууд', icon: 'fas fa-th', path: '/sites', role: 0 }, { title: 'Админ / ажилтан', icon: 'fas fa-users', path: '/employees', role: 0 }, { subheader: 'Тохиргоо', role: 1 }, { title: 'Тохиргоо', icon: 'fas fa-sliders-h', path: '/config', role: 1 }, { title: "Цэс", icon: 'fas fa-bars', path: '/menu', role: 1 }, { title: "Сутралчилгаа", icon: 'fab fa-goodreads', path: '/sidebar', role: 1 }, { subheader: 'Мэдээ', role: 1 }, { title: 'Мэдээний ангилал', icon: 'fas fa-code-branch', path: '/news_category', role: 1 }, { title: "Мэдээ", icon: 'fas fa-newspaper', path: '/news', role: 1 }, { title: "Орон нутгийн мэдээ", icon: 'fas fa-newspaper', path: '/sub_news_publish', role: 1 }, { title: 'Хуудас', icon: 'far fa-file-alt', path: '/pages', role: 1 }, { subheader: 'Файлын сан', role: 1 }, { title: "Файлын ангилал", icon: 'fas fa-code-branch', path: '/file_category', role: 1 }, { title: "Файлын сан", icon: 'fas fa-folder', path: '/files', role: 1 }, { subheader: 'Холбоос', role: 1 }, { title: "Холбоос ангилал", icon: 'fas fa-code-branch', path: '/link_category', role: 1 }, { title: "Холбоос", icon: 'fas fa-link', path: '/link', role: 1 }, { subheader: 'Зар', role: 1 }, { title: "Зарийн ангилал", icon: 'fas fa-code-branch', path: '/zar_category', role: 1 }, { title: "Зар", icon: 'fas fa-chart-bar', path: '/zar', role: 1 }, { subheader: 'Бусад', role: 1 }, { title: "Санал асуулга", icon: 'fas fa-code-branch', path: '/poll', role: 1 }, { title: 'Санал хүсэлт', icon: 'far fa-comments', path: '/urgudul', role: 1 },
 
             // ded site
-            { subheader: 'Ерөнхий', role: 2 }, { title: 'Дэд Админ / ажилтан', icon: 'fas fa-users', path: '/admins', role: 2 }, { subheader: 'Тохиргоо', role: 2 }, { title: 'Тохиргоо', icon: 'fas fa-sliders-h', path: '/setting', role: 2 }, { title: "Цэс", icon: 'fas fa-bars', path: '/menu', role: 2 }, { title: "Сутралчилгаа", icon: 'fab fa-goodreads', path: '/sidebar', role: 2 }, { subheader: 'Мэдээ', role: 2 }, { title: 'Мэдээний ангилал', icon: 'fas fa-code-branch', path: '/news_category', role: 3 }, { title: "Мэдээ", icon: 'fas fa-newspaper', path: '/sub_news', role: 3 }, { title: 'Хуудас', icon: 'far fa-file-alt', path: '/pages', role: 3 }, { subheader: 'Файлын сан', role: 3 }, { title: "Файлын ангилал", icon: 'fas fa-code-branch', path: '/file_category', role: 3 }, { title: "Файлын сан", icon: 'fas fa-folder', path: '/files', role: 3 }, { subheader: 'Холбоос', role: 3 }, { title: "Холбоос ангилал", icon: 'fas fa-code-branch', path: '/link_category', role: 3 }, { title: "Холбоос", icon: 'fas fa-link', path: '/link', role: 3 }, { subheader: 'Бусад', role: 3 }, { title: "Санал асуулга", icon: 'fas fa-code-branch', path: '/poll', role: 3 }],
+            { subheader: 'Тохиргоо', role: 2 }, { title: 'Тохиргоо', icon: 'fas fa-sliders-h', path: '/sub_config', role: 2 }, { title: "Цэс", icon: 'fas fa-bars', path: '/menu', role: 2 }, { title: "Сутралчилгаа", icon: 'fab fa-goodreads', path: '/sidebar', role: 2 }, { subheader: 'Мэдээ', role: 2 }, { title: 'Мэдээний ангилал', icon: 'fas fa-code-branch', path: '/news_category', role: 3 }, { title: "Мэдээ", icon: 'fas fa-newspaper', path: '/sub_news', role: 3 }, { title: 'Хуудас', icon: 'far fa-file-alt', path: '/pages', role: 3 }, { subheader: 'Файлын сан', role: 3 }, { title: "Файлын ангилал", icon: 'fas fa-code-branch', path: '/file_category', role: 3 }, { title: "Файлын сан", icon: 'fas fa-folder', path: '/files', role: 3 }, { subheader: 'Холбоос', role: 3 }, { title: "Холбоос ангилал", icon: 'fas fa-code-branch', path: '/link_category', role: 3 }, { title: "Холбоос", icon: 'fas fa-link', path: '/link', role: 3 }, { subheader: 'Бусад', role: 3 }, { title: "Санал асуулга", icon: 'fas fa-code-branch', path: '/poll', role: 3 }],
             badge_show: false
         };
     },
@@ -45733,11 +45748,11 @@ function updateLink (link, options, obj) {
         checkAdminType: function checkAdminType() {
             var admin_type = this.$store.getters.authUser.admin_type;
             if (admin_type == 0) {
-                this.$router.push('/');
+                this.$router.push('/sites');
             } else if (admin_type == 1) {
                 this.$router.push('/news');
             } else if (admin_type == 2) {
-                this.$router.push('/sub_home');
+                this.$router.push('/sub_config');
             } else if (admin_type == 3) {
                 this.$router.push('/sub_news');
             }
@@ -115920,6 +115935,751 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-66c9be08", { render: render, staticRenderFns: staticRenderFns })
+  }
+}
+
+/***/ }),
+/* 810 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_helpers_treeMenu__ = __webpack_require__(814);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+    components: { TreeNode: __WEBPACK_IMPORTED_MODULE_0__components_helpers_treeMenu__["a" /* default */] },
+    data: function data() {
+        return {
+            fetched: false,
+            is_loading: false,
+            site_id: 0,
+            treeData: {
+                name: 'Цэс',
+                children: []
+            }
+
+        };
+    },
+    created: function created() {
+        this.fetchData();
+    },
+    methods: {
+        // api url-аас дата авч байна
+        fetchData: function fetchData() {
+            var _this = this;
+
+            this.site_id = this.$store.getters.domain.id;
+            axios.get('/get_menu/' + this.$store.getters.domain.id).then(function (response) {
+                if (response.data.success) {
+                    _this.treeData.children = response.data.success;
+                }
+                console.log(_this.treeData);
+                _this.fetched = true;
+            });
+        },
+        save: function save() {
+            var _this2 = this;
+
+            this.is_loading = true;
+            var formData = new FormData();
+            formData.append('data', JSON.stringify(this.treeData.children));
+
+            axios.post('/site_menu/' + this.site_id, formData).then(function (response) {
+                _this2.is_loading = false;
+                _this2.fetchData();
+                _this2.$toasted.global.toast_success({ message: _this2.$store.getters.lang.messages.is_updated_text });
+            });
+        },
+        add: function add() {
+            this.treeData.children.unshift({ id: -1, name: "" });
+        }
+    }
+});
+
+/***/ }),
+/* 811 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_plugins_transform_object_rest_spread_transform_runtime_polyfill_false_helpers_false_node_modules_vue_loader_lib_selector_type_script_index_0_menu_vue__ = __webpack_require__(810);
+/* unused harmony namespace reexport */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_0fa3a8eb_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_menu_vue__ = __webpack_require__(812);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_runtime_component_normalizer__ = __webpack_require__(1);
+var disposed = false
+/* script */
+
+
+/* template */
+
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+
+var Component = Object(__WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_runtime_component_normalizer__["a" /* default */])(
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_plugins_transform_object_rest_spread_transform_runtime_polyfill_false_helpers_false_node_modules_vue_loader_lib_selector_type_script_index_0_menu_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_0fa3a8eb_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_menu_vue__["a" /* render */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_0fa3a8eb_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_menu_vue__["b" /* staticRenderFns */],
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\modules\\admin\\menu\\menu.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0fa3a8eb", Component.options)
+  } else {
+    hotAPI.reload("data-v-0fa3a8eb", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+/* harmony default export */ __webpack_exports__["a"] = (Component.exports);
+
+
+/***/ }),
+/* 812 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm.fetched
+    ? _c("div", [
+        _c("div", { staticClass: "catTitle" }, [_vm._v("Мэдээний ангилал")]),
+        _vm._v(" "),
+        _c("p", { staticClass: "buttons mr0" }, [
+          _c(
+            "a",
+            {
+              staticClass: "button is-primary",
+              class: { "is-loading": _vm.is_loading },
+              attrs: { disabled: _vm.is_loading },
+              on: {
+                click: function($event) {
+                  _vm.save()
+                }
+              }
+            },
+            [_vm._m(0), _c("span", [_vm._v("Хадгалах")])]
+          ),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "button",
+              on: {
+                click: function($event) {
+                  _vm.add()
+                }
+              }
+            },
+            [_vm._m(1), _c("span", [_vm._v("Aнгилал нэмэх")])]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "columns" }, [
+          _c(
+            "div",
+            { staticClass: "column is-12-tablet is-12-mobile" },
+            [_c("tree-node", { attrs: { data: _vm.treeData } })],
+            1
+          )
+        ])
+      ])
+    : _vm._e()
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "icon" }, [
+      _c("i", { staticClass: "fas fa-save" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "icon" }, [
+      _c("i", { staticClass: "fas fa-plus" })
+    ])
+  }
+]
+render._withStripped = true
+
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-0fa3a8eb", { render: render, staticRenderFns: staticRenderFns })
+  }
+}
+
+/***/ }),
+/* 813 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+    name: 'TreeNode', // as a recursive component
+    props: {
+        data: { type: Object, required: true }, // { label: String, children: [{ label, children }] } or an empty object
+        shared: { type: Object, default: function _default() {
+                return {/* draggingVm: VueInstance */};
+            } }, // shared data for all the instances
+        vmIdx: Number // current instance's index in v-for (if exists)
+    },
+    data: function data() {
+        return {
+            deletemodal: false
+        };
+    },
+
+    computed: {
+        amIEmptyNode: function amIEmptyNode() {
+            // data of an empty node is an empty object: {}
+
+            return !this.data.id;
+        },
+
+        /**
+         * Generate adjacent empty nodes for each real node, in order to implement insertion actions
+         * e.g. [R1, R2, R3] === displayed as ===> [E1, R1, E2, R2, E3, R3, E4]
+         * (R means Real node, E means Empty node)
+         */
+        displayedChildren: function displayedChildren() {
+            var realNodes = this.data.children;
+            if (!realNodes || !realNodes.length) return []; // an empty node or a real node without children
+            return realNodes.reduce(function (displayedChildren, realNode) {
+                displayedChildren.push(realNode, {} /* <--- empty node */);
+                return displayedChildren;
+            }, [{}]);
+        }
+    },
+    methods: {
+        /**
+         * @context {this} - instance of drop-into node
+         */
+        isAllowedToDrop: function isAllowedToDrop() {
+            var vm = this;
+            var draggingVm = vm.shared.draggingVm;
+            // limitation 1: this cannot be the parent of the dragging node
+
+            if (vm === draggingVm.$parent) {
+                return false;
+            }
+            // limitation 2: this cannot be the adjacent empty node of the dragging node
+            if (vm.$parent === draggingVm.$parent && Math.abs(vm.vmIdx - draggingVm.vmIdx) === 1) {
+                return false;
+            }
+            // limitation 3: this cannot be the dragging node itself or its descendant
+            while (vm) {
+                if (vm === draggingVm) return false;
+                vm = vm.$parent.$options.name === 'TreeNode' ? vm.$parent : null;
+            }
+            return true;
+        },
+
+        /**
+         * @context {this} - instance of dragging node
+         */
+        handleDragStart: function handleDragStart() {
+            // this.shared.draggingVm = this // cannot ensure reactive
+            this.$set(this.shared, 'draggingVm', this); // ensure reactive
+            this.$el.classList.add('dragging-node');
+        },
+
+        /**
+         * @context {this} - instance of drop-into node
+         */
+        handleDragEnter: function handleDragEnter() {
+            this.$el.classList.add(this.isAllowedToDrop() ? 'drop-allowed' : 'drop-not-allowed');
+        },
+
+        /**
+         * @context {this} - instance of drop-into node
+         * Note that this function invokes once per every few hundred milliseconds
+         */
+        handleDragOver: function handleDragOver(e) {
+            e.preventDefault(); // must!!!
+            e.dataTransfer.dropEffect = this.isAllowedToDrop() ? 'move' : 'none';
+        },
+
+        /**
+         * @context {this} - instance of drop-into node
+         */
+        remove: function remove() {
+            var draggingVm = this.shared.draggingVm;
+
+            this.$parent.data.children.splice(this.vmIdx / 2, 1);
+        },
+        handleDrop: function handleDrop() {
+            this.revertClass();
+            if (!this.isAllowedToDrop()) return;
+            var draggingVm = this.shared.draggingVm;
+            // remove from the original place
+
+            var realIdxOfOrigin = (draggingVm.vmIdx - 1) / 2;
+            draggingVm.$parent.data.children.splice(realIdxOfOrigin, 1);
+            // case 1: drop into an empty node
+            if (this.amIEmptyNode) {
+                this.$parent.data.children.splice(this.vmIdx / 2, 0, draggingVm.data);
+                return;
+            }
+            // case 2: drop into a real node as its child
+            if (!this.data.children) {
+                this.$set(this.data, 'children', []); // ensure reactive
+            }
+            this.data.children.push(draggingVm.data);
+        },
+
+        /**
+         * @context {this} - instance of drop-into node
+         */
+        handleDragLeave: function handleDragLeave() {
+            this.revertClass();
+        },
+
+        /**
+         * @context {this} - instance of dragging node
+         */
+        handleDragEnd: function handleDragEnd() {
+            this.shared.draggingVm = null;
+            this.$el.classList.remove('dragging-node');
+        },
+        revertClass: function revertClass() {
+            this.$el.classList.remove('drop-allowed', 'drop-not-allowed');
+        }
+    }
+});
+
+/***/ }),
+/* 814 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_plugins_transform_object_rest_spread_transform_runtime_polyfill_false_helpers_false_node_modules_vue_loader_lib_selector_type_script_index_0_treeMenu_vue__ = __webpack_require__(813);
+/* unused harmony namespace reexport */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_35583aeb_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_treeMenu_vue__ = __webpack_require__(817);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_runtime_component_normalizer__ = __webpack_require__(1);
+var disposed = false
+function injectStyle (context) {
+  if (disposed) return
+  __webpack_require__(815)
+}
+/* script */
+
+
+/* template */
+
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+
+var Component = Object(__WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_runtime_component_normalizer__["a" /* default */])(
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_plugins_transform_object_rest_spread_transform_runtime_polyfill_false_helpers_false_node_modules_vue_loader_lib_selector_type_script_index_0_treeMenu_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_35583aeb_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_treeMenu_vue__["a" /* render */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_35583aeb_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_treeMenu_vue__["b" /* staticRenderFns */],
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\helpers\\treeMenu.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-35583aeb", Component.options)
+  } else {
+    hotAPI.reload("data-v-35583aeb", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+/* harmony default export */ __webpack_exports__["a"] = (Component.exports);
+
+
+/***/ }),
+/* 815 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(816);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var add = __webpack_require__(8).default
+var update = add("15a6a8b9", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"optionsId\":\"0\",\"vue\":true,\"scoped\":false,\"sourceMap\":false}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./treeMenu.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"optionsId\":\"0\",\"vue\":true,\"scoped\":false,\"sourceMap\":false}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./treeMenu.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 816 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(4)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.tree-node {\n    display: list-item;\n    padding-left: 2px;\n    list-style: none;\n    line-height: 20px;\n    border-left: 1px dashed #ddd;\n    -webkit-transition: height .5s ease;\n    transition: height .5s ease;\n}\n.empty-node {\n    height: 10px;\n}\n.tree-node-children {\n    margin-left: 20px; /* indention */\n}\n.dragging-node {\n    color: orange;\n    opacity: 0.7;\n}\n.drop-allowed {\n    height: 30px;\n    border: 1px dashed #ddd;\n    border-radius: 5px;\n    background-color: yellow;\n}\n.drop-not-allowed {\n    opacity: 0.7;\n}\n.tree-content {\n    background:#FFF;\n    padding:0.5em;\n    margin-left: 10px;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 817 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "div",
+      {
+        class: ["tree-node", { "empty-node": _vm.amIEmptyNode }],
+        attrs: { draggable: _vm.amIEmptyNode ? undefined : true },
+        on: {
+          dragstart: function($event) {
+            $event.stopPropagation()
+            return _vm.handleDragStart($event)
+          },
+          dragenter: function($event) {
+            $event.stopPropagation()
+            return _vm.handleDragEnter($event)
+          },
+          dragover: function($event) {
+            $event.stopPropagation()
+            return _vm.handleDragOver($event)
+          },
+          drop: function($event) {
+            $event.stopPropagation()
+            return _vm.handleDrop($event)
+          },
+          dragleave: function($event) {
+            $event.stopPropagation()
+            return _vm.handleDragLeave($event)
+          },
+          dragend: function($event) {
+            $event.stopPropagation()
+            return _vm.handleDragEnd($event)
+          }
+        }
+      },
+      [
+        _vm.amIEmptyNode === false
+          ? [
+              _c("div", { staticClass: "tree-content" }, [
+                _vm.vmIdx
+                  ? _c("div", { staticClass: "columns " }, [
+                      _vm._m(0),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "column is-10" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.data.name,
+                              expression: "data.name"
+                            }
+                          ],
+                          staticClass: "input",
+                          staticStyle: { border: "none" },
+                          attrs: { type: "text" },
+                          domProps: { value: _vm.data.name },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(_vm.data, "name", $event.target.value)
+                            }
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "column is-1 has-text-right" }, [
+                        _c(
+                          "span",
+                          {
+                            staticClass: "button",
+                            on: {
+                              click: function($event) {
+                                _vm.deletemodal = true
+                              }
+                            }
+                          },
+                          [_vm._m(1)]
+                        )
+                      ])
+                    ])
+                  : _c(
+                      "div",
+                      {
+                        staticClass: "boxed-item-center title",
+                        staticStyle: {
+                          "font-size": "1.75rem",
+                          "font-weight": "400",
+                          "text-transform": "uppercase",
+                          "letter-spacing": "4px",
+                          "margin-bottom": "0",
+                          padding: "0.5em"
+                        }
+                      },
+                      [_vm._v(_vm._s(_vm.data.name))]
+                    )
+              ])
+            ]
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.displayedChildren.length
+          ? _c(
+              "div",
+              { staticClass: "tree-node-children" },
+              _vm._l(_vm.displayedChildren, function(child, idx) {
+                return _c("tree-node", {
+                  attrs: { data: child, shared: _vm.shared, "vm-idx": idx }
+                })
+              })
+            )
+          : _vm._e()
+      ],
+      2
+    ),
+    _vm._v(" "),
+    _vm.deletemodal
+      ? _c("div", { staticClass: "modal is-active" }, [
+          _c("div", {
+            staticClass: "modal-background",
+            on: {
+              click: function($event) {
+                _vm.deletemodal = false
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "modal-card modal-card-small" }, [
+            _vm._m(2),
+            _vm._v(" "),
+            _vm._m(3),
+            _vm._v(" "),
+            _c("footer", { staticClass: "modal-card-foot" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "button is-text",
+                  on: {
+                    click: function($event) {
+                      _vm.deletemodal = false
+                    }
+                  }
+                },
+                [_vm._v("Буцах")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "button is-danger add_button",
+                  on: {
+                    click: function($event) {
+                      _vm.remove()
+                      _vm.deletemodal = false
+                    }
+                  }
+                },
+                [_c("span", [_vm._v("Устгах")])]
+              )
+            ])
+          ])
+        ])
+      : _vm._e()
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "column is-1 has-text-centered" }, [
+      _c("span", { staticClass: "button", staticStyle: { cursor: "move" } }, [
+        _c("span", { staticClass: "icon is-small" }, [
+          _c("i", { staticClass: "fas fa-arrows-alt" })
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "icon is-small" }, [
+      _c("i", { staticClass: "fas fa-trash" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("header", { staticClass: "modal-card-head" }, [
+      _c("p", { staticClass: "modal-card-title" }, [_vm._v("Aнгилал устгах")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("section", { staticClass: "modal-card-body" }, [
+      _c("p", { staticClass: "has-text-centered" }, [
+        _vm._v("Та итгэлтэй байна уу?")
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-35583aeb", { render: render, staticRenderFns: staticRenderFns })
   }
 }
 

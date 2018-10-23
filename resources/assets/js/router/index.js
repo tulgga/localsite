@@ -36,6 +36,8 @@ import subNewsPublish from '../modules/admin/news/sub_news_to_main';
 import subNews from '../modules/admin/news/sub_news';
 import subNewsForm from '../modules/admin/news/sub_newsForm';
 
+import menu from '../modules/admin/menu/menu';
+
 import Urgudul from '../modules/admin/urgudul/urgudul';
 import Sidebar from '../modules/admin/sidebar/sidebar';
 
@@ -115,7 +117,21 @@ let routes = [
     },
 
 
-
+    {
+        path: '/menu',
+        name: 'menu',
+        component: menu,
+        meta: {
+            requiresAuth: true,
+            page_title: 'Цэс',
+            bread_crumbs: [
+                {
+                    title: 'Тохиргоо',
+                    rname: ''
+                }
+            ]
+        },
+    },
 
     {
         path: '/file_category',
