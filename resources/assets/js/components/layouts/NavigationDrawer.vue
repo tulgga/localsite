@@ -6,10 +6,12 @@
                 <li v-if="user.admin_type==0" class="branchselect"><p>{{domain.name}}
                     <span @click="changeDomain" class="tag is-primary is-uppercase">өөрчлөх</span></p>
                 </li>
-
-                <p  class="main-text has-text-centered is-size-6 p2">
-                    {{domain.domain}}<span v-if="domain.domain!=''">.</span>{{site}}
+                <p class="main-text has-text-centered is-size-6 p2">
+                    <template  v-if="domain.domain!=''">{{domain.domain}}.{{site}}</template>
+                    <template v-else>bayankhongor.gov.mn</template>
                 </p>
+
+
             <template v-for="item in items" >
                     <!--admin default-->
                     <template v-if="user.admin_type==0 && domain.id==0 && item.role<2">
@@ -96,7 +98,7 @@
     export default {
         data () {
             return {
-                site: window.surl.replace('http://',''),
+                site: window.subdomain,
                 modal: false,
                 domainMain:{
                     id:0,
@@ -112,7 +114,7 @@
                         { title: 'Дэд сайтууд', icon: 'fas fa-th', path: '/sites', role:0,},
                         { title: 'Админ / ажилтан', icon: 'fas fa-users', path: '/employees', role:0,},
                     { subheader: 'Тохиргоо', role:1,},
-                        { title: 'Тохиргоо', icon: 'fas fa-sliders-h', path: '/setting',  role:1,},
+                        { title: 'Тохиргоо', icon: 'fas fa-sliders-h', path: '/config',  role:1,},
                         { title: "Цэс", icon: 'fas fa-bars', path: '/menu' ,  role:1},
                         { title: "Сутралчилгаа", icon: 'fab fa-goodreads', path: '/sidebar' ,  role:1},
                     { subheader: 'Мэдээ',  role:1 },
@@ -136,10 +138,8 @@
 
 
                     // ded site
-                    { subheader: 'Ерөнхий', role:2,},
-                    { title: 'Дэд Админ / ажилтан', icon: 'fas fa-users', path: '/admins', role:2,},
                     { subheader: 'Тохиргоо', role:2,},
-                    { title: 'Тохиргоо', icon: 'fas fa-sliders-h', path: '/setting',  role:2,},
+                    { title: 'Тохиргоо', icon: 'fas fa-sliders-h', path: '/sub_config',  role:2,},
                     { title: "Цэс", icon: 'fas fa-bars', path: '/menu' ,  role:2},
                     { title: "Сутралчилгаа", icon: 'fab fa-goodreads', path: '/sidebar' ,  role:2},
                     { subheader: 'Мэдээ',  role:2 },
@@ -170,11 +170,11 @@
             checkAdminType() {
                 var admin_type=this.$store.getters.authUser.admin_type;
                 if(admin_type==0){
-                    this.$router.push('/');
+                    this.$router.push('/sites');
                 } else if(admin_type==1){
                     this.$router.push('/news');
                 } else if(admin_type==2){
-                    this.$router.push('/sub_home');
+                    this.$router.push('/sub_config');
                 } else if(admin_type==3){
                     this.$router.push('/sub_news');
                 }

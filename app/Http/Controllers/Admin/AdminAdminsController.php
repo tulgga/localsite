@@ -123,8 +123,8 @@ class AdminAdminsController extends Controller
             'f_name' => 'required',
             'user_name' => ['required', Rule::unique('admin', 'user_name')->ignore($id)],
             'email' => ['required', 'email', Rule::unique('admin', 'email')->ignore($id)],
-            'admin_type' => 'required',
-            'status' => 'required',
+//            'admin_type' => 'required',
+//            'status' => 'required',
             'password' => 'min:6',
         ]);
 
@@ -135,18 +135,28 @@ class AdminAdminsController extends Controller
         $info = Admin::findOrFail($id);
         $info->f_name = $data['f_name'];
         $info->l_name = $data['l_name'];
-        $info->site_id = $data['site_id'];
+        if(isset($data['site_id'])) {
+            $info->site_id = $data['site_id'];
+        }
         $info->user_name = $data['user_name'];
         $info->email = $data['email'];
         $info->phone = $data['phone'];
-        $info->admin_type = $data['admin_type'];
-        $info->status = $data['status'];
+
+
+        if(isset($data['admin_type'])){
+            $info->admin_type = $data['admin_type'];
+        }
+
+        if(isset($data['status'])){
+            $info->status = $data['status'];
+        }
+
         if(isset($data['password']) && $data['password']){
             $info->password = Hash::make($data['password']);
         }
 
         if($request->hasFile('image')){
-            // Storage::disk('local')->delete($info->profile_pic);
+            Storage::delete($info->profile_pic);
             $path = $request->image->store('employees');
             $info->profile_pic = $path;
         }
@@ -182,6 +192,10 @@ class AdminAdminsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $admin=Admin::find($id);
+        if($admin){
+            Storage::delete($admin->profile_pic);
+        }
+        $admin->delete();
     }
 }

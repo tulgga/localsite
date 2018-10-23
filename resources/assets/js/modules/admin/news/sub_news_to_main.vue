@@ -201,7 +201,7 @@
                 }
                 let formData = new FormData();
                 formData.append('data', JSON.stringify(yvuulah));
-                axios.post('/news_sub_news_publish', formData)
+                axios.post('/main_site_publish', formData)
                     .then((response) => {
                         this.statusmodal = false;
                         this.$refs.tableni.refresh();

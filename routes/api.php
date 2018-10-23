@@ -40,6 +40,9 @@ Route::middleware('auth:admin-api')->namespace('Admin')->prefix('admin')->group(
     Route::resource('site','AdminSiteController');
     Route::post('site/{id}','AdminSiteController@update');
     Route::post('site_sidebar/{id}','AdminSiteController@site_sidebar');
+    Route::post('site_menu/{id}','AdminSiteController@site_menu');
+    Route::get('get_menu/{id}','AdminSiteController@get_menu');
+
 
     //admin user controller
     Route::post('admins/change_status','AdminAdminsController@change_status');

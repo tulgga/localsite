@@ -56,7 +56,7 @@ CRUD Edit, Create form
     export default {
         data(){
             return {
-                site: window.surl.replace('http://',''),
+                site: window.subdomain,
                 siteUrl: window.surl,
                 m_id: false, 			// Edit үед id орж ирнэ
                 fetched: false,

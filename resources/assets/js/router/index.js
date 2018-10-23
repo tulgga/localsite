@@ -36,6 +36,8 @@ import subNewsPublish from '../modules/admin/news/sub_news_to_main';
 import subNews from '../modules/admin/news/sub_news';
 import subNewsForm from '../modules/admin/news/sub_newsForm';
 
+import menu from '../modules/admin/menu/menu';
+
 import Urgudul from '../modules/admin/urgudul/urgudul';
 import Sidebar from '../modules/admin/sidebar/sidebar';
 
@@ -48,6 +50,7 @@ import zarForm from '../modules/admin/zar/zarForm';
 import Link from '../modules/admin/Links/Link'
 import LinkForm from '../modules/admin/Links/LinkForm'
 
+import Profile from '../modules/admin/employee/Profile';
 
 import Login from '../modules/auth/Login'
 
@@ -114,7 +117,21 @@ let routes = [
     },
 
 
-
+    {
+        path: '/menu',
+        name: 'menu',
+        component: menu,
+        meta: {
+            requiresAuth: true,
+            page_title: 'Цэс',
+            bread_crumbs: [
+                {
+                    title: 'Тохиргоо',
+                    rname: ''
+                }
+            ]
+        },
+    },
 
     {
         path: '/file_category',
@@ -149,6 +166,17 @@ let routes = [
         },
     },
 
+    {
+        path: '/profile',
+        name: 'profile',
+        component: Profile,
+        meta: {
+            requiresAuth: true,
+            page_title: 'Миний профайл',
+            bread_crumbs: [
+            ]
+        },
+    },
 
 
 
