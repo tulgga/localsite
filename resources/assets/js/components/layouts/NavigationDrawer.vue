@@ -6,10 +6,12 @@
                 <li v-if="user.admin_type==0" class="branchselect"><p>{{domain.name}}
                     <span @click="changeDomain" class="tag is-primary is-uppercase">өөрчлөх</span></p>
                 </li>
-
-                <p  class="main-text has-text-centered is-size-6 p2">
-                    {{domain.domain}}<span v-if="domain.domain!=''">.</span>{{site}}
+                <p class="main-text has-text-centered is-size-6 p2">
+                    <template  v-if="domain.domain!=''">{{domain.domain}}.{{site}}</template>
+                    <template v-else>bayankhongor.gov.mn</template>
                 </p>
+
+
             <template v-for="item in items" >
                     <!--admin default-->
                     <template v-if="user.admin_type==0 && domain.id==0 && item.role<2">
@@ -96,7 +98,7 @@
     export default {
         data () {
             return {
-                site: window.surl.replace('http://',''),
+                site: window.subdomain,
                 modal: false,
                 domainMain:{
                     id:0,

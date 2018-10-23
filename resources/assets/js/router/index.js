@@ -48,6 +48,7 @@ import zarForm from '../modules/admin/zar/zarForm';
 import Link from '../modules/admin/Links/Link'
 import LinkForm from '../modules/admin/Links/LinkForm'
 
+import Profile from '../modules/admin/employee/Profile';
 
 import Login from '../modules/auth/Login'
 
@@ -149,6 +150,17 @@ let routes = [
         },
     },
 
+    {
+        path: '/profile',
+        name: 'profile',
+        component: Profile,
+        meta: {
+            requiresAuth: true,
+            page_title: 'Миний профайл',
+            bread_crumbs: [
+            ]
+        },
+    },
 
 
 

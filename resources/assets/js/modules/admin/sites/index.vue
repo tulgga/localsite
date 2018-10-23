@@ -62,7 +62,7 @@
     export default {
         data() {
             return {
-                site: window.surl.replace('http://',''),
+                site: window.subdomain,
                 deletemodal:false,
                 deleteid: false,
                 fetched: false,

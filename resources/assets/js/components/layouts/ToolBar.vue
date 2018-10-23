@@ -43,8 +43,13 @@
         <div class="modal is-active" v-if="user_nav">
             <div class="modal-background" @click="user_nav = !user_nav"></div>
             <div class="modal-content modal-content-small">
-                <div class="box">
-                    <p><a class="button is-text is-fullwidth" @click="logout">Системээс гарах</a></p>
+                <div class="box pd0">
+                    <p>
+                     <a @click="profile" class="button is-medium is-fullwidth"><span class="icon is-medium"><i class="fas fa-user"></i></span><span>Миний профайл</span></a>
+                    </p>
+                </div>
+                <div class="box pd0">
+                    <p><a class="button is-medium is-fullwidth" @click="logout"><span class="icon is-medium"><i class="fas fa-sign-out-alt"></i></span><span>Системээс гарах</span></a></p>
                 </div>
             </div>
         </div>
@@ -85,6 +90,11 @@
             },
             user_menu_change: function() {
                 this.user_menu = !this.user_menu;
+            },
+
+            profile(){
+                this.user_nav=false;
+                this.$router.push({name:'profile'});
             }
         }
     }

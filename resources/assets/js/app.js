@@ -104,6 +104,7 @@ window.axios.interceptors.request.use(request => {
     }
     return request
 });
+window.subdomain="khongor.gov.mn"
 
 window.axios.interceptors.response.use(response => {
 

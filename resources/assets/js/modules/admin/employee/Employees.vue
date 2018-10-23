@@ -24,6 +24,9 @@
                     <router-link :to="'employees/'+props.row.id+'/update'">
                         <i class="fas fa-pencil-alt"></i>
                     </router-link>
+                    <div v-if="props.row.id!=1" @click="deleting(props.row)">
+                        <i class="fas fa-trash"></i>
+                    </div>
                 </div>
             </v-client-table>
             <div v-else class="main-bodoh is-loading"></div>
@@ -92,7 +95,7 @@
                 fetched:false,
                 is_loading:false,
                 user:false,
-                columns: ['id', 'profile_pic', 'f_name', 'admin_type', 'user_name', 'phone', 'email', 'status', 'action'],
+                columns: ['id', 'profile_pic', 'f_name', 'admin_type', 'site_id', 'user_name', 'phone', 'email', 'status', 'action'],
                 options: {
                     perPage: 10,
                     perPageValues: [10,25,50,100],
@@ -106,10 +109,11 @@
                         phone: "Утасны дугаар",
                         email: "И-мэйл хаяг",
                         status: "Төлөв",
+                        site_id: "Дэд сайт",
                         action: "Тохиргоо",
                     },
-                    sortable: ['f_name', 'admin_type', 'user_name', 'phone', 'email'],
-                    filterable: ['f_name', 'admin_type', 'user_name', 'phone', 'email'],
+                    sortable: ['f_name', 'admin_type', 'site_id', 'user_name', 'phone', 'email'],
+                    filterable: ['f_name', 'admin_type', 'site_id', 'user_name', 'phone', 'email'],
                     sortIcon: {
                         base:'fas', 
                         up:'fa-sort-up', 
@@ -136,8 +140,14 @@
                             {
                                 id: 3,
                                 text: 'дэд нийтлэгч'
+                            },
+                        ],
+                        site_id:[
+                            {
+                                id:0,
+                                text: 'Үндсэн сайт'
                             }
-                        ]
+                         ]
                     },
                     texts:{
                         count : this.$store.getters.lang.table.count,
@@ -177,6 +187,13 @@
         methods: {
             // api url-аас дата авч байна
             fetchData(is_inactive) {
+                axios.get('/site').then((response) => {
+                    var sites = response.data.success;
+                    for (var i=0; sites.length>i; i++){
+                        this.options.listColumns.site_id.push(sites[i])
+                    }
+                })
+
                 axios.get('/admins').then((response) => {
                     this.lists = response.data.success;
                     this.fetched = true;
