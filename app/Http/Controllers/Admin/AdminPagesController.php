@@ -18,13 +18,22 @@ class AdminPagesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function page_select($site_id){
+        $pages= Page::where('site_id',$site_id)->where('parent_id', 0)->select('id', 'title as label')->orderBy('order_num', 'desc')->get();
+        foreach ($pages as $c=>$page){
+            $pages[$c]['children']= Page::where('site_id',$site_id)->where('parent_id', $page->id)->select('id', 'title as label')->orderBy('order_num', 'desc')->get();
+        }
+        return response()->json([ 'success' => $pages ]);
+    }
+
     public function index($id)
     {
-        $cats= Page::where('site_id',$id)->where('parent_id', 0)->orderBy('order_num', 'desc')->get();
-        foreach ($cats as $c=>$cat){
-            $cats[$c]['children']= Page::where('site_id',$id)->where('parent_id', $cat->id)->orderBy('order_num', 'desc')->get();
+        $pages= Page::where('site_id',$id)->where('parent_id', 0)->orderBy('order_num', 'desc')->get();
+        foreach ($pages as $c=>$page){
+            $pages[$c]['children']= Page::where('site_id',$id)->where('parent_id', $page->id)->orderBy('order_num', 'desc')->get();
         }
-        return response()->json([ 'success' => $cats ]);
+        return response()->json([ 'success' => $pages ]);
     }
 
     public function single($id){

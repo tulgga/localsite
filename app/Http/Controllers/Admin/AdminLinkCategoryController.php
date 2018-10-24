@@ -17,7 +17,7 @@ class AdminLinkCategoryController extends Controller
      */
     public function index($site_id)
     {
-        $results=Link_category::where('site_id', $site_id)->select('id', 'name', 'name as text')->orderBy('id', 'desc')->get();
+        $results=Link_category::where('site_id', $site_id)->select('id', 'name', 'name as text', 'name as label')->orderBy('id', 'desc')->get();
         return response()->json([ 'success' => $results ]);
     }
 

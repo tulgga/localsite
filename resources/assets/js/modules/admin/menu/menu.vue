@@ -38,7 +38,7 @@
             // api url-аас дата авч байна
             fetchData() {
                 this.site_id=this.$store.getters.domain.id;
-                axios.get('/get_menu/'+this.$store.getters.domain.id).then((response) => {
+                axios.get('/menu/'+this.$store.getters.domain.id).then((response) => {
                     if(response.data.success){  this.treeData.children = response.data.success; }
                     console.log(this.treeData);
                     this.fetched = true;
@@ -50,7 +50,7 @@
                 let formData = new FormData();
                 formData.append('data', JSON.stringify(this.treeData.children));
 
-                axios.post('/site_menu/'+this.site_id, formData)
+                axios.post('/menu_save/'+this.site_id, formData)
                     .then((response) => {
                         this.is_loading = false;
                         this.fetchData();
@@ -59,7 +59,7 @@
             },
 
             add(){
-              this.treeData.children.unshift({id:-1, name:"" })
+              this.treeData.children.unshift({id:-1, name:"", type:0, link:"", type_id: null, blank:0  })
             }
 
         }

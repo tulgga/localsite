@@ -18,10 +18,15 @@
                                 </span>
                             </span>
                         </div>
-                        <div class="column is-10">
-                            <input type="text" v-model="data.name" class="input" style="border:none"/>
+                        <div class="column is-9">
+                            <input type="text" v-model="data.name" class="input"/>
                         </div>
-                        <div  class="column is-1 has-text-right">
+                        <div  class="column is-2 has-text-right">
+                             <span @click="configmodal=true" class="button">
+                                <span class="icon is-small">
+                                    <i class="fas fa-cog"></i>
+                                </span>
+                            </span>
                              <span @click="deletemodal=true" class="button">
                                 <span class="icon is-small">
                                     <i class="fas fa-trash"></i>
@@ -29,11 +34,7 @@
                             </span>
                         </div>
                     </div>
-                    <div v-else class="boxed-item-center title" style="font-size: 1.75rem;
-    font-weight: 400;
-    text-transform: uppercase;
-    letter-spacing: 4px;
-    margin-bottom: 0; padding:0.5em">{{data.name}}</div>
+                    <div v-else class="boxed-item-center title" >{{data.name}}</div>
                 </div>
             </template>
             <div v-if="displayedChildren.length" class="tree-node-children">
@@ -50,7 +51,7 @@
             <div class="modal-background" v-on:click="deletemodal = false"></div>
             <div class="modal-card modal-card-small">
                 <header class="modal-card-head">
-                    <p class="modal-card-title">Aнгилал устгах</p>
+                    <p class="modal-card-title">Цэс устгах</p>
                 </header>
                 <section class="modal-card-body">
                     <p class="has-text-centered">Та итгэлтэй байна уу?</p>
@@ -59,6 +60,70 @@
                     <button class="button is-text" v-on:click="deletemodal = false">Буцах</button>
                     <button class="button is-danger add_button" v-on:click="remove(); deletemodal = false" >
                         <span>Устгах</span>
+                    </button>
+                </footer>
+            </div>
+        </div>
+
+
+        <!-- config modal -->
+        <div class="modal is-active" v-if="configmodal">
+            <div class="modal-background" v-on:click="configmodal = false"></div>
+            <div class="modal-card ">
+                <header class="modal-card-head">
+                    <p class="modal-card-title">{{data.name}}</p>
+                </header>
+                <section class="modal-card-body">
+                    <div class="field">
+                        <label class="label">Нэр</label>
+                        <div class="control">
+                            <input type="text"  v-model="data.name" class="input"  />
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Төрөл</label>
+                        <div class="control">
+                            <div class="select">
+                                <select  v-model="data.type" v-on:change="changeType">
+                                    <option value="0">Линк</option>
+                                    <option value="1">Мэдээ</option>
+                                    <option value="2">Мэдээний ангилал</option>
+                                    <option value="3">Хуудас</option>
+                                    <option value="4">Файлын ангилал</option>
+                                    <option value="5">Файл</option>
+                                    <option value="6">Холбоос ангилал</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div v-if="data.type==0" class="field">
+                        <label class="label">Линк</label>
+                        <div class="control">
+                            <input type="text"  v-model="data.link" class="input"  />
+                        </div>
+                    </div>
+                    <div v-else class="field">
+                        <label class="label">Сонгох</label>
+                                <treeselect v-model="data.type_id" placeholder="сонгох"  :default-expand-level="10"  :options="types" />
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Шинэ цонхонд харуулах</label>
+                        <div class="control">
+                            <div class="select">
+                                <select  v-model="data.blank">
+                                    <option value="0">Үгүй</option>
+                                    <option value="1">Тийм</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <footer class="modal-card-foot">
+
+                    <button class="button is-primary add_button" @click="configmodal = false" >
+                        <span>өөрчлөх</span>
                     </button>
                 </footer>
             </div>
@@ -78,12 +143,83 @@
         data() {
             return {
                 deletemodal:false,
+                configmodal:false,
+                selected_type: null,
+                types:[],
             }
         },
         computed: {
+            configSave() {
+                // if(this.data.name==''){
+                //     alert('Цэсний нэр оруулна уу !!!')
+                //     return
+                // }
+                //
+                // if(this.data.type==0){
+                //     if(this.data.link.length==0){
+                //         alert('Линк оруулна уу !!!')
+                //     }
+                //     return
+                // } else {
+                //    if(this.data.type_id==null){
+                //        alert('Сонгох талбараас сонгоно уу !!!')
+                //        return
+                //    }
+                // }
+                this.configmodal = false;
+            },
+
+            changeType(){
+                this.data.type_id=null
+
+                if(this.data.type==1){
+                    axios.get('/news_select/' + this.data.site_id).then((response) => {
+                        this.types = response.data.success;
+                    })
+                    return
+                }
+
+                if(this.data.type==2){
+                    axios.get('/news_category/' + this.data.site_id).then((response) => {
+                        this.types = response.data.success;
+                    })
+                    return
+                }
+
+                if(this.data.type==3){
+                    axios.get('/page_select/' + this.data.site_id).then((response) => {
+                        this.types = response.data.success;
+                    })
+                    return
+                }
+
+
+                if(this.data.type==4){
+                    axios.get('/file_category/'+ this.data.site_id).then((response) => {
+                        this.types = response.data.success;
+                    })
+                    return
+                }
+
+
+                if(this.data.type==5){
+                    axios.get('/file_select/'+ this.data.site_id).then((response) => {
+                        this.types = response.data.success;
+                    })
+                    return
+                }
+
+                if(this.data.type==6){
+                    axios.get('/link_category_show/'+this.data.site_id).then((response) => {
+                        this.types = response.data.success;
+                    })
+                    return
+                }
+
+                return
+            },
             amIEmptyNode () {
                 // data of an empty node is an empty object: {}
-
                  return !this.data.id
             },
             /**
@@ -151,6 +287,8 @@
                 const { draggingVm } = this.shared
                 this.$parent.data.children.splice(this.vmIdx / 2, 1)
             },
+
+
             handleDrop () {
                 this.revertClass()
                 if (!this.isAllowedToDrop()) return
@@ -220,5 +358,12 @@
         background:#FFF;
         padding:0.5em;
         margin-left: 10px;
+    }
+    .boxed-item-center.title {
+        font-size: 1.75rem;
+        font-weight: 400;
+        text-transform: uppercase;
+        letter-spacing: 4px;
+        margin-bottom: 0; padding:0.5em
     }
 </style>

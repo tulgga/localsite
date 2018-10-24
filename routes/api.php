@@ -53,6 +53,13 @@ Route::middleware('auth:admin-api')->namespace('Admin')->prefix('admin')->group(
     Route::post('news_category_save/{site_id}','AdminNewsCategoryController@save');
     Route::get('news_category/{site_id}','AdminNewsCategoryController@index');
 
+
+    //menu
+    Route::post('menu_save/{site_id}','AdminMenuController@save');
+    Route::get('menu/{site_id}','AdminMenuController@index');
+
+
+
     //file_category
     Route::post('file_category_save/{site_id}','AdminFileCategoryController@save');
     Route::get('file_category/{site_id}','AdminFileCategoryController@index');
@@ -68,6 +75,7 @@ Route::middleware('auth:admin-api')->namespace('Admin')->prefix('admin')->group(
     Route::post('pages_delete','AdminPagesController@delete');
     Route::post('pages_change','AdminPagesController@change');
     Route::get('pages/{site_id}','AdminPagesController@index');
+    Route::get('page_select/{site_id}','AdminPagesController@page_select');
     Route::get('page_single/{id}','AdminPagesController@single');
     Route::get('pages_min/{site_id}/{id}','AdminPagesController@indexMin');
 
@@ -84,12 +92,15 @@ Route::middleware('auth:admin-api')->namespace('Admin')->prefix('admin')->group(
     //file
     Route::resource('file','AdminFileController');
     Route::get('file_show/{site_id}','AdminFileController@index');
+    Route::get('file_select/{site_id}','AdminFileController@file_select');
     Route::post('file/{id}','AdminFileController@update');
 
 
     //news
     Route::resource('news','AdminNewsController');
     Route::get('news_show/{site_id}/{cat_id?}','AdminNewsController@index');
+    Route::get('news_select/{site_id}','AdminNewsController@news_select');
+
     Route::get('sub_news_publish','AdminNewsController@sub_news_publish');
 
     Route::post('news/{id}','AdminNewsController@update');

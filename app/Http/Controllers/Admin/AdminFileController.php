@@ -18,6 +18,12 @@ class AdminFileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function file_select($site_id){
+        $result=File::where('site_id', $site_id)->orderBy('id','desc')->select('id', 'name as label')->get();
+        return response()->json(['success'=>$result]);
+    }
+
     public function index($site_id)
     {
         extract(request()->only(['query', 'limit', 'page', 'orderBy', 'ascending', 'byColumn']));

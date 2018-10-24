@@ -14,6 +14,14 @@ use App\News_to_site;
 
 class AdminNewsController extends Controller
 {
+
+    public function news_select($site_id){
+        $result=Post::where('site_id', $site_id)->orderBy('id', 'desc')->select('id', 'title as label')->get();
+        return response()->json(
+            ['success'=>$result]
+        );
+    }
+
     public function index($site_id, $cat_id=null)
     {
         extract(request()->only(['query', 'limit', 'page', 'orderBy', 'ascending', 'byColumn']));
