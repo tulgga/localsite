@@ -24,3 +24,4 @@ Route::get('/adminPanel/{vue_capture?}',function(){
 Route::domain('{account}.bayankhongor.local')->group(function () {
     Route::get('/', 'SubDomainController@index');
 });
+

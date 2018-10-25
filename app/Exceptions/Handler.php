@@ -46,6 +46,13 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if ($exception instanceof \Symfony\Component\HttpFoundation\File\Exception\FileException) {
+            // create a validator and validate to throw a new ValidationException
+            return Validator::make($request->all(), [
+                'upload' => 'mimes:jpeg,bmp,png,gif,jpg,ico,tiff,pdf,doc,docx,zip,rar,xls,xlsx,mp4,ppt,pptx',
+            ])->validate();
+        }
+
         return parent::render($request, $exception);
     }
 }
