@@ -51,6 +51,7 @@ import Link from '../modules/admin/Links/Link'
 import LinkForm from '../modules/admin/Links/LinkForm'
 
 import Profile from '../modules/admin/employee/Profile';
+import Config from '../modules/admin/config/Config';
 
 import Login from '../modules/auth/Login'
 
@@ -116,6 +117,21 @@ let routes = [
         },
     },
 
+    {
+        path: '/config',
+        name: 'config',
+        component: Config,
+        meta: {
+            requiresAuth: true,
+            page_title: 'Тохиргоо',
+            bread_crumbs: [
+                {
+                    title: 'Тохиргоо',
+                    rname: ''
+                }
+            ]
+        },
+    },
 
     {
         path: '/menu',

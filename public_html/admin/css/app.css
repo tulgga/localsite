@@ -18847,6 +18847,10 @@ label.label {
   padding: 6px;
 }
 
+.p-2 {
+  padding: 2em !important;
+}
+
 tr.is-grey {
   background: #fafafa;
 }
@@ -24579,6 +24583,13 @@ aside.menu .vb-dragger {
   }
 }
 
+.tab-content {
+  padding: 1em;
+  background: white;
+  border: 1px solid #dbdbdb;
+  border-top: none;
+}
+
 .userView {
   position: absolute;
   z-index: 10;
@@ -24709,5 +24720,9 @@ aside.menu .vb-dragger {
 .modal-card-full .modal-card-foot {
   padding: 1rem 2em;
   border-radius: 0;
+}
+
+.boxed-title.border-bottom {
+  border-bottom: 1px solid #b5b5b5;
 }
 

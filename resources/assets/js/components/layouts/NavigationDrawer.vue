@@ -208,9 +208,9 @@
 
 
                 if(this.domain.id==0){
-                    this.$router.push('/');
+                    this.$router.push('/sites');
                 } else {
-                    this.$router.push('/sub_home');
+                    this.$router.push('/sub_news');
                 }
 
             },

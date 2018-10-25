@@ -41,6 +41,8 @@ Route::middleware('auth:admin-api')->namespace('Admin')->prefix('admin')->group(
     Route::post('site/{id}','AdminSiteController@update');
     Route::post('site_sidebar/{id}','AdminSiteController@site_sidebar');
     Route::post('site_menu/{id}','AdminSiteController@site_menu');
+    Route::post('site_config/{id}','AdminSiteController@site_config');
+    Route::get('get_config/{id}','AdminSiteController@get_config');
     Route::get('get_menu/{id}','AdminSiteController@get_menu');
 
 

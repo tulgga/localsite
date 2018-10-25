@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use App\Site;
+use App\Settings;
 
 class AdminSiteController extends Controller
 {
@@ -37,6 +38,55 @@ class AdminSiteController extends Controller
         $info->save();
     }
 
+    public function site_config(Request $request, $id){
+        $data = $request->get('data');
+        $info = Site::findOrFail($id);
+        if($request->hasFile('logo')){
+            $info->logo =  $request->logo->store('logo');
+        }
+        if($request->hasFile('favicon')){
+            $info->favicon =$request->favicon->store('favicon');
+        }
+        $info->config = $data;
+        $info->save();
+
+        if($id==0){
+             $config = $request->get('config');
+             $config = json_decode($config, true);
+             $settings = Settings::findOrFail(1);
+             $settings->google_api_key=$config['google_api_key'];
+             $settings->google_analytics=$config['google_analytics'];
+             $settings->save();
+        }
+
+    }
+
+    public function get_config($id){
+        $info = Site::findOrFail($id);
+
+        $data['config']= json_decode($info->config, true);
+
+        $data['logo']=null;
+        if(!is_null($info->logo)){
+            $data['logo']= url('/uploads/'.$info->logo);
+        }
+
+        $data['favicon']=null;
+        if(!is_null($info->logo)){
+            $data['favicon']= url('/uploads/'.$info->favicon);
+        }
+
+
+        $data['mainConfig']=null;
+        if($id==0){
+            $data['mainConfig']=Settings::where('id', 1)->select('google_api_key', 'google_analytics')->first();
+        }
+
+        return response()->json([
+            'success' => $data,
+        ]);
+    }
+
     public function get_menu($id){
         $info = Site::findOrFail($id);
         return $info->menu;
@@ -47,6 +97,7 @@ class AdminSiteController extends Controller
         $info->menu =  $request->get('data');
         $info->save();
     }
+
 
 
     public function update(Request $request, $id)

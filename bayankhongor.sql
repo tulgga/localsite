@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 24, 2018 at 05:54 AM
+-- Generation Time: Oct 25, 2018 at 07:05 AM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.10
 
@@ -448,7 +448,13 @@ INSERT INTO `oauth_access_tokens` (`id`, `user_id`, `client_id`, `name`, `scopes
 ('72ec4c407cb67e49c78f307c9c2035605c3eda8835fdad340e0e1d885e61ec1b1b774388da4c342d', 2, 1, 'admin', '[]', 0, '2018-10-18 07:11:16', '2018-10-18 07:11:16', '2019-10-18 15:11:16'),
 ('05df215af2fcf20a1a2853045f20c07acd727c41708f0e2ab4e4df7abd431c7cad11215d395ad6df', 2, 1, 'admin', '[]', 0, '2018-10-19 08:05:07', '2018-10-19 08:05:07', '2019-10-19 16:05:07'),
 ('178ba863dca01ff1abd80dbec3fe7343d9edae3002474f44ba780c76db65ff72bf8d9795c94fbe22', 2, 1, 'admin', '[]', 0, '2018-10-22 00:05:04', '2018-10-22 00:05:04', '2019-10-22 08:05:04'),
-('705ee0d41db203dbcd7aca9201ff4ec9d2408d4a2c0f37a625b28916f25e78a810bf3afc83d8471c', 2, 1, 'admin', '[]', 0, '2018-10-23 07:27:50', '2018-10-23 07:27:50', '2019-10-23 15:27:50');
+('705ee0d41db203dbcd7aca9201ff4ec9d2408d4a2c0f37a625b28916f25e78a810bf3afc83d8471c', 2, 1, 'admin', '[]', 0, '2018-10-23 07:27:50', '2018-10-23 07:27:50', '2019-10-23 15:27:50'),
+('013cb74e242247157d549ce7d8f246471f9c340f4bf0c159dd548cf5ed8c45b761cb58a09369d04e', 2, 1, 'admin', '[]', 0, '2018-10-25 04:04:27', '2018-10-25 04:04:27', '2019-10-25 12:04:27'),
+('581285b8afc5632748b428b5b838d8abf61c6671508321c9a6b074a8ae5e66f068ddf9b991138da6', 2, 1, 'admin', '[]', 0, '2018-10-25 04:05:29', '2018-10-25 04:05:29', '2019-10-25 12:05:29'),
+('d7d75a877588165fa701a6411dc7c65c6a905e9a3832b9a7538401bd41d704c58cad5d127697f44c', 2, 1, 'admin', '[]', 0, '2018-10-25 04:05:51', '2018-10-25 04:05:51', '2019-10-25 12:05:51'),
+('4d27581626d82ac4326cca0af16654d50326653e7772bdfa38a38165c22704c5b0e66725cde471e5', 2, 1, 'admin', '[]', 0, '2018-10-25 04:09:02', '2018-10-25 04:09:02', '2019-10-25 12:09:02'),
+('edb7f71fb380d63749388288960d952cf1d2d06386caa5776afc52421e9c09e861a9d35e52511875', 4, 1, 'admin', '[]', 0, '2018-10-25 04:09:12', '2018-10-25 04:09:12', '2019-10-25 12:09:12'),
+('cd6c6b9f315c0f1168050da92b1a8f9bbff85afc0ffca1dc71ed095bc28b391a9b59e70a95f003bb', 2, 1, 'admin', '[]', 0, '2018-10-25 04:09:21', '2018-10-25 04:09:21', '2019-10-25 12:09:21');
 
 -- --------------------------------------------------------
 
@@ -650,6 +656,27 @@ INSERT INTO `posts` (`id`, `admin_id`, `site_id`, `title`, `content`, `short_con
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `settings`
+--
+
+CREATE TABLE `settings` (
+  `id` int(11) NOT NULL,
+  `google_api_key` varchar(200) DEFAULT NULL,
+  `google_analytics` varchar(1000) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `settings`
+--
+
+INSERT INTO `settings` (`id`, `google_api_key`, `google_analytics`, `created_at`, `updated_at`) VALUES
+(1, 'asdasd12312', 'asda1231', '2018-10-25 03:50:32', '2018-10-25 04:02:18');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `sites`
 --
 
@@ -657,8 +684,9 @@ CREATE TABLE `sites` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `domain` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `logo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `favicon` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `config` text COLLATE utf8mb4_unicode_ci,
-  `contact` text COLLATE utf8mb4_unicode_ci,
   `sidebar` text COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -668,28 +696,28 @@ CREATE TABLE `sites` (
 -- Dumping data for table `sites`
 --
 
-INSERT INTO `sites` (`id`, `name`, `domain`, `config`, `contact`, `sidebar`, `created_at`, `updated_at`) VALUES
-(38, 'Бөмбөгөр', 'bumbugur', NULL, NULL, NULL, '2018-10-05 05:04:33', '2018-10-05 05:04:33'),
-(37, 'Галуут', 'galuut', NULL, NULL, NULL, '2018-10-05 05:04:10', '2018-10-05 05:04:10'),
-(36, 'Жаргалант', 'jargalant', NULL, NULL, NULL, '2018-10-05 05:03:59', '2018-10-05 05:03:59'),
-(35, 'Заг', 'zag', NULL, NULL, NULL, '2018-10-05 05:03:47', '2018-10-05 05:03:47'),
-(34, 'Хүрээмарал', 'hureemaral', NULL, NULL, NULL, '2018-10-05 05:03:37', '2018-10-05 05:03:37'),
-(33, 'Эрдэнэцогт', 'erdenetsogt', NULL, NULL, NULL, '2018-10-05 05:03:14', '2018-10-05 05:03:14'),
-(39, 'Баянцагаан', 'bayntsagaan', NULL, NULL, NULL, '2018-10-05 05:04:47', '2018-10-05 05:04:47'),
-(40, 'Баян-Өндөр', 'bayanundur', NULL, NULL, NULL, '2018-10-05 05:12:34', '2018-10-05 05:12:34'),
-(41, 'Баянлиг', 'bayanlig', NULL, NULL, NULL, '2018-10-05 05:12:59', '2018-10-05 05:12:59'),
-(42, 'Баянбулаг', 'bayanbulag', NULL, NULL, NULL, '2018-10-05 05:13:45', '2018-10-05 05:13:45'),
-(43, 'Шинэжинст', 'shinejist', NULL, NULL, NULL, '2018-10-05 05:14:25', '2018-10-05 05:14:25'),
-(44, 'Өлзийт', 'ulziit', NULL, NULL, NULL, '2018-10-05 05:14:51', '2018-10-05 05:14:51'),
-(45, 'Жинст', 'jinst', NULL, NULL, NULL, '2018-10-05 05:15:11', '2018-10-05 05:15:11'),
-(46, 'Гурванбулаг', 'gurvanbulag', NULL, NULL, NULL, '2018-10-05 05:15:39', '2018-10-05 05:15:39'),
-(47, 'Бууцагаан', 'buutsagaan', NULL, NULL, NULL, '2018-10-05 05:15:52', '2018-10-05 05:15:52'),
-(48, 'Богд', 'bogd', NULL, NULL, NULL, '2018-10-05 05:16:05', '2018-10-05 05:16:05'),
-(49, 'Баянхонгор', 'bayanhongor', NULL, NULL, NULL, '2018-10-05 05:16:44', '2018-10-05 05:16:44'),
-(50, 'Баян-Овоо', 'bayan-ovoo', NULL, NULL, NULL, '2018-10-05 05:17:16', '2018-10-05 05:17:16'),
-(51, 'Баянговь', 'bayangovi', NULL, NULL, NULL, '2018-10-05 05:17:35', '2018-10-05 05:17:35'),
-(52, 'Баацагаан', 'baatsagaan', NULL, NULL, NULL, '2018-10-05 05:18:13', '2018-10-05 05:41:18'),
-(0, 'Үндсэн сайт', 'bayankhongor.local', NULL, NULL, '<div class=\"asdada\">\n<iframe src=\"https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fontslokh.mn%2F&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=998663530183828\" width=\"320\" height=\"500\" style=\"border:none;overflow:hidden\" scrolling=\"no\" frameborder=\"0\" allowTransparency=\"true\" allow=\"encrypted-media\"></iframe>\n<div>\n\n<br><br>\n<img src=\"http://www.ontslokh.mn/wp-content/uploads/useful_banner_manager_banners/204-emc0banner3.jpg\"  class=\"image\">\n\n<br> <br>\n\n<iframe id=\"forecast_embed\" type=\"text/html\" frameborder=\"0\" height=\"310\" width=\"325\" src=\"http://tsag-agaar.gov.mn/embed/?name=287&color=ef6e25&color2=cc530e&color3=ffffff&color4=ffffff&type=vertical&tdegree=cwidth=320\"> </iframe>\n', '2018-10-05 05:03:14', '2018-10-18 09:01:24');
+INSERT INTO `sites` (`id`, `name`, `domain`, `logo`, `favicon`, `config`, `sidebar`, `created_at`, `updated_at`) VALUES
+(38, 'Бөмбөгөр', 'bumbugur', NULL, NULL, NULL, NULL, '2018-10-05 05:04:33', '2018-10-05 05:04:33'),
+(37, 'Галуут', 'galuut', NULL, NULL, NULL, NULL, '2018-10-05 05:04:10', '2018-10-05 05:04:10'),
+(36, 'Жаргалант', 'jargalant', NULL, NULL, NULL, NULL, '2018-10-05 05:03:59', '2018-10-05 05:03:59'),
+(35, 'Заг', 'zag', NULL, NULL, NULL, NULL, '2018-10-05 05:03:47', '2018-10-05 05:03:47'),
+(34, 'Хүрээмарал', 'hureemaral', NULL, NULL, NULL, NULL, '2018-10-05 05:03:37', '2018-10-05 05:03:37'),
+(33, 'Эрдэнэцогт', 'erdenetsogt', NULL, NULL, NULL, NULL, '2018-10-05 05:03:14', '2018-10-05 05:03:14'),
+(39, 'Баянцагаан', 'bayntsagaan', NULL, NULL, NULL, NULL, '2018-10-05 05:04:47', '2018-10-05 05:04:47'),
+(40, 'Баян-Өндөр', 'bayanundur', NULL, NULL, NULL, NULL, '2018-10-05 05:12:34', '2018-10-05 05:12:34'),
+(41, 'Баянлиг', 'bayanlig', NULL, NULL, NULL, NULL, '2018-10-05 05:12:59', '2018-10-05 05:12:59'),
+(42, 'Баянбулаг', 'bayanbulag', NULL, NULL, NULL, NULL, '2018-10-05 05:13:45', '2018-10-05 05:13:45'),
+(43, 'Шинэжинст', 'shinejist', NULL, NULL, NULL, NULL, '2018-10-05 05:14:25', '2018-10-05 05:14:25'),
+(44, 'Өлзийт', 'ulziit', NULL, NULL, NULL, NULL, '2018-10-05 05:14:51', '2018-10-05 05:14:51'),
+(45, 'Жинст', 'jinst', NULL, NULL, NULL, NULL, '2018-10-05 05:15:11', '2018-10-05 05:15:11'),
+(46, 'Гурванбулаг', 'gurvanbulag', NULL, NULL, NULL, NULL, '2018-10-05 05:15:39', '2018-10-05 05:15:39'),
+(47, 'Бууцагаан', 'buutsagaan', NULL, NULL, NULL, NULL, '2018-10-05 05:15:52', '2018-10-05 05:15:52'),
+(48, 'Богд', 'bogd', NULL, NULL, NULL, NULL, '2018-10-05 05:16:05', '2018-10-05 05:16:05'),
+(49, 'Баянхонгор', 'bayanhongor', NULL, NULL, NULL, NULL, '2018-10-05 05:16:44', '2018-10-05 05:16:44'),
+(50, 'Баян-Овоо', 'bayan-ovoo', NULL, NULL, NULL, NULL, '2018-10-05 05:17:16', '2018-10-05 05:17:16'),
+(51, 'Баянговь', 'bayangovi', NULL, NULL, NULL, NULL, '2018-10-05 05:17:35', '2018-10-05 05:17:35'),
+(52, 'Баацагаан', 'baatsagaan', NULL, NULL, NULL, NULL, '2018-10-05 05:18:13', '2018-10-05 05:41:18'),
+(0, 'Үндсэн сайт', 'bayankhongor.local', 'logo/t3Kxbz6aMwFvfHFcVqs6fkJC88UKwcXT8XqQIY0B.jpeg', 'favicon/HUXeGShanbT6TGaydagWKJ2MuYphxA8mhe9otLcw.jpeg', '{\"main\":{\"weahter_code\":\"288\",\"copyright\":\"asda\",\"main_color\":{\"hsl\":{\"h\":352.71844660194176,\"s\":0.980952380952381,\"l\":0.4117647058823529,\"a\":1},\"hex\":\"#D0021B\",\"hex8\":\"#D0021BFF\",\"rgba\":{\"r\":208,\"g\":2,\"b\":27,\"a\":1},\"hsv\":{\"h\":352.71844660194176,\"s\":0.9903846153846154,\"v\":0.8156862745098039,\"a\":1},\"oldHue\":208.78021966810547,\"source\":\"hex\",\"a\":1},\"parent_color\":{\"hsl\":{\"h\":37.42857142857143,\"s\":0.9130434782608696,\"l\":0.5490196078431373,\"a\":1},\"hex\":\"#F5A623\",\"hex8\":\"#F5A623FF\",\"rgba\":{\"r\":245,\"g\":166,\"b\":35,\"a\":1},\"hsv\":{\"h\":37.42857142857143,\"s\":0.8571428571428571,\"v\":0.9607843137254902,\"a\":1},\"oldHue\":209.33333333333334,\"source\":\"hex\",\"a\":1}},\"meta\":{\"title\":\"asda\",\"keywords\":\"asdsa\",\"description\":\"asdsa\"},\"socail\":{\"facebook\":\"asd\",\"messenger\":\"asdas\",\"google\":\"asda\",\"youtube\":\"asdasdasdasda\",\"twitter\":\"asda\"},\"contact\":{\"phone\":\"\",\"address\":\"\",\"email\":\"\",\"website\":\"\",\"googlemap\":1,\"latitude\":\"\",\"longitude\":\"\",\"zoom\":12}}', '<div class=\"asdada\">\n<iframe src=\"https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fontslokh.mn%2F&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=998663530183828\" width=\"320\" height=\"500\" style=\"border:none;overflow:hidden\" scrolling=\"no\" frameborder=\"0\" allowTransparency=\"true\" allow=\"encrypted-media\"></iframe>\n<div>\n\n<br><br>\n<img src=\"http://www.ontslokh.mn/wp-content/uploads/useful_banner_manager_banners/204-emc0banner3.jpg\"  class=\"image\">\n\n<br> <br>\n\n<iframe id=\"forecast_embed\" type=\"text/html\" frameborder=\"0\" height=\"310\" width=\"325\" src=\"http://tsag-agaar.gov.mn/embed/?name=287&color=ef6e25&color2=cc530e&color3=ffffff&color4=ffffff&type=vertical&tdegree=cwidth=320\"> </iframe>\n', '2018-10-05 05:03:14', '2018-10-25 03:28:51');
 
 -- --------------------------------------------------------
 
@@ -925,6 +953,12 @@ ALTER TABLE `posts`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `settings`
+--
+ALTER TABLE `settings`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `sites`
 --
 ALTER TABLE `sites`
@@ -1066,6 +1100,12 @@ ALTER TABLE `poll_results`
 --
 ALTER TABLE `posts`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `settings`
+--
+ALTER TABLE `settings`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `sites`

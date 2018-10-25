@@ -27,13 +27,14 @@ label.label {
 .app {
 	display: flex;
 }
-
 .table-responsive .category.table td, .table-responsive .category.table th {
 	height: auto;
     padding: 6px;
 	
 }
-
+.p-2 {
+	padding: 2em !important;
+}
 tr.is-grey {
 	background: #fafafa;
 }
@@ -5840,6 +5841,12 @@ aside.menu {
 	}
 }
 
+.tab-content {
+	padding: 1em;
+	background: $white;
+	border:1px solid #dbdbdb;
+	border-top:none;
+}
 
 
 .userView {
@@ -5969,4 +5976,8 @@ aside.menu {
 .modal-card-full .modal-card-foot {
 	padding: 1rem 2em;
 	border-radius: 0;
+}
+
+.boxed-title.border-bottom {
+	border-bottom: 1px solid $grey-light;
 }

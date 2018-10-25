@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0e3eab6355fc407817df3ba4d992482d",
+    "content-hash": "bab5a8261873734ee28be58fb2f9bb5a",
     "packages": [
         {
             "name": "barryvdh/elfinder-flysystem-driver",
@@ -120,30 +120,30 @@
         },
         {
             "name": "barryvdh/laravel-elfinder",
-            "version": "v0.3.12",
+            "version": "v0.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/barryvdh/laravel-elfinder.git",
-                "reference": "05e17d6dd41b4cc860a555c320bb108fdef09a44"
+                "reference": "bcac1ba35d89acc793a90d04fb157bf6dc8ea78f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/barryvdh/laravel-elfinder/zipball/05e17d6dd41b4cc860a555c320bb108fdef09a44",
-                "reference": "05e17d6dd41b4cc860a555c320bb108fdef09a44",
+                "url": "https://api.github.com/repos/barryvdh/laravel-elfinder/zipball/bcac1ba35d89acc793a90d04fb157bf6dc8ea78f",
+                "reference": "bcac1ba35d89acc793a90d04fb157bf6dc8ea78f",
                 "shasum": ""
             },
             "require": {
-                "barryvdh/elfinder-flysystem-driver": "^0.1.4|^0.2",
-                "illuminate/support": "5.0.x|5.1.x|5.2.x|5.3.x|5.4.x|5.5.x|5.6.x",
+                "barryvdh/elfinder-flysystem-driver": "^0.2",
+                "illuminate/support": "5.5.x|5.6.x|5.7.x",
                 "league/flysystem": "^1.0",
                 "league/flysystem-cached-adapter": "^1.0",
-                "php": ">=5.4.0",
+                "php": ">=7.0",
                 "studio-42/elfinder": "~2.1.10"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.3-dev"
+                    "dev-master": "0.4-dev"
                 },
                 "laravel": {
                     "providers": [
@@ -173,7 +173,7 @@
                 "laravel",
                 "tinymce"
             ],
-            "time": "2018-02-08T07:54:10+00:00"
+            "time": "2018-08-09T08:41:48+00:00"
         },
         {
             "name": "codenix-sv/bittrex-api",

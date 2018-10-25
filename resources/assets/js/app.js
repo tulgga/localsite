@@ -28,6 +28,7 @@ import VueCroppie from 'vue-croppie';
 import ToggleButton from 'vue-js-toggle-button';
 import Treeselect from '@riophae/vue-treeselect'
 import '@riophae/vue-treeselect/dist/vue-treeselect.css'
+import  { Photoshop, Sketch }  from 'vue-color'
 
 
 
@@ -156,6 +157,8 @@ Vue.component('flatPickr', flatPickr);
 Vue.component('SiteApp', require('./App.vue').default);
 Vue.component('Treeselect', Treeselect);
 Vue.component('v-select', VueSelect);
+Vue.component('sketch-picker', Sketch);
+
 
 
 
