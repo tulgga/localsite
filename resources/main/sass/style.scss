@@ -1,0 +1,121 @@
+.container {
+  max-width: 1152px;
+}
+
+#header {
+  font-family: $roboto-condensed;
+  font-size: 13px;
+  color:$white;
+  border-bottom: 1px solid #e6e6e6;
+
+  a {
+    color: $white;
+  }
+
+  #header-top {
+    //border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding:10px 5px 5px 5px;
+  }
+
+  #header-content {
+    padding: 1em;
+    .logo img {
+      max-height: 90px;
+      width: auto;
+    }
+  }
+
+  #header-menu {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+      #menu, #menu ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      #menu:before,
+      #menu:after {
+        content: "";
+        display: table;
+      }
+
+      #menu:after {
+        clear: both;
+      }
+
+      #menu {
+        zoom:1;
+      }
+
+      #menu li {
+        float: left;
+        position: relative;
+      }
+
+
+    #menu a {
+      float: left;
+      padding: 1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      /*text-shadow: 0 1px 0 #000;*/
+    }
+
+
+    #menu ul {
+      margin: 20px 0 0 0;
+      _margin: 0; /*IE6 only*/
+      opacity: 0;
+      visibility: hidden;
+      position: absolute;
+      top: 45px;
+      left: 0;
+      z-index: 1;
+      background: #FFF;
+      -moz-box-shadow: 0 -1px rgba(255,255,255,.3);
+      -webkit-box-shadow: 0 -1px 0 rgba(255,255,255,.3);
+      box-shadow: 0 -1px 0 rgba(255,255,255,.3);
+      -webkit-transition: all .2s ease-in-out;
+      -moz-transition: all .2s ease-in-out;
+      -ms-transition: all .2s ease-in-out;
+      -o-transition: all .2s ease-in-out;
+      transition: all .2s ease-in-out;
+    }
+
+    #menu li:hover > ul {
+      opacity: 1;
+      visibility: visible;
+      margin: 0;
+    }
+
+    #menu ul ul {
+      top: 0;
+      left: 200px;
+      margin:0px;
+    }
+
+    #menu ul li {
+      float: none;
+      display: block;
+      border: 0;
+    }
+
+    #menu ul a {
+      color: #222222;
+      padding: 10px;
+      width: 200px;
+      _height: 10px; /*IE6 only*/
+      display: block;
+      white-space: nowrap;
+      float: none;
+      text-transform: none;
+    }
+
+    #menu ul a:hover {
+      background-color: #f5f5f5;
+    }
+
+  }
+}
+
+

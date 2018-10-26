@@ -15,6 +15,7 @@ use App\Http\Controllers\Auth;
 
 
 Route::namespace('Api')->group(function (){
+
     //Мэдээллийг 20 бичлэгээр хуудаслаж авна
     Route::get('news','ApiNewsController@news');
     //Өргөдөлийг 20 бичлэгээр хуудаслаж авна

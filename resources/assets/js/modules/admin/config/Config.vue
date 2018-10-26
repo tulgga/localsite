@@ -14,19 +14,19 @@
                     <div class="columns ">
                         <div class="column is-12-mobile is-6-tablet">
                             <div class="field">
-                                <label class="label">Лого</label>
+                                <label class="label">Лого /360x90/</label>
                                 <div class="control">
                                     <input type="file"  @change="onFileChangeLogo($event.target.name, $event.target.files)"  />
                                 </div>
                             </div>
-                            <figure class="image is-64x64" v-if="logoini"><img  :src="logoini" > </figure>
+                            <figure class="image" style="max-width: 360px" v-if="logoini"><img  :src="logoini" > </figure>
                             <div class="field">
-                                <label class="label">АЙКОН</label>
+                                <label class="label">АЙКОН /64x64/</label>
                                 <div class="control">
                                     <input type="file" @change="onFileChangeIcon($event.target.name, $event.target.files)"   />
                                 </div>
                             </div>
-                            <figure class="image is-32x32" v-if="logoini"><img  :src="logoini" > </figure>
+                            <figure class="image is-64x64" v-if="faviconini"><img  :src="faviconini" > </figure>
                             <div class="field">
                                 <label class="label">Харьяаллийн код /tsag-agaar.mn/</label>
                                 <div class="control">

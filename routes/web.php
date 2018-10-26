@@ -16,11 +16,13 @@ Route::get('/file_viewer/', 'Controller@file_viewer');
 
 //Route::get('/', 'Controller@index');
 
-
-
 Route::get('/adminPanel/{vue_capture?}',function(){
     return view('admin');
 })->where('vue_capture', '[\/\w\.-]*');
+
+Route::get('/!/{vue_capture?}', 'Controller@index')->where('vue_capture', '[\/\w\.-]*');
+
+
 
 
 
