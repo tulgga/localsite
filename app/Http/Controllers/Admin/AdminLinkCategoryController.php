@@ -15,7 +15,7 @@ class AdminLinkCategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($site_id)
+    public function index1($site_id)
     {
         $results=Link_category::where('site_id', $site_id)->select('id', 'name', 'name as text', 'name as label')->orderBy('id', 'desc')->get();
         return response()->json([ 'success' => $results ]);

@@ -53,22 +53,22 @@ Route::middleware('auth:admin-api')->namespace('Admin')->prefix('admin')->group(
 
     //news_category
     Route::post('news_category_save/{site_id}','AdminNewsCategoryController@save');
-    Route::get('news_category/{site_id}','AdminNewsCategoryController@index');
+    Route::get('news_category/{site_id}','AdminNewsCategoryController@index1');
 
 
     //menu
     Route::post('menu_save/{site_id}','AdminMenuController@save');
-    Route::get('menu/{site_id}','AdminMenuController@index');
+    Route::get('menu/{site_id}','AdminMenuController@index1');
 
 
 
     //file_category
     Route::post('file_category_save/{site_id}','AdminFileCategoryController@save');
-    Route::get('file_category/{site_id}','AdminFileCategoryController@index');
+    Route::get('file_category/{site_id}','AdminFileCategoryController@index1');
 
     //zar_category
     Route::post('zar_category_save/{site_id}','AdminZarCategoryController@save');
-    Route::get('zar_category/{site_id}','AdminZarCategoryController@index');
+    Route::get('zar_category/{site_id}','AdminZarCategoryController@index1');
     Route::get('zar_category_select','AdminZarCategoryController@zar_category_select');
 
     //pages
@@ -76,31 +76,31 @@ Route::middleware('auth:admin-api')->namespace('Admin')->prefix('admin')->group(
     Route::post('pages/{id}','AdminPagesController@update');
     Route::post('pages_delete','AdminPagesController@delete');
     Route::post('pages_change','AdminPagesController@change');
-    Route::get('pages/{site_id}','AdminPagesController@index');
+    Route::get('pages/{site_id}','AdminPagesController@index1');
     Route::get('page_select/{site_id}','AdminPagesController@page_select');
     Route::get('page_single/{id}','AdminPagesController@single');
     Route::get('pages_min/{site_id}/{id}','AdminPagesController@indexMin');
 
     //category link
     Route::resource('link_category','AdminLinkCategoryController');
-    Route::get('link_category_show/{id}','AdminLinkCategoryController@index');
+    Route::get('link_category_show/{id}','AdminLinkCategoryController@index1');
     Route::post('link_category/{id}','AdminLinkCategoryController@update');
 
     //link
     Route::resource('link','AdminLinkController');
-    Route::get('link_show/{site_id}','AdminLinkController@index');
+    Route::get('link_show/{site_id}','AdminLinkController@index1');
     Route::post('link/{id}','AdminLinkController@update');
 
     //file
     Route::resource('file','AdminFileController');
-    Route::get('file_show/{site_id}','AdminFileController@index');
+    Route::get('file_show/{site_id}','AdminFileController@index1');
     Route::get('file_select/{site_id}','AdminFileController@file_select');
     Route::post('file/{id}','AdminFileController@update');
 
 
     //news
     Route::resource('news','AdminNewsController');
-    Route::get('news_show/{site_id}/{cat_id?}','AdminNewsController@index');
+    Route::get('news_show/{site_id}/{cat_id?}','AdminNewsController@index1');
     Route::get('news_select/{site_id}','AdminNewsController@news_select');
 
     Route::get('sub_news_publish','AdminNewsController@sub_news_publish');
@@ -114,7 +114,7 @@ Route::middleware('auth:admin-api')->namespace('Admin')->prefix('admin')->group(
 
     //poll
     Route::resource('poll','AdminPollController');
-    Route::get('poll_show/{site_id}','AdminPollController@index');
+    Route::get('poll_show/{site_id}','AdminPollController@index1');
     Route::post('poll/{id}','AdminPollController@update');
     Route::post('poll_status','AdminPollController@change_status');
 

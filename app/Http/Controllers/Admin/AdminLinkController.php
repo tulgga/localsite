@@ -17,7 +17,7 @@ class AdminLinkController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($site_id)
+    public function index1($site_id)
     {
         $results=Link::where('site_id', $site_id)->orderBy('id', 'desc')->get();
         return response()->json([ 'success' => $results ]);

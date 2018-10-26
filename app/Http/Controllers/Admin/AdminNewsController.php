@@ -22,7 +22,7 @@ class AdminNewsController extends Controller
         );
     }
 
-    public function index($site_id, $cat_id=null)
+    public function index1($site_id, $cat_id=null)
     {
         extract(request()->only(['query', 'limit', 'page', 'orderBy', 'ascending', 'byColumn']));
         $result=Post::with(['Category', 'Site'])->where('site_id', $site_id);

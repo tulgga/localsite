@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use http\Env\Url;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Menu;
-use App\Site;
 
 class AdminMenuController extends Controller
 {
-    public function index($site_id)
+    public function index1($site_id)
     {
         $cats= Menu::where('site_id',$site_id)->select('menu.*', 'menu.name as label')->orderBy('order_num', 'asc')->get();
         return response()->json([ 'success' => $this->buildTree($cats) ]);

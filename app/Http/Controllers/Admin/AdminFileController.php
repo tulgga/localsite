@@ -24,7 +24,7 @@ class AdminFileController extends Controller
         return response()->json(['success'=>$result]);
     }
 
-    public function index($site_id)
+    public function index1($site_id)
     {
         extract(request()->only(['query', 'limit', 'page', 'orderBy', 'ascending', 'byColumn']));
         $result=File::where('site_id', $site_id);

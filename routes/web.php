@@ -14,6 +14,9 @@
 
 Route::get('/file_viewer/', 'Controller@file_viewer');
 
+//Route::get('/', 'Controller@index');
+
+
 
 Route::get('/adminPanel/{vue_capture?}',function(){
     return view('welcome');

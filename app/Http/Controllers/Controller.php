@@ -9,10 +9,18 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\File;
 use Illuminate\Support\Facades\Redirect;
+use App\Post;
+
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+    public function index(){
+       $data= Post::orderBy('id', 'desc')->get();
+
+       dd($data);
+        return "a";
+    }
 
     public function file_viewer(){
 

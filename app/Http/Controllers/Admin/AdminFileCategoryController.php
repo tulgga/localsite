@@ -16,7 +16,7 @@ class AdminFileCategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($site_id)
+    public function index1($site_id)
     {
         $cats= File_category::where('site_id',$site_id)->select('file_category.*', 'file_category.name as label')->orderBy('order_num', 'asc')->get();
         return response()->json([ 'success' => $this->buildTree($cats) ]);

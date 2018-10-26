@@ -10,7 +10,7 @@ use App\Poll_result;
 
 class AdminPollController extends Controller
 {
-    public function index($site_id)
+    public function index1($site_id)
     {
         extract(request()->only(['query', 'limit', 'page', 'orderBy', 'ascending', 'byColumn']));
         $result=Poll::where('site_id', $site_id);

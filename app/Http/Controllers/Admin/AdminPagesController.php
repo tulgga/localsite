@@ -27,7 +27,7 @@ class AdminPagesController extends Controller
         return response()->json([ 'success' => $pages ]);
     }
 
-    public function index($id)
+    public function index1($id)
     {
         $pages= Page::where('site_id',$id)->where('parent_id', 0)->orderBy('order_num', 'desc')->get();
         foreach ($pages as $c=>$page){

@@ -16,7 +16,7 @@ class AdminNewsCategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($site_id)
+    public function index1($site_id)
     {
         $cats= Category::where('site_id',$site_id)->select('category.*', 'category.name as label')->orderBy('order_num', 'asc')->get();
         return response()->json([ 'success' => $this->buildTree($cats) ]);

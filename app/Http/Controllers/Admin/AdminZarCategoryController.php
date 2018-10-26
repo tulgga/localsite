@@ -8,14 +8,14 @@ use App\Zar_category;
 class AdminZarCategoryController extends Controller
 {
 
-    public function index($site_id)
+    public function index1($site_id)
     {
         $cats= Zar_category::where('site_id',$site_id)->select('zar_category.*', 'zar_category.name as label')->orderBy('order_num', 'asc')->get();
         return response()->json([ 'success' => $this->buildTree($cats) ]);
     }
 
     public function zar_category_select(){
-        $data = $this->index(0);
+        $data = $this->index1(0);
         return response()->json([ 'success' => $this->extractSelect($data->getData()->success) ]);
     }
 
