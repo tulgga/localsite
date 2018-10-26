@@ -19,7 +19,7 @@ Route::get('/file_viewer/', 'Controller@file_viewer');
 
 
 Route::get('/adminPanel/{vue_capture?}',function(){
-    return view('welcome');
+    return view('admin');
 })->where('vue_capture', '[\/\w\.-]*');
 
 
@@ -27,4 +27,6 @@ Route::get('/adminPanel/{vue_capture?}',function(){
 Route::domain('{account}.bayankhongor.local')->group(function () {
     Route::get('/', 'SubDomainController@index');
 });
+
+
 
