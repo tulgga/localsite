@@ -13,7 +13,7 @@ window.axios = require('axios');
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //window.axios.defaults.baseURL = 'http://irestaurant.local/api';
-window.axios.defaults.baseURL = 'api/admin';
+window.axios.defaults.baseURL = 'api/';
 /**
  * Next we will register the CSRF Token as a common header with Axios so that
  * all outgoing HTTP requests automatically have it attached. This is just

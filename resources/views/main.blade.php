@@ -30,6 +30,7 @@
 <script>
     window.surl = "{{ url('/') }}";
     window.logo = "{{$logo}}";
+    window.icon = "{{$favicon}}";
     window.title = "{{$config['meta']['title']}}";
     window.google_api_key = "{{$mainConfig['google_api_key']}}";
     window.main = <?php echo json_encode($config['main']); ?>

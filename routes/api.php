@@ -15,7 +15,8 @@ use App\Http\Controllers\Auth;
 
 
 Route::namespace('Api')->group(function (){
-
+    //menu
+    Route::get('menu/{id}','ApiSiteController@menu');
     //Мэдээллийг 20 бичлэгээр хуудаслаж авна
     Route::get('news','ApiNewsController@news');
     //Өргөдөлийг 20 бичлэгээр хуудаслаж авна
@@ -35,6 +36,7 @@ Route::namespace('Api')->group(function (){
 
 
 Route::middleware('auth:admin-api')->namespace('Admin')->prefix('admin')->group(function () {
+
     Route::get('user','AdminUserController@index');
 
     //ded site
@@ -46,7 +48,6 @@ Route::middleware('auth:admin-api')->namespace('Admin')->prefix('admin')->group(
     Route::get('get_config/{id}','AdminSiteController@get_config');
     Route::get('get_menu/{id}','AdminSiteController@get_menu');
 
-
     //admin user controller
     Route::post('admins/change_status','AdminAdminsController@change_status');
     Route::post('admins/{id}','AdminAdminsController@update');
@@ -56,12 +57,9 @@ Route::middleware('auth:admin-api')->namespace('Admin')->prefix('admin')->group(
     Route::post('news_category_save/{site_id}','AdminNewsCategoryController@save');
     Route::get('news_category/{site_id}','AdminNewsCategoryController@index1');
 
-
     //menu
     Route::post('menu_save/{site_id}','AdminMenuController@save');
     Route::get('menu/{site_id}','AdminMenuController@index1');
-
-
 
     //file_category
     Route::post('file_category_save/{site_id}','AdminFileCategoryController@save');
