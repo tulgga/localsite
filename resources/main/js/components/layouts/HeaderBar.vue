@@ -69,7 +69,7 @@
         </div>
         <div id="mobile-menu-bg"  v-if="mobile_menu" @click="mobile_menu=false"></div>
 
-        <div v-if="fetched" :style="{'background-color': main.parent_color.hex}">
+        <div v-if="fetched" :style="{'background-color': main.main_color.hex}">
 
             <header id="header-mobile" class="is-hidden-tablet">
                 <div class="columns is-mobile">
@@ -91,15 +91,15 @@
             </header>
 
             <header  id="header" class="is-hidden-mobile" >
-                <div id="header-top"  :style="{'background-color': !main.main_color.hex}">
+                <div id="header-top"  :style="{'background-color': !main.parent_color.hex}">
                     <div class="container">
                         <nav class="level">
                             <div class="level-left ml-1" >
-                                <p v-if="socail.facebook" class="level-item"><a target="_blank" :href="socail.facebook"><i class="fab fa-facebook"></i></a></p>
-                                <p v-if="socail.twitter" class="level-item"><a target="_blank" :href="socail.twitter"><i class="fab fa-twitter-square"></i></a></p>
-                                <p v-if="socail.messenger" class="level-item"><a target="_blank" :href="socail.messenger"><i class="fab fa-facebook-messenger"></i></a></p>
-                                <p v-if="socail.google" class="level-item"><a target="_blank" :href="socail.google"><i class="fab fa-google-plus-g"></i></a></p>
-                                <p v-if="socail.youtube" class="level-item"><a target="_blank" :href="socail.youtube"><i class="fab fa-youtube"></i></a></p>
+                                <!--<p v-if="socail.facebook" class="level-item"><a target="_blank" :href="socail.facebook"><i class="fab fa-facebook"></i></a></p>-->
+                                <!--<p v-if="socail.twitter" class="level-item"><a target="_blank" :href="socail.twitter"><i class="fab fa-twitter-square"></i></a></p>-->
+                                <!--<p v-if="socail.messenger" class="level-item"><a target="_blank" :href="socail.messenger"><i class="fab fa-facebook-messenger"></i></a></p>-->
+                                <!--<p v-if="socail.google" class="level-item"><a target="_blank" :href="socail.google"><i class="fab fa-google-plus-g"></i></a></p>-->
+                                <!--<p v-if="socail.youtube" class="level-item"><a target="_blank" :href="socail.youtube"><i class="fab fa-youtube"></i></a></p>-->
                             </div>
                             <div class="level-right mr-1 ">
                                 <p class="level-item"><a>Бусад сумдууд</a></p>
@@ -123,7 +123,7 @@
                                 </figure>
                             </div>
                             <div class="column is-4">
-                                <form method="get" class="is-pulled-right searchform" action="https://news.mn/search/">
+                                <form method="get" class="is-pulled-right searchform" >
                                     <input type="text" value="" name="q" placeholder="Хайх...">
                                     <button type="submit" class="button-search"><i class="fa fa-search"></i></button>
                                 </form>
@@ -131,7 +131,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="header-menu" :style="{'background-color': !main.main_color.hex}">
+                <div id="header-menu" :style="{'background-color': main.parent_color.hex}">
                     <div class="container">
                         <ul id="menu">
                             <li class="is-active"><a href="/"><img :src="siteUrl+'/images/home.png'"/></a></li>
@@ -157,15 +157,8 @@
                     </div>
                 </div>
             </header>
-
-
         </div>
-
-        <template v-else>
-            <div class="loading"  style="background-image:url('../../images/loading.gif')"></div>
-        </template>
-
-
+        <loading v-else></loading>
     </div>
 </template>
 
@@ -173,6 +166,7 @@
     export default {
     	data(){
     		return {
+                site_title: window.title,
     		    socail:  window.socail,
                 siteUrl: window.surl,
                 main: window.main,
@@ -180,7 +174,6 @@
                 icon:window.icon,
                 mobile_menu:false,
                 fetched: false,
-                site_title: window.title,
                 menu: [],
                 top_menu:[
                     {

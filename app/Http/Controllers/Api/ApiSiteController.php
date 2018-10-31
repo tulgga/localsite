@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Menu;
+use App\Weather;
 
 class ApiSiteController extends Controller
 {
@@ -25,5 +26,9 @@ class ApiSiteController extends Controller
             }
         }
         return $branch;
+    }
+
+    public function weather(){
+        return Weather::get_content();
     }
 }

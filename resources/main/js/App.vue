@@ -2,7 +2,9 @@
 <template >
     <div class="app" >
         <header-bar></header-bar>
-        <router-view></router-view>
+        <div id="body-content">
+            <router-view></router-view>
+        </div>
         <footer-bar></footer-bar>
         <div class="pageloader" v-if="$store.getters.pageloader">
             <div class="sp sp-wave"></div>
@@ -24,9 +26,3 @@
     }
 </script>
 
-<style>
-    .section-is-expanded {
-        margin-top: 4rem;
-        padding-top: 0 !important;
-    }
-</style>

@@ -13,6 +13,14 @@ class ApiNewsController extends Controller
         return response()->json(
             ['success'=>$news]
         );
+    }
 
+    public function news_ontslokh($id){
+        $news=Post::orderBy('created_at', 'desc')->where('site_id', $id)->where('is_primary', 1)->where('status',1)->with('Category')
+            ->select('title', 'id', 'image', 'created_at')
+            ->limit(3)->get();
+        return response()->json(
+            ['success'=>$news]
+        );
     }
 }

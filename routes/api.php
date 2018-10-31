@@ -16,9 +16,13 @@ use App\Http\Controllers\Auth;
 
 Route::namespace('Api')->group(function (){
     //menu
+
+
+     Route::get('weather','ApiSiteController@weather');
     Route::get('menu/{id}','ApiSiteController@menu');
     //Мэдээллийг 20 бичлэгээр хуудаслаж авна
     Route::get('news','ApiNewsController@news');
+    Route::get('news_ontslokh/{id}','ApiNewsController@news_ontslokh');
     //Өргөдөлийг 20 бичлэгээр хуудаслаж авна
     Route::get('urgudul','ApiUrgudulController@urgudul');
     //Зарыг 20 бичлэгээр хуудаслаж авна

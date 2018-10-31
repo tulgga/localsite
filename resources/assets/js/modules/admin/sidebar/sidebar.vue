@@ -5,16 +5,14 @@
 
             <div class="column is-6-tablet">
                     <textarea  style="min-height:400px;" class="textarea mb1" v-model="sidebar"></textarea>
-                <button @click="saveSideBar" class="button is-primary " :class="{'is-loading':is_loading}" :disabled="is_loading || fetched === false">
-                    <span>Хадгалах</span>
-                </button>
+                    <button @click="saveSideBar" class="button is-primary " :class="{'is-loading':is_loading}" :disabled="is_loading || fetched === false">
+                        <span>Хадгалах</span>
+                    </button>
             </div>
 
             <div class="column is-6-tablet">
                 <div class="boxed">
-                    <div  v-html="sidebar" class="sidebar">
-
-                    </div>
+                    <div  v-html="sidebar" class="sidebar"></div>
                 </div>
             </div>
         </div>

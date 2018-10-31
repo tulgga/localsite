@@ -18660,6 +18660,10 @@ body {
   max-width: 1152px;
 }
 
+.roboto-condensed {
+  font-family: "Roboto Condensed";
+}
+
 .searchform {
   margin-top: 30px;
   width: 100%;
@@ -18688,10 +18692,16 @@ body {
 }
 
 .loading {
-  width: 100%;
-  height: 200px;
-  background: center center no-repeat;
-  background-size: 80px auto;
+  text-align: center;
+  padding: 40px;
+}
+
+.loading img {
+  width: 80px;
+}
+
+#body-content {
+  min-height: 500px;
 }
 
 @media only screen and (max-width: 1152px) {
@@ -18709,7 +18719,27 @@ body {
 }
 
 .p-0 {
-  padding: 0px !important;
+  padding: 0em !important;
+}
+
+.p-1 {
+  padding: 1em !important;
+}
+
+.p-2 {
+  padding: 2em !important;
+}
+
+.m-0 {
+  margin: 0em !important;
+}
+
+.m-1 {
+  margin: 1em !important;
+}
+
+.m-2 {
+  margin: 2em !important;
 }
 
 #mobile-menu {
@@ -18756,7 +18786,6 @@ body {
 }
 
 #header-mobile {
-  border-bottom: 1px solid #e6e6e6;
   height: 60px;
 }
 
@@ -18784,7 +18813,6 @@ body {
   font-family: "Roboto Condensed";
   font-size: 13px;
   color: white;
-  border-bottom: 1px solid #e6e6e6;
 }
 
 #header a {
@@ -18792,8 +18820,7 @@ body {
 }
 
 #header #header-top {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 6px 0px 6px 0px;
+  padding: 6px 0px 0px 0px;
 }
 
 #header #header-content {
@@ -18806,7 +18833,6 @@ body {
 }
 
 #header #header-menu {
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
   height: 45px;
 }
 
@@ -18918,6 +18944,151 @@ body {
   #menu a {
     padding: 14px 5px 9px 5px !important;
     font-size: 10px;
+  }
+}
+
+#footer {
+  color: white;
+}
+
+#footer a {
+  color: white;
+}
+
+#footer .contact {
+  color: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+#footer .contact i {
+  width: 46px;
+  height: 46px;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  line-height: 46px;
+  text-align: center;
+  color: #fff;
+  font-size: 16px;
+  float: left;
+  margin-right: 20px;
+}
+
+#footer .contact p.description {
+  height: 46px;
+  vertical-align: middle;
+  line-height: 46px;
+  overflow: hidden;
+}
+
+#footer .copyright {
+  color: rgba(255, 255, 255, 0.7);
+  background: rgba(0, 0, 0, 0.1);
+}
+
+#footer .footer-menu a {
+  margin: 5px;
+  text-decoration: none;
+}
+
+.notification {
+  min-height: 220px;
+  border-radius: 0px;
+  padding: 0px;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.notification .content {
+  position: absolute;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+}
+
+.notification .content .tags {
+  margin-bottom: 5px;
+}
+
+.notification .content .tag {
+  margin-bottom: 0px;
+}
+
+.notification .content .title {
+  font-weight: normal;
+  margin-bottom: 5px;
+}
+
+.notification .content .title a {
+  color: white;
+  text-decoration: none;
+}
+
+.notification .content .date {
+  color: #aaaaaa;
+}
+
+.bgGrad {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  top: 0;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(50%, rgba(0, 0, 0, 0)), color-stop(85%, rgba(0, 0, 0, 0.8)));
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.8) 85%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#b3000000',GradientType=0 );
+}
+
+.homeMenu {
+  font-size: 16px;
+  font-weight: normal;
+  font-style: italic;
+  font-stretch: condensed;
+}
+
+.homeMenu .column {
+  cursor: pointer;
+}
+
+.homeMenu .column .icon {
+  margin-bottom: 5px;
+  color: #485977;
+}
+
+.homeMenu .column:hover .icon {
+  color: #0a0a0a;
+  zoom: 1.1;
+}
+
+#ontslokh {
+  background: #1f2024;
+}
+
+#ontslokh .tile.is-ancestor {
+  margin: 0px !important;
+}
+
+#ontslokh .tile.is-vertical > .tile.is-child:not(:last-child) {
+  margin: 0 !important;
+}
+
+#ontslokh .is-parent {
+  position: relative;
+}
+
+#ontslokh .tile.is-8 {
+  height: 440px;
+  overflow: hidden;
+}
+
+@media only screen and (max-width: 770px) {
+  #ontslokh .tile.is-8 {
+    height: 220px;
+  }
+
+  #ontslokh .tile.is-4 .notification {
+    height: 220px;
   }
 }
 

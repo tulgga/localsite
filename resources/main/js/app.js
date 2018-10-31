@@ -22,12 +22,9 @@ import Toasted from 'vue-toasted';
 import {ServerTable, ClientTable, Event} from 'vue-tables-2';
 import * as VueGoogleMaps from 'vue2-google-maps';
 import VeeValidate from 'vee-validate';
+import Loading from './components/helpers/loading';
 import VueSelect from 'vue-select'
 
-
-// import SlVueTree from 'sl-vue-tree';
-
-//import Ckeditor from 'Ckeditor.vue';
 Vue.use(VueRouter);
 sync(store, router);
 
@@ -139,12 +136,12 @@ Vue.config.productionTip = false
 
 Vue.component('SiteApp', require('./App.vue').default);
 Vue.component('v-select', VueSelect);
-
+Vue.component('Loading', Loading);
 
 const app = new Vue({
     el: '#app',
     router,
     store,
-    Toasted
+    Toasted,
 });
 

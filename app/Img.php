@@ -46,19 +46,21 @@ class Img extends Model
 
         $img = $request->image->store('images');
 
+
+
         $save = Image::make('uploads/'.$img);
-
-        $save->resize(250, 156);
-        $save->save(str_replace('images/', 'small/', 'uploads/'.$img));
-
-        $save->resize(370, 250);
-        $save->save(str_replace('images/', 'medium/', 'uploads/'.$img));
-
-        $save->resize(750, 500);
-        $save->save(str_replace('images/', 'large/', 'uploads/'.$img));
 
         $save->resize(1200, 750);
         $save->save(str_replace('images/', 'full/', 'uploads/'.$img));
+
+        $save->resize(810, 500);
+        $save->save(str_replace('images/', 'large/', 'uploads/'.$img));
+
+        $save->resize(510, 300);
+        $save->save(str_replace('images/', 'medium/', 'uploads/'.$img));
+
+        $save->resize(250, 156);
+        $save->save(str_replace('images/', 'small/', 'uploads/'.$img));
 
         return $img;
     }
