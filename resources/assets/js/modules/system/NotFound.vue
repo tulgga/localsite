@@ -1,6 +1,6 @@
 <template>
 
-    <div>
+    <div class="container">
         <p>Хуудас олдсонгүй</p>
     </div>
 

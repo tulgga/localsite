@@ -10,13 +10,13 @@
     
     <link rel="icon" type="image/x-icon" href="{{$favicon}}"/>
     <title>{{$config['meta']['title']}}</title>
-    <meta name="keywords" content="{{$config['meta']['keywords']}}">
-    <meta name="description" content="{{$config['meta']['title']}}">
+    {{--<meta name="keywords" content="{{$config['meta']['keywords']}}">--}}
+    {{--<meta name="description" content="{{$config['meta']['title']}}">--}}
 
-    <meta property="og:title" content="{{$config['meta']['title']}}">
-    <meta property="og:image" content="{{$logo}}">
-    <meta property="og:url" content="{{ url('/') }}">
-    <meta property="og:description" content="{{$config['meta']['description']}}">
+    {{--<meta property="og:title" content="{{$config['meta']['title']}}">--}}
+    {{--<meta property="og:image" content="{{$logo}}">--}}
+    {{--<meta property="og:url" content="{{ url('/') }}">--}}
+    {{--<meta property="og:description" content="{{$config['meta']['description']}}">--}}
     <!-- Styles -->
     {{$mainConfig['google_analytics']}}
     <link href="{{ url('main/css/app.css') }}" rel="stylesheet">
@@ -33,11 +33,10 @@
     window.icon = "{{$favicon}}";
     window.title = "{{$config['meta']['title']}}";
     window.google_api_key = "{{$mainConfig['google_api_key']}}";
-    window.main = <?php echo json_encode($config['main']); ?>
-
-    window.socail = <?php echo json_encode($config['socail']); ?>
-
-    window.contact = <?php echo json_encode($config['contact']); ?>
+    window.meta = <?php echo json_encode($config['meta']); ?>;
+    window.main = <?php echo json_encode($config['main']); ?>;
+    window.socail = <?php echo json_encode($config['socail']); ?>;
+    window.contact = <?php echo json_encode($config['contact']); ?>;
 </script>
 <script src="{{ url('main/js/app.js?id=1') }}"></script>
 </body>

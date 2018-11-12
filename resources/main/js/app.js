@@ -23,12 +23,17 @@ import {ServerTable, ClientTable, Event} from 'vue-tables-2';
 import * as VueGoogleMaps from 'vue2-google-maps';
 import VeeValidate from 'vee-validate';
 import Loading from './components/helpers/loading';
-import VueSelect from 'vue-select'
+import SideBar from './components/layouts/SideBar';
+import NotFound from './modules/system/NotFound';
+import VueSelect from 'vue-select';
+import VueCarousel from 'vue-carousel';
+import Meta from 'vue-meta'
 
 Vue.use(VueRouter);
+Vue.use(Meta)
 sync(store, router);
 
-
+Vue.use(VueCarousel);
 Vue.use(Vuebar);
 
 
@@ -137,6 +142,8 @@ Vue.config.productionTip = false
 Vue.component('SiteApp', require('./App.vue').default);
 Vue.component('v-select', VueSelect);
 Vue.component('Loading', Loading);
+Vue.component('SideBar', SideBar);
+Vue.component('NotFound', NotFound);
 
 const app = new Vue({
     el: '#app',

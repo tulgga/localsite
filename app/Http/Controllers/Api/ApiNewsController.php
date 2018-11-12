@@ -8,8 +8,8 @@ use App\Post;
 
 class ApiNewsController extends Controller
 {
-    public function news(){
-        $news=Post::orderBy('created_at', 'desc')->with('Category')->paginate(20);
+    public function news($site_id,$id){
+        $news=Post::where('site_id',$site_id)->where('id', $id)->where('status', 1)->with('Category')->first();
         return response()->json(
             ['success'=>$news]
         );

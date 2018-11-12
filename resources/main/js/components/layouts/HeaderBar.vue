@@ -34,17 +34,18 @@
 
                         <aside class="menu">
                             <ul class="menu-list">
+                                <li class="is-active"><a v-on:click="changeRoute('/')">Нүүр</a></li>
                                 <li v-for="m1 in menu">
-                                    <a href="">{{m1.name}}</a>
+                                    <a  v-on:click="changeRoute(m1.link)">{{m1.name}}</a>
                                      <ul  v-if="m1.children" >
                                          <li v-for="m2 in m1.children">
-                                             <a href="">{{m2.name}}</a>
+                                             <a  v-on:click="changeRoute(m2.link)">{{m2.name}}</a>
                                              <ul  v-if="m2.children" >
                                                  <li v-for="m3 in m2.children">
-                                                     <a href="">{{m3.name}}</a>
+                                                     <a  v-on:click="changeRoute(m3.link)">{{m3.name}}</a>
                                                      <ul  v-if="m3.children" >
                                                          <li v-for="m4 in m3.children">
-                                                             <a href="">{{m4.name}}</a>
+                                                             <a  v-on:click="changeRoute(m4.link)">{{m4.name}}</a>
                                                          </li>
                                                      </ul>
                                                  </li>
@@ -134,18 +135,18 @@
                 <div id="header-menu" :style="{'background-color': main.parent_color.hex}">
                     <div class="container">
                         <ul id="menu">
-                            <li class="is-active"><a href="/"><img :src="siteUrl+'/images/home.png'"/></a></li>
+                            <li class="is-active"><a v-on:click="changeRoute('/')"><img :src="siteUrl+'/images/home.png'"/></a></li>
                             <li v-for="m1 in menu">
-                                <a href="">{{m1.name}}</a>
+                                <a  v-on:click="changeRoute(m1.link)">{{m1.name}}</a>
                                 <ul  v-if="m1.children" >
                                     <li v-for="m2 in m1.children">
-                                        <a href="">{{m2.name}}</a>
+                                        <a v-on:click="changeRoute(m2.link)">{{m2.name}}</a>
                                         <ul  v-if="m2.children" >
                                             <li v-for="m3 in m2.children">
-                                                <a href="">{{m3.name}}</a>
+                                                <a v-on:click="changeRoute(m3.link)">{{m3.name}}</a>
                                                 <ul  v-if="m3.children" >
                                                     <li v-for="m4 in m3.children">
-                                                        <a href="">{{m4.name}}</a>
+                                                        <a v-on:click="changeRoute(m4.link)">{{m4.name}}</a>
                                                     </li>
                                                 </ul>
                                             </li>
@@ -194,7 +195,10 @@
                     this.fetched = true;
                 })
                 console.log(this.mobile_menu)
-            }
+            },
+            changeRoute: function(path){
+                this.$router.push({path:path});
+            },
         }
     }
 

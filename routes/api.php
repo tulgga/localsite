@@ -17,11 +17,12 @@ use App\Http\Controllers\Auth;
 Route::namespace('Api')->group(function (){
     //menu
 
-
-     Route::get('weather','ApiSiteController@weather');
+    Route::get('sidebar/{id}','ApiSiteController@sidebar');
+    Route::get('weather','ApiSiteController@weather');
     Route::get('menu/{id}','ApiSiteController@menu');
+
     //Мэдээллийг 20 бичлэгээр хуудаслаж авна
-    Route::get('news','ApiNewsController@news');
+    Route::get('news/{site_id}/{id}','ApiNewsController@news');
     Route::get('news_ontslokh/{id}','ApiNewsController@news_ontslokh');
     //Өргөдөлийг 20 бичлэгээр хуудаслаж авна
     Route::get('urgudul','ApiUrgudulController@urgudul');
