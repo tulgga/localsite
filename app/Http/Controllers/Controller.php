@@ -16,6 +16,16 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+
+    public function homePage(){
+        $info = Site::findOrFail(0);
+        $data['config']= json_decode($info->config, true);
+        $data['logo']= url('/uploads/'.$info->logo);
+        $data['favicon']= url('/uploads/'.$info->favicon);
+        $data['mainConfig']=Settings::where('id', 1)->select('google_api_key', 'google_analytics')->first();
+        return view('homePage', $data);
+    }
+
     public function index(){
         $info = Site::findOrFail(0);
         $data['config']= json_decode($info->config, true);

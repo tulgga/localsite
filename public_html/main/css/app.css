@@ -2337,7 +2337,7 @@ th {
 }
 
 html {
-  background-color: #f5f5f5;
+  background-color: #fafafa;
   font-size: 15px;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -18669,7 +18669,7 @@ body {
 }
 
 .searchform {
-  margin-top: 30px;
+  margin-top: 25px;
   width: 100%;
   position: relative;
 }
@@ -18693,6 +18693,7 @@ body {
   width: 40px;
   border: 0;
   background: transparent;
+  color: #b2b2b2;
 }
 
 .loading {
@@ -18774,6 +18775,10 @@ body {
   padding: 2em !important;
 }
 
+.p-3 {
+  padding: 3em !important;
+}
+
 .m-0 {
   margin: 0em !important;
 }
@@ -18784,6 +18789,10 @@ body {
 
 .m-2 {
   margin: 2em !important;
+}
+
+.m-3 {
+  margin: 3em !important;
 }
 
 #mobile-menu {
@@ -18877,14 +18886,14 @@ body {
 }
 
 #header #header-menu {
-  height: 45px;
+  height: 50px;
 }
 
 #header #header-menu #menu,
 #header #header-menu #menu ul {
   margin: 0;
   padding: 0;
-  font-size: 14px;
+  font-size: 13px;
   list-style: none;
 }
 
@@ -18908,12 +18917,12 @@ body {
 }
 
 #header #header-menu #menu li.is-active a {
-  background: rgba(255, 255, 255, 0.1);
+  background: #1753B5;
 }
 
 #header #header-menu #menu a {
   float: left;
-  padding: 12px 12px 9px 12px;
+  padding: 16px 12px 11px 12px;
   text-transform: uppercase;
   text-decoration: none;
   /*text-shadow: 0 1px 0 #000;*/
@@ -19134,5 +19143,25 @@ body {
   #ontslokh .tile.is-4 .notification {
     height: 220px;
   }
+}
+
+.VueCarousel {
+  margin-top: 50px;
+}
+
+.VueCarousel-navigation-prev {
+  position: absolute;
+  top: -50px !important;
+  -webkit-transform: none !important;
+          transform: none !important;
+  right: 20px !important;
+  left: auto !important;
+}
+
+.VueCarousel-navigation-next {
+  position: absolute;
+  top: -50px !important;
+  -webkit-transform: none !important;
+          transform: none !important;
 }
 

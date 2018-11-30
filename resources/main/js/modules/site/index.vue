@@ -1,7 +1,7 @@
 <template>
     <div >
         <!--ontslokh medee-->
-        <div v-if="ontslokh.length>0" id="ontslokh" class="roboto-condensed p-2" :style="siteUrl+'/images/tumen-olzii.png'">
+        <div v-if="ontslokh.length>0" id="ontslokh" class="roboto-condensed  p-3"  style="background-image: url('images/tumen-olzii.png')" >
             <div class="container">
                 <div class="tile is-ancestor " >
                     <div class="tile">
@@ -66,11 +66,11 @@
                         <p>ИТХурлын <br>тогтоол</p>
                     </div>
                     <div class="column is-6-mobile">
-                        <p><span class="icon is-large"><i class="fas fa-file-alt fa-2x"></i></span></p>
+                        <p><span class="icon is-large"><i class="far fa-file-alt fa-2x"></i></span></p>
                         <p>Засаг даргын<br>захирамж</p>
                     </div>
                     <div class="column is-6-mobile">
-                        <p><span class="icon is-large"><i class="fas fa-list-alt fa-2x"></i></span></p>
+                        <p><span class="icon is-large"><i class="far fa-list-alt fa-2x"></i></span></p>
                         <p>ЗДТГ-ын даргын<br>тушаал</p>
                     </div>
                     <div class="column is-6-mobile">
@@ -78,7 +78,7 @@
                         <p>Төсөл <br> хөтөлбөр</p>
                     </div>
                     <div class="column is-6-mobile">
-                        <p><span class="icon is-large"><i class="fas fa-copy fa-2x"></i></span></p>
+                        <p><span class="icon is-large"><i class="far fa-copy fa-2x"></i></span></p>
                         <p>Нээлттэй ажлын<br>байр</p>
                     </div>
                     <div class="column is-6-mobile">
@@ -96,14 +96,40 @@
         <div class="container mt-2 mb-2">
             <div class="columns  is-multiline">
                 <div class="column  is-8">
-                    <!--<carousel :per-page="1" :navigationEnabled="true"  >-->
-                        <!--<slide>-->
-                            <!--Slide 1 Content-->
-                        <!--</slide>-->
-                        <!--<slide>-->
-                            <!--Slide 2 Content-->
-                        <!--</slide>-->
-                    <!--</carousel>-->
+
+                    <carousel  :per-page="3" :navigationEnabled="true"  :paginationEnabled="false" navigationNextLabel="<button class='rightnav'>Right</button>"
+                               navigationPrevLabel="<button class='leftnav'>Left</button>"   >
+                        <slide>
+                            Slide 1 Content<br>
+                            Slide 1 Content<br>
+                            Slide 1 Content<br>
+                        </slide>
+                        <slide>
+                            Slide 2 Content
+                            Slide 1 Content<br>
+                            Slide 1 Content<br>
+                        </slide>
+                        <slide>
+                            Slide 1 Content
+                            Slide 1 Content<br>
+                            Slide 1 Content<br>
+                        </slide>
+                        <slide>
+                            Slide 1 Content
+                            Slide 1 Content<br>
+                            Slide 1 Content<br>
+                        </slide>
+                        <slide>
+                            Slide 1 Content
+                            Slide 1 Content<br>
+                            Slide 1 Content<br>
+                        </slide>
+                        <slide>
+                            Slide 1 Content
+                            Slide 1 Content<br>
+                            Slide 1 Content<br>
+                        </slide>
+                    </carousel>
                 </div>
                 <div class="column is-4 ">
                    <side-bar></side-bar>
@@ -133,10 +159,9 @@
                     this.ontslokh=response.data.success;
                     console.log(this.ontslokh);
                 })
+            },
 
 
-
-            }
         }
 
     }
