@@ -31,5 +31,9 @@ class Post extends Model
             ->select('sites.id', 'name', 'domain');
     }
 
+    public function SiteOne(){
+        return $this->hasOne(Site::class, 'site_id', 'site_id');
+    }
+
 
 }

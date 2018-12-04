@@ -21,7 +21,9 @@ Route::namespace('Api')->group(function (){
     Route::get('weather','ApiSiteController@weather');
     Route::get('menu/{id}','ApiSiteController@menu');
 
-    Route::get('site_news/{site_id}','ApiNewsController@site_news');
+    Route::get('site_news/{site_id}/{limit?}','ApiNewsController@site_news');
+    Route::get('oronnutag/{limit?}','ApiNewsController@oronnutag');
+
     Route::get('news/{site_id}/{id}','ApiNewsController@news');
     Route::get('news_ontslokh/{id}','ApiNewsController@news_ontslokh');
     //Өргөдөлийг 20 бичлэгээр хуудаслаж авна

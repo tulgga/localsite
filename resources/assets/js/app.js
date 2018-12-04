@@ -32,6 +32,7 @@ import  { Photoshop, Sketch }  from 'vue-color'
 
 
 
+
 import VueSelect from 'vue-select'
 
 Vue.use(ToggleButton);

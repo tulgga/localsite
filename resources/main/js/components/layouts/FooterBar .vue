@@ -11,11 +11,11 @@
                         </div>
                         <div class="column is-4">
                             <i class="fas fa-envelope"></i>
-                            <p class="description is-size-4-desktop" :title="contact.email">{{contact.email}}</p>
+                            <p class="description is-size-5-desktop" :title="contact.email">{{contact.email}}</p>
                         </div>
                         <div class="column is-3">
                             <i class="fas fa-phone"></i>
-                            <p class="description is-size-4-desktop" :title="contact.phone">{{contact.phone}}</p>
+                            <p class="description is-size-5-desktop" :title="contact.phone">{{contact.phone}}</p>
                         </div>
 
                     </div>

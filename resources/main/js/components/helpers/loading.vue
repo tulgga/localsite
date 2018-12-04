@@ -1,8 +1,8 @@
 <template>
     <div>
         <div class="loading"  >
-            <img :src="siteUrl+'/images/loading.gif'"/>
-            <p>уншиж байна</p>
+            <img  :src="siteUrl+'/images/load.png'"/>
+            <!--<p>уншиж байна</p>-->
         </div>
     </div>
 

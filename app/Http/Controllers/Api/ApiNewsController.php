@@ -9,10 +9,20 @@ use App\Post;
 class ApiNewsController extends Controller
 {
 
-    public function site_news($site_id){
+    public function site_news($site_id, $limit=20){
         $news=Post::where('site_id',$site_id)->where('status', 1)
             ->select('id', 'title', 'short_content', 'image', 'type', 'is_primary', 'view_count', 'created_at')
-            ->with('Category')->paginate(20);
+            ->with('Category')->orderBy('created_at', 'desc')->paginate($limit);
+        return response()->json(
+            ['success'=>$news]
+        );
+    }
+
+    public function oronnutag($limit=20){
+        $news=Post::where('site_id','!=',0)->where('main_site_publish', 2)->where('status', 1)
+            ->select('posts.id', 'posts.title', 'posts.short_content', 'posts.image', 'posts.type', 'posts.is_primary', 'posts.view_count', 'posts.created_at', 'sites.name as site')
+            ->Join('sites', 'sites.id', '=', 'posts.site_id')
+            ->orderBy('created_at', 'desc')->paginate($limit);
         return response()->json(
             ['success'=>$news]
         );

@@ -28,6 +28,7 @@ import NotFound from './modules/system/NotFound';
 import VueSelect from 'vue-select';
 import VueCarousel from 'vue-carousel';
 import Meta from 'vue-meta'
+// import BCarousel from './components/helpers/carousel';
 
 Vue.use(VueRouter);
 Vue.use(Meta)
@@ -144,6 +145,7 @@ Vue.component('v-select', VueSelect);
 Vue.component('Loading', Loading);
 Vue.component('SideBar', SideBar);
 Vue.component('NotFound', NotFound);
+// Vue.component('BCarousel', BCarousel);
 
 const app = new Vue({
     el: '#app',

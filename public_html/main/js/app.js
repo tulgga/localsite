@@ -83213,34 +83213,8 @@ var modules = requireContext.keys().map(function (file) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_helpers_NewsCarousel__ = __webpack_require__(951);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_helpers_OranNutagCarousel__ = __webpack_require__(953);
 //
 //
 //
@@ -83356,11 +83330,18 @@ var modules = requireContext.keys().map(function (file) {
 //
 //
 
+
+
 /* harmony default export */ __webpack_exports__["a"] = ({
+    components: { OranNutagCarousel: __WEBPACK_IMPORTED_MODULE_1__components_helpers_OranNutagCarousel__["a" /* default */], NewsCarousel: __WEBPACK_IMPORTED_MODULE_0__components_helpers_NewsCarousel__["a" /* default */] },
     data: function data() {
         return {
             siteUrl: window.surl,
-            ontslokh: []
+            ontslokh: [],
+            components: {
+                NewsCarousel: __WEBPACK_IMPORTED_MODULE_0__components_helpers_NewsCarousel__["a" /* default */],
+                OranNutagCarousel: __WEBPACK_IMPORTED_MODULE_1__components_helpers_OranNutagCarousel__["a" /* default */]
+            }
         };
     },
 
@@ -84374,6 +84355,7 @@ __webpack_require__(797);
 
 
 
+// import BCarousel from './components/helpers/carousel';
 
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_15_vue_meta___default.a);
@@ -84486,6 +84468,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('v-select', __WEBPACK_IMPO
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('Loading', __WEBPACK_IMPORTED_MODULE_10__components_helpers_loading__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('SideBar', __WEBPACK_IMPORTED_MODULE_11__components_layouts_SideBar__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('NotFound', __WEBPACK_IMPORTED_MODULE_12__modules_system_NotFound__["a" /* default */]);
+// Vue.component('BCarousel', BCarousel);
 
 var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
     el: '#app',
@@ -85001,15 +84984,8 @@ var render = function() {
                                   : _vm._e(),
                                 _vm._v(" "),
                                 _c("div", { staticClass: "title" }, [
-                                  _c("a", { staticClass: "is-size-3" }, [
-                                    _vm._v(
-                                      _vm._s(
-                                        _vm.ontslokh[0].title.substring(0, 60)
-                                      )
-                                    ),
-                                    _vm.ontslokh[0].title.length > 60
-                                      ? _c("span", [_vm._v("...")])
-                                      : _vm._e()
+                                  _c("a", { staticClass: "is-size-4" }, [
+                                    _vm._v(_vm._s(_vm.ontslokh[0].title))
                                   ])
                                 ]),
                                 _vm._v(" "),
@@ -85090,13 +85066,13 @@ var render = function() {
                                     : _vm._e(),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "title" }, [
-                                    _c("a", { staticClass: "is-size-4" }, [
+                                    _c("a", { staticClass: "is-size-6" }, [
                                       _vm._v(
                                         _vm._s(
-                                          _vm.ontslokh[1].title.substring(0, 60)
+                                          _vm.ontslokh[1].title.substring(0, 80)
                                         )
                                       ),
-                                      _vm.ontslokh[1].title.length > 60
+                                      _vm.ontslokh[1].title.length > 80
                                         ? _c("span", [_vm._v("...")])
                                         : _vm._e()
                                     ])
@@ -85174,13 +85150,13 @@ var render = function() {
                                     : _vm._e(),
                                   _vm._v(" "),
                                   _c("div", { staticClass: "title" }, [
-                                    _c("a", { staticClass: "is-size-4" }, [
+                                    _c("a", { staticClass: "is-size-6" }, [
                                       _vm._v(
                                         _vm._s(
-                                          _vm.ontslokh[2].title.substring(0, 60)
+                                          _vm.ontslokh[2].title.substring(0, 80)
                                         )
                                       ),
-                                      _vm.ontslokh[2].title.length > 60
+                                      _vm.ontslokh[2].title.length > 80
                                         ? _c("span", [_vm._v("...")])
                                         : _vm._e()
                                     ])
@@ -85211,82 +85187,33 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "container mt-2 mb-2" }, [
         _c("div", { staticClass: "columns  is-multiline" }, [
-          _c(
-            "div",
-            { staticClass: "column  is-8" },
-            [
-              _c(
-                "carousel",
-                {
+          _c("div", { staticClass: "column  is-8" }, [
+            _c(
+              "div",
+              { staticClass: "bg-white p-15 mb-2" },
+              [
+                _c("news-carousel", {
+                  attrs: { page: 3, color: "blue", title: "Шинэ мэдээ" }
+                })
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "bg-white p-15 mb-2" },
+              [
+                _c("oran-nutag-carousel", {
                   attrs: {
-                    "per-page": 3,
-                    navigationEnabled: true,
-                    paginationEnabled: false,
-                    navigationNextLabel:
-                      "<button class='rightnav'>Right</button>",
-                    navigationPrevLabel: "<button class='leftnav'>Left</button>"
+                    page: 3,
+                    color: "orange",
+                    title: "Орон нутгийн мэдээ"
                   }
-                },
-                [
-                  _c("slide", [
-                    _vm._v("\n                        Slide 1 Content"),
-                    _c("br"),
-                    _vm._v("\n                        Slide 1 Content"),
-                    _c("br"),
-                    _vm._v("\n                        Slide 1 Content"),
-                    _c("br")
-                  ]),
-                  _vm._v(" "),
-                  _c("slide", [
-                    _vm._v(
-                      "\n                        Slide 2 Content\n                        Slide 1 Content"
-                    ),
-                    _c("br"),
-                    _vm._v("\n                        Slide 1 Content"),
-                    _c("br")
-                  ]),
-                  _vm._v(" "),
-                  _c("slide", [
-                    _vm._v(
-                      "\n                        Slide 1 Content\n                        Slide 1 Content"
-                    ),
-                    _c("br"),
-                    _vm._v("\n                        Slide 1 Content"),
-                    _c("br")
-                  ]),
-                  _vm._v(" "),
-                  _c("slide", [
-                    _vm._v(
-                      "\n                        Slide 1 Content\n                        Slide 1 Content"
-                    ),
-                    _c("br"),
-                    _vm._v("\n                        Slide 1 Content"),
-                    _c("br")
-                  ]),
-                  _vm._v(" "),
-                  _c("slide", [
-                    _vm._v(
-                      "\n                        Slide 1 Content\n                        Slide 1 Content"
-                    ),
-                    _c("br"),
-                    _vm._v("\n                        Slide 1 Content"),
-                    _c("br")
-                  ]),
-                  _vm._v(" "),
-                  _c("slide", [
-                    _vm._v(
-                      "\n                        Slide 1 Content\n                        Slide 1 Content"
-                    ),
-                    _c("br"),
-                    _vm._v("\n                        Slide 1 Content"),
-                    _c("br")
-                  ])
-                ],
-                1
-              )
-            ],
-            1
-          ),
+                })
+              ],
+              1
+            )
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "column is-4 " }, [_c("side-bar")], 1)
         ])
@@ -87627,9 +87554,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", { staticClass: "loading" }, [
-      _c("img", { attrs: { src: _vm.siteUrl + "/images/loading.gif" } }),
-      _vm._v(" "),
-      _c("p", [_vm._v("уншиж байна")])
+      _c("img", { attrs: { src: _vm.siteUrl + "/images/load.png" } })
     ])
   ])
 }
@@ -89757,7 +89682,7 @@ var render = function() {
                 _c(
                   "p",
                   {
-                    staticClass: "description is-size-4-desktop",
+                    staticClass: "description is-size-5-desktop",
                     attrs: { title: _vm.contact.email }
                   },
                   [_vm._v(_vm._s(_vm.contact.email))]
@@ -89770,7 +89695,7 @@ var render = function() {
                 _c(
                   "p",
                   {
-                    staticClass: "description is-size-4-desktop",
+                    staticClass: "description is-size-5-desktop",
                     attrs: { title: _vm.contact.phone }
                   },
                   [_vm._v(_vm._s(_vm.contact.phone))]
@@ -89921,6 +89846,545 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-553b7f9c", { render: render, staticRenderFns: staticRenderFns })
+  }
+}
+
+/***/ }),
+/* 849 */,
+/* 850 */,
+/* 851 */,
+/* 852 */,
+/* 853 */,
+/* 854 */,
+/* 855 */,
+/* 856 */,
+/* 857 */,
+/* 858 */,
+/* 859 */,
+/* 860 */,
+/* 861 */,
+/* 862 */,
+/* 863 */,
+/* 864 */,
+/* 865 */,
+/* 866 */,
+/* 867 */,
+/* 868 */,
+/* 869 */,
+/* 870 */,
+/* 871 */,
+/* 872 */,
+/* 873 */,
+/* 874 */,
+/* 875 */,
+/* 876 */,
+/* 877 */,
+/* 878 */,
+/* 879 */,
+/* 880 */,
+/* 881 */,
+/* 882 */,
+/* 883 */,
+/* 884 */,
+/* 885 */,
+/* 886 */,
+/* 887 */,
+/* 888 */,
+/* 889 */,
+/* 890 */,
+/* 891 */,
+/* 892 */,
+/* 893 */,
+/* 894 */,
+/* 895 */,
+/* 896 */,
+/* 897 */,
+/* 898 */,
+/* 899 */,
+/* 900 */,
+/* 901 */,
+/* 902 */,
+/* 903 */,
+/* 904 */,
+/* 905 */,
+/* 906 */,
+/* 907 */,
+/* 908 */,
+/* 909 */,
+/* 910 */,
+/* 911 */,
+/* 912 */,
+/* 913 */,
+/* 914 */,
+/* 915 */,
+/* 916 */,
+/* 917 */,
+/* 918 */,
+/* 919 */,
+/* 920 */,
+/* 921 */,
+/* 922 */,
+/* 923 */,
+/* 924 */,
+/* 925 */,
+/* 926 */,
+/* 927 */,
+/* 928 */,
+/* 929 */,
+/* 930 */,
+/* 931 */,
+/* 932 */,
+/* 933 */,
+/* 934 */,
+/* 935 */,
+/* 936 */,
+/* 937 */,
+/* 938 */,
+/* 939 */,
+/* 940 */,
+/* 941 */,
+/* 942 */,
+/* 943 */,
+/* 944 */,
+/* 945 */,
+/* 946 */,
+/* 947 */,
+/* 948 */,
+/* 949 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+    props: ['page', 'color', 'title'],
+    data: function data() {
+        return {
+            siteUrl: window.surl,
+            currentPage: this.page,
+            window: {
+                width: 0,
+                height: 0
+            },
+            post: false
+        };
+    },
+
+    created: function created() {
+        window.addEventListener('resize', this.handleResize);
+        this.handleResize();
+        this.fetchData();
+    },
+    destroyed: function destroyed() {
+        window.removeEventListener('resize', this.handleResize);
+    },
+
+    methods: {
+        handleResize: function handleResize() {
+            this.window.width = window.innerWidth;
+            this.window.height = window.innerHeight;
+
+            if (this.window.width >= 600) {
+                this.currentPage = this.page;
+            } else {
+                this.currentPage = 2;
+            }
+        },
+
+        fetchData: function fetchData() {
+            var _this = this;
+
+            axios.get('/site_news/' + 0 + '/6').then(function (response) {
+                _this.post = response.data.success.data;
+                console.log(_this.post);
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 950 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+    props: ['page', 'color', 'title'],
+    data: function data() {
+        return {
+            siteUrl: window.surl,
+            currentPage: this.page,
+            window: {
+                width: 0,
+                height: 0
+            },
+            post: false
+        };
+    },
+
+    created: function created() {
+        window.addEventListener('resize', this.handleResize);
+        this.handleResize();
+        this.fetchData();
+    },
+    destroyed: function destroyed() {
+        window.removeEventListener('resize', this.handleResize);
+    },
+
+    methods: {
+        handleResize: function handleResize() {
+            this.window.width = window.innerWidth;
+            this.window.height = window.innerHeight;
+
+            if (this.window.width >= 600) {
+                this.currentPage = this.page;
+            } else {
+                this.currentPage = 2;
+            }
+        },
+
+        fetchData: function fetchData() {
+            var _this = this;
+
+            axios.get('/oronnutag/6').then(function (response) {
+                _this.post = response.data.success.data;
+                console.log(_this.post);
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 951 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_plugins_transform_object_rest_spread_transform_runtime_polyfill_false_helpers_false_node_modules_vue_loader_lib_selector_type_script_index_0_NewsCarousel_vue__ = __webpack_require__(949);
+/* unused harmony namespace reexport */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_7bd8ce0b_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_NewsCarousel_vue__ = __webpack_require__(952);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_runtime_component_normalizer__ = __webpack_require__(1);
+var disposed = false
+/* script */
+
+
+/* template */
+
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+
+var Component = Object(__WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_runtime_component_normalizer__["a" /* default */])(
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_plugins_transform_object_rest_spread_transform_runtime_polyfill_false_helpers_false_node_modules_vue_loader_lib_selector_type_script_index_0_NewsCarousel_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_7bd8ce0b_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_NewsCarousel_vue__["a" /* render */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_7bd8ce0b_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_NewsCarousel_vue__["b" /* staticRenderFns */],
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\main\\js\\components\\helpers\\NewsCarousel.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-7bd8ce0b", Component.options)
+  } else {
+    hotAPI.reload("data-v-7bd8ce0b", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+/* harmony default export */ __webpack_exports__["a"] = (Component.exports);
+
+
+/***/ }),
+/* 952 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm.post
+    ? _c(
+        "div",
+        { staticClass: "bcarousel", class: _vm.color },
+        [
+          _c("h3", { staticClass: "bTitle" }, [_vm._v(_vm._s(_vm.title))]),
+          _vm._v(" "),
+          _c(
+            "carousel",
+            {
+              attrs: {
+                "per-page": _vm.currentPage,
+                navigationEnabled: true,
+                paginationEnabled: false,
+                navigationNextLabel: "<i class='fas fa-angle-right'></i>",
+                navigationPrevLabel: "<i class='fas fa-angle-left'></i>"
+              }
+            },
+            [
+              _vm._l(_vm.post, function(p) {
+                return [
+                  _c("slide", [
+                    _c(
+                      "div",
+                      { staticClass: "bcarousel-list" },
+                      [
+                        _c("img", {
+                          attrs: {
+                            src:
+                              _vm.siteUrl +
+                              p.image.replace("images", "/uploads/medium")
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("router-link", { attrs: { to: "/news/" + p.id } }, [
+                          _c(
+                            "div",
+                            { staticClass: "CarTitle roboto-condensed " },
+                            [
+                              _vm._v(_vm._s(p.title.substring(0, 50))),
+                              p.title.length > 50
+                                ? _c("span", [_vm._v("...")])
+                                : _vm._e()
+                            ]
+                          )
+                        ])
+                      ],
+                      1
+                    )
+                  ])
+                ]
+              })
+            ],
+            2
+          )
+        ],
+        1
+      )
+    : _c("loading")
+}
+var staticRenderFns = []
+render._withStripped = true
+
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-7bd8ce0b", { render: render, staticRenderFns: staticRenderFns })
+  }
+}
+
+/***/ }),
+/* 953 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_plugins_transform_object_rest_spread_transform_runtime_polyfill_false_helpers_false_node_modules_vue_loader_lib_selector_type_script_index_0_OranNutagCarousel_vue__ = __webpack_require__(950);
+/* unused harmony namespace reexport */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_443f9cfb_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_OranNutagCarousel_vue__ = __webpack_require__(954);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_runtime_component_normalizer__ = __webpack_require__(1);
+var disposed = false
+/* script */
+
+
+/* template */
+
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+
+var Component = Object(__WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_runtime_component_normalizer__["a" /* default */])(
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_plugins_transform_object_rest_spread_transform_runtime_polyfill_false_helpers_false_node_modules_vue_loader_lib_selector_type_script_index_0_OranNutagCarousel_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_443f9cfb_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_OranNutagCarousel_vue__["a" /* render */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_443f9cfb_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_OranNutagCarousel_vue__["b" /* staticRenderFns */],
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\main\\js\\components\\helpers\\OranNutagCarousel.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-443f9cfb", Component.options)
+  } else {
+    hotAPI.reload("data-v-443f9cfb", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+/* harmony default export */ __webpack_exports__["a"] = (Component.exports);
+
+
+/***/ }),
+/* 954 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm.post
+    ? _c(
+        "div",
+        { staticClass: "bcarousel", class: _vm.color },
+        [
+          _c("h3", { staticClass: "bTitle" }, [_vm._v(_vm._s(_vm.title))]),
+          _vm._v(" "),
+          _c(
+            "carousel",
+            {
+              attrs: {
+                "per-page": _vm.currentPage,
+                navigationEnabled: true,
+                paginationEnabled: false,
+                navigationNextLabel: "<i class='fas fa-angle-right'></i>",
+                navigationPrevLabel: "<i class='fas fa-angle-left'></i>"
+              }
+            },
+            [
+              _vm._l(_vm.post, function(p) {
+                return [
+                  _c("slide", [
+                    _c(
+                      "div",
+                      { staticClass: "bcarousel-list" },
+                      [
+                        _c("img", {
+                          attrs: {
+                            src:
+                              _vm.siteUrl +
+                              p.image.replace("images", "/uploads/medium")
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("router-link", { attrs: { to: "/news/" + p.id } }, [
+                          _c(
+                            "div",
+                            { staticClass: "CarTitle roboto-condensed " },
+                            [
+                              _c("span", { staticClass: "tag" }, [
+                                _vm._v(_vm._s(p.site))
+                              ]),
+                              _c("br"),
+                              _vm._v(
+                                "\n                        " +
+                                  _vm._s(p.title.substring(0, 50))
+                              ),
+                              p.title.length > 50
+                                ? _c("span", [_vm._v("...")])
+                                : _vm._e()
+                            ]
+                          )
+                        ])
+                      ],
+                      1
+                    )
+                  ])
+                ]
+              })
+            ],
+            2
+          )
+        ],
+        1
+      )
+    : _c("loading")
+}
+var staticRenderFns = []
+render._withStripped = true
+
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-443f9cfb", { render: render, staticRenderFns: staticRenderFns })
   }
 }
 

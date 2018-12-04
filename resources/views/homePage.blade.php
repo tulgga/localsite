@@ -30,7 +30,7 @@
         <div class="row logo"><img src="style/images/index-logo.png"></div>
         <div class="row">
             <ul class="col-sm-6 left-menu">
-                <li><a href="#"><i class="fa fa-home"></i> Үндсэн веб хуудас</a></li>
+                <li><a href="!"><i class="fa fa-home"></i> Үндсэн веб хуудас</a></li>
                 <li><a href="#"><i class="fa fa-folder-o"></i> Лавлагаа мэдээлэл</a></li>
                 <li><a href="#"><i class="fa fa-cube"></i> Шилэн дансны мэдээлэл</a></li>
             </ul>

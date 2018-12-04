@@ -14,7 +14,7 @@
                                         <span class="tag is-info">{{ontslokh[0].category[0].name}}</span>
                                         <span v-if="ontslokh[0].category.length!=1" class="tag is-dark">+{{ontslokh[0].category.length-1}}</span>
                                     </div>
-                                    <div class="title"><a class="is-size-3">{{ontslokh[0].title.substring(0, 60)}}<span v-if="ontslokh[0].title.length>60">...</span></a></div>
+                                    <div class="title"><a class="is-size-4">{{ontslokh[0].title}}</a></div>
                                     <div class="date"><i class="far fa-clock"></i> {{ontslokh[0].created_at}}</div>
                                 </div>
                                 </router-link>
@@ -30,7 +30,7 @@
                                         <span v-if="ontslokh[1].category.length!=1" class="tag is-dark">+{{ontslokh[1].category.length-1}}</span>
                                     </div>
 
-                                    <div class="title"><a class="is-size-4">{{ontslokh[1].title.substring(0, 60)}}<span v-if="ontslokh[1].title.length>60">...</span></a></div>
+                                    <div class="title"><a class="is-size-6">{{ontslokh[1].title.substring(0, 80)}}<span v-if="ontslokh[1].title.length>80">...</span></a></div>
                                     <div class="date"><i class="far fa-clock"></i> {{ontslokh[1].created_at}}</div>
                                 </div>
                                 </router-link>
@@ -43,7 +43,7 @@
                                             <span class="tag is-info">{{ontslokh[2].category[0].name}}</span>
                                             <span v-if="ontslokh[2].category.length!=1" class="tag is-dark">+{{ontslokh[2].category.length-1}}</span>
                                         </div>
-                                        <div class="title"><a class="is-size-4">{{ontslokh[2].title.substring(0, 60)}}<span v-if="ontslokh[2].title.length>60">...</span></a></div>
+                                        <div class="title"><a class="is-size-6">{{ontslokh[2].title.substring(0, 80)}}<span v-if="ontslokh[2].title.length>80">...</span></a></div>
                                         <div class="date"><i class="far fa-clock"></i> {{ontslokh[2].created_at}}</div>
                                     </div>
                                 </router-link>
@@ -96,40 +96,12 @@
         <div class="container mt-2 mb-2">
             <div class="columns  is-multiline">
                 <div class="column  is-8">
-
-                    <carousel  :per-page="3" :navigationEnabled="true"  :paginationEnabled="false" navigationNextLabel="<button class='rightnav'>Right</button>"
-                               navigationPrevLabel="<button class='leftnav'>Left</button>"   >
-                        <slide>
-                            Slide 1 Content<br>
-                            Slide 1 Content<br>
-                            Slide 1 Content<br>
-                        </slide>
-                        <slide>
-                            Slide 2 Content
-                            Slide 1 Content<br>
-                            Slide 1 Content<br>
-                        </slide>
-                        <slide>
-                            Slide 1 Content
-                            Slide 1 Content<br>
-                            Slide 1 Content<br>
-                        </slide>
-                        <slide>
-                            Slide 1 Content
-                            Slide 1 Content<br>
-                            Slide 1 Content<br>
-                        </slide>
-                        <slide>
-                            Slide 1 Content
-                            Slide 1 Content<br>
-                            Slide 1 Content<br>
-                        </slide>
-                        <slide>
-                            Slide 1 Content
-                            Slide 1 Content<br>
-                            Slide 1 Content<br>
-                        </slide>
-                    </carousel>
+                    <div class="bg-white p-15 mb-2">
+                        <news-carousel :page="3" color="blue" title="Шинэ мэдээ" ></news-carousel>
+                    </div>
+                    <div class="bg-white p-15 mb-2">
+                        <oran-nutag-carousel :page="3" color="orange" title="Орон нутгийн мэдээ" ></oran-nutag-carousel>
+                    </div>
                 </div>
                 <div class="column is-4 ">
                    <side-bar></side-bar>
@@ -141,11 +113,18 @@
     </div>
 </template>
 <script>
+    import NewsCarousel from '../../components/helpers/NewsCarousel'
+    import OranNutagCarousel from '../../components/helpers/OranNutagCarousel'
     export default {
+        components: {OranNutagCarousel, NewsCarousel},
         data() {
             return {
                 siteUrl: window.surl,
                 ontslokh: [],
+                components: {
+                    NewsCarousel,
+                    OranNutagCarousel,
+                }
             }
         },
         created: function () {
