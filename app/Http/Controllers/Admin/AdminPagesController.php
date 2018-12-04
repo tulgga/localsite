@@ -58,13 +58,11 @@ class AdminPagesController extends Controller
         }
         $image=Img::upload($request);
 
-        if(!is_null($image)){
-            $data['image'] = $image;
-        }
-
         $Page=  Page::find($id);
         $Page->title=$data['title'];
-        $Page->image=$data['image'];
+        if(!is_null($image)) {
+            $Page->image = $image;
+        }
         $Page->text=$data['text'];
         $Page->parent_id=$data['parent_id'];
         $Page->site_id=$data['site_id'];

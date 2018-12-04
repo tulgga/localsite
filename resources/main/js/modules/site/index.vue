@@ -104,15 +104,23 @@
                     </div>
                 </div>
                 <div class="column is-4 ">
-                   <side-bar></side-bar>
+
+                    <v-bar wrapper="wrapper"
+                           1 <br>1 <br>1 <br>1 <br>1 <br>1 <br>1 <br>1 <br>1 <br>1 <br>1 <br>1 <br>1 <br>1 <br>1 <br>1 <br>1 <br>1 <br>1 <br>
+                        1 <br>1 <br>1 <br>1 <br>1 <br>1 <br>1 <br>1 <br>1 <br>1 <br>1 <br>1 <br>1 <br>1 <br>1 <br>1 <br>1 <br>1 <br>
+                    </v-bar>
                 </div>
             </div>
         </div>
 
 
+
+
+
     </div>
 </template>
 <script>
+
     import NewsCarousel from '../../components/helpers/NewsCarousel'
     import OranNutagCarousel from '../../components/helpers/OranNutagCarousel'
     export default {
@@ -145,3 +153,6 @@
 
     }
 </script>
+<style>
+    .wrapper { width:100%; height: 100px; }
+</style>

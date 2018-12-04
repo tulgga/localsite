@@ -27,9 +27,10 @@ import SideBar from './components/layouts/SideBar';
 import NotFound from './modules/system/NotFound';
 import VueSelect from 'vue-select';
 import VueCarousel from 'vue-carousel';
-import Meta from 'vue-meta'
+import Meta from 'vue-meta';
+import VBar from 'v-bar';
 // import BCarousel from './components/helpers/carousel';
-
+Vue.use(VBar);
 Vue.use(VueRouter);
 Vue.use(Meta)
 sync(store, router);

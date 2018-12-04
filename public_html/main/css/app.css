@@ -18978,7 +18978,6 @@ body {
   _height: 10px;
   /*IE6 only*/
   display: block;
-  white-space: nowrap;
   float: none;
   text-transform: none;
 }

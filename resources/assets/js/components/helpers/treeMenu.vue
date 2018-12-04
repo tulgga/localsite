@@ -74,6 +74,8 @@
                     <p class="modal-card-title">{{data.name}}</p>
                 </header>
                 <section class="modal-card-body">
+
+
                     <div class="field">
                         <label class="label">Нэр</label>
                         <div class="control">
@@ -84,7 +86,7 @@
                         <label class="label">Төрөл</label>
                         <div class="control">
                             <div class="select">
-                                <select  v-model="data.type" v-on:change="changeType">
+                                <select  v-model="data.type" @change="changeType">
                                     <option value="0">Линк</option>
                                     <option value="1">Мэдээ</option>
                                     <option value="2">Мэдээний ангилал</option>
@@ -170,7 +172,7 @@
             },
 
             changeType(){
-                this.data.type_id=null
+                // this.data.type_id=null
 
                 if(this.data.type==1){
                     axios.get('/news_select/' + this.data.site_id).then((response) => {
