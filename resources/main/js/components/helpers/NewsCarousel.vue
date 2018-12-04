@@ -11,8 +11,7 @@
         >
             <template v-for="p in post">
                 <slide>
-                    <div class="bcarousel-list">
-                        <img :src="siteUrl+p.image.replace('images', '/uploads/medium')"/>
+                    <div class="bcarousel-list" :style="'background-image:url('+siteUrl+p.image.replace('images', '/uploads/medium')+');'">
                     <router-link :to="'/news/'+p.id">
                         <div  class="CarTitle roboto-condensed ">{{p.title.substring(0, 50)}}<span v-if="p.title.length>50">...</span></div>
                     </router-link>
@@ -66,7 +65,6 @@
             fetchData: function () {
                 axios.get('/site_news/'+0+'/6').then((response) => {
                     this.post=response.data.success.data;
-                    console.log(this.post);
                 })
             },
         }

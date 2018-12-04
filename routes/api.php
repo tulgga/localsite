@@ -25,6 +25,8 @@ Route::namespace('Api')->group(function (){
     Route::get('oronnutag/{limit?}','ApiNewsController@oronnutag');
 
     Route::get('news/{site_id}/{id}','ApiNewsController@news');
+    Route::get('newsListByCategory/{site_id}/{catId}','ApiNewsController@newsListByCategory');
+
     Route::get('news_ontslokh/{id}','ApiNewsController@news_ontslokh');
     //Өргөдөлийг 20 бичлэгээр хуудаслаж авна
     Route::get('urgudul','ApiUrgudulController@urgudul');

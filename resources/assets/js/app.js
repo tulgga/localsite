@@ -31,9 +31,20 @@ import '@riophae/vue-treeselect/dist/vue-treeselect.css'
 import  { Photoshop, Sketch }  from 'vue-color'
 
 
-
-
+// import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
+// import VueCkeditor from 'vue-ckeditor5'
+// const options = {
+//     editors: {
+//         classic: ClassicEditor,
+//         editorConfig: {
+//
+//         }
+//     },
+//     name: 'ckeditor'
+// }
+// Vue.use(VueCkeditor.plugin, options);
 import VueSelect from 'vue-select'
+
 
 Vue.use(ToggleButton);
 

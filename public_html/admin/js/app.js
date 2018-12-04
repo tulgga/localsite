@@ -91572,6 +91572,18 @@ __webpack_require__(650);
 
 
 
+// import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
+// import VueCkeditor from 'vue-ckeditor5'
+// const options = {
+//     editors: {
+//         classic: ClassicEditor,
+//         editorConfig: {
+//
+//         }
+//     },
+//     name: 'ckeditor'
+// }
+// Vue.use(VueCkeditor.plugin, options);
 
 
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_12_vue_js_toggle_button___default.a);
@@ -95476,7 +95488,11 @@ var render = function() {
                                 }
                               ],
                               class: { "is-danger": _vm.errors.has("text") },
-                              attrs: { name: "text", config: _vm.ck_config },
+                              attrs: {
+                                name: "text",
+                                type: "classic",
+                                config: _vm.ck_config
+                              },
                               model: {
                                 value: _vm.form.text,
                                 callback: function($$v) {

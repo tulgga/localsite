@@ -30,7 +30,7 @@ import VueCarousel from 'vue-carousel';
 import Meta from 'vue-meta';
 import VBar from 'v-bar';
 // import BCarousel from './components/helpers/carousel';
-Vue.use(VBar);
+
 Vue.use(VueRouter);
 Vue.use(Meta)
 sync(store, router);
@@ -146,6 +146,8 @@ Vue.component('v-select', VueSelect);
 Vue.component('Loading', Loading);
 Vue.component('SideBar', SideBar);
 Vue.component('NotFound', NotFound);
+Vue.component('v-bar', VBar);
+
 // Vue.component('BCarousel', BCarousel);
 
 const app = new Vue({

@@ -70,7 +70,7 @@ CRUD Edit, Create form
                             <div class="field">
                                 <label class="label">Дэлгэрэнгүй мэдээлэл</label>
                                 <div class="control has-autoblock">
-                                    <ckeditor v-model="form.text" name="text" v-validate="'required'" :config="ck_config" :class="{'is-danger': errors.has('text') }"></ckeditor>
+                                    <ckeditor v-model="form.text" name="text" type="classic" v-validate="'required'" :config="ck_config"  :class="{'is-danger': errors.has('text') }"></ckeditor>
                                     <p v-show="errors.has('text')" class="help is-danger">{{ errors.first('text') }}</p>
                                 </div>
                             </div>

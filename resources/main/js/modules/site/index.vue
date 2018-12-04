@@ -14,7 +14,7 @@
                                         <span class="tag is-info">{{ontslokh[0].category[0].name}}</span>
                                         <span v-if="ontslokh[0].category.length!=1" class="tag is-dark">+{{ontslokh[0].category.length-1}}</span>
                                     </div>
-                                    <div class="title"><a class="is-size-4">{{ontslokh[0].title}}</a></div>
+                                    <div class="title"><a class="is-size-4-desktop">{{ontslokh[0].title}}</a></div>
                                     <div class="date"><i class="far fa-clock"></i> {{ontslokh[0].created_at}}</div>
                                 </div>
                                 </router-link>
@@ -94,6 +94,8 @@
 
         <!-- content -->
         <div class="container mt-2 mb-2">
+
+
             <div class="columns  is-multiline">
                 <div class="column  is-8">
                     <div class="bg-white p-15 mb-2">
@@ -102,15 +104,28 @@
                     <div class="bg-white p-15 mb-2">
                         <oran-nutag-carousel :page="3" color="orange" title="Орон нутгийн мэдээ" ></oran-nutag-carousel>
                     </div>
+                    <div class="bg-white p-15 mb-2 red">
+                        <h3 class="bTitle mb-1">Видео</h3>
+                    </div>
                 </div>
                 <div class="column is-4 ">
-
-                    <v-bar wrapper="wrapper"
-                           1 <br>1 <br>1 <br>1 <br>1 <br>1 <br>1 <br>1 <br>1 <br>1 <br>1 <br>1 <br>1 <br>1 <br>1 <br>1 <br>1 <br>1 <br>1 <br>
-                        1 <br>1 <br>1 <br>1 <br>1 <br>1 <br>1 <br>1 <br>1 <br>1 <br>1 <br>1 <br>1 <br>1 <br>1 <br>1 <br>1 <br>1 <br>
-                    </v-bar>
+                    <div class="bg-white p-15 mb-2 blue">
+                        <h3 class="bTitle mb-1">Ил тод байдал</h3>
+                        <v-bar wrapper="wrapper" style="height: 495px;">
+                            <news-list  catId="141"  ></news-list>
+                        </v-bar>
+                    </div>
+                    <div class="bg-white p-15 mb-2 green">
+                        <h3 class="bTitle mb-1">Тендерийн урилга</h3>
+                        <v-bar wrapper="wrapper" style="height: 430px;">
+                            <news-list  height catId="142"></news-list>
+                        </v-bar>
+                    </div>
                 </div>
             </div>
+
+
+
         </div>
 
 
@@ -123,8 +138,9 @@
 
     import NewsCarousel from '../../components/helpers/NewsCarousel'
     import OranNutagCarousel from '../../components/helpers/OranNutagCarousel'
+    import NewsList from "../../components/helpers/NewsList";
     export default {
-        components: {OranNutagCarousel, NewsCarousel},
+        components: {NewsList, OranNutagCarousel, NewsCarousel},
         data() {
             return {
                 siteUrl: window.surl,
@@ -132,6 +148,7 @@
                 components: {
                     NewsCarousel,
                     OranNutagCarousel,
+                    NewsList
                 }
             }
         },
@@ -153,6 +170,3 @@
 
     }
 </script>
-<style>
-    .wrapper { width:100%; height: 100px; }
-</style>
