@@ -1,7 +1,6 @@
 <template>
 <div  v-if="fetched" >
         <div class="catTitle">Мэдээний ангилал</div>
-        {{treeData.children}}
         <p class="buttons mr0">
             <a  class="button is-primary" @click="save()" :class="{'is-loading':is_loading}" :disabled="is_loading">
                 <span class="icon"><i class="fas fa-save"></i></span><span>Хадгалах</span>

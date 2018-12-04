@@ -87998,7 +87998,6 @@ var modules = requireContext.keys().map(function (file) {
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
@@ -100340,7 +100339,7 @@ var render = function() {
   return _vm.fetched
     ? _c("div", [
         _c("div", { staticClass: "catTitle" }, [_vm._v("Мэдээний ангилал")]),
-        _vm._v("\r\n        " + _vm._s(_vm.treeData.children) + "\r\n        "),
+        _vm._v(" "),
         _c("p", { staticClass: "buttons mr0" }, [
           _c(
             "a",

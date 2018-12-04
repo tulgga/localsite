@@ -50,16 +50,16 @@ class Img extends Model
 
         $save = Image::make('uploads/'.$img);
 
-        $save->resize(1200, 750);
+        $save->resize(1200, null, function ($constraint) { $constraint->aspectRatio(); } );
         $save->save(str_replace('images/', 'full/', 'uploads/'.$img));
 
-        $save->resize(810, 500);
+        $save->resize(810,  null, function ($constraint) { $constraint->aspectRatio(); });
         $save->save(str_replace('images/', 'large/', 'uploads/'.$img));
 
-        $save->resize(510, 300);
+        $save->resize(510, null, function ($constraint) { $constraint->aspectRatio(); } );
         $save->save(str_replace('images/', 'medium/', 'uploads/'.$img));
 
-        $save->resize(250, 156);
+        $save->resize(250, null, function ($constraint) { $constraint->aspectRatio(); });
         $save->save(str_replace('images/', 'small/', 'uploads/'.$img));
 
         return $img;
