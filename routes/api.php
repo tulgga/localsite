@@ -23,11 +23,14 @@ Route::namespace('Api')->group(function (){
 
     Route::get('site_news/{site_id}/{limit?}','ApiNewsController@site_news');
     Route::get('oronnutag/{limit?}','ApiNewsController@oronnutag');
-
+    Route::get('VideoList/{site_id}/{limit?}','ApiNewsController@VideoList');
+    Route::get('news_category/{site_id?}','ApiNewsController@news_category');
     Route::get('news/{site_id}/{id}','ApiNewsController@news');
     Route::get('newsListByCategory/{site_id}/{catId}','ApiNewsController@newsListByCategory');
-
     Route::get('news_ontslokh/{id}','ApiNewsController@news_ontslokh');
+
+    Route::get('page/{site_id}/{id}', 'ApiPageController@single');
+
     //Өргөдөлийг 20 бичлэгээр хуудаслаж авна
     Route::get('urgudul','ApiUrgudulController@urgudul');
     //Зарыг 20 бичлэгээр хуудаслаж авна

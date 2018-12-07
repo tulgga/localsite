@@ -12,14 +12,14 @@
             <template v-for="p in post">
                 <slide>
                     <div class="bcarousel-list">
-                        <div class="bcarousel-list" :style="'background-image:url('+siteUrl+p.image.replace('images', '/uploads/medium')+');'">
+                        <b-img classes="bcarousel-list" :value="p" size="medium">
                         <router-link :to="'/news/'+p.id">
                             <div  class="CarTitle roboto-condensed ">
                                 <span class="tag">{{p.site}}</span><br>
                                 {{p.title.substring(0, 50)}}<span v-if="p.title.length>50">...</span>
                             </div>
                         </router-link>
-                        </div>
+                        </b-img>
                     </div>
                 </slide>
             </template>

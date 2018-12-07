@@ -22,7 +22,19 @@ CRUD Edit, Create form
 
 
                             <div class="column is-12-mobile is-4-tablet is-3-desktop">
+
                                 <div class="field">
+                                    <label class="label">Төрөл</label>
+                                    <div class="control select">
+                                        <select class="input" name="type"  v-model="form.type" >
+                                            <option value="0">мэдээ</option>
+                                            <option value="1">фото</option>
+                                            <option value="2">видео</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="field" v-if="form.type!=2">
                                     <label class="label">Зураг</label>
                                     <div class="control has-image">
                                         <div class="file is-boxed is-fullwidth">
@@ -39,6 +51,13 @@ CRUD Edit, Create form
                                             </label>
 
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="field" v-else="">
+                                    <label class="label">Youtube код</label><small style="margin-top:10px;">https://www.youtube.com/watch?v=<span class="has-text-success">6XaaI4_nIHY</span></small>
+                                    <div class="control">
+                                        <input type="text" name="youtube" v-validate="'required'" v-model="form.youtube" :class="{'input': true, 'is-danger': errors.has('youtube') }" />
+                                        <p v-show="errors.has('youtube')" class="help is-danger">{{ errors.first('youtube') }}</p>
                                     </div>
                                 </div>
 
@@ -63,16 +82,7 @@ CRUD Edit, Create form
                                     </div>
                                 </div>
 
-                                <div class="field">
-                                    <label class="label">Төрөл</label>
-                                    <div class="control select">
-                                        <select class="input" name="type"  v-model="form.type" >
-                                            <option value="0">мэдээ</option>
-                                            <option value="1">фото</option>
-                                            <option value="2">видео</option>
-                                        </select>
-                                    </div>
-                                </div>
+
 
                                 <div class="field">
                                     <label class="label">Төлөв</label>
@@ -98,16 +108,16 @@ CRUD Edit, Create form
 
                                 <div class="field">
                                     <label class="label">Товч текст</label>
-                                    <textarea style="min-height: 80px;"  name="short_content" v-validate="'required'"   v-model="form.short_content" :class="{'textarea': true, 'is-danger': errors.has('short_content') }" ></textarea>
-                                    <p v-show="errors.has('short_content')" class="help is-danger">{{ errors.first('short_content') }}</p>
+                                    <textarea style="min-height: 80px;"  name="short_content" v-model="form.short_content" ></textarea>
+
                                 </div>
 
 
                                 <div class="field">
                                     <label class="label">Дэлгэрэнгүй мэдээлэл</label>
                                     <div class="control has-autoblock">
-                                        <ckeditor v-model="form.content" name="content" v-validate="'required'" :config="ck_config" :class="{'is-danger': errors.has('content') }"></ckeditor>
-                                        <p v-show="errors.has('content')" class="help is-danger">{{ errors.first('content') }}</p>
+                                        <ckeditor v-model="form.content" name="content" :config="ck_config" ></ckeditor>
+
                                     </div>
                                 </div>
                             </div>
@@ -157,6 +167,7 @@ CRUD Edit, Create form
                 form:{
                     title: '',
                     content: '',
+                    youtube: '',
                     short_content: '',
                     type: 0,
                     status: 1,
@@ -193,6 +204,7 @@ CRUD Edit, Create form
                         this.form.content = response.data.success.content;
                         this.form.short_content = response.data.success.short_content;
                         this.form.type = response.data.success.type;
+                        if( this.form.type ==2){ this.form.youtube=response.data.success.image; }
                         this.form.status = response.data.success.status;
                         this.form.is_primary = response.data.success.is_primary;
                         this.form.cat_id = response.data.success.category;

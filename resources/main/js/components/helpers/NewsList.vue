@@ -2,10 +2,10 @@
     <div v-if="post"  :class="color">
         <template v-for="p in post">
             <div class="newslist roboto-condensed ">
-                <div  class="date">{{p.created_at}}</div>
                 <router-link :to="'/news/'+p.id">
                     <div  class="newslist-title">{{p.title}}</div>
                 </router-link>
+                <div  class="date"><i class="far fa-clock"></i>  {{p.created_at}}</div>
             </div>
         </template>
 

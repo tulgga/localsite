@@ -23,6 +23,7 @@ import {ServerTable, ClientTable, Event} from 'vue-tables-2';
 import * as VueGoogleMaps from 'vue2-google-maps';
 import VeeValidate from 'vee-validate';
 import Loading from './components/helpers/loading';
+import BImg from './components/helpers/BImg';
 import SideBar from './components/layouts/SideBar';
 import NotFound from './modules/system/NotFound';
 import VueSelect from 'vue-select';
@@ -144,6 +145,7 @@ Vue.config.productionTip = false
 Vue.component('SiteApp', require('./App.vue').default);
 Vue.component('v-select', VueSelect);
 Vue.component('Loading', Loading);
+Vue.component('b-img', BImg);
 Vue.component('SideBar', SideBar);
 Vue.component('NotFound', NotFound);
 Vue.component('v-bar', VBar);
@@ -156,4 +158,6 @@ const app = new Vue({
     store,
     Toasted,
 });
+
+
 

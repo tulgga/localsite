@@ -56,6 +56,12 @@ CRUD Edit, Create form
                                                     <option value="0"></option>
                                                     <template v-for="page in pages">
                                                         <option :value="page.id">{{page.title}}</option>
+                                                        <template v-for="child in page.child">
+                                                            <option :value="child.id">||=={{child.title}}</option>
+                                                            <template v-for="subchild in child.child">
+                                                                <option :value="subchild.id">||==||=={{subchild.title}}</option>
+                                                            </template>
+                                                        </template>
                                                     </template>
                                                 </select>
                                             </div>
@@ -70,8 +76,8 @@ CRUD Edit, Create form
                             <div class="field">
                                 <label class="label">Дэлгэрэнгүй мэдээлэл</label>
                                 <div class="control has-autoblock">
-                                    <ckeditor v-model="form.text" name="text" type="classic" v-validate="'required'" :config="ck_config"  :class="{'is-danger': errors.has('text') }"></ckeditor>
-                                    <p v-show="errors.has('text')" class="help is-danger">{{ errors.first('text') }}</p>
+                                    <ckeditor v-model="form.text" name="text" type="classic" :config="ck_config"  ></ckeditor>
+
                                 </div>
                             </div>
                         </div>

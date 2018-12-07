@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Category;
 use App\Post;
 
 class ApiNewsController extends Controller
@@ -17,6 +18,17 @@ class ApiNewsController extends Controller
             ['success'=>$news]
         );
     }
+
+    public function VideoList($site_id, $limit=12){
+        $news=Post::where('site_id',$site_id)->where('status', 1)->where('type', 2)
+            ->select('id', 'title', 'short_content', 'image', 'type', 'is_primary', 'view_count', 'created_at')
+            ->with('Category')->orderBy('created_at', 'desc')->paginate($limit);
+        return response()->json(
+            ['success'=>$news]
+        );
+    }
+
+
 
     public function oronnutag($limit=20){
         $news=Post::where('site_id','!=',0)->where('main_site_publish', 2)->where('status', 1)
@@ -50,10 +62,30 @@ class ApiNewsController extends Controller
 
     public function news_ontslokh($id){
         $news=Post::orderBy('created_at', 'desc')->where('site_id', $id)->where('is_primary', 1)->where('status',1)->with('Category')
-            ->select('title', 'id', 'image', 'created_at')
+            ->select('title', 'id', 'image', 'type','created_at')
             ->limit(3)->get();
         return response()->json(
             ['success'=>$news]
         );
+    }
+
+    public function news_category($site_id)
+    {
+        $cats= Category::where('site_id',$site_id)->select('category.*', 'category.name as label')->orderBy('order_num', 'asc')->get();
+        return response()->json([ 'success' => $this->buildTree($cats) ]);
+    }
+
+    public function  buildTree($elements, $parentId = 0) {
+        $branch = array();
+        foreach ($elements as $element) {
+            if ($element->parent_id == $parentId) {
+                $children = $this->buildTree($elements, $element->id);
+                if ($children) {
+                    $element['children'] = $children;
+                }
+                $branch[] = $element;
+            }
+        }
+        return $branch;
     }
 }

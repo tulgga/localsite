@@ -6,7 +6,7 @@
                 <div class="tile is-ancestor " >
                     <div class="tile">
                         <div class="tile is-parent is-8 p-0" >
-                            <article class="tile is-child notification" :style="'background-image:url('+siteUrl+ontslokh[0].image.replace('images', '/uploads/large')+');'">
+                            <b-img :value="ontslokh[0]" classes="tile is-child notification"  size="large">
                                 <div class="bgGrad"></div>
                                 <router-link :to="'/news/'+ontslokh[0].id">
                                 <div class="content">
@@ -18,10 +18,10 @@
                                     <div class="date"><i class="far fa-clock"></i> {{ontslokh[0].created_at}}</div>
                                 </div>
                                 </router-link>
-                            </article>
+                            </b-img>
                         </div>
                         <div class="tile is-parent is-vertical is-4 p-0" >
-                            <article class="tile is-child notification" :style="'background-image:url('+siteUrl+ontslokh[1].image.replace('images', '/uploads/medium')+');'">
+                            <b-img classes="tile is-child notification" :value="ontslokh[1]" size="medium">
                                 <div class="bgGrad"></div>
                                 <router-link :to="'/news/'+ontslokh[1].id">
                                 <div class="content">
@@ -34,8 +34,8 @@
                                     <div class="date"><i class="far fa-clock"></i> {{ontslokh[1].created_at}}</div>
                                 </div>
                                 </router-link>
-                            </article>
-                            <article class="tile is-child notification" :style="'background-image:url('+siteUrl+ontslokh[2].image.replace('images', '/uploads/medium')+');'">
+                            </b-img>
+                            <b-img classes="tile is-child notification" :value="ontslokh[2]" size="medium">
                                 <div class="bgGrad"></div>
                                 <router-link :to="'/news/'+ontslokh[2].id">
                                     <div class="content">
@@ -47,7 +47,7 @@
                                         <div class="date"><i class="far fa-clock"></i> {{ontslokh[2].created_at}}</div>
                                     </div>
                                 </router-link>
-                            </article>
+                            </b-img>
                         </div>
                     </div>
                 </div>
@@ -89,49 +89,37 @@
 
             </div>
         </div>
-
-
-
         <!-- content -->
         <div class="container mt-2 mb-2">
-
-
             <div class="columns  is-multiline">
-                <div class="column  is-8">
-                    <div class="bg-white p-15 mb-2">
+                <div class="column  is-9">
+                    <div class="bg-white p-15 mb-2 shadow">
                         <news-carousel :page="3" color="blue" title="Шинэ мэдээ" ></news-carousel>
                     </div>
-                    <div class="bg-white p-15 mb-2">
+                    <div class="bg-white p-15 mb-2 shadow">
                         <oran-nutag-carousel :page="3" color="orange" title="Орон нутгийн мэдээ" ></oran-nutag-carousel>
                     </div>
-                    <div class="bg-white p-15 mb-2 red">
+                    <div class="bg-light p-15 mb-2 red shadow">
                         <h3 class="bTitle mb-1">Видео</h3>
+                        <video-list></video-list>
                     </div>
                 </div>
-                <div class="column is-4 ">
-                    <div class="bg-white p-15 mb-2 blue">
+                <div class="column is-3 ">
+                    <div class="bg-white p-15 mb-2  shadow">
                         <h3 class="bTitle mb-1">Ил тод байдал</h3>
                         <v-bar wrapper="wrapper" style="height: 495px;">
-                            <news-list  catId="141"  ></news-list>
+                            <news-list  catId="150"  ></news-list>
                         </v-bar>
                     </div>
-                    <div class="bg-white p-15 mb-2 green">
+                    <div class="bg-white p-15 mb-2 green shadow">
                         <h3 class="bTitle mb-1">Тендерийн урилга</h3>
-                        <v-bar wrapper="wrapper" style="height: 430px;">
-                            <news-list  height catId="142"></news-list>
+                        <v-bar wrapper="wrapper" style="height: 400px;">
+                            <news-list  height catId="151"></news-list>
                         </v-bar>
                     </div>
                 </div>
             </div>
-
-
-
         </div>
-
-
-
-
-
     </div>
 </template>
 <script>
@@ -139,8 +127,9 @@
     import NewsCarousel from '../../components/helpers/NewsCarousel'
     import OranNutagCarousel from '../../components/helpers/OranNutagCarousel'
     import NewsList from "../../components/helpers/NewsList";
+    import VideoList from "../../components/helpers/VideoList";
     export default {
-        components: {NewsList, OranNutagCarousel, NewsCarousel},
+        components: {NewsList, OranNutagCarousel, NewsCarousel, VideoList},
         data() {
             return {
                 siteUrl: window.surl,
@@ -161,7 +150,7 @@
             fetchData: function () {
                 axios.get('/news_ontslokh/'+0).then((response) => {
                     this.ontslokh=response.data.success;
-                    console.log(this.ontslokh);
+
                 })
             },
 

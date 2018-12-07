@@ -34,25 +34,33 @@
 
                         <aside class="menu">
                             <ul class="menu-list">
-                                <li class="is-active"><a v-on:click="changeRoute('/')">Нүүр</a></li>
-                                <li v-for="m1 in menu">
-                                    <a  v-on:click="changeRoute(m1.link)">{{m1.name}}</a>
-                                     <ul  v-if="m1.children" >
-                                         <li v-for="m2 in m1.children">
-                                             <a  v-on:click="changeRoute(m2.link)">{{m2.name}}</a>
-                                             <ul  v-if="m2.children" >
-                                                 <li v-for="m3 in m2.children">
-                                                     <a  v-on:click="changeRoute(m3.link)">{{m3.name}}</a>
-                                                     <ul  v-if="m3.children" >
-                                                         <li v-for="m4 in m3.children">
-                                                             <a  v-on:click="changeRoute(m4.link)">{{m4.name}}</a>
-                                                         </li>
+                                <li :class="{'is-active': $route.path=='/'}"><a v-on:click="changeRoute('/')">Нүүр</a></li>
+                                <template v-for="m1 in menu">
+                                    <li  :class="{'is-active': $route.path==m1.link}">
+                                        <a  v-on:click="changeRoute(m1.link)">{{m1.name}}</a>
+                                         <ul  v-if="m1.children" >
+                                             <template v-for="m2 in m1.children">
+                                                 <li  :class="{'is-active': $route.path==m2.link}">
+                                                     <a  v-on:click="changeRoute(m2.link)">{{m2.name}}</a>
+                                                     <ul  v-if="m2.children" >
+                                                         <template v-for="m3 in m2.children">
+                                                             <li  :class="{'is-active': $route.path==m3.link}">
+                                                                 <a  v-on:click="changeRoute(m3.link)">{{m3.name}}</a>
+                                                                 <ul  v-if="m3.children" >
+                                                                     <template v-for="m4 in m3.children">
+                                                                         <li  :class="{'is-active': $route.path==m4.link}">
+                                                                             <a  v-on:click="changeRoute(m4.link)">{{m4.name}}</a>
+                                                                         </li>
+                                                                     </template>
+                                                                 </ul>
+                                                             </li>
+                                                         </template>
                                                      </ul>
                                                  </li>
-                                             </ul>
-                                         </li>
-                                     </ul>
-                                </li>
+                                             </template>
+                                         </ul>
+                                    </li>
+                                </template>
                             </ul>
                             <p class="menu-label"></p>
                             <p class="menu-label">Туслах цэс</p>
@@ -135,18 +143,18 @@
                 <div id="header-menu" :style="{'background-color': main.parent_color.hex}">
                     <div class="container">
                         <ul id="menu">
-                            <li class="is-active"><a v-on:click="changeRoute('/')"><img :src="siteUrl+'/images/home.png'"/></a></li>
-                            <li v-for="m1 in menu">
-                                <a  v-on:click="changeRoute(m1.link)">{{m1.name}}</a>
+                            <li :class="{'is-active': $route.path=='/'}"><a style="padding: 16px 12px 11px 12px;" v-on:click="changeRoute('/')"><img :src="siteUrl+'/images/home.png'"/></a></li>
+                            <li v-for="(m1, i1) in menu" :class="{'is-active': i1==si1}">
+                                <a  v-on:click="changeRoute(m1.link, i1, -1, -1, -1)" :alt="m1.link">{{m1.name}}</a>
                                 <ul  v-if="m1.children" >
-                                    <li v-for="m2 in m1.children">
-                                        <a v-on:click="changeRoute(m2.link)">{{m2.name}}</a>
+                                    <li v-for="(m2, i2) in m1.children" :class="{'is-active': i2==si2}">
+                                        <a v-on:click="changeRoute(m2.link, i1, i2, -1, -1)" :alt="m2.link">{{m2.name}}</a>
                                         <ul  v-if="m2.children" >
-                                            <li v-for="m3 in m2.children">
-                                                <a v-on:click="changeRoute(m3.link)">{{m3.name}}</a>
+                                            <li v-for="(m3, i3) in m2.children" :class="{'is-active':  i3==si3}">
+                                                <a v-on:click="changeRoute(m3.link, i1, i2, i3, -1)" :alt="m3.link">{{m3.name}}</a>
                                                 <ul  v-if="m3.children" >
-                                                    <li v-for="m4 in m3.children">
-                                                        <a v-on:click="changeRoute(m4.link)">{{m4.name}}</a>
+                                                    <li v-for="(m4, i4) in m3.children" :class="{'is-active':  i4==si4}">
+                                                        <a v-on:click="changeRoute(m4.link, i1, i2, i3, i4)" :alt="m4.link">{{m4.name}}</a>
                                                     </li>
                                                 </ul>
                                             </li>
@@ -167,6 +175,10 @@
     export default {
     	data(){
     		return {
+    		    si1:-1,
+                si2:-1,
+                si3:-1,
+                si4:-1,
                 site_title: window.title,
     		    socail:  window.socail,
                 siteUrl: window.surl,
@@ -187,16 +199,19 @@
             this.fetchData()
         },
         mounted(){
+
         },
         methods: {
             fetchData: function () {
-                axios.get('/menu/'+0).then((response) => {
-                    this.menu=response.data.success;
+                    this.menu=this.$store.getters.menu;
                     this.fetched = true;
-                })
-                console.log(this.mobile_menu)
             },
-            changeRoute: function(path){
+
+            changeRoute: function(path, i1,i2,i3,i4){
+                this.si1=i1;
+                this.si2=i2;
+                this.si3=i3;
+                this.si4=i4;
                 this.$router.push({path:path});
             },
         }

@@ -18653,7 +18653,13 @@ label.panel-block:hover {
 
 body {
   padding: 0;
+  color: #333;
   margin: 0;
+}
+
+a {
+  -webkit-transition: color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+  transition: color 0.2s ease-in-out, opacity 0.2s ease-in-out;
 }
 
 .container {
@@ -18803,6 +18809,14 @@ body {
   margin: 3em !important;
 }
 
+.pr-0 {
+  padding-right: 0 !important;
+}
+
+.pl-0 {
+  padding-left: 0 !important;
+}
+
 #mobile-menu {
   position: fixed;
   top: 0;
@@ -18924,13 +18938,22 @@ body {
   position: relative;
 }
 
-#header #header-menu #menu li.is-active a {
+#header #header-menu #menu li.is-active a,
+#header #header-menu #menu li.is-active li.is-active a,
+#header #header-menu #menu li.is-active li.is-active li.is-active a,
+#header #header-menu #menu li.is-active li.is-active li.is-active li.is-active a {
   background: #1753B5;
+  color: #FFF;
+}
+
+#header #header-menu #menu li.is-active li a {
+  background: #FFF;
+  color: #333;
 }
 
 #header #header-menu #menu a {
   float: left;
-  padding: 16px 12px 11px 12px;
+  padding: 16px 12px 15px 12px;
   text-transform: uppercase;
   text-decoration: none;
   /*text-shadow: 0 1px 0 #000;*/
@@ -18943,7 +18966,7 @@ body {
   opacity: 0;
   visibility: hidden;
   position: absolute;
-  top: 45px;
+  top: 50px;
   left: 0;
   z-index: 1;
   background: #FFF;
@@ -18988,21 +19011,21 @@ body {
 
 @media only screen and (max-width: 1212px) {
   #menu a {
-    padding: 12px 6px 9px 6px !important;
+    padding: 16px 6px 15px 6px !important;
     font-size: 13px;
   }
 }
 
 @media only screen and (max-width: 1024px) {
   #menu a {
-    padding: 12px 5px 9px 5px !important;
+    padding: 16px 5px 15px 5px !important;
     font-size: 13px;
   }
 }
 
 @media only screen and (max-width: 900px) {
   #menu a {
-    padding: 14px 5px 9px 5px !important;
+    padding: 16px 5px 15px 5px !important;
     font-size: 10px;
   }
 }
@@ -19094,9 +19117,13 @@ body {
   text-decoration: none;
 }
 
-.notification .content .date {
-  font-size: 13px;
-  color: #aaaaaa;
+.date {
+  font-size: 12px;
+  color: #888;
+}
+
+.date i {
+  margin-right: 3px;
 }
 
 .bgGrad {
@@ -19228,7 +19255,7 @@ body {
 }
 
 .red .bTitle,
-.red .newslist:hover a {
+.red a:hover {
   color: #f63946;
   border-color: #f63946;
 }
@@ -19240,7 +19267,7 @@ body {
 }
 
 .orange .bTitle,
-.orange .newslist:hover a {
+.orange a:hover {
   color: #ff7600;
   border-color: #ff7600;
 }
@@ -19252,7 +19279,7 @@ body {
 }
 
 .green .bTitle,
-.green .newslist:hover a {
+.green a:hover {
   color: #2ab673;
   border-color: #2ab673;
 }
@@ -19303,7 +19330,7 @@ body {
 }
 
 .newslist {
-  padding: 1em 0 1em 0;
+  padding: 0.7em 0 0.7em 0;
   margin-right: 1.5em;
   border-bottom: 1px solid #eaebec;
 }
@@ -19319,12 +19346,71 @@ body {
   font-weight: bold;
 }
 
-.bar--vertical {
-  display: block !important;
-}
-
 .wrapper {
   width: 100%;
   height: 495px;
+}
+
+.bg-light {
+  background-color: #eeeeee !important;
+}
+
+.videoList a {
+  font-size: 13px;
+  color: #333333;
+}
+
+.shadow {
+  -webkit-box-shadow: #dddddd 0px 1px 1px;
+          box-shadow: #dddddd 0px 1px 1px;
+}
+
+.menu li a {
+  font-family: "Roboto Condensed";
+  padding: 10px;
+  display: block;
+  background: #FFF;
+  color: #333;
+  margin-bottom: 5px;
+  -webkit-box-shadow: #dddddd 0px 1px 1px;
+          box-shadow: #dddddd 0px 1px 1px;
+}
+
+.menu-list li ul {
+  margin-right: 0px;
+}
+
+.menu-list a.is-active,
+.menu-list a:hover {
+  color: #1753b5;
+  background: #FFF;
+}
+
+.menu-label {
+  text-align: center;
+  color: #FFF;
+  background: #2068de;
+  padding: 1em;
+}
+
+#youtubeFrame {
+  width: 100%;
+  height: 440px;
+}
+
+@media only screen and (max-width: 1152px) {
+  #youtubeFrame {
+    height: 350px;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  #youtubeFrame {
+    height: 250px;
+  }
+}
+
+.button i {
+  margin-right: 10px;
 }
 

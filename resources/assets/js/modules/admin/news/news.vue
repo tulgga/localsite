@@ -28,10 +28,15 @@
 
                 <v-server-table ref="tableni" :url="url"  :columns="columns" :options="options">
                     <template slot="image" slot-scope="props">
-                        <figure v-if="props.row.image" style="border-radius:0px" class="image is-48x48"
-                                :style="'background-image: url('+siteUrl+'/uploads/'+props.row.image.replace('images/', 'small/')+')'">
+                        <figure v-if="props.row.type==2" style="border-radius:0px" class="image is-48x48"
+                                :style="'background-image: url(https://img.youtube.com/vi/'+props.row.image+'/default.jpg)'">
                         </figure>
-                        <figure v-else="" style="border-radius:0px" class="image is-48x48">IMG</figure>
+                        <div v-else="">
+                            <figure v-if="props.row.image" style="border-radius:0px" class="image is-48x48"
+                                    :style="'background-image: url('+siteUrl+'/uploads/'+props.row.image.replace('images/', 'small/')+')'">
+                            </figure>
+                            <figure v-else="" style="border-radius:0px" class="image is-48x48">IMG</figure>
+                        </div>
                     </template>
 
                     <div slot="cat" slot-scope="props" >

@@ -1,17 +1,19 @@
 
 <template >
-    <div class="app" >
-        <header-bar></header-bar>
-        <div id="body-content">
-            <router-view></router-view>
+    <div  class="app" >
+        <div  v-if="fetched">
+            <header-bar></header-bar>
+            <div id="body-content">
+                <router-view></router-view>
+            </div>
+            <footer-bar></footer-bar>
+            <div class="pageloader" v-if="$store.getters.pageloader">
+                <div class="sp sp-wave"></div>
+                <p>{{$store.getters.lang.messages.loading}}</p>
+            </div>
         </div>
-        <footer-bar></footer-bar>
-        <div class="pageloader" v-if="$store.getters.pageloader">
-            <div class="sp sp-wave"></div>
-            <p>{{$store.getters.lang.messages.loading}}</p>
-        </div>
+        <loading v-else></loading>
     </div>
-
 </template>
 
 <script>
@@ -23,6 +25,14 @@
             HeaderBar,
             FooterBar,
         },
+        data(){
+            return {
+                fetched: false
+            }
+        },
+        created: function () {
+            this.$store.dispatch('loadMenu').then(r=>{ this.fetched=true; });
+        }
     }
 </script>
 

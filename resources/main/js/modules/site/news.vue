@@ -3,21 +3,86 @@
         <template v-if="fetched">
             <div v-if="content">
                 <div class="columns pt-2 pb-2">
-                    <div class="column is-8">
-                        <div class="has-background-white p-1" >
-                            <h1 class="is-size-3">{{content.title}}</h1>
-
-                            <figure class="image">
+                    <div class="column is-9">
+                        <div class="has-background-white p-15 mb-2" >
+                            <h1 class="is-size-4-tablet is-size-6-mobile ">{{content.title}}</h1>
+                            <div class="date mb-1 "><i class="far fa-clock"></i> {{content.created_at}}</div>
+                            <template v-if="content.type==2">
+                                <iframe id="youtubeFrame"  :src="'https://www.youtube.com/embed/'+content.image"
+                                        frameborder="0"
+                                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                                </iframe>
+                            </template>
+                            <figure v-else class="image">
                                 <img :src="siteUrl+content.image.replace('images/', '/uploads/full/')">
                             </figure>
-                            <div class="content" v-html="content.content">
+
+                            <div class="content mt-1 mb-1" v-html="content.content">
+                            </div>
+
+                            <div class="buttons mb-1">
+                                <template v-for="c in content.category">
+                                    <a class="button is-light is-small" href="" ># {{c.name}}</a>
+                                </template>
 
                             </div>
+                            <div>
+                                <a class="button is-primary is-small is-pull-right" style="background: #1753B5" :href="'https://www.facebook.com/sharer/sharer.php?u='+siteUrl+'/p/'+content.id"  rel="nofollow" title="Facebook-д хуваалцах" target="_blank"><i class="fab fa-facebook"></i> Хуваалцах</a>
+                                <a class="button is-primary is-small is-pull-right" style="background: rgb(32, 104, 222)" :href="'https://twitter.com/intent/tweet?text='+content.title+' '+siteUrl+'/p/'+content.id"  rel="nofollow" title="Twitter-д хуваалцах" target="_blank"><i class="fab fa-twitter"></i> Жиргэх</a>
+                            </div>
                         </div>
+
+                        <div class="bg-white p-15 mb-2 shadow">
+                            <news-carousel :page="3" color="blue" title="Шинэ мэдээ" ></news-carousel>
+                        </div>
+
+
+                        <div class="bg-white p-15 mb-2 shadow">
+                            <oran-nutag-carousel :page="3" color="orange" title="Орон нутгийн мэдээ" ></oran-nutag-carousel>
+                        </div>
+
                     </div>
-                    <div class="column is-4">
+
+                    <div class="column is-3">
+                        <aside class="menu">
+                            <p class="menu-label">
+                                Мэдээ мэдээлэл
+                            </p>
+                            <ul class="menu-list">
+                                <li><a>Онцлох мэдээ</a></li>
+                                <li><a>Шинэ мэдээ</a></li>
+                                <li><a>Орон нутгийн мэдээ</a></li>
+                                <li><a>Фото мэдээ</a></li>
+                                <li><a>Видео мэдээ</a></li>
+                            </ul>
+                            <p class="menu-label">
+                                Мэдээний ангилал
+                            </p>
+                            <ul v-if="category" class="menu-list">
+                                <li v-for="m1 in category">
+                                    <a  :href="'#/category/'+m1.id">{{m1.name}}</a>
+                                    <ul  v-if="m1.children" >
+                                        <li v-for="m2 in m1.children">
+                                            <a  :href="'#/category/'+m2.id">{{m2.name}}</a>
+                                            <ul  v-if="m2.children" >
+                                                <li v-for="m3 in m2.children">
+                                                    <a  :href="'#/category/'+m3.id">{{m3.name}}</a>
+                                                    <ul  v-if="m3.children" >
+                                                        <li v-for="m4 in m3.children">
+                                                            <a  :href="'#/category/'+m4.id">{{m4.name}}</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <loading v-else=""></loading>
+                        </aside>
                         <side-bar></side-bar>
                     </div>
+
                 </div>
             </div>
             <not-found v-else></not-found>
@@ -26,11 +91,15 @@
     </div>
 </template>
 <script>
+    import NewsCarousel from '../../components/helpers/NewsCarousel'
+    import OranNutagCarousel from '../../components/helpers/OranNutagCarousel'
     export default {
+        components: {NewsCarousel, OranNutagCarousel},
         data() {
             return {
                 id: false,
                 fetched:false,
+                category: false,
                 siteUrl: window.surl,
                 content: null,
                 metaInfo:{
@@ -55,16 +124,27 @@
                 },
             }
         },
+        watch:{
+          '$route.params.id': function (id) {
+              this.fetchData()
+          }
+        },
         created: function () {
             this.fetchData()
+            this.getCategory()
         },
         methods: {
+            getCategory: function () {
+                axios.get('/news_category/0').then((response) => {
+                    this.fetched=true
+                    this.category=response.data.success
+                })
+            },
             fetchData: function () {
                 this.id = this.$route.params.id
                 axios.get('/news/0/'+this.id).then((response) => {
                     this.fetched=true
                     this.content=response.data.success
-                    console.log(this.content)
                     if(this.content){
                         this.metaInfo.title=this.content.title
                         this.metaInfo.meta[1].content=this.content.short_content.substring(0, 160)

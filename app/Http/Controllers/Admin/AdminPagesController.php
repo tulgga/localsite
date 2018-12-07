@@ -20,18 +20,32 @@ class AdminPagesController extends Controller
      */
 
     public function page_select($site_id){
-        $pages= Page::where('site_id',$site_id)->where('parent_id', 0)->select('id', 'title as label')->orderBy('order_num', 'desc')->get();
+        $pages= Page::where('site_id',$site_id)->where('parent_id', 0)->select('id', 'title as label')->orderBy('order_num', 'asc')->get();
         foreach ($pages as $c=>$page){
-            $pages[$c]['children']= Page::where('site_id',$site_id)->where('parent_id', $page->id)->select('id', 'title as label')->orderBy('order_num', 'desc')->get();
+            $pages[$c]['children']= Page::where('site_id',$site_id)->where('parent_id', $page->id)->select('id', 'title as label')->orderBy('order_num', 'asc')->get();
+            foreach ($pages[$c]['children']  as $ci=>$cc){
+                $pages[$c]['children'][$ci]['children']= Page::where('site_id',$site_id)->where('parent_id', $cc->id)->select('id', 'title as label')->orderBy('order_num', 'asc')->get();
+                foreach ($pages[$c]['children'][$ci]['children'] as $bi=>$bc){
+                    $pages[$c]['children'][$ci]['children'][$bi]['children']= Page::where('site_id',$site_id)->where('parent_id', $bc->id)->select('id', 'title as label')->orderBy('order_num', 'asc')->get();
+                }
+
+            }
         }
         return response()->json([ 'success' => $pages ]);
     }
 
     public function index1($id)
     {
-        $pages= Page::where('site_id',$id)->where('parent_id', 0)->orderBy('order_num', 'desc')->get();
+
+        $pages= Page::where('site_id',$id)->where('parent_id', 0)->orderBy('order_num', 'asc')->get();
         foreach ($pages as $c=>$page){
-            $pages[$c]['children']= Page::where('site_id',$id)->where('parent_id', $page->id)->orderBy('order_num', 'desc')->get();
+            $pages[$c]['children']= Page::where('site_id',$id)->where('parent_id', $page->id)->orderBy('order_num', 'asc')->get();
+            foreach ($pages[$c]['children'] as $ci=>$cc){
+                $pages[$c]['children'][$ci]['children']= Page::where('parent_id', $cc->id)->orderBy('order_num', 'asc')->get();
+                foreach ($pages[$c]['children'][$ci]['children'] as $bi=>$bc){
+                    $pages[$c]['children'][$ci]['children'][$bi]['children']= Page::where('parent_id', $bc->id)->orderBy('order_num', 'asc')->get();
+                }
+            }
         }
         return response()->json([ 'success' => $pages ]);
     }
@@ -42,8 +56,17 @@ class AdminPagesController extends Controller
     }
 
     public function indexMin($site_id, $id){
-        $cats= Page::where('site_id',$site_id)->where('id','!=', $id)->where('parent_id', 0)->orderBy('order_num', 'desc')->select('id', 'title')->get();
-        return response()->json([ 'success' => $cats ]);
+        $return=[];
+        $cats= Page::where('site_id',$site_id)->where('id','!=', $id)->where('parent_id', 0)->orderBy('order_num', 'asc')->select('id', 'title')->get();
+
+        foreach ($cats as $i=>$cat){
+            $return[$i]=$cat;
+            $return[$i]['child']=Page::where('site_id',$site_id)->where('id','!=', $id)->where('parent_id', $cat->id)->orderBy('order_num', 'asc')->select('id', 'title')->get();
+            foreach ($return[$i]['child'] as $a=>$child){
+                $return[$i]['child'][$a]['child']=Page::where('site_id',$site_id)->where('id','!=', $id)->where('parent_id', $child->id)->orderBy('order_num', 'asc')->select('id', 'title')->get();
+            }
+        }
+        return response()->json([ 'success' => $return ]);
     }
 
     public function update(Request $request, $id){
@@ -53,9 +76,9 @@ class AdminPagesController extends Controller
 
         $count= Page::where('parent_id',$id)->get()->count();
 
-        if($count!=0 && $data['parent_id']!=0){
-            return response()->json([ 'success' => 0 ]);
-        }
+//        if($count!=0 && $data['parent_id']!=0){
+//            return response()->json([ 'success' => 0 ]);
+//        }
         $image=Img::upload($request);
 
         $Page=  Page::find($id);

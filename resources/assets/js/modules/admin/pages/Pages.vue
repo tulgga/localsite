@@ -8,39 +8,65 @@
                 <div class="boxed-item-center title">Хуудас</div>
             </div>
             <div class="table-responsive">
-           <table v-if="fetched" class="category table is-bordered  is-hoverable  is-fullwidth">
+           <table v-if="fetched" class="category table is-bordered  is-hoverable  table-hover is-fullwidth">
                 <thead>
                         <tr>
-                            <th colspan="2">Гарчиг</th>
+                            <th >Гарчиг</th>
                             <th width="130"  class="has-text-right"></th>
                         </tr>
                 </thead>
                <tbody>
                <template v-for="(list, i) in lists">
                    <tr>
-                       <td colspan="2"><b>{{list.title}}</b></td>
+                       <td ><b>{{list.title}}</b></td>
                        <td  class="p-0" >
                            <div class="data-action">
-                               <div @click="changePositionMain(i,1)" ><i class="fas fa-arrow-up"></i></div>
-                               <div @click="changePositionMain(i,-1)" ><i class="fas fa-arrow-down"></i></div>
+                               <div @click="changePositionMain(i,-1)" ><i class="fas fa-arrow-up"></i></div>
+                               <div @click="changePositionMain(i,1)" ><i class="fas fa-arrow-down"></i></div>
                                <router-link :to="'pages/'+list.id+'/update'" ><i class="fas fa-pencil-alt"></i></router-link>
                                <div @click="delete_cat=list; deletemodal=true;"><i class="fas fa-trash"></i></div>
                            </div>
                        </td>
                    </tr>
                    <template v-for="(child, a) in list.children">
-                       <tr class="is-grey">
-                           <td width="20" class="is-default">-</td>
-                           <td > {{child.title}}</td>
+                       <tr >
+
+                           <td style="padding-left:25px;" >- {{child.title}}</td>
                            <td  class="p-0">
                                <div class="data-action">
-                                   <div @click="changePosition(i, a, 1)"><i class="fas fa-arrow-up"></i></div>
-                                   <div @click="changePosition(i, a,-1)"><i class="fas fa-arrow-down"></i></div>
+                                   <div @click="changePosition(i, a, -1)"><i class="fas fa-arrow-up"></i></div>
+                                   <div @click="changePosition(i, a,1)"><i class="fas fa-arrow-down"></i></div>
                                    <router-link :to="'pages/'+child.id+'/update'" ><i class="fas fa-pencil-alt"></i></router-link>
                                    <div @click="delete_cat=child; deletemodal=true;"><i class="fas fa-trash"></i></div>
                                </div>
                            </td>
                        </tr>
+                           <template v-for="(subchild, b) in child.children">
+                            <tr>
+                               <td style="padding-left:50px;" >-- {{subchild.title}}</td>
+                               <td  class="p-0">
+                                   <div class="data-action">
+                                       <div @click="changePositionSub(i, a, b, -1)"><i class="fas fa-arrow-up"></i></div>
+                                       <div @click="changePositionSub(i, a, b,1)"><i class="fas fa-arrow-down"></i></div>
+                                       <router-link :to="'pages/'+subchild.id+'/update'" ><i class="fas fa-pencil-alt"></i></router-link>
+                                       <div @click="delete_cat=subchild; deletemodal=true;"><i class="fas fa-trash"></i></div>
+                                   </div>
+                               </td>
+                            </tr>
+                               <template v-for="(subsubchild, c) in subchild.children">
+                                   <tr>
+                                       <td style="padding-left:75px;" >--- {{subsubchild.title}}</td>
+                                       <td  class="p-0">
+                                           <div class="data-action">
+                                               <div @click="changePositionSubSub(i, a, b, c, -1)"><i class="fas fa-arrow-up"></i></div>
+                                               <div @click="changePositionSubSub(i, a, b, c, 1)"><i class="fas fa-arrow-down"></i></div>
+                                               <router-link :to="'pages/'+subchild.id+'/update'" ><i class="fas fa-pencil-alt"></i></router-link>
+                                               <div @click="delete_cat=subsubchild; deletemodal=true;"><i class="fas fa-trash"></i></div>
+                                           </div>
+                                       </td>
+                                   </tr>
+                               </template>
+                            </template>
                    </template>
                </template>
                </tbody>
@@ -78,9 +104,6 @@
                 </footer>
             </div>
         </div>
-
-
-
     </div>
 </template>
 
@@ -164,15 +187,15 @@
             },
 
             changePositionMain(index, action){
-                  if(index==0 && action==1){
+                  if(index==0 && action==-1){
                       return
-                  } else if((index+1)==this.lists.length && action==-1){
+                  } else if((index+1)==this.lists.length && action==1){
                       return
                   }
                   var send= {
                       id_1:this.lists[index].id,
-                      id_1_num :  this.lists[index-action].order_num,
-                      id_2: this.lists[index-action].id,
+                      id_1_num :  this.lists[index+action].order_num,
+                      id_2: this.lists[index+action].id,
                       id_2_num :  this.lists[index].order_num,
                   }
 
@@ -188,16 +211,64 @@
             },
 
             changePosition(index, subindex, action){
-                if(subindex==0 && action==1){
+                if(subindex==0 && action==-1){
                     return
-                } else if((subindex+1)==this.lists[index].children.length && action==-1){
+                } else if((subindex+1)==this.lists[index].children.length && action==1){
                     return
                 }
                 var send= {
                     id_1:this.lists[index].children[subindex].id,
-                    id_1_num :  this.lists[index].children[subindex-action].order_num,
-                    id_2: this.lists[index].children[subindex-action].id,
+                    id_1_num :  this.lists[index].children[subindex+action].order_num,
+                    id_2: this.lists[index].children[subindex+action].id,
                     id_2_num :  this.lists[index].children[subindex].order_num,
+                }
+
+                let formData = new FormData();
+                formData.append('data', JSON.stringify(send));
+                this.fetched=false
+                axios.post('/pages_change', formData).then((r) => {
+                    this.fetchData();
+                    this.fetched=true
+                    this.is_loading = false;
+                    this.$toasted.global.toast_success({message: 'Амжилттай хадгаллаа'}); // delete success toast
+                })
+            },
+
+            changePositionSub(index, childindex, subindex, action){
+                if(subindex==0 && action==-1){
+                    return
+                } else if((subindex+1)==this.lists[index].children[childindex].children.length && action==1){
+                    return
+                }
+                var send= {
+                    id_1:this.lists[index].children[childindex].children[subindex].id,
+                    id_1_num :  this.lists[index].children[childindex].children[subindex+action].order_num,
+                    id_2: this.lists[index].children[childindex].children[subindex+action].id,
+                    id_2_num :  this.lists[index].children[childindex].children[subindex].order_num,
+                }
+
+                let formData = new FormData();
+                formData.append('data', JSON.stringify(send));
+                this.fetched=false
+                axios.post('/pages_change', formData).then((r) => {
+                    this.fetchData();
+                    this.fetched=true
+                    this.is_loading = false;
+                    this.$toasted.global.toast_success({message: 'Амжилттай хадгаллаа'}); // delete success toast
+                })
+            },
+
+            changePositionSubSub(index, index1, index2, index3, action){
+                if(index3==0 && action==-1){
+                    return
+                } else if((index3+1)==this.lists[index].children[index1].children[index2].children.length && action==1){
+                    return
+                }
+                var send= {
+                    id_1:this.lists[index].children[index1].children[index2].children[index3].id,
+                    id_1_num :  this.lists[index].children[index1].children[index2].children[index3-action].order_num,
+                    id_2: this.lists[index].children[index1].children[index2].children[index3-action].id,
+                    id_2_num :  this.lists[index].children[index1].children[index2].children[index3].order_num,
                 }
 
                 let formData = new FormData();

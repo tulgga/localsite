@@ -132,11 +132,17 @@ class AdminNewsController extends Controller
         if($request->hasFile('image')){
             $data['image'] =Img::upload($request);
         }else{
-            $data['image'] = null;
+            if($data['type']=='2') {
+                $data['image'] = $data['youtube'];
+            } else {
+                $data['image'] = null;
+            }
+
         }
 
 
         $post= new Post();
+
         $post->image=$data['image'];
         $post->site_id=$data['site_id'];
         $post->admin_id=$data['admin_id'];
@@ -164,6 +170,10 @@ class AdminNewsController extends Controller
 
         if($request->hasFile('image')){
             $post->image = Img::upload($request);
+        } else {
+            if($data['type']=='2') {
+                $post->image = $data['youtube'];
+            }
         }
 
         $post->site_id=$data['site_id'];
