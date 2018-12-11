@@ -37,19 +37,19 @@
                                 <li :class="{'is-active': $route.path=='/'}"><a v-on:click="changeRoute('/')">Нүүр</a></li>
                                 <template v-for="m1 in menu">
                                     <li  :class="{'is-active': $route.path==m1.link}">
-                                        <a  v-on:click="changeRoute(m1.link)">{{m1.name}}</a>
+                                        <a  v-on:click="changeRoute(m1)">{{m1.name}}</a>
                                          <ul  v-if="m1.children" >
                                              <template v-for="m2 in m1.children">
                                                  <li  :class="{'is-active': $route.path==m2.link}">
-                                                     <a  v-on:click="changeRoute(m2.link)">{{m2.name}}</a>
+                                                     <a  v-on:click="changeRoute(m2)">{{m2.name}}</a>
                                                      <ul  v-if="m2.children" >
                                                          <template v-for="m3 in m2.children">
                                                              <li  :class="{'is-active': $route.path==m3.link}">
-                                                                 <a  v-on:click="changeRoute(m3.link)">{{m3.name}}</a>
+                                                                 <a  v-on:click="changeRoute(m3)">{{m3.name}}</a>
                                                                  <ul  v-if="m3.children" >
                                                                      <template v-for="m4 in m3.children">
                                                                          <li  :class="{'is-active': $route.path==m4.link}">
-                                                                             <a  v-on:click="changeRoute(m4.link)">{{m4.name}}</a>
+                                                                             <a  v-on:click="changeRoute(m4)">{{m4.name}}</a>
                                                                          </li>
                                                                      </template>
                                                                  </ul>
@@ -102,7 +102,7 @@
             <header  id="header" class="is-hidden-mobile" >
                 <div id="header-top"  :style="{'background-color': !main.parent_color.hex}">
                     <div class="container">
-                        <nav class="level">
+                        <nav class="level mb-0">
                             <div class="level-left ml-1" >
                                 <!--<p v-if="socail.facebook" class="level-item"><a target="_blank" :href="socail.facebook"><i class="fab fa-facebook"></i></a></p>-->
                                 <!--<p v-if="socail.twitter" class="level-item"><a target="_blank" :href="socail.twitter"><i class="fab fa-twitter-square"></i></a></p>-->
@@ -120,20 +120,21 @@
                                 <p class="level-item"><a>Санар хүсэлт, өргөдөл гомдол</a></p>
                             </div>
                         </nav>
-
+                        <div class="is-clearfix"></div>
                     </div>
+
                 </div>
                 <div id="header-content" >
                     <div class="container">
                         <div  class="columns">
-                            <div  class="column is-8">
+                            <div  class="column is-7">
                                 <figure class="image logo">
                                     <img :src="logo" :title="site_title"/>
                                 </figure>
                             </div>
-                            <div class="column is-4">
+                            <div class="column is-5">
                                 <form method="get" class="is-pulled-right searchform" >
-                                    <input type="text" value="" name="q" placeholder="Хайх...">
+                                    <input type="text" value="" name="q" placeholder="Хайх утгаа оруулна уу...">
                                     <button type="submit" class="button-search"><i class="fa fa-search"></i></button>
                                 </form>
                             </div>
@@ -145,16 +146,16 @@
                         <ul id="menu">
                             <li :class="{'is-active': $route.path=='/'}"><a style="padding: 16px 12px 11px 12px;" v-on:click="changeRoute('/')"><img :src="siteUrl+'/images/home.png'"/></a></li>
                             <li v-for="(m1, i1) in menu" :class="{'is-active': i1==si1}">
-                                <a  v-on:click="changeRoute(m1.link, i1, -1, -1, -1)" :alt="m1.link">{{m1.name}}</a>
+                                <a  v-on:click="changeRoute(m1, i1, -1, -1, -1)" >{{m1.name}}</a>
                                 <ul  v-if="m1.children" >
-                                    <li v-for="(m2, i2) in m1.children" :class="{'is-active': i2==si2}">
-                                        <a v-on:click="changeRoute(m2.link, i1, i2, -1, -1)" :alt="m2.link">{{m2.name}}</a>
+                                    <li v-for="(m2, i2) in m1.children" >
+                                        <a v-on:click="changeRoute(m2, i1, i2, -1, -1)" >{{m2.name}}</a>
                                         <ul  v-if="m2.children" >
-                                            <li v-for="(m3, i3) in m2.children" :class="{'is-active':  i3==si3}">
-                                                <a v-on:click="changeRoute(m3.link, i1, i2, i3, -1)" :alt="m3.link">{{m3.name}}</a>
+                                            <li v-for="(m3, i3) in m2.children">
+                                                <a v-on:click="changeRoute(m3, i1, i2, i3, -1)" >{{m3.name}}</a>
                                                 <ul  v-if="m3.children" >
-                                                    <li v-for="(m4, i4) in m3.children" :class="{'is-active':  i4==si4}">
-                                                        <a v-on:click="changeRoute(m4.link, i1, i2, i3, i4)" :alt="m4.link">{{m4.name}}</a>
+                                                    <li v-for="(m4, i4) in m3.children" >
+                                                        <a v-on:click="changeRoute(m4, i1, i2, i3, i4)" >{{m4.name}}</a>
                                                     </li>
                                                 </ul>
                                             </li>

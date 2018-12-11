@@ -60,7 +60,7 @@
                                            <div class="data-action">
                                                <div @click="changePositionSubSub(i, a, b, c, -1)"><i class="fas fa-arrow-up"></i></div>
                                                <div @click="changePositionSubSub(i, a, b, c, 1)"><i class="fas fa-arrow-down"></i></div>
-                                               <router-link :to="'pages/'+subchild.id+'/update'" ><i class="fas fa-pencil-alt"></i></router-link>
+                                               <router-link :to="'pages/'+subsubchild.id+'/update'" ><i class="fas fa-pencil-alt"></i></router-link>
                                                <div @click="delete_cat=subsubchild; deletemodal=true;"><i class="fas fa-trash"></i></div>
                                            </div>
                                        </td>
@@ -266,8 +266,8 @@
                 }
                 var send= {
                     id_1:this.lists[index].children[index1].children[index2].children[index3].id,
-                    id_1_num :  this.lists[index].children[index1].children[index2].children[index3-action].order_num,
-                    id_2: this.lists[index].children[index1].children[index2].children[index3-action].id,
+                    id_1_num :  this.lists[index].children[index1].children[index2].children[index3+action].order_num,
+                    id_2: this.lists[index].children[index1].children[index2].children[index3+action].id,
                     id_2_num :  this.lists[index].children[index1].children[index2].children[index3].order_num,
                 }
 

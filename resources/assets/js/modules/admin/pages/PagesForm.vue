@@ -52,34 +52,76 @@ CRUD Edit, Create form
                                         <label class="label">Эх хуудас</label>
                                         <div class="control">
                                             <div class="select">
-                                                <select name="parent_id" v-model="form.parent_id" v-validate="'required'">
+                                                <select name="parent_id" v-model="form.parent_id">
                                                     <option value="0"></option>
                                                     <template v-for="page in pages">
-                                                        <option :value="page.id">{{page.title}}</option>
-                                                        <template v-for="child in page.child">
+                                                        <option :value="page.id" >{{page.title}}</option>
+                                                        <template v-for="child in page.children">
                                                             <option :value="child.id">||=={{child.title}}</option>
-                                                            <template v-for="subchild in child.child">
+                                                            <template v-for="subchild in child.children">
                                                                 <option :value="subchild.id">||==||=={{subchild.title}}</option>
                                                             </template>
                                                         </template>
                                                     </template>
                                                 </select>
                                             </div>
-                                            <p v-show="errors.has('parent_id')" class="help is-danger">{{ errors.first('parent_id') }}</p>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                        <div class="column is-12">
+                            <div class="field">
+                                <label class="label">Төрөл</label>
+                                <div class="control">
+                                    <div class="select">
+                                        <select  v-model="form.type" @change="changeType">
+                                            <option value="0">Зураг текс</option>
+                                            <option value="1">Линк</option>
+                                            <option value="2">Мэдээний ангилал</option>
+                                            <option value="3">Өөр хуудасны контент болох</option>
+                                            <option value="4">Файлын ангилал</option>
+                                            <option value="5">Холбоос ангилал</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column is-12-mobile is-12-tablet">
+                            <template v-if="form.type==0" class="column is-12-mobile is-12-tablet">
+                                <div class="field">
+                                    <label class="label">Дэлгэрэнгүй мэдээлэл</label>
+                                    <div class="control has-autoblock">
+                                        <ckeditor v-model="form.text" name="text" type="classic" :config="ck_config"  ></ckeditor>
+                                    </div>
+                                </div>
+                            </template>
+                            <template v-else-if="form.type==1" >
+                                <div class="field">
+                                    <label class="label">Линк</label>
+                                    <div class="control">
+                                        <input type="text"  v-model="form.link" class="input"  />
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <label class="label">Шинэ цонхонд харуулах</label>
+                                    <div class="control">
+                                        <div class="select">
+                                            <select  v-model="form.blank">
+                                                <option value="0">Үгүй</option>
+                                                <option value="1">Тийм</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
-
-
-
-                        <div class="column is-12-mobile is-12-tablet">
-                            <div class="field">
-                                <label class="label">Дэлгэрэнгүй мэдээлэл</label>
-                                <div class="control has-autoblock">
-                                    <ckeditor v-model="form.text" name="text" type="classic" :config="ck_config"  ></ckeditor>
-
+                            </template>
+                            <template v-else>
+                                <div  class="field">
+                                    <label class="label">Сонгох</label>
+                                    <treeselect v-model="form.type_id" placeholder="сонгох"  :default-expand-level="10"  :options="types" />
                                 </div>
-                            </div>
+                            </template>
                         </div>
 
                     </div>
@@ -111,6 +153,7 @@ CRUD Edit, Create form
                     filebrowserBrowseUrl: window.surl+'/elfinder/ckeditor',
                 },
                 siteUrl: window.surl,
+                types: null,
                 site_id: 0,
                 m_id: false, 			// Edit үед id орж ирнэ
                 fetched: false,
@@ -118,8 +161,12 @@ CRUD Edit, Create form
                 pages: [],
                 form:{
                     title: '',
-                    parent_id:0,
+                    parent_id:null,
                     text: '',
+                    type: 0,
+                    type_id: null,
+                    blank: 0,
+                    link: null,
                     site_id: 0,
                 },
                 password_confirm: null,
@@ -130,6 +177,7 @@ CRUD Edit, Create form
         },
         created: function () {
             this.fetchData();
+
         },
         computed: {
         },
@@ -138,7 +186,7 @@ CRUD Edit, Create form
                 // pages_min
                 this.m_id = this.$route.params.id;
                 this.site_id= this.$store.getters.domain.id
-                axios.get('/pages_min/'+this.site_id+'/'+this.m_id).then((response) => {
+                axios.get('/pages/'+this.site_id).then((response) => {
                     this.pages = response.data.success;
                 })
 
@@ -147,14 +195,21 @@ CRUD Edit, Create form
                         this.form.title = response.data.success.title;
                         this.form.parent_id = response.data.success.parent_id;
                         this.form.text = response.data.success.text;
+                        this.form.type = response.data.success.type;
+                        this.form.type_id = response.data.success.type_id;
+                        this.form.blank = response.data.success.blank;
+                        this.form.link = response.data.success.link;
                         this.form.site_id = response.data.success.site_id;
 
                         if (response.data.success.image) {
                             this.imageni = this.siteUrl+'/uploads/'+response.data.success.image.replace('images/', 'small/');
                         }
+                        this.changeType();
                         this.fetched = true;
                     })
+
                 } else {
+
                     this.fetched = true;
                 }
             },
@@ -232,6 +287,42 @@ CRUD Edit, Create form
                 });
                 reader.readAsDataURL(fileList[0]);
             },
+            //changeType
+            changeType(){
+
+                if(this.form.type==2){
+                    axios.get('/news_category/' + this.form.site_id).then((response) => {
+                        this.types = response.data.success;
+                    })
+                    return
+                }
+
+                if(this.form.type==3){
+                    axios.get('/page_select/' + this.form.site_id).then((response) => {
+                        this.types = response.data.success;
+                    })
+                    return
+                }
+
+
+                if(this.form.type==4){
+                    axios.get('/file_category/'+ this.form.site_id).then((response) => {
+                        this.types = response.data.success;
+                    })
+                    return
+                }
+
+
+                if(this.form.type==5){
+                    axios.get('/link_category_show/'+this.form.site_id).then((response) => {
+                        this.types = response.data.success;
+                    })
+                    return
+                }
+
+                return
+            },
+
         }
     }
 </script>

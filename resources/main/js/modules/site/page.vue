@@ -7,22 +7,17 @@
                         <div class="has-background-white p-15 mb-2" >
                             <h1 class="is-size-4-tablet is-size-6-mobile mb-1">{{content.title}}</h1>
 
-                            <figure v-if="content.image" class="image">
-                                <img :src="siteUrl+content.image.replace('images/', '/uploads/full/')">
-                            </figure>
+                            <template v-if="content.type==0">
+                                <figure v-if="content.image" class="image">
+                                    <img :src="siteUrl+content.image.replace('images/', '/uploads/full/')">
+                                </figure>
+                                <div class="content mt-1 mb-1" v-html="content.text"></div>
+                            </template>
+                            <template v-else-if="content.type==1">
 
-                            <div class="content mt-1 mb-1" v-html="content.text">
-                            </div>
-
-
-                            <div>
-                                <a class="button is-primary is-small is-pull-right" style="background: #1753B5" :href="'https://www.facebook.com/sharer/sharer.php?u='+siteUrl+'/p/'+content.id"  rel="nofollow" title="Facebook-д хуваалцах" target="_blank"><i class="fab fa-facebook"></i> Хуваалцах</a>
-                                <a class="button is-primary is-small is-pull-right" style="background: rgb(32, 104, 222)" :href="'https://twitter.com/intent/tweet?text='+content.title+' '+siteUrl+'/p/'+content.id"  rel="nofollow" title="Twitter-д хуваалцах" target="_blank"><i class="fab fa-twitter"></i> Жиргэх</a>
-                            </div>
+                            </template>
                         </div>
-
                     </div>
-
                     <div class="column is-3">
                         <aside class="menu mb-2">
                             <template v-for="menu in $store.getters.menu">
@@ -32,16 +27,16 @@
                                     </p>
                                     <ul v-if="menu.children" class="menu-list">
                                         <li v-for="m1 in menu.children">
-                                            <a :class="{'is-active': m1.link=='/p/'+id}" :href="'#'+m1.link">{{m1.name}}</a>
+                                            <span v-html="echoLink(m1)"></span>
                                             <ul  v-if="m1.children" >
-                                                <li v-for="m2 in m1.children">
-                                                    <a  :class="{'is-active':   m2.link=='/p/'+id}" :href="'#'+m2.link">{{m2.name}}</a>
+                                                <li v-for="m2 in m1.children" >
+                                                    <span v-html="echoLink(m2)"></span>
                                                     <ul  v-if="m2.children" >
-                                                        <li v-for="m3 in m2.children">
-                                                            <a :class="{'is-active':   m3.link=='/p/'+id}" :href="'#'+m3.link">{{m3.name}}</a>
+                                                        <li v-for="m3 in m2.children"  >
+                                                            <span v-html="echoLink(m3)"></span>
                                                             <ul  v-if="m3.children" >
                                                                 <li v-for="m4 in m3.children">
-                                                                    <a :class="{'is-active':   m4.link=='/p/'+id}" :href="'#'+m4.link">{{m4.name}}</a>
+                                                                    <span v-html="echoLink(m4)"></span>
                                                                 </li>
                                                             </ul>
                                                         </li>
@@ -133,6 +128,22 @@
 
                     }
                 })
+            },
+            echoLink(menu){
+                var active="";
+                if(this.id==menu.id){ active='class="is-active"' }
+
+                var blank='';
+                if(menu.blank==1){
+                    blank ='target="_blank"';
+                }
+                var href;
+                if(menu.type!=1){
+                    href='href="#'+menu.link+'"'
+                } else {
+                    href='href="'+menu.link+'"'
+                }
+                return '<a '+active+' '+blank+' href="#'+menu.link+'">'+menu.name+'</a>'
             }
         },
         metaInfo() {

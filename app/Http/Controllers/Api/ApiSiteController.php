@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Menu;
 use App\Weather;
 use App\Site;
+use App\Page;
 
 class ApiSiteController extends Controller
 {
@@ -17,11 +18,16 @@ class ApiSiteController extends Controller
 
 
     public function menu($site_id){
-        $cats= Menu::where('site_id',$site_id)->select('id','name', 'type', 'link', 'parent_id')->orderBy('order_num', 'asc')->get();
-        return response()->json([ 'success' => $this->buildTree($cats) ]);
+        $menu= Menu::where('site_id',$site_id)->select('id','name', 'type', 'link', 'parent_id')->orderBy('order_num', 'asc')->get();
+        return response()->json([ 'success' => $this->buildTree($menu) ]);
     }
 
-    public function  buildTree($elements, $parentId = 0) {
+    public function page($site_id){
+        $page= Page::where('site_id',$site_id)->select('id', 'title as name', 'type', 'parent_id', 'blank', 'link')->orderBy('order_num', 'asc')->get();
+        return response()->json([ 'success' => $this->buildTree($page) ]);
+    }
+
+    public function  buildTree($elements, $parentId = null) {
         $branch = array();
         foreach ($elements as $element) {
             if ($element->parent_id == $parentId) {

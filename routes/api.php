@@ -19,7 +19,7 @@ Route::namespace('Api')->group(function (){
 
     Route::get('sidebar/{id}','ApiSiteController@sidebar');
     Route::get('weather','ApiSiteController@weather');
-    Route::get('menu/{id}','ApiSiteController@menu');
+    Route::get('menu/{id}','ApiSiteController@page');
 
     Route::get('site_news/{site_id}/{limit?}','ApiNewsController@site_news');
     Route::get('oronnutag/{limit?}','ApiNewsController@oronnutag');
@@ -88,7 +88,7 @@ Route::middleware('auth:admin-api')->namespace('Admin')->prefix('admin')->group(
     Route::post('pages_delete','AdminPagesController@delete');
     Route::post('pages_change','AdminPagesController@change');
     Route::get('pages/{site_id}','AdminPagesController@index1');
-    Route::get('page_select/{site_id}','AdminPagesController@page_select');
+    Route::get('page_select/{site_id}/{id?}','AdminPagesController@page_select');
     Route::get('page_single/{id}','AdminPagesController@single');
     Route::get('pages_min/{site_id}/{id}','AdminPagesController@indexMin');
 

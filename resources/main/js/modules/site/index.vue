@@ -1,12 +1,12 @@
 <template>
     <div >
         <!--ontslokh medee-->
-        <div v-if="ontslokh.length>0" id="ontslokh" class="roboto-condensed  p-3"  style="background-image: url('images/tumen-olzii.png')" >
+        <div v-if="ontslokh.length>0" id="ontslokh" class="roboto-condensed shadow">
             <div class="container">
                 <div class="tile is-ancestor " >
                     <div class="tile">
-                        <div class="tile is-parent is-8 p-0" >
-                            <b-img :value="ontslokh[0]" classes="tile is-child notification"  size="large">
+                        <div class="tile is-parent is-8 p-0" style="    margin-right: 2px !important;" >
+                            <b-img :value="ontslokh[0]" classes="tile is-child notification"  size="full">
                                 <div class="bgGrad"></div>
                                 <router-link :to="'/news/'+ontslokh[0].id">
                                 <div class="content">
@@ -21,12 +21,12 @@
                             </b-img>
                         </div>
                         <div class="tile is-parent is-vertical is-4 p-0" >
-                            <b-img classes="tile is-child notification" :value="ontslokh[1]" size="medium">
+                            <b-img classes="tile is-child notification mb2px" :value="ontslokh[1]" size="large">
                                 <div class="bgGrad"></div>
                                 <router-link :to="'/news/'+ontslokh[1].id">
                                 <div class="content">
                                     <div v-if="ontslokh[1].category.length>0" class="tags has-addons">
-                                        <span class="tag is-info">{{ontslokh[1].category[0].name}}</span>
+                                        <span class="tag is-success">{{ontslokh[1].category[0].name}}</span>
                                         <span v-if="ontslokh[1].category.length!=1" class="tag is-dark">+{{ontslokh[1].category.length-1}}</span>
                                     </div>
 
@@ -35,12 +35,12 @@
                                 </div>
                                 </router-link>
                             </b-img>
-                            <b-img classes="tile is-child notification" :value="ontslokh[2]" size="medium">
+                            <b-img classes="tile is-child notification" :value="ontslokh[2]" size="large">
                                 <div class="bgGrad"></div>
                                 <router-link :to="'/news/'+ontslokh[2].id">
                                     <div class="content">
                                         <div v-if="ontslokh[2].category.length>0" class="tags has-addons">
-                                            <span class="tag is-info">{{ontslokh[2].category[0].name}}</span>
+                                            <span class="tag is-warning">{{ontslokh[2].category[0].name}}</span>
                                             <span v-if="ontslokh[2].category.length!=1" class="tag is-dark">+{{ontslokh[2].category.length-1}}</span>
                                         </div>
                                         <div class="title"><a class="is-size-6">{{ontslokh[2].title.substring(0, 80)}}<span v-if="ontslokh[2].title.length>80">...</span></a></div>
@@ -56,7 +56,7 @@
         <loading v-else></loading>
 
         <!-- home menu -->
-        <div class="homeMenu p-2" style="background: url('images/bg-solid.png')">
+        <div class="homeMenu p-2" >
             <div class="container">
 
                 <!-- desctop -->
@@ -90,7 +90,7 @@
             </div>
         </div>
         <!-- content -->
-        <div class="container mt-2 mb-2">
+        <div class="container mb-2">
             <div class="columns  is-multiline">
                 <div class="column  is-9">
                     <div class="bg-white p-15 mb-2 shadow">

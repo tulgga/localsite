@@ -17,18 +17,21 @@ a {
 }
 
 .searchform {
-  margin-top:25px;
+  margin-top:33px;
   width: 100%;
   position: relative;
 }
 .searchform input[type="text"] {
-  border-radius: 20px;
-  background-color: transparent;
-  border: 1px solid #e6e6e6;
-  height: 35px;
+  border: none;
+  color: #2371f1;
+  text-shadow: 1.4px 1.4px 1px rgba(0, 0, 0, 0.15);
+  font-size: 13px;
   padding: 15px;
-  background: #FFF;
   width: 100%;
+  height: 34px;
+  border-radius: 17px;
+  box-shadow: inset 1.4px 1.4px 1px 0 rgba(0, 0, 0, 0.1);
+  background: #184da6;
 }
 .searchform .button-search {
   position: absolute;
@@ -38,10 +41,15 @@ a {
   height: 100%;
   width: 40px;
   border: 0;
-  background: transparent;
-  color: #b2b2b2;
+  color: rgb(32, 104, 222);
+  background: none;
+  text-shadow: 1.4px 1.4px 1px rgba(0, 0, 0, 0.15);
 }
+.searchform input[type="text"]::placeholder {
 
+  color: #2371f1;
+  text-shadow: 1.4px 1.4px 1px rgba(0, 0, 0, 0.15);
+}
 .loading {
     text-align: center;
     padding: 40px;
@@ -238,9 +246,9 @@ a {
   }
 
   #header-content {
-    padding: 1em;
+    padding-top: 0.2em;
+    padding-bottom: 2em;
     .logo img {
-
       width: 360px;
     }
   }
@@ -277,7 +285,7 @@ a {
       }
 
     #menu li.is-active a, #menu li.is-active li.is-active a, #menu li.is-active li.is-active  li.is-active a, #menu li.is-active li.is-active  li.is-active li.is-active a {
-      background: #1753B5;
+      background: #1e62d2;
       color:#FFF;
     }
     #menu li.is-active li a {
@@ -289,7 +297,7 @@ a {
 
     #menu a {
       float: left;
-      padding: 16px 12px 15px 12px;
+      padding: 16px 12px 15px 11px;
       text-transform: uppercase;
       text-decoration: none;
       /*text-shadow: 0 1px 0 #000;*/
@@ -434,7 +442,7 @@ a {
     right: 15px;
     bottom: 15px;
     .tags {
-      margin-bottom:5px;
+      margin-bottom:7px;
     }
     .tag {
       margin-bottom: 0px;
@@ -450,6 +458,15 @@ a {
     }
 
   }
+}
+.tag.is-info {
+  background-color: #2068de;
+}
+.tag.is-warning {
+  color: #FFF !important;
+  background-color: #ff7600 !important;
+}
+.tag.is-info {
 
 }
 .date {
@@ -492,21 +509,26 @@ a {
 
 
 }
+.tile.is-child.mb2px {
+  margin-bottom: 2px !important;
+}
 
 #ontslokh {
-  background: #1f2024;
+  padding-top: 20px;
+  padding-bottom: 25px;
+  background: #FFF;
   .tile.is-ancestor {
     margin: 0px !important;
   }
   .tile.is-vertical > .tile.is-child:not(:last-child) {
-    margin: 0 !important;
+    margin: 0 0 2px 0 !important;
   }
   .is-parent {
     position: relative;
   }
 
   .tile.is-8 {
-    height: 440px;
+    height: 442px;
     overflow: hidden;
   }
   @media only screen and (max-width: 770px) {
@@ -700,7 +722,7 @@ a {
 
 #youtubeFrame {
   width: 100%;
-  height: 440px;
+  height: 442px;
 }
 
 @media only screen and (max-width: 1152px) {

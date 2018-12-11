@@ -115,7 +115,7 @@
                         { title: 'Админ / ажилтан', icon: 'fas fa-users', path: '/employees', role:0,},
                     { subheader: 'Тохиргоо', role:1,},
                         { title: 'Тохиргоо', icon: 'fas fa-sliders-h', path: '/config',  role:1,},
-                        { title: "Цэс", icon: 'fas fa-bars', path: '/menu' ,  role:1},
+                        // { title: "Цэс", icon: 'fas fa-bars', path: '/menu' ,  role:1},
                         { title: "Сутралчилгаа", icon: 'fab fa-goodreads', path: '/sidebar' ,  role:1},
                     { subheader: 'Мэдээ',  role:1 },
                         { title: 'Мэдээний ангилал', icon: 'fas fa-code-branch', path: '/news_category' ,  role:1 },
