@@ -84975,6 +84975,7 @@ if (false) {(function () {
             this.si3 = i3;
             this.si4 = i4;
             this.$router.push({ path: path });
+            this.mobile_menu = false;
         }
     }
 });
@@ -91136,7 +91137,7 @@ exports = module.exports = __webpack_require__(10)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -91289,7 +91290,7 @@ var render = function() {
                         ]
                       ),
                       _vm._v(" "),
-                      _vm._l(_vm.menu, function(m1) {
+                      _vm._l(_vm.menu, function(m1, i1) {
                         return [
                           _c(
                             "li",
@@ -91302,7 +91303,7 @@ var render = function() {
                                 {
                                   on: {
                                     click: function($event) {
-                                      _vm.changeRoute(m1)
+                                      _vm.changeRoute(m1.link, i1, -1, -1, -1)
                                     }
                                   }
                                 },
@@ -91313,7 +91314,7 @@ var render = function() {
                                 ? _c(
                                     "ul",
                                     [
-                                      _vm._l(m1.children, function(m2) {
+                                      _vm._l(m1.children, function(m2, i2) {
                                         return [
                                           _c(
                                             "li",
@@ -91329,7 +91330,13 @@ var render = function() {
                                                 {
                                                   on: {
                                                     click: function($event) {
-                                                      _vm.changeRoute(m2)
+                                                      _vm.changeRoute(
+                                                        m2.link,
+                                                        i1,
+                                                        i2,
+                                                        -1,
+                                                        -1
+                                                      )
                                                     }
                                                   }
                                                 },
@@ -91342,7 +91349,7 @@ var render = function() {
                                                     [
                                                       _vm._l(
                                                         m2.children,
-                                                        function(m3) {
+                                                        function(m3, i3) {
                                                           return [
                                                             _c(
                                                               "li",
@@ -91363,7 +91370,11 @@ var render = function() {
                                                                         $event
                                                                       ) {
                                                                         _vm.changeRoute(
-                                                                          m3
+                                                                          m3.link,
+                                                                          i1,
+                                                                          i2,
+                                                                          i3,
+                                                                          -1
                                                                         )
                                                                       }
                                                                     }
@@ -91384,7 +91395,8 @@ var render = function() {
                                                                         _vm._l(
                                                                           m3.children,
                                                                           function(
-                                                                            m4
+                                                                            m4,
+                                                                            i4
                                                                           ) {
                                                                             return [
                                                                               _c(
@@ -91407,7 +91419,11 @@ var render = function() {
                                                                                           $event
                                                                                         ) {
                                                                                           _vm.changeRoute(
-                                                                                            m4
+                                                                                            m4.link,
+                                                                                            i1,
+                                                                                            i2,
+                                                                                            i3,
+                                                                                            i4
                                                                                           )
                                                                                         }
                                                                                       }
@@ -91615,7 +91631,13 @@ var render = function() {
                                     {
                                       on: {
                                         click: function($event) {
-                                          _vm.changeRoute(m1, i1, -1, -1, -1)
+                                          _vm.changeRoute(
+                                            m1.link,
+                                            i1,
+                                            -1,
+                                            -1,
+                                            -1
+                                          )
                                         }
                                       }
                                     },
@@ -91633,7 +91655,7 @@ var render = function() {
                                                 on: {
                                                   click: function($event) {
                                                     _vm.changeRoute(
-                                                      m2,
+                                                      m2.link,
                                                       i1,
                                                       i2,
                                                       -1,
@@ -91661,7 +91683,7 @@ var render = function() {
                                                               $event
                                                             ) {
                                                               _vm.changeRoute(
-                                                                m3,
+                                                                m3.link,
                                                                 i1,
                                                                 i2,
                                                                 i3,
@@ -91694,7 +91716,7 @@ var render = function() {
                                                                             $event
                                                                           ) {
                                                                             _vm.changeRoute(
-                                                                              m4,
+                                                                              m4.link,
                                                                               i1,
                                                                               i2,
                                                                               i3,
