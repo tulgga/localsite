@@ -11,7 +11,7 @@
 |
 */
 
-//Route::get('/', 'Controller@homePage');
+
 
 Route::get('/file_viewer/', 'Controller@file_viewer');
 
@@ -25,11 +25,14 @@ Route::get('/!/{vue_capture?}', 'Controller@index')->where('vue_capture', '[\/\w
 
 
 
-
-
 Route::domain('{account}.bayankhongor.local')->group(function () {
-     Route::get('/', 'SubController@index');
+    Route::get('/', 'SubController@index');
+    Route::get('/p/{id}', 'SubController@page');
+    Route::get('/news/{id}', 'SubController@news');
+    Route::get('/category/{id}', 'SubController@category');
+    Route::get('/files/{id}', 'SubController@files');
 });
 
+Route::get('/', 'Controller@homePage');
 
 

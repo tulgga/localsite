@@ -11,6 +11,8 @@ use App\File;
 use Illuminate\Support\Facades\Redirect;
 use App\Site;
 use App\Settings;
+use App\Page;
+use phpDocumentor\Reflection\Location;
 
 class SubController extends BaseController
 {
@@ -18,6 +20,58 @@ class SubController extends BaseController
 
 
     public function index($account){
-      return $account;
+      $data['info']=$this->getDomainInfo($account);
+      return view('sub.home', $data);
+    }
+
+    public function page($account, $id){
+        $data['info']=$this->getDomainInfo($account);
+        return view('sub.page', $data);
+    }
+
+    public function news($account, $id){
+        $data['info']=$this->getDomainInfo($account);
+        return view('sub.news', $data);
+    }
+
+    public function category($account, $id){
+        $data['info']=$this->getDomainInfo($account);
+        return view('sub.category', $data);
+    }
+
+    public function files($account, $id){
+        $data['info']=$this->getDomainInfo($account);
+        return view('sub.file', $data);
+    }
+
+
+    public function getDomainInfo($account){
+        $site=Site::where('domain',$account)->first();
+        if(is_null($site)){
+            header('Location:'.env('APP_URL'));
+            die();
+        }
+        $site->menu=$this->getMenu($site->id);
+        return $site;
+    }
+
+
+    public function getMenu($site_id){
+        $page= Page::where('site_id',$site_id)->select('id', 'title as name', 'type', 'parent_id', 'blank', 'link')->orderBy('order_num', 'asc')->get();
+        return  $this->buildTree($page);
+    }
+
+    public function  buildTree($elements, $parentId = null) {
+        $branch = array();
+        foreach ($elements as $element) {
+            if ($element->parent_id == $parentId) {
+                $children = $this->buildTree($elements, $element->id);
+                if ($children) {
+                    $element['children'] = $children;
+                }
+                $branch[] = $element;
+            }
+        }
+        return $branch;
     }
 }
