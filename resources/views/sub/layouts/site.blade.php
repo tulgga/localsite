@@ -10,7 +10,7 @@
         header<br>
     </header>
     @yield('content')
-    
+
     <footer>
         footer<br>
     </footer>
