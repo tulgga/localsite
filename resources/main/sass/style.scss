@@ -1,6 +1,7 @@
 body {
   padding: 0;
   color: #333;
+  font-size: 14px;
   margin: 0;
 }
 a {
@@ -739,4 +740,28 @@ a {
 
 .button i {
   margin-right:10px;
+}
+
+.boxnewslist {
+  padding-bottom: 20px
+}
+
+a .boxnewslist-title {
+  font-weight: normal;
+  text-transform: uppercase;
+  margin: 0;
+  max-height: 40px;
+  overflow: hidden;
+  color: #333;
+  margin-bottom: 0.5em;
+}
+.boxnewslist .date {
+  margin-bottom: 0.8em;
+}
+.boxnewslist-content {
+  color: #888;
+  text-align: justify;
+  overflow: hidden;
+  line-height: 22px;
+  max-height: 48px;
 }

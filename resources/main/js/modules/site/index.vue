@@ -15,7 +15,7 @@
                                         <span v-if="ontslokh[0].category.length!=1" class="tag is-dark">+{{ontslokh[0].category.length-1}}</span>
                                     </div>
                                     <div class="title"><a class="is-size-4-desktop">{{ontslokh[0].title}}</a></div>
-                                    <div class="date"><i class="far fa-clock"></i> {{ontslokh[0].created_at}}</div>
+                                    <div class="date"><i class="far fa-clock"></i> {{ontslokh[0].created_at.substring(0, 16)}}</div>
                                 </div>
                                 </router-link>
                             </b-img>
@@ -31,7 +31,7 @@
                                     </div>
 
                                     <div class="title"><a class="is-size-6">{{ontslokh[1].title.substring(0, 80)}}<span v-if="ontslokh[1].title.length>80">...</span></a></div>
-                                    <div class="date"><i class="far fa-clock"></i> {{ontslokh[1].created_at}}</div>
+                                    <div class="date"><i class="far fa-clock"></i> {{ontslokh[1].created_at.substring(0, 16)}}</div>
                                 </div>
                                 </router-link>
                             </b-img>
@@ -44,7 +44,7 @@
                                             <span v-if="ontslokh[2].category.length!=1" class="tag is-dark">+{{ontslokh[2].category.length-1}}</span>
                                         </div>
                                         <div class="title"><a class="is-size-6">{{ontslokh[2].title.substring(0, 80)}}<span v-if="ontslokh[2].title.length>80">...</span></a></div>
-                                        <div class="date"><i class="far fa-clock"></i> {{ontslokh[2].created_at}}</div>
+                                        <div class="date"><i class="far fa-clock"></i> {{ontslokh[2].created_at.substring(0, 16)}}</div>
                                     </div>
                                 </router-link>
                             </b-img>

@@ -3,7 +3,8 @@
         <template v-if="fetched">
             <div v-if="content">
                 <div class="columns pt-2 pb-2">
-                    <div class="column is-9">
+
+                    <div  class="column is-9" :class="{'is-9':is_full===false, 'is-12':is_full===true}">
                         <div class="has-background-white p-15 mb-2" >
                             <h1 class="is-size-4-tablet is-size-6-mobile mb-1">{{content.title}}</h1>
 
@@ -20,35 +21,31 @@
                             </template>
                         </div>
                     </div>
-                    <div v-if="content.menu.length>0" class="column is-3">
+                    <div  v-if="is_full===false" class="column is-3">
                         <aside class="menu mb-2">
-                            <template v-for="menu in $store.getters.menu">
-                                <template v-if="menu.id==content.menu">
-                                    <p class="menu-label">
-                                       {{menu.name}}
-                                    </p>
-                                    <ul v-if="menu.children" class="menu-list">
-                                        <li v-for="m1 in menu.children">
-                                            <span v-html="echoLink(m1)" @click="scrollToTop"></span>
-                                            <ul  v-if="m1.children" >
-                                                <li v-for="m2 in m1.children" >
-                                                    <span v-html="echoLink(m2)" @click="scrollToTop"></span>
-                                                    <ul  v-if="m2.children" >
-                                                        <li v-for="m3 in m2.children"  >
-                                                            <span v-html="echoLink(m3)" @click="scrollToTop"></span>
-                                                            <ul  v-if="m3.children" >
-                                                                <li v-for="m4 in m3.children">
-                                                                    <span v-html="echoLink(m4)" @click="scrollToTop"></span>
-                                                                </li>
-                                                            </ul>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </template>
-                            </template>
+                                <p class="menu-label">
+                                   {{selectedMenu.name}}
+                                </p>
+                                <ul v-if="selectedMenu.children" class="menu-list">
+                                    <li v-for="m1 in selectedMenu.children">
+                                        <span v-html="echoLink(m1)" @click="scrollToTop"></span>
+                                        <ul  v-if="m1.children" >
+                                            <li v-for="m2 in m1.children" >
+                                                <span v-html="echoLink(m2)" @click="scrollToTop"></span>
+                                                <ul  v-if="m2.children" >
+                                                    <li v-for="m3 in m2.children"  >
+                                                        <span v-html="echoLink(m3)" @click="scrollToTop"></span>
+                                                        <ul  v-if="m3.children" >
+                                                            <li v-for="m4 in m3.children">
+                                                                <span v-html="echoLink(m4)" @click="scrollToTop"></span>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
                         </aside>
                         <!--<side-bar></side-bar>-->
                     </div>
@@ -69,6 +66,8 @@
                 fetched:false,
                 siteUrl: window.surl,
                 content: null,
+                is_full: true,
+                selectedMenu:false,
                 metaInfo:{
                     title: '404',
                     meta: [
@@ -112,6 +111,18 @@
                         if(this.content.type==3) {
                             this.$router.push({path:'/p/'+this.content.type_id});
                         }
+
+                        for (var i=0; i<this.$store.getters.menu.length; i++){
+                            if(this.$store.getters.menu[i].id==this.content.menu){
+                                if(this.$store.getters.menu[i].children){
+                                    this.is_full=false
+                                } else {
+                                    this.is_full=true
+                                }
+                                this.selectedMenu=this.$store.getters.menu[i];
+                            }
+                        }
+                        console.log(this.is_full);
                         this.metaInfo.title=this.content.title
                         this.metaInfo.meta[1].content=this.content.shortContent
                         this.metaInfo.meta[2].content=this.content.title+' ← '+window.title

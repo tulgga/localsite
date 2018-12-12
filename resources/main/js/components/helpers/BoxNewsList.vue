@@ -1,24 +1,25 @@
 <template>
     <div v-if="post"  >
-        <div class="columns is-mobile is-multiline">
-            <template v-for="p in post.data">
+        <template v-for="p in post.data">
 
+            <div class="boxnewslist  m-1">
+                <div class="columns shadow">
                     <div class="column is-3">
                         <img v-if="p.type===2" :src="'https://img.youtube.com/vi/'+p.image+'/0.jpg'"/>
                         <img v-else :src="siteUrl+p.image.replace('images/', '/uploads/medium/')"/>
                     </div>
                     <div class="column is-9">
                         <router-link :to="'/news/'+p.id">
-                            <div  class="newslist-title">{{p.title}}</div>
+                            <div  class="boxnewslist-title roboto-condensed">{{p.title}}</div>
                         </router-link>
-                        <div  class="date"><i class="far fa-clock"></i>  {{p.created_at}}</div>
-                        <p v-html="p.short_content"> </p>
+                        <div  class="date"><i class="far fa-clock"></i>  {{p.created_at.substring(0, 16)}}</div>
+                        <div class="boxnewslist-content" v-html="p.short_content"> </div>
                     </div>
+                </div>
+                <div  class="is-clearfix"></div>
+            </div>
 
-
-            </template>
-        </div>
-
+        </template>
     </div>
     <loading v-else></loading>
 

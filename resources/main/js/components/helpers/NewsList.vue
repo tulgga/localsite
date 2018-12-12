@@ -5,7 +5,7 @@
                 <router-link :to="'/news/'+p.id">
                     <div  class="newslist-title">{{p.title}}</div>
                 </router-link>
-                <div  class="date"><i class="far fa-clock"></i>  {{p.created_at}}</div>
+                <div  class="date"><i class="far fa-clock"></i>  {{p.created_at.substring(0, 16)}}</div>
             </div>
         </template>
 
