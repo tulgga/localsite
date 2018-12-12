@@ -40,6 +40,19 @@ class ApiNewsController extends Controller
         );
     }
 
+
+
+    public function newsListByCategoryBox($site_id, $limit, $catID){
+        $news=Post::where('posts.site_id',$site_id)->where('posts.status', 1)->where('news_to_category.cat_id', $catID)
+            ->select('posts.id', 'posts.title', 'posts.short_content',  'posts.type', 'posts.image', 'posts.created_at')
+            ->Join('news_to_category', 'news_to_category.post_id', '=', 'posts.id')
+            ->groupBy('posts.id')
+            ->orderBy('created_at', 'desc')->paginate($limit);
+        return response()->json(
+            ['success'=>$news]
+        );
+    }
+
     public function newsListByCategory($site_id, $catID){
         $news=Post::where('posts.site_id',$site_id)->where('posts.status', 1)->where('news_to_category.cat_id', $catID)
             ->select('posts.id', 'posts.title',    'posts.created_at')

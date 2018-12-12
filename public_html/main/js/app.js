@@ -83851,6 +83851,9 @@ if (false) {(function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_helpers_BoxNewsList__ = __webpack_require__(962);
+//
+//
 //
 //
 //
@@ -83911,7 +83914,9 @@ if (false) {(function () {
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["a"] = ({
+    components: { BoxNewsList: __WEBPACK_IMPORTED_MODULE_0__components_helpers_BoxNewsList__["a" /* default */] },
     data: function data() {
         return {
             id: false,
@@ -83943,7 +83948,11 @@ if (false) {(function () {
             axios.get('/page/0/' + this.id).then(function (response) {
                 _this.fetched = true;
                 _this.content = response.data.success;
+
                 if (_this.content) {
+                    if (_this.content.type == 3) {
+                        _this.$router.push({ path: '/p/' + _this.content.type_id });
+                    }
                     _this.metaInfo.title = _this.content.title;
                     _this.metaInfo.meta[1].content = _this.content.shortContent;
                     _this.metaInfo.meta[2].content = _this.content.title + ' ← ' + window.title;
@@ -83979,12 +83988,15 @@ if (false) {(function () {
                 blank = 'target="_blank"';
             }
             var href;
-            if (menu.type != 1) {
-                href = 'href="#' + menu.link + '"';
-            } else {
+            if (menu.type == 1) {
                 href = 'href="' + menu.link + '"';
+            } else {
+                href = 'href="#' + menu.link + '"';
             }
-            return '<a ' + active + ' ' + blank + ' href="#' + menu.link + '">' + menu.name + '</a>';
+            return '<a ' + active + ' ' + blank + ' ' + href + '>' + menu.name + '</a>';
+        },
+        scrollToTop: function scrollToTop() {
+            window.scrollTo(0, 0);
         }
     },
     metaInfo: function metaInfo() {
@@ -84969,13 +84981,23 @@ if (false) {(function () {
             this.fetched = true;
         },
 
-        changeRoute: function changeRoute(path, i1, i2, i3, i4) {
+        changeRoute: function changeRoute(menu, i1, i2, i3, i4) {
             this.si1 = i1;
             this.si2 = i2;
             this.si3 = i3;
             this.si4 = i4;
-            this.$router.push({ path: path });
             this.mobile_menu = false;
+            if (menu == '/') {
+                this.$router.push({ path: '/' });
+                window.scrollTo(0, 0);
+                return;
+            }
+            if (menu.type == 1) {
+                window.open(menu.link, '_blank');
+            } else {
+                this.$router.push({ path: '/p/' + menu.id });
+                window.scrollTo(0, 0);
+            }
         }
     }
 });
@@ -87439,147 +87461,170 @@ var render = function() {
                                   }
                                 })
                               ]
-                            : _vm.content.type == 1
-                              ? void 0
+                            : _vm.content.type == 2
+                              ? [
+                                  _vm.content.list_type == 0
+                                    ? [
+                                        _c("box-news-list", {
+                                          attrs: {
+                                            page_id: _vm.id,
+                                            cat_id: _vm.content.type_id
+                                          }
+                                        })
+                                      ]
+                                    : _vm._e()
+                                ]
                               : _vm._e()
                         ],
                         2
                       )
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "column is-3" },
-                      [
-                        _c(
-                          "aside",
-                          { staticClass: "menu mb-2" },
-                          [
-                            _vm._l(_vm.$store.getters.menu, function(menu) {
-                              return [
-                                menu.id == _vm.content.menu
-                                  ? [
-                                      _c("p", { staticClass: "menu-label" }, [
-                                        _vm._v(
-                                          "\n                                   " +
-                                            _vm._s(menu.name) +
-                                            "\n                                "
-                                        )
-                                      ]),
-                                      _vm._v(" "),
-                                      menu.children
-                                        ? _c(
-                                            "ul",
-                                            { staticClass: "menu-list" },
-                                            _vm._l(menu.children, function(m1) {
-                                              return _c("li", [
-                                                _c("span", {
-                                                  domProps: {
-                                                    innerHTML: _vm._s(
-                                                      _vm.echoLink(m1)
-                                                    )
-                                                  }
-                                                }),
-                                                _vm._v(" "),
-                                                m1.children
-                                                  ? _c(
-                                                      "ul",
-                                                      _vm._l(
-                                                        m1.children,
-                                                        function(m2) {
-                                                          return _c("li", [
-                                                            _c("span", {
-                                                              domProps: {
-                                                                innerHTML: _vm._s(
-                                                                  _vm.echoLink(
-                                                                    m2
+                    _vm.content.menu.length > 0
+                      ? _c("div", { staticClass: "column is-3" }, [
+                          _c(
+                            "aside",
+                            { staticClass: "menu mb-2" },
+                            [
+                              _vm._l(_vm.$store.getters.menu, function(menu) {
+                                return [
+                                  menu.id == _vm.content.menu
+                                    ? [
+                                        _c("p", { staticClass: "menu-label" }, [
+                                          _vm._v(
+                                            "\n                                   " +
+                                              _vm._s(menu.name) +
+                                              "\n                                "
+                                          )
+                                        ]),
+                                        _vm._v(" "),
+                                        menu.children
+                                          ? _c(
+                                              "ul",
+                                              { staticClass: "menu-list" },
+                                              _vm._l(menu.children, function(
+                                                m1
+                                              ) {
+                                                return _c("li", [
+                                                  _c("span", {
+                                                    domProps: {
+                                                      innerHTML: _vm._s(
+                                                        _vm.echoLink(m1)
+                                                      )
+                                                    },
+                                                    on: {
+                                                      click: _vm.scrollToTop
+                                                    }
+                                                  }),
+                                                  _vm._v(" "),
+                                                  m1.children
+                                                    ? _c(
+                                                        "ul",
+                                                        _vm._l(
+                                                          m1.children,
+                                                          function(m2) {
+                                                            return _c("li", [
+                                                              _c("span", {
+                                                                domProps: {
+                                                                  innerHTML: _vm._s(
+                                                                    _vm.echoLink(
+                                                                      m2
+                                                                    )
                                                                   )
-                                                                )
-                                                              }
-                                                            }),
-                                                            _vm._v(" "),
-                                                            m2.children
-                                                              ? _c(
-                                                                  "ul",
-                                                                  _vm._l(
-                                                                    m2.children,
-                                                                    function(
-                                                                      m3
-                                                                    ) {
-                                                                      return _c(
-                                                                        "li",
-                                                                        [
-                                                                          _c(
-                                                                            "span",
-                                                                            {
-                                                                              domProps: {
-                                                                                innerHTML: _vm._s(
-                                                                                  _vm.echoLink(
-                                                                                    m3
+                                                                },
+                                                                on: {
+                                                                  click:
+                                                                    _vm.scrollToTop
+                                                                }
+                                                              }),
+                                                              _vm._v(" "),
+                                                              m2.children
+                                                                ? _c(
+                                                                    "ul",
+                                                                    _vm._l(
+                                                                      m2.children,
+                                                                      function(
+                                                                        m3
+                                                                      ) {
+                                                                        return _c(
+                                                                          "li",
+                                                                          [
+                                                                            _c(
+                                                                              "span",
+                                                                              {
+                                                                                domProps: {
+                                                                                  innerHTML: _vm._s(
+                                                                                    _vm.echoLink(
+                                                                                      m3
+                                                                                    )
+                                                                                  )
+                                                                                },
+                                                                                on: {
+                                                                                  click:
+                                                                                    _vm.scrollToTop
+                                                                                }
+                                                                              }
+                                                                            ),
+                                                                            _vm._v(
+                                                                              " "
+                                                                            ),
+                                                                            m3.children
+                                                                              ? _c(
+                                                                                  "ul",
+                                                                                  _vm._l(
+                                                                                    m3.children,
+                                                                                    function(
+                                                                                      m4
+                                                                                    ) {
+                                                                                      return _c(
+                                                                                        "li",
+                                                                                        [
+                                                                                          _c(
+                                                                                            "span",
+                                                                                            {
+                                                                                              domProps: {
+                                                                                                innerHTML: _vm._s(
+                                                                                                  _vm.echoLink(
+                                                                                                    m4
+                                                                                                  )
+                                                                                                )
+                                                                                              },
+                                                                                              on: {
+                                                                                                click:
+                                                                                                  _vm.scrollToTop
+                                                                                              }
+                                                                                            }
+                                                                                          )
+                                                                                        ]
+                                                                                      )
+                                                                                    }
                                                                                   )
                                                                                 )
-                                                                              }
-                                                                            }
-                                                                          ),
-                                                                          _vm._v(
-                                                                            " "
-                                                                          ),
-                                                                          m3.children
-                                                                            ? _c(
-                                                                                "ul",
-                                                                                _vm._l(
-                                                                                  m3.children,
-                                                                                  function(
-                                                                                    m4
-                                                                                  ) {
-                                                                                    return _c(
-                                                                                      "li",
-                                                                                      [
-                                                                                        _c(
-                                                                                          "span",
-                                                                                          {
-                                                                                            domProps: {
-                                                                                              innerHTML: _vm._s(
-                                                                                                _vm.echoLink(
-                                                                                                  m4
-                                                                                                )
-                                                                                              )
-                                                                                            }
-                                                                                          }
-                                                                                        )
-                                                                                      ]
-                                                                                    )
-                                                                                  }
-                                                                                )
-                                                                              )
-                                                                            : _vm._e()
-                                                                        ]
-                                                                      )
-                                                                    }
+                                                                              : _vm._e()
+                                                                          ]
+                                                                        )
+                                                                      }
+                                                                    )
                                                                   )
-                                                                )
-                                                              : _vm._e()
-                                                          ])
-                                                        }
+                                                                : _vm._e()
+                                                            ])
+                                                          }
+                                                        )
                                                       )
-                                                    )
-                                                  : _vm._e()
-                                              ])
-                                            })
-                                          )
-                                        : _vm._e()
-                                    ]
-                                  : _vm._e()
-                              ]
-                            })
-                          ],
-                          2
-                        ),
-                        _vm._v(" "),
-                        _c("side-bar")
-                      ],
-                      1
-                    )
+                                                    : _vm._e()
+                                                ])
+                                              })
+                                            )
+                                          : _vm._e()
+                                      ]
+                                    : _vm._e()
+                                ]
+                              })
+                            ],
+                            2
+                          )
+                        ])
+                      : _vm._e()
                   ])
                 ])
               : _c("loading")
@@ -91137,7 +91182,7 @@ exports = module.exports = __webpack_require__(10)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -91303,7 +91348,7 @@ var render = function() {
                                 {
                                   on: {
                                     click: function($event) {
-                                      _vm.changeRoute(m1.link, i1, -1, -1, -1)
+                                      _vm.changeRoute(m1, i1, -1, -1, -1)
                                     }
                                   }
                                 },
@@ -91331,7 +91376,7 @@ var render = function() {
                                                   on: {
                                                     click: function($event) {
                                                       _vm.changeRoute(
-                                                        m2.link,
+                                                        m2,
                                                         i1,
                                                         i2,
                                                         -1,
@@ -91370,7 +91415,7 @@ var render = function() {
                                                                         $event
                                                                       ) {
                                                                         _vm.changeRoute(
-                                                                          m3.link,
+                                                                          m3,
                                                                           i1,
                                                                           i2,
                                                                           i3,
@@ -91419,7 +91464,7 @@ var render = function() {
                                                                                           $event
                                                                                         ) {
                                                                                           _vm.changeRoute(
-                                                                                            m4.link,
+                                                                                            m4,
                                                                                             i1,
                                                                                             i2,
                                                                                             i3,
@@ -91631,13 +91676,7 @@ var render = function() {
                                     {
                                       on: {
                                         click: function($event) {
-                                          _vm.changeRoute(
-                                            m1.link,
-                                            i1,
-                                            -1,
-                                            -1,
-                                            -1
-                                          )
+                                          _vm.changeRoute(m1, i1, -1, -1, -1)
                                         }
                                       }
                                     },
@@ -91655,7 +91694,7 @@ var render = function() {
                                                 on: {
                                                   click: function($event) {
                                                     _vm.changeRoute(
-                                                      m2.link,
+                                                      m2,
                                                       i1,
                                                       i2,
                                                       -1,
@@ -91683,7 +91722,7 @@ var render = function() {
                                                               $event
                                                             ) {
                                                               _vm.changeRoute(
-                                                                m3.link,
+                                                                m3,
                                                                 i1,
                                                                 i2,
                                                                 i3,
@@ -91716,7 +91755,7 @@ var render = function() {
                                                                             $event
                                                                           ) {
                                                                             _vm.changeRoute(
-                                                                              m4.link,
+                                                                              m4,
                                                                               i1,
                                                                               i2,
                                                                               i3,
@@ -92174,6 +92213,295 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-553b7f9c", { render: render, staticRenderFns: staticRenderFns })
+  }
+}
+
+/***/ }),
+/* 870 */,
+/* 871 */,
+/* 872 */,
+/* 873 */,
+/* 874 */,
+/* 875 */,
+/* 876 */,
+/* 877 */,
+/* 878 */,
+/* 879 */,
+/* 880 */,
+/* 881 */,
+/* 882 */,
+/* 883 */,
+/* 884 */,
+/* 885 */,
+/* 886 */,
+/* 887 */,
+/* 888 */,
+/* 889 */,
+/* 890 */,
+/* 891 */,
+/* 892 */,
+/* 893 */,
+/* 894 */,
+/* 895 */,
+/* 896 */,
+/* 897 */,
+/* 898 */,
+/* 899 */,
+/* 900 */,
+/* 901 */,
+/* 902 */,
+/* 903 */,
+/* 904 */,
+/* 905 */,
+/* 906 */,
+/* 907 */,
+/* 908 */,
+/* 909 */,
+/* 910 */,
+/* 911 */,
+/* 912 */,
+/* 913 */,
+/* 914 */,
+/* 915 */,
+/* 916 */,
+/* 917 */,
+/* 918 */,
+/* 919 */,
+/* 920 */,
+/* 921 */,
+/* 922 */,
+/* 923 */,
+/* 924 */,
+/* 925 */,
+/* 926 */,
+/* 927 */,
+/* 928 */,
+/* 929 */,
+/* 930 */,
+/* 931 */,
+/* 932 */,
+/* 933 */,
+/* 934 */,
+/* 935 */,
+/* 936 */,
+/* 937 */,
+/* 938 */,
+/* 939 */,
+/* 940 */,
+/* 941 */,
+/* 942 */,
+/* 943 */,
+/* 944 */,
+/* 945 */,
+/* 946 */,
+/* 947 */,
+/* 948 */,
+/* 949 */,
+/* 950 */,
+/* 951 */,
+/* 952 */,
+/* 953 */,
+/* 954 */,
+/* 955 */,
+/* 956 */,
+/* 957 */,
+/* 958 */,
+/* 959 */,
+/* 960 */,
+/* 961 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+    props: ['cat_id', 'page_id'],
+    data: function data() {
+        return {
+            page: false,
+            siteUrl: window.surl,
+            post: false
+        };
+    },
+
+    watch: {
+        '$route.query.page': function $routeQueryPage() {
+            this.fetchData();
+        }
+    },
+    created: function created() {
+        this.fetchData();
+    },
+    methods: {
+        fetchData: function fetchData() {
+            var _this = this;
+
+            this.page = this.$route.query.page;
+            if (!this.page) {
+                axios.get('/newsListByCategoryBox/0/12/' + this.cat_id).then(function (response) {
+                    _this.post = response.data.success;
+                });
+            } else {
+                axios.get('/newsListByCategoryBox/0/12/' + this.cat_id + '?page=' + this.page).then(function (response) {
+                    _this.post = response.data.success;
+                });
+            }
+            console.log(this.post);
+        }
+    }
+});
+
+/***/ }),
+/* 962 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_plugins_transform_object_rest_spread_transform_runtime_polyfill_false_helpers_false_node_modules_vue_loader_lib_selector_type_script_index_0_BoxNewsList_vue__ = __webpack_require__(961);
+/* unused harmony namespace reexport */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_9c19b418_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_BoxNewsList_vue__ = __webpack_require__(963);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_runtime_component_normalizer__ = __webpack_require__(1);
+var disposed = false
+/* script */
+
+
+/* template */
+
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+
+var Component = Object(__WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_runtime_component_normalizer__["a" /* default */])(
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_plugins_transform_object_rest_spread_transform_runtime_polyfill_false_helpers_false_node_modules_vue_loader_lib_selector_type_script_index_0_BoxNewsList_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_9c19b418_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_BoxNewsList_vue__["a" /* render */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_9c19b418_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_BoxNewsList_vue__["b" /* staticRenderFns */],
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\main\\js\\components\\helpers\\BoxNewsList.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-9c19b418", Component.options)
+  } else {
+    hotAPI.reload("data-v-9c19b418", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+/* harmony default export */ __webpack_exports__["a"] = (Component.exports);
+
+
+/***/ }),
+/* 963 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm.post
+    ? _c("div", [
+        _c(
+          "div",
+          { staticClass: "columns is-mobile is-multiline" },
+          [
+            _vm._l(_vm.post.data, function(p) {
+              return [
+                _c("div", { staticClass: "column is-3" }, [
+                  p.type === 2
+                    ? _c("img", {
+                        attrs: {
+                          src:
+                            "https://img.youtube.com/vi/" + p.image + "/0.jpg"
+                        }
+                      })
+                    : _c("img", {
+                        attrs: {
+                          src:
+                            _vm.siteUrl +
+                            p.image.replace("images/", "/uploads/medium/")
+                        }
+                      })
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "column is-9" },
+                  [
+                    _c("router-link", { attrs: { to: "/news/" + p.id } }, [
+                      _c("div", { staticClass: "newslist-title" }, [
+                        _vm._v(_vm._s(p.title))
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "date" }, [
+                      _c("i", { staticClass: "far fa-clock" }),
+                      _vm._v("  " + _vm._s(p.created_at))
+                    ]),
+                    _vm._v(" "),
+                    _c("p", {
+                      domProps: { innerHTML: _vm._s(p.short_content) }
+                    })
+                  ],
+                  1
+                )
+              ]
+            })
+          ],
+          2
+        )
+      ])
+    : _c("loading")
+}
+var staticRenderFns = []
+render._withStripped = true
+
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-9c19b418", { render: render, staticRenderFns: staticRenderFns })
   }
 }
 

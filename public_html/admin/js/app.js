@@ -85466,6 +85466,21 @@ var modules = requireContext.keys().map(function (file) {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
@@ -85493,7 +85508,8 @@ var modules = requireContext.keys().map(function (file) {
                 type_id: null,
                 blank: 0,
                 link: null,
-                site_id: 0
+                site_id: 0,
+                list_type: 0
             },
             password_confirm: null,
             imageni: false,
@@ -85527,7 +85543,7 @@ var modules = requireContext.keys().map(function (file) {
                     _this.form.blank = response.data.success.blank;
                     _this.form.link = response.data.success.link;
                     _this.form.site_id = response.data.success.site_id;
-
+                    _this.form.list_type = response.data.success.list_type;
                     if (response.data.success.image) {
                         _this.imageni = _this.siteUrl + '/uploads/' + response.data.success.image.replace('images/', 'small/');
                     }
@@ -96100,7 +96116,85 @@ var render = function() {
                                   })
                                 ],
                                 1
-                              )
+                              ),
+                              _vm._v(" "),
+                              _vm.form.type == 2
+                                ? [
+                                    _c("div", { staticClass: "field" }, [
+                                      _c("label", { staticClass: "label" }, [
+                                        _vm._v("Харагдах байдал")
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("div", { staticClass: "control" }, [
+                                        _c("div", { staticClass: "select" }, [
+                                          _c(
+                                            "select",
+                                            {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value: _vm.form.list_type,
+                                                  expression: "form.list_type"
+                                                }
+                                              ],
+                                              on: {
+                                                change: function($event) {
+                                                  var $$selectedVal = Array.prototype.filter
+                                                    .call(
+                                                      $event.target.options,
+                                                      function(o) {
+                                                        return o.selected
+                                                      }
+                                                    )
+                                                    .map(function(o) {
+                                                      var val =
+                                                        "_value" in o
+                                                          ? o._value
+                                                          : o.value
+                                                      return val
+                                                    })
+                                                  _vm.$set(
+                                                    _vm.form,
+                                                    "list_type",
+                                                    $event.target.multiple
+                                                      ? $$selectedVal
+                                                      : $$selectedVal[0]
+                                                  )
+                                                }
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "option",
+                                                { attrs: { value: "0" } },
+                                                [_vm._v("Блог жагсаалт")]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "option",
+                                                { attrs: { value: "1" } },
+                                                [_vm._v("3 багана")]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "option",
+                                                { attrs: { value: "1" } },
+                                                [_vm._v("4 багана")]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "option",
+                                                { attrs: { value: "1" } },
+                                                [_vm._v("Хүснэгт")]
+                                              )
+                                            ]
+                                          )
+                                        ])
+                                      ])
+                                    ])
+                                  ]
+                                : _vm._e()
                             ]
                     ],
                     2
@@ -98662,6 +98756,7 @@ var render = function() {
                                 expression: "form.short_content"
                               }
                             ],
+                            staticClass: "textarea",
                             staticStyle: { "min-height": "80px" },
                             attrs: { name: "short_content" },
                             domProps: { value: _vm.form.short_content },

@@ -26,6 +26,7 @@ Route::namespace('Api')->group(function (){
     Route::get('VideoList/{site_id}/{limit?}','ApiNewsController@VideoList');
     Route::get('news_category/{site_id?}','ApiNewsController@news_category');
     Route::get('news/{site_id}/{id}','ApiNewsController@news');
+    Route::get('newsListByCategoryBox/{site_id}/{limit}/{catId}','ApiNewsController@newsListByCategoryBox');
     Route::get('newsListByCategory/{site_id}/{catId}','ApiNewsController@newsListByCategory');
     Route::get('news_ontslokh/{id}','ApiNewsController@news_ontslokh');
 

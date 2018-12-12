@@ -121,6 +121,21 @@ CRUD Edit, Create form
                                     <label class="label">Сонгох</label>
                                     <treeselect v-model="form.type_id" placeholder="сонгох"  :default-expand-level="10"  :options="types" />
                                 </div>
+                                <template v-if="form.type==2">
+                                    <div  class="field">
+                                        <label class="label">Харагдах байдал</label>
+                                        <div class="control">
+                                            <div class="select">
+                                                <select  v-model="form.list_type">
+                                                    <option value="0">Блог жагсаалт</option>
+                                                    <option value="1">3 багана</option>
+                                                    <option value="1">4 багана</option>
+                                                    <option value="1">Хүснэгт</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </template>
                             </template>
                         </div>
 
@@ -168,6 +183,7 @@ CRUD Edit, Create form
                     blank: 0,
                     link: null,
                     site_id: 0,
+                    list_type:0,
                 },
                 password_confirm: null,
                 imageni:false,
@@ -200,7 +216,7 @@ CRUD Edit, Create form
                         this.form.blank = response.data.success.blank;
                         this.form.link = response.data.success.link;
                         this.form.site_id = response.data.success.site_id;
-
+                        this.form.list_type= response.data.success.list_type;
                         if (response.data.success.image) {
                             this.imageni = this.siteUrl+'/uploads/'+response.data.success.image.replace('images/', 'small/');
                         }

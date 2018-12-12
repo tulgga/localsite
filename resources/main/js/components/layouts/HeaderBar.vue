@@ -37,19 +37,19 @@
                                 <li :class="{'is-active': $route.path=='/'}"><a v-on:click="changeRoute('/')">Нүүр</a></li>
                                 <template v-for="(m1, i1) in menu">
                                     <li  :class="{'is-active': $route.path==m1.link}">
-                                        <a  v-on:click="changeRoute(m1.link, i1, -1, -1, -1)">{{m1.name}}</a>
+                                        <a  v-on:click="changeRoute(m1, i1, -1, -1, -1)">{{m1.name}}</a>
                                          <ul  v-if="m1.children" >
                                              <template v-for="(m2, i2) in m1.children">
                                                  <li  :class="{'is-active': $route.path==m2.link}">
-                                                     <a  v-on:click="changeRoute(m2.link, i1, i2, -1, -1)">{{m2.name}}</a>
+                                                     <a  v-on:click="changeRoute(m2, i1, i2, -1, -1)">{{m2.name}}</a>
                                                      <ul  v-if="m2.children" >
                                                          <template v-for="(m3, i3) in m2.children">
                                                              <li  :class="{'is-active': $route.path==m3.link}">
-                                                                 <a  v-on:click="changeRoute(m3.link, i1, i2, i3, -1)">{{m3.name}}</a>
+                                                                 <a  v-on:click="changeRoute(m3, i1, i2, i3, -1)">{{m3.name}}</a>
                                                                  <ul  v-if="m3.children" >
                                                                      <template v-for="(m4, i4) in m3.children">
                                                                          <li  :class="{'is-active': $route.path==m4.link}">
-                                                                             <a  v-on:click="changeRoute(m4.link, i1, i2, i3, i4)">{{m4.name}}</a>
+                                                                             <a  v-on:click="changeRoute(m4, i1, i2, i3, i4)">{{m4.name}}</a>
                                                                          </li>
                                                                      </template>
                                                                  </ul>
@@ -146,16 +146,16 @@
                         <ul id="menu">
                             <li :class="{'is-active': $route.path=='/'}"><a style="padding: 16px 12px 11px 12px;" v-on:click="changeRoute('/')"><img :src="siteUrl+'/images/home.png'"/></a></li>
                             <li v-for="(m1, i1) in menu" :class="{'is-active': i1==si1}">
-                                <a  v-on:click="changeRoute(m1.link, i1, -1, -1, -1)" >{{m1.name}}</a>
+                                <a  v-on:click="changeRoute(m1, i1, -1, -1, -1)" >{{m1.name}}</a>
                                 <ul  v-if="m1.children" >
                                     <li v-for="(m2, i2) in m1.children" >
-                                        <a v-on:click="changeRoute(m2.link, i1, i2, -1, -1)" >{{m2.name}}</a>
+                                        <a v-on:click="changeRoute(m2, i1, i2, -1, -1)" >{{m2.name}}</a>
                                         <ul  v-if="m2.children" >
                                             <li v-for="(m3, i3) in m2.children">
-                                                <a v-on:click="changeRoute(m3.link, i1, i2, i3, -1)" >{{m3.name}}</a>
+                                                <a v-on:click="changeRoute(m3, i1, i2, i3, -1)" >{{m3.name}}</a>
                                                 <ul  v-if="m3.children" >
                                                     <li v-for="(m4, i4) in m3.children" >
-                                                        <a v-on:click="changeRoute(m4.link, i1, i2, i3, i4)" >{{m4.name}}</a>
+                                                        <a v-on:click="changeRoute(m4, i1, i2, i3, i4)" >{{m4.name}}</a>
                                                     </li>
                                                 </ul>
                                             </li>
@@ -208,13 +208,26 @@
                     this.fetched = true;
             },
 
-            changeRoute: function(path, i1,i2,i3,i4){
+            changeRoute: function(menu, i1,i2,i3,i4){
                 this.si1=i1;
                 this.si2=i2;
                 this.si3=i3;
                 this.si4=i4;
-                this.$router.push({path:path});
                 this.mobile_menu=false;
+                if(menu=='/'){
+                    this.$router.push({path:'/'});
+                    window.scrollTo(0,0);
+                    return
+                }
+                if(menu.type==1){
+                    window.open(menu.link, '_blank')
+                } else {
+                    this.$router.push({path:'/p/'+menu.id});
+                    window.scrollTo(0,0);
+                }
+
+
+
             },
         }
     }

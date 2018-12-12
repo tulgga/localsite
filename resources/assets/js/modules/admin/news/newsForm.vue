@@ -108,7 +108,7 @@ CRUD Edit, Create form
 
                                 <div class="field">
                                     <label class="label">Товч текст</label>
-                                    <textarea style="min-height: 80px;"  name="short_content" v-model="form.short_content" ></textarea>
+                                    <textarea style="min-height: 80px; "  class="textarea" name="short_content" v-model="form.short_content" ></textarea>
 
                                 </div>
 

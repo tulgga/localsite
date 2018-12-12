@@ -13,12 +13,14 @@
                                 </figure>
                                 <div class="content mt-1 mb-1" v-html="content.text"></div>
                             </template>
-                            <template v-else-if="content.type==1">
-
+                            <template v-else-if="content.type==2">
+                                <template v-if="content.list_type==0">
+                                    <box-news-list :page_id="id" :cat_id="content.type_id"></box-news-list>
+                                </template>
                             </template>
                         </div>
                     </div>
-                    <div class="column is-3">
+                    <div v-if="content.menu.length>0" class="column is-3">
                         <aside class="menu mb-2">
                             <template v-for="menu in $store.getters.menu">
                                 <template v-if="menu.id==content.menu">
@@ -27,16 +29,16 @@
                                     </p>
                                     <ul v-if="menu.children" class="menu-list">
                                         <li v-for="m1 in menu.children">
-                                            <span v-html="echoLink(m1)"></span>
+                                            <span v-html="echoLink(m1)" @click="scrollToTop"></span>
                                             <ul  v-if="m1.children" >
                                                 <li v-for="m2 in m1.children" >
-                                                    <span v-html="echoLink(m2)"></span>
+                                                    <span v-html="echoLink(m2)" @click="scrollToTop"></span>
                                                     <ul  v-if="m2.children" >
                                                         <li v-for="m3 in m2.children"  >
-                                                            <span v-html="echoLink(m3)"></span>
+                                                            <span v-html="echoLink(m3)" @click="scrollToTop"></span>
                                                             <ul  v-if="m3.children" >
                                                                 <li v-for="m4 in m3.children">
-                                                                    <span v-html="echoLink(m4)"></span>
+                                                                    <span v-html="echoLink(m4)" @click="scrollToTop"></span>
                                                                 </li>
                                                             </ul>
                                                         </li>
@@ -48,7 +50,7 @@
                                 </template>
                             </template>
                         </aside>
-                        <side-bar></side-bar>
+                        <!--<side-bar></side-bar>-->
                     </div>
                 </div>
             </div>
@@ -58,7 +60,9 @@
     </div>
 </template>
 <script>
+    import BoxNewsList from "../../components/helpers/BoxNewsList";
     export default {
+        components: {BoxNewsList},
         data() {
             return {
                 id: false,
@@ -103,7 +107,11 @@
                 axios.get('/page/0/'+this.id).then((response) => {
                     this.fetched=true
                     this.content=response.data.success
+
                     if(this.content){
+                        if(this.content.type==3) {
+                            this.$router.push({path:'/p/'+this.content.type_id});
+                        }
                         this.metaInfo.title=this.content.title
                         this.metaInfo.meta[1].content=this.content.shortContent
                         this.metaInfo.meta[2].content=this.content.title+' ← '+window.title
@@ -138,12 +146,15 @@
                     blank ='target="_blank"';
                 }
                 var href;
-                if(menu.type!=1){
-                    href='href="#'+menu.link+'"'
-                } else {
+                if(menu.type==1){
                     href='href="'+menu.link+'"'
+                } else {
+                    href='href="#'+menu.link+'"'
                 }
-                return '<a '+active+' '+blank+' href="#'+menu.link+'">'+menu.name+'</a>'
+                return '<a '+active+' '+blank+' '+href+'>'+menu.name+'</a>'
+            },
+            scrollToTop() {
+                window.scrollTo(0,0);
             }
         },
         metaInfo() {

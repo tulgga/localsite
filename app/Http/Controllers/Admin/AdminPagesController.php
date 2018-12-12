@@ -113,7 +113,7 @@ class AdminPagesController extends Controller
         } else {
             $Page->link='/p/'.$id;
         }
-
+        $Page->list_type=$data['list_type'];
         $Page->type=$data['type'];
         $Page->type_id=$data['type_id'];
         $Page->blank=$data['blank'];
@@ -143,6 +143,7 @@ class AdminPagesController extends Controller
         $Page->order_num=$data['order_num'];
         $Page->type=$data['type'];
         $Page->type_id=$data['type_id'];
+        $Page->list_type=$data['list_type'];
         $Page->blank=$data['blank'];
         $Page->save();
 
