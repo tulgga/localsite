@@ -84051,6 +84051,28 @@ if (false) {(function () {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["a"] = ({
     props: ['cat_id', 'page_id'],
@@ -84074,17 +84096,17 @@ if (false) {(function () {
         fetchData: function fetchData() {
             var _this = this;
 
+            this.post = false;
             this.page = this.$route.query.page;
             if (!this.page) {
-                axios.get('/newsListByCategoryBox/0/12/' + this.cat_id).then(function (response) {
+                axios.get('/newsListByCategoryBox/0/10/' + this.cat_id).then(function (response) {
                     _this.post = response.data.success;
                 });
             } else {
-                axios.get('/newsListByCategoryBox/0/12/' + this.cat_id + '?page=' + this.page).then(function (response) {
+                axios.get('/newsListByCategoryBox/0/10/' + this.cat_id + '?page=' + this.page).then(function (response) {
                     _this.post = response.data.success;
                 });
             }
-            console.log(this.post);
         }
     }
 });
@@ -87576,20 +87598,48 @@ var render = function() {
               _c("div", { staticClass: "boxnewslist  m-1" }, [
                 _c("div", { staticClass: "columns shadow" }, [
                   _c("div", { staticClass: "column is-3" }, [
-                    p.type === 2
-                      ? _c("img", {
-                          attrs: {
-                            src:
-                              "https://img.youtube.com/vi/" + p.image + "/0.jpg"
-                          }
-                        })
-                      : _c("img", {
-                          attrs: {
-                            src:
-                              _vm.siteUrl +
-                              p.image.replace("images/", "/uploads/medium/")
-                          }
-                        })
+                    _c(
+                      "div",
+                      { staticClass: "boxnewslist-img" },
+                      [
+                        _c("router-link", { attrs: { to: "/news/" + p.id } }, [
+                          p.type === 2
+                            ? _c("img", {
+                                attrs: {
+                                  src:
+                                    "https://img.youtube.com/vi/" +
+                                    p.image +
+                                    "/0.jpg"
+                                }
+                              })
+                            : _c("img", {
+                                attrs: {
+                                  src:
+                                    _vm.siteUrl +
+                                    p.image.replace(
+                                      "images/",
+                                      "/uploads/medium/"
+                                    )
+                                }
+                              }),
+                          _vm._v(" "),
+                          p.type === 2
+                            ? _c("div", { staticClass: "type" }, [
+                                _c("i", { staticClass: "fas fa-play" })
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          p.type === 1
+                            ? _c("div", { staticClass: "type" }, [
+                                _c("i", { staticClass: "fas fa-camera" })
+                              ])
+                            : _vm._e()
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticStyle: { clear: "both" } })
+                      ],
+                      1
+                    )
                   ]),
                   _vm._v(" "),
                   _c(
@@ -87621,7 +87671,73 @@ var render = function() {
                 _c("div", { staticClass: "is-clearfix" })
               ])
             ]
-          })
+          }),
+          _vm._v(" "),
+          _c(
+            "nav",
+            {
+              staticClass: "pagination",
+              attrs: { role: "navigation", "aria-label": "pagination" }
+            },
+            [
+              _c(
+                "a",
+                {
+                  staticClass: "pagination-previous",
+                  attrs: {
+                    disabled: _vm.post.current_page === 1,
+                    href:
+                      "#/p/" +
+                      _vm.page_id +
+                      "?page=" +
+                      (_vm.post.current_page - 1)
+                  }
+                },
+                [_vm._v("Өмнөх")]
+              ),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass: "pagination-next",
+                  attrs: {
+                    disabled: _vm.post.current_page === _vm.post.last_page,
+                    href:
+                      "#/p/" +
+                      _vm.page_id +
+                      "?page=" +
+                      (_vm.post.current_page + 1)
+                  }
+                },
+                [_vm._v("Дараах")]
+              ),
+              _vm._v(" "),
+              _c(
+                "ul",
+                { staticClass: "pagination-list" },
+                [
+                  _vm._l(_vm.post.last_page, function(i) {
+                    return [
+                      _c("li", [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "pagination-link",
+                            class: {
+                              "is-current": _vm.post.current_page === i
+                            },
+                            attrs: { href: "#/p/" + _vm.page_id + "?page=" + i }
+                          },
+                          [_vm._v(_vm._s(i))]
+                        )
+                      ])
+                    ]
+                  })
+                ],
+                2
+              )
+            ]
+          )
         ],
         2
       )

@@ -139,8 +139,8 @@
 
                     // ded site
                     { subheader: 'Тохиргоо', role:2,},
-                    { title: 'Тохиргоо', icon: 'fas fa-sliders-h', path: '/sub_config',  role:2,},
-                    { title: "Цэс", icon: 'fas fa-bars', path: '/menu' ,  role:2},
+                    { title: 'Тохиргоо', icon: 'fas fa-sliders-h', path: '/config',  role:2,},
+                    // { title: "Цэс", icon: 'fas fa-bars', path: '/menu' ,  role:2},
                     { title: "Сутралчилгаа", icon: 'fab fa-goodreads', path: '/sidebar' ,  role:2},
                     { subheader: 'Мэдээ',  role:2 },
                     { title: 'Мэдээний ангилал', icon: 'fas fa-code-branch', path: '/news_category' ,  role:3 },

@@ -277,7 +277,10 @@ a {
       }
 
       #menu {
+        position: relative;
         zoom:1;
+
+        z-index: 10;
       }
 
       #menu li {
@@ -746,6 +749,40 @@ a {
   padding-bottom: 20px
 }
 
+.boxnewslist .boxnewslist-img {
+  position: relative;
+}
+.boxnewslist .boxnewslist-img img {
+  z-index: 0;
+}
+.boxnewslist .boxnewslist-img .type {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  left: auto;
+  margin-top: 0;
+  margin-left: 0;
+  z-index: 1;
+  border-radius: 50%;
+  text-align: center;
+  background: rgb(0, 108, 255);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  color: #FFF;
+  font-size: 10px;
+}
+.boxnewslist .boxnewslist-img .type:hover {
+  background: #FFF;
+  color: rgb(0, 108, 255);
+}
+
 a .boxnewslist-title {
   font-weight: normal;
   text-transform: uppercase;
@@ -764,4 +801,9 @@ a .boxnewslist-title {
   overflow: hidden;
   line-height: 22px;
   max-height: 48px;
+}
+
+.pagination {
+  padding: 0 0.3em;
+  margin-top: -1.5em;
 }
