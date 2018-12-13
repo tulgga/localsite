@@ -38498,28 +38498,33 @@ exports.default = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__modules_admin_fileCategory_fileCategoryNew__ = __webpack_require__(679);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__modules_admin_pages_Pages__ = __webpack_require__(681);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__modules_admin_pages_PagesForm__ = __webpack_require__(683);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__modules_admin_linkCategory_LinkCategory__ = __webpack_require__(685);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__modules_admin_linkCategory_LinkCategoryForm__ = __webpack_require__(689);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__modules_admin_file_file__ = __webpack_require__(691);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__modules_admin_file_fileForm__ = __webpack_require__(693);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__modules_admin_news_news__ = __webpack_require__(695);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__modules_admin_news_newsForm__ = __webpack_require__(699);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__modules_admin_news_sub_news_to_main__ = __webpack_require__(701);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__modules_admin_news_sub_news__ = __webpack_require__(703);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__modules_admin_news_sub_newsForm__ = __webpack_require__(707);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__modules_admin_menu_menu__ = __webpack_require__(709);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__modules_admin_urgudul_urgudul__ = __webpack_require__(715);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__modules_admin_sidebar_sidebar__ = __webpack_require__(717);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__modules_admin_poll_poll__ = __webpack_require__(721);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__modules_admin_poll_pollForm__ = __webpack_require__(723);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__modules_admin_zar_zar__ = __webpack_require__(725);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__modules_admin_zar_zarForm__ = __webpack_require__(727);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__modules_admin_Links_Link__ = __webpack_require__(729);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__modules_admin_Links_LinkForm__ = __webpack_require__(733);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__modules_admin_employee_Profile__ = __webpack_require__(735);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__modules_admin_config_Config__ = __webpack_require__(737);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__modules_auth_Login__ = __webpack_require__(739);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__modules_system_NotFound__ = __webpack_require__(741);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__modules_admin_pages_HelpPages__ = __webpack_require__(966);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__modules_admin_pages_HelpPagesForm__ = __webpack_require__(968);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__modules_admin_linkCategory_LinkCategory__ = __webpack_require__(685);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__modules_admin_linkCategory_LinkCategoryForm__ = __webpack_require__(689);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__modules_admin_file_file__ = __webpack_require__(691);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__modules_admin_file_fileForm__ = __webpack_require__(693);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__modules_admin_news_news__ = __webpack_require__(695);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__modules_admin_news_newsForm__ = __webpack_require__(699);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__modules_admin_news_sub_news_to_main__ = __webpack_require__(701);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__modules_admin_news_sub_news__ = __webpack_require__(703);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__modules_admin_news_sub_newsForm__ = __webpack_require__(707);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__modules_admin_menu_menu__ = __webpack_require__(709);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__modules_admin_urgudul_urgudul__ = __webpack_require__(715);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__modules_admin_sidebar_sidebar__ = __webpack_require__(717);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__modules_admin_poll_poll__ = __webpack_require__(721);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__modules_admin_poll_pollForm__ = __webpack_require__(723);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__modules_admin_zar_zar__ = __webpack_require__(725);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__modules_admin_zar_zarForm__ = __webpack_require__(727);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__modules_admin_Links_Link__ = __webpack_require__(729);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__modules_admin_Links_LinkForm__ = __webpack_require__(733);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__modules_admin_employee_Profile__ = __webpack_require__(735);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__modules_admin_config_Config__ = __webpack_require__(737);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__modules_auth_Login__ = __webpack_require__(739);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__modules_system_NotFound__ = __webpack_require__(741);
+
+
+
 
 
 
@@ -38580,8 +38585,8 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_
 var routes = [{
     path: '/login',
     name: 'login',
-    component: __WEBPACK_IMPORTED_MODULE_33__modules_auth_Login__["a" /* default */]
-}, { path: "*", component: __WEBPACK_IMPORTED_MODULE_34__modules_system_NotFound__["a" /* default */] }, {
+    component: __WEBPACK_IMPORTED_MODULE_35__modules_auth_Login__["a" /* default */]
+}, { path: "*", component: __WEBPACK_IMPORTED_MODULE_36__modules_system_NotFound__["a" /* default */] }, {
     path: '/',
     name: 'home',
     component: __WEBPACK_IMPORTED_MODULE_3__modules_admin_Dashboard__["a" /* default */],
@@ -38620,7 +38625,7 @@ var routes = [{
 }, {
     path: '/config',
     name: 'config',
-    component: __WEBPACK_IMPORTED_MODULE_32__modules_admin_config_Config__["a" /* default */],
+    component: __WEBPACK_IMPORTED_MODULE_34__modules_admin_config_Config__["a" /* default */],
     meta: {
         requiresAuth: true,
         page_title: 'Тохиргоо',
@@ -38632,7 +38637,7 @@ var routes = [{
 }, {
     path: '/menu',
     name: 'menu',
-    component: __WEBPACK_IMPORTED_MODULE_22__modules_admin_menu_menu__["a" /* default */],
+    component: __WEBPACK_IMPORTED_MODULE_24__modules_admin_menu_menu__["a" /* default */],
     meta: {
         requiresAuth: true,
         page_title: 'Цэс',
@@ -38656,7 +38661,7 @@ var routes = [{
 }, {
     path: '/sub_news_publish',
     name: 'subNewsPublish',
-    component: __WEBPACK_IMPORTED_MODULE_19__modules_admin_news_sub_news_to_main__["a" /* default */],
+    component: __WEBPACK_IMPORTED_MODULE_21__modules_admin_news_sub_news_to_main__["a" /* default */],
     meta: {
         requiresAuth: true,
         page_title: 'Орон нутгийн мэдээ',
@@ -38668,7 +38673,7 @@ var routes = [{
 }, {
     path: '/profile',
     name: 'profile',
-    component: __WEBPACK_IMPORTED_MODULE_31__modules_admin_employee_Profile__["a" /* default */],
+    component: __WEBPACK_IMPORTED_MODULE_33__modules_admin_employee_Profile__["a" /* default */],
     meta: {
         requiresAuth: true,
         page_title: 'Миний профайл',
@@ -38680,7 +38685,7 @@ var routes = [{
     component: __WEBPACK_IMPORTED_MODULE_11__modules_admin_pages_Pages__["a" /* default */],
     meta: {
         requiresAuth: true,
-        page_title: 'Хуудас',
+        page_title: 'Үндсэн цэс',
         bread_crumbs: [{
             title: 'Мэдээ',
             rname: 'home'
@@ -38720,9 +38725,54 @@ var routes = [{
         }
     }]
 }, {
+    path: '/helppages',
+    name: 'helppages',
+    component: __WEBPACK_IMPORTED_MODULE_13__modules_admin_pages_HelpPages__["a" /* default */],
+    meta: {
+        requiresAuth: true,
+        page_title: 'Туслах цэс',
+        bread_crumbs: [{
+            title: 'Мэдээ',
+            rname: 'home'
+        }]
+    },
+    children: [{
+        path: 'create',
+        component: __WEBPACK_IMPORTED_MODULE_14__modules_admin_pages_HelpPagesForm__["a" /* default */],
+        name: 'help_create_page',
+        meta: {
+            page_title: 'Нэмэх',
+            bread_crumbs: [{
+                title: 'ЕРӨНХИЙ',
+                rname: 'home'
+            }, {
+                title: 'Дэд сайтууд',
+                rname: 'sites'
+            }],
+            notloading: true,
+            is_modal: true
+        }
+    }, {
+        path: ':id/update',
+        component: __WEBPACK_IMPORTED_MODULE_14__modules_admin_pages_HelpPagesForm__["a" /* default */],
+        name: 'help_update_page',
+        meta: {
+            page_title: 'Засах',
+            bread_crumbs: [{
+                title: 'ЕРӨНХИЙ',
+                rname: 'home'
+            }, {
+                title: 'Дэд сайтууд',
+                rname: 'sites'
+            }],
+            notloading: true,
+            is_modal: true
+        }
+    }]
+}, {
     path: '/files',
     name: 'files',
-    component: __WEBPACK_IMPORTED_MODULE_15__modules_admin_file_file__["a" /* default */],
+    component: __WEBPACK_IMPORTED_MODULE_17__modules_admin_file_file__["a" /* default */],
     meta: {
         requiresAuth: true,
         page_title: 'Файлын сан',
@@ -38733,7 +38783,7 @@ var routes = [{
     },
     children: [{
         path: 'create',
-        component: __WEBPACK_IMPORTED_MODULE_16__modules_admin_file_fileForm__["a" /* default */],
+        component: __WEBPACK_IMPORTED_MODULE_18__modules_admin_file_fileForm__["a" /* default */],
         name: 'create_file',
         meta: {
             page_title: 'Нэмэх',
@@ -38746,7 +38796,7 @@ var routes = [{
         }
     }, {
         path: ':id/update',
-        component: __WEBPACK_IMPORTED_MODULE_16__modules_admin_file_fileForm__["a" /* default */],
+        component: __WEBPACK_IMPORTED_MODULE_18__modules_admin_file_fileForm__["a" /* default */],
         name: 'update_file',
         meta: {
             page_title: 'Засах',
@@ -38761,7 +38811,7 @@ var routes = [{
 }, {
     path: '/news',
     name: 'news',
-    component: __WEBPACK_IMPORTED_MODULE_17__modules_admin_news_news__["a" /* default */],
+    component: __WEBPACK_IMPORTED_MODULE_19__modules_admin_news_news__["a" /* default */],
     meta: {
         requiresAuth: true,
         page_title: 'Мэдээ',
@@ -38772,7 +38822,7 @@ var routes = [{
     },
     children: [{
         path: 'create',
-        component: __WEBPACK_IMPORTED_MODULE_18__modules_admin_news_newsForm__["a" /* default */],
+        component: __WEBPACK_IMPORTED_MODULE_20__modules_admin_news_newsForm__["a" /* default */],
         name: 'create_news',
         meta: {
             page_title: 'Нэмэх',
@@ -38785,7 +38835,7 @@ var routes = [{
         }
     }, {
         path: ':id/update',
-        component: __WEBPACK_IMPORTED_MODULE_18__modules_admin_news_newsForm__["a" /* default */],
+        component: __WEBPACK_IMPORTED_MODULE_20__modules_admin_news_newsForm__["a" /* default */],
         name: 'update_news',
         meta: {
             page_title: 'Засах',
@@ -38800,7 +38850,7 @@ var routes = [{
 }, {
     path: '/sub_news',
     name: 'sub_news',
-    component: __WEBPACK_IMPORTED_MODULE_20__modules_admin_news_sub_news__["a" /* default */],
+    component: __WEBPACK_IMPORTED_MODULE_22__modules_admin_news_sub_news__["a" /* default */],
     meta: {
         requiresAuth: true,
         page_title: 'Мэдээ',
@@ -38811,7 +38861,7 @@ var routes = [{
     },
     children: [{
         path: 'create',
-        component: __WEBPACK_IMPORTED_MODULE_21__modules_admin_news_sub_newsForm__["a" /* default */],
+        component: __WEBPACK_IMPORTED_MODULE_23__modules_admin_news_sub_newsForm__["a" /* default */],
         name: 'create_sub_news',
         meta: {
             page_title: 'Нэмэх',
@@ -38824,7 +38874,7 @@ var routes = [{
         }
     }, {
         path: ':id/update',
-        component: __WEBPACK_IMPORTED_MODULE_21__modules_admin_news_sub_newsForm__["a" /* default */],
+        component: __WEBPACK_IMPORTED_MODULE_23__modules_admin_news_sub_newsForm__["a" /* default */],
         name: 'update_sub_news',
         meta: {
             page_title: 'Засах',
@@ -38839,7 +38889,7 @@ var routes = [{
 }, {
     path: '/poll',
     name: 'poll',
-    component: __WEBPACK_IMPORTED_MODULE_25__modules_admin_poll_poll__["a" /* default */],
+    component: __WEBPACK_IMPORTED_MODULE_27__modules_admin_poll_poll__["a" /* default */],
     meta: {
         requiresAuth: true,
         page_title: 'Санал асуулга',
@@ -38850,7 +38900,7 @@ var routes = [{
     },
     children: [{
         path: 'create',
-        component: __WEBPACK_IMPORTED_MODULE_26__modules_admin_poll_pollForm__["a" /* default */],
+        component: __WEBPACK_IMPORTED_MODULE_28__modules_admin_poll_pollForm__["a" /* default */],
         name: 'create_poll',
         meta: {
             page_title: 'Нэмэх',
@@ -38863,7 +38913,7 @@ var routes = [{
         }
     }, {
         path: ':id/update',
-        component: __WEBPACK_IMPORTED_MODULE_26__modules_admin_poll_pollForm__["a" /* default */],
+        component: __WEBPACK_IMPORTED_MODULE_28__modules_admin_poll_pollForm__["a" /* default */],
         name: 'update_poll',
         meta: {
             page_title: 'Засах',
@@ -38878,7 +38928,7 @@ var routes = [{
 }, {
     path: '/urgudul',
     name: 'urgudul',
-    component: __WEBPACK_IMPORTED_MODULE_23__modules_admin_urgudul_urgudul__["a" /* default */],
+    component: __WEBPACK_IMPORTED_MODULE_25__modules_admin_urgudul_urgudul__["a" /* default */],
     meta: {
         requiresAuth: true,
         page_title: 'Санал хүсэлт',
@@ -38890,7 +38940,7 @@ var routes = [{
 }, {
     path: '/sidebar',
     name: 'sidebar',
-    component: __WEBPACK_IMPORTED_MODULE_24__modules_admin_sidebar_sidebar__["a" /* default */],
+    component: __WEBPACK_IMPORTED_MODULE_26__modules_admin_sidebar_sidebar__["a" /* default */],
     meta: {
         requiresAuth: true,
         page_title: 'Сурталчилгаа',
@@ -38902,7 +38952,7 @@ var routes = [{
 }, {
     path: '/zar',
     name: 'zar',
-    component: __WEBPACK_IMPORTED_MODULE_27__modules_admin_zar_zar__["a" /* default */],
+    component: __WEBPACK_IMPORTED_MODULE_29__modules_admin_zar_zar__["a" /* default */],
     meta: {
         requiresAuth: true,
         page_title: 'Зар',
@@ -38913,7 +38963,7 @@ var routes = [{
     },
     children: [{
         path: 'create',
-        component: __WEBPACK_IMPORTED_MODULE_28__modules_admin_zar_zarForm__["a" /* default */],
+        component: __WEBPACK_IMPORTED_MODULE_30__modules_admin_zar_zarForm__["a" /* default */],
         name: 'create_zar',
         meta: {
             page_title: 'Нэмэх',
@@ -38926,7 +38976,7 @@ var routes = [{
         }
     }, {
         path: ':id/update',
-        component: __WEBPACK_IMPORTED_MODULE_28__modules_admin_zar_zarForm__["a" /* default */],
+        component: __WEBPACK_IMPORTED_MODULE_30__modules_admin_zar_zarForm__["a" /* default */],
         name: 'update_zar',
         meta: {
             page_title: 'Зар засах',
@@ -38986,7 +39036,7 @@ var routes = [{
 }, {
     path: '/link_category',
     name: 'link_category',
-    component: __WEBPACK_IMPORTED_MODULE_13__modules_admin_linkCategory_LinkCategory__["a" /* default */],
+    component: __WEBPACK_IMPORTED_MODULE_15__modules_admin_linkCategory_LinkCategory__["a" /* default */],
     meta: {
         requiresAuth: true,
         page_title: 'Холбоос ангилал',
@@ -38997,7 +39047,7 @@ var routes = [{
     },
     children: [{
         path: 'create',
-        component: __WEBPACK_IMPORTED_MODULE_14__modules_admin_linkCategory_LinkCategoryForm__["a" /* default */],
+        component: __WEBPACK_IMPORTED_MODULE_16__modules_admin_linkCategory_LinkCategoryForm__["a" /* default */],
         name: 'link_category_create',
         meta: {
             page_title: 'Нэмэх',
@@ -39013,7 +39063,7 @@ var routes = [{
         }
     }, {
         path: ':id/update',
-        component: __WEBPACK_IMPORTED_MODULE_14__modules_admin_linkCategory_LinkCategoryForm__["a" /* default */],
+        component: __WEBPACK_IMPORTED_MODULE_16__modules_admin_linkCategory_LinkCategoryForm__["a" /* default */],
         name: 'link_category_update',
         meta: {
             page_title: 'Засах',
@@ -39031,7 +39081,7 @@ var routes = [{
 }, {
     path: '/link',
     name: 'link',
-    component: __WEBPACK_IMPORTED_MODULE_29__modules_admin_Links_Link__["a" /* default */],
+    component: __WEBPACK_IMPORTED_MODULE_31__modules_admin_Links_Link__["a" /* default */],
     meta: {
         requiresAuth: true,
         page_title: 'Холбоос',
@@ -39042,7 +39092,7 @@ var routes = [{
     },
     children: [{
         path: 'create',
-        component: __WEBPACK_IMPORTED_MODULE_30__modules_admin_Links_LinkForm__["a" /* default */],
+        component: __WEBPACK_IMPORTED_MODULE_32__modules_admin_Links_LinkForm__["a" /* default */],
         name: 'link_create',
         meta: {
             page_title: 'Нэмэх',
@@ -39058,7 +39108,7 @@ var routes = [{
         }
     }, {
         path: ':id/update',
-        component: __WEBPACK_IMPORTED_MODULE_30__modules_admin_Links_LinkForm__["a" /* default */],
+        component: __WEBPACK_IMPORTED_MODULE_32__modules_admin_Links_LinkForm__["a" /* default */],
         name: 'link_update',
         meta: {
             page_title: 'Засах',
@@ -85480,7 +85530,6 @@ var modules = requireContext.keys().map(function (file) {
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
@@ -85505,6 +85554,7 @@ var modules = requireContext.keys().map(function (file) {
                 parent_id: null,
                 text: '',
                 type: 0,
+                is_main: 1,
                 type_id: null,
                 blank: 0,
                 link: null,
@@ -86571,6 +86621,9 @@ var modules = requireContext.keys().map(function (file) {
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["a"] = ({
     data: function data() {
@@ -87001,8 +87054,10 @@ var modules = requireContext.keys().map(function (file) {
             });
 
             axios.get('/site').then(function (response) {
-                _this.sites = response.data.success;
-                console.log(_this.sites);
+                _this.sites.push({ id: 0, name: 'Бүх дэд сайтад', label: 'Бүх дэд сайтад', text: 'Бүх дэд сайтад' });
+                for (var i = 0; i < response.data.success.length; i++) {
+                    _this.sites.push(response.data.success[i]);
+                }
             });
             if (this.m_id) {
                 axios.get('/news/' + this.m_id).then(function (response) {
@@ -91291,18 +91346,18 @@ function updateLink (link, options, obj) {
             user: false,
             items: [{ subheader: 'Ерөнхий', role: 0 }, { title: 'Дэд сайтууд', icon: 'fas fa-th', path: '/sites', role: 0 }, { title: 'Админ / ажилтан', icon: 'fas fa-users', path: '/employees', role: 0 }, { subheader: 'Тохиргоо', role: 1 }, { title: 'Тохиргоо', icon: 'fas fa-sliders-h', path: '/config', role: 1 },
             // { title: "Цэс", icon: 'fas fa-bars', path: '/menu' ,  role:1},
-            { title: "Сутралчилгаа", icon: 'fab fa-goodreads', path: '/sidebar', role: 1 }, { subheader: 'Мэдээ', role: 1 }, { title: 'Мэдээний ангилал', icon: 'fas fa-code-branch', path: '/news_category', role: 1 }, { title: "Мэдээ", icon: 'fas fa-newspaper', path: '/news', role: 1 }, { title: "Орон нутгийн мэдээ", icon: 'fas fa-newspaper', path: '/sub_news_publish', role: 1 }, { title: 'Хуудас', icon: 'far fa-file-alt', path: '/pages', role: 1 }, { subheader: 'Файлын сан', role: 1 }, { title: "Файлын ангилал", icon: 'fas fa-code-branch', path: '/file_category', role: 1 }, { title: "Файлын сан", icon: 'fas fa-folder', path: '/files', role: 1 }, { subheader: 'Холбоос', role: 1 }, { title: "Холбоос ангилал", icon: 'fas fa-code-branch', path: '/link_category', role: 1 }, { title: "Холбоос", icon: 'fas fa-link', path: '/link', role: 1 }, { subheader: 'Зар', role: 1 }, { title: "Зарийн ангилал", icon: 'fas fa-code-branch', path: '/zar_category', role: 1 }, { title: "Зар", icon: 'fas fa-chart-bar', path: '/zar', role: 1 }, { subheader: 'Бусад', role: 1 }, { title: "Санал асуулга", icon: 'fas fa-code-branch', path: '/poll', role: 1 }, { title: 'Санал хүсэлт', icon: 'far fa-comments', path: '/urgudul', role: 1 },
+            { title: "Сутралчилгаа", icon: 'fab fa-goodreads', path: '/sidebar', role: 1 }, { subheader: 'Мэдээ', role: 1 }, { title: 'Мэдээний ангилал', icon: 'fas fa-code-branch', path: '/news_category', role: 1 }, { title: "Мэдээ", icon: 'fas fa-newspaper', path: '/news', role: 1 }, { title: "Орон нутгийн мэдээ", icon: 'fas fa-newspaper', path: '/sub_news_publish', role: 1 }, { title: 'Үндсэн цэс', icon: 'fas fa-bars', path: '/pages', role: 1 }, { title: 'Туслах цэс', icon: 'fas fa-bars', path: '/helppages', role: 1 }, { subheader: 'Файлын сан', role: 1 }, { title: "Файлын ангилал", icon: 'fas fa-code-branch', path: '/file_category', role: 1 }, { title: "Файлын сан", icon: 'fas fa-folder', path: '/files', role: 1 }, { subheader: 'Холбоос', role: 1 }, { title: "Холбоос ангилал", icon: 'fas fa-code-branch', path: '/link_category', role: 1 }, { title: "Холбоос", icon: 'fas fa-link', path: '/link', role: 1 }, { subheader: 'Зар', role: 1 }, { title: "Зарийн ангилал", icon: 'fas fa-code-branch', path: '/zar_category', role: 1 }, { title: "Зар", icon: 'fas fa-chart-bar', path: '/zar', role: 1 }, { subheader: 'Бусад', role: 1 }, { title: "Санал асуулга", icon: 'fas fa-code-branch', path: '/poll', role: 1 }, { title: 'Санал хүсэлт', icon: 'far fa-comments', path: '/urgudul', role: 1 },
 
             // ded site
             { subheader: 'Тохиргоо', role: 2 }, { title: 'Тохиргоо', icon: 'fas fa-sliders-h', path: '/config', role: 2 },
             // { title: "Цэс", icon: 'fas fa-bars', path: '/menu' ,  role:2},
-            { title: "Сутралчилгаа", icon: 'fab fa-goodreads', path: '/sidebar', role: 2 }, { subheader: 'Мэдээ', role: 2 }, { title: 'Мэдээний ангилал', icon: 'fas fa-code-branch', path: '/news_category', role: 3 }, { title: "Мэдээ", icon: 'fas fa-newspaper', path: '/sub_news', role: 3 }, { title: 'Хуудас', icon: 'far fa-file-alt', path: '/pages', role: 3 }, { subheader: 'Файлын сан', role: 3 }, { title: "Файлын ангилал", icon: 'fas fa-code-branch', path: '/file_category', role: 3 }, { title: "Файлын сан", icon: 'fas fa-folder', path: '/files', role: 3 }, { subheader: 'Холбоос', role: 3 }, { title: "Холбоос ангилал", icon: 'fas fa-code-branch', path: '/link_category', role: 3 }, { title: "Холбоос", icon: 'fas fa-link', path: '/link', role: 3 }, { subheader: 'Бусад', role: 3 }, { title: "Санал асуулга", icon: 'fas fa-code-branch', path: '/poll', role: 3 }],
+            { title: "Сутралчилгаа", icon: 'fab fa-goodreads', path: '/sidebar', role: 2 }, { subheader: 'Мэдээ', role: 2 }, { title: 'Мэдээний ангилал', icon: 'fas fa-code-branch', path: '/news_category', role: 3 }, { title: "Мэдээ", icon: 'fas fa-newspaper', path: '/sub_news', role: 3 }, { title: 'Үндсэн цэс', icon: 'fas fa-bars', path: '/pages', role: 3 }, { title: 'Туслах цэс', icon: 'fas fa-bars', path: '/helppages', role: 3 }, { subheader: 'Файлын сан', role: 3 }, { title: "Файлын ангилал", icon: 'fas fa-code-branch', path: '/file_category', role: 3 }, { title: "Файлын сан", icon: 'fas fa-folder', path: '/files', role: 3 }, { subheader: 'Холбоос', role: 3 }, { title: "Холбоос ангилал", icon: 'fas fa-code-branch', path: '/link_category', role: 3 }, { title: "Холбоос", icon: 'fas fa-link', path: '/link', role: 3 }, { subheader: 'Бусад', role: 3 }, { title: "Санал асуулга", icon: 'fas fa-code-branch', path: '/poll', role: 3 }],
             badge_show: false
         };
     },
 
     created: function created() {
-        this.checkAdminType();
+        // this.checkAdminType();
         this.fetchData();
     },
     methods: {
@@ -95540,7 +95595,9 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "boxed-title" }, [
-      _c("div", { staticClass: "boxed-item-center title" }, [_vm._v("Хуудас")])
+      _c("div", { staticClass: "boxed-item-center title" }, [
+        _vm._v("Үндсэн цэс")
+      ])
     ])
   },
   function() {
@@ -95655,10 +95712,10 @@ var render = function() {
       _c("header", { staticClass: "modal-card-head" }, [
         _vm.m_id
           ? _c("p", { staticClass: "modal-card-title" }, [
-              _vm._v("Хуудас засах")
+              _vm._v("Үндсэн цэс засах")
             ])
           : _c("p", { staticClass: "modal-card-title" }, [
-              _vm._v("Хуудас нэмэх")
+              _vm._v("Үндсэн цэс нэмэх")
             ])
       ]),
       _vm._v(" "),
@@ -96182,14 +96239,8 @@ var render = function() {
                                               _vm._v(" "),
                                               _c(
                                                 "option",
-                                                { attrs: { value: "1" } },
+                                                { attrs: { value: "2" } },
                                                 [_vm._v("4 багана")]
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "option",
-                                                { attrs: { value: "1" } },
-                                                [_vm._v("Хүснэгт")]
                                               )
                                             ]
                                           )
@@ -97816,7 +97867,12 @@ var render = function() {
                                     "margin-bottom": "5px"
                                   }
                                 },
-                                [_vm._v(_vm._s(site.name))]
+                                [
+                                  site.id == 0
+                                    ? [_vm._v("Бүх дэд сайт")]
+                                    : [_vm._v(_vm._s(site.name))]
+                                ],
+                                2
                               )
                             ]
                           })
@@ -119196,6 +119252,1955 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 804 */,
+/* 805 */,
+/* 806 */,
+/* 807 */,
+/* 808 */,
+/* 809 */,
+/* 810 */,
+/* 811 */,
+/* 812 */,
+/* 813 */,
+/* 814 */,
+/* 815 */,
+/* 816 */,
+/* 817 */,
+/* 818 */,
+/* 819 */,
+/* 820 */,
+/* 821 */,
+/* 822 */,
+/* 823 */,
+/* 824 */,
+/* 825 */,
+/* 826 */,
+/* 827 */,
+/* 828 */,
+/* 829 */,
+/* 830 */,
+/* 831 */,
+/* 832 */,
+/* 833 */,
+/* 834 */,
+/* 835 */,
+/* 836 */,
+/* 837 */,
+/* 838 */,
+/* 839 */,
+/* 840 */,
+/* 841 */,
+/* 842 */,
+/* 843 */,
+/* 844 */,
+/* 845 */,
+/* 846 */,
+/* 847 */,
+/* 848 */,
+/* 849 */,
+/* 850 */,
+/* 851 */,
+/* 852 */,
+/* 853 */,
+/* 854 */,
+/* 855 */,
+/* 856 */,
+/* 857 */,
+/* 858 */,
+/* 859 */,
+/* 860 */,
+/* 861 */,
+/* 862 */,
+/* 863 */,
+/* 864 */,
+/* 865 */,
+/* 866 */,
+/* 867 */,
+/* 868 */,
+/* 869 */,
+/* 870 */,
+/* 871 */,
+/* 872 */,
+/* 873 */,
+/* 874 */,
+/* 875 */,
+/* 876 */,
+/* 877 */,
+/* 878 */,
+/* 879 */,
+/* 880 */,
+/* 881 */,
+/* 882 */,
+/* 883 */,
+/* 884 */,
+/* 885 */,
+/* 886 */,
+/* 887 */,
+/* 888 */,
+/* 889 */,
+/* 890 */,
+/* 891 */,
+/* 892 */,
+/* 893 */,
+/* 894 */,
+/* 895 */,
+/* 896 */,
+/* 897 */,
+/* 898 */,
+/* 899 */,
+/* 900 */,
+/* 901 */,
+/* 902 */,
+/* 903 */,
+/* 904 */,
+/* 905 */,
+/* 906 */,
+/* 907 */,
+/* 908 */,
+/* 909 */,
+/* 910 */,
+/* 911 */,
+/* 912 */,
+/* 913 */,
+/* 914 */,
+/* 915 */,
+/* 916 */,
+/* 917 */,
+/* 918 */,
+/* 919 */,
+/* 920 */,
+/* 921 */,
+/* 922 */,
+/* 923 */,
+/* 924 */,
+/* 925 */,
+/* 926 */,
+/* 927 */,
+/* 928 */,
+/* 929 */,
+/* 930 */,
+/* 931 */,
+/* 932 */,
+/* 933 */,
+/* 934 */,
+/* 935 */,
+/* 936 */,
+/* 937 */,
+/* 938 */,
+/* 939 */,
+/* 940 */,
+/* 941 */,
+/* 942 */,
+/* 943 */,
+/* 944 */,
+/* 945 */,
+/* 946 */,
+/* 947 */,
+/* 948 */,
+/* 949 */,
+/* 950 */,
+/* 951 */,
+/* 952 */,
+/* 953 */,
+/* 954 */,
+/* 955 */,
+/* 956 */,
+/* 957 */,
+/* 958 */,
+/* 959 */,
+/* 960 */,
+/* 961 */,
+/* 962 */,
+/* 963 */,
+/* 964 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+    data: function data() {
+        return {
+            siteUrl: window.surl,
+            site: window.surl.replace('http://', ''),
+            site_id: 0,
+            deletemodal: false,
+            delete_cat: false,
+            catmodal: false,
+            insert_cat: false,
+            imageni: false,
+            form: {
+                title: '',
+                id: 0,
+                parent_id: 0,
+                order_num: 0,
+                site_id: this.$store.getters.domain.id
+            },
+            fetched: false,
+            lists: [],
+            is_loading: false
+        };
+    },
+
+    created: function created() {
+        this.fetchData();
+    },
+    watch: {
+        '$route': function $route(to, from) {
+            if (from.meta.is_modal) {
+                this.fetchData();
+            }
+        }
+    },
+    methods: {
+        // api url-аас дата авч байна
+        fetchData: function fetchData() {
+            var _this = this;
+
+            this.fetched = false;
+            this.site_id = this.$store.getters.domain.id;
+            axios.get('/pages/' + this.site_id + '/0').then(function (response) {
+                _this.lists = response.data.success;
+                _this.fetched = true;
+            });
+        },
+
+
+        // Устгах
+        ustga: function ustga() {
+            var _this2 = this;
+
+            this.is_loading = true;
+            var formData = new FormData();
+            formData.append('data', JSON.stringify(this.delete_cat));
+            axios.post('/pages_delete', formData).then(function (response) {
+                _this2.deletemodal = false;
+                _this2.fetchData();
+                _this2.is_loading = false;
+                _this2.$toasted.global.toast_success({ message: _this2.$store.getters.lang.messages.is_deleted_text }); // delete success toast
+            });
+        },
+
+        changePositionMain: function changePositionMain(index, action) {
+            var _this3 = this;
+
+            if (index == 0 && action == -1) {
+                return;
+            } else if (index + 1 == this.lists.length && action == 1) {
+                return;
+            }
+            var send = {
+                id_1: this.lists[index].id,
+                id_1_num: this.lists[index + action].order_num,
+                id_2: this.lists[index + action].id,
+                id_2_num: this.lists[index].order_num
+            };
+
+            var formData = new FormData();
+            formData.append('data', JSON.stringify(send));
+            this.fetched = false;
+            axios.post('/pages_change', formData).then(function (response) {
+                _this3.fetched = true;
+                _this3.fetchData();
+                _this3.is_loading = false;
+                _this3.$toasted.global.toast_success({ message: 'Амжилттай хадгаллаа' }); // delete success toast
+            });
+        },
+        changePosition: function changePosition(index, subindex, action) {
+            var _this4 = this;
+
+            if (subindex == 0 && action == -1) {
+                return;
+            } else if (subindex + 1 == this.lists[index].children.length && action == 1) {
+                return;
+            }
+            var send = {
+                id_1: this.lists[index].children[subindex].id,
+                id_1_num: this.lists[index].children[subindex + action].order_num,
+                id_2: this.lists[index].children[subindex + action].id,
+                id_2_num: this.lists[index].children[subindex].order_num
+            };
+
+            var formData = new FormData();
+            formData.append('data', JSON.stringify(send));
+            this.fetched = false;
+            axios.post('/pages_change', formData).then(function (r) {
+                _this4.fetchData();
+                _this4.fetched = true;
+                _this4.is_loading = false;
+                _this4.$toasted.global.toast_success({ message: 'Амжилттай хадгаллаа' }); // delete success toast
+            });
+        },
+        changePositionSub: function changePositionSub(index, childindex, subindex, action) {
+            var _this5 = this;
+
+            if (subindex == 0 && action == -1) {
+                return;
+            } else if (subindex + 1 == this.lists[index].children[childindex].children.length && action == 1) {
+                return;
+            }
+            var send = {
+                id_1: this.lists[index].children[childindex].children[subindex].id,
+                id_1_num: this.lists[index].children[childindex].children[subindex + action].order_num,
+                id_2: this.lists[index].children[childindex].children[subindex + action].id,
+                id_2_num: this.lists[index].children[childindex].children[subindex].order_num
+            };
+
+            var formData = new FormData();
+            formData.append('data', JSON.stringify(send));
+            this.fetched = false;
+            axios.post('/pages_change', formData).then(function (r) {
+                _this5.fetchData();
+                _this5.fetched = true;
+                _this5.is_loading = false;
+                _this5.$toasted.global.toast_success({ message: 'Амжилттай хадгаллаа' }); // delete success toast
+            });
+        },
+        changePositionSubSub: function changePositionSubSub(index, index1, index2, index3, action) {
+            var _this6 = this;
+
+            if (index3 == 0 && action == -1) {
+                return;
+            } else if (index3 + 1 == this.lists[index].children[index1].children[index2].children.length && action == 1) {
+                return;
+            }
+            var send = {
+                id_1: this.lists[index].children[index1].children[index2].children[index3].id,
+                id_1_num: this.lists[index].children[index1].children[index2].children[index3 + action].order_num,
+                id_2: this.lists[index].children[index1].children[index2].children[index3 + action].id,
+                id_2_num: this.lists[index].children[index1].children[index2].children[index3].order_num
+            };
+
+            var formData = new FormData();
+            formData.append('data', JSON.stringify(send));
+            this.fetched = false;
+            axios.post('/pages_change', formData).then(function (r) {
+                _this6.fetchData();
+                _this6.fetched = true;
+                _this6.is_loading = false;
+                _this6.$toasted.global.toast_success({ message: 'Амжилттай хадгаллаа' }); // delete success toast
+            });
+        },
+        onFileChange: function onFileChange(fieldName, fileList) {
+            var _this7 = this;
+
+            var formData = new FormData();
+            // append the files to FormData
+            Array.from(Array(fileList.length).keys()).map(function (x) {
+                formData.append(fieldName, fileList[x], fileList[x].name);
+            });
+
+            this.image = formData.get(fieldName);
+
+            var reader = new FileReader();
+            reader.addEventListener("load", function (e) {
+                _this7.imageni = reader.result;
+            });
+            reader.readAsDataURL(fileList[0]);
+        }
+    }
+});
+
+/***/ }),
+/* 965 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_ckeditor2__ = __webpack_require__(280);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+    components: {
+        Ckeditor: __WEBPACK_IMPORTED_MODULE_0_vue_ckeditor2__["a" /* default */]
+    },
+    data: function data() {
+        return {
+            ck_config: {
+                height: 500,
+                filebrowserBrowseUrl: window.surl + '/elfinder/ckeditor'
+            },
+            siteUrl: window.surl,
+            types: null,
+            site_id: 0,
+            m_id: false, // Edit үед id орж ирнэ
+            fetched: false,
+            is_loading: false,
+            pages: [],
+            form: {
+                title: '',
+                parent_id: null,
+                text: '',
+                type: 0,
+                is_main: 0,
+                type_id: null,
+                blank: 0,
+                link: null,
+                site_id: 0,
+                list_type: 0
+            },
+            password_confirm: null,
+            imageni: false,
+            image: [],
+            aldaanuud: []
+        };
+    },
+
+    created: function created() {
+        this.fetchData();
+    },
+    computed: {},
+    methods: {
+        fetchData: function fetchData() {
+            var _this = this;
+
+            // pages_min
+            this.m_id = this.$route.params.id;
+            this.site_id = this.$store.getters.domain.id;
+            axios.get('/pages/' + this.site_id).then(function (response) {
+                _this.pages = response.data.success;
+            });
+
+            if (this.m_id) {
+                axios.get('/page_single/' + this.m_id).then(function (response) {
+                    _this.form.title = response.data.success.title;
+                    _this.form.parent_id = response.data.success.parent_id;
+                    _this.form.text = response.data.success.text;
+                    _this.form.type = response.data.success.type;
+                    _this.form.type_id = response.data.success.type_id;
+                    _this.form.blank = response.data.success.blank;
+                    _this.form.link = response.data.success.link;
+                    _this.form.site_id = response.data.success.site_id;
+                    _this.form.list_type = response.data.success.list_type;
+                    if (response.data.success.image) {
+                        _this.imageni = _this.siteUrl + '/uploads/' + response.data.success.image.replace('images/', 'small/');
+                    }
+                    _this.changeType();
+                    _this.fetched = true;
+                });
+            } else {
+
+                this.fetched = true;
+            }
+        },
+        // Back
+        butsah: function butsah() {
+            var _this2 = this;
+
+            return this.$nextTick(function () {
+                return _this2.$router.back(-1);
+            });
+        },
+        // Нэмэх, Засах
+        nemeh: function nemeh() {
+            var _this3 = this;
+
+            this.$validator.validateAll().then(function (result) {
+                if (result) {
+
+                    _this3.is_loading = true;
+                    _this3.form.site_id = _this3.site_id;
+
+                    var formData = new FormData();
+                    formData.append('data', JSON.stringify(_this3.form));
+                    formData.append('image', _this3.image);
+
+                    _this3.m_id = _this3.$route.params.id;
+                    if (_this3.m_id) {
+                        // Update
+                        axios.post('/pages/' + _this3.m_id, formData).then(function (response) {
+                            if (response.data.success === 0) {
+                                alert('дэд ангилалтай хуудас байна. эх хуудаст харьяалагдах боломжгүй');
+                                _this3.is_loading = false;
+                                return;
+                            }
+                            _this3.$router.push('/helppages');
+                            _this3.$toasted.global.toast_success({ message: _this3.$store.getters.lang.messages.is_updated_text });
+                        }).catch(function (error) {
+                            _this3.aldaanuud = error.response.data.errors;
+                            for (var i = 0; i < Object.keys(_this3.aldaanuud).length; i++) {
+                                var tulhur = Object.keys(_this3.aldaanuud)[i];
+                                _this3.errors.add({ field: tulhur, msg: _this3.aldaanuud[tulhur][0] });
+                            }
+                            _this3.is_loading = false;
+                        });
+                    } else {
+                        // Create
+                        axios.post('/pages', formData).then(function (response) {
+                            _this3.$router.push('/helppages');
+                            _this3.$toasted.global.toast_success({ message: _this3.$store.getters.lang.messages.is_created_text });
+                        }).catch(function (error) {
+                            _this3.aldaanuud = error.response.data;
+                            for (var i = 0; i < Object.keys(_this3.aldaanuud).length; i++) {
+                                var tulhur = Object.keys(_this3.aldaanuud)[i];
+                                _this3.errors.add({ field: tulhur, msg: _this3.aldaanuud[tulhur][0] });
+                            }
+                            _this3.is_loading = false;
+                        });
+                    }
+                }
+            });
+        },
+        onFileChange: function onFileChange(fieldName, fileList) {
+            var _this4 = this;
+
+            var formData = new FormData();
+            // append the files to FormData
+            Array.from(Array(fileList.length).keys()).map(function (x) {
+                formData.append(fieldName, fileList[x], fileList[x].name);
+            });
+
+            this.image = formData.get(fieldName);
+
+            var reader = new FileReader();
+            reader.addEventListener("load", function (e) {
+                _this4.imageni = reader.result;
+            });
+            reader.readAsDataURL(fileList[0]);
+        },
+
+        //changeType
+        changeType: function changeType() {
+            var _this5 = this;
+
+            if (this.form.type == 2) {
+                axios.get('/news_category/' + this.form.site_id).then(function (response) {
+                    _this5.types = response.data.success;
+                });
+                return;
+            }
+
+            if (this.form.type == 3) {
+                axios.get('/page_select/' + this.form.site_id).then(function (response) {
+                    _this5.types = response.data.success;
+                });
+                return;
+            }
+
+            if (this.form.type == 4) {
+                axios.get('/file_category/' + this.form.site_id).then(function (response) {
+                    _this5.types = response.data.success;
+                });
+                return;
+            }
+
+            if (this.form.type == 5) {
+                axios.get('/link_category_show/' + this.form.site_id).then(function (response) {
+                    _this5.types = response.data.success;
+                });
+                return;
+            }
+
+            return;
+        }
+    }
+});
+
+/***/ }),
+/* 966 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_plugins_transform_object_rest_spread_transform_runtime_polyfill_false_helpers_false_node_modules_vue_loader_lib_selector_type_script_index_0_HelpPages_vue__ = __webpack_require__(964);
+/* unused harmony namespace reexport */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_85a32d8c_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_HelpPages_vue__ = __webpack_require__(967);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_runtime_component_normalizer__ = __webpack_require__(1);
+var disposed = false
+/* script */
+
+
+/* template */
+
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+
+var Component = Object(__WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_runtime_component_normalizer__["a" /* default */])(
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_plugins_transform_object_rest_spread_transform_runtime_polyfill_false_helpers_false_node_modules_vue_loader_lib_selector_type_script_index_0_HelpPages_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_85a32d8c_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_HelpPages_vue__["a" /* render */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_85a32d8c_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_HelpPages_vue__["b" /* staticRenderFns */],
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\modules\\admin\\pages\\HelpPages.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-85a32d8c", Component.options)
+  } else {
+    hotAPI.reload("data-v-85a32d8c", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+/* harmony default export */ __webpack_exports__["a"] = (Component.exports);
+
+
+/***/ }),
+/* 967 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "div",
+      { staticClass: "boxed" },
+      [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "table-responsive" }, [
+          _vm.fetched
+            ? _c(
+                "table",
+                {
+                  staticClass:
+                    "category table is-bordered  is-hoverable  table-hover is-fullwidth"
+                },
+                [
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _c(
+                    "tbody",
+                    [
+                      _vm._l(_vm.lists, function(list, i) {
+                        return [
+                          _c("tr", [
+                            _c("td", [_c("b", [_vm._v(_vm._s(list.title))])]),
+                            _vm._v(" "),
+                            _c("td", { staticClass: "p-0" }, [
+                              _c(
+                                "div",
+                                { staticClass: "data-action" },
+                                [
+                                  _c(
+                                    "div",
+                                    {
+                                      on: {
+                                        click: function($event) {
+                                          _vm.changePositionMain(i, -1)
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _c("i", {
+                                        staticClass: "fas fa-arrow-up"
+                                      })
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    {
+                                      on: {
+                                        click: function($event) {
+                                          _vm.changePositionMain(i, 1)
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _c("i", {
+                                        staticClass: "fas fa-arrow-down"
+                                      })
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "router-link",
+                                    {
+                                      attrs: {
+                                        to: "helppages/" + list.id + "/update"
+                                      }
+                                    },
+                                    [
+                                      _c("i", {
+                                        staticClass: "fas fa-pencil-alt"
+                                      })
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    {
+                                      on: {
+                                        click: function($event) {
+                                          _vm.delete_cat = list
+                                          _vm.deletemodal = true
+                                        }
+                                      }
+                                    },
+                                    [_c("i", { staticClass: "fas fa-trash" })]
+                                  )
+                                ],
+                                1
+                              )
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _vm._l(list.children, function(child, a) {
+                            return [
+                              _c("tr", [
+                                _c(
+                                  "td",
+                                  { staticStyle: { "padding-left": "25px" } },
+                                  [_vm._v("- " + _vm._s(child.title))]
+                                ),
+                                _vm._v(" "),
+                                _c("td", { staticClass: "p-0" }, [
+                                  _c(
+                                    "div",
+                                    { staticClass: "data-action" },
+                                    [
+                                      _c(
+                                        "div",
+                                        {
+                                          on: {
+                                            click: function($event) {
+                                              _vm.changePosition(i, a, -1)
+                                            }
+                                          }
+                                        },
+                                        [
+                                          _c("i", {
+                                            staticClass: "fas fa-arrow-up"
+                                          })
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        {
+                                          on: {
+                                            click: function($event) {
+                                              _vm.changePosition(i, a, 1)
+                                            }
+                                          }
+                                        },
+                                        [
+                                          _c("i", {
+                                            staticClass: "fas fa-arrow-down"
+                                          })
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "router-link",
+                                        {
+                                          attrs: {
+                                            to:
+                                              "helppages/" +
+                                              child.id +
+                                              "/update"
+                                          }
+                                        },
+                                        [
+                                          _c("i", {
+                                            staticClass: "fas fa-pencil-alt"
+                                          })
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        {
+                                          on: {
+                                            click: function($event) {
+                                              _vm.delete_cat = child
+                                              _vm.deletemodal = true
+                                            }
+                                          }
+                                        },
+                                        [
+                                          _c("i", {
+                                            staticClass: "fas fa-trash"
+                                          })
+                                        ]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ])
+                              ]),
+                              _vm._v(" "),
+                              _vm._l(child.children, function(subchild, b) {
+                                return [
+                                  _c("tr", [
+                                    _c(
+                                      "td",
+                                      {
+                                        staticStyle: { "padding-left": "50px" }
+                                      },
+                                      [_vm._v("-- " + _vm._s(subchild.title))]
+                                    ),
+                                    _vm._v(" "),
+                                    _c("td", { staticClass: "p-0" }, [
+                                      _c(
+                                        "div",
+                                        { staticClass: "data-action" },
+                                        [
+                                          _c(
+                                            "div",
+                                            {
+                                              on: {
+                                                click: function($event) {
+                                                  _vm.changePositionSub(
+                                                    i,
+                                                    a,
+                                                    b,
+                                                    -1
+                                                  )
+                                                }
+                                              }
+                                            },
+                                            [
+                                              _c("i", {
+                                                staticClass: "fas fa-arrow-up"
+                                              })
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              on: {
+                                                click: function($event) {
+                                                  _vm.changePositionSub(
+                                                    i,
+                                                    a,
+                                                    b,
+                                                    1
+                                                  )
+                                                }
+                                              }
+                                            },
+                                            [
+                                              _c("i", {
+                                                staticClass: "fas fa-arrow-down"
+                                              })
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "router-link",
+                                            {
+                                              attrs: {
+                                                to:
+                                                  "helppages/" +
+                                                  subchild.id +
+                                                  "/update"
+                                              }
+                                            },
+                                            [
+                                              _c("i", {
+                                                staticClass: "fas fa-pencil-alt"
+                                              })
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              on: {
+                                                click: function($event) {
+                                                  _vm.delete_cat = subchild
+                                                  _vm.deletemodal = true
+                                                }
+                                              }
+                                            },
+                                            [
+                                              _c("i", {
+                                                staticClass: "fas fa-trash"
+                                              })
+                                            ]
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ])
+                                  ]),
+                                  _vm._v(" "),
+                                  _vm._l(subchild.children, function(
+                                    subsubchild,
+                                    c
+                                  ) {
+                                    return [
+                                      _c("tr", [
+                                        _c(
+                                          "td",
+                                          {
+                                            staticStyle: {
+                                              "padding-left": "75px"
+                                            }
+                                          },
+                                          [
+                                            _vm._v(
+                                              "--- " + _vm._s(subsubchild.title)
+                                            )
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c("td", { staticClass: "p-0" }, [
+                                          _c(
+                                            "div",
+                                            { staticClass: "data-action" },
+                                            [
+                                              _c(
+                                                "div",
+                                                {
+                                                  on: {
+                                                    click: function($event) {
+                                                      _vm.changePositionSubSub(
+                                                        i,
+                                                        a,
+                                                        b,
+                                                        c,
+                                                        -1
+                                                      )
+                                                    }
+                                                  }
+                                                },
+                                                [
+                                                  _c("i", {
+                                                    staticClass:
+                                                      "fas fa-arrow-up"
+                                                  })
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                {
+                                                  on: {
+                                                    click: function($event) {
+                                                      _vm.changePositionSubSub(
+                                                        i,
+                                                        a,
+                                                        b,
+                                                        c,
+                                                        1
+                                                      )
+                                                    }
+                                                  }
+                                                },
+                                                [
+                                                  _c("i", {
+                                                    staticClass:
+                                                      "fas fa-arrow-down"
+                                                  })
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "router-link",
+                                                {
+                                                  attrs: {
+                                                    to:
+                                                      "helppages/" +
+                                                      subsubchild.id +
+                                                      "/update"
+                                                  }
+                                                },
+                                                [
+                                                  _c("i", {
+                                                    staticClass:
+                                                      "fas fa-pencil-alt"
+                                                  })
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                {
+                                                  on: {
+                                                    click: function($event) {
+                                                      _vm.delete_cat = subsubchild
+                                                      _vm.deletemodal = true
+                                                    }
+                                                  }
+                                                },
+                                                [
+                                                  _c("i", {
+                                                    staticClass: "fas fa-trash"
+                                                  })
+                                                ]
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        ])
+                                      ])
+                                    ]
+                                  })
+                                ]
+                              })
+                            ]
+                          })
+                        ]
+                      })
+                    ],
+                    2
+                  )
+                ]
+              )
+            : _c("div", { staticClass: "pageloader" }, [
+                _c("div", { staticClass: "sp sp-wave" }),
+                _vm._v(" "),
+                _c("p", [
+                  _vm._v(_vm._s(_vm.$store.getters.lang.messages.loading))
+                ])
+              ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "boxed-item-center absolute" },
+          [
+            _c(
+              "router-link",
+              {
+                staticClass: "add_button",
+                attrs: { to: { name: "help_create_page" } }
+              },
+              [_vm._v("+")]
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c("router-view")
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _vm.deletemodal
+      ? _c("div", { staticClass: "modal is-active" }, [
+          _c("div", {
+            staticClass: "modal-background",
+            on: {
+              click: function($event) {
+                _vm.deletemodal = false
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "modal-card modal-card-small" }, [
+            _vm._m(2),
+            _vm._v(" "),
+            _vm._m(3),
+            _vm._v(" "),
+            _c("footer", { staticClass: "modal-card-foot" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "button is-text",
+                  on: {
+                    click: function($event) {
+                      _vm.deletemodal = false
+                    }
+                  }
+                },
+                [_vm._v("Буцах")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "button is-danger add_button",
+                  class: { "is-loading": _vm.is_loading },
+                  attrs: { disabled: _vm.is_loading },
+                  on: {
+                    click: function($event) {
+                      _vm.ustga()
+                    }
+                  }
+                },
+                [_c("span", [_vm._v("Устгах")])]
+              )
+            ])
+          ])
+        ])
+      : _vm._e()
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "boxed-title" }, [
+      _c("div", { staticClass: "boxed-item-center title" }, [
+        _vm._v("Туслах цэс")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Гарчиг")]),
+        _vm._v(" "),
+        _c("th", { staticClass: "has-text-right", attrs: { width: "130" } })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("header", { staticClass: "modal-card-head" }, [
+      _c("p", { staticClass: "modal-card-title" }, [_vm._v("Хуудас устгах")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("section", { staticClass: "modal-card-body" }, [
+      _c("p", { staticClass: "has-text-centered" }, [
+        _vm._v("Та итгэлтэй байна уу?")
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-85a32d8c", { render: render, staticRenderFns: staticRenderFns })
+  }
+}
+
+/***/ }),
+/* 968 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_plugins_transform_object_rest_spread_transform_runtime_polyfill_false_helpers_false_node_modules_vue_loader_lib_selector_type_script_index_0_HelpPagesForm_vue__ = __webpack_require__(965);
+/* unused harmony namespace reexport */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_f18691c4_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_HelpPagesForm_vue__ = __webpack_require__(969);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_runtime_component_normalizer__ = __webpack_require__(1);
+var disposed = false
+/* script */
+
+
+/* template */
+
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+
+var Component = Object(__WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_runtime_component_normalizer__["a" /* default */])(
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_plugins_transform_object_rest_spread_transform_runtime_polyfill_false_helpers_false_node_modules_vue_loader_lib_selector_type_script_index_0_HelpPagesForm_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_f18691c4_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_HelpPagesForm_vue__["a" /* render */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_f18691c4_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_HelpPagesForm_vue__["b" /* staticRenderFns */],
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\modules\\admin\\pages\\HelpPagesForm.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-f18691c4", Component.options)
+  } else {
+    hotAPI.reload("data-v-f18691c4", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+/* harmony default export */ __webpack_exports__["a"] = (Component.exports);
+
+
+/***/ }),
+/* 969 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "modal is-active" }, [
+    _c("div", { staticClass: "modal-background" }),
+    _vm._v(" "),
+    _c("div", { staticClass: "modal-card modal-card-large" }, [
+      _c("header", { staticClass: "modal-card-head" }, [
+        _vm.m_id
+          ? _c("p", { staticClass: "modal-card-title" }, [
+              _vm._v("Туслах цэс засах")
+            ])
+          : _c("p", { staticClass: "modal-card-title" }, [
+              _vm._v("Туслах цэс нэмэх")
+            ])
+      ]),
+      _vm._v(" "),
+      _vm.fetched
+        ? _c("section", { staticClass: "modal-card-body" }, [
+            _c(
+              "form",
+              {
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    return _vm.nemeh($event)
+                  }
+                }
+              },
+              [
+                _c("div", { staticClass: "columns is-mobile is-multiline" }, [
+                  _c(
+                    "div",
+                    { staticClass: "column is-12-mobile is-2-tablet" },
+                    [
+                      _c("div", { staticClass: "field" }, [
+                        _c("label", { staticClass: "label" }, [
+                          _vm._v("Зураг")
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "control has-image" }, [
+                          _c(
+                            "div",
+                            { staticClass: "file is-boxed is-fullwidth" },
+                            [
+                              _c("label", { staticClass: "file-label" }, [
+                                _c("input", {
+                                  staticClass: "file-input",
+                                  attrs: { type: "file", name: "image2" },
+                                  on: {
+                                    change: function($event) {
+                                      _vm.onFileChange(
+                                        $event.target.name,
+                                        $event.target.files
+                                      )
+                                    }
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c("span", { staticClass: "file-cta" }, [
+                                  _vm.imageni
+                                    ? _c(
+                                        "span",
+                                        {
+                                          staticClass: "file-icon",
+                                          style:
+                                            "background-image: url(" +
+                                            _vm.imageni +
+                                            ");"
+                                        },
+                                        [
+                                          _c("i", {
+                                            staticClass: "ion-ios-add-outline"
+                                          })
+                                        ]
+                                      )
+                                    : _c(
+                                        "span",
+                                        {
+                                          staticClass: "file-icon no-background"
+                                        },
+                                        [
+                                          _c("i", {
+                                            staticClass: "ion-ios-add-outline"
+                                          })
+                                        ]
+                                      )
+                                ])
+                              ])
+                            ]
+                          )
+                        ])
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "column is-12-mobile is-10-tablet" },
+                    [
+                      _c("div", { staticClass: "field" }, [
+                        _c("label", { staticClass: "label" }, [
+                          _vm._v("Гарчиг")
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "control" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "validate",
+                                rawName: "v-validate",
+                                value: "required",
+                                expression: "'required'"
+                              },
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.form.title,
+                                expression: "form.title"
+                              }
+                            ],
+                            class: {
+                              input: true,
+                              "is-danger": _vm.errors.has("title")
+                            },
+                            attrs: { type: "text", name: "title" },
+                            domProps: { value: _vm.form.title },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(_vm.form, "title", $event.target.value)
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "p",
+                            {
+                              directives: [
+                                {
+                                  name: "show",
+                                  rawName: "v-show",
+                                  value: _vm.errors.has("title"),
+                                  expression: "errors.has('title')"
+                                }
+                              ],
+                              staticClass: "help is-danger"
+                            },
+                            [_vm._v(_vm._s(_vm.errors.first("title")))]
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "field" }, [
+                        _c("label", { staticClass: "label" }, [
+                          _vm._v("Төрөл")
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "control" }, [
+                          _c("div", { staticClass: "select" }, [
+                            _c(
+                              "select",
+                              {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.form.type,
+                                    expression: "form.type"
+                                  }
+                                ],
+                                on: {
+                                  change: [
+                                    function($event) {
+                                      var $$selectedVal = Array.prototype.filter
+                                        .call($event.target.options, function(
+                                          o
+                                        ) {
+                                          return o.selected
+                                        })
+                                        .map(function(o) {
+                                          var val =
+                                            "_value" in o ? o._value : o.value
+                                          return val
+                                        })
+                                      _vm.$set(
+                                        _vm.form,
+                                        "type",
+                                        $event.target.multiple
+                                          ? $$selectedVal
+                                          : $$selectedVal[0]
+                                      )
+                                    },
+                                    _vm.changeType
+                                  ]
+                                }
+                              },
+                              [
+                                _c("option", { attrs: { value: "0" } }, [
+                                  _vm._v("Зураг текс")
+                                ]),
+                                _vm._v(" "),
+                                _c("option", { attrs: { value: "1" } }, [
+                                  _vm._v("Линк")
+                                ]),
+                                _vm._v(" "),
+                                _c("option", { attrs: { value: "2" } }, [
+                                  _vm._v("Мэдээний ангилал")
+                                ]),
+                                _vm._v(" "),
+                                _c("option", { attrs: { value: "3" } }, [
+                                  _vm._v("Өөр хуудасны контент болох")
+                                ]),
+                                _vm._v(" "),
+                                _c("option", { attrs: { value: "4" } }, [
+                                  _vm._v("Файлын ангилал")
+                                ]),
+                                _vm._v(" "),
+                                _c("option", { attrs: { value: "5" } }, [
+                                  _vm._v("Холбоос ангилал")
+                                ])
+                              ]
+                            )
+                          ])
+                        ])
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "column is-12-mobile is-12-tablet" },
+                    [
+                      _vm.form.type == 0
+                        ? [
+                            _c("div", { staticClass: "field" }, [
+                              _c("label", { staticClass: "label" }, [
+                                _vm._v("Дэлгэрэнгүй мэдээлэл")
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "control has-autoblock" },
+                                [
+                                  _c("ckeditor", {
+                                    attrs: {
+                                      name: "text",
+                                      type: "classic",
+                                      config: _vm.ck_config
+                                    },
+                                    model: {
+                                      value: _vm.form.text,
+                                      callback: function($$v) {
+                                        _vm.$set(_vm.form, "text", $$v)
+                                      },
+                                      expression: "form.text"
+                                    }
+                                  })
+                                ],
+                                1
+                              )
+                            ])
+                          ]
+                        : _vm.form.type == 1
+                          ? [
+                              _c("div", { staticClass: "field" }, [
+                                _c("label", { staticClass: "label" }, [
+                                  _vm._v("Линк")
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "control" }, [
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.form.link,
+                                        expression: "form.link"
+                                      }
+                                    ],
+                                    staticClass: "input",
+                                    attrs: { type: "text" },
+                                    domProps: { value: _vm.form.link },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.form,
+                                          "link",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  })
+                                ])
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "field" }, [
+                                _c("label", { staticClass: "label" }, [
+                                  _vm._v("Шинэ цонхонд харуулах")
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "control" }, [
+                                  _c("div", { staticClass: "select" }, [
+                                    _c(
+                                      "select",
+                                      {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.form.blank,
+                                            expression: "form.blank"
+                                          }
+                                        ],
+                                        on: {
+                                          change: function($event) {
+                                            var $$selectedVal = Array.prototype.filter
+                                              .call(
+                                                $event.target.options,
+                                                function(o) {
+                                                  return o.selected
+                                                }
+                                              )
+                                              .map(function(o) {
+                                                var val =
+                                                  "_value" in o
+                                                    ? o._value
+                                                    : o.value
+                                                return val
+                                              })
+                                            _vm.$set(
+                                              _vm.form,
+                                              "blank",
+                                              $event.target.multiple
+                                                ? $$selectedVal
+                                                : $$selectedVal[0]
+                                            )
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "0" } },
+                                          [_vm._v("Үгүй")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "1" } },
+                                          [_vm._v("Тийм")]
+                                        )
+                                      ]
+                                    )
+                                  ])
+                                ])
+                              ])
+                            ]
+                          : [
+                              _c(
+                                "div",
+                                { staticClass: "field" },
+                                [
+                                  _c("label", { staticClass: "label" }, [
+                                    _vm._v("Сонгох")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("treeselect", {
+                                    attrs: {
+                                      placeholder: "сонгох",
+                                      "default-expand-level": 10,
+                                      options: _vm.types
+                                    },
+                                    model: {
+                                      value: _vm.form.type_id,
+                                      callback: function($$v) {
+                                        _vm.$set(_vm.form, "type_id", $$v)
+                                      },
+                                      expression: "form.type_id"
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _vm.form.type == 2
+                                ? [
+                                    _c("div", { staticClass: "field" }, [
+                                      _c("label", { staticClass: "label" }, [
+                                        _vm._v("Харагдах байдал")
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("div", { staticClass: "control" }, [
+                                        _c("div", { staticClass: "select" }, [
+                                          _c(
+                                            "select",
+                                            {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value: _vm.form.list_type,
+                                                  expression: "form.list_type"
+                                                }
+                                              ],
+                                              on: {
+                                                change: function($event) {
+                                                  var $$selectedVal = Array.prototype.filter
+                                                    .call(
+                                                      $event.target.options,
+                                                      function(o) {
+                                                        return o.selected
+                                                      }
+                                                    )
+                                                    .map(function(o) {
+                                                      var val =
+                                                        "_value" in o
+                                                          ? o._value
+                                                          : o.value
+                                                      return val
+                                                    })
+                                                  _vm.$set(
+                                                    _vm.form,
+                                                    "list_type",
+                                                    $event.target.multiple
+                                                      ? $$selectedVal
+                                                      : $$selectedVal[0]
+                                                  )
+                                                }
+                                              }
+                                            },
+                                            [
+                                              _c(
+                                                "option",
+                                                { attrs: { value: "0" } },
+                                                [_vm._v("Блог жагсаалт")]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "option",
+                                                { attrs: { value: "1" } },
+                                                [_vm._v("3 багана")]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "option",
+                                                { attrs: { value: "2" } },
+                                                [_vm._v("4 багана")]
+                                              )
+                                            ]
+                                          )
+                                        ])
+                                      ])
+                                    ])
+                                  ]
+                                : _vm._e()
+                            ]
+                    ],
+                    2
+                  )
+                ])
+              ]
+            )
+          ])
+        : _c("div", { staticClass: "main-bodoh is-loading" }),
+      _vm._v(" "),
+      _c("footer", { staticClass: "modal-card-foot" }, [
+        _c("a", { staticClass: "button is-text", on: { click: _vm.butsah } }, [
+          _vm._v(_vm._s(_vm.$store.getters.lang.messages.is_back_button))
+        ]),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass:
+              "button is-primary add_button has-text-weight-semibold",
+            class: { "is-loading": _vm.is_loading },
+            attrs: { disabled: _vm.is_loading || _vm.fetched === false },
+            on: { click: _vm.nemeh }
+          },
+          [
+            _c("span", [
+              _vm._v(_vm._s(_vm.$store.getters.lang.messages.is_save_button))
+            ])
+          ]
+        )
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-f18691c4", { render: render, staticRenderFns: staticRenderFns })
+  }
+}
 
 /***/ })
 /******/ ]);

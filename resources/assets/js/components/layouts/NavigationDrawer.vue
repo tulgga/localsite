@@ -121,7 +121,8 @@
                         { title: 'Мэдээний ангилал', icon: 'fas fa-code-branch', path: '/news_category' ,  role:1 },
                         { title: "Мэдээ", icon: 'fas fa-newspaper', path: '/news' ,  role:1},
                         { title: "Орон нутгийн мэдээ", icon: 'fas fa-newspaper', path: '/sub_news_publish' ,  role:1},
-                        { title: 'Хуудас', icon: 'far fa-file-alt', path: '/pages' ,  role:1},
+                        { title: 'Үндсэн цэс', icon: 'fas fa-bars', path: '/pages' ,  role:1},
+                        { title: 'Туслах цэс', icon: 'fas fa-bars', path: '/helppages' ,  role:1},
                     { subheader: 'Файлын сан',  role:1},
                         { title: "Файлын ангилал", icon: 'fas fa-code-branch', path: '/file_category',  role:1 },
                         { title: "Файлын сан", icon: 'fas fa-folder', path: '/files',  role:1 },
@@ -145,7 +146,8 @@
                     { subheader: 'Мэдээ',  role:2 },
                     { title: 'Мэдээний ангилал', icon: 'fas fa-code-branch', path: '/news_category' ,  role:3 },
                     { title: "Мэдээ", icon: 'fas fa-newspaper', path: '/sub_news' ,  role:3},
-                    { title: 'Хуудас', icon: 'far fa-file-alt', path: '/pages' ,  role:3},
+                    { title: 'Үндсэн цэс', icon: 'fas fa-bars', path: '/pages' ,  role:3},
+                    { title: 'Туслах цэс', icon: 'fas fa-bars', path: '/helppages' ,  role:3},
                     { subheader: 'Файлын сан',  role:3},
                     { title: "Файлын ангилал", icon: 'fas fa-code-branch', path: '/file_category',  role:3 },
                     { title: "Файлын сан", icon: 'fas fa-folder', path: '/files',  role:3 },
@@ -159,7 +161,7 @@
             }
         },
         created: function () {
-            this.checkAdminType();
+            // this.checkAdminType();
             this.fetchData();
         },
         methods: {

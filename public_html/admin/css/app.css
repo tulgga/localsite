@@ -19997,6 +19997,7 @@ aside.menu .vb-dragger {
   -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
           box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
   overflow-x: hidden;
+  margin-bottom: 40px;
 }
 
 .boxed .tabs.boxed-titliin-tab {

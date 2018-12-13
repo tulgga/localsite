@@ -10,8 +10,8 @@ CRUD Edit, Create form
         <div class="modal-background"></div>
         <div class="modal-card modal-card-large">
             <header class="modal-card-head">
-                <p v-if="m_id" class="modal-card-title">Үндсэн цэс засах</p>
-                <p v-else class="modal-card-title">Үндсэн цэс нэмэх</p>
+                <p v-if="m_id" class="modal-card-title">Туслах цэс засах</p>
+                <p v-else class="modal-card-title">Туслах цэс нэмэх</p>
             </header>
             
             <section class="modal-card-body" v-if="fetched">
@@ -48,46 +48,23 @@ CRUD Edit, Create form
                                             <p v-show="errors.has('title')" class="help is-danger">{{ errors.first('title') }}</p>
                                         </div>
                                     </div>
+
                                     <div class="field">
-                                        <label class="label">Эх хуудас</label>
+                                        <label class="label">Төрөл</label>
                                         <div class="control">
                                             <div class="select">
-                                                <select name="parent_id" v-model="form.parent_id">
-                                                    <option value="0"></option>
-                                                    <template v-for="page in pages">
-                                                        <option :value="page.id" >{{page.title}}</option>
-                                                        <template v-for="child in page.children">
-                                                            <option :value="child.id">||=={{child.title}}</option>
-                                                            <template v-for="subchild in child.children">
-                                                                <option :value="subchild.id">||==||=={{subchild.title}}</option>
-                                                            </template>
-                                                        </template>
-                                                    </template>
+                                                <select  v-model="form.type" @change="changeType">
+                                                    <option value="0">Зураг текс</option>
+                                                    <option value="1">Линк</option>
+                                                    <option value="2">Мэдээний ангилал</option>
+                                                    <option value="3">Өөр хуудасны контент болох</option>
+                                                    <option value="4">Файлын ангилал</option>
+                                                    <option value="5">Холбоос ангилал</option>
                                                 </select>
                                             </div>
-
                                         </div>
                                     </div>
-
                                 </div>
-
-                        <div class="column is-12">
-                            <div class="field">
-                                <label class="label">Төрөл</label>
-                                <div class="control">
-                                    <div class="select">
-                                        <select  v-model="form.type" @change="changeType">
-                                            <option value="0">Зураг текс</option>
-                                            <option value="1">Линк</option>
-                                            <option value="2">Мэдээний ангилал</option>
-                                            <option value="3">Өөр хуудасны контент болох</option>
-                                            <option value="4">Файлын ангилал</option>
-                                            <option value="5">Холбоос ангилал</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <div class="column is-12-mobile is-12-tablet">
                             <template v-if="form.type==0" class="column is-12-mobile is-12-tablet">
                                 <div class="field">
@@ -178,7 +155,7 @@ CRUD Edit, Create form
                     parent_id:null,
                     text: '',
                     type: 0,
-                    is_main:1,
+                    is_main:0,
                     type_id: null,
                     blank: 0,
                     link: null,
@@ -255,7 +232,7 @@ CRUD Edit, Create form
                                         this.is_loading = false;
                                         return;
                                     }
-                                    this.$router.push('/pages');
+                                    this.$router.push('/helppages');
                                     this.$toasted.global.toast_success({message: this.$store.getters.lang.messages.is_updated_text});
                                 })
                                 .catch(error => {
@@ -270,7 +247,7 @@ CRUD Edit, Create form
                             // Create
                             axios.post('/pages', formData)
                                 .then((response) => {
-                                    this.$router.push('/pages');
+                                    this.$router.push('/helppages');
                                     this.$toasted.global.toast_success({message: this.$store.getters.lang.messages.is_created_text});
                                 })
                                 .catch(error => {

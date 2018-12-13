@@ -807,3 +807,26 @@ a .boxnewslist-title {
   padding: 0 0.3em;
   margin-top: -1.5em;
 }
+
+.col3newslist {
+  position: relative;
+  background-size: cover;
+  background-position: center center;
+  height: 195px;
+}
+
+a .col3newslist .title {
+    padding: 0.5em 1em 0.5em 1em;
+    color: #FFF;
+    text-transform: uppercase;
+    position: absolute;
+    font-size: 13px;
+    font-weight: bold;
+    left: 0;
+    bottom: 0px;
+    right: 0;
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 0.8)));
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.8) 100%);
+  color:#FFF;
+  }
+

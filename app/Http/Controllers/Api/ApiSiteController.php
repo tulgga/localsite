@@ -23,7 +23,7 @@ class ApiSiteController extends Controller
     }
 
     public function page($site_id){
-        $page= Page::where('site_id',$site_id)->select('id', 'title as name', 'type', 'parent_id', 'blank', 'link')->orderBy('order_num', 'asc')->get();
+        $page= Page::where('site_id',$site_id)->where('is_main',1)->select('id', 'title as name', 'type', 'parent_id', 'blank', 'link')->orderBy('order_num', 'asc')->get();
         return response()->json([ 'success' => $this->buildTree($page) ]);
     }
 

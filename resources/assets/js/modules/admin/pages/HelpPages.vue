@@ -5,7 +5,7 @@
         <div class="boxed">
 
             <div class="boxed-title">
-                <div class="boxed-item-center title">Үндсэн цэс</div>
+                <div class="boxed-item-center title">Туслах цэс</div>
             </div>
             <div class="table-responsive">
            <table v-if="fetched" class="category table is-bordered  is-hoverable  table-hover is-fullwidth">
@@ -23,7 +23,7 @@
                            <div class="data-action">
                                <div @click="changePositionMain(i,-1)" ><i class="fas fa-arrow-up"></i></div>
                                <div @click="changePositionMain(i,1)" ><i class="fas fa-arrow-down"></i></div>
-                               <router-link :to="'pages/'+list.id+'/update'" ><i class="fas fa-pencil-alt"></i></router-link>
+                               <router-link :to="'helppages/'+list.id+'/update'" ><i class="fas fa-pencil-alt"></i></router-link>
                                <div @click="delete_cat=list; deletemodal=true;"><i class="fas fa-trash"></i></div>
                            </div>
                        </td>
@@ -36,7 +36,7 @@
                                <div class="data-action">
                                    <div @click="changePosition(i, a, -1)"><i class="fas fa-arrow-up"></i></div>
                                    <div @click="changePosition(i, a,1)"><i class="fas fa-arrow-down"></i></div>
-                                   <router-link :to="'pages/'+child.id+'/update'" ><i class="fas fa-pencil-alt"></i></router-link>
+                                   <router-link :to="'helppages/'+child.id+'/update'" ><i class="fas fa-pencil-alt"></i></router-link>
                                    <div @click="delete_cat=child; deletemodal=true;"><i class="fas fa-trash"></i></div>
                                </div>
                            </td>
@@ -48,7 +48,7 @@
                                    <div class="data-action">
                                        <div @click="changePositionSub(i, a, b, -1)"><i class="fas fa-arrow-up"></i></div>
                                        <div @click="changePositionSub(i, a, b,1)"><i class="fas fa-arrow-down"></i></div>
-                                       <router-link :to="'pages/'+subchild.id+'/update'" ><i class="fas fa-pencil-alt"></i></router-link>
+                                       <router-link :to="'helppages/'+subchild.id+'/update'" ><i class="fas fa-pencil-alt"></i></router-link>
                                        <div @click="delete_cat=subchild; deletemodal=true;"><i class="fas fa-trash"></i></div>
                                    </div>
                                </td>
@@ -60,7 +60,7 @@
                                            <div class="data-action">
                                                <div @click="changePositionSubSub(i, a, b, c, -1)"><i class="fas fa-arrow-up"></i></div>
                                                <div @click="changePositionSubSub(i, a, b, c, 1)"><i class="fas fa-arrow-down"></i></div>
-                                               <router-link :to="'pages/'+subsubchild.id+'/update'" ><i class="fas fa-pencil-alt"></i></router-link>
+                                               <router-link :to="'helppages/'+subsubchild.id+'/update'" ><i class="fas fa-pencil-alt"></i></router-link>
                                                <div @click="delete_cat=subsubchild; deletemodal=true;"><i class="fas fa-trash"></i></div>
                                            </div>
                                        </td>
@@ -78,7 +78,7 @@
             </div>
 
             <div class="boxed-item-center absolute">
-                <router-link :to="{ name: 'create_page'}" class="add_button">+</router-link>
+                <router-link :to="{ name: 'help_create_page'}" class="add_button">+</router-link>
             </div>
             <router-view></router-view>
 
@@ -148,29 +148,10 @@
             fetchData() {
                 this.fetched = false;
                 this.site_id=this.$store.getters.domain.id;
-                axios.get('/pages/'+this.site_id).then((response) => {
+                axios.get('/pages/'+this.site_id+'/0').then((response) => {
                     this.lists = response.data.success;
                     this.fetched = true;
                 })
-            },
-
-            nemeh: function(){
-                if(this.insert_cat.title===''){
-                    alert('Гарчиг  хоосон байна')
-                    return
-                }
-                this.is_loading=true;
-                let formData = new FormData();
-                formData.append('data', JSON.stringify(this.insert_cat));
-
-                axios.post('/pages', formData)
-                    .then((response) => {
-                        this.is_loading = false;
-                        this.catmodal=false;
-                        this.form ={title: '', id:0, parent_id:0, order_num:0, site_id: this.site_id};
-                        this.fetchData();
-                        this.$toasted.global.toast_success({message: this.$store.getters.lang.messages.is_updated_text});
-                    });
             },
 
             // Устгах

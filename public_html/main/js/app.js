@@ -83908,8 +83908,6 @@ if (false) {(function () {
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
@@ -84073,14 +84071,43 @@ if (false) {(function () {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["a"] = ({
-    props: ['cat_id', 'page_id'],
+    props: ['cat_id', 'page_id', 'list_type'],
     data: function data() {
         return {
             page: false,
             siteUrl: window.surl,
-            post: false
+            post: false,
+            limit: 10
         };
     },
 
@@ -84098,12 +84125,18 @@ if (false) {(function () {
 
             this.post = false;
             this.page = this.$route.query.page;
+            if (this.list_type == 1) {
+                this.limit = 15;
+            }
+            if (this.list_type == 2) {
+                this.limit = 16;
+            }
             if (!this.page) {
-                axios.get('/newsListByCategoryBox/0/10/' + this.cat_id).then(function (response) {
+                axios.get('/newsListByCategoryBox/0/' + this.limit + '/' + this.cat_id).then(function (response) {
                     _this.post = response.data.success;
                 });
             } else {
-                axios.get('/newsListByCategoryBox/0/10/' + this.cat_id + '?page=' + this.page).then(function (response) {
+                axios.get('/newsListByCategoryBox/0/' + this.limit + '/' + this.cat_id + '?page=' + this.page).then(function (response) {
                     _this.post = response.data.success;
                 });
             }
@@ -87594,84 +87627,191 @@ var render = function() {
         "div",
         [
           _vm._l(_vm.post.data, function(p) {
-            return [
-              _c("div", { staticClass: "boxnewslist  m-1" }, [
-                _c("div", { staticClass: "columns shadow" }, [
-                  _c("div", { staticClass: "column is-3" }, [
-                    _c(
-                      "div",
-                      { staticClass: "boxnewslist-img" },
-                      [
-                        _c("router-link", { attrs: { to: "/news/" + p.id } }, [
-                          p.type === 2
-                            ? _c("img", {
-                                attrs: {
-                                  src:
-                                    "https://img.youtube.com/vi/" +
-                                    p.image +
-                                    "/0.jpg"
-                                }
-                              })
-                            : _c("img", {
-                                attrs: {
-                                  src:
-                                    _vm.siteUrl +
-                                    p.image.replace(
-                                      "images/",
-                                      "/uploads/medium/"
-                                    )
-                                }
-                              }),
-                          _vm._v(" "),
-                          p.type === 2
-                            ? _c("div", { staticClass: "type" }, [
-                                _c("i", { staticClass: "fas fa-play" })
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          p.type === 1
-                            ? _c("div", { staticClass: "type" }, [
-                                _c("i", { staticClass: "fas fa-camera" })
-                              ])
-                            : _vm._e()
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticStyle: { clear: "both" } })
-                      ],
-                      1
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "column is-9" },
-                    [
-                      _c("router-link", { attrs: { to: "/news/" + p.id } }, [
+            return _vm.list_type == 0
+              ? [
+                  _c("div", { staticClass: "boxnewslist  m-1" }, [
+                    _c("div", { staticClass: "columns shadow" }, [
+                      _c("div", { staticClass: "column is-3" }, [
                         _c(
                           "div",
-                          { staticClass: "boxnewslist-title roboto-condensed" },
-                          [_vm._v(_vm._s(p.title))]
+                          { staticClass: "boxnewslist-img" },
+                          [
+                            _c(
+                              "router-link",
+                              { attrs: { to: "/news/" + p.id } },
+                              [
+                                p.type === 2
+                                  ? _c("img", {
+                                      attrs: {
+                                        src:
+                                          "https://img.youtube.com/vi/" +
+                                          p.image +
+                                          "/0.jpg"
+                                      }
+                                    })
+                                  : _c("img", {
+                                      attrs: {
+                                        src:
+                                          _vm.siteUrl +
+                                          p.image.replace(
+                                            "images/",
+                                            "/uploads/medium/"
+                                          )
+                                      }
+                                    }),
+                                _vm._v(" "),
+                                p.type === 2
+                                  ? _c("div", { staticClass: "type" }, [
+                                      _c("i", { staticClass: "fas fa-play" })
+                                    ])
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                p.type === 1
+                                  ? _c("div", { staticClass: "type" }, [
+                                      _c("i", { staticClass: "fas fa-camera" })
+                                    ])
+                                  : _vm._e()
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c("div", { staticStyle: { clear: "both" } })
+                          ],
+                          1
                         )
                       ]),
                       _vm._v(" "),
-                      _c("div", { staticClass: "date" }, [
-                        _c("i", { staticClass: "far fa-clock" }),
-                        _vm._v("  " + _vm._s(p.created_at.substring(0, 16)))
-                      ]),
-                      _vm._v(" "),
-                      _c("div", {
-                        staticClass: "boxnewslist-content",
-                        domProps: { innerHTML: _vm._s(p.short_content) }
-                      })
-                    ],
-                    1
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "is-clearfix" })
-              ])
-            ]
+                      _c(
+                        "div",
+                        { staticClass: "column is-9" },
+                        [
+                          _c(
+                            "router-link",
+                            { attrs: { to: "/news/" + p.id } },
+                            [
+                              _c(
+                                "div",
+                                {
+                                  staticClass:
+                                    "boxnewslist-title roboto-condensed"
+                                },
+                                [_vm._v(_vm._s(p.title))]
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "date" }, [
+                            _c("i", { staticClass: "far fa-clock" }),
+                            _vm._v("  " + _vm._s(p.created_at.substring(0, 16)))
+                          ]),
+                          _vm._v(" "),
+                          _c("div", {
+                            staticClass: "boxnewslist-content",
+                            domProps: { innerHTML: _vm._s(p.short_content) }
+                          })
+                        ],
+                        1
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "is-clearfix" })
+                  ])
+                ]
+              : _vm._e()
           }),
+          _vm._v(" "),
+          _vm.list_type == 1
+            ? [
+                _c(
+                  "div",
+                  { staticClass: "columns is-multiline mb-2" },
+                  [
+                    _vm._l(_vm.post.data, function(p) {
+                      return [
+                        _c(
+                          "div",
+                          { staticClass: "column is-4" },
+                          [
+                            _c(
+                              "router-link",
+                              { attrs: { to: "/news/" + p.id } },
+                              [
+                                _c(
+                                  "b-img",
+                                  {
+                                    attrs: {
+                                      value: p,
+                                      classes: "col3newslist",
+                                      size: "medium"
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "div",
+                                      { staticClass: "title roboto-condensed" },
+                                      [_vm._v(_vm._s(p.title))]
+                                    )
+                                  ]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ]
+                    })
+                  ],
+                  2
+                )
+              ]
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.list_type == 2
+            ? [
+                _c(
+                  "div",
+                  { staticClass: "columns is-multiline mb-2" },
+                  [
+                    _vm._l(_vm.post.data, function(p) {
+                      return [
+                        _c(
+                          "div",
+                          { staticClass: "column is-3" },
+                          [
+                            _c(
+                              "router-link",
+                              { attrs: { to: "/news/" + p.id } },
+                              [
+                                _c(
+                                  "b-img",
+                                  {
+                                    attrs: {
+                                      value: p,
+                                      classes: "col3newslist",
+                                      size: "medium"
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "div",
+                                      { staticClass: "title roboto-condensed" },
+                                      [_vm._v(_vm._s(p.title))]
+                                    )
+                                  ]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ]
+                    })
+                  ],
+                  2
+                )
+              ]
+            : _vm._e(),
           _vm._v(" "),
           _c(
             "nav",
@@ -87822,16 +87962,13 @@ var render = function() {
                                 ]
                               : _vm.content.type == 2
                                 ? [
-                                    _vm.content.list_type == 0
-                                      ? [
-                                          _c("box-news-list", {
-                                            attrs: {
-                                              page_id: _vm.id,
-                                              cat_id: _vm.content.type_id
-                                            }
-                                          })
-                                        ]
-                                      : _vm._e()
+                                    _c("box-news-list", {
+                                      attrs: {
+                                        page_id: _vm.id,
+                                        list_type: _vm.content.list_type,
+                                        cat_id: _vm.content.type_id
+                                      }
+                                    })
                                   ]
                                 : _vm._e()
                           ],

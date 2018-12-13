@@ -47,7 +47,10 @@
 
                     <div slot="site" slot-scope="props" >
                         <template v-for="site in props.row.site">
-                            <span class="tag is-primary" style="margin-right: 5px; margin-bottom:5px;">{{site.name}}</span>
+                            <span class="tag is-primary" style="margin-right: 5px; margin-bottom:5px;">
+                                <template v-if="site.id==0">Бүх дэд сайт</template>
+                                <template v-else>{{site.name}}</template>
+                            </span>
                         </template>
                     </div>
 

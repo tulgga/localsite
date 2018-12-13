@@ -1,8 +1,9 @@
 <template>
     <div v-if="post"  >
-        <template v-for="p in post.data">
 
-            <div class="boxnewslist  m-1">
+        <!--blog list-->
+        <template v-if="list_type==0" v-for="p in post.data">
+            <div  class="boxnewslist  m-1">
                 <div class="columns shadow">
                     <div class="column is-3">
                         <div class="boxnewslist-img">
@@ -31,6 +32,33 @@
             </div>
         </template>
 
+        <!--3 column-->
+        <template v-if="list_type==1" >
+            <div class="columns is-multiline mb-2">
+                <template v-for="p in post.data">
+                    <div class="column is-4">
+                        <router-link :to="'/news/'+p.id">
+                        <b-img :value="p" classes="col3newslist"  size="medium">
+                            <div class="title roboto-condensed">{{p.title}}</div>
+                        </b-img>
+                        </router-link>
+                    </div>
+                </template>
+            </div>
+        </template>
+        <template v-if="list_type==2" >
+            <div class="columns is-multiline mb-2">
+                <template v-for="p in post.data">
+                    <div class="column is-3">
+                        <router-link :to="'/news/'+p.id">
+                        <b-img :value="p" classes="col3newslist"  size="medium">
+                            <div class="title roboto-condensed">{{p.title}}</div>
+                        </b-img>
+                        </router-link>
+                    </div>
+                </template>
+            </div>
+        </template>
         <nav class="pagination" role="navigation" aria-label="pagination">
             <a class="pagination-previous" :disabled="post.current_page===1" :href="'#/p/'+page_id+'?page='+(post.current_page-1)" >Өмнөх</a>
             <a class="pagination-next" :disabled="post.current_page===post.last_page" :href="'#/p/'+page_id+'?page='+(post.current_page+1)" >Дараах</a>
@@ -52,12 +80,14 @@
         props:[
             'cat_id',
             'page_id',
+            'list_type',
         ],
         data(){
             return {
                 page: false,
                 siteUrl: window.surl,
-                post:false
+                post:false,
+                limit: 10,
             }
         },
         watch:{
@@ -72,12 +102,14 @@
             fetchData: function () {
                 this.post=false;
                 this.page=this.$route.query.page;
+                if(this.list_type==1){ this.limit=15;}
+                if(this.list_type==2){ this.limit=16;}
                 if(!this.page){
-                    axios.get('/newsListByCategoryBox/0/10/'+this.cat_id).then((response) => {
+                    axios.get('/newsListByCategoryBox/0/'+this.limit+'/'+this.cat_id).then((response) => {
                         this.post=response.data.success;
                     })
                 } else {
-                    axios.get('/newsListByCategoryBox/0/10/'+this.cat_id+'?page='+this.page).then((response) => {
+                    axios.get('/newsListByCategoryBox/0/'+this.limit+'/'+this.cat_id+'?page='+this.page).then((response) => {
                         this.post=response.data.success;
                     })
                 }

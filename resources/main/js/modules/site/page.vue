@@ -15,9 +15,7 @@
                                 <div class="content mt-1 mb-1" v-html="content.text"></div>
                             </template>
                             <template v-else-if="content.type==2">
-                                <template v-if="content.list_type==0">
-                                    <box-news-list :page_id="id" :cat_id="content.type_id"></box-news-list>
-                                </template>
+                                <box-news-list :page_id="id" :list_type="content.list_type" :cat_id="content.type_id"></box-news-list>
                             </template>
                         </div>
                     </div>

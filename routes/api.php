@@ -88,7 +88,7 @@ Route::middleware('auth:admin-api')->namespace('Admin')->prefix('admin')->group(
     Route::post('pages/{id}','AdminPagesController@update');
     Route::post('pages_delete','AdminPagesController@delete');
     Route::post('pages_change','AdminPagesController@change');
-    Route::get('pages/{site_id}','AdminPagesController@index1');
+    Route::get('pages/{site_id}/{is_main?}','AdminPagesController@index1');
     Route::get('page_select/{site_id}/{id?}','AdminPagesController@page_select');
     Route::get('page_single/{id}','AdminPagesController@single');
     Route::get('pages_min/{site_id}/{id}','AdminPagesController@indexMin');

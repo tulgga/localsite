@@ -19,8 +19,8 @@ class AdminPagesController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function page_select_old($site_id){
-        $pages= Page::where('site_id',$site_id)->where('parent_id', 0)->select('id', 'title as label')->orderBy('order_num', 'asc')->get();
+    public function page_select_old($site_id, $is_main=1){
+        $pages= Page::where('is_main', $is_main)->where('site_id',$site_id)->where('parent_id', 0)->select('id', 'title as label')->orderBy('order_num', 'asc')->get();
         foreach ($pages as $c=>$page){
             $pages[$c]['children']= Page::where('site_id',$site_id)->where('parent_id', $page->id)->select('id', 'title as label')->orderBy('order_num', 'asc')->get();
             foreach ($pages[$c]['children']  as $ci=>$cc){
@@ -34,8 +34,8 @@ class AdminPagesController extends Controller
         return response()->json([ 'success' => $pages ]);
     }
 
-    public function page_select($site_id){
-        $pages= Page::where('site_id',$site_id)->select('pages.*', 'title as label')->orderBy('order_num', 'asc')->get();
+    public function page_select($site_id, $is_main=1){
+        $pages= Page::where('is_main', $is_main)->where('site_id',$site_id)->select('pages.*', 'title as label')->orderBy('order_num', 'asc')->get();
         return response()->json([ 'success' => $this->buildTree($pages) ]);
     }
 
@@ -53,9 +53,9 @@ class AdminPagesController extends Controller
         return $branch;
     }
 
-    public function index1($id)
+    public function index1($id, $is_main=1)
     {
-        $pages= Page::where('site_id',$id)->where('parent_id', null)->orderBy('order_num', 'asc')->get();
+        $pages= Page::where('is_main', $is_main)->where('site_id',$id)->where('parent_id', null)->orderBy('order_num', 'asc')->get();
         foreach ($pages as $c=>$page){
             $pages[$c]['children']= Page::where('site_id',$id)->where('parent_id', $page->id)->orderBy('order_num', 'asc')->get();
             foreach ($pages[$c]['children'] as $ci=>$cc){
@@ -73,9 +73,9 @@ class AdminPagesController extends Controller
         return response()->json([ 'success' => $page ]);
     }
 
-    public function indexMin($site_id, $id){
+    public function indexMin($site_id, $id, $is_main=1){
         $return=[];
-        $cats= Page::where('site_id',$site_id)->where('id','!=', $id)->where('parent_id', 0)->orderBy('order_num', 'asc')->select('id', 'title')->get();
+        $cats= Page::where('is_main', $is_main)->where('site_id',$site_id)->where('id','!=', $id)->where('parent_id', 0)->orderBy('order_num', 'asc')->select('id', 'title')->get();
 
         foreach ($cats as $i=>$cat){
             $return[$i]=$cat;
@@ -92,11 +92,6 @@ class AdminPagesController extends Controller
         $data = $request->get('data');
         $data = json_decode($data, true);
 
-        $count= Page::where('parent_id',$id)->get()->count();
-
-//        if($count!=0 && $data['parent_id']!=0){
-//            return response()->json([ 'success' => 0 ]);
-//        }
         $image=Img::upload($request);
 
         $Page=  Page::find($id);
@@ -105,6 +100,7 @@ class AdminPagesController extends Controller
             $Page->image = $image;
         }
         $Page->text=$data['text'];
+        $Page->is_main=$data['is_main'];
         $Page->parent_id=$data['parent_id'];
         $Page->site_id=$data['site_id'];
 
@@ -132,7 +128,7 @@ class AdminPagesController extends Controller
         }else{
             $data['image'] = null;
         }
-        $data['order_num']=Page::where('site_id', $data['site_id'])->where('parent_id', $data['parent_id'])->get()->count();
+        $data['order_num']=Page::where('site_id', $data['site_id'])->where('is_main', $data['is_main'])->where('parent_id', $data['parent_id'])->get()->count();
 
         $Page= new Page();
         $Page->title=$data['title'];
@@ -141,6 +137,7 @@ class AdminPagesController extends Controller
         $Page->site_id=$data['site_id'];
         $Page->parent_id=$data['parent_id'];
         $Page->order_num=$data['order_num'];
+        $Page->is_main=$data['is_main'];
         $Page->type=$data['type'];
         $Page->type_id=$data['type_id'];
         $Page->list_type=$data['list_type'];
@@ -172,6 +169,7 @@ class AdminPagesController extends Controller
         $cat->parent_id = $data['parent_id'];
         $cat->order_num = $data['order_num'];
         $cat->site_id = $data['site_id'];
+        $cat->is_main = $data['is_main'];
         $cat->save();
         return response()->json([ 'success' => 1 ]);
     }

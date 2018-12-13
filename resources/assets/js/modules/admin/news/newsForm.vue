@@ -194,8 +194,11 @@ CRUD Edit, Create form
                 })
 
                 axios.get('/site').then((response) => {
-                    this.sites = response.data.success;
-                    console.log(this.sites);
+                    this.sites.push({ id:0, name:'Бүх дэд сайтад',  label:'Бүх дэд сайтад',  text:'Бүх дэд сайтад'});
+                    for(var i=0; i<response.data.success.length; i++){
+                        this.sites.push(response.data.success[i]);
+                    }
+
                 })
                 if (this.m_id) {
                     axios.get('/news/'+this.m_id).then((response) => {

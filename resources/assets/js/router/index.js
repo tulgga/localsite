@@ -19,6 +19,9 @@ import fileCategory from '../modules/admin/fileCategory/fileCategoryNew'
 import Pages from '../modules/admin/pages/Pages'
 import PagesForm from '../modules/admin/pages/PagesForm'
 
+import HelpPages from '../modules/admin/pages/HelpPages'
+import HelpPagesForm from '../modules/admin/pages/HelpPagesForm'
+
 
 import LinkCategory from '../modules/admin/linkCategory/LinkCategory'
 import LinkCategoryForm from '../modules/admin/linkCategory/LinkCategoryForm'
@@ -202,7 +205,7 @@ let routes = [
         component: Pages,
         meta: {
             requiresAuth: true,
-            page_title: 'Хуудас',
+            page_title: 'Үндсэн цэс',
             bread_crumbs: [
                 {
                     title: 'Мэдээ',
@@ -235,6 +238,66 @@ let routes = [
                 path: ':id/update',
                 component: PagesForm,
                 name: 'update_page',
+                meta: {
+                    page_title: 'Засах',
+                    bread_crumbs: [
+                        {
+                            title: 'ЕРӨНХИЙ',
+                            rname: 'home'
+                        },
+                        {
+                            title: 'Дэд сайтууд',
+                            rname: 'sites'
+                        }
+                    ],
+                    notloading: true,
+                    is_modal: true,
+                }
+            },
+        ]
+    },
+
+
+
+    {
+        path: '/helppages',
+        name: 'helppages',
+        component: HelpPages,
+        meta: {
+            requiresAuth: true,
+            page_title: 'Туслах цэс',
+            bread_crumbs: [
+                {
+                    title: 'Мэдээ',
+                    rname: 'home'
+                }
+            ]
+        },
+        children: [
+            {
+                path: 'create',
+                component: HelpPagesForm,
+                name: 'help_create_page',
+                meta: {
+                    page_title: 'Нэмэх',
+                    bread_crumbs: [
+                        {
+                            title: 'ЕРӨНХИЙ',
+                            rname: 'home'
+                        },
+                        {
+                            title: 'Дэд сайтууд',
+                            rname: 'sites'
+                        }
+                    ],
+                    notloading: true,
+                    is_modal: true,
+                }
+            },
+            {
+                path: ':id/update',
+                component: HelpPagesForm,
+                name: 'help_update_page',
                 meta: {
                     page_title: 'Засах',
                     bread_crumbs: [
