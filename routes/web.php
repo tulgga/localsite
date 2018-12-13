@@ -34,5 +34,3 @@ Route::domain('{account}.bayankhongor.local')->group(function () {
 });
 
 Route::get('/', 'Controller@homePage');
-
-

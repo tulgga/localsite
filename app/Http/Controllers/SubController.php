@@ -13,6 +13,7 @@ use App\Site;
 use App\Settings;
 use App\Page;
 use App\Post;
+use App\News_to_site;
 use phpDocumentor\Reflection\Location;
 
 class SubController extends BaseController
@@ -24,8 +25,21 @@ class SubController extends BaseController
       $data['info']=$this->getDomainInfo($account);
       $data['ontslokh']= Post::orderBy('created_at', 'desc')->where('site_id', $data['info']->id)->where('is_primary', 1)->where('status',1)->with('Category')->select('title', 'id', 'image', 'type','short_content','created_at')
           ->limit(5)->get();
+      $data['latest_news']= Post::orderBy('created_at', 'desc')->where('site_id', $data['info']->id)->where('is_primary', 0)->where('status',1)->with('Category')->select('title', 'id', 'image', 'type','short_content','created_at')
+            ->limit(6)->get();
+      /*$data['province_news'] = Post::orderBy('posts.created_at', 'desc')->
+      where('posts.site_id', 0)->
+      where('posts.status',1)->with('Category')->
+      select('posts.title', 'posts.id', 'posts.image', 'posts.type','posts.created_at')->
+          Join('news_to_sites', 'news_to_sites.post_id', '=', 'posts.id')
+          ->where('news_to_sites.site_id', $data['info']->id)
+          ->limit(6)->get();*/
+        $data['province_news'] = Post::orderBy('created_at', 'desc')->where('site_id', 0)->where('is_primary', 0)->where('status',1)->with('Category')->select('title', 'id', 'image', 'type','created_at')
+            ->limit(6)->get();
       return view('sub.home', $data);
     }
+
+
 
     public function page($account, $id){
         $data['info']=$this->getDomainInfo($account);
@@ -54,6 +68,7 @@ class SubController extends BaseController
             header('Location:'.env('APP_URL'));
             die();
         }
+        $site->config = json_decode($site->config, true);
         $site->menu=$this->getMenu($site->id);
         return $site;
     }
