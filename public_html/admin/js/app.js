@@ -91302,7 +91302,7 @@ function updateLink (link, options, obj) {
     },
 
     created: function created() {
-        // this.checkAdminType();
+        this.checkAdminType();
         this.fetchData();
     },
     methods: {
@@ -91317,7 +91317,7 @@ function updateLink (link, options, obj) {
             } else if (admin_type == 1) {
                 this.$router.push('/news');
             } else if (admin_type == 2) {
-                this.$router.push('/sub_config');
+                this.$router.push('/config');
             } else if (admin_type == 3) {
                 this.$router.push('/sub_news');
             }
