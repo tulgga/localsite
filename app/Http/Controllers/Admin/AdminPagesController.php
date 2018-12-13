@@ -19,20 +19,7 @@ class AdminPagesController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function page_select_old($site_id, $is_main=1){
-        $pages= Page::where('is_main', $is_main)->where('site_id',$site_id)->where('parent_id', 0)->select('id', 'title as label')->orderBy('order_num', 'asc')->get();
-        foreach ($pages as $c=>$page){
-            $pages[$c]['children']= Page::where('site_id',$site_id)->where('parent_id', $page->id)->select('id', 'title as label')->orderBy('order_num', 'asc')->get();
-            foreach ($pages[$c]['children']  as $ci=>$cc){
-                $pages[$c]['children'][$ci]['children']= Page::where('site_id',$site_id)->where('parent_id', $cc->id)->select('id', 'title as label')->orderBy('order_num', 'asc')->get();
-                foreach ($pages[$c]['children'][$ci]['children'] as $bi=>$bc){
-                    $pages[$c]['children'][$ci]['children'][$bi]['children']= Page::where('site_id',$site_id)->where('parent_id', $bc->id)->select('id', 'title as label')->orderBy('order_num', 'asc')->get();
-                }
 
-            }
-        }
-        return response()->json([ 'success' => $pages ]);
-    }
 
     public function page_select($site_id, $is_main=1){
         $pages= Page::where('is_main', $is_main)->where('site_id',$site_id)->select('pages.*', 'title as label')->orderBy('order_num', 'asc')->get();
@@ -103,6 +90,7 @@ class AdminPagesController extends Controller
         $Page->is_main=$data['is_main'];
         $Page->parent_id=$data['parent_id'];
         $Page->site_id=$data['site_id'];
+        $Page->icon=$data['icon'];
 
         if($data['type']==1){
             $Page->link=$data['link'];
@@ -142,6 +130,7 @@ class AdminPagesController extends Controller
         $Page->type_id=$data['type_id'];
         $Page->list_type=$data['list_type'];
         $Page->blank=$data['blank'];
+        $Page->icon=$data['icon'];
         $Page->save();
 
         if($data['type']==1){
@@ -153,26 +142,7 @@ class AdminPagesController extends Controller
         return response()->json([ 'success' => $Page ]);
     }
 
-    public function action(Request $request)
-    {
-        $data = $request->get('data');
-        $data = json_decode($data, true);
 
-        if($data['id']==0){
-            $cat= new Page();
-            $data['order_num']=Page::where('site_id', $data['site_id'])->where('parent_id', $data['parent_id'])->get()->count();
-        } else {
-            if($data['id'])
-            $cat= Page::find($data['id']);
-        }
-        $cat->title = $data['title'];
-        $cat->parent_id = $data['parent_id'];
-        $cat->order_num = $data['order_num'];
-        $cat->site_id = $data['site_id'];
-        $cat->is_main = $data['is_main'];
-        $cat->save();
-        return response()->json([ 'success' => 1 ]);
-    }
 
     public function change(Request $request){
         $data = $request->get('data');

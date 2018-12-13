@@ -85530,6 +85530,7 @@ var modules = requireContext.keys().map(function (file) {
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
@@ -85555,6 +85556,7 @@ var modules = requireContext.keys().map(function (file) {
                 text: '',
                 type: 0,
                 is_main: 1,
+                icon: null,
                 type_id: null,
                 blank: 0,
                 link: null,
@@ -119851,6 +119853,13 @@ if (false) {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
@@ -119878,6 +119887,7 @@ if (false) {
                 is_main: 0,
                 type_id: null,
                 blank: 0,
+                icon: null,
                 link: null,
                 site_id: 0,
                 list_type: 0
@@ -119910,6 +119920,7 @@ if (false) {
                     _this.form.parent_id = response.data.success.parent_id;
                     _this.form.text = response.data.success.text;
                     _this.form.type = response.data.success.type;
+                    _this.form.icon = response.data.success.icon;
                     _this.form.type_id = response.data.success.type_id;
                     _this.form.blank = response.data.success.blank;
                     _this.form.link = response.data.success.link;
@@ -120849,6 +120860,41 @@ var render = function() {
                             },
                             [_vm._v(_vm._s(_vm.errors.first("title")))]
                           )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "field" }, [
+                        _c("label", { staticClass: "label" }, [
+                          _vm._v("Икон "),
+                          _c("small", [
+                            _vm._v("https://fontawesome.com/icons?d=gallery")
+                          ]),
+                          _vm._v(" "),
+                          _c("i", { class: _vm.form.icon })
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "control" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.form.icon,
+                                expression: "form.icon"
+                              }
+                            ],
+                            staticClass: "input",
+                            attrs: { type: "text", name: "icon" },
+                            domProps: { value: _vm.form.icon },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(_vm.form, "icon", $event.target.value)
+                              }
+                            }
+                          })
                         ])
                       ]),
                       _vm._v(" "),

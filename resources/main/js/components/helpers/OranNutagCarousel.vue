@@ -13,12 +13,12 @@
                 <slide>
                     <div class="bcarousel-list">
                         <b-img classes="bcarousel-list" :value="p" size="medium">
-                        <router-link :to="'/news/'+p.id">
+                        <a target="_blank" :href="'http://'+p.domain+'.khongor.gov.mn/news/'+p.id">
                             <div  class="CarTitle roboto-condensed ">
                                 <span class="tag">{{p.site}}</span><br>
                                 {{p.title.substring(0, 50)}}<span v-if="p.title.length>50">...</span>
                             </div>
-                        </router-link>
+                        </a>
                         </b-img>
                     </div>
                 </slide>

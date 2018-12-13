@@ -50,6 +50,13 @@ CRUD Edit, Create form
                                     </div>
 
                                     <div class="field">
+                                        <label class="label">Икон <small>https://fontawesome.com/icons?d=gallery</small> <i :class="form.icon"></i></label>
+                                        <div class="control">
+                                            <input type="text" name="icon"  class="input" v-model="form.icon"  />
+                                        </div>
+                                    </div>
+
+                                    <div class="field">
                                         <label class="label">Төрөл</label>
                                         <div class="control">
                                             <div class="select">
@@ -158,6 +165,7 @@ CRUD Edit, Create form
                     is_main:0,
                     type_id: null,
                     blank: 0,
+                    icon: null,
                     link: null,
                     site_id: 0,
                     list_type:0,
@@ -189,6 +197,7 @@ CRUD Edit, Create form
                         this.form.parent_id = response.data.success.parent_id;
                         this.form.text = response.data.success.text;
                         this.form.type = response.data.success.type;
+                        this.form.icon = response.data.success.icon;
                         this.form.type_id = response.data.success.type_id;
                         this.form.blank = response.data.success.blank;
                         this.form.link = response.data.success.link;

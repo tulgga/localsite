@@ -48,6 +48,7 @@ CRUD Edit, Create form
                                             <p v-show="errors.has('title')" class="help is-danger">{{ errors.first('title') }}</p>
                                         </div>
                                     </div>
+
                                     <div class="field">
                                         <label class="label">Эх хуудас</label>
                                         <div class="control">
@@ -179,6 +180,7 @@ CRUD Edit, Create form
                     text: '',
                     type: 0,
                     is_main:1,
+                    icon: null,
                     type_id: null,
                     blank: 0,
                     link: null,

@@ -85980,8 +85980,17 @@ var render = function() {
                           },
                           [
                             _c(
-                              "router-link",
-                              { attrs: { to: "/news/" + p.id } },
+                              "a",
+                              {
+                                attrs: {
+                                  target: "_blank",
+                                  href:
+                                    "http://" +
+                                    p.domain +
+                                    ".khongor.gov.mn/news/" +
+                                    p.id
+                                }
+                              },
                               [
                                 _c(
                                   "div",
@@ -86002,8 +86011,7 @@ var render = function() {
                                 )
                               ]
                             )
-                          ],
-                          1
+                          ]
                         )
                       ],
                       1

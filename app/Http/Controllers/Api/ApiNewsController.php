@@ -32,7 +32,7 @@ class ApiNewsController extends Controller
 
     public function oronnutag($limit=20){
         $news=Post::where('site_id','!=',0)->where('main_site_publish', 2)->where('status', 1)
-            ->select('posts.id', 'posts.title', 'posts.short_content', 'posts.image', 'posts.type', 'posts.is_primary', 'posts.view_count', 'posts.created_at', 'sites.name as site')
+            ->select('posts.id', 'posts.title', 'posts.short_content', 'posts.image', 'posts.type', 'posts.is_primary', 'posts.view_count', 'posts.created_at', 'sites.name as site', 'sites.domain')
             ->Join('sites', 'sites.id', '=', 'posts.site_id')
             ->orderBy('created_at', 'desc')->paginate($limit);
         return response()->json(
