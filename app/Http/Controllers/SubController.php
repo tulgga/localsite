@@ -12,15 +12,18 @@ use Illuminate\Support\Facades\Redirect;
 use App\Site;
 use App\Settings;
 use App\Page;
+use App\Post;
 use phpDocumentor\Reflection\Location;
 
 class SubController extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-
     public function index($account){
+
       $data['info']=$this->getDomainInfo($account);
+      $data['ontslokh']= Post::orderBy('created_at', 'desc')->where('site_id', $data['info']->id)->where('is_primary', 1)->where('status',1)->with('Category')->select('title', 'id', 'image', 'type','short_content','created_at')
+          ->limit(5)->get();
       return view('sub.home', $data);
     }
 
