@@ -91994,7 +91994,7 @@ function updateLink (link, options, obj) {
     },
 
     created: function created() {
-        // this.checkAdminType();
+        this.checkAdminType();
         this.fetchData();
     },
     methods: {
