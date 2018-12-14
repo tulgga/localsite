@@ -85594,7 +85594,7 @@ var modules = requireContext.keys().map(function (file) {
                     _this.form.type_id = response.data.success.type_id;
                     _this.form.blank = response.data.success.blank;
                     _this.form.link = response.data.success.link;
-                    _this.form.site_id = response.data.success.site_id;
+                    _this.form.site_id = _this.site_id;
                     _this.form.list_type = response.data.success.list_type;
                     if (response.data.success.image) {
                         _this.imageni = _this.siteUrl + '/uploads/' + response.data.success.image.replace('images/', 'small/');
@@ -86229,7 +86229,7 @@ var modules = requireContext.keys().map(function (file) {
                     _this.form.type_id = response.data.success.type_id;
                     _this.form.blank = response.data.success.blank;
                     _this.form.link = response.data.success.link;
-                    _this.form.site_id = response.data.success.site_id;
+                    _this.form.site_id = _this.site_id;
                     _this.form.list_type = response.data.success.list_type;
                     if (response.data.success.image) {
                         _this.imageni = _this.siteUrl + '/uploads/' + response.data.success.image.replace('images/', 'small/');
@@ -86323,28 +86323,28 @@ var modules = requireContext.keys().map(function (file) {
             var _this5 = this;
 
             if (this.form.type == 2) {
-                axios.get('/news_category/' + this.form.site_id).then(function (response) {
+                axios.get('/news_category/' + this.site_id).then(function (response) {
                     _this5.types = response.data.success;
                 });
                 return;
             }
 
             if (this.form.type == 3) {
-                axios.get('/page_select/' + this.form.site_id).then(function (response) {
+                axios.get('/page_select/' + this.site_id).then(function (response) {
                     _this5.types = response.data.success;
                 });
                 return;
             }
 
             if (this.form.type == 4) {
-                axios.get('/file_category/' + this.form.site_id).then(function (response) {
+                axios.get('/file_category/' + this.site_id).then(function (response) {
                     _this5.types = response.data.success;
                 });
                 return;
             }
 
             if (this.form.type == 5) {
-                axios.get('/link_category_show/' + this.form.site_id).then(function (response) {
+                axios.get('/link_category_show/' + this.site_id).then(function (response) {
                     _this5.types = response.data.success;
                 });
                 return;

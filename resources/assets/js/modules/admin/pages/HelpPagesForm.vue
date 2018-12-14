@@ -201,7 +201,7 @@ CRUD Edit, Create form
                         this.form.type_id = response.data.success.type_id;
                         this.form.blank = response.data.success.blank;
                         this.form.link = response.data.success.link;
-                        this.form.site_id = response.data.success.site_id;
+                        this.form.site_id = this.site_id;
                         this.form.list_type= response.data.success.list_type;
                         if (response.data.success.image) {
                             this.imageni = this.siteUrl+'/uploads/'+response.data.success.image.replace('images/', 'small/');
@@ -293,14 +293,14 @@ CRUD Edit, Create form
             changeType(){
 
                 if(this.form.type==2){
-                    axios.get('/news_category/' + this.form.site_id).then((response) => {
+                    axios.get('/news_category/' + this.site_id).then((response) => {
                         this.types = response.data.success;
                     })
                     return
                 }
 
                 if(this.form.type==3){
-                    axios.get('/page_select/' + this.form.site_id).then((response) => {
+                    axios.get('/page_select/' + this.site_id).then((response) => {
                         this.types = response.data.success;
                     })
                     return
@@ -308,7 +308,7 @@ CRUD Edit, Create form
 
 
                 if(this.form.type==4){
-                    axios.get('/file_category/'+ this.form.site_id).then((response) => {
+                    axios.get('/file_category/'+ this.site_id).then((response) => {
                         this.types = response.data.success;
                     })
                     return
@@ -316,7 +316,7 @@ CRUD Edit, Create form
 
 
                 if(this.form.type==5){
-                    axios.get('/link_category_show/'+this.form.site_id).then((response) => {
+                    axios.get('/link_category_show/'+this.site_id).then((response) => {
                         this.types = response.data.success;
                     })
                     return
