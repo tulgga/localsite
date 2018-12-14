@@ -83150,24 +83150,6 @@ var modules = requireContext.keys().map(function (file) {
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -83180,6 +83162,7 @@ var modules = requireContext.keys().map(function (file) {
         return {
             siteUrl: window.surl,
             ontslokh: [],
+            submeu: [],
             components: {
                 NewsCarousel: __WEBPACK_IMPORTED_MODULE_0__components_helpers_NewsCarousel__["a" /* default */],
                 OranNutagCarousel: __WEBPACK_IMPORTED_MODULE_1__components_helpers_OranNutagCarousel__["a" /* default */],
@@ -83200,8 +83183,10 @@ var modules = requireContext.keys().map(function (file) {
             axios.get('/news_ontslokh/' + 0).then(function (response) {
                 _this.ontslokh = response.data.success;
             });
+            axios.get('/submenu/' + 0).then(function (response) {
+                _this.submenu = response.data.success;
+            });
         }
-
     }
 
 });
@@ -86627,7 +86612,38 @@ var render = function() {
           )
         : _c("loading"),
       _vm._v(" "),
-      _vm._m(0),
+      _c("div", { staticClass: "homeMenu p-2" }, [
+        _c("div", { staticClass: "container" }, [
+          _c(
+            "div",
+            {
+              staticClass: "columns is-mobile is-multiline has-text-centered "
+            },
+            [
+              _vm._l(_vm.submenu, function(sub) {
+                return _vm.submenu
+                  ? [
+                      _c("div", { staticClass: "column is-6-mobile" }, [
+                        _c("p", [
+                          _c("span", { staticClass: "icon is-large" }, [
+                            _c("i", { class: sub.icon })
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("a", { attrs: { href: "#/p/" + sub.id } }, [
+                          _c("div", {
+                            domProps: { innerHTML: _vm._s(sub.title) }
+                          })
+                        ])
+                      ])
+                    ]
+                  : _vm._e()
+              })
+            ],
+            2
+          )
+        ])
+      ]),
       _vm._v(" "),
       _c("div", { staticClass: "container mb-2" }, [
         _c("div", { staticClass: "columns  is-multiline" }, [
@@ -86719,82 +86735,7 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "homeMenu p-2" }, [
-      _c("div", { staticClass: "container" }, [
-        _c(
-          "div",
-          { staticClass: "columns is-mobile is-multiline has-text-centered " },
-          [
-            _c("div", { staticClass: "column is-6-mobile" }, [
-              _c("p", [
-                _c("span", { staticClass: "icon is-large" }, [
-                  _c("i", { staticClass: "fas fa-gavel fa-2x" })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("p", [_vm._v("ИТХурлын "), _c("br"), _vm._v("тогтоол")])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "column is-6-mobile" }, [
-              _c("p", [
-                _c("span", { staticClass: "icon is-large" }, [
-                  _c("i", { staticClass: "far fa-file-alt fa-2x" })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("p", [_vm._v("Засаг даргын"), _c("br"), _vm._v("захирамж")])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "column is-6-mobile" }, [
-              _c("p", [
-                _c("span", { staticClass: "icon is-large" }, [
-                  _c("i", { staticClass: "far fa-list-alt fa-2x" })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("p", [_vm._v("ЗДТГ-ын даргын"), _c("br"), _vm._v("тушаал")])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "column is-6-mobile" }, [
-              _c("p", [
-                _c("span", { staticClass: "icon is-large" }, [
-                  _c("i", { staticClass: "fas fa-university fa-2x" })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("p", [_vm._v("Төсөл "), _c("br"), _vm._v(" хөтөлбөр")])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "column is-6-mobile" }, [
-              _c("p", [
-                _c("span", { staticClass: "icon is-large" }, [
-                  _c("i", { staticClass: "far fa-copy fa-2x" })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("p", [_vm._v("Нээлттэй ажлын"), _c("br"), _vm._v("байр")])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "column is-6-mobile" }, [
-              _c("p", [
-                _c("span", { staticClass: "icon is-large" }, [
-                  _c("i", { staticClass: "fas fa-phone fa-2x" })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("p", [_vm._v("Утасны"), _c("br"), _vm._v("жагсаалт")])
-            ])
-          ]
-        )
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 if (false) {

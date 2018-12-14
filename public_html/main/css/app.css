@@ -19182,6 +19182,15 @@ a {
   font-stretch: condensed;
 }
 
+.homeMenu a {
+  color: #333;
+}
+
+.homeMenu .column.is-6-mobile div {
+  max-width: 130px;
+  margin: 0px auto;
+}
+
 .homeMenu .column {
   cursor: pointer;
 }

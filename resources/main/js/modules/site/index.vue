@@ -61,30 +61,12 @@
 
                 <!-- desctop -->
                 <div class="columns is-mobile is-multiline has-text-centered ">
-                    <div class="column is-6-mobile">
-                        <p><span class="icon is-large"><i class="fas fa-gavel fa-2x"></i></span></p>
-                        <p>ИТХурлын <br>тогтоол</p>
-                    </div>
-                    <div class="column is-6-mobile">
-                        <p><span class="icon is-large"><i class="far fa-file-alt fa-2x"></i></span></p>
-                        <p>Засаг даргын<br>захирамж</p>
-                    </div>
-                    <div class="column is-6-mobile">
-                        <p><span class="icon is-large"><i class="far fa-list-alt fa-2x"></i></span></p>
-                        <p>ЗДТГ-ын даргын<br>тушаал</p>
-                    </div>
-                    <div class="column is-6-mobile">
-                        <p><span class="icon is-large"><i class="fas fa-university fa-2x"></i></span></p>
-                        <p>Төсөл <br> хөтөлбөр</p>
-                    </div>
-                    <div class="column is-6-mobile">
-                        <p><span class="icon is-large"><i class="far fa-copy fa-2x"></i></span></p>
-                        <p>Нээлттэй ажлын<br>байр</p>
-                    </div>
-                    <div class="column is-6-mobile">
-                        <p><span class="icon is-large"><i class="fas fa-phone fa-2x"></i></span></p>
-                        <p>Утасны<br>жагсаалт</p>
-                    </div>
+                    <template v-if="submenu" v-for="sub in submenu">
+                        <div class="column is-6-mobile">
+                           <p><span class="icon is-large"><i :class="sub.icon"></i></span></p>
+                           <a :href="'#/p/'+sub.id"><div  v-html="sub.title"></div></a>
+                        </div>
+                    </template>
                 </div>
 
             </div>
@@ -134,6 +116,7 @@
             return {
                 siteUrl: window.surl,
                 ontslokh: [],
+                submeu:[],
                 components: {
                     NewsCarousel,
                     OranNutagCarousel,
@@ -152,9 +135,10 @@
                     this.ontslokh=response.data.success;
 
                 })
+                axios.get('/submenu/'+0).then((response) => {
+                    this.submenu=response.data.success;
+                })
             },
-
-
         }
 
     }

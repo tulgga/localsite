@@ -17,14 +17,16 @@ class ApiSiteController extends Controller
     }
 
 
-    public function menu($site_id){
-        $menu= Menu::where('site_id',$site_id)->select('id','name', 'type', 'link', 'parent_id')->orderBy('order_num', 'asc')->get();
-        return response()->json([ 'success' => $this->buildTree($menu) ]);
-    }
+
 
     public function page($site_id){
         $page= Page::where('site_id',$site_id)->where('is_main',1)->select('id', 'title as name', 'type', 'parent_id', 'blank', 'link')->orderBy('order_num', 'asc')->get();
         return response()->json([ 'success' => $this->buildTree($page) ]);
+    }
+
+    public function submenu($site_id){
+        $page= Page::where('site_id',$site_id)->where('is_main',0)->select('id', 'title','icon')->orderBy('order_num', 'asc')->get();
+        return response()->json([ 'success' => $page ]);
     }
 
     public function  buildTree($elements, $parentId = null) {

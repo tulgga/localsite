@@ -497,6 +497,11 @@ a {
   font-weight: normal;
   font-style: italic;
   font-stretch: condensed;
+  a { color: #333; }
+  .column.is-6-mobile div {
+    max-width: 130px;
+    margin: 0px auto;
+  }
 
   .column {
     cursor: pointer;
