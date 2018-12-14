@@ -5,8 +5,11 @@
                 <div class="columns pt-2 pb-2">
                     <div class="column is-9">
                         <div class="has-background-white p-15 mb-2" >
-                            <h1 class="is-size-4-tablet is-size-6-mobile ">{{content.title}}</h1>
-                            <div class="date mb-1 "><i class="far fa-clock"></i> {{content.created_at}}</div>
+                            <h1 class="is-size-4-tablet is-size-6-mobile mb-05">{{content.title}}</h1>
+                            <div class="date mb-1 ">
+                                <i class="far fa-clock"></i> нийтэлсэн:  {{content.created_at}}
+                                <i class="far fa-eye" style="margin-left:5px;"></i> үзсэн:  {{content.view_count}}
+                            </div>
                             <template v-if="content.type==2">
                                 <iframe id="youtubeFrame"  :src="'https://www.youtube.com/embed/'+content.image"
                                         frameborder="0"

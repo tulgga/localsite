@@ -14,10 +14,10 @@
                 </header>
                 <div class="card-content">
                     <div class="content">
-                        <form method="get" class="searchform mt-0" action="https://news.mn/search/">
-                            <input type="text" value="" name="q" placeholder="Хайх...">
-                            <button type="submit" class="button-search"><i class="fa fa-search"></i></button>
-                        </form>
+                        <div class="searchform mt-0" >
+                            <input type="text"  v-model="search" placeholder="Хайх...">
+                            <button type="button" @click="searchClick()" class="button-search"><i class="fa fa-search"></i></button>
+                        </div>
                     </div>
                 </div>
 
@@ -133,10 +133,10 @@
                                 </figure>
                             </div>
                             <div class="column is-5">
-                                <form method="get" class="is-pulled-right searchform" >
-                                    <input type="text" value="" name="q" placeholder="Хайх утгаа оруулна уу...">
-                                    <button type="submit" class="button-search"><i class="fa fa-search"></i></button>
-                                </form>
+                                <div  class="is-pulled-right searchform" >
+                                    <input type="text" v-model="search" placeholder="Хайх утгаа оруулна уу...">
+                                    <button type="button" @click="searchClick" class="button-search"><i class="fa fa-search"></i></button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -180,6 +180,7 @@
                 si2:-1,
                 si3:-1,
                 si4:-1,
+                search:'',
                 site_title: window.title,
     		    socail:  window.socail,
                 siteUrl: window.surl,
@@ -196,16 +197,36 @@
                 ],
     		}
     	},
+        watch:{
+            '$route.name': function (id) {
+                this.checkSearch()
+            }
+        },
     	created: function () {
+            this.checkSearch()
             this.fetchData()
         },
         mounted(){
 
         },
         methods: {
+            searchClick(){
+                if(this.search!=''){
+                    this.$router.push({path:'/search/'+this.search});
+                    this.mobile_menu=false;
+                }
+            },
+            checkSearch(){
+                if(this.$route.name!='search'){
+                    this.search='';
+                } else {
+                    this.search=this.$route.params.id;
+                }
+            },
             fetchData: function () {
                     this.menu=this.$store.getters.menu;
                     this.fetched = true;
+
             },
 
             changeRoute: function(menu, i1,i2,i3,i4){

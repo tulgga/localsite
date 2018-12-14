@@ -1,6 +1,5 @@
 <template>
-    <div v-if="post.data.length>0"  >
-
+    <div  >
         <!--blog list-->
         <template v-if="list_type==0" v-for="p in post.data">
             <div  class="boxnewslist  m-1">
@@ -37,7 +36,12 @@
             <div class="columns is-multiline mb-2">
                 <template v-for="p in post.data">
                     <div class="column is-4">
-                        <router-link :to="'/news/'+p.id">
+                        <a  v-if="p.domain" target="_blank" :href="'http://'+p.domain+'.khongor.gov.mn/news/'+p.id">
+                            <b-img :value="p" classes="col3newslist"  size="medium">
+                                <div class="title roboto-condensed">  <span class="tag is-warning mb-05">{{p.site}}</span><br>{{p.title}}</div>
+                            </b-img>
+                        </a>
+                        <router-link v-else :to="'/news/'+p.id">
                         <b-img :value="p" classes="col3newslist"  size="medium">
                             <div class="title roboto-condensed">{{p.title}}</div>
                         </b-img>
@@ -50,10 +54,15 @@
             <div class="columns is-multiline mb-2">
                 <template v-for="p in post.data">
                     <div class="column is-3">
-                        <router-link :to="'/news/'+p.id">
-                        <b-img :value="p" classes="col3newslist"  size="medium">
-                            <div class="title roboto-condensed">{{p.title}}</div>
-                        </b-img>
+                        <a  v-if="p.domain" target="_blank" :href="'http://'+p.domain+'.khongor.gov.mn/news/'+p.id">
+                            <b-img :value="p" classes="col3newslist"  size="medium">
+                                <div class="title roboto-condensed">  <span class="tag is-warning mb-05">{{p.site}}</span><br>{{p.title}}</div>
+                            </b-img>
+                        </a>
+                        <router-link v-else :to="'/news/'+p.id">
+                            <b-img :value="p" classes="col3newslist"  size="medium">
+                                <div class="title roboto-condensed">{{p.title}}</div>
+                            </b-img>
                         </router-link>
                     </div>
                 </template>
@@ -87,11 +96,16 @@
             return {
                 page: false,
                 siteUrl: window.surl,
-                post:false,
+                post: {
+                    data:[]
+                },
                 limit: 10,
             }
         },
         watch:{
+            '$route.params.id': function () {
+                this.fetchData()
+            },
             '$route.query.page': function () {
                 this.fetchData()
             }

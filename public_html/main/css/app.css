@@ -18693,6 +18693,7 @@ a {
   -webkit-box-shadow: inset 1.4px 1.4px 1px 0 rgba(0, 0, 0, 0.1);
           box-shadow: inset 1.4px 1.4px 1px 0 rgba(0, 0, 0, 0.1);
   background: #184da6;
+  outline: none;
 }
 
 .searchform .button-search {
@@ -18706,6 +18707,7 @@ a {
   color: #2068de;
   background: none;
   text-shadow: 1.4px 1.4px 1px rgba(0, 0, 0, 0.15);
+  outline: none;
 }
 
 .searchform input[type="text"]::-webkit-input-placeholder {
@@ -18757,6 +18759,10 @@ a {
 
 .mt-2 {
   margin-top: 2em !important;
+}
+
+.mb-05 {
+  margin-bottom: 0.5em !important;
 }
 
 .mb-0 {

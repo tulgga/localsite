@@ -25,17 +25,24 @@ Route::namespace('Api')->group(function (){
     Route::get('site_news/{site_id}/{limit?}','ApiNewsController@site_news');
     Route::get('oronnutag/{limit?}','ApiNewsController@oronnutag');
     Route::get('VideoList/{site_id}/{limit?}','ApiNewsController@VideoList');
+
     Route::get('news_category/{site_id?}','ApiNewsController@news_category');
     Route::get('news/{site_id}/{id}','ApiNewsController@news');
     Route::get('newsListByCategoryBox/{site_id}/{limit}/{catId}','ApiNewsController@newsListByCategoryBox');
     Route::get('newsListByCategory/{site_id}/{catId}','ApiNewsController@newsListByCategory');
     Route::get('news_ontslokh/{id}','ApiNewsController@news_ontslokh');
-
-
-
     Route::get('categoryInfo/{id}','ApiNewsController@categoryInfo');
 
     Route::get('page/{site_id}/{id}', 'ApiPageController@single');
+
+
+    Route::get('newsListPrimary/{limit?}','ApiNewsController@newsListPrimary');
+    Route::get('newsListRecent/{limit?}','ApiNewsController@newsListRecent');
+    Route::get('newsListOronnutag/{limit?}','ApiNewsController@newsListOronnutag');
+    Route::get('newsListPhoto/{limit?}','ApiNewsController@newsListPhoto');
+    Route::get('newsListVideo/{limit?}','ApiNewsController@newsListVideo');
+    Route::get('searchNews','ApiNewsController@searchNews');
+
 
 
 

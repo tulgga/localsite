@@ -2,7 +2,7 @@
     <div v-if="post"  class="columns " >
         <div class="column is-8">
             <iframe width="100%" height="330" :src="'https://www.youtube.com/embed/'+selectPost.image" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            <div  class="date"><i class="far fa-clock"></i>  {{selectPost.created_at}}</div>
+            <div  class="date"><i class="far fa-clock"></i>  {{selectPost.created_at.substring(0,16)}}</div>
             <p class="is-size-6">{{selectPost.title}} </p>
             <p > <a class="button is-small is-danger" :href="'#/news/'+selectPost.id">Дэлгэрэнгүй</a></p>
         </div>
@@ -17,7 +17,7 @@
                         </div>
                         <div class="column is-8 videoList">
                             <a @click="selectPost=p" >{{p.title.substring(0, 40)}}</a>
-                            <div  class="date"><i class="far fa-clock"></i>  {{p.created_at}}</div>
+                            <div  class="date"><i class="far fa-clock"></i>  {{p.created_at.substring(0,16)}}</div>
                         </div>
                     </template>
                 </div>

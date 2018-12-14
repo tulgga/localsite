@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Category;
 use App\Post;
+use Illuminate\Support\Facades\Input;
+
 
 class ApiNewsController extends Controller
 {
@@ -40,6 +42,47 @@ class ApiNewsController extends Controller
         );
     }
 
+    public function newsListPrimary($limit=10){
+        $news=Post::where('site_id',0)->where('status', 1)->where('is_primary', 1)
+            ->select('id', 'title', 'short_content', 'image', 'type', 'is_primary',  'created_at')->orderBy('created_at', 'desc')->paginate($limit);
+        return response()->json(['success'=>$news]);
+    }
+
+    public function newsListPhoto($limit=10){
+        $news=Post::where('site_id',0)->where('status', 1)->where('type', 1)
+            ->select('id', 'title', 'short_content', 'image', 'type', 'is_primary',  'created_at')->orderBy('created_at', 'desc')->paginate($limit);
+        return response()->json(['success'=>$news]);
+    }
+
+    public function newsListVideo($limit=10){
+        $news=Post::where('site_id',0)->where('status', 1)->where('type', 2)
+            ->select('id', 'title', 'short_content', 'image', 'type', 'is_primary',  'created_at')->orderBy('created_at', 'desc')->paginate($limit);
+        return response()->json(['success'=>$news]);
+    }
+
+    public function newsListRecent($limit=10){
+        $news=Post::where('site_id',0)->where('status', 1)
+            ->select('id', 'title', 'short_content', 'image', 'type', 'is_primary',  'created_at')->orderBy('created_at', 'desc')->paginate($limit);
+        return response()->json(['success'=>$news]);
+    }
+
+    public function searchNews(){
+        $news=Post::where('site_id',0)->where('status', 1) ->where(function ($query) {
+
+            $query->where('title', 'like', '%'.Input::get('s').'%')
+                ->orWhere('content', 'like', '%'.Input::get('s').'%');
+        })
+            ->select('id', 'title', 'short_content', 'image', 'type', 'is_primary',  'created_at')->orderBy('created_at', 'desc')->paginate(10);
+        return response()->json(['success'=>$news]);
+    }
+
+    public function newsListOronnutag($limit=10){
+        $news=Post::where('site_id','!=',0)->where('main_site_publish', 2)->where('status', 1)
+            ->select('posts.id', 'posts.title', 'posts.short_content', 'posts.image', 'posts.type', 'posts.is_primary', 'posts.view_count', 'posts.created_at', 'sites.name as site', 'sites.domain')
+            ->Join('sites', 'sites.id', '=', 'posts.site_id')
+            ->orderBy('created_at', 'desc')->paginate($limit);
+        return response()->json(['success'=>$news]);
+    }
 
 
     public function newsListByCategoryBox($site_id, $limit, $catID){
@@ -68,6 +111,8 @@ class ApiNewsController extends Controller
 
     public function news($site_id,$id){
         $news=Post::where('site_id',$site_id)->where('id', $id)->where('status', 1)->with('Category')->first();
+        $news->view_count +=1;
+        $news->save();
         return response()->json(
             ['success'=>$news]
         );

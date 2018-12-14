@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import store from '../store'
 
 import Home from '../modules/site/index'
+import Search from '../modules/site/search'
 import Category from  '../modules/site/category'
 import newsType from  '../modules/site/NewsType'
 import File from  '../modules/site/file'
@@ -43,6 +44,11 @@ let routes = [
         path: '/newsType/:id',
         name: 'newsType',
         component: newsType,
+    },
+    {
+        path: '/search/:id',
+        name: 'search',
+        component: Search,
     },
     {
         path: '/p/:id',
