@@ -42,6 +42,8 @@ class SubController extends BaseController
 
     public function page($account, $id){
         $data['info']=$this->getDomainInfo($account);
+        $data['page']= Page::where('site_id', $data['info']->id)->where('id',$id)->first();
+        $data['page']->menu=$this->getPageMainMenuID($data['page']->id, $data['page']->parent_id);
         return view('sub.page', $data);
     }
 
@@ -93,5 +95,17 @@ class SubController extends BaseController
             }
         }
         return $branch;
+    }
+
+    public function getPageMainMenuID($id, $parent_id){
+        if($parent_id==null){
+            return $id;
+        } else {
+            $page=Page::find($parent_id);
+            if($page){
+                return   $this->getPageMainMenuID($page->id, $page->parent_id);
+            }
+
+        }
     }
 }
