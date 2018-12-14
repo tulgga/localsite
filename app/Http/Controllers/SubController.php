@@ -41,9 +41,9 @@ class SubController extends BaseController
 
 
     public function page($account, $id){
-        $data['info']=$this->getDomainInfo($account);
-        $data['page']= Page::where('site_id', $data['info']->id)->where('id',$id)->first();
-        $data['page']->menu=$this->getPageMainMenuID($data['page']->id, $data['page']->parent_id);
+        $data['info'] = $this->getDomainInfo($account);
+        $data['page'] = Page::where('site_id', $data['info']->id)->where('id',$id)->first();
+        $data['page']->menu = $this->getPageMainMenuID($data['page']->id, $data['page']->parent_id);
         return view('sub.page', $data);
     }
 
@@ -51,7 +51,7 @@ class SubController extends BaseController
         $data['info']=$this->getDomainInfo($account);
         $data['news']= Post::where('id', $id)->
         where('status',1)->with('Category')->
-        select('id', 'title', 'image', 'type','content','created_at')->get();
+        select('id', 'title', 'image', 'type','content','created_at')->first();
         return view('sub.news', $data);
     }
 

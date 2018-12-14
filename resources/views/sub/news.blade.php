@@ -1,20 +1,18 @@
 @extends('sub.layouts.site')
 @section('meta')
-    @foreach($news as $sd)
-    <title>{{$sd->title}}</title>
-    <meta name="title" content="{{$sd->title}}">
-    <meta name="description" content="{{mb_substr(strip_tags($sd->content), 0, 250)}}">
-    <meta name="keywords" content="{{$sd->title}}">
+    <title>{{$news->title}}</title>
+    <meta name="title" content="{{$news->title}}">
+    <meta name="description" content="{{mb_substr(strip_tags($news->content), 0, 250)}}">
+    <meta name="keywords" content="{{$news->title}}">
 
-    <meta name="twitter:title" content="{{$sd->title}}">
-    <meta name="twitter:description" content="{{mb_substr(strip_tags($sd->content), 0, 250)}}">
-    <meta name="twitter:url" content="{{asset('news/'.$sd->id)}}">
-    <meta name="twitter:image" content="{{asset('uploads/'.$sd->image)}}">
+    <meta name="twitter:title" content="{{$news->title}}">
+    <meta name="twitter:description" content="{{mb_substr(strip_tags($news->content), 0, 250)}}">
+    <meta name="twitter:url" content="{{asset('news/'.$news->id)}}">
+    <meta name="twitter:image" content="{{asset('uploads/'.$news->image)}}">
 
-    <meta property="og:title" content="{{$sd->title}}">
-    <meta property="og:description" content="{{mb_substr(strip_tags($sd->content), 0, 250)}}">
-    <meta property="og:image" content="{{asset('uploads/'.$sd->image)}}">
-    @endforeach
+    <meta property="og:title" content="{{$news->title}}">
+    <meta property="og:description" content="{{mb_substr(strip_tags($news->content), 0, 250)}}">
+    <meta property="og:image" content="{{asset('uploads/'.$news->image)}}">
 @endsection
 @section('content')
     <div class="row" style="background: #262b49;">
@@ -34,18 +32,17 @@
             <div class="row">
                 <div class="col-sm-9">
                     <div class="post-detials">
-                        @foreach($news as $sd)
-                        <div class="post_header">{{$sd->title}}</div>
+                        <div class="post_header">{{$news->title}}</div>
                         <result>
-                            <span title="Нийтэлсэн"><i class="far fa-clock"></i> {{$sd->created_at}}</span>
+                            <span title="Нийтэлсэн"><i class="far fa-clock"></i> {{$news->created_at}}</span>
                             <span title="Уншсан"><i class="fa fa-users"></i> 126</span>
                             <div style="float: right;">
                                 <div style="display: inline-flex;">
                                     <script src="https://apis.google.com/js/platform.js" async defer></script>
-                                    <div class="g-plus" data-action="share" data-annotation="bubble" data-href="{{asset('news/'.$sd->id)}}"></div>
+                                    <div class="g-plus" data-action="share" data-annotation="bubble" data-href="{{asset('news/'.$news->id)}}"></div>
                                 </div>
                                 <div style="display: inline-flex;">
-                                    <a name="twitter_share" data-count="horizontal" href="http://twitter.com/share?url=&amp{{asset('news/'.$sd->id)}};" class="twitter-share-button" >Tweet</a>
+                                    <a name="twitter_share" data-count="horizontal" href="http://twitter.com/share?url=&amp{{asset('news/'.$news->id)}};" class="twitter-share-button" >Tweet</a>
                                 </div>
                                 <div style="display: inline-flex;">
                                     <div id="fb-root"></div>
@@ -56,23 +53,23 @@
                                             js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
                                             fjs.parentNode.insertBefore(js, fjs);
                                         }(document, 'script', 'facebook-jssdk'));</script>
-                                    <div class="fb-like" data-href="{{asset('news/'.$sd->id)}}" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+                                    <div class="fb-like" data-href="{{asset('news/'.$news->id)}}" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
                                 </div>
                                 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
                             </div>
                         </result>
                         <div class="post_content">
-                            <img class="single_new_img" src="{{asset('uploads/'.$sd->image)}}">
-                            {!!$sd->content!!}
+                            <img class="single_new_img" src="{{asset('uploads/'.$news->image)}}">
+                            {!!$news->content!!}
                         </div>
                             <result style="margin-top:15px; text-align: right;">
                                 <div style="display: inline-block;">
                                     <div style="display: inline-flex;">
                                         <script src="https://apis.google.com/js/platform.js" async defer></script>
-                                        <div class="g-plus" data-action="share" data-annotation="bubble" data-href="{{asset('news/'.$sd->id)}}"></div>
+                                        <div class="g-plus" data-action="share" data-annotation="bubble" data-href="{{asset('news/'.$news->id)}}"></div>
                                     </div>
                                     <div style="display: inline-flex;">
-                                        <a name="twitter_share" data-count="horizontal" href="http://twitter.com/share?url=&amp{{asset('news/'.$sd->id)}};" class="twitter-share-button" >Tweet</a>
+                                        <a name="twitter_share" data-count="horizontal" href="http://twitter.com/share?url=&amp{{asset('news/'.$news->id)}};" class="twitter-share-button" >Tweet</a>
                                     </div>
                                     <div style="display: inline-flex;">
                                         <div id="fb-root"></div>
@@ -83,7 +80,7 @@
                                                 js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
                                                 fjs.parentNode.insertBefore(js, fjs);
                                             }(document, 'script', 'facebook-jssdk'));</script>
-                                        <div class="fb-like" data-href="{{asset('news/'.$sd->id)}}" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+                                        <div class="fb-like" data-href="{{asset('news/'.$news->id)}}" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
                                     </div>
                                     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
                                 </div>
@@ -91,12 +88,11 @@
                         <div class="categories">
                             <h4>Ангилалууд</h4>
                             <ul>
-                            @foreach($sd->category as $dd)
+                            @foreach($news->category as $dd)
                                 <li><a href="{{asset('p/'.$dd->id)}}">&bull; &nbsp;&nbsp;{{$dd->name}}</a></li>
                             @endforeach
                             </ul>
                         </div>
-                        @endforeach
                     </div>
                 </div>
                 <div class="col-sm-3">
