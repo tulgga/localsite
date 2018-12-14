@@ -34,8 +34,6 @@ class SubController extends BaseController
           Join('news_to_sites', 'news_to_sites.post_id', '=', 'posts.id')
           ->whereIn('news_to_sites.site_id', [$data['info']->id,0])
           ->limit(6)->get();
-        $data['province_news'] = Post::orderBy('created_at', 'desc')->where('site_id', 0)->where('is_primary', 0)->where('status',1)->with('Category')->select('title', 'id', 'image', 'type','created_at')
-            ->limit(6)->get();
       return view('sub.home', $data);
     }
 
