@@ -82,6 +82,14 @@ class ApiNewsController extends Controller
         );
     }
 
+
+    public function categoryInfo($id){
+        $cat=Category::find($id);
+        return response()->json(
+            ['success'=>$cat]
+        );
+    }
+
     public function news_category($site_id)
     {
         $cats= Category::where('site_id',$site_id)->select('category.*', 'category.name as label')->orderBy('order_num', 'asc')->get();

@@ -31,7 +31,13 @@ Route::namespace('Api')->group(function (){
     Route::get('newsListByCategory/{site_id}/{catId}','ApiNewsController@newsListByCategory');
     Route::get('news_ontslokh/{id}','ApiNewsController@news_ontslokh');
 
+
+
+    Route::get('categoryInfo/{id}','ApiNewsController@categoryInfo');
+
     Route::get('page/{site_id}/{id}', 'ApiPageController@single');
+
+
 
     //Өргөдөлийг 20 бичлэгээр хуудаслаж авна
     Route::get('urgudul','ApiUrgudulController@urgudul');

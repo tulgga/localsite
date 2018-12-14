@@ -138,7 +138,7 @@ class AdminPagesController extends Controller
         } else {
             $Page->link='/p/'.$Page->id;
         }
-
+        $Page->save();
         return response()->json([ 'success' => $Page ]);
     }
 

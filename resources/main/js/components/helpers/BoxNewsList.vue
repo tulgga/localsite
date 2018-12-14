@@ -1,5 +1,5 @@
 <template>
-    <div v-if="post"  >
+    <div v-if="post.data.length>0"  >
 
         <!--blog list-->
         <template v-if="list_type==0" v-for="p in post.data">
@@ -59,19 +59,19 @@
                 </template>
             </div>
         </template>
-        <nav class="pagination" role="navigation" aria-label="pagination">
-            <a class="pagination-previous" :disabled="post.current_page===1" :href="'#/p/'+page_id+'?page='+(post.current_page-1)" >Өмнөх</a>
-            <a class="pagination-next" :disabled="post.current_page===post.last_page" :href="'#/p/'+page_id+'?page='+(post.current_page+1)" >Дараах</a>
+        <nav  class="pagination" role="navigation" aria-label="pagination">
+            <a class="pagination-previous" @click="scrollToTop()" :disabled="post.current_page===1" :href="link+'?page='+(post.current_page-1)" >Өмнөх</a>
+            <a class="pagination-next" @click="scrollToTop()" :disabled="post.current_page===post.last_page" :href="link+'?page='+(post.current_page+1)" >Дараах</a>
             <ul class="pagination-list">
                 <template v-for="i in post.last_page">
                     <li>
-                        <a class="pagination-link"  :class="{'is-current':post.current_page===i}"  :href="'#/p/'+page_id+'?page='+i" >{{i}}</a>
+                        <a class="pagination-link"  @click="scrollToTop()" :class="{'is-current':post.current_page===i}"  :href="link+'?page='+i" >{{i}}</a>
                     </li>
                 </template>
             </ul>
         </nav>
     </div>
-    <loading v-else></loading>
+
 
 </template>
 
@@ -79,7 +79,7 @@
     export default {
         props:[
             'cat_id',
-            'page_id',
+            'link',
             'list_type',
         ],
         data(){
@@ -115,6 +115,9 @@
                 }
 
             },
+            scrollToTop() {
+                window.scrollTo(0,0);
+            }
         }
     }
 </script>

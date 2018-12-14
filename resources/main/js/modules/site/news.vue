@@ -22,7 +22,7 @@
 
                             <div class="buttons mb-1">
                                 <template v-for="c in content.category">
-                                    <a class="button is-light is-small" href="" ># {{c.name}}</a>
+                                    <a class="button is-light is-small" :href="'#/category/'+c.id" @click="scrollToTop()" ># {{c.name}}</a>
                                 </template>
 
                             </div>
@@ -60,16 +60,16 @@
                             </p>
                             <ul v-if="category" class="menu-list">
                                 <li v-for="m1 in category">
-                                    <a  :href="'#/category/'+m1.id">{{m1.name}}</a>
+                                    <a @click="scrollToTop()" :href="'#/category/'+m1.id">{{m1.name}}</a>
                                     <ul  v-if="m1.children" >
                                         <li v-for="m2 in m1.children">
-                                            <a  :href="'#/category/'+m2.id">{{m2.name}}</a>
+                                            <a @click="scrollToTop()" :href="'#/category/'+m2.id">{{m2.name}}</a>
                                             <ul  v-if="m2.children" >
                                                 <li v-for="m3 in m2.children">
-                                                    <a  :href="'#/category/'+m3.id">{{m3.name}}</a>
+                                                    <a @click="scrollToTop()" :href="'#/category/'+m3.id">{{m3.name}}</a>
                                                     <ul  v-if="m3.children" >
                                                         <li v-for="m4 in m3.children">
-                                                            <a  :href="'#/category/'+m4.id">{{m4.name}}</a>
+                                                            <a @click="scrollToTop()" :href="'#/category/'+m4.id">{{m4.name}}</a>
                                                         </li>
                                                     </ul>
                                                 </li>
@@ -141,6 +141,7 @@
                 })
             },
             fetchData: function () {
+                this.fetched=false;
                 this.id = this.$route.params.id
                 axios.get('/news/0/'+this.id).then((response) => {
                     this.fetched=true
@@ -161,6 +162,9 @@
                         this.metaInfo.meta[14].content=this.siteUrl+this.content.image.replace('images/', '/uploads/medium/')
                     }
                 })
+            },
+            scrollToTop() {
+                window.scrollTo(0,0);
             }
         },
         metaInfo() {

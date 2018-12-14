@@ -184,7 +184,7 @@ CRUD Edit, Create form
                     type_id: null,
                     blank: 0,
                     link: null,
-                    site_id: 0,
+                    site_id: this.$store.getters.domain.id,
                     list_type:0,
                 },
                 password_confirm: null,
@@ -217,7 +217,6 @@ CRUD Edit, Create form
                         this.form.type_id = response.data.success.type_id;
                         this.form.blank = response.data.success.blank;
                         this.form.link = response.data.success.link;
-                        this.form.site_id = this.site_id;
                         this.form.list_type= response.data.success.list_type;
                         if (response.data.success.image) {
                             this.imageni = this.siteUrl+'/uploads/'+response.data.success.image.replace('images/', 'small/');

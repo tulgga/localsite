@@ -15,7 +15,7 @@
                                 <div class="content mt-1 mb-1" v-html="content.text"></div>
                             </template>
                             <template v-else-if="content.type==2">
-                                <box-news-list :page_id="id" :list_type="content.list_type" :cat_id="content.type_id"></box-news-list>
+                                <box-news-list :link="'#/p/'+id" :list_type="content.list_type" :cat_id="content.type_id"></box-news-list>
                             </template>
                         </div>
                     </div>
@@ -100,6 +100,7 @@
         },
         methods: {
             fetchData: function () {
+                this.content=false;
                 this.id = this.$route.params.id
                 axios.get('/page/0/'+this.id).then((response) => {
                     this.fetched=true
