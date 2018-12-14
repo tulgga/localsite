@@ -116,7 +116,7 @@
             return {
                 siteUrl: window.surl,
                 ontslokh: [],
-                submeu:[],
+                submenu:[],
                 components: {
                     NewsCarousel,
                     OranNutagCarousel,

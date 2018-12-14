@@ -27,13 +27,13 @@ class SubController extends BaseController
           ->limit(5)->get();
       $data['latest_news']= Post::orderBy('created_at', 'desc')->where('site_id', $data['info']->id)->where('is_primary', 0)->where('status',1)->with('Category')->select('title', 'id', 'image', 'type','short_content','created_at')
             ->limit(6)->get();
-      /*$data['province_news'] = Post::orderBy('posts.created_at', 'desc')->
+      $data['province_news'] = Post::orderBy('posts.created_at', 'desc')->
       where('posts.site_id', 0)->
       where('posts.status',1)->with('Category')->
       select('posts.title', 'posts.id', 'posts.image', 'posts.type','posts.created_at')->
           Join('news_to_sites', 'news_to_sites.post_id', '=', 'posts.id')
-          ->where('news_to_sites.site_id', $data['info']->id)
-          ->limit(6)->get();*/
+          ->whereIn('news_to_sites.site_id', [$data['info']->id,0])
+          ->limit(6)->get();
         $data['province_news'] = Post::orderBy('created_at', 'desc')->where('site_id', 0)->where('is_primary', 0)->where('status',1)->with('Category')->select('title', 'id', 'image', 'type','created_at')
             ->limit(6)->get();
       return view('sub.home', $data);
