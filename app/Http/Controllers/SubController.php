@@ -34,6 +34,7 @@ class SubController extends BaseController
           Join('news_to_sites', 'news_to_sites.post_id', '=', 'posts.id')
           ->whereIn('news_to_sites.site_id', [$data['info']->id,0])
           ->limit(6)->get();
+      $data['other_menu'] = Page::where('site_id',$data['info']->id)->where('is_main',0)->select('id', 'title as name', 'link', 'icon')->orderBy('order_num', 'asc')->get();
       return view('sub.home', $data);
     }
 
@@ -46,6 +47,9 @@ class SubController extends BaseController
 
     public function news($account, $id){
         $data['info']=$this->getDomainInfo($account);
+        $data['news']= Post::where('id', $id)->
+        where('status',1)->with('Category')->
+        select('id', 'title', 'image', 'type','content','created_at')->get();
         return view('sub.news', $data);
     }
 
@@ -73,7 +77,7 @@ class SubController extends BaseController
 
 
     public function getMenu($site_id){
-        $page= Page::where('site_id',$site_id)->select('id', 'title as name', 'type', 'parent_id', 'blank', 'link')->orderBy('order_num', 'asc')->get();
+        $page= Page::where('site_id',$site_id)->where('is_main',1)->select('id', 'title as name', 'type', 'parent_id', 'blank', 'link')->orderBy('order_num', 'asc')->get();
         return  $this->buildTree($page);
     }
 

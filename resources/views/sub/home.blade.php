@@ -10,7 +10,7 @@
         <div class="container">
             <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
-                    <?php $i=1; ?>
+                    @php $i=1; @endphp
                     @foreach($ontslokh as $news)
                     <div class="carousel-item @if($i==1) active @endif">
                         <div class="row mb-3">
@@ -25,7 +25,7 @@
                             </div>
                         </div>
                     </div>
-                     <?php $i++; ?>
+                     @php $i++; @endphp
                     @endforeach
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -42,11 +42,9 @@
     <div class="row links">
         <div class="container">
             <div class="row" style="display: block;text-align: center;">
-                <a href="#"><i class="fa fa-gavel"></i> Иргэдийн төлөөлөгчдийн<br>хурлын тогтоол</a>
-                <a href="#"><i class="far fa-file-alt"></i> Засаг даргын<br>захирамж</a>
-                <a href="#"><i class="far fa-list-alt"></i> Засаг даргын тамгын<br>газрын тушаал</a>
-                <a href="#"><i class="fa fa-university"></i> Төсөл<br>хөтөлбөрүүд</a>
-                <a href="#"><i class="far fa-comments"></i> Санал хүсэлт<br>өргөдөл, гомдол</a>
+                @foreach($other_menu as $menu)
+                    <a href="{{$menu->link}}"><i class="{{$menu->icon}}"></i> {!!html_entity_decode($menu->name)!!}</a>
+                @endforeach
             </div>
         </div>
     </div>
@@ -63,8 +61,8 @@
                                     <div class="thumb" style="background-image: url('{{asset(str_replace("images","uploads/small/",$nws->image))}}');" title="{{$nws->title}}"></div>
                                 </div>
                                 <div class="col-7">
-                                    <a href="#"><h6>{{mb_substr($nws->title, 0, 55)}}...</h6></a>
-                                    <span class="create_date"><i class="far fa-clock"></i> {{$nws->created_at}}</span>
+                                    <a href="{{asset('news/'.$nws->id)}}"><h6>{{mb_substr($nws->title, 0, 55)}}...</h6></a>
+                                    <span class="create_date"><i class="far fa-clock"></i> {{$nws->created_at->format('Y-m-d')}}</span>
                                 </div>
                             </div>
                         </li>
@@ -85,7 +83,6 @@
             </div>
         </div>
     </div>
-    <pre>{{json_encode($province_news)}}</pre>
     <div class="row" style="background: #fafafa; border-top: 1px solid #f5f5f5;">
         <div class="container content-box">
             <div class="row">
@@ -93,15 +90,29 @@
                     <h3 class="head row background-white"><span>Аймгийн мэдээ</span></h3>
                     <ul class="row latest_news background-white">
                         @foreach($province_news as $nws)
-                            @if($nws->type == 1)
+                            @if($nws->type == 0)
+                                <li class="col-sm-6">
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <div class="thumb" style="background-image: url('{{asset(str_replace("images","uploads/small/",$nws->image))}}');" title="{{$nws->title}}"></div>
+                                        </div>
+                                        <div class="col-7">
+                                            <a href="{{asset('news/'.$nws->id)}}"><h6>{{mb_substr($nws->title, 0, 55)}}...</h6></a>
+                                            <span class="create_date"><i class="far fa-clock"></i> {{$nws->created_at->format('Y-m-d')}}</span>
+                                        </div>
+                                    </div>
+                                </li>
+                            @elseif($nws->type == 1)
                             <li class="col-sm-6">
                                 <div class="row">
                                     <div class="col-5">
-                                        <div class="thumb" style="background-image: url('{{asset(str_replace("images","uploads/small/",$nws->image))}}');" title="{{$nws->title}}"></div>
+                                        <div class="thumb photo" style="background-image: url('{{asset(str_replace("images","uploads/small/",$nws->image))}}');" title="{{$nws->title}}">
+                                            <i class="far fa-images"></i>
+                                        </div>
                                     </div>
                                     <div class="col-7">
-                                        <a href="#"><h6>{{mb_substr($nws->title, 0, 55)}}...</h6></a>
-                                        <span class="create_date"><i class="far fa-clock"></i> {{$nws->created_at}}</span>
+                                        <a href="{{asset('news/'.$nws->id)}}"><h6>{{mb_substr($nws->title, 0, 55)}}...</h6></a>
+                                        <span class="create_date"><i class="far fa-clock"></i> {{$nws->created_at->format('Y-m-d')}}</span>
                                     </div>
                                 </div>
                             </li>
@@ -112,8 +123,8 @@
                                             <div class="thumb video" style="background-image: url('https://i.ytimg.com/vi/{{$nws->image}}/mqdefault.jpg');" title="{{$nws->title}}"><i class="fa fa-play"></i></div>
                                         </div>
                                         <div class="col-7">
-                                            <a href="#"><h6>{{mb_substr($nws->title, 0, 55)}}...</h6></a>
-                                            <span class="create_date"><i class="far fa-clock"></i> {{$nws->created_at}}</span>
+                                            <a href="{{asset('news/'.$nws->id)}}"><h6>{{mb_substr($nws->title, 0, 55)}}...</h6></a>
+                                            <span class="create_date"><i class="far fa-clock"></i> {{$nws->created_at->format('Y-m-d')}}</span>
                                         </div>
                                     </div>
                                 </li>
@@ -133,66 +144,20 @@
                                 <a href="#">Авлигатай тэмцэх үндэснйий хөтөлбөр...</a>
                                 <span class="create_date">Зарлагдсан: 2018 оны 12 сар</span>
                             </li>
-                            <li>
-                                <a href="#">Аймгийн 2016 оны авлигын эсрэг, авлигаас урьдчилан сэргийлэх, соён...</a>
-                                <span class="create_date">Зарлагдсан: 2018 оны 12 сар</span>
-                            </li>
-                            <li>
-                                <a href="#">Авлигатай тэмцэх үндэснйий хөтөлбөр...</a>
-                                <span class="create_date">Зарлагдсан: 2018 оны 12 сар</span>
-                            </li>
-                            <li>
-                                <a href="#">Аймгийн 2016 оны авлигын эсрэг, авлигаас урьдчилан сэргийлэх, соён...</a>
-                                <span class="create_date">Зарлагдсан: 2018 оны 12 сар</span>
-                            </li>
-                            <li>
-                                <a href="#">Авлигатай тэмцэх үндэснйий хөтөлбөр...</a>
-                                <span class="create_date">Зарлагдсан: 2018 оны 12 сар</span>
-                            </li>
-                            <li>
-                                <a href="#">Аймгийн 2016 оны авлигын эсрэг, авлигаас урьдчилан сэргийлэх, соён...</a>
-                                <span class="create_date">Зарлагдсан: 2018 оны 12 сар</span>
-                            </li>
-                            <li>
-                                <a href="#">Авлигатай тэмцэх үндэснйий хөтөлбөр...</a>
-                                <span class="create_date">Зарлагдсан: 2018 оны 12 сар</span>
-                            </li>
-                            <li>
-                                <a href="#">Аймгийн 2016 оны авлигын эсрэг, авлигаас урьдчилан сэргийлэх, соён...</a>
-                                <span class="create_date">Зарлагдсан: 2018 оны 12 сар</span>
-                            </li>
-                            <li>
-                                <a href="#">Авлигатай тэмцэх үндэснйий хөтөлбөр...</a>
-                                <span class="create_date">Зарлагдсан: 2018 оны 12 сар</span>
-                            </li>
-                            <li>
-                                <a href="#">Аймгийн 2016 оны авлигын эсрэг, авлигаас урьдчилан сэргийлэх, соён...</a>
-                                <span class="create_date">Зарлагдсан: 2018 оны 12 сар</span>
-                            </li>
-                            <li>
-                                <a href="#">Авлигатай тэмцэх үндэснйий хөтөлбөр...</a>
-                                <span class="create_date">Зарлагдсан: 2018 оны 12 сар</span>
-                            </li>
-                            <li>
-                                <a href="#">Аймгийн 2016 оны авлигын эсрэг, авлигаас урьдчилан сэргийлэх, соён...</a>
-                                <span class="create_date">Зарлагдсан: 2018 оны 12 сар</span>
-                            </li>
-                            <li>
-                                <a href="#">Авлигатай тэмцэх үндэснйий хөтөлбөр...</a>
-                                <span class="create_date">Зарлагдсан: 2018 оны 12 сар</span>
-                            </li>
-                            <li>
-                                <a href="#">Аймгийн 2016 оны авлигын эсрэг, авлигаас урьдчилан сэргийлэх, соён...</a>
-                                <span class="create_date">Зарлагдсан: 2018 оны 12 сар</span>
-                            </li>
-                            <li>
-                                <a href="#">Авлигатай тэмцэх үндэснйий хөтөлбөр...</a>
-                                <span class="create_date">Зарлагдсан: 2018 оны 12 сар</span>
-                            </li>
                         </div>
                     </ul>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="container holboos">
+            <a href=""><img src="{{ asset('main/sub/images/icons/suld.png')}}"> Аймгийн засаг даргын тамгын газар</a>
+            <a href=""><img src="{{ asset('main/sub/images/icons/suld.png')}}"> Монгол улсын ерөнхийлөгчийн тамгын газар</a>
+            <a href=""><img src="{{ asset('main/sub/images/icons/suld.png')}}"> Монгол улсын засгийн газар</a>
+            <a href=""><img src="{{ asset('main/sub/images/icons/suld.png')}}"> Монгол улсын их хурал</a>
+            <a href=""><img src="{{ asset('main/sub/images/icons/avilga.png')}}"> Авлигатай тэмцэх газар</a>
+            <a href=""><img src="{{ asset('main/sub/images/icons/soyombo.png')}}"> Эрх зүйн мэдээллийн нэгдсэн сан</a>
         </div>
     </div>
 @endsection

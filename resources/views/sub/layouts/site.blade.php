@@ -78,7 +78,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-3 col-9">
-                    <img class="logo" width="100%" src="{{ asset('main/sub/images/logo.png') }}"></div>
+                    <a href="{{asset('')}}">
+                    <img class="logo" width="100%" src="{{ asset('main/sub/images/logo.png') }}">
+                    </a>
+                </div>
                 <div class="col-sm-9 col-3">
                     <nav class="navbar navbar-expand-lg navbar-light">
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -89,30 +92,30 @@
                             <ul class="navbar-nav ml-auto">
                                 <?php foreach($info->menu as $mn){ ?>
                                 <?php if($mn->children){ ?>
-                                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $mn->name; ?></a>
+                                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="{{$mn->link}}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" @if($mn->blank == 1) target="_blank" @endif><?php echo $mn->name; ?></a>
                                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                         <?php foreach($mn->children as $child){ ?>
                                         <?php if($child->children){ ?>
                                             <li class="nav-item dropdown">
-                                                <a class="dropdown-item" href="#"><?php echo $child->name; ?></a>
+                                                <a class="dropdown-item" href="{{$child->link}}" @if($child->blank == 1) target="_blank" @endif><?php echo $child->name; ?></a>
                                                 <ul>
                                                     <?php foreach($child->children as $subchuld){ ?>
                                                     <li class="nav-item">
-                                                        <a class="dropdown-item" href="#"><?php echo $subchuld->name; ?></a>
+                                                        <a class="dropdown-item" href="{{$subchuld->link}}" @if($subchuld->blank == 1) target="_blank" @endif><?php echo $subchuld->name; ?></a>
                                                     </li>
                                                     <?php } ?>
                                                 </ul>
                                             </li>
                                         <?php }else{ ?>
                                         <li class="nav-item">
-                                            <a class="dropdown-item" href="#"><?php echo $child->name; ?></a>
+                                            <a class="dropdown-item" href="{{$child->link}}" @if($child->blank == 1) target="_blank" @endif><?php echo $child->name; ?></a>
                                         </li>
                                             <?php } ?>
                                         <?php } ?>
                                     </ul>
                                 </li>
                                 <?php }else{ ?>
-                                    <li class="nav-item"><a class="nav-link" href="#"><?php echo $mn->name; ?></a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{{$mn->link}}" @if($mn->blank == 1) target="_blank" @endif><?php echo $mn->name; ?></a></li>
                                     <?php } ?>
                                 <?php } ?>
                             </ul>
@@ -123,16 +126,7 @@
         </div>
     </div>
     @yield('content')
-    <div class="row">
-        <div class="container holboos">
-            <a href=""><img src="{{ asset('main/sub/images/icons/suld.png')}}"> Аймгийн засаг даргын тамгын газар</a>
-            <a href=""><img src="{{ asset('main/sub/images/icons/suld.png')}}"> Монгол улсын ерөнхийлөгчийн тамгын газар</a>
-            <a href=""><img src="{{ asset('main/sub/images/icons/suld.png')}}"> Монгол улсын засгийн газар</a>
-            <a href=""><img src="{{ asset('main/sub/images/icons/suld.png')}}"> Монгол улсын их хурал</a>
-            <a href=""><img src="{{ asset('main/sub/images/icons/avilga.png')}}"> Авлигатай тэмцэх газар</a>
-            <a href=""><img src="{{ asset('main/sub/images/icons/soyombo.png')}}"> Эрх зүйн мэдээллийн нэгдсэн сан</a>
-        </div>
-    </div>
+
     <div class="row footer">
         <div class="container">
             <div class="row contact">
@@ -174,4 +168,3 @@
 </div>
 </body>
 </html>
-<pre><?php echo json_encode($info); ?></pre>

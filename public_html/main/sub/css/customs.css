@@ -437,6 +437,44 @@ h3.head.iltod span{
     padding: 10px 0;
     margin: 0;
 }
+.post_content ul, .post_content ol{
+    list-style-position: inside;
+}
+/** Categories **/
+.categories{
+    padding-top: 10px;
+}
+.categories h4{
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    padding: 0 0 10px;
+    text-transform: uppercase;
+    color: var(--MainColor);
+    border-bottom: 1px solid #f1f1f1;
+}
+.categories ul{
+    list-style: none;
+    display: block;
+}
+.categories ul li{
+    display: inline-grid;
+}
+.categories ul li a{
+    display: block;
+    color: var(--MainColor);
+    font-size: 12px;
+    background: #fff;
+    padding: 5px 15px;
+    border-radius: 5px;
+    border: 1px solid #f5f5f5;
+    transition: all 450ms cubic-bezier(.485, .075, .12, .855);
+}
+.categories ul li a:hover{
+    background: var(--SecondColor);
+    color:#fff;
+    box-shadow: none;
+}
 /**Left side menu**/
 .left-side-menu{
     list-style: none;
@@ -460,7 +498,7 @@ h3.head.iltod span{
 }
 .left-side-menu > li > a{
     display: block;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 600;
     text-transform: uppercase;
     padding: 5px 10px;
