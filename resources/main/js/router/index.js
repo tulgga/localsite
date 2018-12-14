@@ -4,6 +4,7 @@ import store from '../store'
 
 import Home from '../modules/site/index'
 import Category from  '../modules/site/category'
+import newsType from  '../modules/site/NewsType'
 import File from  '../modules/site/file'
 import Link from  '../modules/site/link'
 import Files from  '../modules/site/Files'
@@ -37,6 +38,11 @@ let routes = [
         path: '/news/:id',
         name: 'news',
         component: News,
+    },
+    {
+        path: '/newsType/:id',
+        name: 'newsType',
+        component: newsType,
     },
     {
         path: '/p/:id',

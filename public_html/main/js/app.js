@@ -82883,13 +82883,15 @@ var SAVE_MENU = 'SAVE_MENU';
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__store__ = __webpack_require__(632);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_site_index__ = __webpack_require__(817);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_site_category__ = __webpack_require__(825);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_site_file__ = __webpack_require__(828);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_site_link__ = __webpack_require__(830);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_site_Files__ = __webpack_require__(832);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modules_site_news__ = __webpack_require__(834);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__modules_site_page__ = __webpack_require__(836);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__modules_auth_Login__ = __webpack_require__(838);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__modules_system_NotFound__ = __webpack_require__(649);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_site_NewsType__ = __webpack_require__(971);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_site_file__ = __webpack_require__(828);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_site_link__ = __webpack_require__(830);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modules_site_Files__ = __webpack_require__(832);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__modules_site_news__ = __webpack_require__(834);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__modules_site_page__ = __webpack_require__(836);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__modules_auth_Login__ = __webpack_require__(838);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__modules_system_NotFound__ = __webpack_require__(649);
+
 
 
 
@@ -82912,27 +82914,31 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_
 var routes = [{
     path: '/login',
     name: 'login',
-    component: __WEBPACK_IMPORTED_MODULE_10__modules_auth_Login__["a" /* default */]
-}, { path: "*", component: __WEBPACK_IMPORTED_MODULE_11__modules_system_NotFound__["a" /* default */] }, {
+    component: __WEBPACK_IMPORTED_MODULE_11__modules_auth_Login__["a" /* default */]
+}, { path: "*", component: __WEBPACK_IMPORTED_MODULE_12__modules_system_NotFound__["a" /* default */] }, {
     path: '/',
     name: 'home',
     component: __WEBPACK_IMPORTED_MODULE_3__modules_site_index__["a" /* default */]
 }, {
     path: '/news/:id',
     name: 'news',
-    component: __WEBPACK_IMPORTED_MODULE_8__modules_site_news__["a" /* default */]
+    component: __WEBPACK_IMPORTED_MODULE_9__modules_site_news__["a" /* default */]
+}, {
+    path: '/newsType/:id',
+    name: 'newsType',
+    component: __WEBPACK_IMPORTED_MODULE_5__modules_site_NewsType__["a" /* default */]
 }, {
     path: '/p/:id',
     name: 'page',
-    component: __WEBPACK_IMPORTED_MODULE_9__modules_site_page__["a" /* default */]
+    component: __WEBPACK_IMPORTED_MODULE_10__modules_site_page__["a" /* default */]
 }, {
     path: '/files/:id',
     name: 'files',
-    component: __WEBPACK_IMPORTED_MODULE_7__modules_site_Files__["a" /* default */]
+    component: __WEBPACK_IMPORTED_MODULE_8__modules_site_Files__["a" /* default */]
 }, {
     path: '/file/:id',
     name: 'file',
-    component: __WEBPACK_IMPORTED_MODULE_5__modules_site_file__["a" /* default */]
+    component: __WEBPACK_IMPORTED_MODULE_6__modules_site_file__["a" /* default */]
 }, {
     path: '/category/:id',
     name: 'category',
@@ -82940,7 +82946,7 @@ var routes = [{
 }, {
     path: '/link/:id',
     name: 'link',
-    component: __WEBPACK_IMPORTED_MODULE_6__modules_site_link__["a" /* default */]
+    component: __WEBPACK_IMPORTED_MODULE_7__modules_site_link__["a" /* default */]
 }];
 
 var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
@@ -83838,7 +83844,7 @@ if (false) {(function () {
 //
 
 /* harmony default export */ __webpack_exports__["a"] = ({
-    props: ['cat_id', 'link', 'list_type'],
+    props: ['cat_id', 'link', 'ajax_url', 'list_type'],
     data: function data() {
         return {
             page: false,
@@ -83869,11 +83875,11 @@ if (false) {(function () {
                 this.limit = 16;
             }
             if (!this.page) {
-                axios.get('/newsListByCategoryBox/0/' + this.limit + '/' + this.cat_id).then(function (response) {
+                axios.get(this.ajax_url + this.limit + '/' + this.cat_id).then(function (response) {
                     _this.post = response.data.success;
                 });
             } else {
-                axios.get('/newsListByCategoryBox/0/' + this.limit + '/' + this.cat_id + '?page=' + this.page).then(function (response) {
+                axios.get(this.ajax_url + this.limit + '/' + this.cat_id + '?page=' + this.page).then(function (response) {
                     _this.post = response.data.success;
                 });
             }
@@ -87301,6 +87307,7 @@ var render = function() {
                           _c("box-news-list", {
                             attrs: {
                               link: "#/category/" + _vm.id,
+                              ajax_url: "/newsListByCategoryBox/0/",
                               list_type: 0,
                               cat_id: _vm.id
                             }
@@ -87483,15 +87490,33 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("ul", { staticClass: "menu-list" }, [
-      _c("li", [_c("a", [_vm._v("Онцлох мэдээ")])]),
+      _c("li", [
+        _c("a", { attrs: { href: "#/newsType/main" } }, [
+          _vm._v("Онцлох мэдээ")
+        ])
+      ]),
       _vm._v(" "),
-      _c("li", [_c("a", [_vm._v("Шинэ мэдээ")])]),
+      _c("li", [
+        _c("a", { attrs: { href: "#/newsType/recent" } }, [
+          _vm._v("Шинэ мэдээ")
+        ])
+      ]),
       _vm._v(" "),
-      _c("li", [_c("a", [_vm._v("Орон нутгийн мэдээ")])]),
+      _c("li", [
+        _c("a", { attrs: { href: "#/newsType/oronnutag" } }, [
+          _vm._v("Орон нутгийн мэдээ")
+        ])
+      ]),
       _vm._v(" "),
-      _c("li", [_c("a", [_vm._v("Фото мэдээ")])]),
+      _c("li", [
+        _c("a", { attrs: { href: "#/newsType/photo" } }, [_vm._v("Фото мэдээ")])
+      ]),
       _vm._v(" "),
-      _c("li", [_c("a", [_vm._v("Видео мэдээ")])])
+      _c("li", [
+        _c("a", { attrs: { href: "#/newsType/video" } }, [
+          _vm._v("Видео мэдээ")
+        ])
+      ])
     ])
   }
 ]
@@ -87985,7 +88010,82 @@ var render = function() {
                               )
                             ]),
                             _vm._v(" "),
-                            _vm._m(0),
+                            _c("ul", { staticClass: "menu-list" }, [
+                              _c("li", [
+                                _c(
+                                  "a",
+                                  {
+                                    attrs: { href: "#/newsType/main" },
+                                    on: {
+                                      click: function($event) {
+                                        _vm.scrollToTop()
+                                      }
+                                    }
+                                  },
+                                  [_vm._v("Онцлох мэдээ")]
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("li", [
+                                _c(
+                                  "a",
+                                  {
+                                    attrs: { href: "#/newsType/recent" },
+                                    on: {
+                                      click: function($event) {
+                                        _vm.scrollToTop()
+                                      }
+                                    }
+                                  },
+                                  [_vm._v("Шинэ мэдээ")]
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("li", [
+                                _c(
+                                  "a",
+                                  {
+                                    attrs: { href: "#/newsType/oronnutag" },
+                                    on: {
+                                      click: function($event) {
+                                        _vm.scrollToTop()
+                                      }
+                                    }
+                                  },
+                                  [_vm._v("Орон нутгийн мэдээ")]
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("li", [
+                                _c(
+                                  "a",
+                                  {
+                                    attrs: { href: "#/newsType/photo" },
+                                    on: {
+                                      click: function($event) {
+                                        _vm.scrollToTop()
+                                      }
+                                    }
+                                  },
+                                  [_vm._v("Фото мэдээ")]
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("li", [
+                                _c(
+                                  "a",
+                                  {
+                                    attrs: { href: "#/newsType/video" },
+                                    on: {
+                                      click: function($event) {
+                                        _vm.scrollToTop()
+                                      }
+                                    }
+                                  },
+                                  [_vm._v("Видео мэдээ")]
+                                )
+                              ])
+                            ]),
                             _vm._v(" "),
                             _c("p", { staticClass: "menu-label" }, [
                               _vm._v(
@@ -88138,24 +88238,7 @@ var render = function() {
     2
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("ul", { staticClass: "menu-list" }, [
-      _c("li", [_c("a", [_vm._v("Онцлох мэдээ")])]),
-      _vm._v(" "),
-      _c("li", [_c("a", [_vm._v("Шинэ мэдээ")])]),
-      _vm._v(" "),
-      _c("li", [_c("a", [_vm._v("Орон нутгийн мэдээ")])]),
-      _vm._v(" "),
-      _c("li", [_c("a", [_vm._v("Фото мэдээ")])]),
-      _vm._v(" "),
-      _c("li", [_c("a", [_vm._v("Видео мэдээ")])])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 if (false) {
@@ -88292,6 +88375,7 @@ var render = function() {
                                       attrs: {
                                         link: "#/p/" + _vm.id,
                                         list_type: _vm.content.list_type,
+                                        ajax_url: "/newsListByCategoryBox/0/",
                                         cat_id: _vm.content.type_id
                                       }
                                     })
@@ -88304,114 +88388,123 @@ var render = function() {
                     ),
                     _vm._v(" "),
                     _vm.is_full === false
-                      ? _c("div", { staticClass: "column is-3" }, [
-                          _c("aside", { staticClass: "menu mb-2" }, [
-                            _c("p", { staticClass: "menu-label" }, [
-                              _vm._v(
-                                "\n                               " +
-                                  _vm._s(_vm.selectedMenu.name) +
-                                  "\n                            "
-                              )
+                      ? _c(
+                          "div",
+                          { staticClass: "column is-3" },
+                          [
+                            _c("aside", { staticClass: "menu mb-2" }, [
+                              _c("p", { staticClass: "menu-label" }, [
+                                _vm._v(
+                                  "\n                               " +
+                                    _vm._s(_vm.selectedMenu.name) +
+                                    "\n                            "
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _vm.selectedMenu.children
+                                ? _c(
+                                    "ul",
+                                    { staticClass: "menu-list" },
+                                    _vm._l(_vm.selectedMenu.children, function(
+                                      m1
+                                    ) {
+                                      return _c("li", [
+                                        _c("span", {
+                                          domProps: {
+                                            innerHTML: _vm._s(_vm.echoLink(m1))
+                                          },
+                                          on: { click: _vm.scrollToTop }
+                                        }),
+                                        _vm._v(" "),
+                                        m1.children
+                                          ? _c(
+                                              "ul",
+                                              _vm._l(m1.children, function(m2) {
+                                                return _c("li", [
+                                                  _c("span", {
+                                                    domProps: {
+                                                      innerHTML: _vm._s(
+                                                        _vm.echoLink(m2)
+                                                      )
+                                                    },
+                                                    on: {
+                                                      click: _vm.scrollToTop
+                                                    }
+                                                  }),
+                                                  _vm._v(" "),
+                                                  m2.children
+                                                    ? _c(
+                                                        "ul",
+                                                        _vm._l(
+                                                          m2.children,
+                                                          function(m3) {
+                                                            return _c("li", [
+                                                              _c("span", {
+                                                                domProps: {
+                                                                  innerHTML: _vm._s(
+                                                                    _vm.echoLink(
+                                                                      m3
+                                                                    )
+                                                                  )
+                                                                },
+                                                                on: {
+                                                                  click:
+                                                                    _vm.scrollToTop
+                                                                }
+                                                              }),
+                                                              _vm._v(" "),
+                                                              m3.children
+                                                                ? _c(
+                                                                    "ul",
+                                                                    _vm._l(
+                                                                      m3.children,
+                                                                      function(
+                                                                        m4
+                                                                      ) {
+                                                                        return _c(
+                                                                          "li",
+                                                                          [
+                                                                            _c(
+                                                                              "span",
+                                                                              {
+                                                                                domProps: {
+                                                                                  innerHTML: _vm._s(
+                                                                                    _vm.echoLink(
+                                                                                      m4
+                                                                                    )
+                                                                                  )
+                                                                                },
+                                                                                on: {
+                                                                                  click:
+                                                                                    _vm.scrollToTop
+                                                                                }
+                                                                              }
+                                                                            )
+                                                                          ]
+                                                                        )
+                                                                      }
+                                                                    )
+                                                                  )
+                                                                : _vm._e()
+                                                            ])
+                                                          }
+                                                        )
+                                                      )
+                                                    : _vm._e()
+                                                ])
+                                              })
+                                            )
+                                          : _vm._e()
+                                      ])
+                                    })
+                                  )
+                                : _vm._e()
                             ]),
                             _vm._v(" "),
-                            _vm.selectedMenu.children
-                              ? _c(
-                                  "ul",
-                                  { staticClass: "menu-list" },
-                                  _vm._l(_vm.selectedMenu.children, function(
-                                    m1
-                                  ) {
-                                    return _c("li", [
-                                      _c("span", {
-                                        domProps: {
-                                          innerHTML: _vm._s(_vm.echoLink(m1))
-                                        },
-                                        on: { click: _vm.scrollToTop }
-                                      }),
-                                      _vm._v(" "),
-                                      m1.children
-                                        ? _c(
-                                            "ul",
-                                            _vm._l(m1.children, function(m2) {
-                                              return _c("li", [
-                                                _c("span", {
-                                                  domProps: {
-                                                    innerHTML: _vm._s(
-                                                      _vm.echoLink(m2)
-                                                    )
-                                                  },
-                                                  on: { click: _vm.scrollToTop }
-                                                }),
-                                                _vm._v(" "),
-                                                m2.children
-                                                  ? _c(
-                                                      "ul",
-                                                      _vm._l(
-                                                        m2.children,
-                                                        function(m3) {
-                                                          return _c("li", [
-                                                            _c("span", {
-                                                              domProps: {
-                                                                innerHTML: _vm._s(
-                                                                  _vm.echoLink(
-                                                                    m3
-                                                                  )
-                                                                )
-                                                              },
-                                                              on: {
-                                                                click:
-                                                                  _vm.scrollToTop
-                                                              }
-                                                            }),
-                                                            _vm._v(" "),
-                                                            m3.children
-                                                              ? _c(
-                                                                  "ul",
-                                                                  _vm._l(
-                                                                    m3.children,
-                                                                    function(
-                                                                      m4
-                                                                    ) {
-                                                                      return _c(
-                                                                        "li",
-                                                                        [
-                                                                          _c(
-                                                                            "span",
-                                                                            {
-                                                                              domProps: {
-                                                                                innerHTML: _vm._s(
-                                                                                  _vm.echoLink(
-                                                                                    m4
-                                                                                  )
-                                                                                )
-                                                                              },
-                                                                              on: {
-                                                                                click:
-                                                                                  _vm.scrollToTop
-                                                                              }
-                                                                            }
-                                                                          )
-                                                                        ]
-                                                                      )
-                                                                    }
-                                                                  )
-                                                                )
-                                                              : _vm._e()
-                                                          ])
-                                                        }
-                                                      )
-                                                    )
-                                                  : _vm._e()
-                                              ])
-                                            })
-                                          )
-                                        : _vm._e()
-                                    ])
-                                  })
-                                )
-                              : _vm._e()
-                          ])
-                        ])
+                            _c("side-bar")
+                          ],
+                          1
+                        )
                       : _vm._e()
                   ])
                 ])
@@ -93001,6 +93094,534 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-553b7f9c", { render: render, staticRenderFns: staticRenderFns })
+  }
+}
+
+/***/ }),
+/* 879 */,
+/* 880 */,
+/* 881 */,
+/* 882 */,
+/* 883 */,
+/* 884 */,
+/* 885 */,
+/* 886 */,
+/* 887 */,
+/* 888 */,
+/* 889 */,
+/* 890 */,
+/* 891 */,
+/* 892 */,
+/* 893 */,
+/* 894 */,
+/* 895 */,
+/* 896 */,
+/* 897 */,
+/* 898 */,
+/* 899 */,
+/* 900 */,
+/* 901 */,
+/* 902 */,
+/* 903 */,
+/* 904 */,
+/* 905 */,
+/* 906 */,
+/* 907 */,
+/* 908 */,
+/* 909 */,
+/* 910 */,
+/* 911 */,
+/* 912 */,
+/* 913 */,
+/* 914 */,
+/* 915 */,
+/* 916 */,
+/* 917 */,
+/* 918 */,
+/* 919 */,
+/* 920 */,
+/* 921 */,
+/* 922 */,
+/* 923 */,
+/* 924 */,
+/* 925 */,
+/* 926 */,
+/* 927 */,
+/* 928 */,
+/* 929 */,
+/* 930 */,
+/* 931 */,
+/* 932 */,
+/* 933 */,
+/* 934 */,
+/* 935 */,
+/* 936 */,
+/* 937 */,
+/* 938 */,
+/* 939 */,
+/* 940 */,
+/* 941 */,
+/* 942 */,
+/* 943 */,
+/* 944 */,
+/* 945 */,
+/* 946 */,
+/* 947 */,
+/* 948 */,
+/* 949 */,
+/* 950 */,
+/* 951 */,
+/* 952 */,
+/* 953 */,
+/* 954 */,
+/* 955 */,
+/* 956 */,
+/* 957 */,
+/* 958 */,
+/* 959 */,
+/* 960 */,
+/* 961 */,
+/* 962 */,
+/* 963 */,
+/* 964 */,
+/* 965 */,
+/* 966 */,
+/* 967 */,
+/* 968 */,
+/* 969 */,
+/* 970 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_helpers_BoxNewsList__ = __webpack_require__(641);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+    components: { BoxNewsList: __WEBPACK_IMPORTED_MODULE_0__components_helpers_BoxNewsList__["a" /* default */] },
+    data: function data() {
+        return {
+            type: false,
+            link: false,
+            fetched: false,
+            category: false,
+            siteUrl: window.surl,
+            content: null,
+            metaInfo: {
+                title: '404'
+            }
+        };
+    },
+
+    watch: {
+        '$route.params.id': function $routeParamsId(id) {
+            this.fetchData();
+        }
+    },
+    created: function created() {
+        this.fetchData();
+        this.getCategory();
+    },
+    methods: {
+        getCategory: function getCategory() {
+            var _this = this;
+
+            axios.get('/news_category/0').then(function (response) {
+                _this.fetched = true;
+                _this.category = response.data.success;
+            });
+        },
+        fetchData: function fetchData() {
+            this.fetched = false;
+            this.type = this.$route.params.id;
+
+            if (this.type == 'main') {
+                this.link = '';
+                this.metaInfo.title = 'Онцлох мэдээ';
+            }
+            this.fetched = true;
+        },
+        scrollToTop: function scrollToTop() {
+            window.scrollTo(0, 0);
+        }
+    },
+    metaInfo: function metaInfo() {
+        return {
+            title: this.metaInfo.title,
+            titleTemplate: '%s | ' + window.title
+        };
+    }
+});
+
+/***/ }),
+/* 971 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_plugins_transform_object_rest_spread_transform_runtime_polyfill_false_helpers_false_node_modules_vue_loader_lib_selector_type_script_index_0_NewsType_vue__ = __webpack_require__(970);
+/* unused harmony namespace reexport */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_5a5fc708_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_NewsType_vue__ = __webpack_require__(972);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_runtime_component_normalizer__ = __webpack_require__(1);
+var disposed = false
+/* script */
+
+
+/* template */
+
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+
+var Component = Object(__WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_runtime_component_normalizer__["a" /* default */])(
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_plugins_transform_object_rest_spread_transform_runtime_polyfill_false_helpers_false_node_modules_vue_loader_lib_selector_type_script_index_0_NewsType_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_5a5fc708_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_NewsType_vue__["a" /* render */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_5a5fc708_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_NewsType_vue__["b" /* staticRenderFns */],
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\main\\js\\modules\\site\\NewsType.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-5a5fc708", Component.options)
+  } else {
+    hotAPI.reload("data-v-5a5fc708", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+/* harmony default export */ __webpack_exports__["a"] = (Component.exports);
+
+
+/***/ }),
+/* 972 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "container" },
+    [
+      _vm.fetched
+        ? [
+            _c("div", { staticClass: "columns pt-2 pb-2" }, [
+              _c("div", { staticClass: "column is-9" }, [
+                _c("div", { staticClass: "has-background-white p-15 mb-2" }, [
+                  _c(
+                    "h1",
+                    { staticClass: "is-size-4-tablet is-size-6-mobile " },
+                    [_vm._v(_vm._s(_vm.metaInfo.title))]
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "column is-3" },
+                [
+                  _c(
+                    "aside",
+                    { staticClass: "menu" },
+                    [
+                      _c("p", { staticClass: "menu-label" }, [
+                        _vm._v(
+                          "\n                            Мэдээ мэдээлэл\n                        "
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("ul", { staticClass: "menu-list" }, [
+                        _c("li", [
+                          _c(
+                            "a",
+                            {
+                              attrs: { href: "#/newsType/main" },
+                              on: {
+                                click: function($event) {
+                                  _vm.scrollToTop()
+                                }
+                              }
+                            },
+                            [_vm._v("Онцлох мэдээ")]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("li", [
+                          _c(
+                            "a",
+                            {
+                              attrs: { href: "#/newsType/recent" },
+                              on: {
+                                click: function($event) {
+                                  _vm.scrollToTop()
+                                }
+                              }
+                            },
+                            [_vm._v("Шинэ мэдээ")]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("li", [
+                          _c(
+                            "a",
+                            {
+                              attrs: { href: "#/newsType/oronnutag" },
+                              on: {
+                                click: function($event) {
+                                  _vm.scrollToTop()
+                                }
+                              }
+                            },
+                            [_vm._v("Орон нутгийн мэдээ")]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("li", [
+                          _c(
+                            "a",
+                            {
+                              attrs: { href: "#/newsType/photo" },
+                              on: {
+                                click: function($event) {
+                                  _vm.scrollToTop()
+                                }
+                              }
+                            },
+                            [_vm._v("Фото мэдээ")]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("li", [
+                          _c(
+                            "a",
+                            {
+                              attrs: { href: "#/newsType/video" },
+                              on: {
+                                click: function($event) {
+                                  _vm.scrollToTop()
+                                }
+                              }
+                            },
+                            [_vm._v("Видео мэдээ")]
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "menu-label" }, [
+                        _vm._v(
+                          "\n                            Мэдээний ангилал\n                        "
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _vm.category
+                        ? _c(
+                            "ul",
+                            { staticClass: "menu-list" },
+                            _vm._l(_vm.category, function(m1) {
+                              return _c("li", [
+                                _c(
+                                  "a",
+                                  {
+                                    attrs: { href: "#/category/" + m1.id },
+                                    on: {
+                                      click: function($event) {
+                                        _vm.scrollToTop()
+                                      }
+                                    }
+                                  },
+                                  [_vm._v(_vm._s(m1.name))]
+                                ),
+                                _vm._v(" "),
+                                m1.children
+                                  ? _c(
+                                      "ul",
+                                      _vm._l(m1.children, function(m2) {
+                                        return _c("li", [
+                                          _c(
+                                            "a",
+                                            {
+                                              attrs: {
+                                                href: "#/category/" + m2.id
+                                              },
+                                              on: {
+                                                click: function($event) {
+                                                  _vm.scrollToTop()
+                                                }
+                                              }
+                                            },
+                                            [_vm._v(_vm._s(m2.name))]
+                                          ),
+                                          _vm._v(" "),
+                                          m2.children
+                                            ? _c(
+                                                "ul",
+                                                _vm._l(m2.children, function(
+                                                  m3
+                                                ) {
+                                                  return _c("li", [
+                                                    _c(
+                                                      "a",
+                                                      {
+                                                        attrs: {
+                                                          href:
+                                                            "#/category/" +
+                                                            m3.id
+                                                        },
+                                                        on: {
+                                                          click: function(
+                                                            $event
+                                                          ) {
+                                                            _vm.scrollToTop()
+                                                          }
+                                                        }
+                                                      },
+                                                      [_vm._v(_vm._s(m3.name))]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    m3.children
+                                                      ? _c(
+                                                          "ul",
+                                                          _vm._l(
+                                                            m3.children,
+                                                            function(m4) {
+                                                              return _c("li", [
+                                                                _c(
+                                                                  "a",
+                                                                  {
+                                                                    attrs: {
+                                                                      href:
+                                                                        "#/category/" +
+                                                                        m4.id
+                                                                    },
+                                                                    on: {
+                                                                      click: function(
+                                                                        $event
+                                                                      ) {
+                                                                        _vm.scrollToTop()
+                                                                      }
+                                                                    }
+                                                                  },
+                                                                  [
+                                                                    _vm._v(
+                                                                      _vm._s(
+                                                                        m4.name
+                                                                      )
+                                                                    )
+                                                                  ]
+                                                                )
+                                                              ])
+                                                            }
+                                                          )
+                                                        )
+                                                      : _vm._e()
+                                                  ])
+                                                })
+                                              )
+                                            : _vm._e()
+                                        ])
+                                      })
+                                    )
+                                  : _vm._e()
+                              ])
+                            })
+                          )
+                        : _c("loading")
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("side-bar")
+                ],
+                1
+              )
+            ])
+          ]
+        : _c("loading")
+    ],
+    2
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-5a5fc708", { render: render, staticRenderFns: staticRenderFns })
   }
 }
 

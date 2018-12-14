@@ -49,11 +49,11 @@
                                 Мэдээ мэдээлэл
                             </p>
                             <ul class="menu-list">
-                                <li><a>Онцлох мэдээ</a></li>
-                                <li><a>Шинэ мэдээ</a></li>
-                                <li><a>Орон нутгийн мэдээ</a></li>
-                                <li><a>Фото мэдээ</a></li>
-                                <li><a>Видео мэдээ</a></li>
+                                <li><a href="#/newsType/main" @click="scrollToTop()">Онцлох мэдээ</a></li>
+                                <li><a href="#/newsType/recent" @click="scrollToTop()">Шинэ мэдээ</a></li>
+                                <li><a href="#/newsType/oronnutag" @click="scrollToTop()">Орон нутгийн мэдээ</a></li>
+                                <li><a href="#/newsType/photo" @click="scrollToTop()">Фото мэдээ</a></li>
+                                <li><a href="#/newsType/video" @click="scrollToTop()">Видео мэдээ</a></li>
                             </ul>
                             <p class="menu-label">
                                 Мэдээний ангилал

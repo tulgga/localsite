@@ -80,6 +80,7 @@
         props:[
             'cat_id',
             'link',
+            'ajax_url',
             'list_type',
         ],
         data(){
@@ -105,11 +106,11 @@
                 if(this.list_type==1){ this.limit=15;}
                 if(this.list_type==2){ this.limit=16;}
                 if(!this.page){
-                    axios.get('/newsListByCategoryBox/0/'+this.limit+'/'+this.cat_id).then((response) => {
+                    axios.get(this.ajax_url+this.limit+'/'+this.cat_id).then((response) => {
                         this.post=response.data.success;
                     })
                 } else {
-                    axios.get('/newsListByCategoryBox/0/'+this.limit+'/'+this.cat_id+'?page='+this.page).then((response) => {
+                    axios.get(this.ajax_url+this.limit+'/'+this.cat_id+'?page='+this.page).then((response) => {
                         this.post=response.data.success;
                     })
                 }

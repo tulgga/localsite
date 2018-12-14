@@ -1,12 +1,11 @@
 <template>
     <div  class="container" >
         <template v-if="fetched">
-            <div v-if="content">
                 <div class="columns pt-2 pb-2">
                     <div class="column is-9">
                         <div class="has-background-white p-15 mb-2" >
-                            <h1 class="is-size-4-tablet is-size-6-mobile ">{{content.name}}</h1>
-                            <box-news-list :link="'#/category/'+id" :ajax_url="'/newsListByCategoryBox/0/'" :list_type="0" :cat_id="id"></box-news-list>
+                            <h1 class="is-size-4-tablet is-size-6-mobile ">{{metaInfo.title}}</h1>
+                            <!--<box-news-list :link="'#/category/'+id" :list_type="0" :cat_id="id"></box-news-list>-->
                         </div>
 
                     </div>
@@ -17,11 +16,11 @@
                                 Мэдээ мэдээлэл
                             </p>
                             <ul class="menu-list">
-                                <li><a href="#/newsType/main">Онцлох мэдээ</a></li>
-                                <li><a href="#/newsType/recent">Шинэ мэдээ</a></li>
-                                <li><a href="#/newsType/oronnutag">Орон нутгийн мэдээ</a></li>
-                                <li><a href="#/newsType/photo">Фото мэдээ</a></li>
-                                <li><a href="#/newsType/video">Видео мэдээ</a></li>
+                                <li><a href="#/newsType/main" @click="scrollToTop()">Онцлох мэдээ</a></li>
+                                <li><a href="#/newsType/recent" @click="scrollToTop()">Шинэ мэдээ</a></li>
+                                <li><a href="#/newsType/oronnutag" @click="scrollToTop()">Орон нутгийн мэдээ</a></li>
+                                <li><a href="#/newsType/photo" @click="scrollToTop()">Фото мэдээ</a></li>
+                                <li><a href="#/newsType/video" @click="scrollToTop()">Видео мэдээ</a></li>
                             </ul>
                             <p class="menu-label">
                                 Мэдээний ангилал
@@ -50,10 +49,7 @@
                         </aside>
                         <side-bar></side-bar>
                     </div>
-
                 </div>
-            </div>
-            <not-found v-else></not-found>
         </template>
         <loading v-else></loading>
     </div>
@@ -64,30 +60,14 @@
         components: {BoxNewsList},
         data() {
             return {
-                id: false,
+                type: false,
+                link: false,
                 fetched:false,
                 category: false,
                 siteUrl: window.surl,
                 content: null,
                 metaInfo:{
                     title: '404',
-                    meta: [
-                        {name: 'viewport', content: 'width=device-width, initial-scale=1'},
-                        {name: 'description', content: ''},
-                        {property: 'og:title', content: ''},
-                        {property: 'og:type', content: 'website'},
-                        {property: 'og:url', content: ''},
-                        {property: 'og:image', content: ''},
-                        {property: 'og:description', content: ''},
-                        {name: 'twitter:card', content: ''},
-                        {name: 'twitter:site', content: ''},
-                        {name: 'twitter:title', content: ''},
-                        {name: 'twitter:description', content: ''},
-                        {name: 'twitter:image:src', content: ''},
-                        {itemprop: 'name', content: ''},
-                        {itemprop: 'description', content: ''},
-                        {itemprop: 'image', content: ''}
-                    ],
                 },
             }
         },
@@ -109,19 +89,14 @@
             },
             fetchData: function () {
                 this.fetched=false;
-                this.id = this.$route.params.id
-                axios.get('/categoryInfo/'+this.id).then((response) => {
-                    this.fetched=true
-                    this.content=response.data.success
-                    if(this.content){
-                        this.metaInfo.title=this.content.name
-                        this.metaInfo.meta[2].content=this.content.name+' ← '+window.title
-                        this.metaInfo.meta[4].content=this.siteUrl+'/category/'+this.content.id
-                        this.metaInfo.meta[8].content=this.siteUrl+'/category/'+this.content.id
-                        this.metaInfo.meta[9].content=this.content.name+' ← '+window.title
-                        this.metaInfo.meta[12].content=this.content.name+' ← '+window.title
-                    }
-                })
+                this.type = this.$route.params.id
+
+                if(this.type=='main'){
+                    this.link='';
+                    this.metaInfo.title='Онцлох мэдээ';
+                }
+                this.fetched=true;
+
             },
             scrollToTop() {
                 window.scrollTo(0,0);
@@ -131,13 +106,6 @@
             return {
                 title: this.metaInfo.title,
                 titleTemplate: '%s | ' + window.title,
-                meta: [
-                    {property:  this.metaInfo.meta[2].property, content: this.metaInfo.meta[2].content},
-                    {property:  this.metaInfo.meta[4].property, content: this.metaInfo.meta[4].content},
-                    {name:  this.metaInfo.meta[8].name, content: this.metaInfo.meta[8].content},
-                    {name:  this.metaInfo.meta[9].name, content: this.metaInfo.meta[9].content},
-                    {itemprop:  this.metaInfo.meta[12].itemprop, content: this.metaInfo.meta[12].content},
-                ],
             }
         },
 

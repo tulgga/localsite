@@ -15,7 +15,7 @@
                                 <div class="content mt-1 mb-1" v-html="content.text"></div>
                             </template>
                             <template v-else-if="content.type==2">
-                                <box-news-list :link="'#/p/'+id" :list_type="content.list_type" :cat_id="content.type_id"></box-news-list>
+                                <box-news-list :link="'#/p/'+id" :list_type="content.list_type" :ajax_url="'/newsListByCategoryBox/0/'" :cat_id="content.type_id"></box-news-list>
                             </template>
                         </div>
                     </div>
@@ -45,7 +45,7 @@
                                     </li>
                                 </ul>
                         </aside>
-                        <!--<side-bar></side-bar>-->
+                        <side-bar></side-bar>
                     </div>
                 </div>
             </div>
