@@ -35,16 +35,13 @@ Route::namespace('Api')->group(function (){
 
     Route::get('page/{site_id}/{id}', 'ApiPageController@single');
 
-
     Route::get('newsListPrimary/{limit?}','ApiNewsController@newsListPrimary');
     Route::get('newsListRecent/{limit?}','ApiNewsController@newsListRecent');
     Route::get('newsListOronnutag/{limit?}','ApiNewsController@newsListOronnutag');
     Route::get('newsListPhoto/{limit?}','ApiNewsController@newsListPhoto');
     Route::get('newsListVideo/{limit?}','ApiNewsController@newsListVideo');
     Route::get('searchNews','ApiNewsController@searchNews');
-
-
-
+    Route::get('boxFileList/{cat_id}', 'ApiFileController@boxFileList');
 
     //Өргөдөлийг 20 бичлэгээр хуудаслаж авна
     Route::get('urgudul','ApiUrgudulController@urgudul');

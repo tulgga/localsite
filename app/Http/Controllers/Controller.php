@@ -41,17 +41,20 @@ class Controller extends BaseController
             $data['file']=url('uploads/'.$_GET['file']);
             $type=File::fileType($_GET['file']);
             if($type=='none'){
-                return 'энэ хүү файлын төрлийг үзэх боломжгүй';
+                return 'Энэ хүү файлын төрлийг үзэх боломжгүй';
             }
-            if($type=='pdf' or $type=='image'){
+            if($type=='pdf'){
                 return Redirect::to($data['file']);
+            }
+            if($type=='image'){
+                return view('fileView', $data);
             }
             if($type=='office'){
                 return Redirect::to('https://view.officeapps.live.com/op/view.aspx?src='.$data['file']);
             }
 
         } else {
-            return 'файл олдсонгүй';
+            return 'Файл олдсонгүй';
         }
     }
 }

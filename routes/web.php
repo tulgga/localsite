@@ -23,8 +23,6 @@ Route::get('/adminPanel/{vue_capture?}',function(){
 
 Route::get('/!/{vue_capture?}', 'Controller@index')->where('vue_capture', '[\/\w\.-]*');
 
-
-
 Route::domain('{account}.bayankhongor.local')->group(function () {
     Route::get('/', 'SubController@index');
     Route::get('/p/{id}', 'SubController@page');

@@ -89,14 +89,14 @@
                 <div class="column is-3 ">
                     <div class="bg-white p-15 mb-2  shadow">
                         <h3 class="bTitle mb-1">Ил тод байдал</h3>
-                        <v-bar wrapper="wrapper" style="height: 495px;">
+                        <v-bar wrapper="wrapper roboto-condensed" style="height: 490px;">
                             <news-list  catId="150"  ></news-list>
                         </v-bar>
                     </div>
                     <div class="bg-white p-15 mb-2 green shadow">
                         <h3 class="bTitle mb-1">Тендерийн урилга</h3>
-                        <v-bar wrapper="wrapper" style="height: 400px;">
-                            <news-list  height catId="151"></news-list>
+                        <v-bar wrapper="wrapper roboto-condensed" style="height: 401px;">
+                            <news-list   catId="182"></news-list>
                         </v-bar>
                     </div>
                 </div>

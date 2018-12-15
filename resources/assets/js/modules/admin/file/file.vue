@@ -59,7 +59,7 @@
         <!-- show modal -->
         <div class="modal is-active" v-if="showmodal">
             <div class="modal-background" v-on:click="showmodal = false"></div>
-            <div class="modal-card ">
+            <div class="modal-card" style="width: 100%;">
                 <section class="modal-card-body pd0">
                     <iframe :src="file"  style="width: 100%; height: 600px;"></iframe>
                 </section>

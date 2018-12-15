@@ -17,6 +17,9 @@
                             <template v-else-if="content.type==2">
                                 <box-news-list :link="'#/p/'+id" :list_type="content.list_type" :ajax_url="'/newsListByCategoryBox/0/'" :cat_id="content.type_id"></box-news-list>
                             </template>
+                            <template v-else-if="content.type==4">
+                                <box-file-list :link="'#/p/'+id"  :cat_id="content.type_id"></box-file-list>
+                            </template>
                         </div>
                     </div>
                     <div  v-if="is_full===false" class="column is-3">
@@ -56,8 +59,9 @@
 </template>
 <script>
     import BoxNewsList from "../../components/helpers/BoxNewsList";
+    import BoxFileList from "../../components/helpers/BoxFileList";
     export default {
-        components: {BoxNewsList},
+        components: {BoxNewsList, BoxFileList},
         data() {
             return {
                 id: false,

@@ -109,6 +109,7 @@
             return {
                 search: false,
                 post:false,
+                showmodal:false,
                 category: false,
                 siteUrl: window.surl,
                 content: null,
