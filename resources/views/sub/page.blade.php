@@ -20,8 +20,13 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{asset('')}}">Нүүр хуудас</a><hex></hex></li>
-                    <li class="breadcrumb-item"><a href="#">Library</a><hex></hex></li>
-                    <li class="breadcrumb-item active" aria-current="page">Data</li>
+                    @foreach($page->menu as $index=>$menu)
+                        @if(count($page->menu)-1!=$index)
+                        <li class="breadcrumb-item"><a href="#">{{$menu['title']}}</a><hex></hex></li>
+                        @else
+                            <li class="breadcrumb-item active" aria-current="page">{{$menu['title']}}</li>
+                        @endif
+                    @endforeach
                 </ol>
                 <div class="back-history"><a href="javascript:history.back(-1)">Өмнөх хуудас руу буцах</a></div>
             </nav>

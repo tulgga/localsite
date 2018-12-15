@@ -49,7 +49,7 @@ class SubController extends BaseController
             if($data['page']->list_type ==2) {$paginate=16;}
             $data['newslist'] = Post::where('site_id',$data['info']->id)->where('status',1)->Join('news_to_category','news_to_category.post_id', '=','posts.id')->orderBy('posts.created_at','DESC')->select('posts.title', 'posts.short_content','posts.id','posts.created_at','posts.image','posts.type')->paginate($paginate);
         }
-        $data['page']->menu = $this->getPageMainMenuID($data['page']->id, $data['page']->parent_id);
+        $data['page']->menu = $this->getPageMainMenuID([['id'=>$data['page']->id, 'parent_id'=>$data['page']->parent_id, 'title'=>$data['page']->title]]);
         return view('sub.page', $data);
     }
 
@@ -105,13 +105,16 @@ class SubController extends BaseController
         return $branch;
     }
 
-    public function getPageMainMenuID($id, $parent_id){
-        if($parent_id==null){
-            return $id;
+    public function getPageMainMenuID($menu){
+
+
+        if(is_null($menu[0]['parent_id'])){
+            return $menu;
         } else {
-            $page=Page::find($parent_id);
+            $page=Page::find($menu[0]['parent_id']);
+            array_unshift( $menu, ['id'=>$page->id, 'parent_id'=>$page->parent_id, 'title'=>$page->title]);
             if($page){
-                return   $this->getPageMainMenuID($page->id, $page->parent_id);
+                return   $this->getPageMainMenuID($menu);
             }
 
         }

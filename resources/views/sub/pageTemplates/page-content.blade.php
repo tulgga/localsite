@@ -1,5 +1,8 @@
 <div class="post-detials">
     <div class="post_header">{{$page->title}}</div>
+    <pre>
+
+        </pre>
     <result>
         <div style="float: right;">
             <div style="display: inline-flex;">
