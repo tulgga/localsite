@@ -85587,12 +85587,6 @@ if (false) {(function () {
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["a"] = ({
     data: function data() {
@@ -85672,11 +85666,6 @@ if (false) {(function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-//
-//
-//
-//
-//
 //
 //
 //
@@ -87193,7 +87182,7 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "container mb-2" }, [
+      _c("div", { staticClass: "container" }, [
         _c("div", { staticClass: "columns  is-multiline" }, [
           _c("div", { staticClass: "column  is-9" }, [
             _c(
@@ -93325,7 +93314,7 @@ exports = module.exports = __webpack_require__(10)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -94032,10 +94021,6 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("ul", { staticClass: "menu-list" }, [
-      _c("li", [_c("a", [_vm._v("Бусад сумдууд")])]),
-      _vm._v(" "),
-      _c("li", [_c("a", [_vm._v("Агентлагууд")])]),
-      _vm._v(" "),
       _c("li", [_c("a", [_vm._v("Зар")])]),
       _vm._v(" "),
       _c("li", [_c("a", [_vm._v("Санар хүсэлт, өргөдөл гомдол")])])
@@ -94065,19 +94050,7 @@ var staticRenderFns = [
       _c("nav", { staticClass: "level mb-0" }, [
         _c("div", { staticClass: "level-left ml-1" }),
         _vm._v(" "),
-        _c("div", { staticClass: "level-right mr-1 " }, [
-          _c("p", { staticClass: "level-item" }, [
-            _c("a", [_vm._v("Бусад сумдууд")])
-          ]),
-          _vm._v(" "),
-          _c("p", { staticClass: "level-item" }, [_vm._v("|")]),
-          _vm._v(" "),
-          _c("p", { staticClass: "level-item" }, [
-            _c("a", [_vm._v("Агентлагууд")])
-          ]),
-          _vm._v(" "),
-          _c("p", { staticClass: "level-item" }, [_vm._v("|")]),
-          _vm._v(" "),
+        _c("div", { staticClass: "level-right mr-1" }, [
           _c("p", { staticClass: "level-item" }, [_c("a", [_vm._v("Зар")])]),
           _vm._v(" "),
           _c("p", { staticClass: "level-item" }, [_vm._v("|")]),
@@ -94171,120 +94144,146 @@ var render = function() {
       "footer",
       {
         staticClass: "roboto-condensed",
-        style: { "background-color": _vm.main.main_color.hex },
+        style: { "background-color": _vm.main.parent_color.hex },
         attrs: { id: "footer" }
       },
       [
         _c("div", { staticClass: "contact" }, [
           _c("div", { staticClass: "container p-2" }, [
             _c("div", { staticClass: "columns" }, [
-              _c("div", { staticClass: "column is-5" }, [
-                _c("i", { staticClass: "fas fa-map-marker-alt" }),
-                _vm._v(" "),
-                _c(
-                  "p",
-                  {
-                    staticClass: "description is-size-6-desktop",
-                    attrs: { title: _vm.contact.address }
-                  },
-                  [_vm._v(_vm._s(_vm.contact.address))]
-                )
-              ]),
+              _vm._m(0),
+              _vm._v(" "),
+              _vm._m(1),
               _vm._v(" "),
               _c("div", { staticClass: "column is-4" }, [
-                _c("i", { staticClass: "fas fa-envelope" }),
+                _c("h3", { staticClass: "title" }, [_vm._v("Холбоо барих")]),
+                _vm._v(" "),
+                _c("div", [
+                  _c("i", { staticClass: "fas fa-map-marker-alt" }),
+                  _vm._v(" "),
+                  _c(
+                    "p",
+                    {
+                      staticClass: "description",
+                      attrs: { title: _vm.contact.address }
+                    },
+                    [_vm._v(_vm._s(_vm.contact.address))]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", [
+                  _c("i", { staticClass: "fas fa-envelope" }),
+                  _vm._v(" "),
+                  _c(
+                    "p",
+                    {
+                      staticClass: "description",
+                      attrs: { title: _vm.contact.email }
+                    },
+                    [_vm._v(_vm._s(_vm.contact.email))]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", [
+                  _c("i", { staticClass: "fas fa-phone" }),
+                  _vm._v(" "),
+                  _c(
+                    "p",
+                    {
+                      staticClass: "description",
+                      attrs: { title: _vm.contact.phone }
+                    },
+                    [_vm._v(_vm._s(_vm.contact.phone))]
+                  )
+                ]),
                 _vm._v(" "),
                 _c(
-                  "p",
-                  {
-                    staticClass: "description is-size-5-desktop",
-                    attrs: { title: _vm.contact.email }
-                  },
-                  [_vm._v(_vm._s(_vm.contact.email))]
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "column is-3" }, [
-                _c("i", { staticClass: "fas fa-phone" }),
-                _vm._v(" "),
-                _c(
-                  "p",
-                  {
-                    staticClass: "description is-size-5-desktop",
-                    attrs: { title: _vm.contact.phone }
-                  },
-                  [_vm._v(_vm._s(_vm.contact.phone))]
+                  "div",
+                  { staticClass: "footer-menu has-text-centered-mobile" },
+                  [
+                    _vm.socail.facebook
+                      ? _c(
+                          "a",
+                          {
+                            attrs: {
+                              target: "_blank",
+                              href: _vm.socail.facebook
+                            }
+                          },
+                          [_c("i", { staticClass: "fab fa-facebook fa-lg" })]
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.socail.twitter
+                      ? _c(
+                          "a",
+                          {
+                            attrs: {
+                              target: "_blank",
+                              href: _vm.socail.twitter
+                            }
+                          },
+                          [
+                            _c("i", {
+                              staticClass: "fab fa-twitter-square fa-lg"
+                            })
+                          ]
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.socail.messenger
+                      ? _c(
+                          "a",
+                          {
+                            attrs: {
+                              target: "_blank",
+                              href: _vm.socail.messenger
+                            }
+                          },
+                          [
+                            _c("i", {
+                              staticClass: "fab fa-facebook-messenger fa-lg"
+                            })
+                          ]
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.socail.google
+                      ? _c(
+                          "a",
+                          {
+                            attrs: { target: "_blank", href: _vm.socail.google }
+                          },
+                          [
+                            _c("i", {
+                              staticClass: "fab fa-google-plus-g fa-lg"
+                            })
+                          ]
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.socail.youtube
+                      ? _c(
+                          "a",
+                          {
+                            attrs: {
+                              target: "_blank",
+                              href: _vm.socail.youtube
+                            }
+                          },
+                          [_c("i", { staticClass: "fab fa-youtube fa-lg" })]
+                        )
+                      : _vm._e()
+                  ]
                 )
               ])
             ])
           ])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "container footer-menu p-2" }, [
-          _c("div", { staticClass: "columns" }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass:
-                  "column is-4 has-text-right-tablet has-text-centered-mobile"
-              },
-              [
-                _vm.socail.facebook
-                  ? _c(
-                      "a",
-                      {
-                        attrs: { target: "_blank", href: _vm.socail.facebook }
-                      },
-                      [_c("i", { staticClass: "fab fa-facebook fa-lg" })]
-                    )
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.socail.twitter
-                  ? _c(
-                      "a",
-                      { attrs: { target: "_blank", href: _vm.socail.twitter } },
-                      [_c("i", { staticClass: "fab fa-twitter-square fa-lg" })]
-                    )
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.socail.messenger
-                  ? _c(
-                      "a",
-                      {
-                        attrs: { target: "_blank", href: _vm.socail.messenger }
-                      },
-                      [
-                        _c("i", {
-                          staticClass: "fab fa-facebook-messenger fa-lg"
-                        })
-                      ]
-                    )
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.socail.google
-                  ? _c(
-                      "a",
-                      { attrs: { target: "_blank", href: _vm.socail.google } },
-                      [_c("i", { staticClass: "fab fa-google-plus-g fa-lg" })]
-                    )
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.socail.youtube
-                  ? _c(
-                      "a",
-                      { attrs: { target: "_blank", href: _vm.socail.youtube } },
-                      [_c("i", { staticClass: "fab fa-youtube fa-lg" })]
-                    )
-                  : _vm._e()
-              ]
-            )
-          ])
-        ]),
-        _vm._v(" "),
         _c("div", {
-          staticClass: "copyright p-2 has-text-centered",
+          staticClass: "copyright p-1 has-text-centered",
+          style: { "background-color": _vm.main.main_color.hex },
           domProps: { innerHTML: _vm._s(_vm.main.copyright) }
         })
       ]
@@ -94296,20 +94295,16 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "column is-8 has-text-centered-mobile" }, [
-      _c("a", [_vm._v("Бусад сумдууд")]),
-      _vm._v(" "),
-      _c("span", [_vm._v("|")]),
-      _vm._v(" "),
-      _c("a", [_vm._v("Агентлагууд")]),
-      _vm._v(" "),
-      _c("span", [_vm._v("|")]),
-      _vm._v(" "),
-      _c("a", [_vm._v("Зар")]),
-      _vm._v(" "),
-      _c("span", [_vm._v("|")]),
-      _vm._v(" "),
-      _c("a", [_vm._v("Санар хүсэлт, өргөдөл гомдол")])
+    return _c("div", { staticClass: "column is-3" }, [
+      _c("h3", { staticClass: "title" }, [_vm._v("Сумдууд")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "column is-5" }, [
+      _c("h3", { staticClass: "title" }, [_vm._v("Агентлаг")])
     ])
   }
 ]

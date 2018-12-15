@@ -65,8 +65,6 @@
                             <p class="menu-label"></p>
                             <p class="menu-label">Туслах цэс</p>
                             <ul class="menu-list">
-                                <li><a>Бусад сумдууд</a></li>
-                                <li><a>Агентлагууд</a></li>
                                 <li><a>Зар</a></li>
                                 <li><a>Санар хүсэлт, өргөдөл гомдол</a></li>
                             </ul>
@@ -110,11 +108,7 @@
                                 <!--<p v-if="socail.google" class="level-item"><a target="_blank" :href="socail.google"><i class="fab fa-google-plus-g"></i></a></p>-->
                                 <!--<p v-if="socail.youtube" class="level-item"><a target="_blank" :href="socail.youtube"><i class="fab fa-youtube"></i></a></p>-->
                             </div>
-                            <div class="level-right mr-1 ">
-                                <p class="level-item"><a>Бусад сумдууд</a></p>
-                                <p class="level-item">|</p>
-                                <p class="level-item"><a>Агентлагууд</a></p>
-                                <p class="level-item">|</p>
+                            <div class="level-right mr-1">
                                 <p class="level-item"><a>Зар</a></p>
                                 <p class="level-item">|</p>
                                 <p class="level-item"><a>Санар хүсэлт, өргөдөл гомдол</a></p>
