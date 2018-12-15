@@ -43,75 +43,27 @@
                     @endif
                 </div>
                 <div class="col-sm-3">
-                    <h3 class="head row"><span>Ил тод байдал</span></h3>
+                    @foreach($info->menu as $menu)
+                        @if($menu->id == $page['menu'][0]['id'])
+                    <h3 class="head row"><span>{{$menu->name}}</span></h3>
                     <ul class="left-side-menu">
-                        <li>
-                            <a href="http://bayanovoo.khongor.gov.mn/menu_all/170">Төсөв санхүү</a>
+                        @foreach($menu->children as $submenu)
+                        <li @if($page['menu'][1]['id'] == $submenu->id)class="active"@endif>
+                            <a href="{{$submenu->link}}">{{$submenu->name}}</a>
+                            @if($submenu->children)
                             <ul>
-                                <li>
-                                    <a href="http://bayanovoo.khongor.gov.mn/menu_all/174">Төсөв</a>
+                                @foreach($submenu->children as $submenu2)
+                                <li @if($page['menu'][2]['id'] == $submenu2->id)class="active"@endif>
+                                    <a href="{{$submenu2->link}}">{{$submenu2->name}}</a>
                                 </li>
-                                <li>
-                                    <a href="http://bayanovoo.khongor.gov.mn/menu_all/175">Төсвийн гүйцэтгэл,сарын мэдээ</a>
-                                </li>
-                                <li>
-                                    <a href="http://bayanovoo.khongor.gov.mn/menu_all/176">Аудитын дүгнэлт,зөвлөмж</a>
-                                </li>
-                                <li>
-                                    <a href="http://bayanovoo.khongor.gov.mn/menu_all/177">5 сая + орлого,зарлага</a>
-                                </li>
-                                <li>
-                                    <a href="http://bayanovoo.khongor.gov.mn/menu_all/178">Орон нутгийн хөгжлийн сан</a>
-                                </li>
-                                <li>
-                                    <a href="http://bayanovoo.khongor.gov.mn/menu_all/179">Орон нутгийн нөөц хөрөнгө</a>
-                                </li>
-                                <li>
-                                    <a href="http://bayanovoo.khongor.gov.mn/menu_all/180">Сум хөгжүүлэх сан</a>
-                                </li>
+                                @endforeach
                             </ul>
+                                @endif
                         </li>
-                        <li>
-                            <a href="http://bayanovoo.khongor.gov.mn/menu_all/171">Хүний нөөц</a>
-                            <ul>
-                                <li>
-                                    <a href="http://bayanovoo.khongor.gov.mn/menu_all/181">Сул орон тоо</a>
-                                </li>
-                                <li>
-                                    <a href="http://bayanovoo.khongor.gov.mn/menu_all/182">Сонгон шалгаруулалт</a>
-                                </li>
-                                <li>
-                                    <a href="http://bayanovoo.khongor.gov.mn/menu_all/183">Мэдээ тайлан</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="http://bayanovoo.khongor.gov.mn/menu_all/172">Худалдан авах ажиллагаа</a>
-                            <ul>
-                                <li>
-                                    <a href="http://bayanovoo.khongor.gov.mn/menu_all/184">Тендер</a>
-                                </li>
-                                <li>
-                                    <a href="http://bayanovoo.khongor.gov.mn/menu_all/185">Тайлан мэдээ</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="http://bayanovoo.khongor.gov.mn/menu_all/173">Үйл ажиллагаа</a>
-                            <ul>
-                                <li>
-                                    <a href="http://bayanovoo.khongor.gov.mn/menu_all/186">Авилгын эсрэг үйл ажиллагааны төлөвлөгөө,тайлан</a>
-                                </li>
-                                <li>
-                                    <a href="http://bayanovoo.khongor.gov.mn/menu_all/187">Тусгай зөвшөөрөл</a>
-                                </li>
-                                <li>
-                                    <a href="http://bayanovoo.khongor.gov.mn/menu_all/188">Үйлчилгээний төлбөр хураамж</a>
-                                </li>
-                            </ul>
-                        </li>
+                        @endforeach
                     </ul>
-
+                        @endif
+                    @endforeach
                 </div>
             </div>
         </div>
