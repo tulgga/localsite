@@ -35,7 +35,7 @@
                         <div class="post_header">{{$news->title}}</div>
                         <result>
                             <span title="Нийтэлсэн"><i class="far fa-clock"></i> {{$news->created_at}}</span>
-                            <span title="Уншсан"><i class="fa fa-users"></i> 126</span>
+                            <span title="Уншсан"><i class="fa fa-users"></i> {{$news->view_count}}</span>
                             <div style="float: right;">
                                 <div style="display: inline-flex;">
                                     <script src="https://apis.google.com/js/platform.js" async defer></script>

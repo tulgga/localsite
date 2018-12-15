@@ -43,6 +43,12 @@ class SubController extends BaseController
     public function page($account, $id){
         $data['info'] = $this->getDomainInfo($account);
         $data['page'] = Page::where('site_id', $data['info']->id)->where('id',$id)->first();
+        if($data['page']->type == 2){
+            $paginate=10;
+            if($data['page']->list_type ==1) {$paginate=15;}
+            if($data['page']->list_type ==2) {$paginate=16;}
+            $data['newslist'] = Post::where('site_id',$data['info']->id)->where('status',1)->Join('news_to_category','news_to_category.post_id', '=','posts.id')->orderBy('posts.created_at','DESC')->select('posts.title', 'posts.short_content','posts.id','posts.created_at','posts.image','posts.type')->paginate($paginate);
+        }
         $data['page']->menu = $this->getPageMainMenuID($data['page']->id, $data['page']->parent_id);
         return view('sub.page', $data);
     }
@@ -51,7 +57,9 @@ class SubController extends BaseController
         $data['info']=$this->getDomainInfo($account);
         $data['news']= Post::where('id', $id)->
         where('status',1)->with('Category')->
-        select('id', 'title', 'image', 'type','content','created_at')->first();
+        select('id', 'title', 'image', 'type','content','created_at','view_count')->first();
+        $data['news']->view_count += 1;
+        $data['news']->save();
         return view('sub.news', $data);
     }
 

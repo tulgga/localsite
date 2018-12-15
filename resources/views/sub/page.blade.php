@@ -19,7 +19,7 @@
         <div class="container">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Home</a><hex></hex></li>
+                    <li class="breadcrumb-item"><a href="{{asset('')}}">Нүүр хуудас</a><hex></hex></li>
                     <li class="breadcrumb-item"><a href="#">Library</a><hex></hex></li>
                     <li class="breadcrumb-item active" aria-current="page">Data</li>
                 </ol>
@@ -31,60 +31,11 @@
         <div class="container content-box">
             <div class="row">
                 <div class="col-sm-9">
-                    <div class="post-detials">
-                            <div class="post_header">{{$page->title}}</div>
-                            <result>
-                                <span title="Нийтэлсэн"><i class="far fa-clock"></i> {{$page->created_at}}</span>
-                                <span title="Уншсан"><i class="fa fa-users"></i> 126</span>
-                                <div style="float: right;">
-                                    <div style="display: inline-flex;">
-                                        <script src="https://apis.google.com/js/platform.js" async defer></script>
-                                        <div class="g-plus" data-action="share" data-annotation="bubble" data-href="{{asset('news/'.$page->id)}}"></div>
-                                    </div>
-                                    <div style="display: inline-flex;">
-                                        <a name="twitter_share" data-count="horizontal" href="http://twitter.com/share?url=&amp{{asset('news/'.$page->id)}};" class="twitter-share-button" >Tweet</a>
-                                    </div>
-                                    <div style="display: inline-flex;">
-                                        <div id="fb-root"></div>
-                                        <script>(function(d, s, id) {
-                                                var js, fjs = d.getElementsByTagName(s)[0];
-                                                if (d.getElementById(id)) return;
-                                                js = d.createElement(s); js.id = id;
-                                                js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
-                                                fjs.parentNode.insertBefore(js, fjs);
-                                            }(document, 'script', 'facebook-jssdk'));</script>
-                                        <div class="fb-like" data-href="{{asset('news/'.$page->id)}}" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
-                                    </div>
-                                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-                                </div>
-                            </result>
-                            <div class="post_content">
-                                <img class="single_new_img" src="{{asset('uploads/'.$page->image)}}">
-                                {!!$page->text!!}
-                            </div>
-                            <result style="margin-top:15px; text-align: right;">
-                                <div style="display: inline-block;">
-                                    <div style="display: inline-flex;">
-                                        <script src="https://apis.google.com/js/platform.js" async defer></script>
-                                        <div class="g-plus" data-action="share" data-annotation="bubble" data-href="{{asset('news/'.$page->id)}}"></div>
-                                    </div>
-                                    <div style="display: inline-flex;">
-                                        <a name="twitter_share" data-count="horizontal" href="http://twitter.com/share?url=&amp{{asset('news/'.$page->id)}};" class="twitter-share-button" >Tweet</a>
-                                    </div>
-                                    <div style="display: inline-flex;">
-                                        <div id="fb-root"></div>
-                                        <script>(function(d, s, id) {
-                                                var js, fjs = d.getElementsByTagName(s)[0];
-                                                if (d.getElementById(id)) return;
-                                                js = d.createElement(s); js.id = id;
-                                                js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
-                                                fjs.parentNode.insertBefore(js, fjs);
-                                            }(document, 'script', 'facebook-jssdk'));</script>
-                                        <div class="fb-like" data-href="{{asset('news/'.$page->id)}}" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
-                                    </div>
-                                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-                                </div>
-                    </div>
+                    @if($page->type == 0)
+                        @component('sub.pageTemplates.page-content', ['page'=>$page]) @endcomponent
+                    @elseif($page->type == 2)
+                        @component('sub.pageTemplates.page-posts',  ['page'=>$page,'newslist'=>$newslist]) @endcomponent
+                    @endif
                 </div>
                 <div class="col-sm-3">
                     <h3 class="head row"><span>Ил тод байдал</span></h3>
