@@ -394,6 +394,7 @@ a {
 }
 
 #footer {
+  font-size: 14px;
   color: $white;
   padding-top: 2em;
   padding-bottom: 2em;
@@ -407,8 +408,8 @@ a {
      color: white;
      text-transform: uppercase;
    }
-  .footer-link {
-    font-size: 13px;
+  .footer-link a {
+
     border-left: 3px solid #1e62d2;
     padding: 0px 0px 0px 15px;
   }

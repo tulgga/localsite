@@ -88558,6 +88558,12 @@ var modules = requireContext.keys().map(function (file) {
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
@@ -88584,6 +88590,7 @@ var modules = requireContext.keys().map(function (file) {
                 title: '',
                 content: '',
                 short_content: '',
+                youtube: '',
                 type: 0,
                 status: 1,
                 is_primary: 0,
@@ -88621,6 +88628,9 @@ var modules = requireContext.keys().map(function (file) {
                     _this.form.content = response.data.success.content;
                     _this.form.short_content = response.data.success.short_content;
                     _this.form.type = response.data.success.type;
+                    if (_this.form.type == 2) {
+                        _this.form.youtube = response.data.success.image;
+                    }
                     _this.form.status = response.data.success.status;
                     _this.form.is_primary = response.data.success.is_primary;
                     _this.form.cat_id = response.data.success.category;
@@ -101801,65 +101811,130 @@ var render = function() {
                           "column is-12-mobile is-4-tablet is-3-desktop"
                       },
                       [
-                        _c("div", { staticClass: "field" }, [
-                          _c("label", { staticClass: "label" }, [
-                            _vm._v("Зураг")
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "control has-image" }, [
-                            _c(
-                              "div",
-                              { staticClass: "file is-boxed is-fullwidth" },
-                              [
-                                _c("label", { staticClass: "file-label" }, [
-                                  _c("input", {
-                                    staticClass: "file-input",
-                                    attrs: { type: "file", name: "imageni" },
-                                    on: {
-                                      change: function($event) {
-                                        _vm.onFileChange(
-                                          $event.target.name,
-                                          $event.target.files
-                                        )
-                                      }
+                        _vm.form.type != 2
+                          ? _c("div", { staticClass: "field" }, [
+                              _c("label", { staticClass: "label" }, [
+                                _vm._v("Зураг")
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "control has-image" }, [
+                                _c(
+                                  "div",
+                                  { staticClass: "file is-boxed is-fullwidth" },
+                                  [
+                                    _c("label", { staticClass: "file-label" }, [
+                                      _c("input", {
+                                        staticClass: "file-input",
+                                        attrs: {
+                                          type: "file",
+                                          name: "imageni"
+                                        },
+                                        on: {
+                                          change: function($event) {
+                                            _vm.onFileChange(
+                                              $event.target.name,
+                                              $event.target.files
+                                            )
+                                          }
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c("span", { staticClass: "file-cta" }, [
+                                        _vm.imageni
+                                          ? _c(
+                                              "span",
+                                              {
+                                                staticClass: "file-icon",
+                                                style:
+                                                  "background-image: url(" +
+                                                  _vm.imageni +
+                                                  ");"
+                                              },
+                                              [
+                                                _c("i", {
+                                                  staticClass:
+                                                    "ion-ios-add-outline"
+                                                })
+                                              ]
+                                            )
+                                          : _c(
+                                              "span",
+                                              {
+                                                staticClass:
+                                                  "file-icon no-background"
+                                              },
+                                              [
+                                                _c("i", {
+                                                  staticClass:
+                                                    "ion-ios-add-outline"
+                                                })
+                                              ]
+                                            )
+                                      ])
+                                    ])
+                                  ]
+                                )
+                              ])
+                            ])
+                          : _c("div", { staticClass: "field" }, [
+                              _c("label", { staticClass: "label" }, [
+                                _vm._v("Youtube код")
+                              ]),
+                              _vm._m(0),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "control" }, [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "validate",
+                                      rawName: "v-validate",
+                                      value: "required",
+                                      expression: "'required'"
+                                    },
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.form.youtube,
+                                      expression: "form.youtube"
                                     }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("span", { staticClass: "file-cta" }, [
-                                    _vm.imageni
-                                      ? _c(
-                                          "span",
-                                          {
-                                            staticClass: "file-icon",
-                                            style:
-                                              "background-image: url(" +
-                                              _vm.imageni +
-                                              ");"
-                                          },
-                                          [
-                                            _c("i", {
-                                              staticClass: "ion-ios-add-outline"
-                                            })
-                                          ]
-                                        )
-                                      : _c(
-                                          "span",
-                                          {
-                                            staticClass:
-                                              "file-icon no-background"
-                                          },
-                                          [
-                                            _c("i", {
-                                              staticClass: "ion-ios-add-outline"
-                                            })
-                                          ]
-                                        )
-                                  ])
-                                ])
-                              ]
-                            )
-                          ])
-                        ]),
+                                  ],
+                                  class: {
+                                    input: true,
+                                    "is-danger": _vm.errors.has("youtube")
+                                  },
+                                  attrs: { type: "text", name: "youtube" },
+                                  domProps: { value: _vm.form.youtube },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        _vm.form,
+                                        "youtube",
+                                        $event.target.value
+                                      )
+                                    }
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "p",
+                                  {
+                                    directives: [
+                                      {
+                                        name: "show",
+                                        rawName: "v-show",
+                                        value: _vm.errors.has("youtube"),
+                                        expression: "errors.has('youtube')"
+                                      }
+                                    ],
+                                    staticClass: "help is-danger"
+                                  },
+                                  [_vm._v(_vm._s(_vm.errors.first("youtube")))]
+                                )
+                              ])
+                            ]),
                         _vm._v(" "),
                         _c(
                           "div",
@@ -102316,7 +102391,17 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("small", { staticStyle: { "margin-top": "10px" } }, [
+      _vm._v("https://www.youtube.com/watch?v="),
+      _c("span", { staticClass: "has-text-success" }, [_vm._v("6XaaI4_nIHY")])
+    ])
+  }
+]
 render._withStripped = true
 
 if (false) {

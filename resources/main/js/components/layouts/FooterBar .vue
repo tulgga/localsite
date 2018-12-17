@@ -21,8 +21,8 @@
                         <div class="column is-6">
                             <h3 class="title mb-3">Агентлаг</h3>
                             <div v-if="agentlag" class="columns sumduud is-multiline">
-                                <div v-for="link in agentlag" class="column is-6">
-                                    <a class="footer-link" :href="link.link" target="_blank" >
+                                <div v-for="link in agentlag" class="column is-6 footer-link">
+                                    <a :href="link.link" target="_blank" >
                                         {{link.name}}
                                     </a>
                                 </div>
@@ -57,7 +57,7 @@
             </div>
 
         </footer>
-        <div v-html="main.copyright" class="copyright p-1 has-text-centered has-text-white" :style="{'background-color': main.main_color.hex}"></div>
+        <div v-html="main.copyright" class="copyright p-2 has-text-centered has-text-white" :style="{'background-color': main.main_color.hex}"></div>
     </div>
 </template>
 

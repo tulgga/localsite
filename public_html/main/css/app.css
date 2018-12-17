@@ -19070,6 +19070,7 @@ a {
 }
 
 #footer {
+  font-size: 14px;
   color: white;
   padding-top: 2em;
   padding-bottom: 2em;
@@ -19086,8 +19087,7 @@ a {
   text-transform: uppercase;
 }
 
-#footer .footer-link {
-  font-size: 13px;
+#footer .footer-link a {
   border-left: 3px solid #1e62d2;
   padding: 0px 0px 0px 15px;
 }

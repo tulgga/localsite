@@ -94665,22 +94665,25 @@ var render = function() {
                         "div",
                         { staticClass: "columns sumduud is-multiline" },
                         _vm._l(_vm.agentlag, function(link) {
-                          return _c("div", { staticClass: "column is-6" }, [
-                            _c(
-                              "a",
-                              {
-                                staticClass: "footer-link",
-                                attrs: { href: link.link, target: "_blank" }
-                              },
-                              [
-                                _vm._v(
-                                  "\n                                        " +
-                                    _vm._s(link.name) +
-                                    "\n                                    "
-                                )
-                              ]
-                            )
-                          ])
+                          return _c(
+                            "div",
+                            { staticClass: "column is-6 footer-link" },
+                            [
+                              _c(
+                                "a",
+                                {
+                                  attrs: { href: link.link, target: "_blank" }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                                        " +
+                                      _vm._s(link.name) +
+                                      "\n                                    "
+                                  )
+                                ]
+                              )
+                            ]
+                          )
                         })
                       )
                     : _c("loading")
@@ -94819,7 +94822,7 @@ var render = function() {
     ),
     _vm._v(" "),
     _c("div", {
-      staticClass: "copyright p-1 has-text-centered has-text-white",
+      staticClass: "copyright p-2 has-text-centered has-text-white",
       style: { "background-color": _vm.main.main_color.hex },
       domProps: { innerHTML: _vm._s(_vm.main.copyright) }
     })
