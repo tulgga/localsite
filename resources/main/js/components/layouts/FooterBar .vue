@@ -6,23 +6,41 @@
                 <div class="container p-2">
                     <div class="columns">
                         <div class="column is-3">
-                            <h3 class="title">Сумдууд</h3>
+                            <h3 class="title mb-3">Сумдууд</h3>
+                            <div v-if="sites" class="columns sumduud is-multiline">
+                                <div v-for="site in sites" class="column is-6">
+                                    <a target="_blank" :href="'http://'+site.domain+'.'+subdomain" >
+                                        <img v-if="site.favicon===null" :src="icon" >
+                                        <img v-else :src="siteUrl+'/uploads/'+site.favicon"/>
+                                            {{site.name}}
+                                    </a>
+                                </div>
+                            </div>
+                            <loading v-else></loading>
                         </div>
-                        <div class="column is-5">
-                            <h3 class="title">Агентлаг</h3>
+                        <div class="column is-6">
+                            <h3 class="title mb-3">Агентлаг</h3>
+                            <div v-if="agentlag" class="columns sumduud is-multiline">
+                                <div v-for="link in agentlag" class="column is-6">
+                                    <a class="footer-link" :href="link.link" target="_blank" >
+                                        {{link.name}}
+                                    </a>
+                                </div>
+                            </div>
+                            <loading v-else></loading>
                         </div>
-                        <div class="column is-4">
-                            <h3 class="title">Холбоо барих</h3>
-                            <div>
-                                <i class="fas fa-map-marker-alt"></i>
+                        <div class="column is-3">
+                            <h3 class="title mb-3">Холбоо барих</h3>
+                            <div class="mb-05">
+                                <i class="fas fa-map-marker-alt list"></i>
                                 <p class="description" :title="contact.address">{{contact.address}}</p>
                             </div>
-                            <div>
-                                <i class="fas fa-envelope"></i>
+                            <div class="mb-05">
+                                <i class="fas fa-envelope list"></i>
                                 <p class="description" :title="contact.email">{{contact.email}}</p>
                             </div>
-                            <div>
-                                <i class="fas fa-phone"></i>
+                            <div class="mb-05">
+                                <i class="fas fa-phone list"></i>
                                 <p class="description" :title="contact.phone">{{contact.phone}}</p>
                             </div>
                             <div class="footer-menu has-text-centered-mobile">
@@ -37,9 +55,9 @@
                     </div>
                 </div>
             </div>
-            <div v-html="main.copyright" class="copyright p-1 has-text-centered" :style="{'background-color': main.main_color.hex}"></div>
-        </footer>
 
+        </footer>
+        <div v-html="main.copyright" class="copyright p-1 has-text-centered has-text-white" :style="{'background-color': main.main_color.hex}"></div>
     </div>
 </template>
 
@@ -49,6 +67,7 @@
     		return {
                 site_title: window.title,
                 socail:  window.socail,
+                subdomain: window.subdomain,
                 siteUrl: window.surl,
                 main: window.main,
                 logo: window.logo,
@@ -57,15 +76,24 @@
                 user_menu: false,
                 user: false,
                 user_nav: false,
+                sites: false,
+                agentlag: false,
     		}
     	},
     	created: function () {
-
+            this.fetchData();
         },
         mounted(){
         },
         methods: {
-
+            fetchData(){
+                axios.get('sites').then((response) => {
+                    this.sites=response.data.success
+                })
+                axios.get('agentlag').then((response) => {
+                    this.agentlag=response.data.success
+                })
+            }
         }
     }
 

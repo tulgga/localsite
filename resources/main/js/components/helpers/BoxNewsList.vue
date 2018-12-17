@@ -36,7 +36,7 @@
             <div class="columns is-multiline mb-2">
                 <template v-for="p in post.data">
                     <div class="column is-4">
-                        <a  v-if="p.domain" target="_blank" :href="'http://'+p.domain+'.khongor.gov.mn/news/'+p.id">
+                        <a  v-if="p.domain" target="_blank" :href="'http://'+p.domain+'.'+subdomain+'/news/'+p.id">
                             <b-img :value="p" classes="col3newslist"  size="medium">
                                 <div class="title roboto-condensed">  <span class="tag is-warning mb-05">{{p.site}}</span><br>{{p.title}}</div>
                             </b-img>
@@ -96,6 +96,7 @@
             return {
                 page: false,
                 siteUrl: window.surl,
+                subdomain: window.subdomain,
                 post: {
                     data:[]
                 },

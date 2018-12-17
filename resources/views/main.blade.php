@@ -29,6 +29,7 @@
 <!-- Scripts -->
 <script>
     window.surl = "{{ url('/') }}";
+    window.subdomain = "{{ env('SUB_DOMAIN') }}";
     window.logo = "{{$logo}}";
     window.icon = "{{$favicon}}";
     window.title = "{{$config['meta']['title']}}";

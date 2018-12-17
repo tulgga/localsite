@@ -117,7 +117,6 @@ window.axios.interceptors.request.use(request => {
     }
     return request
 });
-window.subdomain="khongor.gov.local"
 
 window.axios.interceptors.response.use(response => {
 

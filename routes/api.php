@@ -15,7 +15,9 @@ use App\Http\Controllers\Auth;
 
 
 Route::namespace('Api')->group(function (){
-    //menu
+    //sites
+    Route::get('sites','ApiSiteController@sites');
+    Route::get('agentlag','ApiLinkController@agentlag');
 
     Route::get('sidebar/{id}','ApiSiteController@sidebar');
     Route::get('weather','ApiSiteController@weather');

@@ -22,6 +22,7 @@
 <!-- Scripts -->
 <script>
     window.surl = "{{ url('/') }}";
+    window.subdomain = "{{ env('SUB_DOMAIN') }}";
 </script>
 
 <script src="{{url('admin/js/app.js?id=1')}}"></script>

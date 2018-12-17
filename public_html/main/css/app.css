@@ -19071,35 +19071,59 @@ a {
 
 #footer {
   color: white;
+  padding-top: 2em;
+  padding-bottom: 2em;
 }
 
 #footer a {
   color: white;
 }
 
-#footer .contact {
-  color: rgba(255, 255, 255, 0.8);
-  background: rgba(255, 255, 255, 0.05);
+#footer h3.title {
+  border-left: 3px solid #1e62d2;
+  padding: 0px 0px 0px 20px;
+  color: white;
+  text-transform: uppercase;
 }
 
-#footer .contact i {
-  width: 46px;
-  height: 46px;
-  background-color: rgba(0, 0, 0, 0.1);
+#footer .footer-link {
+  font-size: 13px;
+  border-left: 3px solid #1e62d2;
+  padding: 0px 0px 0px 15px;
+}
+
+#footer .contact {
+  color: white;
+}
+
+#footer .contact i.list {
+  width: 25px;
+  height: 25px;
+  background-color: #1e62d2;
   border-radius: 50%;
-  line-height: 46px;
+  line-height: 25px;
   text-align: center;
   color: #fff;
-  font-size: 16px;
+  font-size: 12px;
   float: left;
-  margin-right: 20px;
+  margin-right: 15px;
 }
 
 #footer .contact p.description {
-  height: 46px;
+  min-height: 40px;
   vertical-align: middle;
-  line-height: 46px;
-  overflow: hidden;
+}
+
+#footer .sumduud .column {
+  padding-bottom: 0px;
+  padding-top: 0px;
+}
+
+#footer .sumduud .column a img {
+  height: 20px;
+  margin-right: 5px;
+  position: relative;
+  top: 4px;
 }
 
 #footer .footer-menu a {

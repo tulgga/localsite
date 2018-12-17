@@ -4,7 +4,7 @@
             <iframe width="100%" height="330" :src="'https://www.youtube.com/embed/'+selectPost.image" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             <div  class="date"><i class="far fa-clock"></i>  {{selectPost.created_at.substring(0,16)}}</div>
             <p class="is-size-6">{{selectPost.title}} </p>
-            <p > <a class="button is-small is-danger" :href="'#/news/'+selectPost.id">Дэлгэрэнгүй</a></p>
+            <p > <a class="button is-small is-danger" @click="scrollToTop"  :href="'#/news/'+selectPost.id">Дэлгэрэнгүй</a></p>
         </div>
         <div class="column is-4">
             <v-bar wrapper="wrapper roboto-condensed" style="height: 400px;">
@@ -48,6 +48,9 @@
                     this.selectPost=this.post[0];
                 })
             },
+            scrollToTop() {
+                window.scrollTo(0,0);
+            }
         }
     }
 </script>
