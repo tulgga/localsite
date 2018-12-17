@@ -35,21 +35,13 @@ class SubController extends BaseController
           Join('news_to_sites', 'news_to_sites.post_id', '=', 'posts.id')
           ->whereIn('news_to_sites.site_id', [$data['info']->id,0])
           ->limit(6)->get();
-      $data['other_menu'] = Page::where('site_id',$data['info']->id)->where('is_main',0)->select('id', 'title as name', 'link', 'icon')->orderBy('order_num', 'asc')->get();
+      $data['other_menu'] = Page::where('site_id',$data['info']->id)->where('is_main',0)->select('id', 'title as name', 'link', 'icon', 'type')->orderBy('order_num', 'asc')->get();
       return view('sub.home', $data);
     }
-
-
 
     public function page($account, $id){
         $data['info'] = $this->getDomainInfo($account);
         $data['page'] = Page::where('site_id', $data['info']->id)->where('id',$id)->first();
-        if($data['page']->type == 2){
-            $paginate=10;
-            if($data['page']->list_type ==1) {$paginate=15;}
-            if($data['page']->list_type ==2) {$paginate=16;}
-            $data['newslist'] = Post::where('site_id',$data['info']->id)->where('status',1)->where('news_to_category.cat_id',$data['page']->type_id)->Join('news_to_category','news_to_category.post_id', '=','posts.id')->orderBy('posts.created_at','DESC')->select('posts.title', 'posts.short_content','posts.id','posts.created_at','posts.image','posts.type')->paginate($paginate);
-        }
         $data['page']->menu = $this->getPageMainMenuID([['id'=>$data['page']->id, 'parent_id'=>$data['page']->parent_id, 'title'=>$data['page']->title]]);
         return view('sub.page', $data);
     }
@@ -61,7 +53,9 @@ class SubController extends BaseController
         select('id', 'title', 'image', 'type','content','created_at','view_count')->first();
         $data['news']->view_count += 1;
         $data['news']->save();
+        $data['category'] = Category::where('site_id',$data['info']->id)->where('id',$data['news']['category'][0]->id)->select('*')->first();
         $data['categories'] = Category::where('site_id',$data['info']->id)->orderBy('order_num')->select('*')->get();
+        $data['category']->menu = $this->getCategoryID([['id'=>$data['category']->id, 'parent_id'=>$data['category']->parent_id, 'name'=>$data['category']->name]]);
         return view('sub.news', $data);
     }
 
@@ -71,6 +65,8 @@ class SubController extends BaseController
         $data['newslist'] = Post::where('site_id',$data['info']->id)->where('status',1)->where('news_to_category.cat_id',$id)->Join('news_to_category','news_to_category.post_id', '=','posts.id')->orderBy('posts.created_at','DESC')->select('posts.title', 'posts.short_content','posts.id','posts.created_at','posts.image','posts.type')->paginate($paginate);
         $data['category'] = Category::where('site_id',$data['info']->id)->where('id',$id)->select('*')->first();
         $data['categories'] = Category::where('site_id',$data['info']->id)->orderBy('order_num')->select('*')->get();
+        $data['category']->menu = $this->getCategoryID([['id'=>$data['category']->id, 'parent_id'=>$data['category']->parent_id, 'name'=>$data['category']->name]]);
+
         return view('sub.category', $data);
     }
 
@@ -93,7 +89,7 @@ class SubController extends BaseController
 
 
     public function getMenu($site_id){
-        $page= Page::where('site_id',$site_id)->where('is_main',1)->select('id', 'title as name', 'type', 'parent_id', 'blank', 'link')->orderBy('order_num', 'asc')->get();
+        $page= Page::where('site_id',$site_id)->where('is_main',1)->select('id', 'title as name', 'type', 'type_id', 'parent_id', 'blank', 'link')->orderBy('order_num', 'asc')->get();
         return  $this->buildTree($page);
     }
 
@@ -110,7 +106,17 @@ class SubController extends BaseController
         }
         return $branch;
     }
-
+    public function getCategoryID($menu){
+        if($menu[0]['parent_id'] == 0){
+            return $menu;
+        } else {
+            $category = Category::find($menu[0]['parent_id']);
+            array_unshift( $menu, ['id'=>$category->id, 'parent_id'=>$category->parent_id, 'name'=>$category->name]);
+            if($category){
+                return $this->getCategoryID($menu);
+            }
+        }
+    }
     public function getPageMainMenuID($menu){
         if(is_null($menu[0]['parent_id'])){
             return $menu;

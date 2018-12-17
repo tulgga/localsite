@@ -97,7 +97,11 @@
                                         <?php foreach($mn->children as $child){ ?>
                                         <?php if($child->children){ ?>
                                             <li class="nav-item dropdown">
+                                                @if($child->type == 2)
+                                                    <a class="dropdown-item" href="{{asset('category/'.$child->type_id)}}"><?php echo $child->name; ?></a>
+                                                @else
                                                 <a class="dropdown-item" href="{{$child->link}}" @if($child->blank == 1) target="_blank" @endif><?php echo $child->name; ?></a>
+                                                @endif
                                                 <ul>
                                                     <?php foreach($child->children as $subchuld){ ?>
                                                     <li class="nav-item">
@@ -108,7 +112,11 @@
                                             </li>
                                         <?php }else{ ?>
                                         <li class="nav-item">
-                                            <a class="dropdown-item" href="{{$child->link}}" @if($child->blank == 1) target="_blank" @endif><?php echo $child->name; ?></a>
+                                            @if($child->type == 2)
+                                                <a class="dropdown-item" href="{{asset('category/'.$child->type_id)}}"><?php echo $child->name; ?></a>
+                                            @else
+                                                <a class="dropdown-item" href="{{$child->link}}" @if($child->blank == 1) target="_blank" @endif><?php echo $child->name; ?></a>
+                                            @endif
                                         </li>
                                             <?php } ?>
                                         <?php } ?>

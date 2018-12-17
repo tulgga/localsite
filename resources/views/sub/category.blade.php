@@ -10,9 +10,14 @@
         <div class="container">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Home</a><hex></hex></li>
-                    <li class="breadcrumb-item"><a href="#">Library</a><hex></hex></li>
-                    <li class="breadcrumb-item active" aria-current="page">Data</li>
+                    <li class="breadcrumb-item"><a href="{{asset('')}}">Нүүр хуудас</a><hex></hex></li>
+                    @foreach($category->menu as $index=>$menu)
+                        @if(count($category->menu)-1!=$index)
+                            <li class="breadcrumb-item"><a href="#">{{$menu['name']}}</a><hex></hex></li>
+                        @else
+                            <li class="breadcrumb-item active" aria-current="page">{{$menu['name']}}</li>
+                        @endif
+                    @endforeach
                 </ol>
                 <div class="back-history"><a href="javascript:history.back(-1)">Өмнөх хуудас руу буцах</a></div>
             </nav>
@@ -22,12 +27,13 @@
         <div class="container content-box">
             <div class="row">
                 <div class="col-sm-9">
-                    <div class="posts-blog row" style="padding-right: 60px;">
+                    <div class="posts-blog row">
                         @foreach($newslist as $news)
+                            @if($news->type == 2)
                             <div class="news-blog">
                                 <a class="row" href="{{asset('news/'.$news->id)}}">
                                     <div class="col-sm-4">
-                                        <div class="thumb d-block w-100" style="background-image: url('{{asset(str_replace("images","uploads/medium/",$news->image))}}');" title="{{$news->title}}">
+                                        <div class="thumb d-block w-100 video" style="background-image: url('https://i.ytimg.com/vi/{{$news->image}}/mqdefault.jpg');" title="{{$news->title}}"><i class="fa fa-play"></i>
                                         </div>
                                     </div>
                                     <div class="col-sm-8">
@@ -37,6 +43,21 @@
                                     </div>
                                 </a>
                             </div>
+                            @else
+                                <div class="news-blog">
+                                    <a class="row" href="{{asset('news/'.$news->id)}}">
+                                        <div class="col-sm-4">
+                                            <div class="thumb d-block w-100" style="background-image: url('{{asset(str_replace("images","uploads/medium/",$news->image))}}');" title="{{$news->title}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <h2>{{$news->title}}</h2>
+                                            <div class="intro-text">{{mb_substr($news->short_content, 0, 350)}}...</div>
+                                            <span class="create_date"><i class="far fa-clock"></i> {{$news->created_at->format('Y-m-d')}}</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            @endif
                         @endforeach
                     </div>
                 </div>
@@ -48,7 +69,7 @@
                             @if($cat->parent_id == 0)
                                 <li>
                                     <a href="#">{{$cat->name}}</a>
-                                    @php $i = menu($categories,$cat->id, $i) @endphp
+                                    @php $i = menu($categories,$cat->id, $category->id, $i) @endphp
                                 </li>
                             @endif
                         @endforeach
@@ -68,14 +89,14 @@
         </div>
     </div>
 @endsection
-@php function menu($menus,$parent_id, $i){ @endphp
+@php function menu($menus,$parent_id, $activeC, $i){ @endphp
 <ul>
     @php foreach($menus as $menu) :
 if($menu->parent_id == $parent_id) { @endphp
-    <li>
+    <li @if($activeC == $menu->id)class="active"@endif>
         <a href="{{asset("category/".$menu->id)}}">{{$menu->name}}</a>
         @php $i++;
-$i = menu($menus,$menu->id, $i); @endphp
+$i = menu($menus,$menu->id, $activeC, $i); @endphp
     </li>
     @php } endforeach; @endphp
 </ul>

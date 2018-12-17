@@ -4634,7 +4634,11 @@ input[type="button"].btn-block {
   border-radius: 0.25rem;
 }
 .breadcrumb .breadcrumb-item a{
-  color:#fff
+  color:#fff;
+  transition: all 0.3s ease-in-out;
+}
+.breadcrumb .breadcrumb-item a:hover{
+  color:var(--SecondColor);
 }
 .breadcrumb .breadcrumb-item{
   position: relative;

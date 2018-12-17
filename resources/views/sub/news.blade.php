@@ -19,9 +19,16 @@
         <div class="container">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Home</a><hex></hex></li>
-                    <li class="breadcrumb-item"><a href="#">Library</a><hex></hex></li>
-                    <li class="breadcrumb-item active" aria-current="page">Data</li>
+                    <li class="breadcrumb-item"><a href="{{asset('')}}">Нүүр хуудас</a><hex></hex></li>
+                    @foreach($category->menu as $index=>$menu)
+                        @if(count($category->menu)-1!=$index)
+                            <li class="breadcrumb-item"><a href="#">{{$menu['name']}}</a><hex></hex></li>
+                        @else
+                            <li class="breadcrumb-item">
+                                <a href="{{asset("category/".$menu['id'])}}">{{$menu['name']}}</a>
+                            </li>
+                        @endif
+                    @endforeach
                 </ol>
                 <div class="back-history"><a href="javascript:history.back(-1)">Өмнөх хуудас руу буцах</a></div>
             </nav>
@@ -59,8 +66,13 @@
                             </div>
                         </result>
                         <div class="post_content">
+                            @if($news->type == 2)
+                                <iframe width="100%" height="345" src="https://www.youtube.com/embed/{{$news->image}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                {!!$news->content!!}
+                            @else
                             <img class="single_new_img" src="{{asset('uploads/'.$news->image)}}">
                             {!!$news->content!!}
+                            @endif
                         </div>
                             <result style="margin-top:15px; text-align: right;">
                                 <div style="display: inline-block;">
@@ -101,7 +113,7 @@
                         @php $i=1 @endphp
                         @foreach($categories as $cat)
                             @if($cat->parent_id == 0)
-                                <li class="active">
+                                <li>
                                      <a href="{{asset("category/".$cat->id)}}">{{$cat->name}}</a>
                                      @php $i = menu($categories,$cat->id, $news['category'][0]->id, $i) @endphp
                                 </li>
@@ -125,7 +137,7 @@
 @endsection
 @php function menu($menus,$parent_id, $active, $i){ @endphp
 <ul>
-@php foreach($menus as $menu) :
+@php foreach($menus as $menu):
 if($menu->parent_id == $parent_id) { @endphp
 <li @if($active == $menu->id)class="active"@endif>
 <a href="{{asset("category/".$menu->id)}}">{{$menu->name}}</a>
