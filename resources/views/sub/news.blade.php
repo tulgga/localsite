@@ -89,82 +89,25 @@
                             <h4>Ангилалууд</h4>
                             <ul>
                             @foreach($news->category as $dd)
-                                <li><a href="{{asset('p/'.$dd->id)}}">&bull; &nbsp;&nbsp;{{$dd->name}}</a></li>
+                                <li><a href="{{asset("category/".$dd->id)}}">&bull; &nbsp;&nbsp;{{$dd->name}}</a></li>
                             @endforeach
                             </ul>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-3">
-                    <h3 class="head row"><span>Ил тод байдал</span></h3>
+                    <h3 class="head row"><span>Мэдээний ангилал</span></h3>
                     <ul class="left-side-menu">
-                        <li>
-                            <a href="http://bayanovoo.khongor.gov.mn/menu_all/170">Төсөв санхүү</a>
-                            <ul>
-                                <li>
-                                    <a href="http://bayanovoo.khongor.gov.mn/menu_all/174">Төсөв</a>
+                        @php $i=1 @endphp
+                        @foreach($categories as $cat)
+                            @if($cat->parent_id == 0)
+                                <li class="active">
+                                     <a href="{{asset("category/".$cat->id)}}">{{$cat->name}}</a>
+                                     @php $i = menu($categories,$cat->id, $news['category'][0]->id, $i) @endphp
                                 </li>
-                                <li>
-                                    <a href="http://bayanovoo.khongor.gov.mn/menu_all/175">Төсвийн гүйцэтгэл,сарын мэдээ</a>
-                                </li>
-                                <li>
-                                    <a href="http://bayanovoo.khongor.gov.mn/menu_all/176">Аудитын дүгнэлт,зөвлөмж</a>
-                                </li>
-                                <li>
-                                    <a href="http://bayanovoo.khongor.gov.mn/menu_all/177">5 сая + орлого,зарлага</a>
-                                </li>
-                                <li>
-                                    <a href="http://bayanovoo.khongor.gov.mn/menu_all/178">Орон нутгийн хөгжлийн сан</a>
-                                </li>
-                                <li>
-                                    <a href="http://bayanovoo.khongor.gov.mn/menu_all/179">Орон нутгийн нөөц хөрөнгө</a>
-                                </li>
-                                <li>
-                                    <a href="http://bayanovoo.khongor.gov.mn/menu_all/180">Сум хөгжүүлэх сан</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="http://bayanovoo.khongor.gov.mn/menu_all/171">Хүний нөөц</a>
-                            <ul>
-                                <li>
-                                    <a href="http://bayanovoo.khongor.gov.mn/menu_all/181">Сул орон тоо</a>
-                                </li>
-                                <li>
-                                    <a href="http://bayanovoo.khongor.gov.mn/menu_all/182">Сонгон шалгаруулалт</a>
-                                </li>
-                                <li>
-                                    <a href="http://bayanovoo.khongor.gov.mn/menu_all/183">Мэдээ тайлан</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="http://bayanovoo.khongor.gov.mn/menu_all/172">Худалдан авах ажиллагаа</a>
-                            <ul>
-                                <li>
-                                    <a href="http://bayanovoo.khongor.gov.mn/menu_all/184">Тендер</a>
-                                </li>
-                                <li>
-                                    <a href="http://bayanovoo.khongor.gov.mn/menu_all/185">Тайлан мэдээ</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="http://bayanovoo.khongor.gov.mn/menu_all/173">Үйл ажиллагаа</a>
-                            <ul>
-                                <li>
-                                    <a href="http://bayanovoo.khongor.gov.mn/menu_all/186">Авилгын эсрэг үйл ажиллагааны төлөвлөгөө,тайлан</a>
-                                </li>
-                                <li>
-                                    <a href="http://bayanovoo.khongor.gov.mn/menu_all/187">Тусгай зөвшөөрөл</a>
-                                </li>
-                                <li>
-                                    <a href="http://bayanovoo.khongor.gov.mn/menu_all/188">Үйлчилгээний төлбөр хураамж</a>
-                                </li>
-                            </ul>
-                        </li>
+                            @endif
+                        @endforeach
                     </ul>
-
                 </div>
             </div>
         </div>
@@ -180,3 +123,15 @@
         </div>
     </div>
 @endsection
+@php function menu($menus,$parent_id, $active, $i){ @endphp
+<ul>
+@php foreach($menus as $menu) :
+if($menu->parent_id == $parent_id) { @endphp
+<li @if($active == $menu->id)class="active"@endif>
+<a href="{{asset("category/".$menu->id)}}">{{$menu->name}}</a>
+@php $i++;
+$i = menu($menus,$menu->id, $active, $i); @endphp
+</li>
+@php } endforeach; @endphp
+</ul>
+@php } @endphp

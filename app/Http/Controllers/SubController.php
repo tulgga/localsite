@@ -13,6 +13,7 @@ use App\Site;
 use App\Settings;
 use App\Page;
 use App\Post;
+use App\Category;
 use App\News_to_site;
 use phpDocumentor\Reflection\Location;
 
@@ -47,7 +48,7 @@ class SubController extends BaseController
             $paginate=10;
             if($data['page']->list_type ==1) {$paginate=15;}
             if($data['page']->list_type ==2) {$paginate=16;}
-            $data['newslist'] = Post::where('site_id',$data['info']->id)->where('status',1)->Join('news_to_category','news_to_category.post_id', '=','posts.id')->orderBy('posts.created_at','DESC')->select('posts.title', 'posts.short_content','posts.id','posts.created_at','posts.image','posts.type')->paginate($paginate);
+            $data['newslist'] = Post::where('site_id',$data['info']->id)->where('status',1)->where('news_to_category.cat_id',$data['page']->type_id)->Join('news_to_category','news_to_category.post_id', '=','posts.id')->orderBy('posts.created_at','DESC')->select('posts.title', 'posts.short_content','posts.id','posts.created_at','posts.image','posts.type')->paginate($paginate);
         }
         $data['page']->menu = $this->getPageMainMenuID([['id'=>$data['page']->id, 'parent_id'=>$data['page']->parent_id, 'title'=>$data['page']->title]]);
         return view('sub.page', $data);
@@ -60,11 +61,16 @@ class SubController extends BaseController
         select('id', 'title', 'image', 'type','content','created_at','view_count')->first();
         $data['news']->view_count += 1;
         $data['news']->save();
+        $data['categories'] = Category::where('site_id',$data['info']->id)->orderBy('order_num')->select('*')->get();
         return view('sub.news', $data);
     }
 
     public function category($account, $id){
         $data['info']=$this->getDomainInfo($account);
+        $paginate=20;
+        $data['newslist'] = Post::where('site_id',$data['info']->id)->where('status',1)->where('news_to_category.cat_id',$id)->Join('news_to_category','news_to_category.post_id', '=','posts.id')->orderBy('posts.created_at','DESC')->select('posts.title', 'posts.short_content','posts.id','posts.created_at','posts.image','posts.type')->paginate($paginate);
+        $data['category'] = Category::where('site_id',$data['info']->id)->where('id',$id)->select('*')->first();
+        $data['categories'] = Category::where('site_id',$data['info']->id)->orderBy('order_num')->select('*')->get();
         return view('sub.category', $data);
     }
 
@@ -106,8 +112,6 @@ class SubController extends BaseController
     }
 
     public function getPageMainMenuID($menu){
-
-
         if(is_null($menu[0]['parent_id'])){
             return $menu;
         } else {
@@ -116,7 +120,6 @@ class SubController extends BaseController
             if($page){
                 return   $this->getPageMainMenuID($menu);
             }
-
         }
     }
 }

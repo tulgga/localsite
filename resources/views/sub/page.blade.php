@@ -50,15 +50,15 @@
                         @foreach($menu->children as $submenu)
                         <li @if($page['menu'][1]['id'] == $submenu->id)class="active"@endif>
                             <a href="{{$submenu->link}}">{{$submenu->name}}</a>
-                            @if($submenu->children)
+                            @if( $submenu->children)
                             <ul>
                                 @foreach($submenu->children as $submenu2)
-                                <li @if($page['menu'][2]['id'] == $submenu2->id)class="active"@endif>
+                                <li @if(isset($page['menu'][2]['id']) and $page['menu'][2]['id'] == $submenu2->id)class="active"@endif>
                                     <a href="{{$submenu2->link}}">{{$submenu2->name}}</a>
                                 </li>
                                 @endforeach
                             </ul>
-                                @endif
+                            @endif
                         </li>
                         @endforeach
                     </ul>
