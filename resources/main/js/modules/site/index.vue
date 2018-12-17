@@ -64,7 +64,8 @@
                     <template v-if="submenu" v-for="sub in submenu">
                         <div class="column is-6-mobile">
                            <p><span class="icon is-large"><i :class="sub.icon"></i></span></p>
-                           <a :href="'#/p/'+sub.id"><div  v-html="sub.title"></div></a>
+                           <a v-if="sub.type==1" @click="scrollToTop" :href="sub.link"><div  v-html="sub.title"></div></a>
+                            <a v-else @click="scrollToTop" :href="'#'+sub.link"><div  v-html="sub.title"></div></a>
                         </div>
                     </template>
                 </div>
@@ -139,6 +140,9 @@
                     this.submenu=response.data.success;
                 })
             },
+            scrollToTop() {
+                window.scrollTo(0,0);
+            }
         }
 
     }

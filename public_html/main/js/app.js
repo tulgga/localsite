@@ -83218,6 +83218,7 @@ var modules = requireContext.keys().map(function (file) {
 //
 //
 //
+//
 
 
 
@@ -83254,6 +83255,9 @@ var modules = requireContext.keys().map(function (file) {
             axios.get('/submenu/' + 0).then(function (response) {
                 _this.submenu = response.data.success;
             });
+        },
+        scrollToTop: function scrollToTop() {
+            window.scrollTo(0, 0);
         }
     }
 
@@ -87323,11 +87327,31 @@ var render = function() {
                           ])
                         ]),
                         _vm._v(" "),
-                        _c("a", { attrs: { href: "#/p/" + sub.id } }, [
-                          _c("div", {
-                            domProps: { innerHTML: _vm._s(sub.title) }
-                          })
-                        ])
+                        sub.type == 1
+                          ? _c(
+                              "a",
+                              {
+                                attrs: { href: sub.link },
+                                on: { click: _vm.scrollToTop }
+                              },
+                              [
+                                _c("div", {
+                                  domProps: { innerHTML: _vm._s(sub.title) }
+                                })
+                              ]
+                            )
+                          : _c(
+                              "a",
+                              {
+                                attrs: { href: "#" + sub.link },
+                                on: { click: _vm.scrollToTop }
+                              },
+                              [
+                                _c("div", {
+                                  domProps: { innerHTML: _vm._s(sub.title) }
+                                })
+                              ]
+                            )
                       ])
                     ]
                   : _vm._e()

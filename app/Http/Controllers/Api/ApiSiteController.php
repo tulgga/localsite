@@ -28,7 +28,7 @@ class ApiSiteController extends Controller
     }
 
     public function submenu($site_id){
-        $page= Page::where('site_id',$site_id)->where('is_main',0)->select('id', 'title','icon')->orderBy('order_num', 'asc')->get();
+        $page= Page::where('site_id',$site_id)->where('is_main',0)->select('id', 'title', 'type', 'link',  'icon')->orderBy('order_num', 'asc')->get();
         return response()->json([ 'success' => $page ]);
     }
 
