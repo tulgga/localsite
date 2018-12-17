@@ -1,7 +1,7 @@
 <div class="post-detials">
     <div class="post_header">{{$page->title}}</div>
     <result>
-        <div style="float: right;">
+        <div>
             <div style="display: inline-flex;">
                 <script src="https://apis.google.com/js/platform.js" async defer></script>
                 <div class="g-plus" data-action="share" data-annotation="bubble" data-href="{{asset('news/'.$page->id)}}"></div>
@@ -27,7 +27,7 @@
         <img class="single_new_img" src="{{asset('uploads/'.$page->image)}}">
         {!!$page->text!!}
     </div>
-    <result style="margin-top:15px; text-align: right;">
+    <result style="margin-top:15px;">
         <div style="display: inline-block;">
             <div style="display: inline-flex;">
                 <script src="https://apis.google.com/js/platform.js" async defer></script>
