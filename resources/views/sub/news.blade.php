@@ -22,7 +22,7 @@
                     <li class="breadcrumb-item"><a href="{{asset('')}}">Нүүр хуудас</a><hex></hex></li>
                     @foreach($category->menu as $index=>$menu)
                         @if(count($category->menu)-1!=$index)
-                            <li class="breadcrumb-item"><a href="#">{{$menu['name']}}</a><hex></hex></li>
+                            <li class="breadcrumb-item"><a href="javascript:void(0);">{{$menu['name']}}</a><hex></hex></li>
                         @else
                             <li class="breadcrumb-item">
                                 <a href="{{asset("category/".$menu['id'])}}">{{$menu['name']}}</a>

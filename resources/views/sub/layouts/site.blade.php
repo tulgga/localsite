@@ -3,11 +3,11 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="apple-touch-icon-precomposed" href="{{ asset('main/sub/images/favicon.png') }}">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ asset('main/sub/images/favicon.png') }}">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ asset('main/sub/images/favicon.png') }}">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ asset('main/sub/images/favicon.png') }}">
-    <link rel="shortcut icon" href="{{ asset('main/sub/images/favicon.png') }}">
+    <link rel="apple-touch-icon-precomposed" href="{{ asset('uploads/'.$info->favicon)}}">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ asset('uploads/'.$info->favicon) }}">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ asset('uploads/'.$info->favicon) }}">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ asset('uploads/'.$info->favicon) }}">
+    <link rel="shortcut icon" href="{{ asset('uploads/'.$info->favicon) }}">
     @yield('meta')
     <style>
         :root{
@@ -66,7 +66,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ul class="top-menu">
-                        <li><a href="#"><i class="fa fa-link"></i> Бусад сумдууд</a></li>
+                        <li><a href="#" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-link"></i> Бусад сумдууд</a></li>
                         <li><a href="#"><i class="fa fa-archive"></i> Архив</a></li>
                         <li><a href="#"><i class="fa fa-paper-plane"></i> Холбоо барих</a></li>
                     </ul>
@@ -79,7 +79,7 @@
             <div class="row">
                 <div class="col-sm-3 col-9">
                     <a href="{{asset('')}}">
-                    <img class="logo" width="100%" src="{{ asset('main/sub/images/logo.png') }}">
+                    <img class="logo" width="100%" src="{{ asset('uploads/'.$info->logo) }}">
                     </a>
                 </div>
                 <div class="col-sm-9 col-3">
@@ -114,6 +114,8 @@
                                         <li class="nav-item">
                                             @if($child->type == 2)
                                                 <a class="dropdown-item" href="{{asset('category/'.$child->type_id)}}"><?php echo $child->name; ?></a>
+                                            @elseif($child->type == 4)
+                                                <a class="dropdown-item" href="{{asset('files/'.$child->type_id)}}"><?php echo $child->name; ?></a>
                                             @else
                                                 <a class="dropdown-item" href="{{$child->link}}" @if($child->blank == 1) target="_blank" @endif><?php echo $child->name; ?></a>
                                             @endif
@@ -173,6 +175,27 @@
 <div class="back-to-top">
     <!-- back to top start -->
     <i class="fa fa-rocket"></i>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Сумдууд</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @foreach($info->subDomain as $domain)
+                <a style="margin-bottom: 4px;font-size: 14px" class="btn btn-outline-secondary" href="{{$domain->domain}}"><img src="{{ asset('uploads/'.$info->favicon)}}" height="16"> {{$domain->name}}</a>
+                @endforeach
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Хаах</button>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>

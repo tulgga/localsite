@@ -43,7 +43,13 @@
         <div class="container">
             <div class="row" style="display: block;text-align: center;">
                 @foreach($other_menu as $menu)
+                    @if($menu->type == 1)
                     <a href="{{$menu->link}}"><i class="{{$menu->icon}}"></i> {!!html_entity_decode($menu->name)!!}</a>
+                    @elseif($menu->type == 2)
+                        <a href="{{asset('category/'.$menu->type_id)}}"><i class="{{$menu->icon}}"></i> {!!html_entity_decode($menu->name)!!}</a>
+                    @elseif($menu->type == 4)
+                        <a href="{{asset('files/'.$menu->type_id)}}"><i class="{{$menu->icon}}"></i> {!!html_entity_decode($menu->name)!!}</a>
+                    @endif
                 @endforeach
             </div>
         </div>
@@ -55,17 +61,45 @@
                     <h3 class="head latest row"><span>Шинэ мэдээ</span></h3>
                     <ul class="row latest_news">
                         @foreach($latest_news as $nws)
-                        <li class="col-sm-6">
-                            <div class="row">
-                                <div class="col-5">
-                                    <div class="thumb" style="background-image: url('{{asset(str_replace("images","uploads/small/",$nws->image))}}');" title="{{$nws->title}}"></div>
-                                </div>
-                                <div class="col-7">
-                                    <a href="{{asset('news/'.$nws->id)}}"><h6>{{mb_substr($nws->title, 0, 55)}}...</h6></a>
-                                    <span class="create_date"><i class="far fa-clock"></i> {{$nws->created_at->format('Y-m-d')}}</span>
-                                </div>
-                            </div>
-                        </li>
+                            @if($nws->type == 0)
+                                <li class="col-sm-6">
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <div class="thumb" style="background-image: url('{{asset(str_replace("images","uploads/small/",$nws->image))}}');" title="{{$nws->title}}"></div>
+                                        </div>
+                                        <div class="col-7">
+                                            <a href="{{asset('news/'.$nws->id)}}"><h6>{{mb_substr($nws->title, 0, 55)}}...</h6></a>
+                                            <span class="create_date"><i class="far fa-clock"></i> {{$nws->created_at->format('Y-m-d')}}</span>
+                                        </div>
+                                    </div>
+                                </li>
+                            @elseif($nws->type == 1)
+                                <li class="col-sm-6">
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <div class="thumb photo" style="background-image: url('{{asset(str_replace("images","uploads/small/",$nws->image))}}');" title="{{$nws->title}}">
+                                                <i class="far fa-images"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-7">
+                                            <a href="{{asset('news/'.$nws->id)}}"><h6>{{mb_substr($nws->title, 0, 55)}}...</h6></a>
+                                            <span class="create_date"><i class="far fa-clock"></i> {{$nws->created_at->format('Y-m-d')}}</span>
+                                        </div>
+                                    </div>
+                                </li>
+                            @elseif($nws->type == 2)
+                                <li class="col-sm-6">
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <div class="thumb video" style="background-image: url('https://i.ytimg.com/vi/{{$nws->image}}/mqdefault.jpg');" title="{{$nws->title}}"><i class="fa fa-play"></i></div>
+                                        </div>
+                                        <div class="col-7">
+                                            <a href="{{asset('news/'.$nws->id)}}"><h6>{{mb_substr($nws->title, 0, 55)}}...</h6></a>
+                                            <span class="create_date"><i class="far fa-clock"></i> {{$nws->created_at->format('Y-m-d')}}</span>
+                                        </div>
+                                    </div>
+                                </li>
+                            @endif
                         @endforeach
                     </ul>
                 </div>

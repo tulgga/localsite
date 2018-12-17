@@ -1542,6 +1542,7 @@ pre code {
 .table-bordered thead th,
 .table-bordered thead td {
   border-bottom-width: 2px;
+  font-weight: 700;
 }
 
 .table-borderless th,

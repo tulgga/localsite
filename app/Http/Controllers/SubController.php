@@ -14,8 +14,11 @@ use App\Settings;
 use App\Page;
 use App\Post;
 use App\Category;
+use App\File_category;
+use App\File_to_category;
 use App\News_to_site;
 use phpDocumentor\Reflection\Location;
+use function PHPSTORM_META\type;
 
 class SubController extends BaseController
 {
@@ -35,7 +38,7 @@ class SubController extends BaseController
           Join('news_to_sites', 'news_to_sites.post_id', '=', 'posts.id')
           ->whereIn('news_to_sites.site_id', [$data['info']->id,0])
           ->limit(6)->get();
-      $data['other_menu'] = Page::where('site_id',$data['info']->id)->where('is_main',0)->select('id', 'title as name', 'link', 'icon', 'type')->orderBy('order_num', 'asc')->get();
+      $data['other_menu'] = Page::where('site_id',$data['info']->id)->where('is_main',0)->select('id', 'title as name', 'link', 'icon', 'type', 'type_id')->orderBy('order_num', 'asc')->get();
       return view('sub.home', $data);
     }
 
@@ -64,7 +67,7 @@ class SubController extends BaseController
         $paginate=20;
         $data['newslist'] = Post::where('site_id',$data['info']->id)->where('status',1)->where('news_to_category.cat_id',$id)->Join('news_to_category','news_to_category.post_id', '=','posts.id')->orderBy('posts.created_at','DESC')->select('posts.title', 'posts.short_content','posts.id','posts.created_at','posts.image','posts.type')->paginate($paginate);
         $data['category'] = Category::where('site_id',$data['info']->id)->where('id',$id)->select('*')->first();
-        $data['categories'] = Category::where('site_id',$data['info']->id)->orderBy('order_num')->select('*')->get();
+        $data['categories'] = Category::where('site_id',$data['info']->id)->orderBy('order_num','ASC')->select('*')->get();
         $data['category']->menu = $this->getCategoryID([['id'=>$data['category']->id, 'parent_id'=>$data['category']->parent_id, 'name'=>$data['category']->name]]);
 
         return view('sub.category', $data);
@@ -72,9 +75,12 @@ class SubController extends BaseController
 
     public function files($account, $id){
         $data['info']=$this->getDomainInfo($account);
+        $data['fileCat'] = File_to_category::where('cat_id',$id)->select('file_id')->first();
+        $data['filelist'] = File::where('site_id',$data['info']->id)->where('id',$data['fileCat']->file_id)->where('status',1)->select('*')->orderBy('created_at','DESC')->get();
+        $data['fileCategory'] = File_category::where('site_id',$data['info']->id)->where('id',$id)->select('id', 'name')->first();
+        $data['fileCategories'] = File_category::where('site_id',$data['info']->id)->orderBy('order_num','ASC')->select('id', 'name')->get();
         return view('sub.file', $data);
     }
-
 
     public function getDomainInfo($account){
         $site=Site::where('domain',$account)->first();
@@ -83,7 +89,8 @@ class SubController extends BaseController
             die();
         }
         $site->config = json_decode($site->config, true);
-        $site->menu=$this->getMenu($site->id);
+        $site->menu = $this->getMenu($site->id);
+        $site->subDomain = Site::select('name','domain')->orderBy('name','ASC')->get();
         return $site;
     }
 

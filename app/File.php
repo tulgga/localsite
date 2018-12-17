@@ -4,7 +4,6 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-
 class File extends Model
 {
     public function Category(){
@@ -14,7 +13,7 @@ class File extends Model
             ->orderBy('file_category.order_num', 'asc');
     }
 
-    public static  function fileType($file){
+    public static function fileType($file){
 
         $office=['doc', 'docx', 'xls','xlsx', 'ppt', 'pptx'];
         $image=['tiff', 'jpeg', 'gif', 'png', 'jpg', 'ico', 'bmp'];
