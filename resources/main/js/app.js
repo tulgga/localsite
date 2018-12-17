@@ -24,6 +24,8 @@ import * as VueGoogleMaps from 'vue2-google-maps';
 import VeeValidate from 'vee-validate';
 import Loading from './components/helpers/loading';
 import BImg from './components/helpers/BImg';
+import Sum from './components/helpers/Sum';
+import Agentlag from './components/helpers/Agentlag';
 import SideBar from './components/layouts/SideBar';
 import NotFound from './modules/system/NotFound';
 import VueSelect from 'vue-select';
@@ -146,6 +148,8 @@ Vue.component('SiteApp', require('./App.vue').default);
 Vue.component('v-select', VueSelect);
 Vue.component('Loading', Loading);
 Vue.component('b-img', BImg);
+Vue.component('sum', Sum);
+Vue.component('agentlag', Agentlag)
 Vue.component('SideBar', SideBar);
 Vue.component('NotFound', NotFound);
 Vue.component('v-bar', VBar);

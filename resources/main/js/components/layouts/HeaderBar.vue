@@ -109,6 +109,12 @@
                                 <!--<p v-if="socail.youtube" class="level-item"><a target="_blank" :href="socail.youtube"><i class="fab fa-youtube"></i></a></p>-->
                             </div>
                             <div class="level-right mr-1">
+                                <p class="level-item" ><a @click="SumModal=true">Сумдууд</a></p>
+                                <p class="level-item">|</p>
+                                <p class="level-item" ><a @click="AgentlagModal=true">Агентлагууд</a></p>
+                                <p class="level-item">|</p>
+                                <p class="level-item"><a>Лавлагаа мэдээл</a></p>
+                                <p class="level-item">|</p>
                                 <p class="level-item"><a>Зар</a></p>
                                 <p class="level-item">|</p>
                                 <p class="level-item"><a>Санар хүсэлт, өргөдөл гомдол</a></p>
@@ -163,6 +169,29 @@
             </header>
         </div>
         <loading v-else></loading>
+
+
+        <!-- show modal -->
+        <div class="modal is-active" v-if="SumModal">
+            <div class="modal-background" v-on:click="SumModal = false"></div>
+            <div class="modal-card" style="max-width: 610px">
+                <section class="modal-card-body pd0">
+                  <sum></sum>
+                </section>
+            </div>
+        </div>
+
+
+        <!-- show modal -->
+        <div class="modal is-active" v-if="AgentlagModal">
+            <div class="modal-background" v-on:click="AgentlagModal = false"></div>
+            <div class="modal-card" style="max-width: 1040px">
+                <section class="modal-card-body pd0">
+                   <agentlag></agentlag>
+                </section>
+            </div>
+        </div>
+
     </div>
 </template>
 
@@ -174,6 +203,8 @@
                 si2:-1,
                 si3:-1,
                 si4:-1,
+                SumModal: false,
+                AgentlagModal: false,
                 search:'',
                 site_title: window.title,
     		    socail:  window.socail,
