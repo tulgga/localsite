@@ -155,13 +155,40 @@
                             @if(!is_null($info->config['socail']['google']))<li><a target="_blank" href="{{$info->config['socail']['google']}}"><i class="fab fa-google-plus"></i></a></li>@endif
                     </ul>
                 </div>
-                <div class="col-sm-4"></div>
-                <div class="col-sm-4">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-7">
                     <h4 class="row"> Санал хүсэлт, өргөдөл, гомдол</h4>
-                    <div class="layout"><input class="form-feedback" type="text" placeholder="Таны нэр *"></div>
-                    <div class="layout"><input class="form-feedback" type="text" placeholder="Таны утас *"></div>
-                    <div class="layout"><input class="form-feedback" type="text" placeholder="Таны цахим шуудан"></div>
-                    <div class="layout"><textarea class="form-feedback" placeholder="Зурвас бичих...*"></textarea></div>
+                    <form method="post" action="{{asset('urgudul_save')}}" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-sm-6">
+                            <div class="layout">
+                                <select class="form-feedback" name="type">
+                                    <option value="0">Санал хүсэлт</option>
+                                    <option value="1">Өргөдөл</option>
+                                    <option value="2">Гомдол</option>
+                                    <option value="3">Бусад</option>
+                                </select>
+                            </div>
+                            <div class="layout"><input class="form-feedback" name="your_name" type="text" placeholder="Таны нэр *" required></div>
+                            <div class="layout"><input class="form-feedback" name="your_phone" type="text" placeholder="Таны утас *" required></div>
+                            <div class="layout"><input class="form-feedback" name="your_email" type="text" placeholder="Таны цахим шуудан"></div>
+                            </div>
+                            <div class="col-sm-6">
+                            <div class="layout">
+                                <textarea style="min-height: 90px;" name="your_message" class="form-feedback" placeholder="Зурвас бичих...*" required></textarea></div>
+                                <div class="layout">
+                                <a href="javascript:addImage();" class="attach_btn">
+                                    <i class="far fa-plus-square"></i> нэмэлт зураг хавсаргах</a>
+                                <input style="display: none;" class="image-pp" type="file" name="image"></div>
+                            <div class="layout">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                <button type="submit" class="btn btn-sm btn-outline-primary">
+                                    <i class="fa fa-paper-plane"></i>&nbsp; &nbsp;Илгээх</button>
+                                <button title="Цэвэрлэх" type="reset" class="btn btn-sm btn-outline-secondary"><i class="fa fa-redo"></i> </button>
+                            </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
             <div class="row copyright">
@@ -180,22 +207,18 @@
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalCenterTitle">Сумдууд</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
             <div class="modal-body">
                 @foreach($info->subDomain as $domain)
-                <a style="margin-bottom: 4px;font-size: 14px" class="btn btn-outline-secondary" href="{{$domain->domain}}"><img src="{{ asset('uploads/'.$info->favicon)}}" height="16"> {{$domain->name}}</a>
+                <a style="margin-bottom: 4px;font-size: 14px" href="{{$domain->domain}}"><img src="{{ asset('uploads/'.$info->favicon)}}" height="16"> {{$domain->name}}</a>
                 @endforeach
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Хаах</button>
             </div>
         </div>
     </div>
 </div>
+<script>
+    addImage = function(){
+        $(".image-pp").click();
+    }
+</script>
 </body>
 </html>

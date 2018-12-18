@@ -29,6 +29,8 @@ Route::domain('{account}.bayankhongor.local')->group(function () {
     Route::get('/news/{id}', 'SubController@news');
     Route::get('/category/{id}', 'SubController@category');
     Route::get('/files/{id}', 'SubController@files');
+    Route::get('/feedback', 'SubController@feedback');
+    Route::post('/urgudul_save', 'SubController@urgudul_save');
 });
 
 Route::get('/', 'Controller@homePage');

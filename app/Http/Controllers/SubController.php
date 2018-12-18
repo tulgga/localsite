@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use http\Env\Request;
+//use http\Env\Request;
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -10,13 +11,13 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\File;
 use Illuminate\Support\Facades\Redirect;
 use App\Site;
-use App\Settings;
+use App\Img;
 use App\Page;
 use App\Post;
 use App\Category;
 use App\File_category;
 use App\File_to_category;
-use App\News_to_site;
+use App\Urgudul;
 use phpDocumentor\Reflection\Location;
 use function PHPSTORM_META\type;
 
@@ -93,8 +94,11 @@ class SubController extends BaseController
         $site->subDomain = Site::select('name','domain')->orderBy('name','ASC')->get();
         return $site;
     }
-
-
+    public function feedback($account){
+        $data['info']=$this->getDomainInfo($account);
+        $data['feedlist'] = Urgudul::where('site_id',$data['info']->id)->orderBy('created_at','DESC')->paginate(50);
+        return view('sub.pageTemplates.page-feedback', $data);
+    }
     public function getMenu($site_id){
         $page= Page::where('site_id',$site_id)->where('is_main',1)->select('id', 'title as name', 'type', 'type_id', 'parent_id', 'blank', 'link')->orderBy('order_num', 'asc')->get();
         return  $this->buildTree($page);
@@ -134,5 +138,20 @@ class SubController extends BaseController
                 return   $this->getPageMainMenuID($menu);
             }
         }
+    }
+    public function urgudul_save($account,Request $request){
+        $data['info']=$this->getDomainInfo($account);
+        $urgudul = new Urgudul;
+        $urgudul->image = Img::upload($request);
+        $urgudul->site_id = $data['info']->id;
+        $urgudul->type = $request->get('type');
+        $urgudul->name = $request->get('your_name');
+        $urgudul->phone = $request->get('your_phone');
+        $urgudul->email = $request->get('your_email');
+        $urgudul->content = $request->get('your_message');
+        $urgudul->status = 1;
+        $urgudul->ip = $_SERVER['REMOTE_ADDR'];
+        $urgudul->save();
+        return redirect()->to('/feedback');
     }
 }

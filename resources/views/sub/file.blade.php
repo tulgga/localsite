@@ -39,7 +39,7 @@
                             @foreach($filelist as $file)
                                 <tr>
                                     <td>{{$file->cart_number}}</td>
-                                    <td><a href="#">{{$file->name}}</a></td>
+                                    <td><a href="javascript:void(0);" data-toggle="modal" data-target=".bd-example-modal-lg" data-link="{{ asset('file_viewer/?file='.$file->file) }}">{{$file->name}}</a></td>
                                     <td>{{$file->publish_date}}</td>
                                     <td>{{$file->active_date}}</td>
                                     <td style="text-align: center">
@@ -89,4 +89,19 @@
             <a href=""><img src="{{ asset('main/sub/images/icons/soyombo.png')}}"> Эрх зүйн мэдээллийн нэгдсэн сан</a>
         </div>
     </div>
+    <div class="modal fade bd-example-modal-lg"  tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <iframe frameborder="0" width="100%" height="700" src=""></iframe>
+            </div>
+        </div>
+    </div>
+    <script>
+        $('.bd-example-modal-lg').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget)
+            var link = button.data('link')
+            var modal = $(this)
+            modal.find('.modal-content iframe').attr('src', link)
+        })
+    </script>
 @endsection
