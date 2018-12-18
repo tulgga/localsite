@@ -74,7 +74,7 @@
         </div>
         <!-- content -->
         <div class="container">
-            <div class="columns  is-multiline">
+            <div class="columns  is-multiline mb-0">
                 <div class="column  is-9">
                     <div class="bg-white p-15 mb-2 shadow">
                         <news-carousel :page="3" color="blue" title="Шинэ мэдээ" ></news-carousel>
@@ -82,7 +82,7 @@
                     <div class="bg-white p-15 mb-2 shadow">
                         <oran-nutag-carousel :page="3" color="orange" title="Орон нутгийн мэдээ" ></oran-nutag-carousel>
                     </div>
-                    <div class="bg-light p-15 mb-2 red shadow">
+                    <div class="bg-light p-15 mb-1 red shadow">
                         <h3 class="bTitle mb-1">Видео</h3>
                         <video-list></video-list>
                     </div>
@@ -94,7 +94,7 @@
                             <news-list  catId="150"  ></news-list>
                         </v-bar>
                     </div>
-                    <div class="bg-white p-15 mb-2 green shadow">
+                    <div class="bg-white p-15 mb-1 green shadow">
                         <h3 class="bTitle mb-1">Тендерийн урилга</h3>
                         <v-bar wrapper="wrapper roboto-condensed" style="height: 401px;">
                             <news-list   catId="182"></news-list>
@@ -102,6 +102,9 @@
                     </div>
                 </div>
             </div>
+            <!--poll-->
+            <b-poll></b-poll>
+
         </div>
     </div>
 </template>
@@ -111,8 +114,9 @@
     import OranNutagCarousel from '../../components/helpers/OranNutagCarousel'
     import NewsList from "../../components/helpers/NewsList";
     import VideoList from "../../components/helpers/VideoList";
+    import BPoll from '../../components/helpers/BPoll'
     export default {
-        components: {NewsList, OranNutagCarousel, NewsCarousel, VideoList},
+        components: {NewsList, OranNutagCarousel, NewsCarousel, VideoList, BPoll},
         data() {
             return {
                 siteUrl: window.surl,

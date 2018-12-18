@@ -83112,6 +83112,7 @@ var modules = requireContext.keys().map(function (file) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_helpers_OranNutagCarousel__ = __webpack_require__(637);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_helpers_NewsList__ = __webpack_require__(825);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_helpers_VideoList__ = __webpack_require__(827);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_helpers_BPoll__ = __webpack_require__(986);
 //
 //
 //
@@ -83219,6 +83220,10 @@ var modules = requireContext.keys().map(function (file) {
 //
 //
 //
+//
+//
+//
+
 
 
 
@@ -83226,7 +83231,7 @@ var modules = requireContext.keys().map(function (file) {
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
-    components: { NewsList: __WEBPACK_IMPORTED_MODULE_2__components_helpers_NewsList__["a" /* default */], OranNutagCarousel: __WEBPACK_IMPORTED_MODULE_1__components_helpers_OranNutagCarousel__["a" /* default */], NewsCarousel: __WEBPACK_IMPORTED_MODULE_0__components_helpers_NewsCarousel__["a" /* default */], VideoList: __WEBPACK_IMPORTED_MODULE_3__components_helpers_VideoList__["a" /* default */] },
+    components: { NewsList: __WEBPACK_IMPORTED_MODULE_2__components_helpers_NewsList__["a" /* default */], OranNutagCarousel: __WEBPACK_IMPORTED_MODULE_1__components_helpers_OranNutagCarousel__["a" /* default */], NewsCarousel: __WEBPACK_IMPORTED_MODULE_0__components_helpers_NewsCarousel__["a" /* default */], VideoList: __WEBPACK_IMPORTED_MODULE_3__components_helpers_VideoList__["a" /* default */], BPoll: __WEBPACK_IMPORTED_MODULE_4__components_helpers_BPoll__["a" /* default */] },
     data: function data() {
         return {
             siteUrl: window.surl,
@@ -87507,92 +87512,99 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "container" }, [
-        _c("div", { staticClass: "columns  is-multiline" }, [
-          _c("div", { staticClass: "column  is-9" }, [
-            _c(
-              "div",
-              { staticClass: "bg-white p-15 mb-2 shadow" },
-              [
-                _c("news-carousel", {
-                  attrs: { page: 3, color: "blue", title: "Шинэ мэдээ" }
-                })
-              ],
-              1
-            ),
+      _c(
+        "div",
+        { staticClass: "container" },
+        [
+          _c("div", { staticClass: "columns  is-multiline mb-0" }, [
+            _c("div", { staticClass: "column  is-9" }, [
+              _c(
+                "div",
+                { staticClass: "bg-white p-15 mb-2 shadow" },
+                [
+                  _c("news-carousel", {
+                    attrs: { page: 3, color: "blue", title: "Шинэ мэдээ" }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "bg-white p-15 mb-2 shadow" },
+                [
+                  _c("oran-nutag-carousel", {
+                    attrs: {
+                      page: 3,
+                      color: "orange",
+                      title: "Орон нутгийн мэдээ"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "bg-light p-15 mb-1 red shadow" },
+                [
+                  _c("h3", { staticClass: "bTitle mb-1" }, [_vm._v("Видео")]),
+                  _vm._v(" "),
+                  _c("video-list")
+                ],
+                1
+              )
+            ]),
             _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "bg-white p-15 mb-2 shadow" },
-              [
-                _c("oran-nutag-carousel", {
-                  attrs: {
-                    page: 3,
-                    color: "orange",
-                    title: "Орон нутгийн мэдээ"
-                  }
-                })
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "bg-light p-15 mb-2 red shadow" },
-              [
-                _c("h3", { staticClass: "bTitle mb-1" }, [_vm._v("Видео")]),
-                _vm._v(" "),
-                _c("video-list")
-              ],
-              1
-            )
+            _c("div", { staticClass: "column is-3 " }, [
+              _c(
+                "div",
+                { staticClass: "bg-white p-15 mb-2  shadow" },
+                [
+                  _c("h3", { staticClass: "bTitle mb-1" }, [
+                    _vm._v("Ил тод байдал")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "v-bar",
+                    {
+                      staticStyle: { height: "490px" },
+                      attrs: { wrapper: "wrapper roboto-condensed" }
+                    },
+                    [_c("news-list", { attrs: { catId: "150" } })],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "bg-white p-15 mb-1 green shadow" },
+                [
+                  _c("h3", { staticClass: "bTitle mb-1" }, [
+                    _vm._v("Тендерийн урилга")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "v-bar",
+                    {
+                      staticStyle: { height: "401px" },
+                      attrs: { wrapper: "wrapper roboto-condensed" }
+                    },
+                    [_c("news-list", { attrs: { catId: "182" } })],
+                    1
+                  )
+                ],
+                1
+              )
+            ])
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "column is-3 " }, [
-            _c(
-              "div",
-              { staticClass: "bg-white p-15 mb-2  shadow" },
-              [
-                _c("h3", { staticClass: "bTitle mb-1" }, [
-                  _vm._v("Ил тод байдал")
-                ]),
-                _vm._v(" "),
-                _c(
-                  "v-bar",
-                  {
-                    staticStyle: { height: "490px" },
-                    attrs: { wrapper: "wrapper roboto-condensed" }
-                  },
-                  [_c("news-list", { attrs: { catId: "150" } })],
-                  1
-                )
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "bg-white p-15 mb-2 green shadow" },
-              [
-                _c("h3", { staticClass: "bTitle mb-1" }, [
-                  _vm._v("Тендерийн урилга")
-                ]),
-                _vm._v(" "),
-                _c(
-                  "v-bar",
-                  {
-                    staticStyle: { height: "401px" },
-                    attrs: { wrapper: "wrapper roboto-condensed" }
-                  },
-                  [_c("news-list", { attrs: { catId: "182" } })],
-                  1
-                )
-              ],
-              1
-            )
-          ])
-        ])
-      ])
+          _c("b-poll")
+        ],
+        1
+      )
     ],
     1
   )
@@ -95391,6 +95403,236 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-553b7f9c", { render: render, staticRenderFns: staticRenderFns })
+  }
+}
+
+/***/ }),
+/* 894 */,
+/* 895 */,
+/* 896 */,
+/* 897 */,
+/* 898 */,
+/* 899 */,
+/* 900 */,
+/* 901 */,
+/* 902 */,
+/* 903 */,
+/* 904 */,
+/* 905 */,
+/* 906 */,
+/* 907 */,
+/* 908 */,
+/* 909 */,
+/* 910 */,
+/* 911 */,
+/* 912 */,
+/* 913 */,
+/* 914 */,
+/* 915 */,
+/* 916 */,
+/* 917 */,
+/* 918 */,
+/* 919 */,
+/* 920 */,
+/* 921 */,
+/* 922 */,
+/* 923 */,
+/* 924 */,
+/* 925 */,
+/* 926 */,
+/* 927 */,
+/* 928 */,
+/* 929 */,
+/* 930 */,
+/* 931 */,
+/* 932 */,
+/* 933 */,
+/* 934 */,
+/* 935 */,
+/* 936 */,
+/* 937 */,
+/* 938 */,
+/* 939 */,
+/* 940 */,
+/* 941 */,
+/* 942 */,
+/* 943 */,
+/* 944 */,
+/* 945 */,
+/* 946 */,
+/* 947 */,
+/* 948 */,
+/* 949 */,
+/* 950 */,
+/* 951 */,
+/* 952 */,
+/* 953 */,
+/* 954 */,
+/* 955 */,
+/* 956 */,
+/* 957 */,
+/* 958 */,
+/* 959 */,
+/* 960 */,
+/* 961 */,
+/* 962 */,
+/* 963 */,
+/* 964 */,
+/* 965 */,
+/* 966 */,
+/* 967 */,
+/* 968 */,
+/* 969 */,
+/* 970 */,
+/* 971 */,
+/* 972 */,
+/* 973 */,
+/* 974 */,
+/* 975 */,
+/* 976 */,
+/* 977 */,
+/* 978 */,
+/* 979 */,
+/* 980 */,
+/* 981 */,
+/* 982 */,
+/* 983 */,
+/* 984 */,
+/* 985 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+    data: function data() {
+        return {
+            siteUrl: window.surl,
+            poll: false
+        };
+    },
+
+    created: function created() {
+        this.fetchData();
+    },
+    methods: {
+        fetchData: function fetchData() {
+            var _this = this;
+
+            axios.get('/homePoll/').then(function (response) {
+                _this.poll = response.data.success;
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 986 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_plugins_transform_object_rest_spread_transform_runtime_polyfill_false_helpers_false_node_modules_vue_loader_lib_selector_type_script_index_0_BPoll_vue__ = __webpack_require__(985);
+/* unused harmony namespace reexport */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_7af159b9_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_BPoll_vue__ = __webpack_require__(987);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_runtime_component_normalizer__ = __webpack_require__(1);
+var disposed = false
+/* script */
+
+
+/* template */
+
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+
+var Component = Object(__WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_runtime_component_normalizer__["a" /* default */])(
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_plugins_transform_object_rest_spread_transform_runtime_polyfill_false_helpers_false_node_modules_vue_loader_lib_selector_type_script_index_0_BPoll_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_7af159b9_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_BPoll_vue__["a" /* render */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_7af159b9_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_BPoll_vue__["b" /* staticRenderFns */],
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\main\\js\\components\\helpers\\BPoll.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-7af159b9", Component.options)
+  } else {
+    hotAPI.reload("data-v-7af159b9", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+/* harmony default export */ __webpack_exports__["a"] = (Component.exports);
+
+
+/***/ }),
+/* 987 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "columns  is-multiline mb-2" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "column is-3 " }, [_c("side-bar")], 1)
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "column  is-9" }, [
+      _c("div", { staticClass: "bg-white p-15 mb-1  shadow" }, [
+        _c("h3", { staticClass: "bTitle mb-1" }, [_vm._v("Санал асуулга")]),
+        _vm._v(" "),
+        _c("div", { staticClass: "columns" })
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-7af159b9", { render: render, staticRenderFns: staticRenderFns })
   }
 }
 
