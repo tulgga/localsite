@@ -94,7 +94,7 @@
         data() {
             return {
                 siteUrl: window.surl,
-                url: '/urgudul',
+                url: '/urgudul_show/'+this.$store.getters.domain.id,
                 deletemodal:false,
                 deleteid: false,
                 showmodal:false,

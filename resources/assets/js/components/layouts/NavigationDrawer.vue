@@ -156,6 +156,7 @@
                     { title: "Холбоос", icon: 'fas fa-link', path: '/link' ,  role:3},
                     { subheader: 'Бусад',  role:3},
                     { title: "Санал асуулга", icon: 'fas fa-code-branch', path: '/poll' ,  role:3},
+                    { title: 'Санал хүсэлт', icon: 'far fa-comments', path: '/urgudul',  role:3,},
                 ],
                 badge_show: false,
             }

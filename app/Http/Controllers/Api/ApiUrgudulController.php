@@ -9,8 +9,8 @@ use App\Urgudul;
 class ApiUrgudulController extends Controller
 {
     //
-    public function urgudul(){
-        $urgudul=Urgudul::orderBy('created_at', 'desc')->paginate(20);
+    public function urgudul($site_id){
+        $urgudul=Urgudul::where('site_id', $site_id)->orderBy('created_at', 'desc')->paginate(20);
         return response()->json(
             ['success'=>$urgudul]
         );

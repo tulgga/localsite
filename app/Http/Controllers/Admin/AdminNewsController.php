@@ -104,8 +104,8 @@ class AdminNewsController extends Controller
     }
 
     public function show($id){
-        $post=Post::find($id);
 
+        $post=Post::find($id);
         $category=[];
         $cats=News_to_category::where('post_id', $post->id)->get();
         foreach ($cats as $cat){$category[]=$cat->cat_id;}
@@ -137,7 +137,6 @@ class AdminNewsController extends Controller
             } else {
                 $data['image'] = null;
             }
-
         }
 
 

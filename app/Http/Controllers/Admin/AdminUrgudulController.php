@@ -9,6 +9,30 @@ use App\Img;
 
 class AdminUrgudulController extends Controller
 {
+    public function index1($site_id)
+    {
+        extract(request()->only(['query', 'limit', 'page', 'orderBy', 'ascending', 'byColumn']));
+        $result=Urgudul::where('id', '!=', 0)->where('site_id', $site_id);
+
+        if (isset($query) && $query) {
+            $result = $byColumn == 1 ?
+                $this->filterByColumn($result, $query) :
+                $this->filter($result, $query, ['name', 'type', 'email', 'phone', 'content']);
+        }
+
+        if (isset($orderBy)) {
+            $direction = $ascending == 1 ? 'ASC' : 'DESC';
+            $result = $result->orderBy($orderBy, $direction);
+        } else {
+            $result = $result->orderBy('id', 'desc');
+        }
+
+        $result = $result->paginate($limit);
+        return response()->json(
+            ['success'=>$result]
+        );
+    }
+
     public function index()
     {
         extract(request()->only(['query', 'limit', 'page', 'orderBy', 'ascending', 'byColumn']));

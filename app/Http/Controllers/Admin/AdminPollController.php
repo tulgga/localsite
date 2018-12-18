@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Poll;
 use App\Poll_answer;
 use App\Poll_result;
+use App\Img;
 
 class AdminPollController extends Controller
 {
@@ -91,6 +92,10 @@ class AdminPollController extends Controller
         $poll->question=$data['question'];
         $poll->site_id=$data['site_id'];
         $poll->finish_date=$data['finish_date'];
+
+        if($request->hasFile('image')){
+            $poll->image=Img::upload($request);
+        }
         $poll->save();
 
         foreach ( $data['answer'] as $answer){
@@ -100,9 +105,7 @@ class AdminPollController extends Controller
             $poll_answer->save();
         }
 
-        return response()->json([
-            'success' => $poll,
-        ]);
+        return response()->json(['success' => $poll,]);
     }
 
 
@@ -126,6 +129,11 @@ class AdminPollController extends Controller
         $poll->question=$data['question'];
         $poll->site_id=$data['site_id'];
         $poll->finish_date=$data['finish_date'];
+
+        if($request->hasFile('image')){
+            $poll->image=Img::upload($request);
+        }
+
         $poll->save();
 
         Poll_answer::where('poll_id',$id)->delete();

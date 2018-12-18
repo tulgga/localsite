@@ -46,7 +46,7 @@ Route::namespace('Api')->group(function (){
     Route::get('boxFileList/{cat_id}', 'ApiFileController@boxFileList');
 
     //Өргөдөлийг 20 бичлэгээр хуудаслаж авна
-    Route::get('urgudul','ApiUrgudulController@urgudul');
+    Route::get('urgudul/{site_id}','ApiUrgudulController@urgudul');
     //Зарыг 20 бичлэгээр хуудаслаж авна
     Route::get('zar','ApiZarController@zar');
     //Бүх зарын ангилалыг авна
@@ -145,6 +145,7 @@ Route::middleware('auth:admin-api')->namespace('Admin')->prefix('admin')->group(
 
     //urgudul
     Route::resource('urgudul','AdminUrgudulController');
+    Route::get('urgudul_show/{site_id}','AdminUrgudulController@index1');
     Route::post('urgudul/{id}','AdminUrgudulController@update');
 
     //zar
