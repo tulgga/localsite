@@ -49,7 +49,13 @@
                                             <i style="color:var(--danger);" class="fa fa-minus-circle"></i>
                                         @endif
                                     </td>
-                                    <td style="text-align: center"><span class="badge badge-secondary">.xlsx</span></td>
+                                    <td style="text-align: center"><span class="badge badge-secondary">
+                                            <?php
+                                                $type=explode('.', $file->file);
+                                                echo $type[count($type)-1];
+                                            ?>
+
+                                        </span></td>
                                     <td style="text-align: center"><a href="{{asset('uploads/'.$file->file)}}" download><i class="fa fa-download"></i></a> </td>
                                 </tr>
                             @endforeach
