@@ -618,7 +618,7 @@ a {
 .bTitle {
   border-left: 3px solid #333745;
   padding: 0px 0px 0px 20px;
-  margin-left: -18px;
+  margin-left: -16px;
   text-transform: uppercase;
   line-height: 16px;
   font-weight: bold;
@@ -911,4 +911,22 @@ a .col3newslist .title {
   min-height: 25px;
   color: #222;
   display: block;
+}
+
+.pollanswers {
+  border-top: 1px dashed #dbe1ea;
+  margin: 8px 0px 8px 0px;
+}
+
+.pollanswers td {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.pollanswers td .round {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid #dbe1ea;
+  margin-top: 2px;
+  cursor: pointer;
 }

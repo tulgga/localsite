@@ -157,6 +157,5 @@ class AdminPollController extends Controller
         $file=Poll::find($id);
         $file->delete();
         Poll_answer::where('poll_id', $id)->delete();
-        Poll_result::where('poll_id', $id)->delete();
     }
 }

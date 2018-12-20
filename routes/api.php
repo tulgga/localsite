@@ -18,8 +18,8 @@ Route::namespace('Api')->group(function (){
     //sites
     Route::get('sites','ApiSiteController@sites');
     Route::get('agentlag','ApiLinkController@agentlag');
-    Route::get('homePoll','ApiLinkController@agentlag');
-
+    Route::get('homePoll','ApiPollController@homePoll');
+    Route::post('sendPoll', 'ApiPollController@sendPoll');
 
     Route::get('sidebar/{id}','ApiSiteController@sidebar');
     Route::get('weather','ApiSiteController@weather');

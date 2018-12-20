@@ -71,7 +71,6 @@
             fetchData: function () {
                 axios.get('/oronnutag/6').then((response) => {
                     this.post=response.data.success.data;
-                    console.log(this.post);
                 })
             },
         }
