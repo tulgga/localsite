@@ -43,18 +43,22 @@
                                         <div class="float-right badge badge-success"><i class="fa fa-check"></i>   &nbsp;Хариулсан </div>
                                     @endif
                                 </div>
-                                <div class="row" style="padding: 15px 0;">
+                                <div class="row" style="padding: 10px 0 5px;">
+                                    @if($feed->image)
                                     <div class="col-sm-11">
                                     <strong>{{$feed->name}}:</strong> {{$feed->content}}
                                     </div>
                                     <div class="col-sm-1">
-                                        @if($feed->image)
                                             <img src="{{asset('uploads/'.$feed->image)}}" class="w-100">
-                                        @endif
                                     </div>
+                                    @else
+                                        <div class="col-sm-12">
+                                            <strong>{{$feed->name}}:</strong> {{$feed->content}}
+                                        </div>
+                                    @endif
                                 </div>
                                 @if($feed->reply)
-                                    <div class="row" style="padding-bottom: 15px;">
+                                    <div class="row" style="    margin-bottom: 10px;    padding: 10px 0;    background: rgba(71, 177, 255, 0.1);">
                                         <div class="col-sm-1" style="text-align: right"><i class="fa fa-retweet"></i> </div>
                                         <div class="col-sm-11">{{$feed->reply}}</div>
                                     </div>
@@ -69,7 +73,36 @@
                 </div>
                 <div class="col-sm-3">
                     <h3 class="head row"><span>Шүүлтүүр</span></h3>
-
+                    <div class="left-side-filter">
+                        <form method="get" action="{{asset('feedback')}}">
+                        <div class="layout">
+                            <label>Төлөв:
+                            <select name="status" class="form-control-sm form-control">
+                                <option value="">- сонгох -</option>
+                                <option value="0">Хүлээж авсан</option>
+                                <option value="1">Хариулсан</option>
+                            </select> </label>
+                        </div>
+                        <div class="layout">
+                            <label>Төрөл:
+                                <select name="type" class="form-control-sm form-control">
+                                    <option value="">Бүгд</option>
+                                    <option value="0">Санал хүсэлт</option>
+                                    <option value="1">Өргөдөл</option>
+                                    <option value="2">Гомдол</option>
+                                    <option value="3">Бусад</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="layout"><label>Эхлэх огноо:
+                                <input type="date" name="bdate" class="form-control-sm form-control"></label></div>
+                        <div class="layout"><label>Дуусах огноо:
+                                <input type="date" name="edate" class="form-control-sm form-control"></label></div>
+                        <div class="layout text-right">
+                            <button type="submit" class="btn btn-sm btn-success"><i class="fa fa-filter"></i> Шүүх</button>
+                        </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

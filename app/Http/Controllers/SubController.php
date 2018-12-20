@@ -96,7 +96,7 @@ class SubController extends BaseController
     }
     public function feedback($account){
         $data['info']=$this->getDomainInfo($account);
-        $data['feedlist'] = Urgudul::where('site_id',$data['info']->id)->orderBy('created_at','DESC')->paginate(50);
+        $data['feedlist'] = Urgudul::where('site_id',$data['info']->id)->where('reply',$_GET['status'])->orderBy('created_at','DESC')->paginate(50);
         return view('sub.pageTemplates.page-feedback', $data);
     }
     public function getMenu($site_id){
