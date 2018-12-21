@@ -69,8 +69,8 @@
             </div>
         </template>
         <nav  class="pagination" role="navigation" aria-label="pagination">
-            <a class="pagination-previous" @click="scrollToTop()" :disabled="post.current_page===1" :href="link+'?page='+(post.current_page-1)" >Өмнөх</a>
-            <a class="pagination-next" @click="scrollToTop()" :disabled="post.current_page===post.last_page" :href="link+'?page='+(post.current_page+1)" >Дараах</a>
+            <a class="pagination-previous" @click="scrollToTop()" v-if="post.current_page!=1" :href="link+'?page='+(post.current_page-1)" >Өмнөх</a>
+            <a class="pagination-next" @click="scrollToTop()" v-if="post.current_page!=post.last_page" :href="link+'?page='+(post.current_page+1)" >Дараах</a>
             <ul class="pagination-list">
                 <template v-for="i in post.last_page">
                     <li>

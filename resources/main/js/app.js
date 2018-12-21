@@ -28,6 +28,7 @@ import Sum from './components/helpers/Sum';
 import Agentlag from './components/helpers/Agentlag';
 import SideBar from './components/layouts/SideBar';
 import NotFound from './modules/system/NotFound';
+import flatPickr from 'vue-flatpickr-component';
 import VueSelect from 'vue-select';
 import VueCarousel from 'vue-carousel';
 import Meta from 'vue-meta';
@@ -143,7 +144,7 @@ Vue.use(VeeValidate);
 
 Vue.config.productionTip = false
 
-
+Vue.component('flatPickr', flatPickr);
 Vue.component('SiteApp', require('./App.vue').default);
 Vue.component('v-select', VueSelect);
 Vue.component('Loading', Loading);

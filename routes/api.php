@@ -20,6 +20,8 @@ Route::namespace('Api')->group(function (){
     Route::get('agentlag','ApiLinkController@agentlag');
     Route::get('homePoll','ApiPollController@homePoll');
     Route::post('sendPoll', 'ApiPollController@sendPoll');
+    Route::post('sendUrgudul', 'ApiUrgudulController@sendUrgudul');
+
 
     Route::get('sidebar/{id}','ApiSiteController@sidebar');
     Route::get('weather','ApiSiteController@weather');
@@ -47,7 +49,7 @@ Route::namespace('Api')->group(function (){
     Route::get('searchNews','ApiNewsController@searchNews');
     Route::get('boxFileList/{cat_id}', 'ApiFileController@boxFileList');
 
-    //Өргөдөлийг 20 бичлэгээр хуудаслаж авна
+    //Өргөдөлийг 40 бичлэгээр хуудаслаж авна
     Route::get('urgudul/{site_id}','ApiUrgudulController@urgudul');
     //Зарыг 20 бичлэгээр хуудаслаж авна
     Route::get('zar','ApiZarController@zar');

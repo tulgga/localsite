@@ -33,7 +33,7 @@
                             <span>|</span>
                             <a>Зар</a>
                             <span>|</span>
-                            <a>Санал хүсэлт, өргөдөл гомдол</a>
+                            <a href="!#/report">Санал хүсэлт, өргөдөл гомдол</a>
                         </div>
                         <div class="column is-4 has-text-right-tablet has-text-centered-mobile">
                             <a v-if="socail.facebook" target="_blank" :href="socail.facebook"><i class="fab fa-facebook fa-lg"></i></a>

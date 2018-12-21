@@ -69,7 +69,7 @@
                                 <li><a>Агентлагууд</a></li>
                                 <li><a>Лавлагаа мэдээл</a></li>
                                 <li><a>Зар</a></li>
-                                <li><a>Санал хүсэлт, өргөдөл гомдол</a></li>
+                                <li ><a href="!#/report">Санал хүсэлт, өргөдөл гомдол</a></li>
                             </ul>
                         </aside>
 
@@ -120,7 +120,7 @@
                                 <p class="level-item">|</p>
                                 <p class="level-item"><a>Зар</a></p>
                                 <p class="level-item">|</p>
-                                <p class="level-item"><a>Санал хүсэлт, өргөдөл гомдол</a></p>
+                                <p class="level-item"><a href="!#/report">Санал хүсэлт, өргөдөл гомдол</a></p>
                             </div>
                         </nav>
                         <div class="is-clearfix"></div>

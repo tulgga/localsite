@@ -930,3 +930,46 @@ a .col3newslist .title {
   margin-top: 2px;
   cursor: pointer;
 }
+.label {
+  color: #333333;
+  display: block;
+  font-size: 13px;
+  font-weight: normal;
+}
+
+
+/** Feed list **/
+.feedlist{
+  list-style: none;
+  width: 100%;
+}
+.feedlist li{
+  display: block;
+  width: 100%;
+  font-size: 13px;
+  line-height: 23px;
+  padding: 15px 20px;
+  border: 1px solid #f1f1f1;
+}
+.feedlist li:first-child{
+  border-bottom:0;
+}
+.feedlist li.row_odd{
+  background: #FFF;
+}
+.feedlist li.row_even{
+  background:#fafafa;
+}
+.feedlist li .cdate{
+  font-size: 12px;
+  padding-right: 10px;
+  color: #999;
+}
+.feedlist li .ips{
+  font-size: 12px;
+  color: #999;
+}
+.feedlist li .sanal{}
+label {
+  margin-bottom: 0.2em;
+}
