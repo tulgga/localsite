@@ -162,7 +162,7 @@
             }
         },
         created: function () {
-            // this.checkAdminType();
+            this.checkAdminType();
             this.fetchData();
         },
         methods: {

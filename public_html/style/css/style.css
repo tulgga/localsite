@@ -1,0 +1,22 @@
+body{
+    max-width: 500px;
+}
+.thumb{
+    background-size: cover;
+    background-position: center center;
+    min-height: 300px;
+    position: relative;
+    border-radius: 10px;
+}
+.title{
+    position: absolute;
+    bottom: 15px;
+    padding: 10px 15px;
+    font-family: 'Open Sans';
+    font-size: 14px;
+    font-weight: 600;
+    color:#fff;
+    width: 100%;
+    background-color: #3e26a1;
+    background-color: rgba(62, 38, 161, 0.6);
+}
