@@ -10,6 +10,7 @@ body{
 }
 .logo{
 	padding: 30px;
+    text-align: center;
 }
 .logo > img{
 	max-width: 100%
@@ -91,6 +92,38 @@ body{
 }
 .right-menu > li > a:hover > i{
 	color:#fff
+}
+/** Sumduud **/
+.sumd .modal-header{
+    color:#fff;
+    background: #0054de;
+}
+.sumd .modal-body{
+    padding: 30px;
+}
+.sumd .modal-body ul{
+    list-style: none;
+    margin-bottom: 0;
+}
+.sumd .modal-body ul li{}
+.sumd .modal-body ul li a{
+    display: block;
+    color: #333;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 13px;
+    padding: 5px;
+    transform: translateX(0px);
+    transition: all 450ms cubic-bezier(.485, .075, .12, .855);
+}
+.sumd .modal-body ul li a img{
+    height: 25px;
+    margin-right: 5px;
+}
+.sumd .modal-body ul li a:hover{
+    color: #0054de;
+    transform: translateX(10px);
+    transition: all 450ms cubic-bezier(.485, .075, .12, .855);
 }
 @media (min-width: 768px){
 .logo{

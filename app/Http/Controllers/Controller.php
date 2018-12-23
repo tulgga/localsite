@@ -23,6 +23,8 @@ class Controller extends BaseController
         $data['logo']= url('/uploads/'.$info->logo);
         $data['favicon']= url('/uploads/'.$info->favicon);
         $data['mainConfig']=Settings::where('id', 1)->select('google_api_key', 'google_analytics')->first();
+        $data['sumuud'] = Site::select('id','name','domain','favicon')->orderBy('name','ASC')->get();
+        $data['service'] = file_get_contents(url('/uploads/service.json'));
         return view('homePage', $data);
     }
 

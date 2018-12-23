@@ -725,6 +725,38 @@ h3.head.iltod span{
     color: #999;
 }
 .feedlist li .sanal{}
+/** Sumduud **/
+.sumd .modal-header{
+    color:#fff;
+    background: var(--MainColor);
+}
+.sumd .modal-body{
+    padding: 30px;
+}
+.sumd .modal-body ul{
+    list-style: none;
+    margin-bottom: 0;
+}
+.sumd .modal-body ul li{}
+.sumd .modal-body ul li a{
+    display: block;
+    color: var(--MainColor);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 13px;
+    padding: 5px;
+    transform: translateX(0px);
+    transition: all 450ms cubic-bezier(.485, .075, .12, .855);
+}
+.sumd .modal-body ul li a img{
+    height: 25px;
+    margin-right: 5px;
+}
+.sumd .modal-body ul li a:hover{
+    color:var(--SecondColor);
+    transform: translateX(10px);
+    transition: all 450ms cubic-bezier(.485, .075, .12, .855);
+}
 /** Footer **/
 .footer{
     background: var(--MainColor);

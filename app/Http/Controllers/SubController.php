@@ -84,14 +84,14 @@ class SubController extends BaseController
     }
 
     public function getDomainInfo($account){
-        $site=Site::where('domain',$account)->first();
+        $site = Site::where('domain',$account)->first();
         if(is_null($site)){
             header('Location:'.env('APP_URL'));
             die();
         }
         $site->config = json_decode($site->config, true);
         $site->menu = $this->getMenu($site->id);
-        $site->subDomain = Site::select('name','domain')->orderBy('name','ASC')->get();
+        $site->subDomain = Site::select('id','name','domain','favicon')->orderBy('name','ASC')->get();
         return $site;
     }
     public function feedback($account){

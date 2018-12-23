@@ -206,11 +206,23 @@
 <!-- Modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
+        <div class="modal-content sumd">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Сумдын холбоос</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
             <div class="modal-body">
+                <ul class="row">
                 @foreach($info->subDomain as $domain)
-                <a style="margin-bottom: 4px;font-size: 14px" href="{{$domain->domain}}"><img src="{{ asset('uploads/'.$info->favicon)}}" height="16"> {{$domain->name}}</a>
+                    @if(!$domain->id == 0)
+                        <li class="col-sm-6">
+                        <a href="{{$domain->domain}}"><img src="{{ asset('uploads/'.$domain->favicon)}}"> {{$domain->name}}</a>
+                        </li>
+                    @endif
                 @endforeach
+                </ul>
             </div>
         </div>
     </div>
