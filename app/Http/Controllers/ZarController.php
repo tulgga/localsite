@@ -11,7 +11,7 @@ use App\Zar;
 class ZarController extends Controller
 {
     public function index(){
-        $data=$this->MainData();
+        $data = $this->MainData();
         $data['zar']=Zar::select('zar.*', 'zar_category.name as category')->join('zar_category', 'zar_category.id', '=', 'zar.cat_id')->orderBy('zar.created_at', 'desc')->paginate(12);
         return view('zar.home', $data);
     }

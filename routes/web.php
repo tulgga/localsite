@@ -19,6 +19,11 @@ Route::get('/adminPanel/{vue_capture?}',function(){
 
 Route::get('/!/{vue_capture?}', 'Controller@index')->where('vue_capture', '[\/\w\.-]*');
 
+Route::domain('volunteer.bayankhongor.local')->group(function () {
+    Route::get('/', 'VolunteerController@index');
+    Route::get('/c/{id}', 'VolunteerController@category');
+});
+
 Route::domain('zar.bayankhongor.local')->group(function () {
     Route::get('/', 'ZarController@index');
     Route::get('/c/{id}', 'ZarController@category');
