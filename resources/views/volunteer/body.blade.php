@@ -18,7 +18,11 @@
         <div class="row">
         <div class="col-sm-5"><img src="{{asset('main/volunteer/images/logo.png')}}" title="Volunteer | Сайн дурынхан"/></div>
         <div class="col-sm-7">
-            <nav class="navbar navbar-expand-lg navbar-dark p-0" style="top: 50%;transform: translateY(-50%);">
+            <ul class="volunteerForum m-0">
+                <li><a href="#">Нэвтрэх</a></li>
+                <li><a href="#">Бүртгүүлэх</a></li>
+            </ul>
+            <nav class="navbar navbar-expand-lg navbar-dark p-0">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -46,7 +50,46 @@
     </div>
 </div>
 @yield('content')
-
+<footer class="p-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <h3 class="head-title">Бидний <strong>тухай</strong></h3>
+            </div>
+            <div class="col-sm-5">
+                <h3 class="head-title">Шинэ <strong>үйл явдал</strong></h3>
+                <div class="row">
+                    <div class="col-sm-5"></div>
+                    <div class="col-sm-7">
+                        <div class="event_start"><span>Зарлагдсан:</span> 2019-02-31 08:00:00</div>
+                        <a href="#">Бүх нийтийн их цэвэрлэгээтэй өдөр 02.31 #сайн дурынхан</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <h3 class="head-title">Эрэлттэй <strong>түлхүүр үгс</strong></h3>
+                <ul class="tags">
+                    <li><a href="#">мод тарих</a></li>
+                    <li><a href="#">сайн дурынхан</a></li>
+                    <li><a href="#">үйл явдал</a></li>
+                    <li><a href="#">цэвэрлэх</a></li>
+                    <li><a href="#">зураг</a></li>
+                    <li><a href="#">тусламж</a></li>
+                    <li><a href="#">ахмад настан</a></li>
+                    <li><a href="#">хүүхэд</a></li>
+                    <li><a href="#">ажилгүйдэл</a></li>
+                    <li><a href="#">сайн дурын ажил</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<div class="footer-bottom">
+    <div class="container text-center">
+        <!--Copyright-->
+        <div class="copyright">Бүх эрх хуулиар хамгаалагдсан <strong>© 2018</strong> | Хуулбарлахыг хориглоно. Баянхонгор аймгийн Засаг Даргын Тамгын Газар</div>
+    </div>
+</div>
 {{--Javascript--}}
 <script src="{{ asset('main/volunteer/js/jquery-2.1.1.min.js') }}"></script>
 <script src="{{ asset('main/volunteer/js/bootstrap.js') }}"></script>

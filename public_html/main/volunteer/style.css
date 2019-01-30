@@ -9,8 +9,141 @@ body{
 .header{
     background:#222a33;
 }
+.navbar-dark{
+    top: 100%;
+    transform: translateY(-100%);
+}
+.navbar .nav-item{
+    padding-left: 30px !important;
+}
 .navbar .nav-link{
     text-transform: uppercase;
     font-size: 12px;
-    padding: 0 0 0 30px !important;
+    padding: 15px 0 !important;
+    position: relative;
+}
+.navbar .nav-item.active .nav-link:after{
+    content: "";
+    background: #ea5c3d;
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    bottom: 0;
+    left: 0;
+}
+.navbar .nav-item .nav-link:before{
+    content: "";
+    background: #ea5c3d;
+    position: absolute;
+    width: 0;
+    height: 3px;
+    bottom: 0;
+    left: 0;
+    transition: all 400ms cubic-bezier(.92,.05,.545,.85);
+}
+.navbar .nav-item .nav-link:hover:before{
+    width: 100%;
+}
+.volunteerForum{
+    list-style: none;
+    position: absolute;
+    top:20px;
+    right: 0;
+}
+.volunteerForum li{
+    border-right: 1px solid rgba(255,255,255,0.3);
+    float: left;
+}
+.volunteerForum li:last-child{
+    border-right:0;
+}
+.volunteerForum li a{
+    color: #fff;
+    font-size: 12px;
+    display: block;
+    padding: 0 15px;
+}
+.volunteerForum li a:hover{
+    text-decoration: none;
+    color:#ea5c3d;
+}
+.carousel-item{
+    min-height: 500px;
+    background-size: cover;
+    background-position: center center;
+}
+.registerForum{
+    background: white;
+    padding: 25px;
+    font-size: 13px;
+}
+.descip{
+    color:#fff;
+    top:50%;
+    transform: translateY(-50%);
+}
+.descip h4{
+    font-weight: 700;
+    font-size: 2rem;
+}
+.nav-tabs{
+    border-bottom: 0 !important;
+}
+.nav-tabs > .nav-item {
+    margin-bottom:0;
+}
+.nav-tabs > .nav-item > .nav-link{
+    font-size: 14px;
+    font-weight: 600;
+    background: rgba(0,0,0,0.3);
+    color: #fff;
+    padding: 10px 25px;
+}
+.nav-tabs > .nav-item > .nav-link.active{
+    font-size: 14px;
+    font-weight: 600;
+    background: #fff;
+    color: #333;
+}
+.head-title{
+    position: relative;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 1.4em;
+    padding: 0px 0px 12px;
+    margin-bottom: 25px;
+    text-transform: capitalize;
+    color: #ffffff;
+    border-bottom: 1px dashed #4b5868;
+}
+footer{
+    background: #222a33;
+}
+.tags{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.tags li{
+    display: inline-block;
+    padding: 0px 3px 8px 0;
+}
+.tags li a{
+    font-size: 13px;
+    background: #394350;
+    padding: 5px 10px 7px;
+    display: block;
+    color: #fff;
+    transition: all 400ms cubic-bezier(.92,.05,.545,.85);
+}
+.tags li a:hover{
+    text-decoration: none;
+    background: #EA5C3D;
+}
+.footer-bottom {
+    position: relative;
+    background: #1e262e;
+    padding: 20px 0px;
+    color: #bbbbbb;
+    font-size: 12px;
 }
