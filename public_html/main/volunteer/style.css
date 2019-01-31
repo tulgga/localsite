@@ -93,14 +93,13 @@ body{
     margin-bottom:0;
 }
 .nav-tabs > .nav-item > .nav-link{
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
     background: rgba(0,0,0,0.3);
     color: #fff;
     padding: 10px 25px;
 }
 .nav-tabs > .nav-item > .nav-link.active{
-    font-size: 14px;
     font-weight: 600;
     background: #fff;
     color: #333;
@@ -115,6 +114,38 @@ body{
     text-transform: capitalize;
     color: #ffffff;
     border-bottom: 1px dashed #4b5868;
+}
+.registerOr{
+    text-align: center;
+    font-size: 14px;
+    color: #999;
+    padding: 5px 0;
+    position: relative;
+}
+.registerOr > span{
+    background: #fff;
+    position: relative;
+    z-index: 9;
+    padding: 0 5px;
+}
+.registerOr:after{
+    content: "";
+    position: absolute;
+    background: #ccc;
+    height: 1px;
+    width: 100%;
+    top:50%;
+    left:0;
+}
+.facebookBTN{
+    border: 0;
+    background: #395498;
+    width: 100%;
+    color: #fff;
+    text-align: center;
+    border-radius: 0.25rem;
+    padding: 10px 15px;
+    font-size: 14px;
 }
 footer{
     background: #222a33;
@@ -139,6 +170,35 @@ footer{
 .tags li a:hover{
     text-decoration: none;
     background: #EA5C3D;
+}
+footer .post{
+    margin-bottom: 20px;
+}
+footer .post a{
+    color: #fff;
+    font-size: 14px;
+    display: block;
+}
+footer .post a:hover{
+    color: #EA5C3D;
+}
+footer .post .thumb{
+    background-size: cover;
+    background-position: center center;
+    min-height: 85px;
+    border-radius: 0.25rem;
+}
+footer .post .event_start{
+    color: rgba(255,255,255,0.6);
+    font-size: 12px;
+    margin-bottom: 15px;
+}
+footer .post .event_start span{
+    color: #fff;
+    background: #394350;
+    padding: 3px 6px 4px;
+    display: inline-block;
+    border-radius: 3px;
 }
 .footer-bottom {
     position: relative;

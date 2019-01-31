@@ -58,10 +58,12 @@
             </div>
             <div class="col-sm-5">
                 <h3 class="head-title">Шинэ <strong>үйл явдал</strong></h3>
-                <div class="row">
-                    <div class="col-sm-5"></div>
-                    <div class="col-sm-7">
-                        <div class="event_start"><span>Зарлагдсан:</span> 2019-02-31 08:00:00</div>
+                <div class="row post">
+                    <div class="col-sm-4">
+                        <div class="thumb" style="background-image:url('https://images.pexels.com/photos/433142/pexels-photo-433142.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500');"></div>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="event_start"><span class="mr-1">Зарлагдсан:</span> 2019-02-31 08:00</div>
                         <a href="#">Бүх нийтийн их цэвэрлэгээтэй өдөр 02.31 #сайн дурынхан</a>
                     </div>
                 </div>
