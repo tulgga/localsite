@@ -159,7 +159,7 @@ a {
 
 a:hover {
   color: #0056b3;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 a:not([href]):not([tabindex]) {
@@ -222,7 +222,7 @@ th {
 
 label {
   display: inline-block;
-  margin-bottom: 0.5rem;
+  margin-bottom: 5px;
 }
 
 button {
@@ -563,7 +563,7 @@ pre code {
 
 @media (min-width: 1200px) {
   .container {
-    max-width: 1140px;
+    max-width: 1170px;
   }
 }
 
@@ -4121,7 +4121,6 @@ input[type="button"].btn-block {
 .nav-tabs .nav-item.show .nav-link {
   color: #495057;
   background-color: #fff;
-  border-color: #dee2e6 #dee2e6 #fff;
 }
 
 .nav-tabs .dropdown-menu {

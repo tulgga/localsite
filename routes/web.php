@@ -22,6 +22,9 @@ Route::get('/!/{vue_capture?}', 'Controller@index')->where('vue_capture', '[\/\w
 Route::domain('volunteer.bayankhongor.local')->group(function () {
     Route::get('/', 'VolunteerController@index');
     Route::get('/c/{id}', 'VolunteerController@category');
+    Route::get('/login', 'VolunteerController@login');
+    Route::get('/register', 'VolunteerController@register');
+    Route::post('/userResiter', 'VolunteerController@userResiter');
 });
 
 Route::domain('zar.bayankhongor.local')->group(function () {
