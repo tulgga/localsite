@@ -24,7 +24,7 @@
             </ul>
             <div class="tab-content bg-white rounded-bottom" id="myTabContent" style="border-top-left-radius: 0 !important;;">
                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                    <form method="post" action="{{asset("userResiter")}}" enctype="multipart/form-data" class="registerForum">
+                    <form method="post" action="{{asset("userRegister")}}" class="registerForum">
                         {{ csrf_field() }}
                         <div class="form-group">
                             <label>И-мэйл хаяг:</label>
@@ -44,7 +44,8 @@
                     </form>
                 </div>
                 <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                    <form method="post" action="{{asset("organizationResiter")}}" enctype="multipart/form-data" class="registerForum">
+                    <form method="post" action="{{asset("organizationRegister")}}" class="registerForum">
+                        {{ csrf_field() }}
                         <div class="form-group">
                             <label>И-мэйл хаяг:</label>
                             <input type="email" name="email" class="form-control" required>
@@ -58,8 +59,7 @@
                             <input type="password" name="password" class="form-control" required>
                         </div>
                         <button type="submit" class="btn btn-primary w-100">Бүртгүүлэх</button>
-                        <div class="registerOr"><span>эсвэл</span></div>
-                        <button type="button" class="facebookBTN"><i class="fab fa-facebook-square"></i> Фэйсбүүк</button>
+
                     </form>
                 </div>
             </div>

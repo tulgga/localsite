@@ -24,7 +24,8 @@ Route::domain('volunteer.bayankhongor.local')->group(function () {
     Route::get('/c/{id}', 'VolunteerController@category');
     Route::get('/login', 'VolunteerController@login');
     Route::get('/register', 'VolunteerController@register');
-    Route::post('/userResiter', 'VolunteerController@userResiter');
+    Route::post('/userRegister', 'VolunteerController@userRegister');
+    Route::post('/organizationRegister', 'VolunteerController@organizationRegister');
 });
 
 Route::domain('zar.bayankhongor.local')->group(function () {
@@ -39,6 +40,7 @@ Route::domain('{account}.bayankhongor.local')->group(function () {
     Route::get('/category/{id}', 'SubController@category');
     Route::get('/files/{id}', 'SubController@files');
     Route::get('/feedback', 'SubController@feedback');
+    Route::get('/archive', 'SubController@archive');
     Route::post('/urgudul_save', 'SubController@urgudul_save');
 });
 

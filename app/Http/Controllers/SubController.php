@@ -73,6 +73,12 @@ class SubController extends BaseController
 
         return view('sub.category', $data);
     }
+    public function archive($account){
+        $data['info']=$this->getDomainInfo($account);
+        $data['newslist'] = Post::where('site_id',$data['info']->id)->where('status',1)->orderBy('posts.created_at','DESC')->with('Category')->select('*')->get();
+        $data['categories'] = Category::where('site_id',$data['info']->id)->orderBy('order_num','ASC')->select('*')->get();
+        return view('sub.archive', $data);
+    }
 
     public function files($account, $id){
         $data['info']=$this->getDomainInfo($account);

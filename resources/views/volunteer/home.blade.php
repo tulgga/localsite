@@ -32,7 +32,8 @@
                             </ul>
                             <div class="tab-content bg-white rounded" id="myTabContent" style="border-top-left-radius: 0 !important;">
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                            <form method="post" action="{{asset("userResiter")}}" enctype="multipart/form-data" class="registerForum">
+                            <form method="post" action="{{asset("userRegister")}}" class="registerForum">
+                                {{ csrf_field() }}
                                 <div class="form-group">
                                     <label>И-мэйл хаяг:</label>
                                     <input type="email" name="email" class="form-control" required>
@@ -51,7 +52,8 @@
                             </form>
                             </div>
                             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                <form method="post" action="{{asset("organizationResiter")}}" enctype="multipart/form-data" class="registerForum">
+                                <form method="post" action="{{asset("organizationRegister")}}" class="registerForum">
+                                    {{ csrf_field() }}
                                     <div class="form-group">
                                         <label>И-мэйл хаяг:</label>
                                         <input type="email" name="email" class="form-control" required>
@@ -65,8 +67,6 @@
                                         <input type="password" name="password" class="form-control" required>
                                     </div>
                                     <button type="submit" class="btn btn-primary w-100">Бүртгүүлэх</button>
-                                    <div class="registerOr"><span>эсвэл</span></div>
-                                    <button type="button" class="facebookBTN"><i class="fab fa-facebook-square"></i> Фэйсбүүк</button>
                                 </form>
                             </div>
                             </div>
@@ -78,6 +78,49 @@
             </div>
         </div>
     </div>
+    <!--Four Column / Current Projects-->
+    <section class="four-column current-projects no-padd-top">
+        <div class="container">
+            <div class="sec-title clearfix">
+                <h2 class="float-left">Бидний сайн дурын <strong>ажлууд</strong></h2>
+                <div class="link float-right font-14"><a href="#"><span class="fa fa-angle-right"></span> Бүгдийг харах</a></div>
+            </div>
+            <div class="row clearfix">
+                @foreach($volunteers as $volun)
+                <!--Project Column-->
+                <div class="col-sm-3 column project-column">
+                    <article class="column-inner hvr-float-shadow">
+                        <figure class="image-box">
+                            <a href="#"><img src="http://world5.commonsupport.com/html/volunteer/images/resource/{{$volun->images}}" alt="" title="Volunteer"></a>
+                        </figure>
+                        <div class="lower-part">
+                            <div class="text">
+                                <a href="#"><h3>{{$volun->name}}</h3></a>
+                                <p>{{$volun->intro}}</p>
+                            </div>
+                            <div class="row font-12">
+                                <div class="col-sm-6 border-right">
+                                    <a href="#"><i class="far fa-heart"></i> Таалагдлаа</a>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="rating-stars float-right">
+                                        <ul id='stars'>
+                                            <li class='star' title='Муу' data-value='1'><i class='fa fa-star fa-fw'></i></li>
+                                            <li class='star' title='Дунд' data-value='2'><i class='fa fa-star fa-fw'></i></li>
+                                            <li class='star' title='Сайн' data-value='3'><i class='fa fa-star fa-fw'></i></li>
+                                            <li class='star' title='Маш сайн' data-value='4'><i class='fa fa-star fa-fw'></i></li>
+                                            <li class='star' title='Гайхалтай' data-value='5'><i class='fa fa-star fa-fw'></i></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
     <section class="four-column team-section">
         <div class="container">
             <div class="sec-title">
@@ -90,7 +133,7 @@
                         <figure class="image-box">
                             <a href="#"><img src="http://world5.commonsupport.com/html/volunteer/images/resource/team-1.jpg" alt="" title="Volunteer"></a>
                             <div class="tag-title"><span>Top</span></div>
-                            <div class="rating">
+                            <div class="rating rating-stars">
                                 <ul id='stars'>
                                     <li class='star' title='Муу' data-value='1'><i class='fa fa-star fa-fw'></i></li>
                                     <li class='star' title='Дунд' data-value='2'><i class='fa fa-star fa-fw'></i></li>
@@ -121,7 +164,15 @@
                     <article class="column-inner hvr-float-shadow">
                         <figure class="image-box">
                             <a href="#"><img src="http://world5.commonsupport.com/html/volunteer/images/resource/team-2.jpg" alt="" title="Volunteer"></a>
-
+                            <div class="rating rating-stars">
+                                <ul id='stars'>
+                                    <li class='star' title='Муу' data-value='1'><i class='fa fa-star fa-fw'></i></li>
+                                    <li class='star' title='Дунд' data-value='2'><i class='fa fa-star fa-fw'></i></li>
+                                    <li class='star' title='Сайн' data-value='3'><i class='fa fa-star fa-fw'></i></li>
+                                    <li class='star' title='Маш сайн' data-value='4'><i class='fa fa-star fa-fw'></i></li>
+                                    <li class='star' title='Гайхалтай' data-value='5'><i class='fa fa-star fa-fw'></i></li>
+                                </ul>
+                            </div>
                         </figure>
                         <div class="lower-part">
                             <h3>М.Мөнхтуяа</h3>
@@ -143,7 +194,15 @@
                     <article class="column-inner hvr-float-shadow">
                         <figure class="image-box">
                             <a href="#"><img src="http://world5.commonsupport.com/html/volunteer/images/resource/team-3.jpg" alt="" title="Volunteer"></a>
-
+                            <div class="rating rating-stars">
+                                <ul id='stars'>
+                                    <li class='star' title='Муу' data-value='1'><i class='fa fa-star fa-fw'></i></li>
+                                    <li class='star' title='Дунд' data-value='2'><i class='fa fa-star fa-fw'></i></li>
+                                    <li class='star' title='Сайн' data-value='3'><i class='fa fa-star fa-fw'></i></li>
+                                    <li class='star' title='Маш сайн' data-value='4'><i class='fa fa-star fa-fw'></i></li>
+                                    <li class='star' title='Гайхалтай' data-value='5'><i class='fa fa-star fa-fw'></i></li>
+                                </ul>
+                            </div>
                         </figure>
                         <div class="lower-part">
                             <h3>Б.Ган-Эрдэнэ</h3>
@@ -165,7 +224,15 @@
                     <article class="column-inner hvr-float-shadow">
                         <figure class="image-box">
                             <a href="#"><img src="http://world5.commonsupport.com/html/volunteer/images/resource/team-4.jpg" alt="" title="Volunteer"></a>
-
+                            <div class="rating rating-stars">
+                                <ul id='stars'>
+                                    <li class='star' title='Муу' data-value='1'><i class='fa fa-star fa-fw'></i></li>
+                                    <li class='star' title='Дунд' data-value='2'><i class='fa fa-star fa-fw'></i></li>
+                                    <li class='star' title='Сайн' data-value='3'><i class='fa fa-star fa-fw'></i></li>
+                                    <li class='star' title='Маш сайн' data-value='4'><i class='fa fa-star fa-fw'></i></li>
+                                    <li class='star' title='Гайхалтай' data-value='5'><i class='fa fa-star fa-fw'></i></li>
+                                </ul>
+                            </div>
                         </figure>
                         <div class="lower-part">
                             <h3>Анхбаатар</h3>
