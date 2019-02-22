@@ -197,9 +197,11 @@
                     </form>
                 </div>
             </div>
-            <div class="row copyright">
-                <div class="col-sm-12 text-center">
+            <div class="row copyright text-center">
+                <div class="col-sm-12">
                     Зохиогчийн бүх эрх хуулиар хамгаалагдсан © 2018  <strong>{{$info->config['main']['copyright']}}</strong>
+                </br>
+                    Энэхүү веб хуудсыг Баянхонгор аймгийн ЗДТГ-ын захиалгаар <a href="http://towersoft.mn" target="_blank"> TАУЭРСОФТ ХХК</a> бүтээв.
                 </div>
             </div>
         </div>

@@ -20,18 +20,29 @@
     <div class="row">
         <div class="container content-box">
             <div class="row">
-                <div class="col-sm-9">
+                <div class="col-sm-12">
                     <div class="posts-blog row">
-                        @foreach($newslist as $news)
-                            <h2>{{$news->title}}</h2>
-                        @endforeach
+                        <table class="table table-bordered" style="font-size: 12px;">
+                            <thead>
+                            <tr>
+                                <th scope="col">№</th>
+                                <th scope="col">Гарчиг</th>
+                                <th scope="col">Огноо</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @php $s=1 @endphp
+                            @foreach($newslist as $news)
+                            <tr>
+                                <th scope="row">{{$s}}</th>
+                                <td>{{$news->title}}</td>
+                                <td>{{$news->created_at}}</td>
+                            </tr>
+                            @php $s++; @endphp
+                            @endforeach
+                            </tbody>
+                        </table>
                     </div>
-                </div>
-                <div class="col-sm-3">
-                    <h3 class="head row"><span>Мэдээний ангилал</span></h3>
-                    <ul class="left-side-menu">
-                        
-                    </ul>
                 </div>
             </div>
         </div>
