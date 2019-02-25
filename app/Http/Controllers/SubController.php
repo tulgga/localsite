@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 //use http\Env\Request;
+use App\News_to_category;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
@@ -83,7 +84,12 @@ class SubController extends BaseController
     public function files($account, $id){
         $data['info']=$this->getDomainInfo($account);
         $data['fileCat'] = File_to_category::where('cat_id',$id)->select('file_id')->first();
-        $data['filelist'] = File::where('site_id',$data['info']->id)->where('id',$data['fileCat']->file_id)->where('status',1)->select('*')->orderBy('created_at','DESC')->get();
+        if(isset($data['fileCat']->file_id)) {
+            $data['filelist'] = File::where('site_id', $data['info']->id)->where('id', $data['fileCat']->file_id)->where('status', 1)->select('*')->orderBy('created_at', 'DESC')->get();
+        }else{
+            $data['filelist'] = [];
+            $data['infoMessage'] = "Мэдээлэл ороогүй байна.";
+        }
         $data['fileCategory'] = File_category::where('site_id',$data['info']->id)->where('id',$id)->select('id', 'name')->first();
         $data['fileCategories'] = File_category::where('site_id',$data['info']->id)->orderBy('order_num','ASC')->select('id', 'name')->get();
         return view('sub.file', $data);

@@ -49,6 +49,8 @@
                         <a href="{{asset('category/'.$menu->type_id)}}"><i class="{{$menu->icon}}"></i> {!!html_entity_decode($menu->name)!!}</a>
                     @elseif($menu->type == 4)
                         <a href="{{asset('files/'.$menu->type_id)}}"><i class="{{$menu->icon}}"></i> {!!html_entity_decode($menu->name)!!}</a>
+                    @elseif($menu->type == 5)
+                        <a href="{{asset($menu->link)}}"><i class="{{$menu->icon}}"></i> {!!html_entity_decode($menu->name)!!}</a>
                     @endif
                 @endforeach
             </div>
@@ -65,7 +67,7 @@
                                 <li class="col-sm-6">
                                     <div class="row">
                                         <div class="col-5">
-                                            <div class="thumb" style="background-image: url('{{asset(str_replace("images","uploads/small/",$nws->image))}}');" title="{{$nws->title}}"></div>
+                                            <div class="thumb" style="background-image: url('{{asset(str_replace("images","uploads/small",$nws->image))}}');" title="{{$nws->title}}"></div>
                                         </div>
                                         <div class="col-7">
                                             <a href="{{asset('news/'.$nws->id)}}"><h6>{{mb_substr($nws->title, 0, 55)}}...</h6></a>
@@ -131,7 +133,12 @@
                                             <div class="thumb" style="background-image: url('{{asset(str_replace("images","uploads/small/",$nws->image))}}');" title="{{$nws->title}}"></div>
                                         </div>
                                         <div class="col-7">
-                                            <a href="{{asset('news/'.$nws->id)}}"><h6>{{mb_substr($nws->title, 0, 55)}}...</h6></a>
+                                            @foreach($info->subDomain as $domain)
+                                                @if($domain->id == 0)
+                                            <a href="http://{{$domain->domain.'/!#/news/'.$nws->id}}" target="_blank">
+                                                <h6>{{mb_substr($nws->title, 0, 55)}}...</h6></a>
+                                                @endif
+                                            @endforeach
                                             <span class="create_date"><i class="far fa-clock"></i> {{$nws->created_at->format('Y-m-d')}}</span>
                                         </div>
                                     </div>
@@ -145,7 +152,12 @@
                                         </div>
                                     </div>
                                     <div class="col-7">
-                                        <a href="{{asset('news/'.$nws->id)}}"><h6>{{mb_substr($nws->title, 0, 55)}}...</h6></a>
+                                        @foreach($info->subDomain as $domain)
+                                            @if($domain->id == 0)
+                                                <a href="http://{{$domain->domain.'/!#/news/'.$nws->id}}" target="_blank">
+                                                    <h6>{{mb_substr($nws->title, 0, 55)}}...</h6></a>
+                                            @endif
+                                        @endforeach
                                         <span class="create_date"><i class="far fa-clock"></i> {{$nws->created_at->format('Y-m-d')}}</span>
                                     </div>
                                 </div>
@@ -157,7 +169,12 @@
                                             <div class="thumb video" style="background-image: url('https://i.ytimg.com/vi/{{$nws->image}}/mqdefault.jpg');" title="{{$nws->title}}"><i class="fa fa-play"></i></div>
                                         </div>
                                         <div class="col-7">
-                                            <a href="{{asset('news/'.$nws->id)}}"><h6>{{mb_substr($nws->title, 0, 55)}}...</h6></a>
+                                            @foreach($info->subDomain as $domain)
+                                                @if($domain->id == 0)
+                                                    <a href="http://{{$domain->domain.'/!#/news/'.$nws->id}}" target="_blank">
+                                                        <h6>{{mb_substr($nws->title, 0, 55)}}...</h6></a>
+                                                @endif
+                                            @endforeach
                                             <span class="create_date"><i class="far fa-clock"></i> {{$nws->created_at->format('Y-m-d')}}</span>
                                         </div>
                                     </div>
@@ -174,10 +191,6 @@
                                 <a href="#">Аймгийн 2016 оны авлигын эсрэг, авлигаас урьдчилан сэргийлэх, соён...</a>
                                 <span class="create_date">Зарлагдсан: 2018 оны 12 сар</span>
                             </li>
-                            <li>
-                                <a href="#">Авлигатай тэмцэх үндэснйий хөтөлбөр...</a>
-                                <span class="create_date">Зарлагдсан: 2018 оны 12 сар</span>
-                            </li>
                         </div>
                     </ul>
                 </div>
@@ -186,12 +199,12 @@
     </div>
     <div class="row">
         <div class="container holboos">
-            <a href=""><img src="{{ asset('main/sub/images/icons/suld.png')}}"> Аймгийн засаг даргын тамгын газар</a>
-            <a href=""><img src="{{ asset('main/sub/images/icons/suld.png')}}"> Монгол улсын ерөнхийлөгчийн тамгын газар</a>
-            <a href=""><img src="{{ asset('main/sub/images/icons/suld.png')}}"> Монгол улсын засгийн газар</a>
-            <a href=""><img src="{{ asset('main/sub/images/icons/suld.png')}}"> Монгол улсын их хурал</a>
-            <a href=""><img src="{{ asset('main/sub/images/icons/avilga.png')}}"> Авлигатай тэмцэх газар</a>
-            <a href=""><img src="{{ asset('main/sub/images/icons/soyombo.png')}}"> Эрх зүйн мэдээллийн нэгдсэн сан</a>
+            <a href="http://bayankhongor.gov.mn" target="_blank"><img src="{{ asset('main/sub/images/icons/suld.png')}}"> Аймгийн засаг даргын тамгын газар</a>
+            <a href="https://president.mn/" target="_blank"><img src="{{ asset('main/sub/images/icons/suld.png')}}"> Монгол улсын ерөнхийлөгчийн тамгын газар</a>
+            <a href="https://zasag.mn/" target="_blank"><img src="{{ asset('main/sub/images/icons/suld.png')}}"> Монгол улсын засгийн газар</a>
+            <a href="http://www.parliament.mn/" target="_blank"><img src="{{ asset('main/sub/images/icons/suld.png')}}"> Монгол улсын их хурал</a>
+            <a href="https://www.iaac.mn/" target="_blank"><img src="{{ asset('main/sub/images/icons/avilga.png')}}"> Авлигатай тэмцэх газар</a>
+            <a href="https://www.legalinfo.mn/" target="_blank"><img src="{{ asset('main/sub/images/icons/soyombo.png')}}"> Эрх зүйн мэдээллийн нэгдсэн сан</a>
         </div>
     </div>
 @endsection

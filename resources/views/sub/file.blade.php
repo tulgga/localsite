@@ -36,6 +36,7 @@
                             </tr>
                             </thead>
                             <tbody>
+                            @if($filelist)
                             @foreach($filelist as $file)
                                 <tr>
                                     <td>{{$file->cart_number}}</td>
@@ -59,6 +60,11 @@
                                     <td style="text-align: center"><a href="{{asset('uploads/'.$file->file)}}" download><i class="fa fa-download"></i></a> </td>
                                 </tr>
                             @endforeach
+                            @else
+                                <tr>
+                                    <td colspan="7">{{$infoMessage}}</td>
+                                </tr>
+                            @endif
                             </tbody>
                         </table>
                     </div>

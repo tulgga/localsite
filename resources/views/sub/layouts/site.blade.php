@@ -72,6 +72,7 @@
                     <ul class="top-menu">
                         <li><a href="#" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-link"></i> Бусад сумдууд</a></li>
                         <li><a href="{{asset('archive')}}"><i class="fa fa-archive"></i> Архив</a></li>
+                        <li><a href="{{asset('feedback')}}"><i class="far fa-comments"></i> Санал хүсэлт, өргөдөл, гомдол</a></li>
                     </ul>
                 </div>
             </div>
@@ -98,7 +99,8 @@
                             <ul class="navbar-nav ml-sm-auto">
                                 <?php foreach($info->menu as $mn){ ?>
                                 <?php if($mn->children){ ?>
-                                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="{{$mn->link}}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" @if($mn->blank == 1) target="_blank" @endif><?php echo $mn->name; ?></a>
+                                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" @if($mn->blank == 1) target="_blank"
+@endif><?php echo $mn->name; ?></a>
                                     <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                         <?php foreach($mn->children as $child){ ?>
                                         <?php if($child->children){ ?>
