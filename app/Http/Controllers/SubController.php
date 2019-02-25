@@ -29,6 +29,8 @@ class SubController extends BaseController
     public function index($account){
 
       $data['info']=$this->getDomainInfo($account);
+      $tenders = Category::where('site_id', $data['info']->id)->where('name','Тендерийн урилга')->first();
+      $data['tender_posts'] = News_to_category::orderBy('created_at','desc')->where('cat_id',$tenders->id)->get();
       $data['ontslokh']= Post::orderBy('created_at', 'desc')->where('site_id', $data['info']->id)->where('is_primary', 1)->where('status',1)->with('Category')->select('title', 'id', 'image', 'type','short_content','created_at')
           ->limit(5)->get();
       $data['latest_news']= Post::orderBy('created_at', 'desc')->where('site_id', $data['info']->id)->where('is_primary', 0)->where('status',1)->with('Category')->select('title', 'id', 'image', 'type','short_content','created_at')
@@ -40,6 +42,7 @@ class SubController extends BaseController
           Join('news_to_sites', 'news_to_sites.post_id', '=', 'posts.id')
           ->whereIn('news_to_sites.site_id', [$data['info']->id,0])
           ->limit(6)->get();
+
       $data['other_menu'] = Page::where('site_id',$data['info']->id)->where('is_main',0)->select('id', 'title as name', 'link', 'icon', 'type', 'type_id')->orderBy('order_num', 'asc')->get();
       return view('sub.home', $data);
     }

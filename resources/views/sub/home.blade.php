@@ -187,10 +187,16 @@
                     <h3 class="head row background-white"><span>Тендерийн урилга</span></h3>
                     <ul class="row iltod_news background-white">
                         <div class="iltod_scroll scrollbar-inner">
-                            <li>
-                                <a href="#">Аймгийн 2016 оны авлигын эсрэг, авлигаас урьдчилан сэргийлэх, соён...</a>
-                                <span class="create_date">Зарлагдсан: 2018 оны 12 сар</span>
-                            </li>
+                            @foreach($tender_posts as $tend)
+                                @foreach($latest_news as $nws)
+                                    @if($tend->post_id == $nws->id)
+                                    <li>
+                                        <a href="{{asset('news/'.$nws->id)}}">{{mb_substr($nws->title, 0, 55)}}...</a>
+                                        <span class="create_date">Нийтэлсэн: {{$nws->created_at->format('Y-m-d')}}</span>
+                                    </li>
+                                    @endif
+                                @endforeach
+                            @endforeach
                         </div>
                     </ul>
                 </div>

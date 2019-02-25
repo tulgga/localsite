@@ -68,7 +68,7 @@
                         @foreach($categories as $cat)
                             @if($cat->parent_id == 0)
                                 <li>
-                                    <a href="#">{{$cat->name}}</a>
+                                    <a href="{{asset("category/".$cat->id)}}">{{$cat->name}}</a>
                                     @php $i = menu($categories,$cat->id, $category->id, $i) @endphp
                                 </li>
                             @endif

@@ -49,7 +49,6 @@
                     </div>
                 </div>
             @endforeach
-
             {{ $zar->links() }}
         </div>
     </div>
