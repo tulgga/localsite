@@ -7,6 +7,7 @@ use App\Site;
 use App\Link;
 use App\Zar_category;
 use App\Zar;
+use function PhpParser\filesInDir;
 
 class ZarController extends Controller
 {
@@ -19,13 +20,35 @@ class ZarController extends Controller
     public function category($id){
         $data=$this->MainData();
         $data['zar']=Zar::select('zar.*', 'zar_category.name as category')->where('zar.cat_id', $id)->join('zar_category', 'zar_category.id', '=', 'zar.cat_id')->orderBy('zar.created_at', 'desc')->paginate(12);
+        $data['zar_cat']=$id;
+        $data['selected_cat']=Zar_category::find($id);
         return view('zar.category', $data);
+    }
+
+    public function single($id)
+    {
+        $data=$this->MainData();
+        $data['zar']=Zar::find($id);
+        $data['selected_cat']=Zar_category::find($data['zar']->cat_id);
+        return view('zar.single', $data);
+    }
+
+    public function add(){
+        $data=$this->MainData();
+        return view('zar.addZar', $data);
+    }
+
+    public function search(){
+        $data=$this->MainData();
+        $data['selected']=0;
+        return view('zar.search', $data);
     }
 
     public function MainData(){
         $data['sumuud'] = Site::select('id','name','domain','favicon')->orderBy('name','ASC')->get();
         $data['agentlag'] = Link::where('cat_id', 3)->orderBy('name', 'asc')->where('site_id', 0)->get();
         $data['category']= $this->buildTree(Zar_category::orderBy('order_num', 'asc')->get());
+        $data['selected_cat']=[];
         return $data;
     }
 

@@ -30,7 +30,10 @@ Route::domain('volunteer.bayankhongor.local')->group(function () {
 
 Route::domain('zar.bayankhongor.local')->group(function () {
     Route::get('/', 'ZarController@index');
-    Route::get('/c/{id}', 'ZarController@category');
+    Route::get('/c/{id}.html', 'ZarController@category');
+    Route::get('/p/{id}.html', 'ZarController@single');
+    Route::get('/search.html', 'ZarController@search');
+    Route::get('/post-ad.html', 'ZarController@add');
 });
 
 Route::domain('{account}.bayankhongor.local')->group(function () {

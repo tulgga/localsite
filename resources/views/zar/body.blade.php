@@ -12,10 +12,6 @@
     <link rel="stylesheet" href="{{ asset('main/zar/css/select2.min.css')}}">
     <link rel="stylesheet" href="{{ asset('main/zar/css/magnific-popup.css')}}">
     <link rel="stylesheet" href="{{ asset('main/zar/css/style.css')}}">
-
-
-
-
 </head>
 <body>
 {{--<div id="preloader"></div>--}}
@@ -43,15 +39,13 @@
                                     </div>
                                     <div class="col-md-9 col-7 pl-0">
                                         <input type="text" placeholder="Хайх утгаа оруулна уу...">
-                                        <button type="button" class="button-search"><i class="fa fa-search"></i>
-                                        </button>
+                                        <button type="button" class="button-search"><i class="fa fa-search"></i></button>
                                     </div>
                                 </div>
                             </form>
                         </div>
                         <div class="col-lg-3 col-md-3 text-center text-md-right">
-                            <a href="post-ad.html" class="cp-default-btn add-btn"><i class="fa fa-plus"></i> Зар
-                                нэмэх</a>
+                            <a href="{{url('post-ad.html')}}" class="cp-default-btn add-btn"><i class="fa fa-plus"></i> Зар нэмэх</a>
                         </div>
                     </div>
                 </div>
@@ -62,7 +56,6 @@
 
 
     <section class="pt-2 pt-sm-5 mt-sm-5 bg-accent-shadow-body">
-
         <div class="container pb-40">
             <div class="row">
                 <div class="order-xl-2 col-lg-9 col-md-12 col-sm-12 col-12 mb--sm">
@@ -77,11 +70,12 @@
                                 <h3>Ангилал</h3>
                             </div>
                             <ul class="sidebar-category-list">
+                                <?php $cat=0; if(isset($selected_cat->id)){ $cat=$selected_cat->id;  }?>
                                 @foreach($category as $c)
-                                    <li><a href="{{url('c/'.$c->id)}}">{{$c->name}}</a></li>
+                                    <li  ><a href="{{url('c/'.$c->id.'.html')}}" @if($cat==$c->id) class="active" @endif >{{$c->name}}</a></li>
                                     @if($c->children)
                                         @foreach($c->children as $cc)
-                                            <li class="child"><a href="{{url('c/'.$cc->id)}}">{{$cc->name}}</a></li>
+                                            <li class="child"><a href="{{url('c/'.$cc->id.'.html')}}" @if($cat==$cc->id) class="active" @endif>{{$cc->name}}</a></li>
                                         @endforeach
                                     @endif
                                 @endforeach

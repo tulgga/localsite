@@ -8,10 +8,10 @@
 @section('content')
     <div class="gradient-title">
         <div class="row">
-            <div class="col-4">
-                <h2>Бүх зар</h2>
+            <div class="col-6">
+                <h2>Ангилал: {{$selected_cat->name}}</h2>
             </div>
-            <div class="col-8">
+            <div class="col-6">
                 <div class="layout-switcher">
                     <ul>
                         <li><a class="product-view-trigger" href="#" data-type="category-grid-layout3"><i class="fa fa-th-large"></i></a></li>
@@ -36,15 +36,15 @@
                             </div>
                         </div>
                         <div class="item-content">
-                            <h3 class="short-title"><a href="{{url('s/'.$z->id)}}">{{$z->title}}</a></h3>
-                            <h3 class="long-title"><a href="{{url('s/'.$z->id)}}">{{$z->title}}</a></h3>
+                            <h3 class="short-title"><a href="{{url('p/'.$z->id.'.html')}}">{{$z->title}}</a></h3>
+                            <h3 class="long-title"><a href="{{url('p/'.$z->id.'.html')}}">{{$z->title}}</a></h3>
                             <ul class="upload-info">
                                 <li class="date"><i class="fa fa-clock-o" aria-hidden="true"></i>{{$z->created_at->format('Y-m-d H:i')}}</li>
                                 <li class="tag-ctg"><i class="fa fa-tag" aria-hidden="true"></i>{{$z->category}}</li>
                             </ul>
                             <p>{{mb_substr($z->content, 0,200)}}...</p>
                             <div class="price">{{$z->price}} ₮</div>
-                            <a href="{{url('s/'.$z->id)}}" class="product-details-btn">Цааш нь</a>
+                            <a href="{{url('p/'.$z->id.'.html')}}" class="product-details-btn">Цааш нь</a>
                         </div>
                     </div>
                 </div>

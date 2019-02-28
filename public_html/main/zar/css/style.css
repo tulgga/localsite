@@ -77,7 +77,7 @@ h4 {
     font-family: 'Roboto', sans-serif;
     margin: 0 0 20px 0;
     color: #222222;
-    text-transform: capitalize;
+    /*text-transform: capitalize;*/
 }
 
 h1 {
@@ -5192,14 +5192,16 @@ ul.sidebar-category-list li a img {
     display: inline-block;
 }
 
-ul.sidebar-category-list li:hover {
+ul.sidebar-category-list li:hover, ul.sidebar-category-list li a.active {
     background: #2068de;
+    color: #FFF;
     -webkit-transition: all 0.5s ease-out;
     -moz-transition: all 0.5s ease-out;
     -ms-transition: all 0.5s ease-out;
     -o-transition: all 0.5s ease-out;
     transition: all 0.5s ease-out;
 }
+
 
 ul.sidebar-category-list li:hover a {
     color: #FFFFFF;
@@ -6034,7 +6036,7 @@ ul.sidebar-ads-from-user li .price {
 }
 
 .post-ad-page .picture-upload li input {
-    padding: 8px 12px 7px;
+    padding: 4px 8px 7px;
     width: 50%;
 }
 

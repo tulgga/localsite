@@ -36,15 +36,15 @@
                             </div>
                         </div>
                         <div class="item-content">
-                            <h3 class="short-title"><a href="{{url('s/'.$z->id)}}">{{$z->title}}</a></h3>
-                            <h3 class="long-title"><a href="{{url('s/'.$z->id)}}">{{$z->title}}</a></h3>
+                            <h3 class="short-title"><a href="{{url('p/'.$z->id.'.html')}}">{{$z->title}}</a></h3>
+                            <h3 class="long-title"><a href="{{url('p/'.$z->id.'.html')}}">{{$z->title}}</a></h3>
                             <ul class="upload-info">
                                 <li class="date"><i class="fa fa-clock-o" aria-hidden="true"></i>{{$z->created_at->format('Y-m-d H:i')}}</li>
                                 <li class="tag-ctg"><i class="fa fa-tag" aria-hidden="true"></i>{{$z->category}}</li>
                             </ul>
                             <p>{{mb_substr($z->content, 0,200)}}...</p>
                             <div class="price">{{$z->price}} ₮</div>
-                            <a href="{{url('s/'.$z->id)}}" class="product-details-btn">Цааш нь</a>
+                            <a href="{{url('p/'.$z->id.'.html')}}" class="product-details-btn">Цааш нь</a>
                         </div>
                     </div>
                 </div>
