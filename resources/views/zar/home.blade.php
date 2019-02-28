@@ -1,9 +1,12 @@
 @extends('zar.body')
 @section('meta')
-    <title></title>
-    <meta name="title" content="">
-    <meta name="keywords" content="">
-    <meta name="description" content="">
+    <title>Баянхонгор аймгийн зарын сайт</title>
+    <meta name="title" content="Баянхонгор аймгийн зарын сайт">
+    <meta name="keywords" content="Зарууд, Монгол,  зарын сайт, компьютерууд.Гар утас, орон сууц, хашаа байшин, хоноглох орон сууц, офисын байр, ажлын байрны орон тоо, Монгол дахь, тавилга, цахилгаан бараа, дэлгүүр, зарын самбар.">
+    <meta name="description" content="Баянхонгор аймгийн зарын сайт">
+    <meta property="og:locale" content="mn_MN">
+    <meta property="og:locale:alternate" content="en_GB">
+    <meta property="og:description" content="Баянхонгор аймгийн зарын сайт">
 @endsection
 @section('content')
     <div class="gradient-title">
@@ -28,7 +31,12 @@
                 <div class="col-xl-4 col-lg-6 col-md-4 col-sm-6 col-12">
                     <div class="product-box item-mb zoom-gallery">
                         <div class="item-mask-wrapper">
-                            <div class="item-mask secondary-bg-box"><img src="{{url('uploads/'.$z->image)}}" alt="categories" class="img-fluid">
+                            <div class="item-mask secondary-bg-box">
+                                @if($z->image)
+                                <img src="{{url('uploads/'.$z->image)}}" alt="categories" class="img-fluid">
+                                @else
+                                    <img src="{{url('images/noImage.jpg')}}" alt="categories" class="img-fluid">
+                                @endif
                                 <ul class="info-link">
                                     <li><a href="{{url('uploads/'.$z->image)}}" class="elv-zoom" data-fancybox-group="gallery" title="{{$z->title}}"><i class="fa fa-arrows-alt" aria-hidden="true"></i></a></li>
                                     <li><a href="{{url('s/'.$z->id)}}"><i class="fa fa-link" aria-hidden="true"></i></a></li>
@@ -42,7 +50,7 @@
                                 <li class="date"><i class="fa fa-clock-o" aria-hidden="true"></i>{{$z->created_at->format('Y-m-d H:i')}}</li>
                                 <li class="tag-ctg"><i class="fa fa-tag" aria-hidden="true"></i>{{$z->category}}</li>
                             </ul>
-                            <p>{{mb_substr($z->content, 0,200)}}...</p>
+                            <p class="pr-sm-5">{{mb_substr($z->content, 0,200)}}...</p>
                             <div class="price">{{$z->price}} ₮</div>
                             <a href="{{url('p/'.$z->id.'.html')}}" class="product-details-btn">Цааш нь</a>
                         </div>

@@ -30,16 +30,29 @@
                             </div>
                         </div>
                         <div class="col-lg-5 col-md-5 possition-static">
-                            <form class="searchform mb-3 mt-3 mb-md-0 mt-md-0">
+                            <form method="get" action="{{url('search.html')}}" class="searchform mb-3 mt-3 mb-md-0 mt-md-0">
                                 <div class="row">
                                     <div class="col-md-3 col-5 pr-0">
-                                        <select class="form-control">
-                                            <option>Бүх зар</option>
+                                        <select name="cat" class="form-control">
+                                            <?php if(isset($_GET['cat'])){ $cat=$_GET['cat']; } else { $cat=0; } ?>
+                                            <option value="0">Бүх зар</option>
+                                            @foreach($category as $c)
+                                                @if($c->children)
+                                                    <optgroup label="{{$c->name}}">
+                                                    @foreach($c->children as $cc)
+                                                        <option @if($cat==$cc->id) selected @endif value="{{$cc->id}}"> -- {{$cc->name}}</option>
+                                                    @endforeach
+                                                    </optgroup>
+                                                @else
+                                                    <option @if($cat==$c->id) selected @endif value="{{$c->id}}">{{$c->name}}</option>
+                                                 @endif
+                                            @endforeach
                                         </select>
                                     </div>
                                     <div class="col-md-9 col-7 pl-0">
-                                        <input type="text" placeholder="Хайх утгаа оруулна уу...">
-                                        <button type="button" class="button-search"><i class="fa fa-search"></i></button>
+                                        <?php if(isset($_GET['s'])){ $s=$_GET['s']; } else { $s=''; } ?>
+                                        <input type="text" name="s" value="{{$s}}" placeholder="Хайх утгаа оруулна уу...">
+                                        <button type="submit" class="button-search"><i class="fa fa-search"></i></button>
                                     </div>
                                 </div>
                             </form>
@@ -72,7 +85,7 @@
                             <ul class="sidebar-category-list">
                                 <?php $cat=0; if(isset($selected_cat->id)){ $cat=$selected_cat->id;  }?>
                                 @foreach($category as $c)
-                                    <li  ><a href="{{url('c/'.$c->id.'.html')}}" @if($cat==$c->id) class="active" @endif >{{$c->name}}</a></li>
+                                    <li><a href="{{url('c/'.$c->id.'.html')}}" @if($cat==$c->id) class="active" @endif >{{$c->name}}</a></li>
                                     @if($c->children)
                                         @foreach($c->children as $cc)
                                             <li class="child"><a href="{{url('c/'.$cc->id.'.html')}}" @if($cat==$cc->id) class="active" @endif>{{$cc->name}}</a></li>

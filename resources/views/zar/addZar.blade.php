@@ -8,7 +8,8 @@
 @section('content')
 
     <div class="input-layout1 gradient-padding post-ad-page">
-        <form id="post-add-form" method="post">
+        <form id="post-add-form" method="post" action="{{asset("postAdd")}}" enctype="multipart/form-data" >
+            {{ csrf_field() }}
             <div class="border-bottom-2 mb-50 pb-30">
                 <div class="section-title-left-dark border-bottom d-flex">
                     <h3><img src="{{url('main/zar/img/post-add3.png')}}" alt="post-add" class="img-fluid"> Зар нэмэх</h3>
@@ -20,18 +21,19 @@
                     <div class="col-sm-9 col-12">
                         <div class="form-group">
                             <div class="custom-select" >
-                                <select id="category-name" class='select2' required>
+                                <select id="category-name" class="select2" name="cat_id" required>
                                     <option value="">Ангилал сонгох</option>
-                                    <option value="1">Electronics</option>
-                                    <option value="2">Fashin &amp; Life Style</option>
-                                    <option value="3">Car &amp; Vehicles</option>
-                                    <option value="3">Hobby, Sport &amp; Kids</option>
-                                    <option value="3">Pets &amp; Animals</option>
-                                    <option value="3">Overseas Jobs</option>
-                                    <option value="3">Property</option>
-                                    <option value="3">Education</option>
-                                    <option value="3">Home &amp; Garden</option>
-                                    <option value="3">Business &amp; Industry</option>
+                                    @foreach($category as $c)
+                                        @if($c->children)
+                                            <optgroup label="{{$c->name}}">
+                                                @foreach($c->children as $cc)
+                                                    <option value="{{$cc->id}}"> -- {{$cc->name}}</option>
+                                                @endforeach
+                                            </optgroup>
+                                        @else
+                                            <option value="{{$c->id}}">{{$c->name}}</option>
+                                        @endif
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -43,7 +45,7 @@
                     </div>
                     <div class="col-sm-9 col-12">
                         <div class="form-group">
-                            <input type="text" id="add-title" class="form-control" required >
+                            <input type="text" name="title" class="form-control" required >
                         </div>
                     </div>
                 </div>
@@ -53,7 +55,7 @@
                     </div>
                     <div class="col-sm-9 col-12">
                         <div class="form-group">
-                            <textarea class="textarea form-control" name="message" id="description" rows="4" cols="20" data-error="Message field is required" required=""></textarea>
+                            <textarea class="textarea form-control" name="content"  rows="4" cols="20" data-error="Message field is required" required=""></textarea>
                         </div>
                     </div>
                 </div>
@@ -79,7 +81,7 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-3 col-12">
-                        <label class="control-label">И-мэйл хаяг <span></span></label>
+                        <label class="control-label">Имэйл хаяг <span></span></label>
                     </div>
                     <div class="col-sm-9 col-12">
                         <div class="form-group">
@@ -95,22 +97,22 @@
                         <div class="form-group">
                             <ul class="picture-upload">
                                 <li>
-                                    <input type="file" name="image[]" class="form-control">
+                                    <input type="file" name="image_1" accept="image/*" class="form-control">
                                 </li>
                                 <li>
-                                    <input type="file" name="image[]" class="form-control">
+                                    <input type="file" name="image_2" accept="image/*" class="form-control">
                                 </li>
                                 <li>
-                                    <input type="file" name="image[]" class="form-control">
+                                    <input type="file" name="image_3" accept="image/*" class="form-control">
                                 </li>
                                 <li>
-                                    <input type="file" name="image[]" class="form-control">
+                                    <input type="file" name="image_4" accept="image/*" class="form-control">
                                 </li>
                                 <li>
-                                    <input type="file" name="image[]" class="form-control">
+                                    <input type="file" name="image_5" accept="image/*" class="form-control">
                                 </li>
                                 <li>
-                                    <input type="file" name="image[]" class="form-control">
+                                    <input type="file" name="image_6" accept="image/*" class="form-control">
                                 </li>
                             </ul>
                         </div>

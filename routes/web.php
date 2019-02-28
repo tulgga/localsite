@@ -34,6 +34,7 @@ Route::domain('zar.bayankhongor.local')->group(function () {
     Route::get('/p/{id}.html', 'ZarController@single');
     Route::get('/search.html', 'ZarController@search');
     Route::get('/post-ad.html', 'ZarController@add');
+    Route::post('/postAdd', 'ZarController@postAdd');
 });
 
 Route::domain('{account}.bayankhongor.local')->group(function () {

@@ -3740,7 +3740,7 @@ p.text-bold-primary {
 .product-box .item-mask {
     position: relative;
     text-align: center;
-    padding: 40px 30px;
+    /*padding: 40px 30px;*/
     -webkit-box-shadow: 0px 1px 2px 0px rgba(202, 202, 202, 0.75);
     -moz-box-shadow: 0px 1px 2px 0px rgba(202, 202, 202, 0.75);
     box-shadow: 0px 1px 2px 0px rgba(202, 202, 202, 0.75);
@@ -4334,7 +4334,7 @@ p.text-bold-primary {
 }
 
 .category-list-layout3 .product-box .item-content {
-    padding-right: 15%;
+    padding-right: 10%;
 }
 
 .category-list-layout3 .product-box .item-content .title-ctg {
@@ -7571,4 +7571,18 @@ ul.sidebar-ads-from-user li .price {
     margin-right: 10px;
     position: relative;
     top: -3px;
+}
+
+
+h3.short-title {
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.product-box .item-content .price {
+    font-size: 18px;
+}
+
+.pagination {
+    padding-left: 15px;
 }
