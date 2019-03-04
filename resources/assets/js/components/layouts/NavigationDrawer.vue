@@ -6,7 +6,7 @@
                 <li v-if="user.admin_type==0" class="branchselect"><p>{{domain.name}}
                     <span @click="changeDomain" class="tag is-primary is-uppercase">өөрчлөх</span></p>
                 </li>
-                <p class="main-text has-text-centered is-size-6 p2">
+                <p class="main-text has-text-centered is-size-6 p2 is-uppercase">
                     <template  v-if="domain.domain!=''">{{domain.domain}}.{{site}}</template>
                     <template v-else>bayankhongor.gov.mn</template>
                 </p>
@@ -116,7 +116,7 @@
                     { subheader: 'Тохиргоо', role:1,},
                         { title: 'Тохиргоо', icon: 'fas fa-sliders-h', path: '/config',  role:1,},
                         // { title: "Цэс", icon: 'fas fa-bars', path: '/menu' ,  role:1},
-                        { title: "Сутралчилгаа", icon: 'fab fa-goodreads', path: '/sidebar' ,  role:1},
+                        { title: "Сурталчилгаа", icon: 'fab fa-goodreads', path: '/sidebar' ,  role:1},
                     { subheader: 'Мэдээ',  role:1 },
                         { title: 'Мэдээний ангилал', icon: 'fas fa-code-branch', path: '/news_category' ,  role:1 },
                         { title: "Мэдээ", icon: 'fas fa-newspaper', path: '/news' ,  role:1},
@@ -142,7 +142,7 @@
                     { subheader: 'Тохиргоо', role:2,},
                     { title: 'Тохиргоо', icon: 'fas fa-sliders-h', path: '/config',  role:2,},
                     // { title: "Цэс", icon: 'fas fa-bars', path: '/menu' ,  role:2},
-                    { title: "Сутралчилгаа", icon: 'fab fa-goodreads', path: '/sidebar' ,  role:2},
+                    { title: "Сурталчилгаа", icon: 'fab fa-goodreads', path: '/sidebar' ,  role:2},
                     { subheader: 'Мэдээ',  role:2 },
                     { title: 'Мэдээний ангилал', icon: 'fas fa-code-branch', path: '/news_category' ,  role:3 },
                     { title: "Мэдээ", icon: 'fas fa-newspaper', path: '/sub_news' ,  role:3},

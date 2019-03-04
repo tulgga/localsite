@@ -19512,7 +19512,7 @@ aside.menu .main-header {
 aside.menu .menu-label {
   margin-top: 0;
   margin-bottom: 0;
-  padding: 0.6rem 1.25rem;
+  padding: 1rem 1.25rem 0.9rem;
   color: #0a0a0a;
   background: #e9eaec;
 }
@@ -20068,7 +20068,7 @@ aside.menu .vb-dragger {
 }
 
 .boxed .boxed-title .title {
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 4px;

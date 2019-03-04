@@ -16,17 +16,17 @@
                             <div class="field">
                                 <label class="label">Лого /360x90/</label>
                                 <div class="control">
-                                    <input type="file"  @change="onFileChangeLogo($event.target.name, $event.target.files)"  />
+                                    <input type="file"  accept="image/*" @change="onFileChangeLogo($event.target.name, $event.target.files)"  />
                                 </div>
                             </div>
-                            <figure class="image" style="max-width: 360px" v-if="logoini"><img  :src="logoini" > </figure>
+                            <figure class="image" style="max-width: 360px" v-if="logoini"><img  :src="logoini" style="max-height:64px; width:auto;" > </figure>
                             <div class="field">
                                 <label class="label">АЙКОН /64x64/</label>
                                 <div class="control">
-                                    <input type="file" @change="onFileChangeIcon($event.target.name, $event.target.files)"   />
+                                    <input type="file" accept="image/*"  @change="onFileChangeIcon($event.target.name, $event.target.files)"   />
                                 </div>
                             </div>
-                            <figure class="image is-64x64" v-if="faviconini"><img  :src="faviconini" > </figure>
+                            <figure class="image is-64x64" v-if="faviconini"><img  :src="faviconini" style="max-height:64px; width:auto;" > </figure>
                             <div class="field">
                                 <label class="label">Харьяаллийн код /tsag-agaar.mn/</label>
                                 <div class="control">

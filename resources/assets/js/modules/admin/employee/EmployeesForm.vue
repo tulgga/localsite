@@ -28,7 +28,7 @@ CRUD Edit, Create form
                                         <div class="control has-image">
                                             <div class="file is-boxed is-fullwidth">
                                                 <label class="file-label">
-                                                    <input class="file-input" type="file" name="image2" @change="onFileChange($event.target.name, $event.target.files)">
+                                                    <input class="file-input" type="file" name="image2" accept="image/*" @change="onFileChange($event.target.name, $event.target.files)">
                                                     <span class="file-cta">
                                                         <span v-if="imageni" class="file-icon" :style="'background-image: url('+imageni+');'">
                                                             <i class="ion-ios-add-outline"></i>
@@ -45,14 +45,13 @@ CRUD Edit, Create form
                                 
                                 <div class="column is-12-mobile is-12-tablet">
                                     <div class="field">
-                                        <label class="label">Нэр</label>
+                                        <label class="label">Нэр <span class="has-text-danger">*</span></label>
                                         <div class="control">
-                                            <input type="text" name="f_name" v-validate="'required'" v-model="form.f_name" :class="{'input': true, 'is-danger': errors.has('f_name') }" />
-                                            <p v-show="errors.has('f_name')" class="help is-danger">{{ errors.first('f_name') }}</p>
+                                            <input type="text" name="f_name" v-validate="{'required':true, 'min':2}" v-model="form.f_name" :class="{'input': true, 'is-danger': errors.has('f_name') }" />
+                                            <p v-show="errors.has('f_name')" class="help is-danger">Заавал бөглө, хамгийн багадаа 2 тэмдэгт байна.</p>
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="column is-12-mobile is-12-tablet">
                                     <div class="field">
                                         <label class="label">Овог</label>
@@ -61,7 +60,6 @@ CRUD Edit, Create form
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="column is-12-mobile is-12-tablet">
                                     <div class="field">
                                         <label class="label">Утасны дугаар</label>
@@ -71,9 +69,6 @@ CRUD Edit, Create form
                                         </div>
                                     </div>
                                 </div>
-
-
-                                
                             </div>
                         </div>
                         <div class="column is-12-mobile is-6-tablet">
@@ -81,10 +76,10 @@ CRUD Edit, Create form
 
                                 <div class="column is-12-mobile is-12-tablet">
                                     <div class="field">
-                                        <label class="label">И-мэйл хаяг</label>
+                                        <label class="label">И-мэйл хаяг <span class="has-text-danger">*</span></label>
                                         <div class="control">
                                             <input type="text" name="email" v-validate="{'required':true, 'email':true}" v-model="form.email" :class="{'input': true, 'is-danger': errors.has('email') }" />
-                                            <p v-show="errors.has('email')" class="help is-danger">{{ errors.first('email') }}</p>
+                                            <p v-show="errors.has('email')" class="help is-danger">Заавал бөглө</p>
                                         </div>
                                     </div>
                                 </div>
@@ -127,21 +122,21 @@ CRUD Edit, Create form
 
                                 <div class="column is-12-mobile is-12-tablet">
                                     <div class="field">
-                                        <label class="label">Нэвтрэх нэр</label>
+                                        <label class="label">Нэвтрэх нэр <span class="has-text-danger">*</span></label>
                                         <div class="control">
-                                            <input type="text" name="user_name" v-validate="{'required':true}" v-model="form.user_name" :class="{'input': true, 'is-danger': errors.has('user_name') }" />
-                                            <p v-show="errors.has('user_name')" class="help is-danger">{{ errors.first('user_name') }}</p>
+                                            <input type="text" name="user_name" v-validate="{'required':true, 'min':6}" v-model="form.user_name" :class="{'input': true, 'is-danger': errors.has('user_name') }" />
+                                            <p v-show="errors.has('user_name')" class="help is-danger">Заавал бөглө, хамгийн багадаа 6 тэмдэгт байна.</p>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="column is-12-mobile is-12-tablet">
                                     <div class="field">
-                                        <label class="label">Нууц үг</label>
+                                        <label class="label">Нууц үг <span v-if="!m_id" class="has-text-danger">*</span></label>
                                         <div class="control">
                                             <input v-if="m_id" type="password" name="password" v-validate="{ min: 6 }" v-model="form.password" :class="{'input': true, 'is-danger': errors.has('password') }" />
                                             <input v-else="" type="password" name="password" v-validate="{ required:true, min: 6 }" v-model="form.password" :class="{'input': true, 'is-danger': errors.has('password') }" />
-                                            <p v-show="errors.has('password')" class="help is-danger">{{ errors.first('password') }}</p>
+                                            <p v-show="errors.has('password')" class="help is-danger">Заавал бөглө, хамгийн багадаа 6 тэмдэгт байна.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -150,8 +145,9 @@ CRUD Edit, Create form
                                     <div class="field">
                                         <label class="label">Нууц үг давтаж оруулна уу</label>
                                         <div class="control">
-                                            <input type="password" name="password_confirm" v-validate="{ is: form.password }" v-model="password_confirm" :class="{'input': true, 'is-danger': errors.has('password_confirm') }" />
-                                            <p v-show="errors.has('password_confirm')" class="help is-danger">{{ errors.first('password_confirm') }}</p>
+                                            <input v-if=" form.password.length>0" type="password" name="password_confirm" v-validate="{'required':true, 'is': form.password }" v-model="password_confirm" :class="{'input': true, 'is-danger': errors.has('password_confirm') }" />
+                                            <input v-else type="password" name="password_confirm" v-validate="{ 'confirmed': password }" v-model="password_confirm" :class="{'input': true, 'is-danger': errors.has('password_confirm') }" />
+                                            <p v-show="errors.has('password_confirm')" class="help is-danger">Нууц үгтэй зөрж байна</p>
                                         </div>
                                     </div>
                                 </div>

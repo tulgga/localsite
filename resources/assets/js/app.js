@@ -23,6 +23,7 @@ import {ServerTable, ClientTable, Event} from 'vue-tables-2';
 import flatPickr from 'vue-flatpickr-component';
 import * as VueGoogleMaps from 'vue2-google-maps';
 import VeeValidate from 'vee-validate';
+import attributesEn from './components/addons/en';
 import VueCroppie from 'vue-croppie';
 
 import ToggleButton from 'vue-js-toggle-button';
@@ -145,6 +146,8 @@ window.axios.interceptors.response.use(response => {
     return Promise.reject(error)
 });
 
+
+
 VeeValidate.Validator.extend('greater_than_zero', {
     getMessage: field => 'The '+field+' field is greater than 0.',
     validate(value, args) {
@@ -156,7 +159,12 @@ VeeValidate.Validator.extend('greater_than_zero', {
     }
 });
 
-Vue.use(VeeValidate);
+Vue.use(VeeValidate,{
+    locale: 'en',
+        dictionary: {
+        en: { attributes: attributesEn,  messages: attributesEn, },
+    }
+});
 Vue.use(VueCroppie);
 // Vue.use(SlVueTree);
 

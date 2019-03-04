@@ -69,6 +69,10 @@ Route::middleware('auth:admin-api')->namespace('Admin')->prefix('admin')->group(
 
     Route::get('user','AdminUserController@index');
 
+    //heltes
+    Route::resource('heltes','AdminHeltesController');
+    Route::post('heltes/{id}','AdminHeltesController@update');
+
     //ded site
     Route::resource('site','AdminSiteController');
     Route::post('site/{id}','AdminSiteController@update');

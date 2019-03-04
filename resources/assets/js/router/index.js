@@ -8,6 +8,9 @@ import Dashboard from '../modules/admin/Dashboard'
 import Sites from '../modules/admin/sites/index'
 import siteForm from '../modules/admin/sites/siteForm'
 
+import Heltes from '../modules/admin/heltes/index'
+import heltesForm from '../modules/admin/heltes/heltesForm'
+
 import Employees from '../modules/admin/employee/Employees'
 import EmployeesForm from '../modules/admin/employee/EmployeesForm'
 
@@ -658,6 +661,63 @@ let routes = [
                         {
                             title: 'Дэд сайтууд',
                             rname: 'sites'
+                        }
+                    ],
+                    notloading: true,
+                    is_modal: true,
+                }
+            },
+        ]
+    },
+    {
+        path: '/heltes',
+        name: 'heltes',
+        component: Heltes,
+        meta: {
+            requiresAuth: true,
+            page_title: 'Хэлтэс',
+            bread_crumbs: [
+                {
+                    title: 'ЕРӨНХИЙ',
+                    rname: 'home'
+                }
+            ]
+        },
+        children: [
+            {
+                path: 'create',
+                component: heltesForm,
+                name: 'create_site',
+                meta: {
+                    page_title: 'Нэмэх',
+                    bread_crumbs: [
+                        {
+                            title: 'ЕРӨНХИЙ',
+                            rname: 'home'
+                        },
+                        {
+                            title: 'Хэлтэс үүсгэх',
+                            rname: ''
+                        }
+                    ],
+                    notloading: true,
+                    is_modal: true,
+                }
+            },
+            {
+                path: ':id/update',
+                component: heltesForm,
+                name: 'update_site',
+                meta: {
+                    page_title: 'Засах',
+                    bread_crumbs: [
+                        {
+                            title: 'ЕРӨНХИЙ',
+                            rname: 'home'
+                        },
+                        {
+                            title: 'Хэлтэс засах',
+                            rname: ''
                         }
                     ],
                     notloading: true,
