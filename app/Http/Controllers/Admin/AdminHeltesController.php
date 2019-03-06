@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 use App\Heltes;
 
 class AdminHeltesController extends Controller
@@ -48,7 +50,7 @@ class AdminHeltesController extends Controller
             return response()->json($validator->errors(),422);
         }
 
-        $info = Site::findOrFail($id);
+        $info = Heltes::findOrFail($id);
         $info->name = $data['name'];
         $info->save();
 

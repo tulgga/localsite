@@ -15,10 +15,16 @@
                     <figure v-else="" class="image is-48x48"><i class="fa fa-user is-size-3"></i></figure>
                 </template>
                 <template slot="status" slot-scope="props">
-                    <div class="button" :class="[props.row.status === 1?'is-success':'is-light']" @click="statuschanging(props.row)">
-                        <template v-if="props.row.status === 1">Идэвхитэй</template>
-                        <template v-else="">Идэвхигүй</template>
-                    </div>
+                    <template v-if="props.row.status==1">
+                        <a class="icon has-text-success" @click="statuschanging(props.row)">
+                            <i class="fas fa-check-circle fa-lg"></i>
+                        </a>
+                    </template>
+                    <template v-else>
+                        <a class="icon has-text-danger"  @click="statuschanging(props.row)">
+                            <i class="fas fa-ban fa-lg"></i>
+                        </a>
+                    </template>
                 </template>
                 <div slot="action" slot-scope="props" class="data-action">
                     <router-link :to="'employees/'+props.row.id+'/update'">
@@ -131,24 +137,17 @@
                             {
                                 id: 1,
                                 text: 'нийтлэгч'
-                            }
-                            ,
+                            },
                             {
                                 id:2,
                                 text: 'дэд админ'
-                            }
-                            ,
+                            },
                             {
                                 id: 3,
                                 text: 'дэд нийтлэгч'
-                            },
-                        ],
-                        site_id:[
-                            {
-                                id:0,
-                                text: 'Үндсэн сайт'
                             }
-                         ]
+                        ],
+                        site_id:[{id:0, text: 'Үндсэн сайт'}]
                     },
                     texts:{
                         count : this.$store.getters.lang.table.count,

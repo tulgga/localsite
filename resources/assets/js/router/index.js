@@ -687,7 +687,7 @@ let routes = [
             {
                 path: 'create',
                 component: heltesForm,
-                name: 'create_site',
+                name: 'create_heltes',
                 meta: {
                     page_title: 'Нэмэх',
                     bread_crumbs: [
@@ -707,7 +707,7 @@ let routes = [
             {
                 path: ':id/update',
                 component: heltesForm,
-                name: 'update_site',
+                name: 'update_heltes',
                 meta: {
                     page_title: 'Засах',
                     bread_crumbs: [

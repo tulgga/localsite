@@ -12,8 +12,8 @@ CRUD Edit, Create form
             <div class="modal-background"></div>
             <div class="modal-card modal-card-medium">
                 <header class="modal-card-head">
-                    <p v-if="m_id" class="modal-card-title ">Дэд сайт засах</p>
-                    <p v-else class="modal-card-title">Дэд сайт нэмэх</p>
+                    <p v-if="m_id" class="modal-card-title ">Хэлтэс засах</p>
+                    <p v-else class="modal-card-title">Хэлтэс нэмэх</p>
                 </header>
 
                 <section class="modal-card-body" v-if="fetched">
@@ -22,17 +22,7 @@ CRUD Edit, Create form
                             <label class="label">Нэр <span class="has-text-danger">*</span></label>
                             <div class="control">
                                 <input type="text" name="name" v-validate="'required'" v-model="form.name" :class="{'input': true, 'is-danger': errors.has('name') }" />
-                                <p v-show="errors.has('name')" class="help is-danger">Та сумын нэрээ оруулна уу</p>
-                            </div>
-                        </div>
-                        <div class="field">
-                            <label class="label">Дэд сайт <span class="has-text-danger">*</span></label>
-                            <div class="control has-icons-right">
-                                <input type="text" name="domain" v-validate="'required'" v-model="form.domain" :class="{'input': true, 'is-danger': errors.has('domain') }" />
-                                <span class="icon  is-right is-text-right" style="width: 11em">
-                                 .{{site}}
-                                </span>
-                                <p v-show="errors.has('domain')" class="help is-danger">Та домайн нэрээ оруулна уу</p>
+                                <p v-show="errors.has('name')" class="help is-danger">Та хэлтсийн нэрээ оруулна уу</p>
                             </div>
                         </div>
                     </form>
@@ -65,7 +55,6 @@ CRUD Edit, Create form
                 user: false,
                 form:{
                     name: '',
-                    domain: '',
                 },
                 aldaanuud: [],
             }
@@ -81,9 +70,8 @@ CRUD Edit, Create form
                 this.user = this.$store.getters.authUser;
 
                 if (this.m_id) {
-                    axios.get('/site/'+this.m_id).then((response) => {
+                    axios.get('/heltes/'+this.m_id).then((response) => {
                         this.form.name = response.data.success.name;
-                        this.form.domain = response.data.success.domain;
                         this.fetched = true;
                     })
                 } else {
@@ -106,9 +94,9 @@ CRUD Edit, Create form
                         this.m_id = this.$route.params.id;
                         if (this.m_id) {
                             // Update
-                            axios.post('/site/'+this.m_id, formData)
+                            axios.post('/heltes/'+this.m_id, formData)
                                 .then((response) => {
-                                    this.$router.push('/sites');
+                                    this.$router.push('/heltes');
                                     this.$toasted.global.toast_success({message: this.$store.getters.lang.messages.is_updated_text});
                                 })
                                 .catch(error => {
@@ -121,9 +109,9 @@ CRUD Edit, Create form
                                 });
                         } else {
                             // Create
-                            axios.post('/site', formData)
+                            axios.post('/heltes', formData)
                                 .then((response) => {
-                                    this.$router.push('/sites');
+                                    this.$router.push('/heltes');
                                     this.$toasted.global.toast_success({message: this.$store.getters.lang.messages.is_created_text});
                                 })
                                 .catch(error => {

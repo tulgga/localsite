@@ -5,7 +5,7 @@
         <div class="boxed">
 
             <div class="boxed-title">
-                <div class="boxed-item-center title">Дэд сайтууд</div>
+                <div class="boxed-item-center title">Хэлтэс</div>
             </div>
 
             <v-client-table v-if="fetched" :data="lists" :columns="columns" :options="options">
@@ -17,7 +17,7 @@
                     <!--<a class="button is-primary" ><i class="fas fa-edit"></i>&nbsp;админ панел</a>-->
                 <!--</template>-->
                 <div slot="action" slot-scope="props" class="data-action">
-                    <router-link :to="'sites/'+props.row.id+'/update'">
+                    <router-link :to="'heltes/'+props.row.id+'/update'">
                         <i class="fas fa-pencil-alt"></i>
                     </router-link>
                     <div @click="deleting(props.row)">
@@ -28,7 +28,7 @@
             <div v-else class="main-bodoh is-loading"></div>
 
             <div class="boxed-item-center absolute">
-                <router-link :to="{ name: 'create_site'}" class="add_button">+</router-link>
+                <router-link :to="{ name: 'create_heltes'}" class="add_button">+</router-link>
             </div>
 
             <router-view></router-view>
@@ -67,19 +67,17 @@
                 deleteid: false,
                 fetched: false,
                 is_loading: false,
-                columns: ['id','name', 'domain', 'udirdah',  'action'],
+                columns: ['id','name', 'action'],
                 options: {
                     perPage: 10,
                     perPageValues: [10,25,50,100],
                     headings: {
                         id: '№',
                         name: "Нэр",
-                        domain: "Дэд сайт",
-                        udirdah: "",
                         action: "",
                     },
-                    sortable: [ 'name', 'domain',],
-                    filterable: [ 'name', 'domain', ],
+                    sortable: [ 'name'],
+                    filterable: [ 'name' ],
                     sortIcon: {
                         base:'fas',
                         up:'fa-sort-up',
@@ -122,7 +120,7 @@
             // api url-аас дата авч байна
             fetchData() {
                 this.fetched = false;
-                axios.get('/site').then((response) => {
+                axios.get('/heltes').then((response) => {
                     this.lists = response.data.success;
                     this.fetched = true;
                 })
@@ -130,7 +128,7 @@
             // Устгах
             ustga(row){
                 this.is_loading = true;
-                axios.delete('/site/'+row.id).then((response) => {
+                axios.delete('/heltes/'+row.id).then((response) => {
                     this.deletemodal = false;
                     this.fetched = false;
                     this.fetchData();

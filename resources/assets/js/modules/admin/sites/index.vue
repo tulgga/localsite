@@ -153,5 +153,4 @@
     .VueTables  th:first-child {
         width: 80px;
     }
-
 </style>

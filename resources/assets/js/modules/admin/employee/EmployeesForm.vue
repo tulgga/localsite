@@ -101,6 +101,22 @@ CRUD Edit, Create form
                                     </div>
                                 </div>
 
+                                <div v-if="form.admin_type<2" class="column is-12-mobile is-12-tablet">
+                                    <div class="field">
+                                        <label class="label">Хэлтэс</label>
+                                        <div class="control">
+                                            <div class="select">
+                                                <select name="heltes_id" v-model="form.heltes_id" v-validate="'required'" >
+                                                    <option value="0"></option>
+                                                    <template v-for="h in heltes">
+                                                        <option :value="h.id">{{h.name}}</option>
+                                                    </template>
+                                                </select>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <div v-if="form.admin_type>1" class="column is-12-mobile is-12-tablet">
                                     <div class="field">
@@ -135,7 +151,7 @@ CRUD Edit, Create form
                                         <label class="label">Нууц үг <span v-if="!m_id" class="has-text-danger">*</span></label>
                                         <div class="control">
                                             <input v-if="m_id" type="password" name="password" v-validate="{ min: 6 }" v-model="form.password" :class="{'input': true, 'is-danger': errors.has('password') }" />
-                                            <input v-else="" type="password" name="password" v-validate="{ required:true, min: 6 }" v-model="form.password" :class="{'input': true, 'is-danger': errors.has('password') }" />
+                                            <input v-else type="password" name="password" v-validate="{ required:true, min: 6 }" v-model="form.password" :class="{'input': true, 'is-danger': errors.has('password') }" />
                                             <p v-show="errors.has('password')" class="help is-danger">Заавал бөглө, хамгийн багадаа 6 тэмдэгт байна.</p>
                                         </div>
                                     </div>
@@ -195,6 +211,7 @@ CRUD Edit, Create form
                 fetched: false,
                 is_loading: false,
                 sites: [],
+                heltes:[],
                 form:{
                     f_name: '',
                     l_name: '',
@@ -204,6 +221,7 @@ CRUD Edit, Create form
                     admin_type: 0,
                     status: 1,
                     site_id: 0,
+                    heltes_id:0,
                     password: '',
                 },
                 password_confirm: null,
@@ -224,7 +242,10 @@ CRUD Edit, Create form
                     this.sites = response.data.success;
                     console.log(this.sites);
                 })
-
+                axios.get('/heltes').then((response) => {
+                    this.heltes = response.data.success;
+                    console.log(this.heltes);
+                })
                 this.m_id = this.$route.params.id;  // route дээр ирж байгаа id-г авч байна / edit үед
                 if (this.m_id) {
                     axios.get('/admins/'+this.m_id).then((response) => {
@@ -237,6 +258,7 @@ CRUD Edit, Create form
                         this.form.admin_type = response.data.success.admin_type;
                         this.form.status = response.data.success.status;
                         this.form.site_id = response.data.success.site_id;
+                        this.form.heltes_id = response.data.success.heltes_id;
 
                         if (response.data.success.profile_pic) {
                             this.imageni = this.siteUrl+'/uploads/'+response.data.success.profile_pic;
