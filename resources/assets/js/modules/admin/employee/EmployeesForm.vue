@@ -337,7 +337,6 @@ CRUD Edit, Create form
 
                 this.image = formData.get(fieldName);
 
-
                 let reader = new FileReader();
                 reader.addEventListener("load", (e) => {
                     this.imageni = reader.result;
