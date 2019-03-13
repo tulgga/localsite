@@ -19,14 +19,14 @@
                                     <input type="file"  accept="image/*" @change="onFileChangeLogo($event.target.name, $event.target.files)"  />
                                 </div>
                             </div>
-                            <figure class="image" style="max-width: 360px" v-if="logoini"><img  :src="logoini" style="max-height:64px; width:auto;" > </figure>
+                            <figure class="image" style="max-width: 360px" ><img  :src="logoini" style="max-height:64px; width:auto;" > </figure>
                             <div class="field">
                                 <label class="label">АЙКОН /64x64/</label>
                                 <div class="control">
                                     <input type="file" accept="image/*"  @change="onFileChangeIcon($event.target.name, $event.target.files)"   />
                                 </div>
                             </div>
-                            <figure class="image is-64x64" v-if="faviconini"><img  :src="faviconini" style="max-height:64px; width:auto;" > </figure>
+                            <figure class="image is-64x64" ><img  :src="faviconini" style="max-height:64px; width:auto;" > </figure>
                             <div class="field">
                                 <label class="label">Харьяаллийн код /tsag-agaar.mn/</label>
                                 <div class="control">
@@ -68,19 +68,19 @@
                     <div class="field">
                         <label class="label">Сайтын гарчиг</label>
                         <div class="control">
-                            <input type="text"  class="input" v-model="form.meta.title"  />
+                            <input type="text" placeholder="Баянхонгор аймгийн Засаг даргын тамгын газар"  class="input" v-model="form.meta.title"  />
                         </div>
                     </div>
                     <div class="field">
-                        <label class="label">Түлхүүр үгс</label>
+                        <label class="label">Түлхүүр үгс /таслалаар зааглана бичнэ/</label>
                         <div class="control">
-                            <textarea class="textarea" style="min-height: 80px;" v-model="form.meta.keywords" ></textarea>
+                            <textarea placeholder="Баянхонгор, Bayankhongor, bayan-hongor, баянхонгор " class="textarea" style="min-height: 80px;" v-model="form.meta.keywords" ></textarea>
                         </div>
                     </div>
                     <div class="field">
                         <label class="label">Тайлбар текст</label>
                         <div class="control">
-                            <textarea class="textarea" style="min-height: 80px;" v-model="form.meta.description" ></textarea>
+                            <textarea placeholder="Баянхонгор аймгийн Засаг даргын тамгын газар" class="textarea" style="min-height: 80px;" v-model="form.meta.description" ></textarea>
                         </div>
                     </div>
                 </div>
@@ -210,11 +210,12 @@
     export default {
         data() {
             return {
+                siteUrl: window.surl,
                 is_active:0,
                 tabs:['Үндсэн тохиргоо', 'Түлхүүр үг', 'Нийтийн сүлжээ', 'Холбоо барих',],
                 site_id: this.$store.getters.domain.id,
-                logoini:false,
-                faviconini:false,
+                logoini: window.surl+'/images/image.png',
+                faviconini:window.surl+'/images/image.png',
                 logo:[],
                 favicon:[],
                 config: {
@@ -263,6 +264,7 @@
         methods: {
             // api url-аас дата авч байна
             fetchData() {
+
                 this.fetched = false;
                 if(this.site_id==0 && this.tabs.length==4){
                     this.tabs.push("Нэмэлт тохиргоо")
@@ -270,12 +272,16 @@
                 axios.get('/get_config/'+this.site_id).then((response) => {
                     if(response.data.success.config) {
                         this.form = response.data.success.config
-                    };
+                    }
                     if(response.data.success.mainConfig) {
                         this.config = response.data.success.mainConfig
-                    };
-                    this.logoini = response.data.success.logo
-                    this.faviconini = response.data.success.favicon
+                    }
+                    if(response.data.success.logo){
+                        this.logoini = response.data.success.logo
+                    }
+                    if(response.data.success.favicon){
+                        this.faviconini = response.data.success.favicon
+                    }
                     this.fetched = true;
                 })
             },

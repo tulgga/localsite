@@ -90320,6 +90320,8 @@ var modules = requireContext.keys().map(function (file) {
             this.site_id = this.$store.getters.domain.id;
             axios.get('/news_category/' + this.site_id).then(function (response) {
                 _this.categories = response.data.success;
+                console.log(_this.categories);
+                _this.categories.push({ 'name': 'Ангилалгүй мэдээ', 'label': 'Ангилалгүй мэдээ', 'id': -1 });
                 _this.fetched = true;
             });
         },
@@ -94070,11 +94072,12 @@ var modules = requireContext.keys().map(function (file) {
 /* harmony default export */ __webpack_exports__["a"] = ({
     data: function data() {
         return {
+            siteUrl: window.surl,
             is_active: 0,
             tabs: ['Үндсэн тохиргоо', 'Түлхүүр үг', 'Нийтийн сүлжээ', 'Холбоо барих'],
             site_id: this.$store.getters.domain.id,
-            logoini: false,
-            faviconini: false,
+            logoini: window.surl + '/images/image.png',
+            faviconini: window.surl + '/images/image.png',
             logo: [],
             favicon: [],
             config: {
@@ -94132,12 +94135,16 @@ var modules = requireContext.keys().map(function (file) {
             axios.get('/get_config/' + this.site_id).then(function (response) {
                 if (response.data.success.config) {
                     _this.form = response.data.success.config;
-                };
+                }
                 if (response.data.success.mainConfig) {
                     _this.config = response.data.success.mainConfig;
-                };
-                _this.logoini = response.data.success.logo;
-                _this.faviconini = response.data.success.favicon;
+                }
+                if (response.data.success.logo) {
+                    _this.logoini = response.data.success.logo;
+                }
+                if (response.data.success.favicon) {
+                    _this.faviconini = response.data.success.favicon;
+                }
                 _this.fetched = true;
             });
         },
@@ -94958,9 +94965,9 @@ function updateLink (link, options, obj) {
             domain: [],
             domainmodal: false,
             user: false,
-            items: [{ subheader: 'Ерөнхий', role: 0 }, { title: 'Дэд сайтууд', icon: 'fas fa-th', path: '/sites', role: 0 }, { title: 'Хэлтэс', icon: 'fas fa-code-branch', path: '/heltes', role: 0 }, { title: 'Админ / ажилтан', icon: 'fas fa-users', path: '/employees', role: 0 }, { subheader: 'Тохиргоо', role: 1 }, { title: 'Тохиргоо', icon: 'fas fa-sliders-h', path: '/config', role: 1 },
+            items: [{ subheader: 'Ерөнхий', role: 0 }, { title: 'Дэд сайтууд', icon: 'fas fa-th', path: '/sites', role: 0 }, { title: 'Хэлтэс', icon: 'fas fa-code-branch', path: '/heltes', role: 0 }, { title: 'Админ / ажилтан', icon: 'fas fa-users', path: '/employees', role: 0 }, { subheader: 'Тохиргоо', role: 0 }, { title: 'Тохиргоо', icon: 'fas fa-sliders-h', path: '/config', role: 0 },
             // { title: "Цэс", icon: 'fas fa-bars', path: '/menu' ,  role:1},
-            { title: "Сурталчилгаа", icon: 'fab fa-goodreads', path: '/sidebar', role: 1 }, { subheader: 'Мэдээ', role: 1 }, { title: 'Мэдээний ангилал', icon: 'fas fa-code-branch', path: '/news_category', role: 1 }, { title: "Мэдээ", icon: 'fas fa-newspaper', path: '/news', role: 1 }, { title: "Орон нутгийн мэдээ", icon: 'fas fa-newspaper', path: '/sub_news_publish', role: 1 }, { title: 'Үндсэн цэс', icon: 'fas fa-bars', path: '/pages', role: 1 }, { title: 'Туслах цэс', icon: 'fas fa-bars', path: '/helppages', role: 1 }, { subheader: 'Файлын сан', role: 1 }, { title: "Файлын ангилал", icon: 'fas fa-code-branch', path: '/file_category', role: 1 }, { title: "Файлын сан", icon: 'fas fa-folder', path: '/files', role: 1 }, { subheader: 'Холбоос', role: 1 }, { title: "Холбоос ангилал", icon: 'fas fa-code-branch', path: '/link_category', role: 1 }, { title: "Холбоос", icon: 'fas fa-link', path: '/link', role: 1 }, { subheader: 'Зар', role: 1 }, { title: "Зарийн ангилал", icon: 'fas fa-code-branch', path: '/zar_category', role: 1 }, { title: "Зар", icon: 'fas fa-chart-bar', path: '/zar', role: 1 }, { subheader: 'Бусад', role: 1 }, { title: "Санал асуулга", icon: 'fas fa-code-branch', path: '/poll', role: 1 }, { title: 'Санал хүсэлт', icon: 'far fa-comments', path: '/urgudul', role: 1 },
+            { title: "Сурталчилгаа", icon: 'fab fa-goodreads', path: '/sidebar', role: 0 }, { subheader: 'Мэдээ', role: 1 }, { title: 'Мэдээний ангилал', icon: 'fas fa-code-branch', path: '/news_category', role: 0 }, { title: "Мэдээ", icon: 'fas fa-newspaper', path: '/news', role: 1 }, { title: "Орон нутгийн мэдээ", icon: 'fas fa-newspaper', path: '/sub_news_publish', role: 0 }, { title: 'Үндсэн цэс', icon: 'fas fa-bars', path: '/pages', role: 0 }, { title: 'Туслах цэс', icon: 'fas fa-bars', path: '/helppages', role: 0 }, { subheader: 'Файлын сан', role: 1 }, { title: "Файлын ангилал", icon: 'fas fa-code-branch', path: '/file_category', role: 0 }, { title: "Файлын сан", icon: 'fas fa-folder', path: '/files', role: 1 }, { subheader: 'Холбоос', role: 1 }, { title: "Холбоос ангилал", icon: 'fas fa-code-branch', path: '/link_category', role: 0 }, { title: "Холбоос", icon: 'fas fa-link', path: '/link', role: 1 }, { subheader: 'Зар', role: 0 }, { title: "Зарийн ангилал", icon: 'fas fa-code-branch', path: '/zar_category', role: 0 }, { title: "Зар", icon: 'fas fa-chart-bar', path: '/zar', role: 0 }, { subheader: 'Бусад', role: 1 }, { title: "Санал асуулга", icon: 'fas fa-code-branch', path: '/poll', role: 0 }, { title: 'Санал хүсэлт', icon: 'far fa-comments', path: '/urgudul', role: 1 },
 
             // ded site
             { subheader: 'Тохиргоо', role: 2 }, { title: 'Тохиргоо', icon: 'fas fa-sliders-h', path: '/config', role: 2 },
@@ -104069,7 +104076,7 @@ var render = function() {
                                     ],
                                     staticClass: "help is-danger"
                                   },
-                                  [_vm._v(_vm._s(_vm.errors.first("youtube")))]
+                                  [_vm._v("Та youbute кодоо оруулна уу")]
                                 )
                               ])
                             ]),
@@ -104083,9 +104090,19 @@ var render = function() {
                             ]),
                             _vm._v(" "),
                             _c("treeselect", {
+                              directives: [
+                                {
+                                  name: "validate",
+                                  rawName: "v-validate",
+                                  value: "required",
+                                  expression: "'required'"
+                                }
+                              ],
                               attrs: {
+                                name: "cat_id",
                                 flat: true,
                                 "default-expand-level": 10,
+                                placeholder: "Ангилал сонгох",
                                 multiple: true,
                                 options: _vm.options
                               },
@@ -104096,7 +104113,23 @@ var render = function() {
                                 },
                                 expression: "form.cat_id"
                               }
-                            })
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "p",
+                              {
+                                directives: [
+                                  {
+                                    name: "show",
+                                    rawName: "v-show",
+                                    value: _vm.errors.has("cat_id"),
+                                    expression: "errors.has('cat_id')"
+                                  }
+                                ],
+                                staticClass: "help is-danger"
+                              },
+                              [_vm._v("Та ангилал сонгоно")]
+                            )
                           ],
                           1
                         ),
@@ -104113,6 +104146,7 @@ var render = function() {
                               attrs: {
                                 flat: true,
                                 "default-expand-level": 10,
+                                placeholder: "Нийтлэх дэд сайтууд сонгох",
                                 multiple: true,
                                 options: _vm.sites
                               },
@@ -104252,8 +104286,8 @@ var render = function() {
                                 {
                                   name: "validate",
                                   rawName: "v-validate",
-                                  value: "required",
-                                  expression: "'required'"
+                                  value: { required: true, min: 3 },
+                                  expression: "{'required':true, 'min':3}"
                                 },
                                 {
                                   name: "model",
@@ -104295,7 +104329,11 @@ var render = function() {
                                 ],
                                 staticClass: "help is-danger"
                               },
-                              [_vm._v(_vm._s(_vm.errors.first("title")))]
+                              [
+                                _vm._v(
+                                  "Заавал бөглө, хамгийн багадаа 3 тэмдэгт байна."
+                                )
+                              ]
                             )
                           ])
                         ]),
@@ -110440,24 +110478,22 @@ var render = function() {
                         ])
                       ]),
                       _vm._v(" "),
-                      _vm.logoini
-                        ? _c(
-                            "figure",
-                            {
-                              staticClass: "image",
-                              staticStyle: { "max-width": "360px" }
+                      _c(
+                        "figure",
+                        {
+                          staticClass: "image",
+                          staticStyle: { "max-width": "360px" }
+                        },
+                        [
+                          _c("img", {
+                            staticStyle: {
+                              "max-height": "64px",
+                              width: "auto"
                             },
-                            [
-                              _c("img", {
-                                staticStyle: {
-                                  "max-height": "64px",
-                                  width: "auto"
-                                },
-                                attrs: { src: _vm.logoini }
-                              })
-                            ]
-                          )
-                        : _vm._e(),
+                            attrs: { src: _vm.logoini }
+                          })
+                        ]
+                      ),
                       _vm._v(" "),
                       _c("div", { staticClass: "field" }, [
                         _c("label", { staticClass: "label" }, [
@@ -110479,17 +110515,12 @@ var render = function() {
                         ])
                       ]),
                       _vm._v(" "),
-                      _vm.faviconini
-                        ? _c("figure", { staticClass: "image is-64x64" }, [
-                            _c("img", {
-                              staticStyle: {
-                                "max-height": "64px",
-                                width: "auto"
-                              },
-                              attrs: { src: _vm.faviconini }
-                            })
-                          ])
-                        : _vm._e(),
+                      _c("figure", { staticClass: "image is-64x64" }, [
+                        _c("img", {
+                          staticStyle: { "max-height": "64px", width: "auto" },
+                          attrs: { src: _vm.faviconini }
+                        })
+                      ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "field" }, [
                         _c("label", { staticClass: "label" }, [
@@ -110646,7 +110677,11 @@ var render = function() {
                         }
                       ],
                       staticClass: "input",
-                      attrs: { type: "text" },
+                      attrs: {
+                        type: "text",
+                        placeholder:
+                          "Баянхонгор аймгийн Засаг даргын тамгын газар"
+                      },
                       domProps: { value: _vm.form.meta.title },
                       on: {
                         input: function($event) {
@@ -110662,7 +110697,7 @@ var render = function() {
                 _vm._v(" "),
                 _c("div", { staticClass: "field" }, [
                   _c("label", { staticClass: "label" }, [
-                    _vm._v("Түлхүүр үгс")
+                    _vm._v("Түлхүүр үгс /таслалаар зааглана бичнэ/")
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "control" }, [
@@ -110677,6 +110712,10 @@ var render = function() {
                       ],
                       staticClass: "textarea",
                       staticStyle: { "min-height": "80px" },
+                      attrs: {
+                        placeholder:
+                          "Баянхонгор, Bayankhongor, bayan-hongor, баянхонгор "
+                      },
                       domProps: { value: _vm.form.meta.keywords },
                       on: {
                         input: function($event) {
@@ -110711,6 +110750,10 @@ var render = function() {
                       ],
                       staticClass: "textarea",
                       staticStyle: { "min-height": "80px" },
+                      attrs: {
+                        placeholder:
+                          "Баянхонгор аймгийн Засаг даргын тамгын газар"
+                      },
                       domProps: { value: _vm.form.meta.description },
                       on: {
                         input: function($event) {

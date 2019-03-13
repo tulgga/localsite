@@ -11,8 +11,16 @@ class AdminUrgudulController extends Controller
 {
     public function index1($site_id)
     {
+        $user = auth()->guard('admin-api')->user();
+
+
+
         extract(request()->only(['query', 'limit', 'page', 'orderBy', 'ascending', 'byColumn']));
         $result=Urgudul::where('id', '!=', 0)->where('site_id', $site_id);
+
+        if($user->admin_type==1 && $user->heltes_id!=0){
+            $result=$result->where('heltes_id', $user->heltes_id);
+        }
 
         if (isset($query) && $query) {
             $result = $byColumn == 1 ?

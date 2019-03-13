@@ -49,7 +49,6 @@ CRUD Edit, Create form
                                                 </span>
                                             </span>
                                             </label>
-
                                         </div>
                                     </div>
                                 </div>
@@ -57,19 +56,20 @@ CRUD Edit, Create form
                                     <label class="label">Youtube код</label><small style="margin-top:10px;">https://www.youtube.com/watch?v=<span class="has-text-success">6XaaI4_nIHY</span></small>
                                     <div class="control">
                                         <input type="text" name="youtube" v-validate="'required'" v-model="form.youtube" :class="{'input': true, 'is-danger': errors.has('youtube') }" />
-                                        <p v-show="errors.has('youtube')" class="help is-danger">{{ errors.first('youtube') }}</p>
+                                        <p v-show="errors.has('youtube')" class="help is-danger">Та youbute кодоо оруулна уу</p>
                                     </div>
                                 </div>
 
 
                                 <div class="field">
                                     <label class="label">Ангилал</label>
-                                        <treeselect v-model="form.cat_id" :flat="true"  :default-expand-level="10" :multiple="true" :options="options" />
+                                        <treeselect v-validate="'required'" name="cat_id" v-model="form.cat_id" :flat="true"  :default-expand-level="10" placeholder="Ангилал сонгох" :multiple="true" :options="options" />
+                                        <p v-show="errors.has('cat_id')" class="help is-danger">Та ангилал сонгоно</p>
                                 </div>
 
                                 <div class="field">
                                     <label class="label">Нийтлэх дэд сайтууд</label>
-                                    <treeselect v-model="form.sites" :flat="true"  :default-expand-level="10" :multiple="true" :options="sites" />
+                                    <treeselect v-model="form.sites" :flat="true"  :default-expand-level="10" placeholder="Нийтлэх дэд сайтууд сонгох" :multiple="true" :options="sites" />
                                 </div>
 
                                 <div class="field">
@@ -101,8 +101,8 @@ CRUD Edit, Create form
                                 <div class="field">
                                     <label class="label">Гарчиг</label>
                                     <div class="control">
-                                        <input type="text" name="title" v-validate="'required'" v-model="form.title" :class="{'input': true, 'is-danger': errors.has('title') }" />
-                                        <p v-show="errors.has('title')" class="help is-danger">{{ errors.first('title') }}</p>
+                                        <input type="text" name="title"  v-validate="{'required':true, 'min':3}" v-model="form.title" :class="{'input': true, 'is-danger': errors.has('title') }" />
+                                        <p v-show="errors.has('title')" class="help is-danger">Заавал бөглө, хамгийн багадаа 3 тэмдэгт байна.</p>
                                     </div>
                                 </div>
 
