@@ -123,8 +123,18 @@
                     <p class="modal-card-title">{{ $store.getters.lang.messages.delete_data }}</p>
                 </header>
                 <section class="modal-card-body">
-                    <p class="has-text-centered">{{ $store.getters.lang.messages.sure_delete }}</p>
+
                     <p class="has-text-centered is-size-4"><strong class="has-text-black">{{deleteid.title}}</strong></p>
+                    <p class="has-text-centered">
+                        <strong>
+                        <template v-for="site in deleteid.site">
+                            <template v-if="site.id==0">Бүх дэд сайт</template>
+                            <template v-else>{{site.name}}</template>
+                            <template  v-if="deleteid.site.length>1">, </template>
+                        </template>
+                        </strong>
+                        дэд сайтуудад харуулж байна. {{deleteid.view_count}} хүн үзсэн байна. та устгахдаа итгэлтай байна уу
+                    </p>
                 </section>
                 <footer class="modal-card-foot">
                     <button class="button is-text" v-on:click="deletemodal = false">{{ $store.getters.lang.messages.is_back_button }}</button>
@@ -358,6 +368,7 @@
             deleting(row){
                 this.deleteid = row;
                 this.deletemodal = true;
+                console.log(this.deleteid)
             },
 
             change_primary(row){

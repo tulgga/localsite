@@ -53,7 +53,7 @@ class AdminNewsController extends Controller
     public function sub_news_publish(){
         extract(request()->only(['query', 'limit', 'page', 'orderBy', 'ascending', 'byColumn']));
         $result=Post::where('site_id', '!=','0')->where('main_site_publish', '!=', '0');
-
+        $result=$result->Join('sites', 'sites.id', '=', 'posts.site_id')->select('posts.*', 'sites.domain');
         if (isset($query) && $query) {
             $result = $byColumn == 1 ?
                 $this->filterByColumn($result, $query) :

@@ -90184,6 +90184,16 @@ var modules = requireContext.keys().map(function (file) {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["a"] = ({
     data: function data() {
@@ -90352,6 +90362,7 @@ var modules = requireContext.keys().map(function (file) {
         deleting: function deleting(row) {
             this.deleteid = row;
             this.deletemodal = true;
+            console.log(this.deleteid);
         },
         change_primary: function change_primary(row) {
             var _this3 = this;
@@ -90418,6 +90429,19 @@ var modules = requireContext.keys().map(function (file) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_ckeditor2__ = __webpack_require__(251);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -90782,6 +90806,7 @@ var modules = requireContext.keys().map(function (file) {
     data: function data() {
         return {
             siteUrl: window.surl,
+            subdomain: window.subdomain,
             lists: [],
             url: '/sub_news_publish',
             site_id: 0,
@@ -90925,6 +90950,11 @@ var modules = requireContext.keys().map(function (file) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+//
+//
+//
+//
+//
 //
 //
 //
@@ -103586,14 +103616,33 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("section", { staticClass: "modal-card-body" }, [
-              _c("p", { staticClass: "has-text-centered" }, [
-                _vm._v(_vm._s(_vm.$store.getters.lang.messages.sure_delete))
-              ]),
-              _vm._v(" "),
               _c("p", { staticClass: "has-text-centered is-size-4" }, [
                 _c("strong", { staticClass: "has-text-black" }, [
                   _vm._v(_vm._s(_vm.deleteid.title))
                 ])
+              ]),
+              _vm._v(" "),
+              _c("p", { staticClass: "has-text-centered" }, [
+                _c(
+                  "strong",
+                  [
+                    _vm._l(_vm.deleteid.site, function(site) {
+                      return [
+                        site.id == 0
+                          ? [_vm._v("Бүх дэд сайт")]
+                          : [_vm._v(_vm._s(site.name))],
+                        _vm._v(" "),
+                        _vm.deleteid.site.length > 1 ? [_vm._v(", ")] : _vm._e()
+                      ]
+                    })
+                  ],
+                  2
+                ),
+                _vm._v(
+                  "\n                    дэд сайтуудад харуулж байна. " +
+                    _vm._s(_vm.deleteid.view_count) +
+                    " хүн үзсэн байна. та устгахдаа итгэлтай байна уу\n                "
+                )
               ])
             ]),
             _vm._v(" "),
@@ -103972,6 +104021,7 @@ var render = function() {
                                         staticClass: "file-input",
                                         attrs: {
                                           type: "file",
+                                          accept: "image/*",
                                           name: "imageni"
                                         },
                                         on: {
@@ -104022,10 +104072,8 @@ var render = function() {
                               ])
                             ])
                           : _c("div", { staticClass: "field" }, [
-                              _c("label", { staticClass: "label" }, [
-                                _vm._v("Youtube код")
-                              ]),
                               _vm._m(0),
+                              _vm._m(1),
                               _vm._v(" "),
                               _c("div", { staticClass: "control" }, [
                                 _c("input", {
@@ -104085,9 +104133,7 @@ var render = function() {
                           "div",
                           { staticClass: "field" },
                           [
-                            _c("label", { staticClass: "label" }, [
-                              _vm._v("Ангилал")
-                            ]),
+                            _vm._m(2),
                             _vm._v(" "),
                             _c("treeselect", {
                               directives: [
@@ -104276,9 +104322,7 @@ var render = function() {
                       },
                       [
                         _c("div", { staticClass: "field" }, [
-                          _c("label", { staticClass: "label" }, [
-                            _vm._v("Гарчиг")
-                          ]),
+                          _vm._m(3),
                           _vm._v(" "),
                           _c("div", { staticClass: "control" }, [
                             _c("input", {
@@ -104338,63 +104382,182 @@ var render = function() {
                           ])
                         ]),
                         _vm._v(" "),
-                        _c("div", { staticClass: "field" }, [
-                          _c("label", { staticClass: "label" }, [
-                            _vm._v("Товч текст")
-                          ]),
-                          _vm._v(" "),
-                          _c("textarea", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.form.short_content,
-                                expression: "form.short_content"
-                              }
-                            ],
-                            staticClass: "textarea",
-                            staticStyle: { "min-height": "80px" },
-                            attrs: { name: "short_content" },
-                            domProps: { value: _vm.form.short_content },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.form,
-                                  "short_content",
-                                  $event.target.value
-                                )
-                              }
-                            }
-                          })
-                        ]),
+                        _c(
+                          "div",
+                          { staticClass: "field" },
+                          [
+                            _c("label", { staticClass: "label" }, [
+                              _vm._v("Товч текст "),
+                              _vm.form.type != 2
+                                ? _c(
+                                    "span",
+                                    { staticClass: "has-text-danger" },
+                                    [_vm._v("*")]
+                                  )
+                                : _vm._e()
+                            ]),
+                            _vm._v(" "),
+                            _vm.form.type != 2
+                              ? [
+                                  _c("textarea", {
+                                    directives: [
+                                      {
+                                        name: "validate",
+                                        rawName: "v-validate",
+                                        value: { required: true, min: 3 },
+                                        expression: "{'required':true, 'min':3}"
+                                      },
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.form.short_content,
+                                        expression: "form.short_content"
+                                      }
+                                    ],
+                                    staticClass: "textarea",
+                                    staticStyle: { "min-height": "80px" },
+                                    attrs: { name: "short_content" },
+                                    domProps: { value: _vm.form.short_content },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.form,
+                                          "short_content",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "p",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "show",
+                                          rawName: "v-show",
+                                          value: _vm.errors.has(
+                                            "short_content"
+                                          ),
+                                          expression:
+                                            "errors.has('short_content')"
+                                        }
+                                      ],
+                                      staticClass: "help is-danger"
+                                    },
+                                    [
+                                      _vm._v(
+                                        "Заавал бөглө, хамгийн багадаа 3 тэмдэгт байна."
+                                      )
+                                    ]
+                                  )
+                                ]
+                              : [
+                                  _c("textarea", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.form.short_content,
+                                        expression: "form.short_content"
+                                      }
+                                    ],
+                                    staticClass: "textarea",
+                                    staticStyle: { "min-height": "80px" },
+                                    attrs: { name: "short_content" },
+                                    domProps: { value: _vm.form.short_content },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.form,
+                                          "short_content",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  })
+                                ]
+                          ],
+                          2
+                        ),
                         _vm._v(" "),
                         _c("div", { staticClass: "field" }, [
                           _c("label", { staticClass: "label" }, [
-                            _vm._v("Дэлгэрэнгүй мэдээлэл")
+                            _vm._v("Дэлгэрэнгүй мэдээлэл "),
+                            _vm.form.type != 2
+                              ? _c("span", { staticClass: "has-text-danger" }, [
+                                  _vm._v("*")
+                                ])
+                              : _vm._e()
                           ]),
                           _vm._v(" "),
                           _c(
                             "div",
                             { staticClass: "control has-autoblock" },
                             [
-                              _c("ckeditor", {
-                                attrs: {
-                                  name: "content",
-                                  config: _vm.ck_config
-                                },
-                                model: {
-                                  value: _vm.form.content,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.form, "content", $$v)
-                                  },
-                                  expression: "form.content"
-                                }
-                              })
+                              _vm.form.type != 2
+                                ? [
+                                    _c("ckeditor", {
+                                      directives: [
+                                        {
+                                          name: "validate",
+                                          rawName: "v-validate",
+                                          value: { required: true },
+                                          expression: "{'required':true}"
+                                        }
+                                      ],
+                                      attrs: {
+                                        name: "content",
+                                        config: _vm.ck_config
+                                      },
+                                      model: {
+                                        value: _vm.form.content,
+                                        callback: function($$v) {
+                                          _vm.$set(_vm.form, "content", $$v)
+                                        },
+                                        expression: "form.content"
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c(
+                                      "p",
+                                      {
+                                        directives: [
+                                          {
+                                            name: "show",
+                                            rawName: "v-show",
+                                            value: _vm.errors.has("content"),
+                                            expression: "errors.has('content')"
+                                          }
+                                        ],
+                                        staticClass: "help is-danger"
+                                      },
+                                      [_vm._v("Заавал бөглө")]
+                                    )
+                                  ]
+                                : [
+                                    _c("ckeditor", {
+                                      attrs: {
+                                        name: "content",
+                                        config: _vm.ck_config
+                                      },
+                                      model: {
+                                        value: _vm.form.content,
+                                        callback: function($$v) {
+                                          _vm.$set(_vm.form, "content", $$v)
+                                        },
+                                        expression: "form.content"
+                                      }
+                                    })
+                                  ]
                             ],
-                            1
+                            2
                           )
                         ])
                       ]
@@ -104437,9 +104600,36 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("label", { staticClass: "label" }, [
+      _vm._v("Youtube код "),
+      _c("span", { staticClass: "has-text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("small", { staticStyle: { "margin-top": "10px" } }, [
       _vm._v("https://www.youtube.com/watch?v="),
       _c("span", { staticClass: "has-text-success" }, [_vm._v("6XaaI4_nIHY")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { staticClass: "label" }, [
+      _vm._v("Ангилал "),
+      _c("span", { staticClass: "has-text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { staticClass: "label" }, [
+      _vm._v("Гарчиг "),
+      _c("span", { staticClass: "has-text-danger" }, [_vm._v("*")])
     ])
   }
 ]
@@ -104538,25 +104728,39 @@ var render = function() {
                     key: "image",
                     fn: function(props) {
                       return [
-                        props.row.image
+                        props.row.type == 2
                           ? _c("figure", {
                               staticClass: "image is-48x48",
                               staticStyle: { "border-radius": "0px" },
                               style:
-                                "background-image: url(" +
-                                _vm.siteUrl +
-                                "/uploads/" +
-                                props.row.image.replace("images/", "small/") +
-                                ")"
+                                "background-image: url(https://img.youtube.com/vi/" +
+                                props.row.image +
+                                "/default.jpg)"
                             })
-                          : _c(
-                              "figure",
-                              {
-                                staticClass: "image is-48x48",
-                                staticStyle: { "border-radius": "0px" }
-                              },
-                              [_vm._v("IMG")]
-                            )
+                          : _c("div", [
+                              props.row.image
+                                ? _c("figure", {
+                                    staticClass: "image is-48x48",
+                                    staticStyle: { "border-radius": "0px" },
+                                    style:
+                                      "background-image: url(" +
+                                      _vm.siteUrl +
+                                      "/uploads/" +
+                                      props.row.image.replace(
+                                        "images/",
+                                        "small/"
+                                      ) +
+                                      ")"
+                                  })
+                                : _c(
+                                    "figure",
+                                    {
+                                      staticClass: "image is-48x48",
+                                      staticStyle: { "border-radius": "0px" }
+                                    },
+                                    [_vm._v("IMG")]
+                                  )
+                            ])
                       ]
                     }
                   },
@@ -104597,7 +104801,16 @@ var render = function() {
                           "a",
                           {
                             staticClass: "button is-primary",
-                            attrs: { target: "_blank" }
+                            attrs: {
+                              target: "_blank",
+                              href:
+                                "http://" +
+                                props.row.domain +
+                                "." +
+                                _vm.subdomain +
+                                "/news/" +
+                                props.row.id
+                            }
                           },
                           [
                             _c("span", { staticClass: "icon is-small" }, [
@@ -104612,22 +104825,6 @@ var render = function() {
               })
             ]
           : _c("div", { staticClass: "main-bodoh is-loading" }),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "boxed-item-center absolute" },
-          [
-            _c(
-              "router-link",
-              {
-                staticClass: "add_button",
-                attrs: { to: { name: "create_sub_news" } }
-              },
-              [_vm._v("+")]
-            )
-          ],
-          1
-        ),
         _vm._v(" "),
         _c("router-view")
       ],
@@ -104907,25 +105104,39 @@ var render = function() {
                     key: "image",
                     fn: function(props) {
                       return [
-                        props.row.image
+                        props.row.type == 2
                           ? _c("figure", {
                               staticClass: "image is-48x48",
                               staticStyle: { "border-radius": "0px" },
                               style:
-                                "background-image: url(" +
-                                _vm.siteUrl +
-                                "/uploads/" +
-                                props.row.image.replace("images/", "small/") +
-                                ")"
+                                "background-image: url(https://img.youtube.com/vi/" +
+                                props.row.image +
+                                "/default.jpg)"
                             })
-                          : _c(
-                              "figure",
-                              {
-                                staticClass: "image is-48x48",
-                                staticStyle: { "border-radius": "0px" }
-                              },
-                              [_vm._v("IMG")]
-                            )
+                          : _c("div", [
+                              props.row.image
+                                ? _c("figure", {
+                                    staticClass: "image is-48x48",
+                                    staticStyle: { "border-radius": "0px" },
+                                    style:
+                                      "background-image: url(" +
+                                      _vm.siteUrl +
+                                      "/uploads/" +
+                                      props.row.image.replace(
+                                        "images/",
+                                        "small/"
+                                      ) +
+                                      ")"
+                                  })
+                                : _c(
+                                    "figure",
+                                    {
+                                      staticClass: "image is-48x48",
+                                      staticStyle: { "border-radius": "0px" }
+                                    },
+                                    [_vm._v("IMG")]
+                                  )
+                            ])
                       ]
                     }
                   },
