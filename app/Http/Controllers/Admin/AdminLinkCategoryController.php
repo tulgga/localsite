@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use App\Link_category;
+use App\Link;
 
 class AdminLinkCategoryController extends Controller
 {
@@ -73,7 +74,7 @@ class AdminLinkCategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        //file
     }
 
     /**
@@ -106,7 +107,15 @@ class AdminLinkCategoryController extends Controller
      */
     public function destroy($id)
     {
+        $link=Link::where('cat_id', $id)->count();
 
-        Link_category::where('id', $id)->delete();
+        if($link>0){
+            return response()->json([ 'success' => 0, 'cnt'=>$link]);
+        } else {
+            Link_category::where('id', $id)->delete();
+            return response()->json([ 'success' => 1 ]);
+        }
+
+
     }
 }

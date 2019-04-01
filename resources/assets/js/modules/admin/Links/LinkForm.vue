@@ -12,15 +12,15 @@
                         <div class="columns is-multiline">
                             <div class="column is-12-mobile is-6-tablet">
                                 <div class="field">
-                                    <label class="label">Нэр</label>
+                                    <label class="label">Нэр <span class="has-text-danger">*</span></label>
                                     <div class="control">
                                         <input type="text" name="name" v-validate="'required'" v-model="form.name" :class="{'input': true, 'is-danger': errors.has('name') }" />
-                                        <p v-show="errors.has('name')" class="help is-danger">{{ errors.first('name') }}</p>
+                                        <p v-show="errors.has('name')" class="help is-danger">Заавал бөглө</p>
                                     </div>
                                 </div>
 
                                 <div class="field">
-                                    <label class="label">Ангилал сонгох</label>
+                                    <label class="label">Ангилал сонгох <span class="has-text-danger">*</span></label>
                                     <div class="control">
                                         <div class="select">
                                             <select name="cat_id" v-model="form.cat_id" v-validate="'required'" :class="{'input': true, 'is-danger': errors.has('cat_id') }">
@@ -30,15 +30,15 @@
                                                 </template>
                                             </select>
                                         </div>
-                                        <p v-show="errors.has('cat_id')" class="help is-danger">{{ errors.first('cat_id') }}</p>
+                                        <p v-show="errors.has('cat_id')" class="help is-danger">Ангилал сонго</p>
                                     </div>
                                 </div>
 
                                 <div class="field">
-                                    <label class="label">Линк</label>
+                                    <label class="label">Линк <span class="has-text-danger">*</span></label>
                                     <div class="control">
-                                        <input type="text" name="name" v-validate="'required'" v-model="form.link" :class="{'input': true, 'is-danger': errors.has('link') }" />
-                                        <p v-show="errors.has('link')" class="help is-danger">{{ errors.first('link') }}</p>
+                                        <input type="text" placeholder="http://bayankhongor.gov.mn" name="link" v-validate="'required'" v-model="form.link" :class="{'input': true, 'is-danger': errors.has('link') }" />
+                                        <p v-show="errors.has('link')" class="help is-danger">заавал бөглө</p>
                                     </div>
                                 </div>
                             </div>
@@ -49,7 +49,7 @@
                                     <div class="control has-image">
                                         <div class="file is-boxed is-fullwidth">
                                             <label class="file-label">
-                                                <input class="file-input" type="file" name="image2" @change="onFileChange($event.target.name, $event.target.files)">
+                                                <input class="file-input" accept="image/*" type="file" name="image2" @change="onFileChange($event.target.name, $event.target.files)">
                                                 <span class="file-cta">
                                                         <span v-if="imageni" class="file-icon" :style="'background-image: url('+imageni+');'">
                                                             <i class="ion-ios-add-outline"></i>
@@ -89,7 +89,7 @@
                 m_id: false, 			// Edit үед id орж ирнэ
                 fetched: false,
                 is_loading: false,
-                form:{name: '', site_id: 0, cat_id:0, link: ''},
+                form:{name: '', site_id: 0, cat_id:'', link: ''},
                 aldaanuud: [],
                 imageni:false,
                 image: [],

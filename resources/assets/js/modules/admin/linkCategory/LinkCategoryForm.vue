@@ -10,10 +10,10 @@
                 <section class="modal-card-body" v-if="fetched">
                     <form @submit.prevent="nemeh">
                         <div class="field">
-                            <label class="label">Нэр</label>
+                            <label class="label">Нэр  <span class="has-text-danger">*</span></label>
                             <div class="control">
                                 <input type="text" name="name" v-validate="'required'" v-model="form.name" :class="{'input': true, 'is-danger': errors.has('name') }" />
-                                <p v-show="errors.has('name')" class="help is-danger">{{ errors.first('name') }}</p>
+                                <p v-show="errors.has('name')" class="help is-danger">Ангиллын нэр оруулна уу</p>
                             </div>
                         </div>
                     </form>

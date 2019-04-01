@@ -20409,6 +20409,10 @@ aside.menu .vb-dragger {
   line-height: 1;
 }
 
+.table-responsive .table td figure.image i {
+  font-size: 1.8rem;
+}
+
 .table-responsive .table td .VueTables__template p:not(:last-child) {
   margin-bottom: 0.3em;
 }
@@ -20450,6 +20454,15 @@ aside.menu .vb-dragger {
 .table-responsive .table td .data-action a:hover,
 .table-responsive .table td .data-action div:hover {
   background-color: #037eba;
+}
+
+.table-responsive .table td .data-action div.disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.table-responsive .table td .data-action div.disabled:hover {
+  background-color: #7a7a7a;
 }
 
 .table-responsive .table td .data-image-btns {
@@ -24431,6 +24444,12 @@ aside.menu .vb-dragger {
 
 .is-italic {
   font-style: italic;
+}
+
+@media (max-width: 1100px) {
+  body {
+    font-size: 12px !important;
+  }
 }
 
 @media (min-width: 769px) {

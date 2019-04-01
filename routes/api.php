@@ -51,6 +51,7 @@ Route::namespace('Api')->group(function (){
 
     //Өргөдөлийг 40 бичлэгээр хуудаслаж авна
     Route::get('urgudul/{site_id}','ApiUrgudulController@urgudul');
+
     //Зарыг 20 бичлэгээр хуудаслаж авна
     Route::get('zar','ApiZarController@zar');
     //Бүх зарын ангилалыг авна
@@ -126,7 +127,7 @@ Route::middleware('auth:admin-api')->namespace('Admin')->prefix('admin')->group(
 
     //file
     Route::resource('file','AdminFileController');
-    Route::get('file_show/{site_id}','AdminFileController@index1');
+    Route::get('file_show/{site_id}/{cat_id?}','AdminFileController@index1');
     Route::get('file_select/{site_id}','AdminFileController@file_select');
     Route::post('file/{id}','AdminFileController@update');
 
@@ -153,6 +154,7 @@ Route::middleware('auth:admin-api')->namespace('Admin')->prefix('admin')->group(
 
     //urgudul
     Route::resource('urgudul','AdminUrgudulController');
+    Route::get('webNotification/{site_id}/{heltes_id}','AdminUrgudulController@webNotification');
     Route::get('urgudul_show/{site_id}','AdminUrgudulController@index1');
     Route::post('urgudul/{id}','AdminUrgudulController@update');
 

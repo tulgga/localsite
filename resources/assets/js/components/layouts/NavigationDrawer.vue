@@ -20,6 +20,7 @@
                              <div :class="{'is-active':item.path == $route.path}" v-on:click="changeRoute(item.path)">
                                  <span><i :class="item.icon" aria-hidden="true"></i></span>
                                  <p>{{item.title}}</p>
+                                 <span v-if="item.badge" class="tag is-danger is-pulled-right">{{badge}}</span>
                              </div>
                         </li>
                     </template>
@@ -30,6 +31,7 @@
                             <div :class="{'is-active':item.path == $route.path}" v-on:click="changeRoute(item.path)">
                                 <span><i :class="item.icon" aria-hidden="true"></i></span>
                                 <p>{{item.title}}</p>
+                                <span v-if="item.badge" class="tag is-danger is-pulled-right">{{badge}}</span>
                             </div>
                         </li>
                     </template>
@@ -50,6 +52,7 @@
                             <div :class="{'is-active':item.path == $route.path}" v-on:click="changeRoute(item.path)">
                                 <span><i :class="item.icon" aria-hidden="true"></i></span>
                                 <p>{{item.title}}</p>
+                                <span v-if="item.badge" class="tag is-danger is-pulled-right">{{badge}}</span>
                             </div>
                         </li>
                     </template>
@@ -60,11 +63,10 @@
                             <div :class="{'is-active':item.path == $route.path}" v-on:click="changeRoute(item.path)">
                                 <span><i :class="item.icon" aria-hidden="true"></i></span>
                                 <p>{{item.title}}</p>
+                                <span v-if="item.badge" class="tag is-danger is-pulled-right">{{badge}}</span>
                             </div>
                         </li>
                     </template>
-
-
             </template>
             </ul>
         </div>
@@ -105,6 +107,7 @@
                     name: 'Үндсэн сайт',
                     domain: ''
                 },
+                badge: 0,
                 domains:[],
                 domain:[],
                 domainmodal: false,
@@ -135,7 +138,7 @@
                         { title: "Зар", icon: 'fas fa-chart-bar', path: '/zar' ,  role:0},
                     { subheader: 'Бусад',  role:1},
                         { title: "Санал асуулга", icon: 'fas fa-code-branch', path: '/poll' ,  role:0},
-                        { title: 'Санал хүсэлт', icon: 'far fa-comments', path: '/urgudul',  role:1,},
+                        { title: 'Санал хүсэлт', icon: 'far fa-comments', path: '/urgudul',  role:1,  badge:1,},
 
 
 
@@ -157,7 +160,7 @@
                     { title: "Холбоос", icon: 'fas fa-link', path: '/link' ,  role:3},
                     { subheader: 'Бусад',  role:3},
                     { title: "Санал асуулга", icon: 'fas fa-code-branch', path: '/poll' ,  role:3},
-                    { title: 'Санал хүсэлт', icon: 'far fa-comments', path: '/urgudul',  role:3,},
+                    { title: 'Санал хүсэлт', icon: 'far fa-comments', path: '/urgudul',  role:3, badge:1, },
                 ],
                 badge_show: false,
             }
@@ -166,10 +169,26 @@
             this.checkAdminType();
             this.fetchData();
         },
+        mounted : function(){
+        },
         methods: {
+
+
             fetchData() {
                 this.user = this.$store.getters.authUser;
                 this.domain=this.$store.getters.domain;
+
+
+
+                axios.get('/webNotification/'+this.domain.id+'/'+this.user.heltes_id).then((response) => {
+                    this.badge = response.data.success;
+                })
+                setInterval(()=>{
+                    axios.get('/webNotification/'+this.domain.id+'/'+this.user.heltes_id).then((response) => {
+                        this.badge = response.data.success;
+                        console.log(this.badge);
+                    })
+                }, 20000);
             },
             checkAdminType() {
                 var admin_type=this.$store.getters.authUser.admin_type;

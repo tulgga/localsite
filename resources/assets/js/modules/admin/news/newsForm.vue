@@ -64,7 +64,7 @@ CRUD Edit, Create form
                                 <div class="field">
                                     <label class="label">Ангилал <span class="has-text-danger">*</span></label>
                                         <treeselect v-validate="'required'" name="cat_id" v-model="form.cat_id" :flat="true"  :default-expand-level="10" placeholder="Ангилал сонгох" :multiple="true" :options="options" />
-                                        <p v-show="errors.has('cat_id')" class="help is-danger">Та ангилал сонгоно</p>
+                                        <p v-show="errors.has('cat_id')" class="help is-danger">Та ангилал сонгоно уу</p>
                                 </div>
 
                                 <div class="field">
@@ -108,7 +108,6 @@ CRUD Edit, Create form
 
                                 <div class="field">
                                     <label class="label">Товч текст <span v-if="form.type!=2" class="has-text-danger">*</span></label>
-
                                         <template v-if="form.type!=2">
                                             <textarea   v-validate="{'required':true, 'min':3}"  style="min-height: 80px; "  class="textarea" name="short_content" v-model="form.short_content" ></textarea>
                                             <p v-show="errors.has('short_content')" class="help is-danger">Заавал бөглө, хамгийн багадаа 3 тэмдэгт байна.</p>
@@ -116,9 +115,6 @@ CRUD Edit, Create form
                                         <template v-else>
                                             <textarea  style="min-height: 80px; "  class="textarea" name="short_content" v-model="form.short_content" ></textarea>
                                         </template>
-
-
-
                                 </div>
 
                                 <div class="field">
@@ -204,6 +200,7 @@ CRUD Edit, Create form
                 this.m_id = this.$route.params.id;
                 axios.get('/news_category/'+this.site_id).then((response) => {
                     this.options = response.data.success;
+
                 })
 
                 axios.get('/site').then((response) => {

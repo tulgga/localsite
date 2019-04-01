@@ -26,7 +26,8 @@ CRUD Edit, Create form
                                     <div class="field">
                                         <label class="label">Ангилал</label>
                                         <div class="control">
-                                           <treeselect v-model="form.cat_id" :flat="true" :default-expand-level="10"  :multiple="true" :options="options" />
+                                           <treeselect v-validate="'required'" name="name" v-model="form.cat_id" :flat="true" :default-expand-level="10" placeholder="Ангилал сонгох"  :multiple="true" :options="options" />
+                                            <p v-show="errors.has('name')" class="help is-danger">Ангилал сонгоно уу</p>
                                         </div>
                                     </div>
                                 </div>
@@ -36,7 +37,7 @@ CRUD Edit, Create form
                                         <label class="label">Гарчиг</label>
                                         <div class="control">
                                             <input type="text" name="name" v-validate="'required'" v-model="form.name" :class="{'input': true, 'is-danger': errors.has('name') }" />
-                                            <p v-show="errors.has('name')" class="help is-danger">{{ errors.first('name') }}</p>
+                                            <p v-show="errors.has('name')" class="help is-danger">Гарчиг оруулна уу</p>
                                         </div>
                                     </div>
                                 </div>
@@ -98,15 +99,15 @@ CRUD Edit, Create form
                                         <label class="label">Файл</label>
                                         <div class="control">
                                             <template v-if="m_id">
-                                                <input type="file" name="file" @change="onFileChange($event.target.name, $event.target.files)"/>
+                                                <input type="file" name="file" accept="image/*, .doc,.docx,.pdf, .xls, .xlsx, .ppt, .pptx," @change="onFileChange($event.target.name, $event.target.files)"/>
                                             </template>
                                             <template v-else>
-                                                <input type="file" name="file"
+                                                <input type="file" name="file"  accept="image/*, .doc,.docx,.pdf, .xls, .xlsx, .ppt, .pptx,"
                                                        v-validate="'required'"
                                                        @change="onFileChange($event.target.name, $event.target.files)"
                                                        :class="{'input': true, 'is-danger': errors.has('file') }"
                                                 />
-                                                <p v-show="errors.has('file')" class="help is-danger">{{ errors.first('file') }}</p>
+                                                <p v-show="errors.has('file')" class="help is-danger">Файл сонгоно уу</p>
                                             </template>
                                         </div>
                                     </div>
@@ -213,13 +214,11 @@ CRUD Edit, Create form
 
             onFileChange(fieldName, fileList){
                 const formData = new FormData();
-                // append the files to FormData
                 Array
                     .from(Array(fileList.length).keys())
                     .map(x => {
                         formData.append(fieldName, fileList[x], fileList[x].name);
                     });
-
                 this.file = formData.get(fieldName);
             },
         }

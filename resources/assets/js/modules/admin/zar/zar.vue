@@ -56,6 +56,7 @@
                 user:false,
                 columns: ['id', 'title',   'cat_id',   'price', 'phone', 'email',  'content',  'created_at', 'action',],
                 options: {
+
                     perPage: 25,
                     perPageValues: [25,50,100],
                     pagetitle: "Файлын сан",
@@ -73,6 +74,13 @@
                     filterByColumn: true,
                     sortable: [ 'title', 'content',  'cat_id', 'price', 'phone', 'email', ],
                     filterable: ['title', 'content',  'cat_id', 'price', 'phone', 'email' ],
+                    columnsDisplay:{
+                        content: 'desktop',
+                        phone: 'desktop',
+                        email: 'desktop',
+                        price: 'desktop',
+                        created_at: 'desktop',
+                    },
                     sortIcon: {
                         base:'fas', 
                         up:'fa-sort-up', 

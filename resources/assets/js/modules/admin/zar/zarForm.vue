@@ -24,29 +24,29 @@ CRUD Edit, Create form
 
                                 <div class="column is-12-mobile is-12-tablet">
                                     <div class="field">
-                                        <label class="label">Ангилал</label>
+                                        <label class="label">Ангилал  <span class="has-text-danger">*</span></label>
                                         <div class="control">
-                                           <treeselect v-model="form.cat_id" :multiple="false" :options="options" />
-
+                                           <treeselect  v-validate="'required'" v-model="form.cat_id"  name="cat_id" placeholder="Ангилал сонгох" :class="{ 'is-danger': errors.has('cat_id') }" :multiple="false" :options="options" />
+                                            <p v-show="errors.has('cat_id')" class="help is-danger">Заавал сонго</p>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="column is-12-mobile is-12-tablet">
                                     <div class="field">
-                                        <label class="label">Гарчиг</label>
+                                        <label class="label">Гарчиг  <span class="has-text-danger">*</span></label>
                                         <div class="control">
                                             <input type="text" name="title" v-validate="'required'" v-model="form.title" :class="{'input': true, 'is-danger': errors.has('title') }" />
-                                            <p v-show="errors.has('title')" class="help is-danger">{{ errors.first('title') }}</p>
+                                            <p v-show="errors.has('title')" class="help is-danger">Заавал бөглө</p>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="column is-12-mobile is-12-tablet">
                                     <div class="field">
-                                        <label class="label">Тайлбар</label>
+                                        <label class="label">Тайлбар  <span class="has-text-danger">*</span></label>
                                         <textarea name="content"  v-validate="'required'"  v-model="form.content"  :class="{'textarea': true, 'is-danger': errors.has('content') }"></textarea>
-                                        <p v-show="errors.has('content')" class="help is-danger">{{ errors.first('content') }}</p>
+                                        <p v-show="errors.has('content')" class="help is-danger">Заавал бөглө</p>
                                     </div>
                                 </div>
 
@@ -56,7 +56,7 @@ CRUD Edit, Create form
                                         <div class="control has-image">
                                             <div class="file is-boxed is-fullwidth">
                                                 <label class="file-label">
-                                                    <input class="file-input" type="file" name="image2" @change="onFileChange($event.target.name, $event.target.files)">
+                                                    <input class="file-input" accept="image/*"  :class="{'textarea': true, 'is-danger': errors.has('image2') }" v-validate="'required'" type="file" name="image2" @change="onFileChange($event.target.name, $event.target.files)">
                                                     <span class="file-cta">
                                                             <span v-if="imageni" class="file-icon" :style="'background-image: url('+imageni+');'">
                                                                 <i class="ion-ios-add-outline"></i>
@@ -66,6 +66,7 @@ CRUD Edit, Create form
                                                             </span>
                                                         </span>
                                                 </label>
+                                                <p v-show="errors.has('image2')" class="help is-danger">Заавал бөглө</p>
                                             </div>
                                         </div>
                                     </div>
@@ -73,26 +74,26 @@ CRUD Edit, Create form
 
                                 <div class="column is-12-mobile is-6-tablet">
                                     <div class="field">
-                                        <label class="label">Үнэ</label>
+                                        <label class="label">Үнэ  <span class="has-text-danger">*</span></label>
                                         <div class="control">
-                                            <input type="text" name="price" v-validate="{'required':true, 'numeric':true, }" v-model="form.price" :class="{'input': true, 'is-danger': errors.has('price') }" />
-                                            <p v-show="errors.has('price')" class="help is-danger">{{ errors.first('price') }}</p>
+                                            <input type="text" name="price" v-validate="{'required':true }" v-model="form.price" :class="{'input': true, 'is-danger': errors.has('price') }" />
+                                            <p v-show="errors.has('price')" class="help is-danger">Заавал бөглө, зөвхөн тоо байна</p>
                                         </div>
                                     </div>
 
                                     <div class="field">
-                                        <label class="label">Утас</label>
+                                        <label class="label">Утас  <span class="has-text-danger">*</span></label>
                                         <div class="control ">
-                                            <input type="text" name="phone" v-validate="{'required':true, 'numeric':true, 'length':8 }" v-model="form.phone" :class="{'input': true, 'is-danger': errors.has('phone') }" />
-                                            <p v-show="errors.has('phone')" class="help is-danger">{{ errors.first('phone') }}</p>
+                                            <input type="text" name="phone" v-validate="{'required':true}" v-model="form.phone" :class="{'input': true, 'is-danger': errors.has('phone') }" />
+                                            <p v-show="errors.has('phone')" class="help is-danger">Заавал бөглө</p>
                                         </div>
                                     </div>
 
                                     <div class="field">
-                                        <label class="label">Email</label>
+                                        <label class="label">Email  <span class="has-text-danger">*</span></label>
                                         <div class="control ">
                                             <input type="text" name="email" v-validate="{'required':true, 'email':true}" v-model="form.email" :class="{'input': true, 'is-danger': errors.has('email') }" />
-                                            <p v-show="errors.has('email')" class="help is-danger">{{ errors.first('email') }}</p>
+                                            <p v-show="errors.has('email')" class="help is-danger">Заавал бөглө, их мэйл хаяг биш байна</p>
                                         </div>
                                     </div>
                                 </div>

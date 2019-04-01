@@ -87568,6 +87568,8 @@ var modules = requireContext.keys().map(function (file) {
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
@@ -87598,19 +87600,26 @@ var modules = requireContext.keys().map(function (file) {
                 _this.fetched = true;
             });
         },
+
+
         save: function save() {
             var _this2 = this;
 
-            this.is_loading = true;
-            var formData = new FormData();
-            formData.append('data', JSON.stringify(this.treeData.children));
+            this.$validator.validateAll().then(function (result) {
+                if (result) {
+                    _this2.is_loading = true;
+                    var formData = new FormData();
+                    formData.append('data', JSON.stringify(_this2.treeData.children));
 
-            axios.post('/news_category_save/' + this.site_id, formData).then(function (response) {
-                _this2.is_loading = false;
-                _this2.fetchData();
-                _this2.$toasted.global.toast_success({ message: _this2.$store.getters.lang.messages.is_updated_text });
+                    axios.post('/news_category_save/' + _this2.site_id, formData).then(function (response) {
+                        _this2.is_loading = false;
+                        _this2.fetchData();
+                        _this2.$toasted.global.toast_success({ message: _this2.$store.getters.lang.messages.is_updated_text });
+                    });
+                }
             });
         },
+
         add: function add() {
             this.treeData.children.unshift({ id: -1, name: "" });
         }
@@ -87622,6 +87631,7 @@ var modules = requireContext.keys().map(function (file) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+//
 //
 //
 //
@@ -87978,6 +87988,13 @@ var modules = requireContext.keys().map(function (file) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -88717,46 +88734,6 @@ var modules = requireContext.keys().map(function (file) {
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
@@ -89412,9 +89389,15 @@ var modules = requireContext.keys().map(function (file) {
             axios.delete('/link_category/' + row.id).then(function (response) {
                 _this2.deletemodal = false;
                 _this2.fetched = false;
+
                 _this2.fetchData();
                 _this2.is_loading = false;
-                _this2.$toasted.global.toast_success({ message: _this2.$store.getters.lang.messages.is_deleted_text }); // delete success toast
+
+                if (response.data.success == 0) {
+                    _this2.$toasted.global.toast_error({ message: 'Энэ холбоосын ангилалд ' + response.data.cnt + ' холбоос байна. устгах боломжтгүй' }); // delete success toast
+                } else {
+                    _this2.$toasted.global.toast_success({ message: _this2.$store.getters.lang.messages.is_deleted_text }); // delete success toast
+                }
             });
         },
         deleting: function deleting(row) {
@@ -89627,6 +89610,20 @@ var modules = requireContext.keys().map(function (file) {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["a"] = ({
     data: function data() {
@@ -89635,6 +89632,7 @@ var modules = requireContext.keys().map(function (file) {
             lists: [],
             url: '/file_show/' + this.$store.getters.domain.id,
             showmodal: false,
+            categories: [],
             file: false,
             deletemodal: false,
             deleteid: false,
@@ -89643,7 +89641,7 @@ var modules = requireContext.keys().map(function (file) {
             fetched: true,
             is_loading: false,
             user: false,
-            columns: ['id', 'name', 'content', 'status', 'cat', 'active_date', 'publish_date', 'cart_number', 'type', 'action'],
+            columns: ['id', 'name', 'status', 'cat', 'type', 'action'],
             options: {
                 perPage: 25,
                 perPageValues: [25, 50, 100],
@@ -89729,21 +89727,45 @@ var modules = requireContext.keys().map(function (file) {
             }
         }
     },
-    created: function created() {},
+    created: function created() {
+        this.fetchData();
+    },
     mounted: function mounted() {},
 
     methods: {
+        fetchData: function fetchData() {
+            var _this = this;
+
+            this.site_id = this.$store.getters.domain.id;
+            axios.get('/file_category/' + this.site_id).then(function (response) {
+                _this.categories = response.data.success;
+                console.log(_this.categories);
+                _this.categories.push({ 'name': 'Ангилалгүй файл', 'label': 'Ангилалгүй файл', 'id': -1 });
+                _this.fetched = true;
+            });
+        },
+        fulter_category: function fulter_category() {
+            this.is_loading = true;
+            if (this.selected_cat) {
+                this.url = '/file_show/' + this.$store.getters.domain.id + '/' + this.selected_cat;
+            } else {
+                this.url = '/file_show/' + this.$store.getters.domain.id;
+            }
+            this.$refs.tableni.refresh();
+            this.is_loading = false;
+        },
+
 
         // Устгах
         ustga: function ustga(row) {
-            var _this = this;
+            var _this2 = this;
 
             this.is_loading = true;
             axios.delete('/file/' + row.id).then(function (response) {
-                _this.deletemodal = false;
-                _this.$refs.tableni.refresh();
-                _this.is_loading = false;
-                _this.$toasted.global.toast_success({ message: _this.$store.getters.lang.messages.is_deleted_text }); // delete success toast
+                _this2.deletemodal = false;
+                _this2.$refs.tableni.refresh();
+                _this2.is_loading = false;
+                _this2.$toasted.global.toast_success({ message: _this2.$store.getters.lang.messages.is_deleted_text }); // delete success toast
             });
         },
         fileType: function fileType(file) {
@@ -89762,6 +89784,7 @@ var modules = requireContext.keys().map(function (file) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+//
 //
 //
 //
@@ -89984,11 +90007,9 @@ var modules = requireContext.keys().map(function (file) {
 
         onFileChange: function onFileChange(fieldName, fileList) {
             var formData = new FormData();
-            // append the files to FormData
             Array.from(Array(fileList.length).keys()).map(function (x) {
                 formData.append(fieldName, fileList[x], fileList[x].name);
             });
-
             this.file = formData.get(fieldName);
         }
     }
@@ -89999,10 +90020,6 @@ var modules = requireContext.keys().map(function (file) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-//
-//
-//
-//
 //
 //
 //
@@ -90429,10 +90446,6 @@ var modules = requireContext.keys().map(function (file) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_ckeditor2__ = __webpack_require__(251);
-//
-//
-//
-//
 //
 //
 //
@@ -91129,9 +91142,6 @@ var modules = requireContext.keys().map(function (file) {
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["a"] = ({
     data: function data() {
@@ -91278,6 +91288,7 @@ var modules = requireContext.keys().map(function (file) {
             this.site_id = this.$store.getters.domain.id;
             axios.get('/news_category/' + this.site_id).then(function (response) {
                 _this.categories = response.data.success;
+                _this.categories.push({ 'name': 'Ангилалгүй мэдээ', 'label': 'Ангилалгүй мэдээ', 'id': -1 });
                 _this.fetched = true;
             });
         },
@@ -91374,6 +91385,11 @@ var modules = requireContext.keys().map(function (file) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_ckeditor2__ = __webpack_require__(251);
+//
+//
+//
+//
+//
 //
 //
 //
@@ -92739,6 +92755,7 @@ var modules = requireContext.keys().map(function (file) {
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
@@ -92756,7 +92773,7 @@ var modules = requireContext.keys().map(function (file) {
             form: {
                 question: '',
                 site_id: this.$store.getters.domain.id,
-                answer: [{ id: 0, answer: '' }, { id: 0, answer: '' }],
+                answer: [{ id: 0, answer: '' }, { id: 0, answer: '' }, { id: 0, answer: '' }],
                 finish_date: null
             },
             aldaanuud: []
@@ -92914,6 +92931,7 @@ var modules = requireContext.keys().map(function (file) {
             user: false,
             columns: ['id', 'title', 'cat_id', 'price', 'phone', 'email', 'content', 'created_at', 'action'],
             options: {
+
                 perPage: 25,
                 perPageValues: [25, 50, 100],
                 pagetitle: "Файлын сан",
@@ -92931,6 +92949,13 @@ var modules = requireContext.keys().map(function (file) {
                 filterByColumn: true,
                 sortable: ['title', 'content', 'cat_id', 'price', 'phone', 'email'],
                 filterable: ['title', 'content', 'cat_id', 'price', 'phone', 'email'],
+                columnsDisplay: {
+                    content: 'desktop',
+                    phone: 'desktop',
+                    email: 'desktop',
+                    price: 'desktop',
+                    created_at: 'desktop'
+                },
                 sortIcon: {
                     base: 'fas',
                     up: 'fa-sort-up',
@@ -93031,6 +93056,7 @@ var modules = requireContext.keys().map(function (file) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+//
 //
 //
 //
@@ -93524,7 +93550,7 @@ var modules = requireContext.keys().map(function (file) {
             m_id: false, // Edit үед id орж ирнэ
             fetched: false,
             is_loading: false,
-            form: { name: '', site_id: 0, cat_id: 0, link: '' },
+            form: { name: '', site_id: 0, cat_id: '', link: '' },
             aldaanuud: [],
             imageni: false,
             image: [],
@@ -94980,6 +95006,8 @@ function updateLink (link, options, obj) {
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["a"] = ({
     data: function data() {
@@ -94991,18 +95019,19 @@ function updateLink (link, options, obj) {
                 name: 'Үндсэн сайт',
                 domain: ''
             },
+            badge: 0,
             domains: [],
             domain: [],
             domainmodal: false,
             user: false,
             items: [{ subheader: 'Ерөнхий', role: 0 }, { title: 'Дэд сайтууд', icon: 'fas fa-th', path: '/sites', role: 0 }, { title: 'Хэлтэс', icon: 'fas fa-code-branch', path: '/heltes', role: 0 }, { title: 'Админ / ажилтан', icon: 'fas fa-users', path: '/employees', role: 0 }, { subheader: 'Тохиргоо', role: 0 }, { title: 'Тохиргоо', icon: 'fas fa-sliders-h', path: '/config', role: 0 },
             // { title: "Цэс", icon: 'fas fa-bars', path: '/menu' ,  role:1},
-            { title: "Сурталчилгаа", icon: 'fab fa-goodreads', path: '/sidebar', role: 0 }, { subheader: 'Мэдээ', role: 1 }, { title: 'Мэдээний ангилал', icon: 'fas fa-code-branch', path: '/news_category', role: 0 }, { title: "Мэдээ", icon: 'fas fa-newspaper', path: '/news', role: 1 }, { title: "Орон нутгийн мэдээ", icon: 'fas fa-newspaper', path: '/sub_news_publish', role: 0 }, { title: 'Үндсэн цэс', icon: 'fas fa-bars', path: '/pages', role: 0 }, { title: 'Туслах цэс', icon: 'fas fa-bars', path: '/helppages', role: 0 }, { subheader: 'Файлын сан', role: 1 }, { title: "Файлын ангилал", icon: 'fas fa-code-branch', path: '/file_category', role: 0 }, { title: "Файлын сан", icon: 'fas fa-folder', path: '/files', role: 1 }, { subheader: 'Холбоос', role: 1 }, { title: "Холбоос ангилал", icon: 'fas fa-code-branch', path: '/link_category', role: 0 }, { title: "Холбоос", icon: 'fas fa-link', path: '/link', role: 1 }, { subheader: 'Зар', role: 0 }, { title: "Зарийн ангилал", icon: 'fas fa-code-branch', path: '/zar_category', role: 0 }, { title: "Зар", icon: 'fas fa-chart-bar', path: '/zar', role: 0 }, { subheader: 'Бусад', role: 1 }, { title: "Санал асуулга", icon: 'fas fa-code-branch', path: '/poll', role: 0 }, { title: 'Санал хүсэлт', icon: 'far fa-comments', path: '/urgudul', role: 1 },
+            { title: "Сурталчилгаа", icon: 'fab fa-goodreads', path: '/sidebar', role: 0 }, { subheader: 'Мэдээ', role: 1 }, { title: 'Мэдээний ангилал', icon: 'fas fa-code-branch', path: '/news_category', role: 0 }, { title: "Мэдээ", icon: 'fas fa-newspaper', path: '/news', role: 1 }, { title: "Орон нутгийн мэдээ", icon: 'fas fa-newspaper', path: '/sub_news_publish', role: 0 }, { title: 'Үндсэн цэс', icon: 'fas fa-bars', path: '/pages', role: 0 }, { title: 'Туслах цэс', icon: 'fas fa-bars', path: '/helppages', role: 0 }, { subheader: 'Файлын сан', role: 1 }, { title: "Файлын ангилал", icon: 'fas fa-code-branch', path: '/file_category', role: 0 }, { title: "Файлын сан", icon: 'fas fa-folder', path: '/files', role: 1 }, { subheader: 'Холбоос', role: 1 }, { title: "Холбоос ангилал", icon: 'fas fa-code-branch', path: '/link_category', role: 0 }, { title: "Холбоос", icon: 'fas fa-link', path: '/link', role: 1 }, { subheader: 'Зар', role: 0 }, { title: "Зарийн ангилал", icon: 'fas fa-code-branch', path: '/zar_category', role: 0 }, { title: "Зар", icon: 'fas fa-chart-bar', path: '/zar', role: 0 }, { subheader: 'Бусад', role: 1 }, { title: "Санал асуулга", icon: 'fas fa-code-branch', path: '/poll', role: 0 }, { title: 'Санал хүсэлт', icon: 'far fa-comments', path: '/urgudul', role: 1, badge: 1 },
 
             // ded site
             { subheader: 'Тохиргоо', role: 2 }, { title: 'Тохиргоо', icon: 'fas fa-sliders-h', path: '/config', role: 2 },
             // { title: "Цэс", icon: 'fas fa-bars', path: '/menu' ,  role:2},
-            { title: "Сурталчилгаа", icon: 'fab fa-goodreads', path: '/sidebar', role: 2 }, { subheader: 'Мэдээ', role: 2 }, { title: 'Мэдээний ангилал', icon: 'fas fa-code-branch', path: '/news_category', role: 3 }, { title: "Мэдээ", icon: 'fas fa-newspaper', path: '/sub_news', role: 3 }, { title: 'Үндсэн цэс', icon: 'fas fa-bars', path: '/pages', role: 3 }, { title: 'Туслах цэс', icon: 'fas fa-bars', path: '/helppages', role: 3 }, { subheader: 'Файлын сан', role: 3 }, { title: "Файлын ангилал", icon: 'fas fa-code-branch', path: '/file_category', role: 3 }, { title: "Файлын сан", icon: 'fas fa-folder', path: '/files', role: 3 }, { subheader: 'Холбоос', role: 3 }, { title: "Холбоос ангилал", icon: 'fas fa-code-branch', path: '/link_category', role: 3 }, { title: "Холбоос", icon: 'fas fa-link', path: '/link', role: 3 }, { subheader: 'Бусад', role: 3 }, { title: "Санал асуулга", icon: 'fas fa-code-branch', path: '/poll', role: 3 }, { title: 'Санал хүсэлт', icon: 'far fa-comments', path: '/urgudul', role: 3 }],
+            { title: "Сурталчилгаа", icon: 'fab fa-goodreads', path: '/sidebar', role: 2 }, { subheader: 'Мэдээ', role: 2 }, { title: 'Мэдээний ангилал', icon: 'fas fa-code-branch', path: '/news_category', role: 3 }, { title: "Мэдээ", icon: 'fas fa-newspaper', path: '/sub_news', role: 3 }, { title: 'Үндсэн цэс', icon: 'fas fa-bars', path: '/pages', role: 3 }, { title: 'Туслах цэс', icon: 'fas fa-bars', path: '/helppages', role: 3 }, { subheader: 'Файлын сан', role: 3 }, { title: "Файлын ангилал", icon: 'fas fa-code-branch', path: '/file_category', role: 3 }, { title: "Файлын сан", icon: 'fas fa-folder', path: '/files', role: 3 }, { subheader: 'Холбоос', role: 3 }, { title: "Холбоос ангилал", icon: 'fas fa-code-branch', path: '/link_category', role: 3 }, { title: "Холбоос", icon: 'fas fa-link', path: '/link', role: 3 }, { subheader: 'Бусад', role: 3 }, { title: "Санал асуулга", icon: 'fas fa-code-branch', path: '/poll', role: 3 }, { title: 'Санал хүсэлт', icon: 'far fa-comments', path: '/urgudul', role: 3, badge: 1 }],
             badge_show: false
         };
     },
@@ -95011,10 +95040,23 @@ function updateLink (link, options, obj) {
         this.checkAdminType();
         this.fetchData();
     },
+    mounted: function mounted() {},
     methods: {
         fetchData: function fetchData() {
+            var _this = this;
+
             this.user = this.$store.getters.authUser;
             this.domain = this.$store.getters.domain;
+
+            axios.get('/webNotification/' + this.domain.id + '/' + this.user.heltes_id).then(function (response) {
+                _this.badge = response.data.success;
+            });
+            setInterval(function () {
+                axios.get('/webNotification/' + _this.domain.id + '/' + _this.user.heltes_id).then(function (response) {
+                    _this.badge = response.data.success;
+                    console.log(_this.badge);
+                });
+            }, 20000);
         },
         checkAdminType: function checkAdminType() {
             var admin_type = this.$store.getters.authUser.admin_type;
@@ -95043,11 +95085,11 @@ function updateLink (link, options, obj) {
             this.$store.commit('changenavgroup_sub', group);
         },
         changeDomain: function changeDomain() {
-            var _this = this;
+            var _this2 = this;
 
             axios.get('/site').then(function (response) {
-                _this.domains = response.data.success;
-                _this.domainmodal = true;
+                _this2.domains = response.data.success;
+                _this2.domainmodal = true;
             });
         },
         setDomain: function setDomain(domain) {
@@ -98860,11 +98902,20 @@ var render = function() {
                               rawName: "v-model",
                               value: _vm.data.name,
                               expression: "data.name"
+                            },
+                            {
+                              name: "validate",
+                              rawName: "v-validate",
+                              value: { required: true, min: 3 },
+                              expression: "{'required':true, 'min':3}"
                             }
                           ],
-                          staticClass: "input",
+                          class: {
+                            input: true,
+                            "is-danger": _vm.errors.has("title" + _vm.data.id)
+                          },
                           staticStyle: { border: "none" },
-                          attrs: { type: "text" },
+                          attrs: { type: "text", name: "title" + _vm.data.id },
                           domProps: { value: _vm.data.name },
                           on: {
                             input: function($event) {
@@ -98874,23 +98925,49 @@ var render = function() {
                               _vm.$set(_vm.data, "name", $event.target.value)
                             }
                           }
-                        })
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "p",
+                          {
+                            directives: [
+                              {
+                                name: "show",
+                                rawName: "v-show",
+                                value: _vm.errors.has("title" + _vm.data.id),
+                                expression: "errors.has('title'+data.id)"
+                              }
+                            ],
+                            staticClass: "help is-danger"
+                          },
+                          [
+                            _vm._v(
+                              "Заавал бөглө, хамгийн багадаа 3 тэмдэгт байна."
+                            )
+                          ]
+                        )
                       ]),
                       _vm._v(" "),
-                      _c("div", { staticClass: "column is-1 has-text-right" }, [
-                        _c(
-                          "span",
-                          {
-                            staticClass: "button",
-                            on: {
-                              click: function($event) {
-                                _vm.deletemodal = true
-                              }
-                            }
-                          },
-                          [_vm._m(1)]
-                        )
-                      ])
+                      _vm.displayedChildren.length == 0
+                        ? _c(
+                            "div",
+                            { staticClass: "column is-1 has-text-right" },
+                            [
+                              _c(
+                                "span",
+                                {
+                                  staticClass: "button",
+                                  on: {
+                                    click: function($event) {
+                                      _vm.deletemodal = true
+                                    }
+                                  }
+                                },
+                                [_vm._m(1)]
+                              )
+                            ]
+                          )
+                        : _vm._e()
                     ])
                   : _c(
                       "div",
@@ -99039,44 +99116,53 @@ var render = function() {
     ? _c("div", [
         _c("div", { staticClass: "catTitle" }, [_vm._v("Мэдээний ангилал")]),
         _vm._v(" "),
-        _c("p", { staticClass: "buttons mr0" }, [
-          _c(
-            "a",
-            {
-              staticClass: "button is-primary",
-              class: { "is-loading": _vm.is_loading },
-              attrs: { disabled: _vm.is_loading },
-              on: {
-                click: function($event) {
-                  _vm.save()
-                }
+        _c(
+          "form",
+          {
+            on: {
+              submit: function($event) {
+                $event.preventDefault()
+                return _vm.save($event)
               }
-            },
-            [_vm._m(0), _c("span", [_vm._v("Хадгалах")])]
-          ),
-          _vm._v(" "),
-          _c(
-            "a",
-            {
-              staticClass: "button",
-              on: {
-                click: function($event) {
-                  _vm.add()
-                }
-              }
-            },
-            [_vm._m(1), _c("span", [_vm._v("Aнгилал нэмэх")])]
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "columns" }, [
-          _c(
-            "div",
-            { staticClass: "column is-12-tablet is-12-mobile" },
-            [_c("tree-node", { attrs: { data: _vm.treeData } })],
-            1
-          )
-        ])
+            }
+          },
+          [
+            _c("p", { staticClass: "buttons mr0" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "button is-primary",
+                  class: { "is-loading": _vm.is_loading },
+                  attrs: { disabled: _vm.is_loading },
+                  on: { click: _vm.save }
+                },
+                [_vm._m(0), _c("span", [_vm._v("Хадгалах")])]
+              ),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass: "button",
+                  on: {
+                    click: function($event) {
+                      _vm.add()
+                    }
+                  }
+                },
+                [_vm._m(1), _c("span", [_vm._v("Aнгилал нэмэх")])]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "columns" }, [
+              _c(
+                "div",
+                { staticClass: "column is-12-tablet is-12-mobile" },
+                [_c("tree-node", { attrs: { data: _vm.treeData } })],
+                1
+              )
+            ])
+          ]
+        )
       ])
     : _vm._e()
 }
@@ -99470,7 +99556,9 @@ var render = function() {
                       _vm._l(_vm.lists, function(list, i) {
                         return [
                           _c("tr", [
-                            _c("td", [_c("b", [_vm._v(_vm._s(list.title))])]),
+                            _c("td", [
+                              _c("b", [_vm._v(_vm._s(list.title) + " ")])
+                            ]),
                             _vm._v(" "),
                             _c("td", { staticClass: "p-0" }, [
                               _c(
@@ -99480,6 +99568,7 @@ var render = function() {
                                   _c(
                                     "div",
                                     {
+                                      class: { disabled: i == 0 },
                                       on: {
                                         click: function($event) {
                                           _vm.changePositionMain(i, -1)
@@ -99496,6 +99585,9 @@ var render = function() {
                                   _c(
                                     "div",
                                     {
+                                      class: {
+                                        disabled: _vm.lists.length - 1 == i
+                                      },
                                       on: {
                                         click: function($event) {
                                           _vm.changePositionMain(i, 1)
@@ -99523,18 +99615,26 @@ var render = function() {
                                     ]
                                   ),
                                   _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    {
-                                      on: {
-                                        click: function($event) {
-                                          _vm.delete_cat = list
-                                          _vm.deletemodal = true
-                                        }
-                                      }
-                                    },
-                                    [_c("i", { staticClass: "fas fa-trash" })]
-                                  )
+                                  list.children == 0
+                                    ? _c(
+                                        "div",
+                                        {
+                                          on: {
+                                            click: function($event) {
+                                              _vm.delete_cat = list
+                                              _vm.deletemodal = true
+                                            }
+                                          }
+                                        },
+                                        [
+                                          _c("i", {
+                                            staticClass: "fas fa-trash"
+                                          })
+                                        ]
+                                      )
+                                    : _c("div", { staticClass: "disabled" }, [
+                                        _c("i", { staticClass: "fas fa-trash" })
+                                      ])
                                 ],
                                 1
                               )
@@ -99558,6 +99658,7 @@ var render = function() {
                                       _c(
                                         "div",
                                         {
+                                          class: { disabled: a == 0 },
                                           on: {
                                             click: function($event) {
                                               _vm.changePosition(i, a, -1)
@@ -99574,6 +99675,10 @@ var render = function() {
                                       _c(
                                         "div",
                                         {
+                                          class: {
+                                            disabled:
+                                              list.children.length - 1 == a
+                                          },
                                           on: {
                                             click: function($event) {
                                               _vm.changePosition(i, a, 1)
@@ -99601,22 +99706,32 @@ var render = function() {
                                         ]
                                       ),
                                       _vm._v(" "),
-                                      _c(
-                                        "div",
-                                        {
-                                          on: {
-                                            click: function($event) {
-                                              _vm.delete_cat = child
-                                              _vm.deletemodal = true
-                                            }
-                                          }
-                                        },
-                                        [
-                                          _c("i", {
-                                            staticClass: "fas fa-trash"
-                                          })
-                                        ]
-                                      )
+                                      child.children.length == 0
+                                        ? _c(
+                                            "div",
+                                            {
+                                              on: {
+                                                click: function($event) {
+                                                  _vm.delete_cat = child
+                                                  _vm.deletemodal = true
+                                                }
+                                              }
+                                            },
+                                            [
+                                              _c("i", {
+                                                staticClass: "fas fa-trash"
+                                              })
+                                            ]
+                                          )
+                                        : _c(
+                                            "div",
+                                            { staticClass: "disabled" },
+                                            [
+                                              _c("i", {
+                                                staticClass: "fas fa-trash"
+                                              })
+                                            ]
+                                          )
                                     ],
                                     1
                                   )
@@ -99642,6 +99757,7 @@ var render = function() {
                                           _c(
                                             "div",
                                             {
+                                              class: { disabled: b == 0 },
                                               on: {
                                                 click: function($event) {
                                                   _vm.changePositionSub(
@@ -99663,6 +99779,10 @@ var render = function() {
                                           _c(
                                             "div",
                                             {
+                                              class: {
+                                                disabled:
+                                                  child.children - 1 == b
+                                              },
                                               on: {
                                                 click: function($event) {
                                                   _vm.changePositionSub(
@@ -99698,22 +99818,32 @@ var render = function() {
                                             ]
                                           ),
                                           _vm._v(" "),
-                                          _c(
-                                            "div",
-                                            {
-                                              on: {
-                                                click: function($event) {
-                                                  _vm.delete_cat = subchild
-                                                  _vm.deletemodal = true
-                                                }
-                                              }
-                                            },
-                                            [
-                                              _c("i", {
-                                                staticClass: "fas fa-trash"
-                                              })
-                                            ]
-                                          )
+                                          subchild.children.length == 0
+                                            ? _c(
+                                                "div",
+                                                {
+                                                  on: {
+                                                    click: function($event) {
+                                                      _vm.delete_cat = subchild
+                                                      _vm.deletemodal = true
+                                                    }
+                                                  }
+                                                },
+                                                [
+                                                  _c("i", {
+                                                    staticClass: "fas fa-trash"
+                                                  })
+                                                ]
+                                              )
+                                            : _c(
+                                                "div",
+                                                { staticClass: "disabled" },
+                                                [
+                                                  _c("i", {
+                                                    staticClass: "fas fa-trash"
+                                                  })
+                                                ]
+                                              )
                                         ],
                                         1
                                       )
@@ -99735,7 +99865,9 @@ var render = function() {
                                           },
                                           [
                                             _vm._v(
-                                              "--- " + _vm._s(subsubchild.title)
+                                              "--- " +
+                                                _vm._s(subsubchild.title) +
+                                                " "
                                             )
                                           ]
                                         ),
@@ -99748,6 +99880,7 @@ var render = function() {
                                               _c(
                                                 "div",
                                                 {
+                                                  class: { disabled: b == c },
                                                   on: {
                                                     click: function($event) {
                                                       _vm.changePositionSubSub(
@@ -99771,6 +99904,10 @@ var render = function() {
                                               _c(
                                                 "div",
                                                 {
+                                                  class: {
+                                                    disabled:
+                                                      subchild.children - 1 == c
+                                                  },
                                                   on: {
                                                     click: function($event) {
                                                       _vm.changePositionSubSub(
@@ -100084,7 +100221,11 @@ var render = function() {
                               _c("label", { staticClass: "file-label" }, [
                                 _c("input", {
                                   staticClass: "file-input",
-                                  attrs: { type: "file", name: "image2" },
+                                  attrs: {
+                                    type: "file",
+                                    accept: "image/*",
+                                    name: "image2"
+                                  },
                                   on: {
                                     change: function($event) {
                                       _vm.onFileChange(
@@ -100137,9 +100278,7 @@ var render = function() {
                     { staticClass: "column is-12-mobile is-10-tablet" },
                     [
                       _c("div", { staticClass: "field" }, [
-                        _c("label", { staticClass: "label" }, [
-                          _vm._v("Гарчиг")
-                        ]),
+                        _vm._m(0),
                         _vm._v(" "),
                         _c("div", { staticClass: "control" }, [
                           _c("input", {
@@ -100186,7 +100325,7 @@ var render = function() {
                               ],
                               staticClass: "help is-danger"
                             },
-                            [_vm._v(_vm._s(_vm.errors.first("title")))]
+                            [_vm._v("Заавал бөглө")]
                           )
                         ])
                       ]),
@@ -100617,7 +100756,17 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { staticClass: "label" }, [
+      _vm._v("Гарчиг "),
+      _c("span", { staticClass: "has-text-danger" }, [_vm._v("*")])
+    ])
+  }
+]
 render._withStripped = true
 
 if (false) {
@@ -100726,6 +100875,7 @@ var render = function() {
                                   _c(
                                     "div",
                                     {
+                                      class: { disabled: i == 0 },
                                       on: {
                                         click: function($event) {
                                           _vm.changePositionMain(i, -1)
@@ -100742,6 +100892,9 @@ var render = function() {
                                   _c(
                                     "div",
                                     {
+                                      class: {
+                                        disabled: _vm.lists.length - 1 == i
+                                      },
                                       on: {
                                         click: function($event) {
                                           _vm.changePositionMain(i, 1)
@@ -100785,306 +100938,7 @@ var render = function() {
                                 1
                               )
                             ])
-                          ]),
-                          _vm._v(" "),
-                          _vm._l(list.children, function(child, a) {
-                            return [
-                              _c("tr", [
-                                _c(
-                                  "td",
-                                  { staticStyle: { "padding-left": "25px" } },
-                                  [_vm._v("- " + _vm._s(child.title))]
-                                ),
-                                _vm._v(" "),
-                                _c("td", { staticClass: "p-0" }, [
-                                  _c(
-                                    "div",
-                                    { staticClass: "data-action" },
-                                    [
-                                      _c(
-                                        "div",
-                                        {
-                                          on: {
-                                            click: function($event) {
-                                              _vm.changePosition(i, a, -1)
-                                            }
-                                          }
-                                        },
-                                        [
-                                          _c("i", {
-                                            staticClass: "fas fa-arrow-up"
-                                          })
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "div",
-                                        {
-                                          on: {
-                                            click: function($event) {
-                                              _vm.changePosition(i, a, 1)
-                                            }
-                                          }
-                                        },
-                                        [
-                                          _c("i", {
-                                            staticClass: "fas fa-arrow-down"
-                                          })
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "router-link",
-                                        {
-                                          attrs: {
-                                            to:
-                                              "helppages/" +
-                                              child.id +
-                                              "/update"
-                                          }
-                                        },
-                                        [
-                                          _c("i", {
-                                            staticClass: "fas fa-pencil-alt"
-                                          })
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "div",
-                                        {
-                                          on: {
-                                            click: function($event) {
-                                              _vm.delete_cat = child
-                                              _vm.deletemodal = true
-                                            }
-                                          }
-                                        },
-                                        [
-                                          _c("i", {
-                                            staticClass: "fas fa-trash"
-                                          })
-                                        ]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _vm._l(child.children, function(subchild, b) {
-                                return [
-                                  _c("tr", [
-                                    _c(
-                                      "td",
-                                      {
-                                        staticStyle: { "padding-left": "50px" }
-                                      },
-                                      [_vm._v("-- " + _vm._s(subchild.title))]
-                                    ),
-                                    _vm._v(" "),
-                                    _c("td", { staticClass: "p-0" }, [
-                                      _c(
-                                        "div",
-                                        { staticClass: "data-action" },
-                                        [
-                                          _c(
-                                            "div",
-                                            {
-                                              on: {
-                                                click: function($event) {
-                                                  _vm.changePositionSub(
-                                                    i,
-                                                    a,
-                                                    b,
-                                                    -1
-                                                  )
-                                                }
-                                              }
-                                            },
-                                            [
-                                              _c("i", {
-                                                staticClass: "fas fa-arrow-up"
-                                              })
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "div",
-                                            {
-                                              on: {
-                                                click: function($event) {
-                                                  _vm.changePositionSub(
-                                                    i,
-                                                    a,
-                                                    b,
-                                                    1
-                                                  )
-                                                }
-                                              }
-                                            },
-                                            [
-                                              _c("i", {
-                                                staticClass: "fas fa-arrow-down"
-                                              })
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "router-link",
-                                            {
-                                              attrs: {
-                                                to:
-                                                  "helppages/" +
-                                                  subchild.id +
-                                                  "/update"
-                                              }
-                                            },
-                                            [
-                                              _c("i", {
-                                                staticClass: "fas fa-pencil-alt"
-                                              })
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "div",
-                                            {
-                                              on: {
-                                                click: function($event) {
-                                                  _vm.delete_cat = subchild
-                                                  _vm.deletemodal = true
-                                                }
-                                              }
-                                            },
-                                            [
-                                              _c("i", {
-                                                staticClass: "fas fa-trash"
-                                              })
-                                            ]
-                                          )
-                                        ],
-                                        1
-                                      )
-                                    ])
-                                  ]),
-                                  _vm._v(" "),
-                                  _vm._l(subchild.children, function(
-                                    subsubchild,
-                                    c
-                                  ) {
-                                    return [
-                                      _c("tr", [
-                                        _c(
-                                          "td",
-                                          {
-                                            staticStyle: {
-                                              "padding-left": "75px"
-                                            }
-                                          },
-                                          [
-                                            _vm._v(
-                                              "--- " + _vm._s(subsubchild.title)
-                                            )
-                                          ]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("td", { staticClass: "p-0" }, [
-                                          _c(
-                                            "div",
-                                            { staticClass: "data-action" },
-                                            [
-                                              _c(
-                                                "div",
-                                                {
-                                                  on: {
-                                                    click: function($event) {
-                                                      _vm.changePositionSubSub(
-                                                        i,
-                                                        a,
-                                                        b,
-                                                        c,
-                                                        -1
-                                                      )
-                                                    }
-                                                  }
-                                                },
-                                                [
-                                                  _c("i", {
-                                                    staticClass:
-                                                      "fas fa-arrow-up"
-                                                  })
-                                                ]
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "div",
-                                                {
-                                                  on: {
-                                                    click: function($event) {
-                                                      _vm.changePositionSubSub(
-                                                        i,
-                                                        a,
-                                                        b,
-                                                        c,
-                                                        1
-                                                      )
-                                                    }
-                                                  }
-                                                },
-                                                [
-                                                  _c("i", {
-                                                    staticClass:
-                                                      "fas fa-arrow-down"
-                                                  })
-                                                ]
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "router-link",
-                                                {
-                                                  attrs: {
-                                                    to:
-                                                      "helppages/" +
-                                                      subsubchild.id +
-                                                      "/update"
-                                                  }
-                                                },
-                                                [
-                                                  _c("i", {
-                                                    staticClass:
-                                                      "fas fa-pencil-alt"
-                                                  })
-                                                ]
-                                              ),
-                                              _vm._v(" "),
-                                              _c(
-                                                "div",
-                                                {
-                                                  on: {
-                                                    click: function($event) {
-                                                      _vm.delete_cat = subsubchild
-                                                      _vm.deletemodal = true
-                                                    }
-                                                  }
-                                                },
-                                                [
-                                                  _c("i", {
-                                                    staticClass: "fas fa-trash"
-                                                  })
-                                                ]
-                                              )
-                                            ],
-                                            1
-                                          )
-                                        ])
-                                      ])
-                                    ]
-                                  })
-                                ]
-                              })
-                            ]
-                          })
+                          ])
                         ]
                       })
                     ],
@@ -101333,7 +101187,11 @@ var render = function() {
                               _c("label", { staticClass: "file-label" }, [
                                 _c("input", {
                                   staticClass: "file-input",
-                                  attrs: { type: "file", name: "image2" },
+                                  attrs: {
+                                    type: "file",
+                                    accept: "image/*",
+                                    name: "image2"
+                                  },
                                   on: {
                                     change: function($event) {
                                       _vm.onFileChange(
@@ -101386,9 +101244,7 @@ var render = function() {
                     { staticClass: "column is-12-mobile is-10-tablet" },
                     [
                       _c("div", { staticClass: "field" }, [
-                        _c("label", { staticClass: "label" }, [
-                          _vm._v("Гарчиг")
-                        ]),
+                        _vm._m(0),
                         _vm._v(" "),
                         _c("div", { staticClass: "control" }, [
                           _c("input", {
@@ -101435,7 +101291,7 @@ var render = function() {
                               ],
                               staticClass: "help is-danger"
                             },
-                            [_vm._v(_vm._s(_vm.errors.first("title")))]
+                            [_vm._v("Заавал бөглө")]
                           )
                         ])
                       ]),
@@ -101461,7 +101317,11 @@ var render = function() {
                               }
                             ],
                             staticClass: "input",
-                            attrs: { type: "text", name: "icon" },
+                            attrs: {
+                              type: "text",
+                              name: "icon",
+                              placeholder: "fas fa-gavel fa-2x"
+                            },
                             domProps: { value: _vm.form.icon },
                             on: {
                               input: function($event) {
@@ -101815,7 +101675,17 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { staticClass: "label" }, [
+      _vm._v("Гарчиг "),
+      _c("span", { staticClass: "has-text-danger" }, [_vm._v("*")])
+    ])
+  }
+]
 render._withStripped = true
 
 if (false) {
@@ -102193,7 +102063,7 @@ var render = function() {
                 },
                 [
                   _c("div", { staticClass: "field" }, [
-                    _c("label", { staticClass: "label" }, [_vm._v("Нэр")]),
+                    _vm._m(0),
                     _vm._v(" "),
                     _c("div", { staticClass: "control" }, [
                       _c("input", {
@@ -102240,7 +102110,7 @@ var render = function() {
                           ],
                           staticClass: "help is-danger"
                         },
-                        [_vm._v(_vm._s(_vm.errors.first("name")))]
+                        [_vm._v("Ангиллын нэр оруулна уу")]
                       )
                     ])
                   ])
@@ -102276,7 +102146,17 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { staticClass: "label" }, [
+      _vm._v("Нэр  "),
+      _c("span", { staticClass: "has-text-danger" }, [_vm._v("*")])
+    ])
+  }
+]
 render._withStripped = true
 
 if (false) {
@@ -102356,7 +102236,58 @@ var render = function() {
       "div",
       { staticClass: "boxed" },
       [
-        _vm._m(0),
+        _c("div", { staticClass: "boxed-title" }, [
+          _c("div", { staticClass: "columns" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("div", { staticClass: "column is-4" }, [
+              _c(
+                "div",
+                { staticClass: "field has-addons has-addons-centered" },
+                [
+                  _c(
+                    "p",
+                    { staticClass: "control" },
+                    [
+                      _c("treeselect", {
+                        attrs: {
+                          placeholder: "Ангилал сонгох",
+                          "default-expand-level": 10,
+                          options: _vm.categories
+                        },
+                        model: {
+                          value: _vm.selected_cat,
+                          callback: function($$v) {
+                            _vm.selected_cat = $$v
+                          },
+                          expression: "selected_cat"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "control" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "button is-large  is-primary",
+                        class: { "is-loading": _vm.is_loading },
+                        attrs: { disabled: _vm.is_loading },
+                        on: {
+                          click: function($event) {
+                            _vm.fulter_category()
+                          }
+                        }
+                      },
+                      [_vm._v("шүүх")]
+                    )
+                  ])
+                ]
+              )
+            ])
+          ])
+        ]),
         _vm._v(" "),
         _vm.fetched
           ? _c("v-server-table", {
@@ -102592,7 +102523,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "boxed-title" }, [
+    return _c("div", { staticClass: "column is-8" }, [
       _c("div", { staticClass: "boxed-item-center title" }, [
         _vm._v("Файлын сан")
       ])
@@ -102716,9 +102647,19 @@ var render = function() {
                             { staticClass: "control" },
                             [
                               _c("treeselect", {
+                                directives: [
+                                  {
+                                    name: "validate",
+                                    rawName: "v-validate",
+                                    value: "required",
+                                    expression: "'required'"
+                                  }
+                                ],
                                 attrs: {
+                                  name: "name",
                                   flat: true,
                                   "default-expand-level": 10,
+                                  placeholder: "Ангилал сонгох",
                                   multiple: true,
                                   options: _vm.options
                                 },
@@ -102729,7 +102670,23 @@ var render = function() {
                                   },
                                   expression: "form.cat_id"
                                 }
-                              })
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "p",
+                                {
+                                  directives: [
+                                    {
+                                      name: "show",
+                                      rawName: "v-show",
+                                      value: _vm.errors.has("name"),
+                                      expression: "errors.has('name')"
+                                    }
+                                  ],
+                                  staticClass: "help is-danger"
+                                },
+                                [_vm._v("Ангилал сонгоно уу")]
+                              )
                             ],
                             1
                           )
@@ -102795,7 +102752,7 @@ var render = function() {
                                 ],
                                 staticClass: "help is-danger"
                               },
-                              [_vm._v(_vm._s(_vm.errors.first("name")))]
+                              [_vm._v("Гарчиг оруулна уу")]
                             )
                           ])
                         ])
@@ -103022,7 +102979,12 @@ var render = function() {
                               _vm.m_id
                                 ? [
                                     _c("input", {
-                                      attrs: { type: "file", name: "file" },
+                                      attrs: {
+                                        type: "file",
+                                        name: "file",
+                                        accept:
+                                          "image/*, .doc,.docx,.pdf, .xls, .xlsx, .ppt, .pptx,"
+                                      },
                                       on: {
                                         change: function($event) {
                                           _vm.onFileChange(
@@ -103047,7 +103009,12 @@ var render = function() {
                                         input: true,
                                         "is-danger": _vm.errors.has("file")
                                       },
-                                      attrs: { type: "file", name: "file" },
+                                      attrs: {
+                                        type: "file",
+                                        name: "file",
+                                        accept:
+                                          "image/*, .doc,.docx,.pdf, .xls, .xlsx, .ppt, .pptx,"
+                                      },
                                       on: {
                                         change: function($event) {
                                           _vm.onFileChange(
@@ -103071,7 +103038,7 @@ var render = function() {
                                         ],
                                         staticClass: "help is-danger"
                                       },
-                                      [_vm._v(_vm._s(_vm.errors.first("file")))]
+                                      [_vm._v("Файл сонгоно уу")]
                                     )
                                   ]
                             ],
@@ -103352,7 +103319,7 @@ var render = function() {
                                       staticClass: "image is-48x48",
                                       staticStyle: { "border-radius": "0px" }
                                     },
-                                    [_vm._v("IMG")]
+                                    [_c("i", { staticClass: "far fa-image" })]
                                   )
                             ])
                       ]
@@ -104174,7 +104141,7 @@ var render = function() {
                                 ],
                                 staticClass: "help is-danger"
                               },
-                              [_vm._v("Та ангилал сонгоно")]
+                              [_vm._v("Та ангилал сонгоно уу")]
                             )
                           ],
                           1
@@ -104758,7 +104725,7 @@ var render = function() {
                                       staticClass: "image is-48x48",
                                       staticStyle: { "border-radius": "0px" }
                                     },
-                                    [_vm._v("IMG")]
+                                    [_c("i", { staticClass: "far fa-image" })]
                                   )
                             ])
                       ]
@@ -105134,7 +105101,7 @@ var render = function() {
                                       staticClass: "image is-48x48",
                                       staticStyle: { "border-radius": "0px" }
                                     },
-                                    [_vm._v("IMG")]
+                                    [_c("i", { staticClass: "far fa-image" })]
                                   )
                             ])
                       ]
@@ -105395,14 +105362,18 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("section", { staticClass: "modal-card-body" }, [
-              _c("p", { staticClass: "has-text-centered" }, [
-                _vm._v(_vm._s(_vm.$store.getters.lang.messages.sure_delete))
-              ]),
-              _vm._v(" "),
               _c("p", { staticClass: "has-text-centered is-size-4" }, [
                 _c("strong", { staticClass: "has-text-black" }, [
                   _vm._v(_vm._s(_vm.deleteid.title))
                 ])
+              ]),
+              _vm._v(" "),
+              _c("p", { staticClass: "has-text-centered" }, [
+                _vm._v(
+                  "\n                     " +
+                    _vm._s(_vm.deleteid.view_count) +
+                    " хүн үзсэн байна. та устгахдаа итгэлтай байна уу\n                "
+                )
               ])
             ]),
             _vm._v(" "),
@@ -105708,6 +105679,63 @@ var render = function() {
                           "column is-12-mobile is-4-tablet is-3-desktop"
                       },
                       [
+                        _c("div", { staticClass: "field" }, [
+                          _c("label", { staticClass: "label" }, [
+                            _vm._v("Төрөл")
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "control select" }, [
+                            _c(
+                              "select",
+                              {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.form.type,
+                                    expression: "form.type"
+                                  }
+                                ],
+                                staticClass: "input",
+                                attrs: { name: "type" },
+                                on: {
+                                  change: function($event) {
+                                    var $$selectedVal = Array.prototype.filter
+                                      .call($event.target.options, function(o) {
+                                        return o.selected
+                                      })
+                                      .map(function(o) {
+                                        var val =
+                                          "_value" in o ? o._value : o.value
+                                        return val
+                                      })
+                                    _vm.$set(
+                                      _vm.form,
+                                      "type",
+                                      $event.target.multiple
+                                        ? $$selectedVal
+                                        : $$selectedVal[0]
+                                    )
+                                  }
+                                }
+                              },
+                              [
+                                _c("option", { attrs: { value: "0" } }, [
+                                  _vm._v("мэдээ")
+                                ]),
+                                _vm._v(" "),
+                                _c("option", { attrs: { value: "1" } }, [
+                                  _vm._v("фото")
+                                ]),
+                                _vm._v(" "),
+                                _c("option", { attrs: { value: "2" } }, [
+                                  _vm._v("видео")
+                                ])
+                              ]
+                            )
+                          ])
+                        ]),
+                        _vm._v(" "),
                         _vm.form.type != 2
                           ? _c("div", { staticClass: "field" }, [
                               _c("label", { staticClass: "label" }, [
@@ -105724,6 +105752,7 @@ var render = function() {
                                         staticClass: "file-input",
                                         attrs: {
                                           type: "file",
+                                          accept: "image/*",
                                           name: "imageni"
                                         },
                                         on: {
@@ -105828,7 +105857,7 @@ var render = function() {
                                     ],
                                     staticClass: "help is-danger"
                                   },
-                                  [_vm._v(_vm._s(_vm.errors.first("youtube")))]
+                                  [_vm._v("Та youbute кодоо оруулна уу")]
                                 )
                               ])
                             ]),
@@ -105837,13 +105866,20 @@ var render = function() {
                           "div",
                           { staticClass: "field" },
                           [
-                            _c("label", { staticClass: "label" }, [
-                              _vm._v("Ангилал")
-                            ]),
+                            _vm._m(1),
                             _vm._v(" "),
                             _c("treeselect", {
+                              directives: [
+                                {
+                                  name: "validate",
+                                  rawName: "v-validate",
+                                  value: "required",
+                                  expression: "'required'"
+                                }
+                              ],
                               attrs: {
                                 flat: true,
+                                placeholder: "Ангилал сонгох",
                                 "default-expand-level": 10,
                                 multiple: true,
                                 options: _vm.options
@@ -105855,7 +105891,23 @@ var render = function() {
                                 },
                                 expression: "form.cat_id"
                               }
-                            })
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "p",
+                              {
+                                directives: [
+                                  {
+                                    name: "show",
+                                    rawName: "v-show",
+                                    value: _vm.errors.has("cat_id"),
+                                    expression: "errors.has('cat_id')"
+                                  }
+                                ],
+                                staticClass: "help is-danger"
+                              },
+                              [_vm._v("Та ангилал сонгоно уу")]
+                            )
                           ],
                           1
                         ),
@@ -105966,63 +106018,6 @@ var render = function() {
                         _vm._v(" "),
                         _c("div", { staticClass: "field" }, [
                           _c("label", { staticClass: "label" }, [
-                            _vm._v("Төрөл")
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "control select" }, [
-                            _c(
-                              "select",
-                              {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.form.type,
-                                    expression: "form.type"
-                                  }
-                                ],
-                                staticClass: "input",
-                                attrs: { name: "type" },
-                                on: {
-                                  change: function($event) {
-                                    var $$selectedVal = Array.prototype.filter
-                                      .call($event.target.options, function(o) {
-                                        return o.selected
-                                      })
-                                      .map(function(o) {
-                                        var val =
-                                          "_value" in o ? o._value : o.value
-                                        return val
-                                      })
-                                    _vm.$set(
-                                      _vm.form,
-                                      "type",
-                                      $event.target.multiple
-                                        ? $$selectedVal
-                                        : $$selectedVal[0]
-                                    )
-                                  }
-                                }
-                              },
-                              [
-                                _c("option", { attrs: { value: "0" } }, [
-                                  _vm._v("мэдээ")
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "1" } }, [
-                                  _vm._v("фото")
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "2" } }, [
-                                  _vm._v("видео")
-                                ])
-                              ]
-                            )
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "field" }, [
-                          _c("label", { staticClass: "label" }, [
                             _vm._v("Төлөв")
                           ]),
                           _vm._v(" "),
@@ -106084,9 +106079,7 @@ var render = function() {
                       },
                       [
                         _c("div", { staticClass: "field" }, [
-                          _c("label", { staticClass: "label" }, [
-                            _vm._v("Гарчиг")
-                          ]),
+                          _vm._m(2),
                           _vm._v(" "),
                           _c("div", { staticClass: "control" }, [
                             _c("input", {
@@ -106137,120 +106130,191 @@ var render = function() {
                                 ],
                                 staticClass: "help is-danger"
                               },
-                              [_vm._v(_vm._s(_vm.errors.first("title")))]
+                              [
+                                _vm._v(
+                                  "Заавал бөглө, хамгийн багадаа 3 тэмдэгт байна."
+                                )
+                              ]
                             )
                           ])
                         ]),
                         _vm._v(" "),
-                        _c("div", { staticClass: "field" }, [
-                          _c("label", { staticClass: "label" }, [
-                            _vm._v("Товч текст")
-                          ]),
-                          _vm._v(" "),
-                          _c("textarea", {
-                            directives: [
-                              {
-                                name: "validate",
-                                rawName: "v-validate",
-                                value: "required",
-                                expression: "'required'"
-                              },
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.form.short_content,
-                                expression: "form.short_content"
-                              }
-                            ],
-                            class: {
-                              textarea: true,
-                              "is-danger": _vm.errors.has("short_content")
-                            },
-                            staticStyle: { "min-height": "80px" },
-                            attrs: { name: "short_content" },
-                            domProps: { value: _vm.form.short_content },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.form,
-                                  "short_content",
-                                  $event.target.value
-                                )
-                              }
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c(
-                            "p",
-                            {
-                              directives: [
-                                {
-                                  name: "show",
-                                  rawName: "v-show",
-                                  value: _vm.errors.has("short_content"),
-                                  expression: "errors.has('short_content')"
-                                }
-                              ],
-                              staticClass: "help is-danger"
-                            },
-                            [_vm._v(_vm._s(_vm.errors.first("short_content")))]
-                          )
-                        ]),
+                        _c(
+                          "div",
+                          { staticClass: "field" },
+                          [
+                            _c("label", { staticClass: "label" }, [
+                              _vm._v("Товч текст "),
+                              _vm.form.type != 2
+                                ? _c(
+                                    "span",
+                                    { staticClass: "has-text-danger" },
+                                    [_vm._v("*")]
+                                  )
+                                : _vm._e()
+                            ]),
+                            _vm._v(" "),
+                            _vm.form.type != 2
+                              ? [
+                                  _c("textarea", {
+                                    directives: [
+                                      {
+                                        name: "validate",
+                                        rawName: "v-validate",
+                                        value: { required: true, min: 3 },
+                                        expression: "{'required':true, 'min':3}"
+                                      },
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.form.short_content,
+                                        expression: "form.short_content"
+                                      }
+                                    ],
+                                    staticClass: "textarea",
+                                    staticStyle: { "min-height": "80px" },
+                                    attrs: { name: "short_content" },
+                                    domProps: { value: _vm.form.short_content },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.form,
+                                          "short_content",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "p",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "show",
+                                          rawName: "v-show",
+                                          value: _vm.errors.has(
+                                            "short_content"
+                                          ),
+                                          expression:
+                                            "errors.has('short_content')"
+                                        }
+                                      ],
+                                      staticClass: "help is-danger"
+                                    },
+                                    [
+                                      _vm._v(
+                                        "Заавал бөглө, хамгийн багадаа 3 тэмдэгт байна."
+                                      )
+                                    ]
+                                  )
+                                ]
+                              : [
+                                  _c("textarea", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.form.short_content,
+                                        expression: "form.short_content"
+                                      }
+                                    ],
+                                    staticClass: "textarea",
+                                    staticStyle: { "min-height": "80px" },
+                                    attrs: { name: "short_content" },
+                                    domProps: { value: _vm.form.short_content },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.form,
+                                          "short_content",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  })
+                                ]
+                          ],
+                          2
+                        ),
                         _vm._v(" "),
                         _c("div", { staticClass: "field" }, [
                           _c("label", { staticClass: "label" }, [
-                            _vm._v("Дэлгэрэнгүй мэдээлэл")
+                            _vm._v("Дэлгэрэнгүй мэдээлэл "),
+                            _vm.form.type != 2
+                              ? _c("span", { staticClass: "has-text-danger" }, [
+                                  _vm._v("*")
+                                ])
+                              : _vm._e()
                           ]),
                           _vm._v(" "),
                           _c(
                             "div",
                             { staticClass: "control has-autoblock" },
                             [
-                              _c("ckeditor", {
-                                directives: [
-                                  {
-                                    name: "validate",
-                                    rawName: "v-validate",
-                                    value: "required",
-                                    expression: "'required'"
-                                  }
-                                ],
-                                class: {
-                                  "is-danger": _vm.errors.has("content")
-                                },
-                                attrs: {
-                                  name: "content",
-                                  config: _vm.ck_config
-                                },
-                                model: {
-                                  value: _vm.form.content,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.form, "content", $$v)
-                                  },
-                                  expression: "form.content"
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c(
-                                "p",
-                                {
-                                  directives: [
-                                    {
-                                      name: "show",
-                                      rawName: "v-show",
-                                      value: _vm.errors.has("content"),
-                                      expression: "errors.has('content')"
-                                    }
-                                  ],
-                                  staticClass: "help is-danger"
-                                },
-                                [_vm._v(_vm._s(_vm.errors.first("content")))]
-                              )
+                              _vm.form.type != 2
+                                ? [
+                                    _c("ckeditor", {
+                                      directives: [
+                                        {
+                                          name: "validate",
+                                          rawName: "v-validate",
+                                          value: { required: true },
+                                          expression: "{'required':true}"
+                                        }
+                                      ],
+                                      attrs: {
+                                        name: "content",
+                                        config: _vm.ck_config
+                                      },
+                                      model: {
+                                        value: _vm.form.content,
+                                        callback: function($$v) {
+                                          _vm.$set(_vm.form, "content", $$v)
+                                        },
+                                        expression: "form.content"
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c(
+                                      "p",
+                                      {
+                                        directives: [
+                                          {
+                                            name: "show",
+                                            rawName: "v-show",
+                                            value: _vm.errors.has("content"),
+                                            expression: "errors.has('content')"
+                                          }
+                                        ],
+                                        staticClass: "help is-danger"
+                                      },
+                                      [_vm._v("Заавал бөглө")]
+                                    )
+                                  ]
+                                : [
+                                    _c("ckeditor", {
+                                      attrs: {
+                                        name: "content",
+                                        config: _vm.ck_config
+                                      },
+                                      model: {
+                                        value: _vm.form.content,
+                                        callback: function($$v) {
+                                          _vm.$set(_vm.form, "content", $$v)
+                                        },
+                                        expression: "form.content"
+                                      }
+                                    })
+                                  ]
                             ],
-                            1
+                            2
                           )
                         ])
                       ]
@@ -106296,6 +106360,24 @@ var staticRenderFns = [
     return _c("small", { staticStyle: { "margin-top": "10px" } }, [
       _vm._v("https://www.youtube.com/watch?v="),
       _c("span", { staticClass: "has-text-success" }, [_vm._v("6XaaI4_nIHY")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { staticClass: "label" }, [
+      _vm._v("Ангилал "),
+      _c("span", { staticClass: "has-text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { staticClass: "label" }, [
+      _vm._v("Гарчиг "),
+      _c("span", { staticClass: "has-text-danger" }, [_vm._v("*")])
     ])
   }
 ]
@@ -108043,8 +108125,23 @@ var render = function() {
                                 [
                                   _c("label", { staticClass: "file-label" }, [
                                     _c("input", {
-                                      staticClass: "file-input",
-                                      attrs: { type: "file", name: "imageni" },
+                                      directives: [
+                                        {
+                                          name: "validate",
+                                          rawName: "v-validate",
+                                          value: "required",
+                                          expression: "'required'"
+                                        }
+                                      ],
+                                      class: {
+                                        "file-input": true,
+                                        "is-danger": _vm.errors.has("imageni")
+                                      },
+                                      attrs: {
+                                        type: "file",
+                                        accept: "image/*",
+                                        name: "imageni"
+                                      },
                                       on: {
                                         change: function($event) {
                                           _vm.onFileChange(
@@ -108087,7 +108184,23 @@ var render = function() {
                                             ]
                                           )
                                     ])
-                                  ])
+                                  ]),
+                                  _vm._v(" "),
+                                  _c(
+                                    "p",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "show",
+                                          rawName: "v-show",
+                                          value: _vm.errors.has("imageni"),
+                                          expression: "errors.has('imageni')"
+                                        }
+                                      ],
+                                      staticClass: "help is-danger"
+                                    },
+                                    [_vm._v("Заавал бөглө")]
+                                  )
                                 ]
                               )
                             ])
@@ -108153,7 +108266,7 @@ var render = function() {
                                   ],
                                   staticClass: "help is-danger"
                                 },
-                                [_vm._v(_vm._s(_vm.errors.first("question")))]
+                                [_vm._v("Заавал бөглө")]
                               )
                             ])
                           ]),
@@ -108168,8 +108281,22 @@ var render = function() {
                               { staticClass: "control has-icons-right" },
                               [
                                 _c("flat-pickr", {
-                                  staticClass: "input",
-                                  attrs: { config: { dateFormat: "Y-m-d" } },
+                                  directives: [
+                                    {
+                                      name: "validate",
+                                      rawName: "v-validate",
+                                      value: "required",
+                                      expression: "'required'"
+                                    }
+                                  ],
+                                  class: {
+                                    input: true,
+                                    "is-danger": _vm.errors.has("finish_date")
+                                  },
+                                  attrs: {
+                                    name: "finish_date",
+                                    config: { dateFormat: "Y-m-d" }
+                                  },
                                   model: {
                                     value: _vm.form.finish_date,
                                     callback: function($$v) {
@@ -108182,6 +108309,22 @@ var render = function() {
                                 _vm._m(0)
                               ],
                               1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "p",
+                              {
+                                directives: [
+                                  {
+                                    name: "show",
+                                    rawName: "v-show",
+                                    value: _vm.errors.has("finish_date"),
+                                    expression: "errors.has('finish_date')"
+                                  }
+                                ],
+                                staticClass: "help is-danger"
+                              },
+                              [_vm._v("Заавал бөглө")]
                             )
                           ])
                         ]
@@ -108246,34 +108389,37 @@ var render = function() {
                                     ],
                                     staticClass: "help is-danger"
                                   },
-                                  [_vm._v(_vm._s(_vm.errors.first("text")))]
+                                  [_vm._v("Заавал бөглө")]
                                 )
                               ])
                             ])
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "column is-2" }, [
-                            _c(
-                              "p",
-                              {
-                                staticClass: "buttons",
-                                staticStyle: { "margin-top": "22px" }
-                              },
-                              [
-                                _c(
-                                  "a",
+                            i > 2
+                              ? _c(
+                                  "p",
                                   {
-                                    staticClass: "button is-large is-danger",
-                                    on: {
-                                      click: function($event) {
-                                        _vm.removeAnswer(i)
-                                      }
-                                    }
+                                    staticClass: "buttons",
+                                    staticStyle: { "margin-top": "22px" }
                                   },
-                                  [_vm._m(1, true)]
+                                  [
+                                    _c(
+                                      "a",
+                                      {
+                                        staticClass:
+                                          "button is-large is-danger",
+                                        on: {
+                                          click: function($event) {
+                                            _vm.removeAnswer(i)
+                                          }
+                                        }
+                                      },
+                                      [_vm._m(1, true)]
+                                    )
+                                  ]
                                 )
-                              ]
-                            )
+                              : _vm._e()
                           ])
                         ]
                       }),
@@ -108681,16 +108827,27 @@ var render = function() {
                       { staticClass: "column is-12-mobile is-12-tablet" },
                       [
                         _c("div", { staticClass: "field" }, [
-                          _c("label", { staticClass: "label" }, [
-                            _vm._v("Ангилал")
-                          ]),
+                          _vm._m(0),
                           _vm._v(" "),
                           _c(
                             "div",
                             { staticClass: "control" },
                             [
                               _c("treeselect", {
+                                directives: [
+                                  {
+                                    name: "validate",
+                                    rawName: "v-validate",
+                                    value: "required",
+                                    expression: "'required'"
+                                  }
+                                ],
+                                class: {
+                                  "is-danger": _vm.errors.has("cat_id")
+                                },
                                 attrs: {
+                                  name: "cat_id",
+                                  placeholder: "Ангилал сонгох",
                                   multiple: false,
                                   options: _vm.options
                                 },
@@ -108701,7 +108858,23 @@ var render = function() {
                                   },
                                   expression: "form.cat_id"
                                 }
-                              })
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "p",
+                                {
+                                  directives: [
+                                    {
+                                      name: "show",
+                                      rawName: "v-show",
+                                      value: _vm.errors.has("cat_id"),
+                                      expression: "errors.has('cat_id')"
+                                    }
+                                  ],
+                                  staticClass: "help is-danger"
+                                },
+                                [_vm._v("Заавал сонго")]
+                              )
                             ],
                             1
                           )
@@ -108714,9 +108887,7 @@ var render = function() {
                       { staticClass: "column is-12-mobile is-12-tablet" },
                       [
                         _c("div", { staticClass: "field" }, [
-                          _c("label", { staticClass: "label" }, [
-                            _vm._v("Гарчиг")
-                          ]),
+                          _vm._m(1),
                           _vm._v(" "),
                           _c("div", { staticClass: "control" }, [
                             _c("input", {
@@ -108767,7 +108938,7 @@ var render = function() {
                                 ],
                                 staticClass: "help is-danger"
                               },
-                              [_vm._v(_vm._s(_vm.errors.first("title")))]
+                              [_vm._v("Заавал бөглө")]
                             )
                           ])
                         ])
@@ -108779,9 +108950,7 @@ var render = function() {
                       { staticClass: "column is-12-mobile is-12-tablet" },
                       [
                         _c("div", { staticClass: "field" }, [
-                          _c("label", { staticClass: "label" }, [
-                            _vm._v("Тайлбар")
-                          ]),
+                          _vm._m(2),
                           _vm._v(" "),
                           _c("textarea", {
                             directives: [
@@ -108831,7 +109000,7 @@ var render = function() {
                               ],
                               staticClass: "help is-danger"
                             },
-                            [_vm._v(_vm._s(_vm.errors.first("content")))]
+                            [_vm._v("Заавал бөглө")]
                           )
                         ])
                       ]
@@ -108853,8 +109022,24 @@ var render = function() {
                               [
                                 _c("label", { staticClass: "file-label" }, [
                                   _c("input", {
+                                    directives: [
+                                      {
+                                        name: "validate",
+                                        rawName: "v-validate",
+                                        value: "required",
+                                        expression: "'required'"
+                                      }
+                                    ],
                                     staticClass: "file-input",
-                                    attrs: { type: "file", name: "image2" },
+                                    class: {
+                                      textarea: true,
+                                      "is-danger": _vm.errors.has("image2")
+                                    },
+                                    attrs: {
+                                      accept: "image/*",
+                                      type: "file",
+                                      name: "image2"
+                                    },
                                     on: {
                                       change: function($event) {
                                         _vm.onFileChange(
@@ -108895,7 +109080,23 @@ var render = function() {
                                           ]
                                         )
                                   ])
-                                ])
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "p",
+                                  {
+                                    directives: [
+                                      {
+                                        name: "show",
+                                        rawName: "v-show",
+                                        value: _vm.errors.has("image2"),
+                                        expression: "errors.has('image2')"
+                                      }
+                                    ],
+                                    staticClass: "help is-danger"
+                                  },
+                                  [_vm._v("Заавал бөглө")]
+                                )
                               ]
                             )
                           ])
@@ -108908,9 +109109,7 @@ var render = function() {
                       { staticClass: "column is-12-mobile is-6-tablet" },
                       [
                         _c("div", { staticClass: "field" }, [
-                          _c("label", { staticClass: "label" }, [
-                            _vm._v("Үнэ")
-                          ]),
+                          _vm._m(3),
                           _vm._v(" "),
                           _c("div", { staticClass: "control" }, [
                             _c("input", {
@@ -108918,9 +109117,8 @@ var render = function() {
                                 {
                                   name: "validate",
                                   rawName: "v-validate",
-                                  value: { required: true, numeric: true },
-                                  expression:
-                                    "{'required':true, 'numeric':true, }"
+                                  value: { required: true },
+                                  expression: "{'required':true }"
                                 },
                                 {
                                   name: "model",
@@ -108962,15 +109160,13 @@ var render = function() {
                                 ],
                                 staticClass: "help is-danger"
                               },
-                              [_vm._v(_vm._s(_vm.errors.first("price")))]
+                              [_vm._v("Заавал бөглө, зөвхөн тоо байна")]
                             )
                           ])
                         ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "field" }, [
-                          _c("label", { staticClass: "label" }, [
-                            _vm._v("Утас")
-                          ]),
+                          _vm._m(4),
                           _vm._v(" "),
                           _c("div", { staticClass: "control " }, [
                             _c("input", {
@@ -108978,13 +109174,8 @@ var render = function() {
                                 {
                                   name: "validate",
                                   rawName: "v-validate",
-                                  value: {
-                                    required: true,
-                                    numeric: true,
-                                    length: 8
-                                  },
-                                  expression:
-                                    "{'required':true, 'numeric':true, 'length':8 }"
+                                  value: { required: true },
+                                  expression: "{'required':true}"
                                 },
                                 {
                                   name: "model",
@@ -109026,15 +109217,13 @@ var render = function() {
                                 ],
                                 staticClass: "help is-danger"
                               },
-                              [_vm._v(_vm._s(_vm.errors.first("phone")))]
+                              [_vm._v("Заавал бөглө")]
                             )
                           ])
                         ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "field" }, [
-                          _c("label", { staticClass: "label" }, [
-                            _vm._v("Email")
-                          ]),
+                          _vm._m(5),
                           _vm._v(" "),
                           _c("div", { staticClass: "control " }, [
                             _c("input", {
@@ -109085,7 +109274,7 @@ var render = function() {
                                 ],
                                 staticClass: "help is-danger"
                               },
-                              [_vm._v(_vm._s(_vm.errors.first("email")))]
+                              [_vm._v("Заавал бөглө, их мэйл хаяг биш байна")]
                             )
                           ])
                         ])
@@ -109124,7 +109313,62 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { staticClass: "label" }, [
+      _vm._v("Ангилал  "),
+      _c("span", { staticClass: "has-text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { staticClass: "label" }, [
+      _vm._v("Гарчиг  "),
+      _c("span", { staticClass: "has-text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { staticClass: "label" }, [
+      _vm._v("Тайлбар  "),
+      _c("span", { staticClass: "has-text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { staticClass: "label" }, [
+      _vm._v("Үнэ  "),
+      _c("span", { staticClass: "has-text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { staticClass: "label" }, [
+      _vm._v("Утас  "),
+      _c("span", { staticClass: "has-text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { staticClass: "label" }, [
+      _vm._v("Email  "),
+      _c("span", { staticClass: "has-text-danger" }, [_vm._v("*")])
+    ])
+  }
+]
 render._withStripped = true
 
 if (false) {
@@ -109280,7 +109524,7 @@ var render = function() {
                               staticClass: "image is-48x48",
                               staticStyle: { "border-radius": "0px" }
                             },
-                            [_vm._v("IMG")]
+                            [_c("i", { staticClass: "far fa-image" })]
                           )
                     ]
                   }
@@ -109525,9 +109769,7 @@ var render = function() {
                       { staticClass: "column is-12-mobile is-6-tablet" },
                       [
                         _c("div", { staticClass: "field" }, [
-                          _c("label", { staticClass: "label" }, [
-                            _vm._v("Нэр")
-                          ]),
+                          _vm._m(0),
                           _vm._v(" "),
                           _c("div", { staticClass: "control" }, [
                             _c("input", {
@@ -109578,15 +109820,13 @@ var render = function() {
                                 ],
                                 staticClass: "help is-danger"
                               },
-                              [_vm._v(_vm._s(_vm.errors.first("name")))]
+                              [_vm._v("Заавал бөглө")]
                             )
                           ])
                         ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "field" }, [
-                          _c("label", { staticClass: "label" }, [
-                            _vm._v("Ангилал сонгох")
-                          ]),
+                          _vm._m(1),
                           _vm._v(" "),
                           _c("div", { staticClass: "control" }, [
                             _c("div", { staticClass: "select" }, [
@@ -109665,15 +109905,13 @@ var render = function() {
                                 ],
                                 staticClass: "help is-danger"
                               },
-                              [_vm._v(_vm._s(_vm.errors.first("cat_id")))]
+                              [_vm._v("Ангилал сонго")]
                             )
                           ])
                         ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "field" }, [
-                          _c("label", { staticClass: "label" }, [
-                            _vm._v("Линк")
-                          ]),
+                          _vm._m(2),
                           _vm._v(" "),
                           _c("div", { staticClass: "control" }, [
                             _c("input", {
@@ -109695,7 +109933,11 @@ var render = function() {
                                 input: true,
                                 "is-danger": _vm.errors.has("link")
                               },
-                              attrs: { type: "text", name: "name" },
+                              attrs: {
+                                type: "text",
+                                placeholder: "http://bayankhongor.gov.mn",
+                                name: "link"
+                              },
                               domProps: { value: _vm.form.link },
                               on: {
                                 input: function($event) {
@@ -109724,7 +109966,7 @@ var render = function() {
                                 ],
                                 staticClass: "help is-danger"
                               },
-                              [_vm._v(_vm._s(_vm.errors.first("link")))]
+                              [_vm._v("заавал бөглө")]
                             )
                           ])
                         ])
@@ -109748,7 +109990,11 @@ var render = function() {
                                 _c("label", { staticClass: "file-label" }, [
                                   _c("input", {
                                     staticClass: "file-input",
-                                    attrs: { type: "file", name: "image2" },
+                                    attrs: {
+                                      accept: "image/*",
+                                      type: "file",
+                                      name: "image2"
+                                    },
                                     on: {
                                       change: function($event) {
                                         _vm.onFileChange(
@@ -109829,7 +110075,35 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { staticClass: "label" }, [
+      _vm._v("Нэр "),
+      _c("span", { staticClass: "has-text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { staticClass: "label" }, [
+      _vm._v("Ангилал сонгох "),
+      _c("span", { staticClass: "has-text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { staticClass: "label" }, [
+      _vm._v("Линк "),
+      _c("span", { staticClass: "has-text-danger" }, [_vm._v("*")])
+    ])
+  }
+]
 render._withStripped = true
 
 if (false) {
@@ -122082,7 +122356,18 @@ var render = function() {
                                     })
                                   ]),
                                   _vm._v(" "),
-                                  _c("p", [_vm._v(_vm._s(item.title))])
+                                  _c("p", [_vm._v(_vm._s(item.title))]),
+                                  _vm._v(" "),
+                                  item.badge
+                                    ? _c(
+                                        "span",
+                                        {
+                                          staticClass:
+                                            "tag is-danger is-pulled-right"
+                                        },
+                                        [_vm._v(_vm._s(_vm.badge))]
+                                      )
+                                    : _vm._e()
                                 ]
                               )
                             ]
@@ -122124,7 +122409,18 @@ var render = function() {
                                       })
                                     ]),
                                     _vm._v(" "),
-                                    _c("p", [_vm._v(_vm._s(item.title))])
+                                    _c("p", [_vm._v(_vm._s(item.title))]),
+                                    _vm._v(" "),
+                                    item.badge
+                                      ? _c(
+                                          "span",
+                                          {
+                                            staticClass:
+                                              "tag is-danger is-pulled-right"
+                                          },
+                                          [_vm._v(_vm._s(_vm.badge))]
+                                        )
+                                      : _vm._e()
                                   ]
                                 )
                               ]
@@ -122206,7 +122502,18 @@ var render = function() {
                                           })
                                         ]),
                                         _vm._v(" "),
-                                        _c("p", [_vm._v(_vm._s(item.title))])
+                                        _c("p", [_vm._v(_vm._s(item.title))]),
+                                        _vm._v(" "),
+                                        item.badge
+                                          ? _c(
+                                              "span",
+                                              {
+                                                staticClass:
+                                                  "tag is-danger is-pulled-right"
+                                              },
+                                              [_vm._v(_vm._s(_vm.badge))]
+                                            )
+                                          : _vm._e()
                                       ]
                                     )
                                   ]
@@ -122248,7 +122555,18 @@ var render = function() {
                                             })
                                           ]),
                                           _vm._v(" "),
-                                          _c("p", [_vm._v(_vm._s(item.title))])
+                                          _c("p", [_vm._v(_vm._s(item.title))]),
+                                          _vm._v(" "),
+                                          item.badge
+                                            ? _c(
+                                                "span",
+                                                {
+                                                  staticClass:
+                                                    "tag is-danger is-pulled-right"
+                                                },
+                                                [_vm._v(_vm._s(_vm.badge))]
+                                              )
+                                            : _vm._e()
                                         ]
                                       )
                                     ]

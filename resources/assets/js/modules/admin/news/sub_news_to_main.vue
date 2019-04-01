@@ -19,7 +19,7 @@
                             <figure v-if="props.row.image" style="border-radius:0px" class="image is-48x48"
                                     :style="'background-image: url('+siteUrl+'/uploads/'+props.row.image.replace('images/', 'small/')+')'">
                             </figure>
-                            <figure v-else="" style="border-radius:0px" class="image is-48x48">IMG</figure>
+                            <figure v-else="" style="border-radius:0px" class="image is-48x48"><i class="far fa-image"></i></figure>
                         </div>
                     </template>
 

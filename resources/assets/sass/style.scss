@@ -1561,6 +1561,10 @@ aside.menu {
 					overflow: hidden;
 					text-align: center;
 					line-height: 1;
+
+					i {
+						font-size: 1.8rem;
+					}
 				}
 			}
 
@@ -1592,6 +1596,8 @@ aside.menu {
 				    cursor: pointer;
 				    color: $white;
 
+
+
 				    i {
 				    	font-size: 1rem;
 				    	height: 2rem;
@@ -1601,6 +1607,13 @@ aside.menu {
 				    &:hover {
 				    	background-color: $primary;
 				    }
+				}
+				div.disabled {
+					opacity: 0.3;
+					cursor: not-allowed;
+					&:hover {
+						background-color: $grey;
+					}
 				}
 			}
 
@@ -5637,7 +5650,11 @@ aside.menu {
 
 
 
-
+@media (max-width: 1100px) {
+	 body {
+		 font-size: 12px !important;
+	 }
+}
 
 
 

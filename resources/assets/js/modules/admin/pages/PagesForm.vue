@@ -25,7 +25,7 @@ CRUD Edit, Create form
                                         <div class="control has-image">
                                             <div class="file is-boxed is-fullwidth">
                                                 <label class="file-label">
-                                                    <input class="file-input" type="file" name="image2" @change="onFileChange($event.target.name, $event.target.files)">
+                                                    <input class="file-input" type="file" accept="image/*" name="image2" @change="onFileChange($event.target.name, $event.target.files)">
                                                     <span class="file-cta">
                                                         <span v-if="imageni" class="file-icon" :style="'background-image: url('+imageni+');'">
                                                             <i class="ion-ios-add-outline"></i>
@@ -42,10 +42,10 @@ CRUD Edit, Create form
                                 
                                 <div class="column is-12-mobile is-10-tablet">
                                     <div class="field">
-                                        <label class="label">Гарчиг</label>
+                                        <label class="label">Гарчиг <span class="has-text-danger">*</span></label>
                                         <div class="control">
                                             <input type="text" name="title" v-validate="'required'" v-model="form.title" :class="{'input': true, 'is-danger': errors.has('title') }" />
-                                            <p v-show="errors.has('title')" class="help is-danger">{{ errors.first('title') }}</p>
+                                            <p v-show="errors.has('title')" class="help is-danger">Заавал бөглө</p>
                                         </div>
                                     </div>
 
