@@ -14,6 +14,9 @@ import heltesForm from '../modules/admin/heltes/heltesForm'
 import Employees from '../modules/admin/employee/Employees'
 import EmployeesForm from '../modules/admin/employee/EmployeesForm'
 
+import Users from '../modules/admin/user/Users'
+import UserForm from '../modules/admin/user/UserForm'
+
 
 import newsCategory from '../modules/admin/newsCategory/newsCategory'
 import zarCategory from '../modules/admin/zarCategory/zarCategory'
@@ -891,6 +894,65 @@ let routes = [
                         {
                             title: 'Админ',
                             rname: 'employees'
+                        }
+                    ],
+                    notloading: true,
+                    is_modal: true,
+                }
+            },
+        ]
+    },
+
+
+    {
+        path: '/users',
+        name: 'users',
+        component: Users,
+        meta: {
+            requiresAuth: true,
+            page_title: 'Админ / хэрэглэгч',
+            bread_crumbs: [
+                {
+                    title: 'Ерөнхий',
+                    rname: 'home'
+                }
+            ]
+        },
+        children: [
+            {
+                path: 'create',
+                component: UserForm,
+                name: 'create_user',
+                meta: {
+                    page_title: 'Нэмэх',
+                    bread_crumbs: [
+                        {
+                            title: 'Ерөнхий',
+                            rname: 'home'
+                        },
+                        {
+                            title: 'Админ',
+                            rname: 'users'
+                        }
+                    ],
+                    notloading: true,
+                    is_modal: true,
+                }
+            },
+            {
+                path: ':id/update',
+                component: UserForm,
+                name: 'update_user',
+                meta: {
+                    page_title: 'Засах',
+                    bread_crumbs: [
+                        {
+                            title: 'Ерөнхий',
+                            rname: 'home'
+                        },
+                        {
+                            title: 'хэрэглэгч',
+                            rname: 'users'
                         }
                     ],
                     notloading: true,

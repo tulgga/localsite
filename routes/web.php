@@ -49,3 +49,7 @@ Route::domain('{account}.bayankhongor.local')->group(function () {
 });
 
 Route::get('/', 'Controller@homePage');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

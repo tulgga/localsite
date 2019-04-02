@@ -22,37 +22,18 @@ class User extends Authenticatable
         'phone',
         'gender',
         'birth_date',
-        'family_name',
+        'name',
         'registration_no',
-        'ic_expiry_date',
-        'home_address',
-        'bank_id',
-        'bank_account_no',
-        'bank_account_name',
+        'is_set_rd',
         'profile_pic',
-        'image_1',
-        'image_2',
-        'user_agreement_no',
-        'loan_status',
-        'wallet_id',
+        'status',
+        'verify',
+        'is_volunteer',
+
     ];
 
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
-
-    public  function bank(){
-        return $this->hasOne(Banks::class, 'id', 'bank_id');
-    }
-
-    public  function loan(){
-        return $this->hasOne(Loan::class, 'user_id', 'id')->orderBy('id','desc');
+    public function AauthAcessToken(){
+        return $this->hasMany('\App\OauthAccessToken');
     }
 
 }

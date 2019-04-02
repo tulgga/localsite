@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Auth;
+//use App\Http\Controllers\Auth;
 
 
 /*
@@ -13,6 +13,15 @@ use App\Http\Controllers\Auth;
 | is assigned the "api" middleware group. Enjoy building your API!
 */
 
+Route::fallback(function(){
+    return response()->json(['message' => 'Not Found!'], 404);
+});
+
+Route::middleware('auth:api')->namespace('Api')->group(function () {
+    Route::get('userInfo', 'ApiUserController@userInfo');
+    Route::post('verify', 'ApiUserController@verify');
+    Route::get('logOut', 'ApiUserController@logOut');
+});
 
 Route::namespace('Api')->group(function (){
     //sites
@@ -21,6 +30,11 @@ Route::namespace('Api')->group(function (){
     Route::get('homePoll','ApiPollController@homePoll');
     Route::post('sendPoll', 'ApiPollController@sendPoll');
     Route::post('sendUrgudul', 'ApiUrgudulController@sendUrgudul');
+
+    Route::post('login', 'ApiUserController@login');
+    Route::post('register', 'ApiUserController@register');
+    Route::post('lostPassword', 'ApiUserController@lostPassword');
+    Route::post('restorePassword', 'ApiUserController@restorePassword');
 
 
     Route::get('sidebar/{id}','ApiSiteController@sidebar');
@@ -68,7 +82,7 @@ Route::namespace('Api')->group(function (){
 
 Route::middleware('auth:admin-api')->namespace('Admin')->prefix('admin')->group(function () {
 
-    Route::get('user','AdminUserController@index');
+    Route::get('user','AdminLoginController@index');
 
     //heltes
     Route::resource('heltes','AdminHeltesController');
@@ -161,6 +175,11 @@ Route::middleware('auth:admin-api')->namespace('Admin')->prefix('admin')->group(
     //zar
     Route::resource('zar','AdminZarController');
     Route::post('zar/{id}','AdminZarController@update');
+
+
+    //user
+    Route::resource('users','AdminUserController');
+    Route::post('users/{id}','AdminUserController@update');
 
 });
 

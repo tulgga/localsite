@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Urgudul;
 use App\Img;
 
+
 class AdminUrgudulController extends Controller
 {
     public function index1($site_id)
@@ -125,7 +126,7 @@ class AdminUrgudulController extends Controller
         $info->status=1;
         $info->save();
 
-        Mail::to($info->email)->send(new SanalHuseltMail($info->reply));
+        Mail::to($info->email)->send(new SanalHuseltMail($info->reply, 'Санал хүсэлтийн хариу'));
 
         return response()->json([
             'success' => $info,

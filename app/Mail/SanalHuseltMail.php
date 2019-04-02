@@ -17,9 +17,11 @@ class SanalHuseltMail extends Mailable
      * @return void
      */
     public $SanalHuseltMail;
+    public $title;
 
-    public function __construct($SanalHuseltMail)
+    public function __construct($SanalHuseltMail, $title)
     {
+        $this->title=$title;
         $this->SanalHuseltMail=$SanalHuseltMail;
     }
 
@@ -30,6 +32,6 @@ class SanalHuseltMail extends Mailable
      */
     public function build()
     {
-        return $this->view('mails.mail');
+        return $this->subject($this->title)->from(['address'=>'info@bayankhongor.gov.mn', 'name' => 'Баянхонгор'])->view('mails.mail');
     }
 }

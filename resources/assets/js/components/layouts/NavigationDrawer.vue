@@ -117,6 +117,7 @@
                         { title: 'Дэд сайтууд', icon: 'fas fa-th', path: '/sites', role:0,},
                         { title: 'Хэлтэс', icon: 'fas fa-code-branch', path: '/heltes', role:0,},
                         { title: 'Админ / ажилтан', icon: 'fas fa-users', path: '/employees', role:0,},
+                        { title: "Хэрэглэгчид", icon: 'fas fa-users', path: '/users' ,  role:0},
                     { subheader: 'Тохиргоо', role:0,},
                         { title: 'Тохиргоо', icon: 'fas fa-sliders-h', path: '/config',  role:0,},
                         // { title: "Цэс", icon: 'fas fa-bars', path: '/menu' ,  role:1},
@@ -188,7 +189,7 @@
                         this.badge = response.data.success;
                         console.log(this.badge);
                     })
-                }, 20000);
+                }, 40000);
             },
             checkAdminType() {
                 var admin_type=this.$store.getters.authUser.admin_type;
@@ -247,7 +248,6 @@
                     this.$router.push({path:path});
                 // }
             },
-
         }
     }
 

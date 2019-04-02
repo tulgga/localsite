@@ -53,6 +53,11 @@ class Handler extends ExceptionHandler
             ])->validate();
         }
 
+
+
         return parent::render($request, $exception);
+
+
+
     }
 }

@@ -38495,35 +38495,40 @@ exports.default = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_admin_heltes_heltesForm__ = __webpack_require__(686);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__modules_admin_employee_Employees__ = __webpack_require__(688);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__modules_admin_employee_EmployeesForm__ = __webpack_require__(690);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__modules_admin_newsCategory_newsCategory__ = __webpack_require__(692);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__modules_admin_zarCategory_zarCategory__ = __webpack_require__(697);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__modules_admin_fileCategory_fileCategoryNew__ = __webpack_require__(699);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__modules_admin_pages_Pages__ = __webpack_require__(701);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__modules_admin_pages_PagesForm__ = __webpack_require__(703);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__modules_admin_pages_HelpPages__ = __webpack_require__(705);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__modules_admin_pages_HelpPagesForm__ = __webpack_require__(707);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__modules_admin_linkCategory_LinkCategory__ = __webpack_require__(709);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__modules_admin_linkCategory_LinkCategoryForm__ = __webpack_require__(713);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__modules_admin_file_file__ = __webpack_require__(715);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__modules_admin_file_fileForm__ = __webpack_require__(717);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__modules_admin_news_news__ = __webpack_require__(719);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__modules_admin_news_newsForm__ = __webpack_require__(723);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__modules_admin_news_sub_news_to_main__ = __webpack_require__(725);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__modules_admin_news_sub_news__ = __webpack_require__(727);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__modules_admin_news_sub_newsForm__ = __webpack_require__(731);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__modules_admin_menu_menu__ = __webpack_require__(733);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__modules_admin_urgudul_urgudul__ = __webpack_require__(739);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__modules_admin_sidebar_sidebar__ = __webpack_require__(741);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__modules_admin_poll_poll__ = __webpack_require__(745);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__modules_admin_poll_pollForm__ = __webpack_require__(747);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__modules_admin_zar_zar__ = __webpack_require__(749);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__modules_admin_zar_zarForm__ = __webpack_require__(751);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__modules_admin_Links_Link__ = __webpack_require__(753);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__modules_admin_Links_LinkForm__ = __webpack_require__(757);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__modules_admin_employee_Profile__ = __webpack_require__(759);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__modules_admin_config_Config__ = __webpack_require__(761);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__modules_auth_Login__ = __webpack_require__(763);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__modules_system_NotFound__ = __webpack_require__(765);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__modules_admin_user_Users__ = __webpack_require__(1002);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__modules_admin_user_UserForm__ = __webpack_require__(1004);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__modules_admin_newsCategory_newsCategory__ = __webpack_require__(692);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__modules_admin_zarCategory_zarCategory__ = __webpack_require__(697);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__modules_admin_fileCategory_fileCategoryNew__ = __webpack_require__(699);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__modules_admin_pages_Pages__ = __webpack_require__(701);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__modules_admin_pages_PagesForm__ = __webpack_require__(703);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__modules_admin_pages_HelpPages__ = __webpack_require__(705);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__modules_admin_pages_HelpPagesForm__ = __webpack_require__(707);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__modules_admin_linkCategory_LinkCategory__ = __webpack_require__(709);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__modules_admin_linkCategory_LinkCategoryForm__ = __webpack_require__(713);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__modules_admin_file_file__ = __webpack_require__(715);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__modules_admin_file_fileForm__ = __webpack_require__(717);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__modules_admin_news_news__ = __webpack_require__(719);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__modules_admin_news_newsForm__ = __webpack_require__(723);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__modules_admin_news_sub_news_to_main__ = __webpack_require__(725);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__modules_admin_news_sub_news__ = __webpack_require__(727);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__modules_admin_news_sub_newsForm__ = __webpack_require__(731);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__modules_admin_menu_menu__ = __webpack_require__(733);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__modules_admin_urgudul_urgudul__ = __webpack_require__(739);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__modules_admin_sidebar_sidebar__ = __webpack_require__(741);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__modules_admin_poll_poll__ = __webpack_require__(745);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__modules_admin_poll_pollForm__ = __webpack_require__(747);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__modules_admin_zar_zar__ = __webpack_require__(749);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__modules_admin_zar_zarForm__ = __webpack_require__(751);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__modules_admin_Links_Link__ = __webpack_require__(753);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__modules_admin_Links_LinkForm__ = __webpack_require__(757);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__modules_admin_employee_Profile__ = __webpack_require__(759);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__modules_admin_config_Config__ = __webpack_require__(761);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__modules_auth_Login__ = __webpack_require__(763);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__modules_system_NotFound__ = __webpack_require__(765);
+
+
+
 
 
 
@@ -38590,8 +38595,8 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_
 var routes = [{
     path: '/login',
     name: 'login',
-    component: __WEBPACK_IMPORTED_MODULE_37__modules_auth_Login__["a" /* default */]
-}, { path: "*", component: __WEBPACK_IMPORTED_MODULE_38__modules_system_NotFound__["a" /* default */] }, {
+    component: __WEBPACK_IMPORTED_MODULE_39__modules_auth_Login__["a" /* default */]
+}, { path: "*", component: __WEBPACK_IMPORTED_MODULE_40__modules_system_NotFound__["a" /* default */] }, {
     path: '/',
     name: 'home',
     component: __WEBPACK_IMPORTED_MODULE_3__modules_admin_Dashboard__["a" /* default */],
@@ -38606,7 +38611,7 @@ var routes = [{
 }, {
     path: '/news_category',
     name: 'newsCategory',
-    component: __WEBPACK_IMPORTED_MODULE_10__modules_admin_newsCategory_newsCategory__["a" /* default */],
+    component: __WEBPACK_IMPORTED_MODULE_12__modules_admin_newsCategory_newsCategory__["a" /* default */],
     meta: {
         requiresAuth: true,
         page_title: 'Мэдээний ангилал',
@@ -38618,7 +38623,7 @@ var routes = [{
 }, {
     path: '/zar_category',
     name: 'zarCategory',
-    component: __WEBPACK_IMPORTED_MODULE_11__modules_admin_zarCategory_zarCategory__["a" /* default */],
+    component: __WEBPACK_IMPORTED_MODULE_13__modules_admin_zarCategory_zarCategory__["a" /* default */],
     meta: {
         requiresAuth: true,
         page_title: 'Зарын ангилал',
@@ -38630,7 +38635,7 @@ var routes = [{
 }, {
     path: '/config',
     name: 'config',
-    component: __WEBPACK_IMPORTED_MODULE_36__modules_admin_config_Config__["a" /* default */],
+    component: __WEBPACK_IMPORTED_MODULE_38__modules_admin_config_Config__["a" /* default */],
     meta: {
         requiresAuth: true,
         page_title: 'Тохиргоо',
@@ -38642,7 +38647,7 @@ var routes = [{
 }, {
     path: '/menu',
     name: 'menu',
-    component: __WEBPACK_IMPORTED_MODULE_26__modules_admin_menu_menu__["a" /* default */],
+    component: __WEBPACK_IMPORTED_MODULE_28__modules_admin_menu_menu__["a" /* default */],
     meta: {
         requiresAuth: true,
         page_title: 'Цэс',
@@ -38654,7 +38659,7 @@ var routes = [{
 }, {
     path: '/file_category',
     name: 'fileCategory',
-    component: __WEBPACK_IMPORTED_MODULE_12__modules_admin_fileCategory_fileCategoryNew__["a" /* default */],
+    component: __WEBPACK_IMPORTED_MODULE_14__modules_admin_fileCategory_fileCategoryNew__["a" /* default */],
     meta: {
         requiresAuth: true,
         page_title: 'Файлын ангилал',
@@ -38666,7 +38671,7 @@ var routes = [{
 }, {
     path: '/sub_news_publish',
     name: 'subNewsPublish',
-    component: __WEBPACK_IMPORTED_MODULE_23__modules_admin_news_sub_news_to_main__["a" /* default */],
+    component: __WEBPACK_IMPORTED_MODULE_25__modules_admin_news_sub_news_to_main__["a" /* default */],
     meta: {
         requiresAuth: true,
         page_title: 'Орон нутгийн мэдээ',
@@ -38678,7 +38683,7 @@ var routes = [{
 }, {
     path: '/profile',
     name: 'profile',
-    component: __WEBPACK_IMPORTED_MODULE_35__modules_admin_employee_Profile__["a" /* default */],
+    component: __WEBPACK_IMPORTED_MODULE_37__modules_admin_employee_Profile__["a" /* default */],
     meta: {
         requiresAuth: true,
         page_title: 'Миний профайл',
@@ -38687,7 +38692,7 @@ var routes = [{
 }, {
     path: '/pages',
     name: 'pages',
-    component: __WEBPACK_IMPORTED_MODULE_13__modules_admin_pages_Pages__["a" /* default */],
+    component: __WEBPACK_IMPORTED_MODULE_15__modules_admin_pages_Pages__["a" /* default */],
     meta: {
         requiresAuth: true,
         page_title: 'Үндсэн цэс',
@@ -38698,7 +38703,7 @@ var routes = [{
     },
     children: [{
         path: 'create',
-        component: __WEBPACK_IMPORTED_MODULE_14__modules_admin_pages_PagesForm__["a" /* default */],
+        component: __WEBPACK_IMPORTED_MODULE_16__modules_admin_pages_PagesForm__["a" /* default */],
         name: 'create_page',
         meta: {
             page_title: 'Нэмэх',
@@ -38714,7 +38719,7 @@ var routes = [{
         }
     }, {
         path: ':id/update',
-        component: __WEBPACK_IMPORTED_MODULE_14__modules_admin_pages_PagesForm__["a" /* default */],
+        component: __WEBPACK_IMPORTED_MODULE_16__modules_admin_pages_PagesForm__["a" /* default */],
         name: 'update_page',
         meta: {
             page_title: 'Засах',
@@ -38732,7 +38737,7 @@ var routes = [{
 }, {
     path: '/helppages',
     name: 'helppages',
-    component: __WEBPACK_IMPORTED_MODULE_15__modules_admin_pages_HelpPages__["a" /* default */],
+    component: __WEBPACK_IMPORTED_MODULE_17__modules_admin_pages_HelpPages__["a" /* default */],
     meta: {
         requiresAuth: true,
         page_title: 'Туслах цэс',
@@ -38743,7 +38748,7 @@ var routes = [{
     },
     children: [{
         path: 'create',
-        component: __WEBPACK_IMPORTED_MODULE_16__modules_admin_pages_HelpPagesForm__["a" /* default */],
+        component: __WEBPACK_IMPORTED_MODULE_18__modules_admin_pages_HelpPagesForm__["a" /* default */],
         name: 'help_create_page',
         meta: {
             page_title: 'Нэмэх',
@@ -38759,7 +38764,7 @@ var routes = [{
         }
     }, {
         path: ':id/update',
-        component: __WEBPACK_IMPORTED_MODULE_16__modules_admin_pages_HelpPagesForm__["a" /* default */],
+        component: __WEBPACK_IMPORTED_MODULE_18__modules_admin_pages_HelpPagesForm__["a" /* default */],
         name: 'help_update_page',
         meta: {
             page_title: 'Засах',
@@ -38777,7 +38782,7 @@ var routes = [{
 }, {
     path: '/files',
     name: 'files',
-    component: __WEBPACK_IMPORTED_MODULE_19__modules_admin_file_file__["a" /* default */],
+    component: __WEBPACK_IMPORTED_MODULE_21__modules_admin_file_file__["a" /* default */],
     meta: {
         requiresAuth: true,
         page_title: 'Файлын сан',
@@ -38788,7 +38793,7 @@ var routes = [{
     },
     children: [{
         path: 'create',
-        component: __WEBPACK_IMPORTED_MODULE_20__modules_admin_file_fileForm__["a" /* default */],
+        component: __WEBPACK_IMPORTED_MODULE_22__modules_admin_file_fileForm__["a" /* default */],
         name: 'create_file',
         meta: {
             page_title: 'Нэмэх',
@@ -38801,7 +38806,7 @@ var routes = [{
         }
     }, {
         path: ':id/update',
-        component: __WEBPACK_IMPORTED_MODULE_20__modules_admin_file_fileForm__["a" /* default */],
+        component: __WEBPACK_IMPORTED_MODULE_22__modules_admin_file_fileForm__["a" /* default */],
         name: 'update_file',
         meta: {
             page_title: 'Засах',
@@ -38816,7 +38821,7 @@ var routes = [{
 }, {
     path: '/news',
     name: 'news',
-    component: __WEBPACK_IMPORTED_MODULE_21__modules_admin_news_news__["a" /* default */],
+    component: __WEBPACK_IMPORTED_MODULE_23__modules_admin_news_news__["a" /* default */],
     meta: {
         requiresAuth: true,
         page_title: 'Мэдээ',
@@ -38827,7 +38832,7 @@ var routes = [{
     },
     children: [{
         path: 'create',
-        component: __WEBPACK_IMPORTED_MODULE_22__modules_admin_news_newsForm__["a" /* default */],
+        component: __WEBPACK_IMPORTED_MODULE_24__modules_admin_news_newsForm__["a" /* default */],
         name: 'create_news',
         meta: {
             page_title: 'Нэмэх',
@@ -38840,7 +38845,7 @@ var routes = [{
         }
     }, {
         path: ':id/update',
-        component: __WEBPACK_IMPORTED_MODULE_22__modules_admin_news_newsForm__["a" /* default */],
+        component: __WEBPACK_IMPORTED_MODULE_24__modules_admin_news_newsForm__["a" /* default */],
         name: 'update_news',
         meta: {
             page_title: 'Засах',
@@ -38855,7 +38860,7 @@ var routes = [{
 }, {
     path: '/sub_news',
     name: 'sub_news',
-    component: __WEBPACK_IMPORTED_MODULE_24__modules_admin_news_sub_news__["a" /* default */],
+    component: __WEBPACK_IMPORTED_MODULE_26__modules_admin_news_sub_news__["a" /* default */],
     meta: {
         requiresAuth: true,
         page_title: 'Мэдээ',
@@ -38866,7 +38871,7 @@ var routes = [{
     },
     children: [{
         path: 'create',
-        component: __WEBPACK_IMPORTED_MODULE_25__modules_admin_news_sub_newsForm__["a" /* default */],
+        component: __WEBPACK_IMPORTED_MODULE_27__modules_admin_news_sub_newsForm__["a" /* default */],
         name: 'create_sub_news',
         meta: {
             page_title: 'Нэмэх',
@@ -38879,7 +38884,7 @@ var routes = [{
         }
     }, {
         path: ':id/update',
-        component: __WEBPACK_IMPORTED_MODULE_25__modules_admin_news_sub_newsForm__["a" /* default */],
+        component: __WEBPACK_IMPORTED_MODULE_27__modules_admin_news_sub_newsForm__["a" /* default */],
         name: 'update_sub_news',
         meta: {
             page_title: 'Засах',
@@ -38894,7 +38899,7 @@ var routes = [{
 }, {
     path: '/poll',
     name: 'poll',
-    component: __WEBPACK_IMPORTED_MODULE_29__modules_admin_poll_poll__["a" /* default */],
+    component: __WEBPACK_IMPORTED_MODULE_31__modules_admin_poll_poll__["a" /* default */],
     meta: {
         requiresAuth: true,
         page_title: 'Санал асуулга',
@@ -38905,7 +38910,7 @@ var routes = [{
     },
     children: [{
         path: 'create',
-        component: __WEBPACK_IMPORTED_MODULE_30__modules_admin_poll_pollForm__["a" /* default */],
+        component: __WEBPACK_IMPORTED_MODULE_32__modules_admin_poll_pollForm__["a" /* default */],
         name: 'create_poll',
         meta: {
             page_title: 'Нэмэх',
@@ -38918,7 +38923,7 @@ var routes = [{
         }
     }, {
         path: ':id/update',
-        component: __WEBPACK_IMPORTED_MODULE_30__modules_admin_poll_pollForm__["a" /* default */],
+        component: __WEBPACK_IMPORTED_MODULE_32__modules_admin_poll_pollForm__["a" /* default */],
         name: 'update_poll',
         meta: {
             page_title: 'Засах',
@@ -38933,7 +38938,7 @@ var routes = [{
 }, {
     path: '/urgudul',
     name: 'urgudul',
-    component: __WEBPACK_IMPORTED_MODULE_27__modules_admin_urgudul_urgudul__["a" /* default */],
+    component: __WEBPACK_IMPORTED_MODULE_29__modules_admin_urgudul_urgudul__["a" /* default */],
     meta: {
         requiresAuth: true,
         page_title: 'Санал хүсэлт',
@@ -38945,7 +38950,7 @@ var routes = [{
 }, {
     path: '/sidebar',
     name: 'sidebar',
-    component: __WEBPACK_IMPORTED_MODULE_28__modules_admin_sidebar_sidebar__["a" /* default */],
+    component: __WEBPACK_IMPORTED_MODULE_30__modules_admin_sidebar_sidebar__["a" /* default */],
     meta: {
         requiresAuth: true,
         page_title: 'Сурталчилгаа',
@@ -38957,7 +38962,7 @@ var routes = [{
 }, {
     path: '/zar',
     name: 'zar',
-    component: __WEBPACK_IMPORTED_MODULE_31__modules_admin_zar_zar__["a" /* default */],
+    component: __WEBPACK_IMPORTED_MODULE_33__modules_admin_zar_zar__["a" /* default */],
     meta: {
         requiresAuth: true,
         page_title: 'Зар',
@@ -38968,7 +38973,7 @@ var routes = [{
     },
     children: [{
         path: 'create',
-        component: __WEBPACK_IMPORTED_MODULE_32__modules_admin_zar_zarForm__["a" /* default */],
+        component: __WEBPACK_IMPORTED_MODULE_34__modules_admin_zar_zarForm__["a" /* default */],
         name: 'create_zar',
         meta: {
             page_title: 'Нэмэх',
@@ -38981,7 +38986,7 @@ var routes = [{
         }
     }, {
         path: ':id/update',
-        component: __WEBPACK_IMPORTED_MODULE_32__modules_admin_zar_zarForm__["a" /* default */],
+        component: __WEBPACK_IMPORTED_MODULE_34__modules_admin_zar_zarForm__["a" /* default */],
         name: 'update_zar',
         meta: {
             page_title: 'Зар засах',
@@ -39086,7 +39091,7 @@ var routes = [{
 }, {
     path: '/link_category',
     name: 'link_category',
-    component: __WEBPACK_IMPORTED_MODULE_17__modules_admin_linkCategory_LinkCategory__["a" /* default */],
+    component: __WEBPACK_IMPORTED_MODULE_19__modules_admin_linkCategory_LinkCategory__["a" /* default */],
     meta: {
         requiresAuth: true,
         page_title: 'Холбоос ангилал',
@@ -39097,7 +39102,7 @@ var routes = [{
     },
     children: [{
         path: 'create',
-        component: __WEBPACK_IMPORTED_MODULE_18__modules_admin_linkCategory_LinkCategoryForm__["a" /* default */],
+        component: __WEBPACK_IMPORTED_MODULE_20__modules_admin_linkCategory_LinkCategoryForm__["a" /* default */],
         name: 'link_category_create',
         meta: {
             page_title: 'Нэмэх',
@@ -39113,7 +39118,7 @@ var routes = [{
         }
     }, {
         path: ':id/update',
-        component: __WEBPACK_IMPORTED_MODULE_18__modules_admin_linkCategory_LinkCategoryForm__["a" /* default */],
+        component: __WEBPACK_IMPORTED_MODULE_20__modules_admin_linkCategory_LinkCategoryForm__["a" /* default */],
         name: 'link_category_update',
         meta: {
             page_title: 'Засах',
@@ -39131,7 +39136,7 @@ var routes = [{
 }, {
     path: '/link',
     name: 'link',
-    component: __WEBPACK_IMPORTED_MODULE_33__modules_admin_Links_Link__["a" /* default */],
+    component: __WEBPACK_IMPORTED_MODULE_35__modules_admin_Links_Link__["a" /* default */],
     meta: {
         requiresAuth: true,
         page_title: 'Холбоос',
@@ -39142,7 +39147,7 @@ var routes = [{
     },
     children: [{
         path: 'create',
-        component: __WEBPACK_IMPORTED_MODULE_34__modules_admin_Links_LinkForm__["a" /* default */],
+        component: __WEBPACK_IMPORTED_MODULE_36__modules_admin_Links_LinkForm__["a" /* default */],
         name: 'link_create',
         meta: {
             page_title: 'Нэмэх',
@@ -39158,7 +39163,7 @@ var routes = [{
         }
     }, {
         path: ':id/update',
-        component: __WEBPACK_IMPORTED_MODULE_34__modules_admin_Links_LinkForm__["a" /* default */],
+        component: __WEBPACK_IMPORTED_MODULE_36__modules_admin_Links_LinkForm__["a" /* default */],
         name: 'link_update',
         meta: {
             page_title: 'Засах',
@@ -39213,6 +39218,51 @@ var routes = [{
             }, {
                 title: 'Админ',
                 rname: 'employees'
+            }],
+            notloading: true,
+            is_modal: true
+        }
+    }]
+}, {
+    path: '/users',
+    name: 'users',
+    component: __WEBPACK_IMPORTED_MODULE_10__modules_admin_user_Users__["a" /* default */],
+    meta: {
+        requiresAuth: true,
+        page_title: 'Админ / хэрэглэгч',
+        bread_crumbs: [{
+            title: 'Ерөнхий',
+            rname: 'home'
+        }]
+    },
+    children: [{
+        path: 'create',
+        component: __WEBPACK_IMPORTED_MODULE_11__modules_admin_user_UserForm__["a" /* default */],
+        name: 'create_user',
+        meta: {
+            page_title: 'Нэмэх',
+            bread_crumbs: [{
+                title: 'Ерөнхий',
+                rname: 'home'
+            }, {
+                title: 'Админ',
+                rname: 'users'
+            }],
+            notloading: true,
+            is_modal: true
+        }
+    }, {
+        path: ':id/update',
+        component: __WEBPACK_IMPORTED_MODULE_11__modules_admin_user_UserForm__["a" /* default */],
+        name: 'update_user',
+        meta: {
+            page_title: 'Засах',
+            bread_crumbs: [{
+                title: 'Ерөнхий',
+                rname: 'home'
+            }, {
+                title: 'хэрэглэгч',
+                rname: 'users'
             }],
             notloading: true,
             is_modal: true
@@ -95024,7 +95074,7 @@ function updateLink (link, options, obj) {
             domain: [],
             domainmodal: false,
             user: false,
-            items: [{ subheader: 'Ерөнхий', role: 0 }, { title: 'Дэд сайтууд', icon: 'fas fa-th', path: '/sites', role: 0 }, { title: 'Хэлтэс', icon: 'fas fa-code-branch', path: '/heltes', role: 0 }, { title: 'Админ / ажилтан', icon: 'fas fa-users', path: '/employees', role: 0 }, { subheader: 'Тохиргоо', role: 0 }, { title: 'Тохиргоо', icon: 'fas fa-sliders-h', path: '/config', role: 0 },
+            items: [{ subheader: 'Ерөнхий', role: 0 }, { title: 'Дэд сайтууд', icon: 'fas fa-th', path: '/sites', role: 0 }, { title: 'Хэлтэс', icon: 'fas fa-code-branch', path: '/heltes', role: 0 }, { title: 'Админ / ажилтан', icon: 'fas fa-users', path: '/employees', role: 0 }, { title: "Хэрэглэгчид", icon: 'fas fa-users', path: '/users', role: 0 }, { subheader: 'Тохиргоо', role: 0 }, { title: 'Тохиргоо', icon: 'fas fa-sliders-h', path: '/config', role: 0 },
             // { title: "Цэс", icon: 'fas fa-bars', path: '/menu' ,  role:1},
             { title: "Сурталчилгаа", icon: 'fab fa-goodreads', path: '/sidebar', role: 0 }, { subheader: 'Мэдээ', role: 1 }, { title: 'Мэдээний ангилал', icon: 'fas fa-code-branch', path: '/news_category', role: 0 }, { title: "Мэдээ", icon: 'fas fa-newspaper', path: '/news', role: 1 }, { title: "Орон нутгийн мэдээ", icon: 'fas fa-newspaper', path: '/sub_news_publish', role: 0 }, { title: 'Үндсэн цэс', icon: 'fas fa-bars', path: '/pages', role: 0 }, { title: 'Туслах цэс', icon: 'fas fa-bars', path: '/helppages', role: 0 }, { subheader: 'Файлын сан', role: 1 }, { title: "Файлын ангилал", icon: 'fas fa-code-branch', path: '/file_category', role: 0 }, { title: "Файлын сан", icon: 'fas fa-folder', path: '/files', role: 1 }, { subheader: 'Холбоос', role: 1 }, { title: "Холбоос ангилал", icon: 'fas fa-code-branch', path: '/link_category', role: 0 }, { title: "Холбоос", icon: 'fas fa-link', path: '/link', role: 1 }, { subheader: 'Зар', role: 0 }, { title: "Зарийн ангилал", icon: 'fas fa-code-branch', path: '/zar_category', role: 0 }, { title: "Зар", icon: 'fas fa-chart-bar', path: '/zar', role: 0 }, { subheader: 'Бусад', role: 1 }, { title: "Санал асуулга", icon: 'fas fa-code-branch', path: '/poll', role: 0 }, { title: 'Санал хүсэлт', icon: 'far fa-comments', path: '/urgudul', role: 1, badge: 1 },
 
@@ -95056,7 +95106,7 @@ function updateLink (link, options, obj) {
                     _this.badge = response.data.success;
                     console.log(_this.badge);
                 });
-            }, 20000);
+            }, 40000);
         },
         checkAdminType: function checkAdminType() {
             var admin_type = this.$store.getters.authUser.admin_type;
@@ -95116,7 +95166,6 @@ function updateLink (link, options, obj) {
             this.$router.push({ path: path });
             // }
         }
-
     }
 });
 
@@ -123021,6 +123070,1978 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 827 */,
+/* 828 */,
+/* 829 */,
+/* 830 */,
+/* 831 */,
+/* 832 */,
+/* 833 */,
+/* 834 */,
+/* 835 */,
+/* 836 */,
+/* 837 */,
+/* 838 */,
+/* 839 */,
+/* 840 */,
+/* 841 */,
+/* 842 */,
+/* 843 */,
+/* 844 */,
+/* 845 */,
+/* 846 */,
+/* 847 */,
+/* 848 */,
+/* 849 */,
+/* 850 */,
+/* 851 */,
+/* 852 */,
+/* 853 */,
+/* 854 */,
+/* 855 */,
+/* 856 */,
+/* 857 */,
+/* 858 */,
+/* 859 */,
+/* 860 */,
+/* 861 */,
+/* 862 */,
+/* 863 */,
+/* 864 */,
+/* 865 */,
+/* 866 */,
+/* 867 */,
+/* 868 */,
+/* 869 */,
+/* 870 */,
+/* 871 */,
+/* 872 */,
+/* 873 */,
+/* 874 */,
+/* 875 */,
+/* 876 */,
+/* 877 */,
+/* 878 */,
+/* 879 */,
+/* 880 */,
+/* 881 */,
+/* 882 */,
+/* 883 */,
+/* 884 */,
+/* 885 */,
+/* 886 */,
+/* 887 */,
+/* 888 */,
+/* 889 */,
+/* 890 */,
+/* 891 */,
+/* 892 */,
+/* 893 */,
+/* 894 */,
+/* 895 */,
+/* 896 */,
+/* 897 */,
+/* 898 */,
+/* 899 */,
+/* 900 */,
+/* 901 */,
+/* 902 */,
+/* 903 */,
+/* 904 */,
+/* 905 */,
+/* 906 */,
+/* 907 */,
+/* 908 */,
+/* 909 */,
+/* 910 */,
+/* 911 */,
+/* 912 */,
+/* 913 */,
+/* 914 */,
+/* 915 */,
+/* 916 */,
+/* 917 */,
+/* 918 */,
+/* 919 */,
+/* 920 */,
+/* 921 */,
+/* 922 */,
+/* 923 */,
+/* 924 */,
+/* 925 */,
+/* 926 */,
+/* 927 */,
+/* 928 */,
+/* 929 */,
+/* 930 */,
+/* 931 */,
+/* 932 */,
+/* 933 */,
+/* 934 */,
+/* 935 */,
+/* 936 */,
+/* 937 */,
+/* 938 */,
+/* 939 */,
+/* 940 */,
+/* 941 */,
+/* 942 */,
+/* 943 */,
+/* 944 */,
+/* 945 */,
+/* 946 */,
+/* 947 */,
+/* 948 */,
+/* 949 */,
+/* 950 */,
+/* 951 */,
+/* 952 */,
+/* 953 */,
+/* 954 */,
+/* 955 */,
+/* 956 */,
+/* 957 */,
+/* 958 */,
+/* 959 */,
+/* 960 */,
+/* 961 */,
+/* 962 */,
+/* 963 */,
+/* 964 */,
+/* 965 */,
+/* 966 */,
+/* 967 */,
+/* 968 */,
+/* 969 */,
+/* 970 */,
+/* 971 */,
+/* 972 */,
+/* 973 */,
+/* 974 */,
+/* 975 */,
+/* 976 */,
+/* 977 */,
+/* 978 */,
+/* 979 */,
+/* 980 */,
+/* 981 */,
+/* 982 */,
+/* 983 */,
+/* 984 */,
+/* 985 */,
+/* 986 */,
+/* 987 */,
+/* 988 */,
+/* 989 */,
+/* 990 */,
+/* 991 */,
+/* 992 */,
+/* 993 */,
+/* 994 */,
+/* 995 */,
+/* 996 */,
+/* 997 */,
+/* 998 */,
+/* 999 */,
+/* 1000 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+    data: function data() {
+        return {
+            siteUrl: window.surl,
+            url: '/users',
+            deletemodal: false,
+            deleteid: false,
+            fetched: true,
+            is_loading: false,
+            user: false,
+            columns: ['id', 'profile_pic', 'name', 'firstname', 'lastname', 'email', 'phone', 'gender', 'birth_date', 'registration_no', 'status', 'action'],
+            options: {
+
+                perPage: 25,
+                perPageValues: [25, 50, 100],
+                pagetitle: "Файлын сан",
+                headings: {
+                    id: '№',
+                    name: 'Нэвтрэх нэр',
+                    profile_pic: 'Зураг',
+                    lastname: 'Овог',
+                    firstname: 'Нэр',
+                    email: 'имэйл',
+                    phone: 'Утас',
+                    gender: 'Хүйс',
+                    is_set_rd: 'is_set_rd',
+                    birth_date: 'Төрсөн огноо',
+                    registration_no: 'Рдугаар',
+                    status: 'Төлөв',
+                    action: ' '
+                },
+                filterByColumn: true,
+                sortable: ['name', 'lastname', 'firstname', 'email', 'phone', 'gender', 'registration_no', 'status'],
+                filterable: ['name', 'lastname', 'firstname', 'email', 'phone', 'gender', 'registration_no', 'status'],
+                columnsDisplay: {
+                    content: 'desktop',
+                    phone: 'desktop',
+                    email: 'desktop',
+                    price: 'desktop',
+                    created_at: 'desktop'
+                },
+                sortIcon: {
+                    base: 'fas',
+                    up: 'fa-sort-up',
+                    down: 'fa-sort-down',
+                    is: 'fa-sort'
+                },
+                listColumns: {
+                    gender: [{
+                        id: 0,
+                        text: 'эмэгэй'
+                    }, {
+                        id: 1,
+                        text: 'эрэгтэй'
+                    }]
+                    // admin_type: [
+                    //     {
+                    //         id: 0,
+                    //         text: 'шинэ хэрэглэгч'
+                    //     },
+                    //     {
+                    //         id: 1,
+                    //         text: 'баталгаажсан'
+                    //     },
+                    //     {
+                    //         id:2,
+                    //         text: 'дэд админ'
+                    //     },
+                    //     {
+                    //         id: 3,
+                    //         text: 'дэд нийтлэгч'
+                    //     }
+                    // ],
+                },
+                texts: {
+                    count: this.$store.getters.lang.table.count,
+                    first: this.$store.getters.lang.table.first,
+                    last: this.$store.getters.lang.table.last,
+                    filter: this.$store.getters.lang.table.filter,
+                    filterPlaceholder: this.$store.getters.lang.table.search_query,
+                    limit: this.$store.getters.lang.table.records,
+                    page: this.$store.getters.lang.table.page,
+                    noResults: this.$store.getters.lang.table.no_results,
+                    filterBy: 'Хайх',
+                    loading: this.$store.getters.lang.table.loading,
+                    defaultOption: 'Бүгд',
+                    columns: this.$store.getters.lang.table.columns
+                },
+                templates: {
+                    id: function id(h, row, index) {
+                        return index;
+                    }
+                },
+
+                rowClassCallback: function rowClassCallback(row) {
+                    if (row.admin_id === 0) {
+                        return "has-text-link";
+                    }
+                },
+                requestFunction: function requestFunction(data) {
+                    return axios.get(this.url, {
+                        params: data
+                    }).catch(function (e) {
+                        this.dispatch('error', e);
+                    }.bind(this));
+                },
+                responseAdapter: function responseAdapter(_ref) {
+                    var data = _ref.data;
+
+                    return {
+                        data: data.success.data,
+                        count: data.success.total
+                    };
+                }
+            }
+        };
+    },
+
+    watch: {
+        '$route': function $route(to, from) {
+            if (from.meta.is_modal) {
+                this.$refs.tableni.refresh();
+            }
+        }
+    },
+    created: function created() {},
+    mounted: function mounted() {},
+
+    methods: {
+
+        // Устгах
+        ustga: function ustga(row) {
+            var _this = this;
+
+            this.is_loading = true;
+            axios.delete('/users/' + row.id).then(function (response) {
+                _this.deletemodal = false;
+                _this.$refs.tableni.refresh();
+                _this.is_loading = false;
+                _this.$toasted.global.toast_success({ message: _this.$store.getters.lang.messages.is_deleted_text }); // delete success toast
+            });
+        },
+        deleting: function deleting(row) {
+            this.deleteid = row;
+            this.deletemodal = true;
+        }
+    }
+});
+
+/***/ }),
+/* 1001 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+    data: function data() {
+        return {
+            siteUrl: window.surl,
+            m_id: false, // Edit үед id орж ирнэ
+            fetched: false,
+            is_loading: false,
+            sites: [],
+            heltes: [],
+            form: {
+                name: '',
+                lastname: '',
+                firstname: '',
+                email: '',
+                phone: '',
+                gender: 0,
+                birth_date: '',
+                registration_no: '',
+                status: 0,
+                password: ''
+            },
+            password_confirm: null,
+            imageni: false,
+            image: [],
+            aldaanuud: []
+        };
+    },
+
+    created: function created() {
+        this.fetchData();
+    },
+    computed: {},
+    methods: {
+        fetchData: function fetchData() {
+            var _this = this;
+
+            this.m_id = this.$route.params.id; // route дээр ирж байгаа id-г авч байна / edit үед
+            if (this.m_id) {
+                axios.get('/users/' + this.m_id).then(function (response) {
+
+                    _this.form.name = response.data.success.name;
+                    _this.form.lastname = response.data.success.lastname;
+                    _this.form.firstname = response.data.success.firstname;
+                    _this.form.email = response.data.success.email;
+                    _this.form.phone = response.data.success.phone;
+                    _this.form.gender = response.data.success.gender;
+                    _this.form.birth_date = response.data.success.birth_date;
+                    _this.form.registration_no = response.data.success.registration_no;
+                    _this.form.status = response.data.success.status;
+
+                    if (response.data.success.profile_pic) {
+                        _this.imageni = _this.siteUrl + '/uploads/' + response.data.success.profile_pic;
+                    }
+                    _this.fetched = true;
+                });
+            } else {
+                this.fetched = true;
+            }
+        },
+        changeAdminType: function changeAdminType() {
+            if (this.form.admin_type > 1) {
+                this.form.site_id = '';
+            } else {
+                this.form.site_id = 0;
+            }
+        },
+        // Back
+        butsah: function butsah() {
+            var _this2 = this;
+
+            return this.$nextTick(function () {
+                return _this2.$router.back(-1);
+            });
+        },
+        // Нэмэх, Засах
+        nemeh: function nemeh() {
+            var _this3 = this;
+
+            this.$validator.validateAll().then(function (result) {
+                if (result) {
+
+                    _this3.is_loading = true;
+                    var formData = new FormData();
+                    formData.append('data', JSON.stringify(_this3.form));
+                    formData.append('image', _this3.image);
+
+                    _this3.m_id = _this3.$route.params.id;
+                    if (_this3.m_id) {
+                        // Update
+                        axios.post('/users/' + _this3.m_id, formData).then(function (response) {
+                            _this3.$router.push('/users');
+                            _this3.$toasted.global.toast_success({ message: _this3.$store.getters.lang.messages.is_updated_text });
+                        }).catch(function (error) {
+                            _this3.aldaanuud = error.response.data.errors;
+                            for (var i = 0; i < Object.keys(_this3.aldaanuud).length; i++) {
+                                var tulhur = Object.keys(_this3.aldaanuud)[i];
+                                _this3.errors.add({ field: tulhur, msg: _this3.aldaanuud[tulhur][0] });
+                            }
+                            _this3.is_loading = false;
+                        });
+                    } else {
+                        // Create
+                        axios.post('/users', formData).then(function (response) {
+                            _this3.$router.push('/users');
+                            _this3.$toasted.global.toast_success({ message: _this3.$store.getters.lang.messages.is_created_text });
+                        }).catch(function (error) {
+                            _this3.aldaanuud = error.response.data;
+                            for (var i = 0; i < Object.keys(_this3.aldaanuud).length; i++) {
+                                var tulhur = Object.keys(_this3.aldaanuud)[i];
+                                _this3.errors.add({ field: tulhur, msg: _this3.aldaanuud[tulhur][0] });
+                            }
+                            _this3.is_loading = false;
+                        });
+                    }
+                }
+            });
+        },
+        onFileChange: function onFileChange(fieldName, fileList) {
+            var _this4 = this;
+
+            var formData = new FormData();
+            // append the files to FormData
+            Array.from(Array(fileList.length).keys()).map(function (x) {
+                formData.append(fieldName, fileList[x], fileList[x].name);
+            });
+
+            this.image = formData.get(fieldName);
+
+            var reader = new FileReader();
+            reader.addEventListener("load", function (e) {
+                _this4.imageni = reader.result;
+            });
+            reader.readAsDataURL(fileList[0]);
+        }
+    }
+});
+
+/***/ }),
+/* 1002 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_plugins_transform_object_rest_spread_transform_runtime_polyfill_false_helpers_false_node_modules_vue_loader_lib_selector_type_script_index_0_Users_vue__ = __webpack_require__(1000);
+/* unused harmony namespace reexport */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_354f7c10_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Users_vue__ = __webpack_require__(1003);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_runtime_component_normalizer__ = __webpack_require__(1);
+var disposed = false
+/* script */
+
+
+/* template */
+
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+
+var Component = Object(__WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_runtime_component_normalizer__["a" /* default */])(
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_plugins_transform_object_rest_spread_transform_runtime_polyfill_false_helpers_false_node_modules_vue_loader_lib_selector_type_script_index_0_Users_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_354f7c10_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Users_vue__["a" /* render */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_354f7c10_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Users_vue__["b" /* staticRenderFns */],
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\modules\\admin\\user\\Users.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-354f7c10", Component.options)
+  } else {
+    hotAPI.reload("data-v-354f7c10", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+/* harmony default export */ __webpack_exports__["a"] = (Component.exports);
+
+
+/***/ }),
+/* 1003 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "div",
+      { staticClass: "boxed" },
+      [
+        _vm._m(0),
+        _vm._v(" "),
+        _vm.fetched
+          ? _c("v-server-table", {
+              ref: "tableni",
+              attrs: {
+                url: _vm.url,
+                columns: _vm.columns,
+                options: _vm.options
+              },
+              scopedSlots: _vm._u([
+                {
+                  key: "profile_pic",
+                  fn: function(props) {
+                    return [
+                      props.row.profile_pic
+                        ? _c("figure", {
+                            staticClass: "image is-48x48",
+                            style:
+                              "background-image: url(" +
+                              _vm.siteUrl +
+                              "/uploads/" +
+                              props.row.profile_pic +
+                              ")"
+                          })
+                        : _c("figure", { staticClass: "image is-48x48" }, [
+                            _c("i", { staticClass: "fa fa-user is-size-3" })
+                          ])
+                    ]
+                  }
+                },
+                {
+                  key: "action",
+                  fn: function(props) {
+                    return _c(
+                      "div",
+                      { staticClass: "data-action" },
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            attrs: { to: "users/" + props.row.id + "/update" }
+                          },
+                          [_c("i", { staticClass: "fas fa-pencil-alt" })]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            on: {
+                              click: function($event) {
+                                _vm.deleting(props.row)
+                              }
+                            }
+                          },
+                          [_c("i", { staticClass: "fas fa-trash" })]
+                        )
+                      ],
+                      1
+                    )
+                  }
+                }
+              ])
+            })
+          : _c("div", { staticClass: "main-bodoh is-loading" }),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "boxed-item-center absolute" },
+          [
+            _c(
+              "router-link",
+              {
+                staticClass: "add_button",
+                attrs: { to: { name: "create_user" } }
+              },
+              [_vm._v("+")]
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c("router-view")
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _vm.deletemodal
+      ? _c("div", { staticClass: "modal is-active" }, [
+          _c("div", {
+            staticClass: "modal-background",
+            on: {
+              click: function($event) {
+                _vm.deletemodal = false
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "modal-card modal-card-small" }, [
+            _vm._m(1),
+            _vm._v(" "),
+            _c("section", { staticClass: "modal-card-body" }, [
+              _c("p", { staticClass: "has-text-centered" }, [
+                _vm._v(_vm._s(_vm.$store.getters.lang.messages.sure_delete))
+              ]),
+              _vm._v(" "),
+              _c("p", { staticClass: "has-text-centered is-size-4" }, [
+                _c("strong", { staticClass: "has-text-black" }, [
+                  _vm._v(_vm._s(_vm.deleteid.name))
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("footer", { staticClass: "modal-card-foot" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "button is-text",
+                  on: {
+                    click: function($event) {
+                      _vm.deletemodal = false
+                    }
+                  }
+                },
+                [
+                  _vm._v(
+                    _vm._s(_vm.$store.getters.lang.messages.is_back_button)
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "button is-danger add_button",
+                  class: { "is-loading": _vm.is_loading },
+                  attrs: { disabled: _vm.is_loading },
+                  on: {
+                    click: function($event) {
+                      _vm.ustga(_vm.deleteid)
+                    }
+                  }
+                },
+                [
+                  _c("span", [
+                    _vm._v(
+                      _vm._s(_vm.$store.getters.lang.messages.is_delete_button)
+                    )
+                  ])
+                ]
+              )
+            ])
+          ])
+        ])
+      : _vm._e()
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "boxed-title" }, [
+      _c("div", { staticClass: "boxed-item-center title" }, [
+        _vm._v("Хэрэглэгчид")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("header", { staticClass: "modal-card-head" }, [
+      _c("p", { staticClass: "modal-card-title" }, [_vm._v("Хэрэглэгч устгах")])
+    ])
+  }
+]
+render._withStripped = true
+
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-354f7c10", { render: render, staticRenderFns: staticRenderFns })
+  }
+}
+
+/***/ }),
+/* 1004 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_plugins_transform_object_rest_spread_transform_runtime_polyfill_false_helpers_false_node_modules_vue_loader_lib_selector_type_script_index_0_UserForm_vue__ = __webpack_require__(1001);
+/* unused harmony namespace reexport */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_3e29adef_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_UserForm_vue__ = __webpack_require__(1005);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_runtime_component_normalizer__ = __webpack_require__(1);
+var disposed = false
+/* script */
+
+
+/* template */
+
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+
+var Component = Object(__WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_runtime_component_normalizer__["a" /* default */])(
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_plugins_transform_object_rest_spread_transform_runtime_polyfill_false_helpers_false_node_modules_vue_loader_lib_selector_type_script_index_0_UserForm_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_3e29adef_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_UserForm_vue__["a" /* render */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_3e29adef_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_UserForm_vue__["b" /* staticRenderFns */],
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\modules\\admin\\user\\UserForm.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-3e29adef", Component.options)
+  } else {
+    hotAPI.reload("data-v-3e29adef", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+/* harmony default export */ __webpack_exports__["a"] = (Component.exports);
+
+
+/***/ }),
+/* 1005 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "modal is-active" }, [
+    _c("div", { staticClass: "modal-background" }),
+    _vm._v(" "),
+    _c("div", { staticClass: "modal-card" }, [
+      _c("header", { staticClass: "modal-card-head" }, [
+        _vm.m_id
+          ? _c("p", { staticClass: "modal-card-title" }, [
+              _vm._v("Ажилтан засах")
+            ])
+          : _c("p", { staticClass: "modal-card-title" }, [
+              _vm._v("Ажилтан нэмэх")
+            ])
+      ]),
+      _vm._v(" "),
+      _vm.fetched
+        ? _c("section", { staticClass: "modal-card-body" }, [
+            _c(
+              "form",
+              {
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    return _vm.nemeh($event)
+                  }
+                }
+              },
+              [
+                _c("div", { staticClass: "columns is-mobile is-multiline" }, [
+                  _c(
+                    "div",
+                    { staticClass: "column is-12-mobile is-6-tablet" },
+                    [
+                      _c(
+                        "div",
+                        { staticClass: "columns is-mobile is-multiline" },
+                        [
+                          _c(
+                            "div",
+                            { staticClass: "column is-12-mobile is-12-tablet" },
+                            [
+                              _c("div", { staticClass: "field" }, [
+                                _c("label", { staticClass: "label" }, [
+                                  _vm._v("Зураг")
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  { staticClass: "control has-image" },
+                                  [
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "file is-boxed is-fullwidth"
+                                      },
+                                      [
+                                        _c(
+                                          "label",
+                                          { staticClass: "file-label" },
+                                          [
+                                            _c("input", {
+                                              staticClass: "file-input",
+                                              attrs: {
+                                                type: "file",
+                                                name: "image2",
+                                                accept: "image/*"
+                                              },
+                                              on: {
+                                                change: function($event) {
+                                                  _vm.onFileChange(
+                                                    $event.target.name,
+                                                    $event.target.files
+                                                  )
+                                                }
+                                              }
+                                            }),
+                                            _vm._v(" "),
+                                            _c(
+                                              "span",
+                                              { staticClass: "file-cta" },
+                                              [
+                                                _vm.imageni
+                                                  ? _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "file-icon",
+                                                        style:
+                                                          "background-image: url(" +
+                                                          _vm.imageni +
+                                                          ");"
+                                                      },
+                                                      [
+                                                        _c("i", {
+                                                          staticClass:
+                                                            "ion-ios-add-outline"
+                                                        })
+                                                      ]
+                                                    )
+                                                  : _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "file-icon no-background"
+                                                      },
+                                                      [
+                                                        _c("i", {
+                                                          staticClass:
+                                                            "ion-ios-add-outline"
+                                                        })
+                                                      ]
+                                                    )
+                                              ]
+                                            )
+                                          ]
+                                        )
+                                      ]
+                                    )
+                                  ]
+                                )
+                              ])
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "column is-12-mobile is-12-tablet" },
+                            [
+                              _c("div", { staticClass: "field" }, [
+                                _vm._m(0),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "control" }, [
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "validate",
+                                        rawName: "v-validate",
+                                        value: { required: true, min: 6 },
+                                        expression: "{'required':true, 'min':6}"
+                                      },
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.form.name,
+                                        expression: "form.name"
+                                      }
+                                    ],
+                                    class: {
+                                      input: true,
+                                      "is-danger": _vm.errors.has("name")
+                                    },
+                                    attrs: { type: "text", name: "name" },
+                                    domProps: { value: _vm.form.name },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.form,
+                                          "name",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "p",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "show",
+                                          rawName: "v-show",
+                                          value: _vm.errors.has("name"),
+                                          expression: "errors.has('name')"
+                                        }
+                                      ],
+                                      staticClass: "help is-danger"
+                                    },
+                                    [
+                                      _vm._v(
+                                        "Заавал бөглө, хамгийн багадаа 6 тэмдэгт байна."
+                                      )
+                                    ]
+                                  )
+                                ])
+                              ])
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "column is-12-mobile is-12-tablet" },
+                            [
+                              _c("div", { staticClass: "field" }, [
+                                _c("label", { staticClass: "label" }, [
+                                  _vm._v("Овог")
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "control" }, [
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.form.lastname,
+                                        expression: "form.lastname"
+                                      }
+                                    ],
+                                    staticClass: "input",
+                                    attrs: { type: "text", name: "lastname" },
+                                    domProps: { value: _vm.form.lastname },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.form,
+                                          "lastname",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  })
+                                ])
+                              ])
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "column is-12-mobile is-12-tablet" },
+                            [
+                              _c("div", { staticClass: "field" }, [
+                                _c("label", { staticClass: "label" }, [
+                                  _vm._v("Нэр")
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "control" }, [
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.form.firstname,
+                                        expression: "form.firstname"
+                                      }
+                                    ],
+                                    staticClass: "input",
+                                    attrs: { type: "text", name: "firstname" },
+                                    domProps: { value: _vm.form.firstname },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.form,
+                                          "firstname",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  })
+                                ])
+                              ])
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "column is-12-mobile is-12-tablet" },
+                            [
+                              _c("div", { staticClass: "field" }, [
+                                _c("label", { staticClass: "label" }, [
+                                  _vm._v("Утасны дугаар")
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "control" }, [
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.form.phone,
+                                        expression: "form.phone"
+                                      }
+                                    ],
+                                    class: {
+                                      input: true,
+                                      "is-danger": _vm.errors.has("phone")
+                                    },
+                                    attrs: { type: "text", name: "phone" },
+                                    domProps: { value: _vm.form.phone },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.form,
+                                          "phone",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "p",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "show",
+                                          rawName: "v-show",
+                                          value: _vm.errors.has("phone"),
+                                          expression: "errors.has('phone')"
+                                        }
+                                      ],
+                                      staticClass: "help is-danger"
+                                    },
+                                    [_vm._v(_vm._s(_vm.errors.first("phone")))]
+                                  )
+                                ])
+                              ])
+                            ]
+                          )
+                        ]
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "column is-12-mobile is-6-tablet" },
+                    [
+                      _c(
+                        "div",
+                        { staticClass: "columns is-mobile is-multiline" },
+                        [
+                          _c(
+                            "div",
+                            { staticClass: "column is-12-mobile is-12-tablet" },
+                            [
+                              _c("div", { staticClass: "field" }, [
+                                _vm._m(1),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "control" }, [
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "validate",
+                                        rawName: "v-validate",
+                                        value: { required: true, email: true },
+                                        expression:
+                                          "{'required':true, 'email':true}"
+                                      },
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.form.email,
+                                        expression: "form.email"
+                                      }
+                                    ],
+                                    class: {
+                                      input: true,
+                                      "is-danger": _vm.errors.has("email")
+                                    },
+                                    attrs: { type: "text", name: "email" },
+                                    domProps: { value: _vm.form.email },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.form,
+                                          "email",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "p",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "show",
+                                          rawName: "v-show",
+                                          value: _vm.errors.has("email"),
+                                          expression: "errors.has('email')"
+                                        }
+                                      ],
+                                      staticClass: "help is-danger"
+                                    },
+                                    [_vm._v("Заавал бөглө")]
+                                  )
+                                ])
+                              ])
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "column is-12-mobile is-12-tablet" },
+                            [
+                              _c("div", { staticClass: "field" }, [
+                                _vm._m(2),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "control" }, [
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "validate",
+                                        rawName: "v-validate",
+                                        value: { required: true },
+                                        expression: "{'required':true, }"
+                                      },
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.form.birth_date,
+                                        expression: "form.birth_date"
+                                      }
+                                    ],
+                                    class: {
+                                      input: true,
+                                      "is-danger": _vm.errors.has("birth_date")
+                                    },
+                                    attrs: { type: "date", name: "birth_date" },
+                                    domProps: { value: _vm.form.birth_date },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.form,
+                                          "birth_date",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "p",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "show",
+                                          rawName: "v-show",
+                                          value: _vm.errors.has("birth_date"),
+                                          expression: "errors.has('birth_date')"
+                                        }
+                                      ],
+                                      staticClass: "help is-danger"
+                                    },
+                                    [_vm._v("Заавал бөглө")]
+                                  )
+                                ])
+                              ])
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "column is-12-mobile is-12-tablet" },
+                            [
+                              _c("div", { staticClass: "field" }, [
+                                _c("label", { staticClass: "label" }, [
+                                  _vm._v("Хүйс")
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "control" }, [
+                                  _c("div", { staticClass: "select" }, [
+                                    _c(
+                                      "select",
+                                      {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.form.gender,
+                                            expression: "form.gender"
+                                          },
+                                          {
+                                            name: "validate",
+                                            rawName: "v-validate",
+                                            value: "required",
+                                            expression: "'required'"
+                                          }
+                                        ],
+                                        attrs: { name: "gender" },
+                                        on: {
+                                          change: function($event) {
+                                            var $$selectedVal = Array.prototype.filter
+                                              .call(
+                                                $event.target.options,
+                                                function(o) {
+                                                  return o.selected
+                                                }
+                                              )
+                                              .map(function(o) {
+                                                var val =
+                                                  "_value" in o
+                                                    ? o._value
+                                                    : o.value
+                                                return val
+                                              })
+                                            _vm.$set(
+                                              _vm.form,
+                                              "gender",
+                                              $event.target.multiple
+                                                ? $$selectedVal
+                                                : $$selectedVal[0]
+                                            )
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "1" } },
+                                          [_vm._v("эрэгтэй")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "0" } },
+                                          [_vm._v("эмэгтэй")]
+                                        )
+                                      ]
+                                    )
+                                  ])
+                                ])
+                              ])
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "column is-12-mobile is-12-tablet" },
+                            [
+                              _c("div", { staticClass: "field" }, [
+                                _c("label", { staticClass: "label" }, [
+                                  _vm._v("Төлөв")
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "control" }, [
+                                  _c("div", { staticClass: "select" }, [
+                                    _c(
+                                      "select",
+                                      {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.form.status,
+                                            expression: "form.status"
+                                          },
+                                          {
+                                            name: "validate",
+                                            rawName: "v-validate",
+                                            value: "required",
+                                            expression: "'required'"
+                                          }
+                                        ],
+                                        attrs: { name: "status" },
+                                        on: {
+                                          change: function($event) {
+                                            var $$selectedVal = Array.prototype.filter
+                                              .call(
+                                                $event.target.options,
+                                                function(o) {
+                                                  return o.selected
+                                                }
+                                              )
+                                              .map(function(o) {
+                                                var val =
+                                                  "_value" in o
+                                                    ? o._value
+                                                    : o.value
+                                                return val
+                                              })
+                                            _vm.$set(
+                                              _vm.form,
+                                              "status",
+                                              $event.target.multiple
+                                                ? $$selectedVal
+                                                : $$selectedVal[0]
+                                            )
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "0" } },
+                                          [_vm._v("0-шинэ хэрэглэгч")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "1" } },
+                                          [_vm._v("1-баталгаажсан байх")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "2" } },
+                                          [
+                                            _vm._v(
+                                              "2-өөрийн хүсэлтээр хандах эрх хаалгасан хэрэглэгч"
+                                            )
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "3" } },
+                                          [
+                                            _vm._v(
+                                              "3-системээс хандах эрх хаагдсан хэрэглэгч ban"
+                                            )
+                                          ]
+                                        )
+                                      ]
+                                    )
+                                  ])
+                                ])
+                              ])
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "column is-12-mobile is-12-tablet" },
+                            [
+                              _c("div", { staticClass: "field" }, [
+                                _c("label", { staticClass: "label" }, [
+                                  _vm._v("Нууц үг "),
+                                  !_vm.m_id
+                                    ? _c(
+                                        "span",
+                                        { staticClass: "has-text-danger" },
+                                        [_vm._v("*")]
+                                      )
+                                    : _vm._e()
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "control" }, [
+                                  _vm.m_id
+                                    ? _c("input", {
+                                        directives: [
+                                          {
+                                            name: "validate",
+                                            rawName: "v-validate",
+                                            value: { min: 6 },
+                                            expression: "{ min: 6 }"
+                                          },
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.form.password,
+                                            expression: "form.password"
+                                          }
+                                        ],
+                                        class: {
+                                          input: true,
+                                          "is-danger": _vm.errors.has(
+                                            "password"
+                                          )
+                                        },
+                                        attrs: {
+                                          type: "password",
+                                          name: "password"
+                                        },
+                                        domProps: { value: _vm.form.password },
+                                        on: {
+                                          input: function($event) {
+                                            if ($event.target.composing) {
+                                              return
+                                            }
+                                            _vm.$set(
+                                              _vm.form,
+                                              "password",
+                                              $event.target.value
+                                            )
+                                          }
+                                        }
+                                      })
+                                    : _c("input", {
+                                        directives: [
+                                          {
+                                            name: "validate",
+                                            rawName: "v-validate",
+                                            value: { required: true, min: 6 },
+                                            expression:
+                                              "{ required:true, min: 6 }"
+                                          },
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.form.password,
+                                            expression: "form.password"
+                                          }
+                                        ],
+                                        class: {
+                                          input: true,
+                                          "is-danger": _vm.errors.has(
+                                            "password"
+                                          )
+                                        },
+                                        attrs: {
+                                          type: "password",
+                                          name: "password"
+                                        },
+                                        domProps: { value: _vm.form.password },
+                                        on: {
+                                          input: function($event) {
+                                            if ($event.target.composing) {
+                                              return
+                                            }
+                                            _vm.$set(
+                                              _vm.form,
+                                              "password",
+                                              $event.target.value
+                                            )
+                                          }
+                                        }
+                                      }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "p",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "show",
+                                          rawName: "v-show",
+                                          value: _vm.errors.has("password"),
+                                          expression: "errors.has('password')"
+                                        }
+                                      ],
+                                      staticClass: "help is-danger"
+                                    },
+                                    [
+                                      _vm._v(
+                                        "Заавал бөглө, хамгийн багадаа 6 тэмдэгт байна."
+                                      )
+                                    ]
+                                  )
+                                ])
+                              ])
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "column is-12-mobile is-12-tablet" },
+                            [
+                              _c("div", { staticClass: "field" }, [
+                                _c("label", { staticClass: "label" }, [
+                                  _vm._v("Нууц үг давтаж оруулна уу")
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "control" }, [
+                                  _vm.form.password.length > 0
+                                    ? _c("input", {
+                                        directives: [
+                                          {
+                                            name: "validate",
+                                            rawName: "v-validate",
+                                            value: {
+                                              required: true,
+                                              is: _vm.form.password
+                                            },
+                                            expression:
+                                              "{'required':true, 'is': form.password }"
+                                          },
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.password_confirm,
+                                            expression: "password_confirm"
+                                          }
+                                        ],
+                                        class: {
+                                          input: true,
+                                          "is-danger": _vm.errors.has(
+                                            "password_confirm"
+                                          )
+                                        },
+                                        attrs: {
+                                          type: "password",
+                                          name: "password_confirm"
+                                        },
+                                        domProps: {
+                                          value: _vm.password_confirm
+                                        },
+                                        on: {
+                                          input: function($event) {
+                                            if ($event.target.composing) {
+                                              return
+                                            }
+                                            _vm.password_confirm =
+                                              $event.target.value
+                                          }
+                                        }
+                                      })
+                                    : _c("input", {
+                                        directives: [
+                                          {
+                                            name: "validate",
+                                            rawName: "v-validate",
+                                            value: { confirmed: _vm.password },
+                                            expression:
+                                              "{ 'confirmed': password }"
+                                          },
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.password_confirm,
+                                            expression: "password_confirm"
+                                          }
+                                        ],
+                                        class: {
+                                          input: true,
+                                          "is-danger": _vm.errors.has(
+                                            "password_confirm"
+                                          )
+                                        },
+                                        attrs: {
+                                          type: "password",
+                                          name: "password_confirm"
+                                        },
+                                        domProps: {
+                                          value: _vm.password_confirm
+                                        },
+                                        on: {
+                                          input: function($event) {
+                                            if ($event.target.composing) {
+                                              return
+                                            }
+                                            _vm.password_confirm =
+                                              $event.target.value
+                                          }
+                                        }
+                                      }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "p",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "show",
+                                          rawName: "v-show",
+                                          value: _vm.errors.has(
+                                            "password_confirm"
+                                          ),
+                                          expression:
+                                            "errors.has('password_confirm')"
+                                        }
+                                      ],
+                                      staticClass: "help is-danger"
+                                    },
+                                    [_vm._v("Нууц үгтэй зөрж байна")]
+                                  )
+                                ])
+                              ])
+                            ]
+                          )
+                        ]
+                      )
+                    ]
+                  )
+                ])
+              ]
+            )
+          ])
+        : _c("div", { staticClass: "main-bodoh is-loading" }),
+      _vm._v(" "),
+      _c("footer", { staticClass: "modal-card-foot" }, [
+        _c("a", { staticClass: "button is-text", on: { click: _vm.butsah } }, [
+          _vm._v(_vm._s(_vm.$store.getters.lang.messages.is_back_button))
+        ]),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass:
+              "button is-primary add_button has-text-weight-semibold",
+            class: { "is-loading": _vm.is_loading },
+            attrs: { disabled: _vm.is_loading || _vm.fetched === false },
+            on: { click: _vm.nemeh }
+          },
+          [
+            _c("span", [
+              _vm._v(_vm._s(_vm.$store.getters.lang.messages.is_save_button))
+            ])
+          ]
+        )
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { staticClass: "label" }, [
+      _vm._v("Нэвтрэх нэр "),
+      _c("span", { staticClass: "has-text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { staticClass: "label" }, [
+      _vm._v("И-мэйл хаяг "),
+      _c("span", { staticClass: "has-text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { staticClass: "label" }, [
+      _vm._v("Төрсөн огноо "),
+      _c("span", { staticClass: "has-text-danger" }, [_vm._v("*")])
+    ])
+  }
+]
+render._withStripped = true
+
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-3e29adef", { render: render, staticRenderFns: staticRenderFns })
+  }
+}
 
 /***/ })
 /******/ ]);
