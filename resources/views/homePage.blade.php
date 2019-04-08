@@ -157,37 +157,10 @@
             </div>
             <div class="modal-body">
                 <ul class="row">
-                        <li class="col-sm-6"> <a target="_blank" href="http://www.audit.mn/?page_id=1314">Аймгийн аудитийн газар</a> </li>
-                        <li class="col-sm-6"> <a target="_blank" href="www">Байгаль орчин, аялал жуулчлалын газар</a> </li>
-                        <li class="col-sm-6"> <a target="_blank" href="http://www.bayankhongor.moh.gov.mn/emg/">Эрүүл мэндийн газар</a> </li>
-                        <li class="col-sm-6"> <a target="_blank" href="http://bayankhongor.gov.mn/top/31">Орон нутгийн өмчийн газар </a> </li>
-                        <li class="col-sm-6"> <a target="_blank" href="www">Хөгжимт драмын театр</a> </li>
-                        <li class="col-sm-6"> <a target="_blank" href="http://www.ndaatgal.bkh.gov.mn">Нийгмийн даатгалын хэлтэс</a> </li>
-                        <li class="col-sm-6"> <a target="_blank" href="www">Стандарт, хэмжил зүйн хэлтэс</a> </li>
-                        <li class="col-sm-6"> <a target="_blank" href="http://bkh.burtgel.gov.mn/">Улсын бүртгэлийн хэлтэс </a> </li>
-                        <li class="col-sm-6"> <a target="_blank" href="www">Тагнуулын хэлтэс</a> </li>
-                        <li class="col-sm-6"> <a target="_blank" href="www">Шүүхийн шинжилгээний алба</a> </li>
-                        <li class="col-sm-6"> <a target="_blank" href="http://www.bayankhongor.nema.gov.mn/">Онцгой байдлын газар</a> </li>
-                        <li class="col-sm-6"> <a target="_blank" href="www">Гэр бүл,хүүхэд, залуучуудын хөгжлийн газар</a> </li>
-                        <li class="col-sm-6"> <a target="_blank" href="http://bayankhongor.gazar.gov.mn/">ГХБХБГазар</a> </li>
-                        <li class="col-sm-6"> <a target="_blank" href="www">Хүүхдийн Тэмүүжин театр</a> </li>
-                        <li class="col-sm-6"> <a target="_blank" href="www">Хүнс, хөдөө аж ахуйн газар</a> </li>
-                        <li class="col-sm-6"> <a target="_blank" href="http://www.bayankhongor.court.gov.mn/">Аймгийн шүүх</a> </li>
-                        <li class="col-sm-6"> <a target="_blank" href="www">Түүх угсаатны зүйн музей</a> </li>
-                        <li class="col-sm-6"> <a target="_blank" href="http://www.bayankhongor.nso.mn/index.php">Статистикийн хэлтэс </a> </li>
-                        <li class="col-sm-6"> <a target="_blank" href="http://bayankhongor.gov.mn/116/single">Санхүүгийн хяналт, аудитын алба </a> </li>
-                        <li class="col-sm-6"> <a target="_blank" href="www">Биеийн тамир, спортын газар </a> </li>
-                        <li class="col-sm-6"> <a target="_blank" href="www">Гаалийн алба </a> </li>
-                        <li class="col-sm-6"> <a target="_blank" href="www">Номын сан</a> </li>
-                        <li class="col-sm-6"> <a target="_blank" href="http://bkh.inspection.gov.mn/">Мэргэжлийн хяналтын газар</a> </li>
-                        <li class="col-sm-6"> <a target="_blank" href="http://bayankhongor.halamj.gov.mn">Хөдөлмөр, халамжийн үйлчилгээний газар</a> </li>
-                        <li class="col-sm-6"> <a target="_blank" href="http://www.bayankhongor.police.gov.mn">Цагдаагийн газар</a> </li>
-                        <li class="col-sm-6"> <a target="_blank" href="http://bayankhongor.cd.gov.mn/">Шүүхийн шийдвэр гүйцэтгэх алба</a> </li>
-                        <li class="col-sm-6"> <a target="_blank" href="http://bayankhongor-bolovsrol.mn">Боловсрол, соёл, урлагийн газар</a> </li>
-                        <li class="col-sm-6"> <a target="_blank" href="http://mta-bayankhongor.mn/">Татварын хэлтэс</a> </li>
-                        <li class="col-sm-6"> <a target="_blank" href="http://prokuror.bkh.gov.mn/ ">Аймгийн прокурор</a> </li>
-                        <li class="col-sm-6"> <a target="_blank" href="http://bayankhongor.tsag-agaar.gov.mn/">Ус, цаг уур, орчны шинжилгээний газар</a> </li>
-                      </ul>
+                    @foreach ($links as $link)
+                        <li class="col-sm-6"> <a target="_blank" href="{{$link->link}}">@if($domain->image)<img src="{{ asset('uploads/'.$domain->image)}}">@else<img src="{{ asset('images/soyombo.png')}}">@endif {{$link->name}}</a> </li>
+                    @endforeach
+                </ul>
             </div>
         </div>
     </div>

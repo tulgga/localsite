@@ -55,10 +55,10 @@
                 url: '/users',
                 deletemodal:false,
                 deleteid: false,
-                fetched:true,
+                fetched:false,
                 is_loading:false,
                 user:false,
-                columns: ['id', 'profile_pic', 'name',  'firstname', 'lastname', 'email', 'phone', 'gender', 'birth_date', 'registration_no',  'status', 'action'],
+                columns: ['id', 'profile_pic', 'name',  'firstname', 'lastname', 'email', 'site_id', 'phone', 'gender', 'birth_date', 'registration_no',  'status', 'action'],
                 options: {
 
                     perPage: 25,
@@ -77,11 +77,12 @@
                         birth_date:'Төрсөн огноо',
                         registration_no:'Рдугаар',
                         status:'Төлөв',
+                        site_id:'Cум',
                         action:' '
                     },
                     filterByColumn: true,
-                    sortable: [ 'name', 'lastname',  'firstname', 'email', 'phone', 'gender', 'registration_no', 'status' ],
-                    filterable: ['name', 'lastname',  'firstname', 'email', 'phone', 'gender', 'registration_no', 'status' ],
+                    sortable: [ 'name', 'lastname', 'site_id', 'firstname', 'email', 'phone', 'gender', 'registration_no', 'status' ],
+                    filterable: ['name', 'lastname', 'site_id',  'firstname', 'email', 'phone', 'gender', 'registration_no', 'status' ],
                     columnsDisplay:{
                         content: 'desktop',
                         phone: 'desktop',
@@ -99,31 +100,14 @@
                         gender: [
                             {
                                 id: 0,
-                                text: 'эмэгэй'
+                                text: 'эмэгтэй'
                             },
                             {
                                 id: 1,
                                 text: 'эрэгтэй'
                             },
                         ],
-                        // admin_type: [
-                        //     {
-                        //         id: 0,
-                        //         text: 'шинэ хэрэглэгч'
-                        //     },
-                        //     {
-                        //         id: 1,
-                        //         text: 'баталгаажсан'
-                        //     },
-                        //     {
-                        //         id:2,
-                        //         text: 'дэд админ'
-                        //     },
-                        //     {
-                        //         id: 3,
-                        //         text: 'дэд нийтлэгч'
-                        //     }
-                        // ],
+                        site_id: [ ],
                     },
                     texts:{
                         count : this.$store.getters.lang.table.count,
@@ -174,12 +158,20 @@
             },
         },
         created: function () {
-
+            this.fetchdata();
         },
         mounted(){
 
         },
         methods: {
+            fetchdata(){
+                axios.get('site').then((response) => {
+                    this.options.listColumns.site_id=response.data.success;
+                    console.log(this.options.listColumns.site_id);
+                    this.fetched = true;
+                })
+
+            },
 
             // Устгах
             ustga(row){

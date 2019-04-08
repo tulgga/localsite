@@ -1,5 +1,6 @@
 <template>
     <div v-if="post"  :class="color">
+
         <template v-for="p in post">
             <div class="newslist roboto-condensed ">
                 <router-link :to="'/news/'+p.id">

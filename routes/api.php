@@ -19,11 +19,27 @@ Route::fallback(function(){
 
 Route::middleware('auth:api')->namespace('Api')->group(function () {
     Route::get('userInfo', 'ApiUserController@userInfo');
+
+    Route::post('userInfoUpdate', 'ApiUserController@userInfoUpdate');
     Route::post('verify', 'ApiUserController@verify');
+
+
+    Route::get('verifyPhone', 'ApiUserController@verifyPhone');
+    Route::get('verifyEmail', 'ApiUserController@verifyEmail');
+
+
+    Route::post('changeEmailRequest', 'ApiUserController@changeEmailRequest');
+    Route::post('changeEmail', 'ApiUserController@changeEmail');
+
+    Route::post('changePhoneRequest', 'ApiUserController@changePhoneRequest');
+    Route::post('changePhone', 'ApiUserController@changePhone');
+
     Route::get('logOut', 'ApiUserController@logOut');
+
 });
 
 Route::namespace('Api')->group(function (){
+    Route::get('service','ApiSiteController@service');
     //sites
     Route::get('sites','ApiSiteController@sites');
     Route::get('agentlag','ApiLinkController@agentlag');
@@ -65,6 +81,9 @@ Route::namespace('Api')->group(function (){
 
     //Өргөдөлийг 40 бичлэгээр хуудаслаж авна
     Route::get('urgudul/{site_id}','ApiUrgudulController@urgudul');
+
+    Route::get('heltes','ApiUrgudulController@heltes');
+    Route::post('filterUrgudul','ApiUrgudulController@filterUrgudul');
 
     //Зарыг 20 бичлэгээр хуудаслаж авна
     Route::get('zar','ApiZarController@zar');

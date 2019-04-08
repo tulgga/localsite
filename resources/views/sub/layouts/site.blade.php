@@ -178,16 +178,16 @@
                                 </select>
                             </div>
                             <div class="layout"><input class="form-feedback" name="your_name" type="text" placeholder="Таны нэр *" required></div>
-                            <div class="layout"><input class="form-feedback" name="your_phone" type="text" placeholder="Таны утас *" required></div>
-                            <div class="layout"><input class="form-feedback" name="your_email" type="text" placeholder="Таны цахим шуудан"></div>
+                            <div class="layout"><input class="form-feedback" name="your_phone" type="number" minlength="8" maxlength="8" placeholder="Таны утас *" required></div>
+                            <div class="layout"><input class="form-feedback" name="your_email" type="email" required placeholder="Таны цахим шуудан"></div>
                             </div>
                             <div class="col-sm-6">
                             <div class="layout">
-                                <textarea style="min-height: 90px;" name="your_message" class="form-feedback" placeholder="Зурвас бичих...*" required></textarea></div>
+                                <textarea style="min-height: 90px;" name="your_message" class="form-feedback" minlength="2" placeholder="Зурвас бичих...*" required></textarea></div>
                                 <div class="layout">
                                 <a href="javascript:addImage();" class="attach_btn">
                                     <i class="far fa-plus-square"></i> нэмэлт зураг хавсаргах</a>
-                                <input style="display: none;" class="image-pp" type="file" name="image"></div>
+                                <input style="display: none;" class="image-pp" accept="image/*" type="file" name="image"></div>
                             <div class="layout">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <button type="submit" class="btn btn-sm btn-outline-primary">

@@ -18658,6 +18658,11 @@ body {
   margin: 0;
 }
 
+#app {
+  width: 100%;
+  overflow-x: hidden;
+}
+
 a {
   -webkit-transition: color 0.2s ease-in-out, opacity 0.2s ease-in-out;
   transition: color 0.2s ease-in-out, opacity 0.2s ease-in-out;

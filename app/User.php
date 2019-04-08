@@ -29,7 +29,13 @@ class User extends Authenticatable
         'status',
         'verify',
         'is_volunteer',
-
+        'new_email',
+        'new_email_verify',
+        'new_phone',
+        'new_phone_verify',
+        'site_id',
+        'is_notification',
+        'is_notification_email',
     ];
 
     public function AauthAcessToken(){

@@ -68,7 +68,7 @@
                                 <li><a>Сумдууд</a></li>
                                 <li><a>Агентлагууд</a></li>
                                 <li><a>Лавлагаа мэдээл</a></li>
-                                <li><a>Зар</a></li>
+                                <li><a :href="'http://zar.'+subdomain" target="_blank">Зар</a></li>
                                 <li ><a href="!#/report">Санал хүсэлт, өргөдөл гомдол</a></li>
                             </ul>
                         </aside>
@@ -118,7 +118,7 @@
                                 <p class="level-item">|</p>
                                 <p class="level-item"><a>Лавлагаа мэдээл</a></p>
                                 <p class="level-item">|</p>
-                                <p class="level-item"><a>Зар</a></p>
+                                <p class="level-item"><a :href="'http://zar.'+subdomain" target="_blank">Зар</a></p>
                                 <p class="level-item">|</p>
                                 <p class="level-item"><a href="!#/report">Санал хүсэлт, өргөдөл гомдол</a></p>
                             </div>
@@ -177,11 +177,14 @@
         <!-- show modal -->
         <div class="modal is-active" v-if="SumModal">
             <div class="modal-background" v-on:click="SumModal = false"></div>
+
             <div class="modal-card" style="max-width: 610px">
+                <div class="has-text-white has-background-primary" style="padding:20px;">Сумдын холбоос</div>
                 <section class="modal-card-body pd0">
                   <sum></sum>
                 </section>
             </div>
+            <button v-on:click="SumModal = false" class="modal-close is-large" aria-label="close"></button>
         </div>
 
 
@@ -189,10 +192,12 @@
         <div class="modal is-active" v-if="AgentlagModal">
             <div class="modal-background" v-on:click="AgentlagModal = false"></div>
             <div class="modal-card" style="max-width: 1040px">
+                <div class="has-text-white has-background-primary" style="padding:20px;">Аймгийн хэлтэс агентлагууд</div>
                 <section class="modal-card-body pd0">
                    <agentlag></agentlag>
                 </section>
             </div>
+            <button v-on:click="AgentlagModal = false" class="modal-close is-large" aria-label="close"></button>
         </div>
 
     </div>
@@ -202,6 +207,7 @@
     export default {
     	data(){
     		return {
+                subdomain: window.subdomain,
     		    si1:-1,
                 si2:-1,
                 si3:-1,
@@ -239,10 +245,12 @@
         },
         methods: {
             searchClick(){
-                if(this.search!=''){
-                    this.$router.push({path:'/search/'+this.search});
-                    this.mobile_menu=false;
+                if(this.search.length<2){
+                   alert('Хамгийн багадаа 2 тэмдэгт оруулна');
+                   return;
                 }
+                this.$router.push({path:'/search/'+this.search});
+                this.mobile_menu=false;
             },
             checkSearch(){
                 if(this.$route.name!='search'){

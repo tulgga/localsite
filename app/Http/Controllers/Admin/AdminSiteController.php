@@ -56,6 +56,7 @@ class AdminSiteController extends Controller
              $settings = Settings::findOrFail(1);
              $settings->google_api_key=$config['google_api_key'];
              $settings->google_analytics=$config['google_analytics'];
+             $settings->service=$config['service'];
              $settings->save();
         }
 
@@ -79,7 +80,7 @@ class AdminSiteController extends Controller
 
         $data['mainConfig']=null;
         if($id==0){
-            $data['mainConfig']=Settings::where('id', 1)->select('google_api_key', 'google_analytics')->first();
+            $data['mainConfig']=Settings::where('id', 1)->select('google_api_key', 'google_analytics', 'service')->first();
         }
 
         return response()->json([

@@ -176,6 +176,7 @@ class SubController extends BaseController
         $urgudul->email = $request->get('your_email');
         $urgudul->content = $request->get('your_message');
         $urgudul->ip = $_SERVER['REMOTE_ADDR'];
+        $urgudul->user_agent=$_SERVER['HTTP_USER_AGENT'];
         $urgudul->save();
         return redirect()->to('/feedback');
     }

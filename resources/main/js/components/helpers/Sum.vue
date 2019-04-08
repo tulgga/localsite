@@ -1,6 +1,7 @@
 <template>
     <div  v-if="sites" >
         <!--blog list-->
+
         <div class="columns is-multiline pb-1">
              <div v-for="site in sites" class="column is-4  pb-0">
                  <a class="sumlist" :href="'http://'+site.domain+'.'+subdomain" target="_blank" >

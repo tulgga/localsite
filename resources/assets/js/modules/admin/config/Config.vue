@@ -192,7 +192,16 @@
                             <input type="text"  class="input" v-model="config.google_api_key"  />
                         </div>
                     </div>
+                    <div class="field">
+                        <label class="label">Үйлчилгээний нөхцөл</label>
+                        <div class="control">
+                            <ckeditor v-model="config.service" :config="ck_config" ></ckeditor>
+                        </div>
+                    </div>
                 </div>
+
+
+
             </div>
 
 
@@ -207,12 +216,20 @@
 </template>
 
 <script>
+    import Ckeditor from 'vue-ckeditor2'
     export default {
+        components: {
+            Ckeditor
+        },
         data() {
             return {
+                ck_config: {
+                    height: 400,
+                    filebrowserBrowseUrl: window.surl+'/elfinder/ckeditor',
+                },
                 siteUrl: window.surl,
                 is_active:0,
-                tabs:['Үндсэн тохиргоо', 'Түлхүүр үг', 'Нийтийн сүлжээ', 'Холбоо барих',],
+                tabs:['Үндсэн тохиргоо', 'Түлхүүр үг', 'Нийтийн сүлжээ', 'Холбоо барих'],
                 site_id: this.$store.getters.domain.id,
                 logoini: window.surl+'/images/image.png',
                 faviconini:window.surl+'/images/image.png',
@@ -221,6 +238,7 @@
                 config: {
                   google_analytics:"",
                   google_api_key:"",
+                  service:"",
                 },
                 form:
                     {
@@ -282,6 +300,7 @@
                     if(response.data.success.favicon){
                         this.faviconini = response.data.success.favicon
                     }
+
                     this.fetched = true;
                 })
             },

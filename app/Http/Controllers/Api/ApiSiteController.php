@@ -8,6 +8,7 @@ use App\Menu;
 use App\Weather;
 use App\Site;
 use App\Page;
+use App\Settings;
 
 class ApiSiteController extends Controller
 {
@@ -21,6 +22,10 @@ class ApiSiteController extends Controller
         return response()->json([ 'success' => $sites ]);
     }
 
+    public function service(){
+        $data=Settings::where('id', 1)->select('service')->first();
+        return  $data->service ;
+    }
 
     public function page($site_id){
         $page= Page::where('site_id',$site_id)->where('is_main',1)->select('id', 'title as name', 'type', 'parent_id', 'blank', 'link')->orderBy('order_num', 'asc')->get();
