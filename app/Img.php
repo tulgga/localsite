@@ -48,7 +48,9 @@ class Img extends Model
 
 
 
+
         $save = Image::make('uploads/'.$img);
+        $save->orientate();
 
         $save->resize(1200, null, function ($constraint) { $constraint->aspectRatio(); } );
         $save->save(str_replace('images/', 'full/', 'uploads/'.$img));

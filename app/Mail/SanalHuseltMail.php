@@ -32,6 +32,6 @@ class SanalHuseltMail extends Mailable
      */
     public function build()
     {
-        return $this->subject($this->title)->from(['address'=>'info@bayankhongor.gov.mn', 'name' => 'Баянхонгор'])->view('mails.mail');
+        return $this->subject($this->title)->from(['address'=>env('MAIL_USERNAME', 'bolloomn@gmail.com'), 'name' => 'Баянхонгор'])->view('mails.mail');
     }
 }

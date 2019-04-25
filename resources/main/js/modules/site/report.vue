@@ -163,7 +163,7 @@
                                 </div>
                             </div>
                             <div >
-                        <button @click="nemeh" class="button is-primary" :class="{'is-loading':is_loading}" :disabled="is_loading || fetched === false">
+                        <button type="submit" class="button is-primary" :class="{'is-loading':is_loading}" :disabled="is_loading || fetched === false">
                             <span>Илгээх</span>
                         </button>
                             </div>
@@ -229,6 +229,7 @@
             },
             nemeh: function() {
                 this.$validator.validateAll().then((result) => {
+                    console.log('add');
                     if (result) {
                         this.is_loading = true;
                         let formData = new FormData();

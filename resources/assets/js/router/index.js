@@ -4,7 +4,6 @@ import store from '../store'
 
 import Dashboard from '../modules/admin/Dashboard'
 
-
 import Sites from '../modules/admin/sites/index'
 import siteForm from '../modules/admin/sites/siteForm'
 
@@ -17,7 +16,6 @@ import EmployeesForm from '../modules/admin/employee/EmployeesForm'
 import Users from '../modules/admin/user/Users'
 import UserForm from '../modules/admin/user/UserForm'
 
-
 import newsCategory from '../modules/admin/newsCategory/newsCategory'
 import zarCategory from '../modules/admin/zarCategory/zarCategory'
 import fileCategory from '../modules/admin/fileCategory/fileCategoryNew'
@@ -28,7 +26,6 @@ import PagesForm from '../modules/admin/pages/PagesForm'
 import HelpPages from '../modules/admin/pages/HelpPages'
 import HelpPagesForm from '../modules/admin/pages/HelpPagesForm'
 
-
 import LinkCategory from '../modules/admin/linkCategory/LinkCategory'
 import LinkCategoryForm from '../modules/admin/linkCategory/LinkCategoryForm'
 
@@ -38,9 +35,7 @@ import fileForm from '../modules/admin/file/fileForm';
 import News from '../modules/admin/news/news';
 import newsForm from '../modules/admin/news/newsForm';
 
-
 import subNewsPublish from '../modules/admin/news/sub_news_to_main';
-
 
 import subNews from '../modules/admin/news/sub_news';
 import subNewsForm from '../modules/admin/news/sub_newsForm';

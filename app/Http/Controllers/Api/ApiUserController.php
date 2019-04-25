@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use Illuminate\Hashing\BcryptHasher;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
@@ -11,6 +12,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use App\Mail\SanalHuseltMail;
+
 use Illuminate\Support\Facades\Mail;
 class ApiUserController extends Controller
 {
@@ -38,7 +40,7 @@ class ApiUserController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['status' => 0,'message' =>$validator->errors()->first()]);
+            return response()->json(['success' => 0,'message' =>$validator->errors()->first()]);
         }
 
         $data['password'] = bcrypt($data['password']);
@@ -61,19 +63,23 @@ class ApiUserController extends Controller
         return response()->json(['success' => 1, 'message' => 'success', 'token' => $success['token']]);
     }
 
+
+
     public function verifyEmail(){
         $user = Auth::user();
-        $user->verify==strval(rand(100000,999999));
+        $user->verify=strval(rand(100000,999999));
         Mail::to($user->email)->send(new SanalHuseltMail('Таны баталгаажуулах код: '.$user->verify, 'Бүртгэл баталгаажуулах'));
         $user->save();
         return response()->json(['success' => 1, 'message' => 'success']);
     }
 
-    public function verifyPhone(){
+
+
+    public function verifyPhone(Request $request){
         $user = Auth::user();
         $user->status=1;
         $user->save();
-        return response()->json(['success' => 1, 'message' => 'success']);
+        return $this->userInfo();
     }
 
     public function verify(Request $request){
@@ -126,16 +132,28 @@ class ApiUserController extends Controller
         }
 
         $user=User::where(['verify'=>$data['verify'], 'status'=>4])->first();
-        if(!$user){  return response()->json(['status' => 0, 'message' => 'Нууц үг сэргээх код буруу байна.']);  }
+        if(!$user){  return response()->json(['success' => 0, 'message' => 'Нууц үг сэргээх код буруу байна.']);  }
         $user->status = 1;
         $user->verify = null;
         $user->password =  bcrypt($data['password']);
         $user->save();
-        return response()->json(['status' => 1, 'message' => 'Нууц үг амжилттай солигдолоо']);
+        return response()->json(['success' => 1, 'message' => 'Нууц үг амжилттай солигдолоо']);
     }
 
     public function changeEmailRequest(Request $request){
         $user = Auth::user();
+
+
+        $data['email']=$request['new_email'];
+
+        $validator = Validator::make($data, [
+            'email' => 'required|email|unique:users',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['success' => 0,'message' =>$validator->errors()->first()]);
+        }
+
         $user->new_email=$request['new_email'];
         $user->new_email_verify=strval(rand(100000,999999));
         Mail::to($user->new_email)->send(new SanalHuseltMail('Имэйл хаягаа солих код: '.$user->new_email_verify, 'Имэйл хаяг солих'));
@@ -158,8 +176,21 @@ class ApiUserController extends Controller
 
     public function changePhoneRequest(Request $request){
         $user = Auth::user();
+
+
+        $data['phone']=$request['new_phone'];
+
+        $validator = Validator::make($data, [
+            'phone' => 'required|numeric|unique:users|digits:8',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['success' => 0,'message' =>$validator->errors()->first()]);
+        }
+
         $user->new_phone=$request['new_phone'];
         $user->new_phone_verify=strval(rand(100000,999999));
+
         Mail::to($user->email)->send(new SanalHuseltMail('Утасны дугаараа солих код: '.$user->new_phone_verify, 'Утасны дугаараа солих'));
         $user->save();
         return response()->json(['success' => 1, 'message' => 'Утасны дугаараа солих кодыг таны  мэйл хаяглуу илгээсэн байгаа']);
@@ -175,6 +206,72 @@ class ApiUserController extends Controller
         $user->new_phone_verify=null;
         $user->save();
         return response()->json(['success' => 1, 'message' => 'Амжилттай']);
+    }
+
+
+    public function changePassword(Request $request){
+        $user = Auth::user();
+        if($request['newpassword']==$request['password']){
+            return response()->json(
+                [
+                    'success' => 0,
+                    'message' => 'Хуучин нууц үг шинэ нууц үг ижилхэн байна',
+                ]
+            );
+        }
+
+        $check=['name' => $user->name, 'password'=>$request['password']];
+        if (Auth::guard('web')->attempt($check)) {
+            $user->password = bcrypt($request['newpassword']);
+            $user->save();
+            return response()->json(
+                [
+                    'success' => 1,
+                    'message' => 'Амжилттай',
+                ]
+            );
+        } else {
+            return response()->json(
+                [
+                    'success' => 0,
+                    'message' => 'Хуучин нууц үгээ буруу оруулсан байна',
+                ]
+            );
+        }
+    }
+
+
+    public function FacebookLogin(Request $request){
+
+
+        $user=User::where('email',$request['email'])->first();
+
+        if ($user) {
+
+            if($user->status==2 and $user->status==3){
+                return response()->json(
+                    [
+                        'success' => 0,
+                        'message' => 'Нэвтрэх боломжгүй',
+                    ]
+                );
+            }
+            $success['token'] = $user->createToken('MyApp')->accessToken;
+            return response()->json(
+                [
+                    'success' => 1,
+                    'message' => 'success',
+                    'token' => $success['token'],
+                ]
+            );
+        } else {
+            return response()->json(
+                [
+                    'success' => 1,
+                    'message' => 'Шинэ бүртгэл үүсгэх',
+                ]
+            );
+        }
     }
 
     public function login(Request $request)
@@ -201,11 +298,11 @@ class ApiUserController extends Controller
 //                    ]
 //                );
 //            }
-            if($user->status>1){
+            if($user->status==2 and $user->status==3){
                 return response()->json(
                     [
                         'success' => 0,
-                        'message' => 'Нэвтрэх боломжгүй. Таны зээлийн эрх хаагдсан байна.',
+                        'message' => 'Нэвтрэх боломжгүй',
                     ]
                 );
             }
@@ -236,6 +333,15 @@ class ApiUserController extends Controller
         return response()->json(['success' => 1, 'message' => 'success', 'data' => $user]);
     }
 
+    public function notificationUpdate(Request $request)
+    {
+        $user = Auth::user();
+        $data = $request->post();
+        $user->is_notification=$data['is_notification'];
+        $user->save();
+        return response()->json(['success' => 1, 'message' => 'success']);
+    }
+
     public function userInfoUpdate(Request $request)
     {
         $user = Auth::user();
@@ -256,7 +362,7 @@ class ApiUserController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['status' => 0,'message' =>$validator->errors()->first()]);
+            return response()->json(['success' => 0,'message' =>$validator->errors()->first()]);
         }
 
         if(isset($data['password'])){
@@ -279,7 +385,7 @@ class ApiUserController extends Controller
         }
 
         $user->save();
-        return response()->json(['success' => 1, 'message' => 'success', 'data' => $user]);
+        return $this->userInfo();
     }
 
     public function logOut(){

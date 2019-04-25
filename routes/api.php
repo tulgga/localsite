@@ -20,19 +20,27 @@ Route::fallback(function(){
 Route::middleware('auth:api')->namespace('Api')->group(function () {
     Route::get('userInfo', 'ApiUserController@userInfo');
 
+
     Route::post('userInfoUpdate', 'ApiUserController@userInfoUpdate');
     Route::post('verify', 'ApiUserController@verify');
 
 
-    Route::get('verifyPhone', 'ApiUserController@verifyPhone');
+    Route::post('verifyPhone', 'ApiUserController@verifyPhone');
     Route::get('verifyEmail', 'ApiUserController@verifyEmail');
+    Route::post('notificationUpdate', 'ApiUserController@notificationUpdate');
+
 
 
     Route::post('changeEmailRequest', 'ApiUserController@changeEmailRequest');
     Route::post('changeEmail', 'ApiUserController@changeEmail');
 
+
+    Route::post('changePassword', 'ApiUserController@changePassword');
+
     Route::post('changePhoneRequest', 'ApiUserController@changePhoneRequest');
     Route::post('changePhone', 'ApiUserController@changePhone');
+
+    Route::post('zarAdd','ApiZarController@zarAdd');
 
     Route::get('logOut', 'ApiUserController@logOut');
 
@@ -52,6 +60,7 @@ Route::namespace('Api')->group(function (){
     Route::post('lostPassword', 'ApiUserController@lostPassword');
     Route::post('restorePassword', 'ApiUserController@restorePassword');
 
+    Route::post('FacebookLogin', 'ApiUserController@FacebookLogin');
 
     Route::get('sidebar/{id}','ApiSiteController@sidebar');
     Route::get('weather','ApiSiteController@weather');
@@ -89,8 +98,12 @@ Route::namespace('Api')->group(function (){
     Route::get('zar','ApiZarController@zar');
     //Бүх зарын ангилалыг авна
     Route::get('zarCategory','ApiZarCategoryController@zarCategory');
-    //Зарын ангилалаас зөвхөн нэг ангилалыг хүүхдүүдийн хамт
-    Route::get('zarCategory/{id}','ApiZarCategoryController@getById');
+    //Зарыг 20 бичлэгээр хуудаслаж авна
+    Route::get('zarByCategoryId/{id}','ApiZarController@zarByCategoryId');
+
+    Route::get('zarSingle/{id}','ApiZarController@zarSingle');
+
+
     //Бүх санал асуулга хэлбэржүүлж авах
     Route::get('poll','ApiPollController@poll');
     //Зөвхөн нэг санал асуулгын ID өгсөн тохиолдолд санал асуулгыг асуулт, хариултын хамт илгээнэ

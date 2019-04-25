@@ -93,7 +93,6 @@ class ZarController extends Controller
                 $i++;
             }
         }
-
         return redirect(url('/p/'.$zar->id.'.html'));
     }
 

@@ -22,8 +22,10 @@ class ApiZarCategoryController extends Controller
         return $branch;
     }
 
+
+
     public function zarCategory(){
-        $zarCategory= Zar_category::select('zar_category.*', 'zar_category.name as label')->orderBy('order_num', 'asc')->get();
+        $zarCategory= Zar_category::orderBy('order_num', 'asc')->get();
         return response()->json([ 'success' => $this->buildTree($zarCategory) ]);
     }
 
@@ -33,3 +35,4 @@ class ApiZarCategoryController extends Controller
         return response()->json([ 'success' => $this->buildTree($zarCategory) ]);
     }
 }
+
