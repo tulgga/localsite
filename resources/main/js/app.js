@@ -33,6 +33,7 @@ import VueSelect from 'vue-select';
 import VueCarousel from 'vue-carousel';
 import Meta from 'vue-meta';
 import VBar from 'v-bar';
+import  SocialSharing from 'vue-social-sharing';
 // import BCarousel from './components/helpers/carousel';
 
 Vue.use(VueRouter);
@@ -41,6 +42,7 @@ sync(store, router);
 
 Vue.use(VueCarousel);
 Vue.use(Vuebar);
+Vue.use(SocialSharing);
 
 
 Vue.use(Toasted,{

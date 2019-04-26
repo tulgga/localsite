@@ -10,17 +10,26 @@
     
     <link rel="icon" type="image/x-icon" href="{{$favicon}}"/>
     <title>{{$config['meta']['title']}}</title>
-    {{--<meta name="keywords" content="{{$config['meta']['keywords']}}">--}}
-    {{--<meta name="description" content="{{$config['meta']['title']}}">--}}
+    @if($news)
+        <meta property="og:title" content="{{$news['title']}}">
+        <meta property="og:image" content="{{url('/uploads/'.$news['image'])}}">
+        <meta property="og:url" content="{{ url('/!?id='.$news['id'].'#/news/'.$news['id']) }}">
+        <meta property="og:type" content="article">
+        <meta property="og:description" content="{{$news['short_content']}}">
+    @else
+        <meta name="keywords" content="{{$config['meta']['keywords']}}">
+        <meta name="description" content="{{$config['meta']['title']}}">
+        <meta property="og:title" content="{{$config['meta']['title']}}">
+        <meta property="og:image" content="{{$logo}}">
+        <meta property="og:url" content="{{ url('/') }}">
+        <meta property="og:description" content="{{$config['meta']['description']}}">
+    @endif
 
-    {{--<meta property="og:title" content="{{$config['meta']['title']}}">--}}
-    {{--<meta property="og:image" content="{{$logo}}">--}}
-    {{--<meta property="og:url" content="{{ url('/') }}">--}}
-    {{--<meta property="og:description" content="{{$config['meta']['description']}}">--}}
     <!-- Styles -->
     {{$mainConfig['google_analytics']}}
     <link href="{{ url('main/css/app.css') }}" rel="stylesheet">
 </head>
+
 <body>
 <div id="app">
     <site-app></site-app>
@@ -28,6 +37,7 @@
 
 <!-- Scripts -->
 <script>
+    console.log(window.location.hash);
     window.surl = "{{ url('/') }}";
     window.subdomain = "{{ env('SUB_DOMAIN') }}";
     window.logo = "{{$logo}}";

@@ -17,7 +17,12 @@ Route::get('/adminPanel/{vue_capture?}',function(){
     return view('admin');
 })->where('vue_capture', '[\/\w\.-]*');
 
+
+//Route::get('/!#/news/{id}', 'Controller@index');
 Route::get('/!/{vue_capture?}', 'Controller@index')->where('vue_capture', '[\/\w\.-]*');
+
+
+
 
 Route::domain('volunteer.bayankhongor.local')->group(function () {
     Route::get('/', 'VolunteerController@index');

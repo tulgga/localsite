@@ -84,7 +84,6 @@
         computed: {
             amIEmptyNode () {
                 // data of an empty node is an empty object: {}
-
                  return !this.data.id
             },
             /**

@@ -88293,7 +88293,6 @@ var modules = requireContext.keys().map(function (file) {
     computed: {
         amIEmptyNode: function amIEmptyNode() {
             // data of an empty node is an empty object: {}
-
             return !this.data.id;
         },
 
