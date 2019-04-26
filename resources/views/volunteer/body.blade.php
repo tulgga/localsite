@@ -19,7 +19,7 @@
         <div class="col-sm-5"><img src="{{asset('main/volunteer/images/logo.png')}}" title="Volunteer | Сайн дурынхан"/></div>
         <div class="col-sm-7">
             <ul class="volunteerForum m-0">
-                <li><a href="{{asset("login")}}">Нэвтрэх</a></li>
+                <li><a href="#" data-toggle="modal" data-target="#LoginForm">Нэвтрэх</a></li>
                 <li><a href="{{asset("register")}}">Бүртгүүлэх</a></li>
             </ul>
             <nav class="navbar navbar-expand-lg navbar-dark p-0">
@@ -101,10 +101,41 @@
         <div class="copyright">Бүх эрх хуулиар хамгаалагдсан <strong>© 2018</strong> | Хуулбарлахыг хориглоно. Баянхонгор аймгийн Засаг Даргын Тамгын Газар</div>
     </div>
 </div>
-{{--Javascript--}}
+<!-- Modal -->
+<div class="modal fade" id="LoginForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title font-16" id="exampleModalCenterTitle">Нэвтрэх</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="font-12 rounded" method="post" action="{{asset('loginUser')}}">
+                    <div class="form-group">
+                        <label>Нэвтрэх нэр:</label>
+                        <input type="text" name="username" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Нууц үг:</label>
+                        <input type="password" name="password" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Нэвтрэх</button>
+                    <div class="registerOr"><span>эсвэл</span></div>
+                    <button type="button" class="facebookBTN"><i class="fab fa-facebook-square"></i> Фэйсбүүк</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{-- Javascript --}}
+
 <script type="text/javascript" src="{{ asset('main/volunteer/js/jquery-2.1.1.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('main/volunteer/js/bootstrap.js') }}"></script>
 <script type="text/javascript" src='http://code.jquery.com/jquery-1.8.3.js'></script>
 <script type="text/javascript" src="{{ asset('main/volunteer/js/script.js') }}"></script>
+
 </body>
 </html>

@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Volunteer;
-use App\Volun_covered;
-use App\Volun_rating;
-use App\Volun_organization;
-use App\Volun_user;
+use App\Volunteers_cover;
+use App\Volunteers_like;
+use App\Volunteers_rating;
+use App\User;
 
 class VolunteerController extends Controller
 {
@@ -22,27 +22,29 @@ class VolunteerController extends Controller
         return view('volunteer.register');
     }
     public function userRegister(Request $request){
-        $uid = "USR".rand(100000, 999999);
-        $user = New Volun_user();
-        $pass = md5($request->password);
-        $user->Oid = $uid;
-        $user->Password = md5($pass);
-        $user->Email = $request->email;
-        $user->CellPhone = $request->cellPhone;
-        $user->save();
-        $request->session()->flash('successMsg', 'Бүртгэл амжилттай хадгалагдлаа!');
-        return redirect()->to('/register');
-    }
-    public function organizationRegister(Request $request){
-        $uid = "ORG".rand(100000, 999999);
-        $org = New Volun_organization();
-        $pass = md5($request->password);
-        $org->Oid = $uid;
-        $org->Password = md5($pass);
-        $org->Email = $request->email;
-        $org->Phone = $request->cellPhone;
-        $org->save();
-        $request->session()->flash('successMsg', 'Бүртгэл амжилттай хадгалагдлаа!');
-        return redirect()->to('/register');
+        if($request->password == $request->verify_password){
+            $user = New User();
+            $pass = bcrypt($request->verify_password);
+            $user->name = $request->username;
+            $user->lastname = $request->lastname;
+            $user->firstname = $request->firstname;
+            $user->registration_no = $request->registration_no;
+            $user->password = $pass;
+            $user->email = $request->email;
+            $user->phone = $request->phone;
+            $user->save();
+            $request->session()->flash('successMsg', 'Бүртгэл амжилттай хадгалагдлаа!');
+            return redirect()->to('/register');
+        }else{
+            $request->session()->flash('username',$request->username);
+            $request->session()->flash('lastname',$request->lastname);
+            $request->session()->flash('firstname',$request->firstname);
+            $request->session()->flash('email',$request->email);
+            $request->session()->flash('phone',$request->phone);
+            $request->session()->flash('registration_no',$request->registration_no);
+            $request->session()->flash('passwordMatchMsg', 'Нууц уг таарахгүй байна!');
+            return redirect()->to('/register');
+        }
+
     }
 }
