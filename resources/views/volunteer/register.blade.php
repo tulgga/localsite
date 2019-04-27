@@ -20,14 +20,22 @@
                         <input value="{{ Session::get('username') }}" type="text" placeholder="Нэвтрэх нэр" name="username" class="form-control" required>
                     </div>
                     <div class="form-group">
-                        <input pattern="[А-Яа-яӨөҮү]{2}[0-9]{8}" value="{{ Session::get('registration_no') }}" type="text" maxlength="10" id="register" placeholder="Регистрийн дугаар" name="registration_no" class="form-control" required>
-                        <span class="font-12 msg font-italic"><font color="#a9a9a9">Крилл үсгээр бичнэ үү</font></span>
-                    </div>
-                    <div class="form-group">
                         <input value="{{ Session::get('lastname') }}" type="text" placeholder="Овог" name="lastname" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <input value="{{ Session::get('firstname') }}" type="text" placeholder="Нэр" name="firstname" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <input pattern="[А-Яа-яӨөҮү]{2}[0-9]{8}" value="{{ Session::get('registration_no') }}" type="text" maxlength="10" id="register" placeholder="Регистрийн дугаар" name="registration_no" class="form-control" required>
+                        <span class="font-12 msg font-italic"><font color="#a9a9a9">Крилл үсгээр бичнэ үү</font></span>
+                    </div>
+                    <div class="form-group">
+                        <select name="site_id" class="form-control" required>
+                            <option value=""> Сум сонгох </option>
+                            <?php foreach($site as $st){ ?>
+                            <option value="<?php echo $st->id; ?>" @if(Session::get('site_id') == $st->id) selected @endif><?php echo $st->name; ?> </option>
+                            <?php } ?>
+                        </select>
                     </div>
                     <div class="form-group">
                         <input value="{{ Session::get('email') }}" type="email" placeholder="И-мэйл хаяг" name="email" class="form-control" required>

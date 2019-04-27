@@ -34,10 +34,7 @@
                             <a class="nav-link" href="{{asset("volunteer")}}">Сайн дурын ажлууд</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{asset("people")}}">Хувь хүн</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{asset("organization")}}">Байгууллага</a>
+                            <a class="nav-link" href="{{asset("people")}}">Сайн дурынхан</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{asset("contact")}}">Холбогдох</a>
@@ -113,6 +110,7 @@
             </div>
             <div class="modal-body">
                 <form class="font-12 rounded" method="post" action="{{asset('loginUser')}}">
+                    {{ csrf_field() }}
                     <div class="form-group">
                         <label>Нэвтрэх нэр:</label>
                         <input type="text" name="username" class="form-control" required>
