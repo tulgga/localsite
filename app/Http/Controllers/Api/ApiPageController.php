@@ -28,4 +28,23 @@ class ApiPageController extends Controller
 
         }
     }
+
+    public function ildot()
+    {
+        $pages=Page::where('parent_id', 109)->orderBy('order_num', 'asc')->get();
+        foreach ($pages as $c=>$page){
+            $pages[$c]['children']= Page::where('parent_id', $page->id)->orderBy('order_num', 'asc')->get();
+            foreach ($pages[$c]['children'] as $ci=>$cc){
+                $pages[$c]['children'][$ci]['children']= Page::where('parent_id', $cc->id)->orderBy('order_num', 'asc')->get();
+                foreach ($pages[$c]['children'][$ci]['children'] as $bi=>$bc){
+                    $pages[$c]['children'][$ci]['children'][$bi]['children']= Page::where('parent_id', $bc->id)->orderBy('order_num', 'asc')->get();
+                }
+            }
+        }
+        return response()->json([ 'success' => $pages ]);
+    }
+
+    public function ildot_single($id){
+        $page= Page::find($id);
+    }
 }

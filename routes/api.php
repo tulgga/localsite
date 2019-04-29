@@ -47,6 +47,10 @@ Route::middleware('auth:api')->namespace('Api')->group(function () {
 });
 
 Route::namespace('Api')->group(function (){
+
+    Route::get('ildot','ApiPageController@ildot');
+
+
     Route::get('service','ApiSiteController@service');
     //sites
     Route::get('sites','ApiSiteController@sites');
