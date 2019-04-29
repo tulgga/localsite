@@ -44,5 +44,5 @@ class ApiPageController extends Controller
         return response()->json([ 'success' => $pages ]);
     }
 
-    
+
 }
