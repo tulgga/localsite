@@ -10,14 +10,18 @@
         <div class="row">
             <div class="col-sm-4"></div>
             <div class="col-sm-4">
-                <form class="bg-white p-4 font-14 rounded" method="post" action="{{asset('loginUser')}}">
+                <form class="font-12 bg-white p-4 rounded" method="post" action="{{asset('loginUser')}}">
+                    @if(Session::has('loginMsg'))
+                        <div class="alert alert-warning font-14"> {{ Session::get('loginMsg') }} </div>
+                    @endif
+                    {{ csrf_field() }}
                     <div class="form-group">
-                        <label>И-мэйл хаяг, утасны дугаар:</label>
+                        <label>Нэвтрэх нэр:</label>
                         <input type="text" name="username" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label>Нууц үг:</label>
-                        <input type="text" name="password" class="form-control" required>
+                        <input type="password" name="password" class="form-control" required>
                     </div>
                     <button type="submit" class="btn btn-primary w-100">Нэвтрэх</button>
                     <div class="registerOr"><span>эсвэл</span></div>

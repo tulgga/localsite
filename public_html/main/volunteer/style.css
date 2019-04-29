@@ -87,6 +87,12 @@ body{
     padding: 25px;
     font-size: 13px;
 }
+.service_conditions h6{
+    font-size: 14px;
+}
+.service_conditions ul, .service_conditions ol{
+    padding-left: 30px;
+}
 .descip{
     color:#fff;
     top:50%;

@@ -22,18 +22,16 @@ Route::get('/adminPanel/{vue_capture?}',function(){
 Route::get('/!/{vue_capture?}', 'Controller@index')->where('vue_capture', '[\/\w\.-]*');
 
 
-
-
 Route::domain('volunteer.bayankhongor.local')->group(function () {
     Route::get('/', 'VolunteerController@index');
     Route::get('/c/{id}', 'VolunteerController@category');
     Route::get('/login', 'VolunteerController@login');
     Route::get('/register', 'VolunteerController@register');
     Route::post('/userRegister', 'VolunteerController@userRegister');
-    Route::post('/organizationRegister', 'VolunteerController@organizationRegister');
+    Route::post('/loginUser', 'VolunteerController@loginUser');
 });
 
-Route::domain('zar.bayankhongor.local')->group(function () {
+Route::domain('zar.bayankhongor.towersoft.local')->group(function () {
     Route::get('/', 'ZarController@index');
     Route::get('/c/{id}.html', 'ZarController@category');
     Route::get('/p/{id}.html', 'ZarController@single');
@@ -42,7 +40,7 @@ Route::domain('zar.bayankhongor.local')->group(function () {
     Route::post('/postAdd', 'ZarController@postAdd');
 });
 
-Route::domain('{account}.bayankhongor.local')->group(function () {
+Route::domain('{account}.bayankhongor.towersoft.local')->group(function () {
     Route::get('/', 'SubController@index');
     Route::get('/p/{id}', 'SubController@page');
     Route::get('/news/{id}', 'SubController@news');
