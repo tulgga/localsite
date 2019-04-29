@@ -44,7 +44,5 @@ class ApiPageController extends Controller
         return response()->json([ 'success' => $pages ]);
     }
 
-    public function ildot_single($id){
-        $page= Page::find($id);
-    }
+    
 }
