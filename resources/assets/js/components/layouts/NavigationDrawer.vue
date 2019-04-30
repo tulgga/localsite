@@ -140,7 +140,8 @@
                     { subheader: 'Бусад',  role:1},
                         { title: "Санал асуулга", icon: 'fas fa-code-branch', path: '/poll' ,  role:0},
                         { title: 'Санал хүсэлт', icon: 'far fa-comments', path: '/urgudul',  role:1,  badge:1,},
-
+                    { subheader: 'Чат',  role:0},
+                        { title: "Групп", icon: 'fas fa-code-branch', path: '/group' ,  role:0},
 
 
                     // ded site

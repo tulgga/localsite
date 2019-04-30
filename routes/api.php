@@ -98,6 +98,9 @@ Route::namespace('Api')->group(function (){
     Route::get('heltes','ApiUrgudulController@heltes');
     Route::post('filterUrgudul','ApiUrgudulController@filterUrgudul');
 
+
+
+
     //Зарыг 20 бичлэгээр хуудаслаж авна
     Route::get('zar','ApiZarController@zar');
     //Бүх зарын ангилалыг авна
@@ -123,6 +126,19 @@ Route::middleware('auth:admin-api')->namespace('Admin')->prefix('admin')->group(
     //heltes
     Route::resource('heltes','AdminHeltesController');
     Route::post('heltes/{id}','AdminHeltesController@update');
+
+
+    //group
+    Route::resource('group','AdminGroupController');
+    Route::post('group/change_status','AdminGroupController@change_status');
+    Route::get('group/user_change_yes/{id}','AdminGroupController@user_change_yes');
+    Route::get('group/user_change_no/{id}','AdminGroupController@user_change_no');
+    Route::get('group/users/{id}','AdminGroupController@users');
+    Route::post('group/{id}','AdminGroupController@update');
+
+
+
+
 
     //ded site
     Route::resource('site','AdminSiteController');

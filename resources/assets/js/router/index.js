@@ -62,6 +62,10 @@ import Login from '../modules/auth/Login'
 //system routes
 import NotFound from '../modules/system/NotFound'
 
+import Group from '../modules/admin/group/group';
+import GroupFrom from '../modules/admin/group/groupForm';
+import group_user_request from '../modules/admin/group/group_user_request';
+
 Vue.use(Router)
 
 let routes = [
@@ -952,6 +956,84 @@ let routes = [
                     ],
                     notloading: true,
                     is_modal: true,
+                }
+            },
+        ]
+    },
+
+    {
+        path: '/group_user_request/:id',
+        name: 'group_user_request',
+        component: group_user_request,
+        meta: {
+            requiresAuth: true,
+            page_title: 'Хүсэлтүүд',
+            bread_crumbs: [
+                {
+                    title: 'Чат',
+                    rname: 'home'
+                },
+                {
+                    title: 'Групп',
+                    rname: 'group'
+                }
+            ],
+        }
+    },
+
+    {
+        path: '/group',
+        name: 'group',
+        component: Group,
+        meta: {
+            requiresAuth: true,
+            page_title: 'Групп',
+            bread_crumbs: [
+                {
+                    title: 'Чат',
+                    rname: 'home'
+                }
+            ]
+        },
+        children: [
+            {
+                path: 'create',
+                component: GroupFrom,
+                name: 'create_group',
+                meta: {
+                    page_title: 'Нэмэх',
+                    bread_crumbs: [
+                        {
+                            title: 'Чат',
+                            rname: 'home'
+                        },
+                        {
+                            title: 'Групп үүсгэх',
+                            rname: ''
+                        }
+                    ],
+                    notloading: true,
+                    is_modal: false,
+                }
+            },
+            {
+                path: ':id/update',
+                component: GroupFrom,
+                name: 'update_group',
+                meta: {
+                    page_title: 'Засах',
+                    bread_crumbs: [
+                        {
+                            title: 'Чат',
+                            rname: 'home'
+                        },
+                        {
+                            title: 'Групп засах',
+                            rname: ''
+                        }
+                    ],
+                    notloading: true,
+                    is_modal: false,
                 }
             },
         ]

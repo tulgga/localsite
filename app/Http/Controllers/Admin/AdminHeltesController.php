@@ -22,6 +22,9 @@ class AdminHeltesController extends Controller
     }
 
 
+
+
+
     public function destroy($id)
     {
         $ban = Heltes::findOrFail($id);

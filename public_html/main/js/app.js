@@ -4574,7 +4574,7 @@
 
 })));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(18)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(19)(module)))
 
 /***/ }),
 /* 1 */
@@ -4864,7 +4864,7 @@ function normalizeComponent (
 	}
 
 })(typeof module === 'object' && module && typeof module.exports === 'object' && module.exports);
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(18)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(19)(module)))
 
 /***/ }),
 /* 3 */
@@ -6003,34 +6003,6 @@ module.exports = omit;
 
 /***/ }),
 /* 18 */
-/***/ (function(module, exports) {
-
-module.exports = function(module) {
-	if(!module.webpackPolyfill) {
-		module.deprecate = function() {};
-		module.paths = [];
-		// module.parent = undefined by default
-		if(!module.children) module.children = [];
-		Object.defineProperty(module, "loaded", {
-			enumerable: true,
-			get: function() {
-				return module.l;
-			}
-		});
-		Object.defineProperty(module, "id", {
-			enumerable: true,
-			get: function() {
-				return module.i;
-			}
-		});
-		module.webpackPolyfill = 1;
-	}
-	return module;
-};
-
-
-/***/ }),
-/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16996,6 +16968,34 @@ module.exports = Vue;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(15), __webpack_require__(197).setImmediate))
 
 /***/ }),
+/* 19 */
+/***/ (function(module, exports) {
+
+module.exports = function(module) {
+	if(!module.webpackPolyfill) {
+		module.deprecate = function() {};
+		module.paths = [];
+		// module.parent = undefined by default
+		if(!module.children) module.children = [];
+		Object.defineProperty(module, "loaded", {
+			enumerable: true,
+			get: function() {
+				return module.l;
+			}
+		});
+		Object.defineProperty(module, "id", {
+			enumerable: true,
+			get: function() {
+				return module.i;
+			}
+		});
+		module.webpackPolyfill = 1;
+	}
+	return module;
+};
+
+
+/***/ }),
 /* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -17296,7 +17296,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _vue = __webpack_require__(19);
+var _vue = __webpack_require__(18);
 
 var _vue2 = _interopRequireDefault(_vue);
 
@@ -18603,7 +18603,7 @@ var isBuffer = nativeIsBuffer || stubFalse;
 
 module.exports = isBuffer;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(18)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(19)(module)))
 
 /***/ }),
 /* 47 */
@@ -18732,7 +18732,7 @@ var nodeUtil = (function() {
 
 module.exports = nodeUtil;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(18)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(19)(module)))
 
 /***/ }),
 /* 51 */
@@ -34095,7 +34095,7 @@ module.exports = {
 "use strict";
 
 
-var _vue = __webpack_require__(19);
+var _vue = __webpack_require__(18);
 
 var _vue2 = _interopRequireDefault(_vue);
 
@@ -55704,7 +55704,7 @@ if (false) {(function () {
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(15), __webpack_require__(18)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(15), __webpack_require__(19)(module)))
 
 /***/ }),
 /* 256 */
@@ -76657,7 +76657,7 @@ function cloneBuffer(buffer, isDeep) {
 
 module.exports = cloneBuffer;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(18)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(19)(module)))
 
 /***/ }),
 /* 538 */
@@ -85487,7 +85487,7 @@ var SAVE_MENU = 'SAVE_MENU';
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_router__ = __webpack_require__(198);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__store__ = __webpack_require__(639);
@@ -85641,7 +85641,7 @@ router.afterEach(function (to, from, next) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(276);
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
@@ -88547,8 +88547,8 @@ if (false) {(function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_HeaderBar_vue__ = __webpack_require__(908);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_layouts_FooterBar_vue__ = __webpack_require__(912);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_layouts_HeaderBar_vue__ = __webpack_require__(909);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_layouts_FooterBar_vue__ = __webpack_require__(913);
 //
 //
 //
@@ -89179,7 +89179,7 @@ module.exports = __webpack_require__(834);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_router__ = __webpack_require__(198);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__store__ = __webpack_require__(639);
@@ -89210,7 +89210,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_vue_meta__ = __webpack_require__(901);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_vue_meta___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_19_vue_meta__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_v_bar__ = __webpack_require__(902);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21_vue_social_sharing__ = __webpack_require__(1006);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21_vue_social_sharing__ = __webpack_require__(907);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21_vue_social_sharing___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_21_vue_social_sharing__);
 
 /**
@@ -89356,7 +89356,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_9_vee_
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.config.productionTip = false;
 
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('flatPickr', __WEBPACK_IMPORTED_MODULE_16_vue_flatpickr_component___default.a);
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('SiteApp', __webpack_require__(907).default);
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('SiteApp', __webpack_require__(908).default);
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('v-select', __WEBPACK_IMPORTED_MODULE_17_vue_select___default.a);
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('Loading', __WEBPACK_IMPORTED_MODULE_10__components_helpers_loading__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('b-img', __WEBPACK_IMPORTED_MODULE_11__components_helpers_BImg__["a" /* default */]);
@@ -98161,13 +98161,398 @@ if (false) {
 
 /***/ }),
 /* 907 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/*!
+ * vue-social-sharing v2.4.3 
+ * (c) 2019 nicolasbeauvais
+ * Released under the MIT License.
+ */
+
+
+function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
+
+var Vue = _interopDefault(__webpack_require__(18));
+
+var SocialSharingNetwork = {
+  functional: true,
+
+  props: {
+    network: {
+      type: String,
+      default: ''
+    }
+  },
+
+  render: function (createElement, context) {
+    var network = context.parent._data.baseNetworks[context.props.network];
+
+    if (!network) {
+      return console.warn(("Network " + (context.props.network) + " does not exist"));
+    }
+
+    return createElement(context.parent.networkTag, {
+      staticClass: context.data.staticClass || null,
+      staticStyle: context.data.staticStyle || null,
+      class: context.data.class || null,
+      style: context.data.style || null,
+      attrs: {
+        id: context.data.attrs.id || null,
+        'data-link': network.type === 'popup'
+          ? '#share-' + context.props.network
+          : context.parent.createSharingUrl(context.props.network),
+        'data-action': network.type === 'popup' ? null : network.action
+      },
+      on: {
+        click: network.type === 'popup' ? function () {
+          context.parent.share(context.props.network);
+        } : function () {
+          context.parent.touch(context.props.network);
+        }
+      }
+    }, context.children);
+  }
+};
+
+var email = {"sharer":"mailto:?subject=@title&body=@url%0D%0A%0D%0A@description","type":"direct"};
+var facebook = {"sharer":"https://www.facebook.com/sharer/sharer.php?u=@url&title=@title&description=@description&quote=@quote&hashtag=@hashtags","type":"popup"};
+var googleplus = {"sharer":"https://plus.google.com/share?url=@url","type":"popup"};
+var line = {"sharer":"http://line.me/R/msg/text/?@description%0D%0A@url","type":"popup"};
+var linkedin = {"sharer":"https://www.linkedin.com/shareArticle?mini=true&url=@url&title=@title&summary=@description","type":"popup"};
+var odnoklassniki = {"sharer":"https://connect.ok.ru/dk?st.cmd=WidgetSharePreview&st.shareUrl=@url&st.comments=@description","type":"popup"};
+var pinterest = {"sharer":"https://pinterest.com/pin/create/button/?url=@url&media=@media&description=@title","type":"popup"};
+var reddit = {"sharer":"https://www.reddit.com/submit?url=@url&title=@title","type":"popup"};
+var skype = {"sharer":"https://web.skype.com/share?url=@description%0D%0A@url","type":"popup"};
+var telegram = {"sharer":"https://t.me/share/url?url=@url&text=@description","type":"popup"};
+var twitter = {"sharer":"https://twitter.com/intent/tweet?text=@title&url=@url&hashtags=@hashtags@twitteruser","type":"popup"};
+var viber = {"sharer":"viber://forward?text=@url @description","type":"direct"};
+var vk = {"sharer":"https://vk.com/share.php?url=@url&title=@title&description=@description&image=@media&noparse=true","type":"popup"};
+var weibo = {"sharer":"http://service.weibo.com/share/share.php?url=@url&title=@title","type":"popup"};
+var whatsapp = {"sharer":"whatsapp://send?text=@description%0D%0A@url","type":"direct","action":"share/whatsapp/share"};
+var sms = {"sharer":"sms:?body=@url%20@description","type":"direct"};
+var BaseNetworks = {
+	email: email,
+	facebook: facebook,
+	googleplus: googleplus,
+	line: line,
+	linkedin: linkedin,
+	odnoklassniki: odnoklassniki,
+	pinterest: pinterest,
+	reddit: reddit,
+	skype: skype,
+	telegram: telegram,
+	twitter: twitter,
+	viber: viber,
+	vk: vk,
+	weibo: weibo,
+	whatsapp: whatsapp,
+	sms: sms
+};
+
+var inBrowser = typeof window !== 'undefined';
+var $window = inBrowser ? window : null;
+
+var SocialSharing = {
+  props: {
+    /**
+     * URL to share.
+     * @var string
+     */
+    url: {
+      type: String,
+      default: inBrowser ? window.location.href : ''
+    },
+
+    /**
+     * Sharing title, if available by network.
+     * @var string
+     */
+    title: {
+      type: String,
+      default: ''
+    },
+
+    /**
+     * Sharing description, if available by network.
+     * @var string
+     */
+    description: {
+      type: String,
+      default: ''
+    },
+
+    /**
+     * Facebook quote
+     * @var string
+     */
+    quote: {
+      type: String,
+      default: ''
+    },
+
+    /**
+     * Twitter hashtags
+     * @var string
+     */
+    hashtags: {
+      type: String,
+      default: ''
+    },
+
+    /**
+     * Twitter user.
+     * @var string
+     */
+    twitterUser: {
+      type: String,
+      default: ''
+    },
+
+    /**
+     * Flag that indicates if counts should be retrieved.
+     * - NOT WORKING IN CURRENT VERSION
+     * @var mixed
+     */
+    withCounts: {
+      type: [String, Boolean],
+      default: false
+    },
+
+    /**
+     * Google plus key.
+     * @var string
+     */
+    googleKey: {
+      type: String,
+      default: undefined
+    },
+
+    /**
+     * Pinterest Media URL.
+     * Specifies the image/media to be used.
+     */
+    media: {
+      type: String,
+      default: ''
+    },
+
+    /**
+     * Network sub component tag.
+     * Default to span tag
+     */
+    networkTag: {
+      type: String,
+      default: 'span'
+    },
+
+    /**
+     * Additional or overridden networks.
+     * Default to BaseNetworks
+     */
+    networks: {
+      type: Object,
+      default: function () {
+        return {};
+      }
+    }
+  },
+
+  data: function data () {
+    return {
+      /**
+       * Available sharing networks.
+       * @param object
+       */
+      baseNetworks: BaseNetworks,
+
+      /**
+       * Popup settings.
+       * @param object
+       */
+      popup: {
+        status: false,
+        resizable: true,
+        toolbar: false,
+        menubar: false,
+        scrollbars: false,
+        location: false,
+        directories: false,
+        width: 626,
+        height: 436,
+        top: 0,
+        left: 0,
+        window: undefined,
+        interval: null
+      }
+    };
+  },
+
+  methods: {
+    /**
+     * Returns generated sharer url.
+     *
+     * @param network Social network key.
+     */
+    createSharingUrl: function createSharingUrl (network) {
+      return this.baseNetworks[network].sharer
+        .replace(/@url/g, encodeURIComponent(this.url))
+        .replace(/@title/g, encodeURIComponent(this.title))
+        .replace(/@description/g, encodeURIComponent(this.description))
+        .replace(/@quote/g, encodeURIComponent(this.quote))
+        .replace(/@hashtags/g, this.generateHashtags(network, this.hashtags))
+        .replace(/@media/g, this.media)
+        .replace(/@twitteruser/g, this.twitterUser ? '&via=' + this.twitterUser : '');
+    },
+    /**
+     * Encode hashtags for the specified social network.
+     *
+     * @param  network Social network key
+     * @param  hashtags All hashtags specified
+     */
+    generateHashtags: function generateHashtags (network, hashtags) {
+      if (network === 'facebook' && hashtags.length > 0) {
+        return '%23' + hashtags.split(',')[0];
+      }
+
+      return hashtags;
+    },
+    /**
+     * Shares URL in specified network.
+     *
+     * @param network Social network key.
+     */
+    share: function share (network) {
+      this.openSharer(network, this.createSharingUrl(network));
+
+      this.$root.$emit('social_shares_open', network, this.url);
+      this.$emit('open', network, this.url);
+    },
+
+    /**
+     * Touches network and emits click event.
+     *
+     * @param network Social network key.
+     */
+    touch: function touch (network) {
+      window.open(this.createSharingUrl(network), '_self');
+
+      this.$root.$emit('social_shares_open', network, this.url);
+      this.$emit('open', network, this.url);
+    },
+
+    /**
+     * Opens sharer popup.
+     *
+     * @param network Social network key
+     * @param url Url to share.
+     */
+    openSharer: function openSharer (network, url) {
+      var this$1 = this;
+
+      // If a popup window already exist it will be replaced, trigger a close event.
+      var popupWindow = null;
+      if (popupWindow && this.popup.interval) {
+        clearInterval(this.popup.interval);
+
+        popupWindow.close();// Force close (for Facebook)
+
+        this.$root.$emit('social_shares_change', network, this.url);
+        this.$emit('change', network, this.url);
+      }
+
+      popupWindow = window.open(
+        url,
+        'sharer',
+        'status=' + (this.popup.status ? 'yes' : 'no') +
+        ',height=' + this.popup.height +
+        ',width=' + this.popup.width +
+        ',resizable=' + (this.popup.resizable ? 'yes' : 'no') +
+        ',left=' + this.popup.left +
+        ',top=' + this.popup.top +
+        ',screenX=' + this.popup.left +
+        ',screenY=' + this.popup.top +
+        ',toolbar=' + (this.popup.toolbar ? 'yes' : 'no') +
+        ',menubar=' + (this.popup.menubar ? 'yes' : 'no') +
+        ',scrollbars=' + (this.popup.scrollbars ? 'yes' : 'no') +
+        ',location=' + (this.popup.location ? 'yes' : 'no') +
+        ',directories=' + (this.popup.directories ? 'yes' : 'no')
+      );
+
+      popupWindow.focus();
+
+      // Create an interval to detect popup closing event
+      this.popup.interval = setInterval(function () {
+        if (popupWindow.closed) {
+          clearInterval(this$1.popup.interval);
+
+          popupWindow = undefined;
+
+          this$1.$root.$emit('social_shares_close', network, this$1.url);
+          this$1.$emit('close', network, this$1.url);
+        }
+      }, 500);
+    }
+  },
+
+  /**
+   * Merge base networks list with user's list
+   */
+  beforeMount: function beforeMount () {
+    this.baseNetworks = Vue.util.extend(this.baseNetworks, this.networks);
+  },
+
+  /**
+   * Sets popup default dimensions.
+   */
+  mounted: function mounted () {
+    if (!inBrowser) {
+      return;
+    }
+
+    /**
+     * Center the popup on dual screens
+     * http://stackoverflow.com/questions/4068373/center-a-popup-window-on-screen/32261263
+     */
+    var dualScreenLeft = $window.screenLeft !== undefined ? $window.screenLeft : screen.left;
+    var dualScreenTop = $window.screenTop !== undefined ? $window.screenTop : screen.top;
+
+    var width = $window.innerWidth ? $window.innerWidth : (document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width);
+    var height = $window.innerHeight ? $window.innerHeight : (document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height);
+
+    this.popup.left = ((width / 2) - (this.popup.width / 2)) + dualScreenLeft;
+    this.popup.top = ((height / 2) - (this.popup.height / 2)) + dualScreenTop;
+  },
+
+  /**
+   * Set component aliases for buttons and links.
+   */
+  components: {
+    'network': SocialSharingNetwork
+  }
+};
+
+SocialSharing.version = '2.4.3';
+
+SocialSharing.install = function (Vue) {
+  Vue.component('social-sharing', SocialSharing);
+};
+
+if (typeof window !== 'undefined') {
+  window.SocialSharing = SocialSharing;
+}
+
+module.exports = SocialSharing;
+
+/***/ }),
+/* 908 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_plugins_transform_object_rest_spread_transform_runtime_polyfill_false_helpers_false_node_modules_vue_loader_lib_selector_type_script_index_0_App_vue__ = __webpack_require__(667);
 /* empty harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_553b7f9c_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__ = __webpack_require__(914);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_553b7f9c_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__ = __webpack_require__(915);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_runtime_component_normalizer__ = __webpack_require__(1);
 var disposed = false
 /* script */
@@ -98215,18 +98600,18 @@ if (false) {(function () {
 
 
 /***/ }),
-/* 908 */
+/* 909 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_plugins_transform_object_rest_spread_transform_runtime_polyfill_false_helpers_false_node_modules_vue_loader_lib_selector_type_script_index_0_HeaderBar_vue__ = __webpack_require__(668);
 /* unused harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_959f897c_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_HeaderBar_vue__ = __webpack_require__(911);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_959f897c_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_HeaderBar_vue__ = __webpack_require__(912);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_runtime_component_normalizer__ = __webpack_require__(1);
 var disposed = false
 function injectStyle (context) {
   if (disposed) return
-  __webpack_require__(909)
+  __webpack_require__(910)
 }
 /* script */
 
@@ -98273,13 +98658,13 @@ if (false) {(function () {
 
 
 /***/ }),
-/* 909 */
+/* 910 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(910);
+var content = __webpack_require__(911);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -98300,7 +98685,7 @@ if(false) {
 }
 
 /***/ }),
-/* 910 */
+/* 911 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(8)(false);
@@ -98314,7 +98699,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 
 /***/ }),
-/* 911 */
+/* 912 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -99271,13 +99656,13 @@ if (false) {
 }
 
 /***/ }),
-/* 912 */
+/* 913 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_plugins_transform_object_rest_spread_transform_runtime_polyfill_false_helpers_false_node_modules_vue_loader_lib_selector_type_script_index_0_FooterBar_vue__ = __webpack_require__(669);
 /* unused harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_3756145c_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_FooterBar_vue__ = __webpack_require__(913);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_3756145c_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_FooterBar_vue__ = __webpack_require__(914);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_runtime_component_normalizer__ = __webpack_require__(1);
 var disposed = false
 /* script */
@@ -99325,7 +99710,7 @@ if (false) {(function () {
 
 
 /***/ }),
-/* 913 */
+/* 914 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -99635,7 +100020,7 @@ if (false) {
 }
 
 /***/ }),
-/* 914 */
+/* 915 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -99690,482 +100075,6 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-553b7f9c", { render: render, staticRenderFns: staticRenderFns })
   }
 }
-
-/***/ }),
-/* 915 */,
-/* 916 */,
-/* 917 */,
-/* 918 */,
-/* 919 */,
-/* 920 */,
-/* 921 */,
-/* 922 */,
-/* 923 */,
-/* 924 */,
-/* 925 */,
-/* 926 */,
-/* 927 */,
-/* 928 */,
-/* 929 */,
-/* 930 */,
-/* 931 */,
-/* 932 */,
-/* 933 */,
-/* 934 */,
-/* 935 */,
-/* 936 */,
-/* 937 */,
-/* 938 */,
-/* 939 */,
-/* 940 */,
-/* 941 */,
-/* 942 */,
-/* 943 */,
-/* 944 */,
-/* 945 */,
-/* 946 */,
-/* 947 */,
-/* 948 */,
-/* 949 */,
-/* 950 */,
-/* 951 */,
-/* 952 */,
-/* 953 */,
-/* 954 */,
-/* 955 */,
-/* 956 */,
-/* 957 */,
-/* 958 */,
-/* 959 */,
-/* 960 */,
-/* 961 */,
-/* 962 */,
-/* 963 */,
-/* 964 */,
-/* 965 */,
-/* 966 */,
-/* 967 */,
-/* 968 */,
-/* 969 */,
-/* 970 */,
-/* 971 */,
-/* 972 */,
-/* 973 */,
-/* 974 */,
-/* 975 */,
-/* 976 */,
-/* 977 */,
-/* 978 */,
-/* 979 */,
-/* 980 */,
-/* 981 */,
-/* 982 */,
-/* 983 */,
-/* 984 */,
-/* 985 */,
-/* 986 */,
-/* 987 */,
-/* 988 */,
-/* 989 */,
-/* 990 */,
-/* 991 */,
-/* 992 */,
-/* 993 */,
-/* 994 */,
-/* 995 */,
-/* 996 */,
-/* 997 */,
-/* 998 */,
-/* 999 */,
-/* 1000 */,
-/* 1001 */,
-/* 1002 */,
-/* 1003 */,
-/* 1004 */,
-/* 1005 */,
-/* 1006 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/*!
- * vue-social-sharing v2.4.3 
- * (c) 2019 nicolasbeauvais
- * Released under the MIT License.
- */
-
-
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
-var Vue = _interopDefault(__webpack_require__(19));
-
-var SocialSharingNetwork = {
-  functional: true,
-
-  props: {
-    network: {
-      type: String,
-      default: ''
-    }
-  },
-
-  render: function (createElement, context) {
-    var network = context.parent._data.baseNetworks[context.props.network];
-
-    if (!network) {
-      return console.warn(("Network " + (context.props.network) + " does not exist"));
-    }
-
-    return createElement(context.parent.networkTag, {
-      staticClass: context.data.staticClass || null,
-      staticStyle: context.data.staticStyle || null,
-      class: context.data.class || null,
-      style: context.data.style || null,
-      attrs: {
-        id: context.data.attrs.id || null,
-        'data-link': network.type === 'popup'
-          ? '#share-' + context.props.network
-          : context.parent.createSharingUrl(context.props.network),
-        'data-action': network.type === 'popup' ? null : network.action
-      },
-      on: {
-        click: network.type === 'popup' ? function () {
-          context.parent.share(context.props.network);
-        } : function () {
-          context.parent.touch(context.props.network);
-        }
-      }
-    }, context.children);
-  }
-};
-
-var email = {"sharer":"mailto:?subject=@title&body=@url%0D%0A%0D%0A@description","type":"direct"};
-var facebook = {"sharer":"https://www.facebook.com/sharer/sharer.php?u=@url&title=@title&description=@description&quote=@quote&hashtag=@hashtags","type":"popup"};
-var googleplus = {"sharer":"https://plus.google.com/share?url=@url","type":"popup"};
-var line = {"sharer":"http://line.me/R/msg/text/?@description%0D%0A@url","type":"popup"};
-var linkedin = {"sharer":"https://www.linkedin.com/shareArticle?mini=true&url=@url&title=@title&summary=@description","type":"popup"};
-var odnoklassniki = {"sharer":"https://connect.ok.ru/dk?st.cmd=WidgetSharePreview&st.shareUrl=@url&st.comments=@description","type":"popup"};
-var pinterest = {"sharer":"https://pinterest.com/pin/create/button/?url=@url&media=@media&description=@title","type":"popup"};
-var reddit = {"sharer":"https://www.reddit.com/submit?url=@url&title=@title","type":"popup"};
-var skype = {"sharer":"https://web.skype.com/share?url=@description%0D%0A@url","type":"popup"};
-var telegram = {"sharer":"https://t.me/share/url?url=@url&text=@description","type":"popup"};
-var twitter = {"sharer":"https://twitter.com/intent/tweet?text=@title&url=@url&hashtags=@hashtags@twitteruser","type":"popup"};
-var viber = {"sharer":"viber://forward?text=@url @description","type":"direct"};
-var vk = {"sharer":"https://vk.com/share.php?url=@url&title=@title&description=@description&image=@media&noparse=true","type":"popup"};
-var weibo = {"sharer":"http://service.weibo.com/share/share.php?url=@url&title=@title","type":"popup"};
-var whatsapp = {"sharer":"whatsapp://send?text=@description%0D%0A@url","type":"direct","action":"share/whatsapp/share"};
-var sms = {"sharer":"sms:?body=@url%20@description","type":"direct"};
-var BaseNetworks = {
-	email: email,
-	facebook: facebook,
-	googleplus: googleplus,
-	line: line,
-	linkedin: linkedin,
-	odnoklassniki: odnoklassniki,
-	pinterest: pinterest,
-	reddit: reddit,
-	skype: skype,
-	telegram: telegram,
-	twitter: twitter,
-	viber: viber,
-	vk: vk,
-	weibo: weibo,
-	whatsapp: whatsapp,
-	sms: sms
-};
-
-var inBrowser = typeof window !== 'undefined';
-var $window = inBrowser ? window : null;
-
-var SocialSharing = {
-  props: {
-    /**
-     * URL to share.
-     * @var string
-     */
-    url: {
-      type: String,
-      default: inBrowser ? window.location.href : ''
-    },
-
-    /**
-     * Sharing title, if available by network.
-     * @var string
-     */
-    title: {
-      type: String,
-      default: ''
-    },
-
-    /**
-     * Sharing description, if available by network.
-     * @var string
-     */
-    description: {
-      type: String,
-      default: ''
-    },
-
-    /**
-     * Facebook quote
-     * @var string
-     */
-    quote: {
-      type: String,
-      default: ''
-    },
-
-    /**
-     * Twitter hashtags
-     * @var string
-     */
-    hashtags: {
-      type: String,
-      default: ''
-    },
-
-    /**
-     * Twitter user.
-     * @var string
-     */
-    twitterUser: {
-      type: String,
-      default: ''
-    },
-
-    /**
-     * Flag that indicates if counts should be retrieved.
-     * - NOT WORKING IN CURRENT VERSION
-     * @var mixed
-     */
-    withCounts: {
-      type: [String, Boolean],
-      default: false
-    },
-
-    /**
-     * Google plus key.
-     * @var string
-     */
-    googleKey: {
-      type: String,
-      default: undefined
-    },
-
-    /**
-     * Pinterest Media URL.
-     * Specifies the image/media to be used.
-     */
-    media: {
-      type: String,
-      default: ''
-    },
-
-    /**
-     * Network sub component tag.
-     * Default to span tag
-     */
-    networkTag: {
-      type: String,
-      default: 'span'
-    },
-
-    /**
-     * Additional or overridden networks.
-     * Default to BaseNetworks
-     */
-    networks: {
-      type: Object,
-      default: function () {
-        return {};
-      }
-    }
-  },
-
-  data: function data () {
-    return {
-      /**
-       * Available sharing networks.
-       * @param object
-       */
-      baseNetworks: BaseNetworks,
-
-      /**
-       * Popup settings.
-       * @param object
-       */
-      popup: {
-        status: false,
-        resizable: true,
-        toolbar: false,
-        menubar: false,
-        scrollbars: false,
-        location: false,
-        directories: false,
-        width: 626,
-        height: 436,
-        top: 0,
-        left: 0,
-        window: undefined,
-        interval: null
-      }
-    };
-  },
-
-  methods: {
-    /**
-     * Returns generated sharer url.
-     *
-     * @param network Social network key.
-     */
-    createSharingUrl: function createSharingUrl (network) {
-      return this.baseNetworks[network].sharer
-        .replace(/@url/g, encodeURIComponent(this.url))
-        .replace(/@title/g, encodeURIComponent(this.title))
-        .replace(/@description/g, encodeURIComponent(this.description))
-        .replace(/@quote/g, encodeURIComponent(this.quote))
-        .replace(/@hashtags/g, this.generateHashtags(network, this.hashtags))
-        .replace(/@media/g, this.media)
-        .replace(/@twitteruser/g, this.twitterUser ? '&via=' + this.twitterUser : '');
-    },
-    /**
-     * Encode hashtags for the specified social network.
-     *
-     * @param  network Social network key
-     * @param  hashtags All hashtags specified
-     */
-    generateHashtags: function generateHashtags (network, hashtags) {
-      if (network === 'facebook' && hashtags.length > 0) {
-        return '%23' + hashtags.split(',')[0];
-      }
-
-      return hashtags;
-    },
-    /**
-     * Shares URL in specified network.
-     *
-     * @param network Social network key.
-     */
-    share: function share (network) {
-      this.openSharer(network, this.createSharingUrl(network));
-
-      this.$root.$emit('social_shares_open', network, this.url);
-      this.$emit('open', network, this.url);
-    },
-
-    /**
-     * Touches network and emits click event.
-     *
-     * @param network Social network key.
-     */
-    touch: function touch (network) {
-      window.open(this.createSharingUrl(network), '_self');
-
-      this.$root.$emit('social_shares_open', network, this.url);
-      this.$emit('open', network, this.url);
-    },
-
-    /**
-     * Opens sharer popup.
-     *
-     * @param network Social network key
-     * @param url Url to share.
-     */
-    openSharer: function openSharer (network, url) {
-      var this$1 = this;
-
-      // If a popup window already exist it will be replaced, trigger a close event.
-      var popupWindow = null;
-      if (popupWindow && this.popup.interval) {
-        clearInterval(this.popup.interval);
-
-        popupWindow.close();// Force close (for Facebook)
-
-        this.$root.$emit('social_shares_change', network, this.url);
-        this.$emit('change', network, this.url);
-      }
-
-      popupWindow = window.open(
-        url,
-        'sharer',
-        'status=' + (this.popup.status ? 'yes' : 'no') +
-        ',height=' + this.popup.height +
-        ',width=' + this.popup.width +
-        ',resizable=' + (this.popup.resizable ? 'yes' : 'no') +
-        ',left=' + this.popup.left +
-        ',top=' + this.popup.top +
-        ',screenX=' + this.popup.left +
-        ',screenY=' + this.popup.top +
-        ',toolbar=' + (this.popup.toolbar ? 'yes' : 'no') +
-        ',menubar=' + (this.popup.menubar ? 'yes' : 'no') +
-        ',scrollbars=' + (this.popup.scrollbars ? 'yes' : 'no') +
-        ',location=' + (this.popup.location ? 'yes' : 'no') +
-        ',directories=' + (this.popup.directories ? 'yes' : 'no')
-      );
-
-      popupWindow.focus();
-
-      // Create an interval to detect popup closing event
-      this.popup.interval = setInterval(function () {
-        if (popupWindow.closed) {
-          clearInterval(this$1.popup.interval);
-
-          popupWindow = undefined;
-
-          this$1.$root.$emit('social_shares_close', network, this$1.url);
-          this$1.$emit('close', network, this$1.url);
-        }
-      }, 500);
-    }
-  },
-
-  /**
-   * Merge base networks list with user's list
-   */
-  beforeMount: function beforeMount () {
-    this.baseNetworks = Vue.util.extend(this.baseNetworks, this.networks);
-  },
-
-  /**
-   * Sets popup default dimensions.
-   */
-  mounted: function mounted () {
-    if (!inBrowser) {
-      return;
-    }
-
-    /**
-     * Center the popup on dual screens
-     * http://stackoverflow.com/questions/4068373/center-a-popup-window-on-screen/32261263
-     */
-    var dualScreenLeft = $window.screenLeft !== undefined ? $window.screenLeft : screen.left;
-    var dualScreenTop = $window.screenTop !== undefined ? $window.screenTop : screen.top;
-
-    var width = $window.innerWidth ? $window.innerWidth : (document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width);
-    var height = $window.innerHeight ? $window.innerHeight : (document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height);
-
-    this.popup.left = ((width / 2) - (this.popup.width / 2)) + dualScreenLeft;
-    this.popup.top = ((height / 2) - (this.popup.height / 2)) + dualScreenTop;
-  },
-
-  /**
-   * Set component aliases for buttons and links.
-   */
-  components: {
-    'network': SocialSharingNetwork
-  }
-};
-
-SocialSharing.version = '2.4.3';
-
-SocialSharing.install = function (Vue) {
-  Vue.component('social-sharing', SocialSharing);
-};
-
-if (typeof window !== 'undefined') {
-  window.SocialSharing = SocialSharing;
-}
-
-module.exports = SocialSharing;
 
 /***/ })
 /******/ ]);
