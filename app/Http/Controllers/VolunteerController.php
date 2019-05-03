@@ -184,7 +184,14 @@ class VolunteerController extends Controller
             return redirect()->to('/events');
         }
     }
-
+    public function eventUpdateStatus($id,$stat){
+        if(is_null(Auth::user())){
+            return redirect()->to('/');
+        }else{
+            $event = Event::find($id);
+            $event->status
+        }
+    }
     public function deleteImg(Request $request, $img_id, $event){
         if(is_null(Auth::user())){
             return redirect()->to('/');

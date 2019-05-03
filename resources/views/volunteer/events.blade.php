@@ -33,9 +33,9 @@
                             <td>{{$event->created_at}}</td>
                             <td>
                                 @if($event->status == 1)
-                                <a href="{{asset('/eventUpdateStatus')}}" class="btn btn-sm btn-success font-12">Нийтэлсэн</a>
+                                <a href="{{asset('eventUpdateStatus')}}/{{$event->id}}/0" class="btn btn-sm btn-success font-12">Нийтэлсэн</a>
                                 @else
-                                <a href="#" class="btn btn-sm btn-secondary font-12">Нийтлэх</a>
+                                <a href="{{asset('eventUpdateStatus')}}/{{$event->id}}/1" class="btn btn-sm btn-secondary font-12">Нийтлэх</a>
                                 @endif
                             </td>
                             <td>
