@@ -126,7 +126,7 @@
                                             </div>
                                             @else
                                                 <ol style="list-style: inside decimal-leading-zero;">
-                                                   
+
                                                 </ol>
                                             @endif
                                         </div>

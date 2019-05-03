@@ -2,17 +2,29 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Mail\SanalHuseltMail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
 use App\Urgudul;
 use App\Img;
+
 
 class AdminUrgudulController extends Controller
 {
     public function index1($site_id)
     {
+        $user = auth()->guard('admin-api')->user();
+
+
+
         extract(request()->only(['query', 'limit', 'page', 'orderBy', 'ascending', 'byColumn']));
         $result=Urgudul::where('id', '!=', 0)->where('site_id', $site_id);
+
+
+        if($user->admin_type==1 && $user->heltes_id!=0){
+            $result=$result->where('heltes_id', $user->heltes_id);
+        }
 
         if (isset($query) && $query) {
             $result = $byColumn == 1 ?
@@ -30,6 +42,22 @@ class AdminUrgudulController extends Controller
         $result = $result->paginate($limit);
         return response()->json(
             ['success'=>$result]
+        );
+    }
+
+    public function webNotification($site_id, $heltes_id){
+        $result=Urgudul::where('status', 0);
+        if($site_id!=0){
+            $result=$result->where('site_id', $site_id);
+        } else {
+            $result=$result->where('site_id', 0);
+            if($heltes_id!=0){
+                $result=$result->where('heltes_id', $heltes_id);
+            }
+        }
+        $result=$result->get();
+        return response()->json(
+            ['success'=>$result->count()]
         );
     }
 
@@ -97,6 +125,8 @@ class AdminUrgudulController extends Controller
         $info->reply=$data['reply'];
         $info->status=1;
         $info->save();
+
+        Mail::to($info->email)->send(new SanalHuseltMail($info->reply, 'Санал хүсэлтийн хариу'));
 
         return response()->json([
             'success' => $info,

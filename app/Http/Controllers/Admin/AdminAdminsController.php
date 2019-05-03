@@ -73,6 +73,7 @@ class AdminAdminsController extends Controller
         $info->phone = $data['phone'];
         $info->admin_type = $data['admin_type'];
         $info->status = $data['status'];
+        $info->heltes_id = $data['heltes_id'];
         $info->password = Hash::make($data['password']);
         $info->profile_pic = $path;
         $info->save();
@@ -135,6 +136,7 @@ class AdminAdminsController extends Controller
         $info = Admin::findOrFail($id);
         $info->f_name = $data['f_name'];
         $info->l_name = $data['l_name'];
+        $info->heltes_id = $data['heltes_id'];
         if(isset($data['site_id'])) {
             $info->site_id = $data['site_id'];
         }

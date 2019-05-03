@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Auth;
+//use App\Http\Controllers\Auth;
 
 
 /*
@@ -13,8 +13,45 @@ use App\Http\Controllers\Auth;
 | is assigned the "api" middleware group. Enjoy building your API!
 */
 
+Route::fallback(function(){
+    return response()->json(['message' => 'Not Found!'], 404);
+});
+
+Route::middleware('auth:api')->namespace('Api')->group(function () {
+    Route::get('userInfo', 'ApiUserController@userInfo');
+
+
+    Route::post('userInfoUpdate', 'ApiUserController@userInfoUpdate');
+    Route::post('verify', 'ApiUserController@verify');
+
+
+    Route::post('verifyPhone', 'ApiUserController@verifyPhone');
+    Route::get('verifyEmail', 'ApiUserController@verifyEmail');
+    Route::post('notificationUpdate', 'ApiUserController@notificationUpdate');
+
+
+
+    Route::post('changeEmailRequest', 'ApiUserController@changeEmailRequest');
+    Route::post('changeEmail', 'ApiUserController@changeEmail');
+
+
+    Route::post('changePassword', 'ApiUserController@changePassword');
+
+    Route::post('changePhoneRequest', 'ApiUserController@changePhoneRequest');
+    Route::post('changePhone', 'ApiUserController@changePhone');
+
+    Route::post('zarAdd','ApiZarController@zarAdd');
+
+    Route::get('logOut', 'ApiUserController@logOut');
+
+});
 
 Route::namespace('Api')->group(function (){
+
+    Route::get('ildot','ApiPageController@ildot');
+
+
+    Route::get('service','ApiSiteController@service');
     //sites
     Route::get('sites','ApiSiteController@sites');
     Route::get('agentlag','ApiLinkController@agentlag');
@@ -22,6 +59,12 @@ Route::namespace('Api')->group(function (){
     Route::post('sendPoll', 'ApiPollController@sendPoll');
     Route::post('sendUrgudul', 'ApiUrgudulController@sendUrgudul');
 
+    Route::post('login', 'ApiUserController@login');
+    Route::post('register', 'ApiUserController@register');
+    Route::post('lostPassword', 'ApiUserController@lostPassword');
+    Route::post('restorePassword', 'ApiUserController@restorePassword');
+
+    Route::post('FacebookLogin', 'ApiUserController@FacebookLogin');
 
     Route::get('sidebar/{id}','ApiSiteController@sidebar');
     Route::get('weather','ApiSiteController@weather');
@@ -51,12 +94,23 @@ Route::namespace('Api')->group(function (){
 
     //Өргөдөлийг 40 бичлэгээр хуудаслаж авна
     Route::get('urgudul/{site_id}','ApiUrgudulController@urgudul');
+
+    Route::get('heltes','ApiUrgudulController@heltes');
+    Route::post('filterUrgudul','ApiUrgudulController@filterUrgudul');
+
+
+
+
     //Зарыг 20 бичлэгээр хуудаслаж авна
     Route::get('zar','ApiZarController@zar');
     //Бүх зарын ангилалыг авна
     Route::get('zarCategory','ApiZarCategoryController@zarCategory');
-    //Зарын ангилалаас зөвхөн нэг ангилалыг хүүхдүүдийн хамт
-    Route::get('zarCategory/{id}','ApiZarCategoryController@getById');
+    //Зарыг 20 бичлэгээр хуудаслаж авна
+    Route::get('zarByCategoryId/{id}','ApiZarController@zarByCategoryId');
+
+    Route::get('zarSingle/{id}','ApiZarController@zarSingle');
+
+
     //Бүх санал асуулга хэлбэржүүлж авах
     Route::get('poll','ApiPollController@poll');
     //Зөвхөн нэг санал асуулгын ID өгсөн тохиолдолд санал асуулгыг асуулт, хариултын хамт илгээнэ
@@ -67,7 +121,24 @@ Route::namespace('Api')->group(function (){
 
 Route::middleware('auth:admin-api')->namespace('Admin')->prefix('admin')->group(function () {
 
-    Route::get('user','AdminUserController@index');
+    Route::get('user','AdminLoginController@index');
+
+    //heltes
+    Route::resource('heltes','AdminHeltesController');
+    Route::post('heltes/{id}','AdminHeltesController@update');
+
+
+    //group
+    Route::resource('group','AdminGroupController');
+    Route::post('group/change_status','AdminGroupController@change_status');
+    Route::get('group/user_change_yes/{id}','AdminGroupController@user_change_yes');
+    Route::get('group/user_change_no/{id}','AdminGroupController@user_change_no');
+    Route::get('group/users/{id}','AdminGroupController@users');
+    Route::post('group/{id}','AdminGroupController@update');
+
+
+
+
 
     //ded site
     Route::resource('site','AdminSiteController');
@@ -122,7 +193,7 @@ Route::middleware('auth:admin-api')->namespace('Admin')->prefix('admin')->group(
 
     //file
     Route::resource('file','AdminFileController');
-    Route::get('file_show/{site_id}','AdminFileController@index1');
+    Route::get('file_show/{site_id}/{cat_id?}','AdminFileController@index1');
     Route::get('file_select/{site_id}','AdminFileController@file_select');
     Route::post('file/{id}','AdminFileController@update');
 
@@ -149,12 +220,18 @@ Route::middleware('auth:admin-api')->namespace('Admin')->prefix('admin')->group(
 
     //urgudul
     Route::resource('urgudul','AdminUrgudulController');
+    Route::get('webNotification/{site_id}/{heltes_id}','AdminUrgudulController@webNotification');
     Route::get('urgudul_show/{site_id}','AdminUrgudulController@index1');
     Route::post('urgudul/{id}','AdminUrgudulController@update');
 
     //zar
     Route::resource('zar','AdminZarController');
     Route::post('zar/{id}','AdminZarController@update');
+
+
+    //user
+    Route::resource('users','AdminUserController');
+    Route::post('users/{id}','AdminUserController@update');
 
 });
 

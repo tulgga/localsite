@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 //use http\Env\Request;
+use App\News_to_category;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
@@ -28,6 +29,9 @@ class SubController extends BaseController
     public function index($account){
 
       $data['info']=$this->getDomainInfo($account);
+      $tenders = Category::where('site_id', $data['info']->id)->where('name','Тендерийн урилга')->first();
+      $data['tender_posts'] = News_to_category::orderBy('created_at','desc')->where('cat_id',$tenders->id)->get();
+        $data['tender_posts']=[];
       $data['ontslokh']= Post::orderBy('created_at', 'desc')->where('site_id', $data['info']->id)->where('is_primary', 1)->where('status',1)->with('Category')->select('title', 'id', 'image', 'type','short_content','created_at')
           ->limit(5)->get();
       $data['latest_news']= Post::orderBy('created_at', 'desc')->where('site_id', $data['info']->id)->where('is_primary', 0)->where('status',1)->with('Category')->select('title', 'id', 'image', 'type','short_content','created_at')
@@ -39,6 +43,7 @@ class SubController extends BaseController
           Join('news_to_sites', 'news_to_sites.post_id', '=', 'posts.id')
           ->whereIn('news_to_sites.site_id', [$data['info']->id,0])
           ->limit(6)->get();
+
       $data['other_menu'] = Page::where('site_id',$data['info']->id)->where('is_main',0)->select('id', 'title as name', 'link', 'icon', 'type', 'type_id')->orderBy('order_num', 'asc')->get();
       return view('sub.home', $data);
     }
@@ -73,11 +78,22 @@ class SubController extends BaseController
 
         return view('sub.category', $data);
     }
+    public function archive($account){
+        $data['info']=$this->getDomainInfo($account);
+        $data['newslist'] = Post::where('site_id',$data['info']->id)->where('status',1)->orderBy('posts.created_at','DESC')->with('Category')->select('*')->get();
+        $data['categories'] = Category::where('site_id',$data['info']->id)->orderBy('order_num','ASC')->select('*')->get();
+        return view('sub.archive', $data);
+    }
 
     public function files($account, $id){
         $data['info']=$this->getDomainInfo($account);
         $data['fileCat'] = File_to_category::where('cat_id',$id)->select('file_id')->first();
-        $data['filelist'] = File::where('site_id',$data['info']->id)->where('id',$data['fileCat']->file_id)->where('status',1)->select('*')->orderBy('created_at','DESC')->get();
+        if(isset($data['fileCat']->file_id)) {
+            $data['filelist'] = File::where('site_id', $data['info']->id)->where('id', $data['fileCat']->file_id)->where('status', 1)->select('*')->orderBy('created_at', 'DESC')->get();
+        }else{
+            $data['filelist'] = [];
+            $data['infoMessage'] = "Мэдээлэл ороогүй байна.";
+        }
         $data['fileCategory'] = File_category::where('site_id',$data['info']->id)->where('id',$id)->select('id', 'name')->first();
         $data['fileCategories'] = File_category::where('site_id',$data['info']->id)->orderBy('order_num','ASC')->select('id', 'name')->get();
         return view('sub.file', $data);
@@ -160,6 +176,7 @@ class SubController extends BaseController
         $urgudul->email = $request->get('your_email');
         $urgudul->content = $request->get('your_message');
         $urgudul->ip = $_SERVER['REMOTE_ADDR'];
+        $urgudul->user_agent=$_SERVER['HTTP_USER_AGENT'];
         $urgudul->save();
         return redirect()->to('/feedback');
     }

@@ -48,7 +48,9 @@ class Img extends Model
 
 
 
+
         $save = Image::make('uploads/'.$img);
+        $save->orientate();
 
         $save->resize(1200, null, function ($constraint) { $constraint->aspectRatio(); } );
         $save->save(str_replace('images/', 'full/', 'uploads/'.$img));
@@ -65,11 +67,11 @@ class Img extends Model
         return $img;
     }
 
-    public static function zar($request){
-        if(!$request->hasFile('image')){
+    public static function zar($request, $key='image'){
+        if(!$request->hasFile($key)){
             return null;
         }
-        $img = $request->image->store('zar');
+        $img = $request->file($key)->store('zar');
         $save = Image::make('uploads/'.$img);
         $save->resize(750, 500);
         $save->save('uploads/'.$img);
@@ -77,4 +79,7 @@ class Img extends Model
         $save->save(str_replace('zar/', 'zar/small/', 'uploads/'.$img));
         return $img;
     }
+
+
+
 }

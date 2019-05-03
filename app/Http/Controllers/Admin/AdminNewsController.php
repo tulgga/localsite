@@ -26,8 +26,10 @@ class AdminNewsController extends Controller
     {
         extract(request()->only(['query', 'limit', 'page', 'orderBy', 'ascending', 'byColumn']));
         $result=Post::with(['Category', 'Site'])->where('site_id', $site_id);
-        if(!is_null($cat_id)){
+        if(!is_null($cat_id) and $cat_id!=-1){
             $result->join('news_to_category', 'news_to_category.post_id', '=', 'posts.id')->select('posts.*')->where('news_to_category.cat_id', $cat_id);
+        } elseif ($cat_id==-1){
+            $result->leftJoin('news_to_category', 'news_to_category.post_id', '=', 'posts.id')->select('posts.*')->whereNull('news_to_category.cat_id');
         }
         if (isset($query) && $query) {
             $result = $byColumn == 1 ?
@@ -51,7 +53,7 @@ class AdminNewsController extends Controller
     public function sub_news_publish(){
         extract(request()->only(['query', 'limit', 'page', 'orderBy', 'ascending', 'byColumn']));
         $result=Post::where('site_id', '!=','0')->where('main_site_publish', '!=', '0');
-
+        $result=$result->Join('sites', 'sites.id', '=', 'posts.site_id')->select('posts.*', 'sites.domain');
         if (isset($query) && $query) {
             $result = $byColumn == 1 ?
                 $this->filterByColumn($result, $query) :

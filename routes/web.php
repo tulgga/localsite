@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,11 +11,7 @@
 |
 */
 
-
-
 Route::get('/file_viewer/', 'Controller@file_viewer');
-
-
 
 Route::get('/adminPanel/{vue_capture?}',function(){
     return view('admin');
@@ -23,14 +19,43 @@ Route::get('/adminPanel/{vue_capture?}',function(){
 
 Route::get('/!/{vue_capture?}', 'Controller@index')->where('vue_capture', '[\/\w\.-]*');
 
-Route::domain('{account}.bayankhongor.local')->group(function () {
+Route::domain('volunteer.bayankhongor.towersoft.mn')->group(function () {
+    Route::get('/', 'VolunteerController@index');
+    Route::get('/c/{id}', 'VolunteerController@category');
+    Route::get('/login', 'VolunteerController@login');
+    Route::get('/register', 'VolunteerController@register');
+    Route::post('/userRegister', 'VolunteerController@userRegister');
+    Route::post('/loginUser', 'VolunteerController@loginUser');
+    Route::get('/logout', 'VolunteerController@logoutUser');
+    Route::get('/profile', 'VolunteerController@profile');
+    Route::post('/profileUpdate', 'VolunteerController@profileUpdate');
+    Route::get('/events', 'VolunteerController@events');
+    Route::get('/eventform/{id}', 'VolunteerController@eventform');
+    Route::post('/saveEvent', 'VolunteerController@saveEvent');
+    Route::get('/deleteImg/{img_id}/{event}', 'VolunteerController@deleteImg');
+});
+Route::domain('zar.bayankhongor.towersoft.mn')->group(function () {
+    Route::get('/', 'ZarController@index');
+    Route::get('/c/{id}.html', 'ZarController@category');
+    Route::get('/p/{id}.html', 'ZarController@single');
+    Route::get('/search.html', 'ZarController@search');
+    Route::get('/post-ad.html', 'ZarController@add');
+    Route::post('/postAdd', 'ZarController@postAdd');
+});
+
+Route::domain('{account}.bayankhongor.towersoft.mn')->group(function () {
     Route::get('/', 'SubController@index');
     Route::get('/p/{id}', 'SubController@page');
     Route::get('/news/{id}', 'SubController@news');
     Route::get('/category/{id}', 'SubController@category');
     Route::get('/files/{id}', 'SubController@files');
     Route::get('/feedback', 'SubController@feedback');
+    Route::get('/archive', 'SubController@archive');
     Route::post('/urgudul_save', 'SubController@urgudul_save');
 });
 
 Route::get('/', 'Controller@homePage');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

@@ -24,11 +24,15 @@ class AdminFileController extends Controller
         return response()->json(['success'=>$result]);
     }
 
-    public function index1($site_id)
+    public function index1($site_id, $cat_id=null)
     {
         extract(request()->only(['query', 'limit', 'page', 'orderBy', 'ascending', 'byColumn']));
         $result=File::where('site_id', $site_id);
-
+        if(!is_null($cat_id) and $cat_id!=-1){
+            $result->join('file_to_category', 'file_to_category.file_id', '=', 'files.id')->select('files.*')->where('file_to_category.cat_id', $cat_id);
+        } elseif ($cat_id==-1){
+            $result->leftJoin('file_to_category', 'file_to_category.file_id', '=', 'files.id')->select('files.*')->whereNull('file_to_category.cat_id');
+        }
         if (isset($query) && $query) {
             $result = $byColumn == 1 ?
                 $this->filterByColumn($result, $query) :
@@ -211,6 +215,7 @@ class AdminFileController extends Controller
      */
     public function destroy($id)
     {
+        
         $file=File::find($id);
         if(!is_null($file->file)){
             Img::file_delete($file->file);

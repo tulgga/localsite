@@ -11,6 +11,8 @@ use App\File;
 use Illuminate\Support\Facades\Redirect;
 use App\Site;
 use App\Settings;
+use App\Post;
+use App\Link;
 
 class Controller extends BaseController
 {
@@ -25,15 +27,19 @@ class Controller extends BaseController
         $data['mainConfig']=Settings::where('id', 1)->select('google_api_key', 'google_analytics')->first();
         $data['sumuud'] = Site::select('id','name','domain','favicon')->orderBy('name','ASC')->get();
         $data['service'] = file_get_contents(url('/uploads/service.json'));
+        $data['links']=Link::where('cat_id', 3)->orderBy('name', 'asc')->where('site_id', 0)->get();
         return view('homePage', $data);
     }
 
     public function index(){
+
         $info = Site::findOrFail(0);
         $data['config']= json_decode($info->config, true);
         $data['logo']= url('/uploads/'.$info->logo);
         $data['favicon']= url('/uploads/'.$info->favicon);
         $data['mainConfig']=Settings::where('id', 1)->select('google_api_key', 'google_analytics')->first();
+        if(isset($_GET['id'])){ $data['news']= Post::where('id', $_GET['id'])->where('status', 1)->with('Category')->first();}
+        else { $data['news']=false;}
         return view('main', $data);
     }
 
