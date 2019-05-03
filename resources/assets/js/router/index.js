@@ -1013,7 +1013,7 @@ let routes = [
                         }
                     ],
                     notloading: true,
-                    is_modal: false,
+                    is_modal: true,
                 }
             },
             {
@@ -1033,7 +1033,7 @@ let routes = [
                         }
                     ],
                     notloading: true,
-                    is_modal: false,
+                    is_modal: true,
                 }
             },
         ]
