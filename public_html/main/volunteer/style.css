@@ -273,14 +273,14 @@ footer{
     background-position: center center;
     min-height: 220px;
 }
-.four-column .image-box.active{
+.four-column .row.active{
     border-bottom:3px solid #007700;
 }
-.four-column .image-box.comingsoon{
+.four-column .row.comingsoon{
     border-bottom:3px solid #ff5500;
 }
-.four-column .image-box.ended{
-    border-bottom:3px solid #666;
+.four-column .row.ended{
+    border-bottom:3px solid #ccc;
 }
 .four-column .image-box img{
     position:relative;

@@ -49,9 +49,18 @@
                                 <a href="#"><h3>{{$event->subject}}</h3></a>
                                 <p>{{strip_tags(substr($event->content,0,200))}}</p>
                             </div>
-                            <div class="row font-12">
-                                <div class="col-sm-6 border-right">
-                                    <a href="#"><i class="far fa-heart"></i> Таалагдлаа</a>
+                            <div class="row font-12 @if($event->ended < date('Y-m-d')) ended @elseif($event->started > date('Y-m-d')) comingsoon @else active @endif">
+                                <div class="col-sm-6 border-right like_{{$event->id}}">
+                                    @if(is_null(Auth::user()))
+                                        <a href="#" data-toggle="modal" data-target="#LoginForm" class="text-secondary"><i class="far fa-heart"></i> Таалагдлаа</a>
+                                    @else
+                                    @php $likes = DB::table('event_to_likes')->select('event_id')->where('event_id',$event->id)->where('user_id',Auth::user()->id)->first(); @endphp
+                                       @if($likes)
+                                           <a href="javascript:likeQuery({{$event->id}});" class="text-primary"><i class="fa fa-heart"></i> Таалагдсан</a>
+                                       @else
+                                           <a href="javascript:likeQuery({{$event->id}});" class="text-secondary"><i class="far fa-heart"></i> Таалагдлаа</a>
+                                       @endif
+                                    @endif
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="rating-stars float-right">
@@ -69,6 +78,29 @@
                     </article>
                 </div>
                 @endforeach
+                <script>
+                    likeQuery = function (event_id) {
+                        var formData = {
+                            _token: $("#_token").val(),
+                            event_id: event_id
+                        }
+                        $.ajax({
+                            type:'POST',
+                            url:'event_like',
+                            data: formData,
+                            success:function(data){
+                                //console.log(data);
+                                if(data.result == 'like'){
+                                    $(".like_"+event_id).html('<a href="javascript:likeQuery('+event_id+');" class="text-primary"><i class="fa fa-heart"></i> Таалагдсан</a>');
+                                    $("#_token").val(data._token)
+                                }else if(data.result == 'unlike'){
+                                    $(".like_"+event_id).html('<a href="javascript:likeQuery('+event_id+');" class="text-secondary"><i class="far fa-heart"></i> Таалагдлаа</a>');
+                                    $("#_token").val(data._token)
+                                }
+                            }
+                        });
+                    }
+                </script>
             </div>
         </div>
     </section>
@@ -202,5 +234,6 @@
                 </div>
             </div>
         </div>
+        <input type="hidden" id="_token" value="{{ csrf_token() }}">
     </section>
 @endsection

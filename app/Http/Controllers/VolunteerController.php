@@ -13,11 +13,14 @@ use App\Event_to_user;
 
 use App\Organization;
 use App\User_to_organization;
+use Illuminate\Support\Facades\Auth;
+use App\Site;
+use App\User;
 
 class VolunteerController extends Controller{
     public function index(){
-        $data['events'] = Event::where('status', 1)->Join('event_to_images','event_to_images.event_id', '=','events.eid')->orderBy('events.created_at', 'desc')->limit(8)->select('events.subject','events.content','event_to_images.image')->get();
-        //echo json_encode($data['events']); die;
+        $data['events'] = Event::where('status', 1)->Join('event_to_images','event_to_images.event_id', '=','events.eid')->groupBy('event_to_images.event_id')->orderBy('events.created_at', 'desc')->select('events.subject','events.content','event_to_images.image','events.started','events.ended','events.id')->limit(8)->get();
+        //echo json_encode($data['likes']); die;
         return view('volunteer.home', $data);
     }
     public function login(){
@@ -235,17 +238,11 @@ class VolunteerController extends Controller{
     public function loginUser(Request $request){
 
         if(is_numeric($request['username'])){
-
             $check=['phone'=>$request['username'], 'password'=>$request['password']];
-
         } elseif (filter_var($request['username'], FILTER_VALIDATE_EMAIL)) {
-
             $check= ['email' => $request['username'], 'password'=>$request['password']];
-
         } else {
-
             $check=['name' => $request['username'], 'password'=>$request['password']];
-
         }
 
         if (Auth::attempt($check)) {
@@ -270,22 +267,26 @@ class VolunteerController extends Controller{
             return redirect()->to('/login');
         }
     }
-
     public function logoutUser(){
         Auth::logout();
         return redirect()->to('/');
     }
-    private function getToken($length){
-        $token = "";
-        $codeAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        $codeAlphabet.= "abcdefghijklmnopqrstuvwxyz";
-        $codeAlphabet.= "0123456789";
-        $max = strlen($codeAlphabet); // edited
-
-        for ($i=0; $i < $length; $i++) {
-            $token .= $codeAlphabet[random_int(0, $max-1)];
+    public function event_like(Request $request){
+        if(is_null(Auth::user())){
+            return redirect()->to('/');
+        } else {
+            $like = Event_to_like::select('id')->where('user_id',Auth::user()->id)->where('event_id',$request->event_id)->first();
+            if($like) {
+                $unlike = Event_to_like::find($like->id);
+                $unlike->delete();
+                return response()->json(['result' => 'unlike', '_token' => csrf_token()]);
+            }else{
+                $liked = New Event_to_like();
+                $liked->event_id = $request->event_id;
+                $liked->user_id = Auth::user()->id;
+                $liked->save();
+                return response()->json(['result' => 'like', '_token' => csrf_token()]);
+            }
         }
-
-        return $token;
     }
 }
