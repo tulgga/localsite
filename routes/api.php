@@ -19,8 +19,11 @@ Route::fallback(function(){
 
 Route::middleware('auth:api')->namespace('Api')->group(function () {
 
+
+    Route::get('myGroup', 'ApiGroupController@myGroup');
     Route::get('groups', 'ApiGroupController@group');
     Route::post('joinGroup', 'ApiGroupController@joinGroup');
+    Route::post('outGroup', 'ApiGroupController@outGroup');
     Route::post('sendMessage', 'ApiGroupController@sendMessage');
     Route::get('messages/{group_id}', 'ApiGroupController@messages');
 

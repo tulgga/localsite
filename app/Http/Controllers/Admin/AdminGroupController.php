@@ -13,7 +13,7 @@ class AdminGroupController extends Controller
     public function index()
     {
         $query="
-            select groups.*,  IFNULL(request_cnt, 0) as request_cnt, IFNULL(joined_cnt, 0) as joined_cnt
+            select groups.*,  IFNULL(request_cnt, 0) as request_cnt, IFNULL(joined_cnt, 0) as joined_cnt, users.name as username
             from groups
             LEFT JOIN (
                 select group_id,  COUNT(0) as request_cnt
@@ -28,7 +28,10 @@ class AdminGroupController extends Controller
                 where status=1
                 GROUP by group_id
             ) joined
-            on joined.group_id=groups.id
+             on joined.group_id=groups.id
+            join users 
+            on users.id=groups.admin_user_id
+           
             order by groups.id DESC
         ";
         $results=\DB::select($query);
@@ -148,10 +151,10 @@ class AdminGroupController extends Controller
 
         $data = $request->get('data');
         $data = json_decode($data, true);
-
         $group = Group::findOrFail($data['id']);
         $group->status = $data['flg'];
         $group->save();
+
         return response()->json(['success' => $data['id'],]);
     }
 }

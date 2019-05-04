@@ -101,7 +101,7 @@
                 statuschangingrow: false,
                 fetched: false,
                 is_loading: false,
-                columns: ['id','name', 'request_cnt', 'joined_cnt',  'status', 'action'],
+                columns: ['id','name', 'request_cnt', 'joined_cnt', 'username',  'status', 'action'],
                 options: {
                     perPage: 10,
                     perPageValues: [10,25,50,100],
@@ -110,6 +110,7 @@
                         name: "Нэр",
                         request_cnt: "Хүсэлт илгээсэн",
                         joined_cnt: "Гишүүд",
+                        username: "Админ",
                         status: "Статус",
                         action: "",
                     },
