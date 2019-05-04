@@ -19,7 +19,10 @@
                         <div class="form-group">
                             <div class="alert alert-danger">
                                 <ul>
-                                        <li>{{Session::get('error')}}</li>
+                                        <li>{{Session::get('name')}}</li>
+                                        <li>{{Session::get('password')}}</li>
+                                        <li>{{Session::get('email')}}</li>
+                                        <li>{{Session::get('phone')}}</li>
                                 </ul>
                             </div>
                         </div>

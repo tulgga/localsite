@@ -48,7 +48,13 @@ class VolunteerController extends Controller{
         ]);
 
         if ($validator->fails()) {
-           $request->session()->flash('error', $validator->errors());
+            var_dump($validator->errors()); die;
+            foreach($validator->errors() as $error) {
+                $request->session()->flash('name', $error->name());
+                $request->session()->flash('password', $error->password());
+                $request->session()->flash('email', $error->email());
+                $request->session()->flash('phone', $error->phone());
+            }
             return redirect()->to('/register');
         }
         $register = $request->registration_no;
