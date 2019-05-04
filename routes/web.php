@@ -32,6 +32,7 @@ Route::domain('volunteer.bayankhongor.towersoft.mn')->group(function () {
     Route::get('/events', 'VolunteerController@events');
     Route::get('/eventform/{id}', 'VolunteerController@eventform');
     Route::post('/saveEvent', 'VolunteerController@saveEvent');
+    Route::get('/eventdelete/{id}', 'VolunteerController@eventdelete');
     Route::get('/deleteImg/{img_id}/{event}', 'VolunteerController@deleteImg');
     Route::get('/eventUpdateStatus/{id}/{stat}', 'VolunteerController@eventUpdateStatus');
 });

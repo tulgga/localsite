@@ -39,17 +39,17 @@
                 <div class="link float-right font-14"><a href="#"><span class="fa fa-angle-right"></span> Бүгдийг харах</a></div>
             </div>
             <div class="row clearfix">
-                @foreach($volunteers as $volun)
+                @foreach($events as $event)
                 <!--Project Column-->
                 <div class="col-sm-3 column project-column">
                     <article class="column-inner hvr-float-shadow">
                         <figure class="image-box">
-                            <a href="#"><img src="http://world5.commonsupport.com/html/volunteer/images/resource/{{$volun->images}}" alt="" title="Volunteer"></a>
+                            <a href="#"><img src="/uploads/{{$event->event_image[0]['image']}}" title="{{$event->name}}"></a>
                         </figure>
                         <div class="lower-part">
                             <div class="text">
-                                <a href="#"><h3>{{$volun->name}}</h3></a>
-                                <p>{{$volun->intro}}</p>
+                                <a href="#"><h3>{{$event->subject}}</h3></a>
+                                <p>{{strip_tags(substr($event->content,0,200))}}</p>
                             </div>
                             <div class="row font-12">
                                 <div class="col-sm-6 border-right">

@@ -21,8 +21,10 @@ use Illuminate\Support\Facades\Auth;
 
 class VolunteerController extends Controller
 {
+
+
     public function index(){
-        $data['volunteers'] = Event::select('*')->where('status', 1)->orderBy('created_at', 'desc')->limit(8)->get();
+        $data['events'] = Event::select('*')->where('status', 1)->orderBy('created_at', 'desc')->limit(8)->with('EventImage')->select('*')->get();
         return view('volunteer.home', $data);
     }
     public function login(){
@@ -140,17 +142,20 @@ class VolunteerController extends Controller
         }
     }
     public function saveEvent(Request $request){
+
         if(is_null(Auth::user())){
             return redirect()->to('/');
         }else{
-            if($request->id == 0) {
+
+            if($request->id == "0") {
+
                 $event = New Event();
                 $eid = rand(10000000, 99999999);
                 $event->eid = $eid;
                 $event->subject = $request->subject;
                 $event->started = $request->started;
                 $event->ended = $request->ended;
-                $event->content = $request->contentHTML;
+                $event->content = htmlspecialchars($request->contentHTML);
                 $event->created_user_id = Auth::user()->id;
                 $event->save();
                 if (!is_null($request->file('images'))) {
@@ -167,7 +172,7 @@ class VolunteerController extends Controller
                 $event->subject = $request->subject;
                 $event->started = $request->started;
                 $event->ended = $request->ended;
-                $event->content = $request->contentHTML;
+                $event->content = htmlspecialchars($request->contentHTML);
                 $event->created_user_id = Auth::user()->id;
                 $event->save();
                 if (!is_null($request->file('images'))) {
@@ -189,7 +194,30 @@ class VolunteerController extends Controller
             return redirect()->to('/');
         }else{
             $event = Event::find($id);
-            $event->status
+            $event->status = $stat;
+            $event->save();
+            return redirect()->to('/events');
+        }
+    }
+    public function eventdelete(Request $request,$id){
+        if(is_null(Auth::user())){
+            return redirect()->to('/');
+        }else{
+            $event = Event::select('eid')->where('created_user_id', Auth::user()->id)->where('id', $id)->first();
+            $images = Event_to_image::select('id','image')->where('event_id', $event->eid)->get();
+            if($images) {
+                foreach ($images as $img) {
+                    $delete = unlink('uploads/'.$img->image);
+                    if($delete){
+                        $image = Event_to_image::find($img->id);
+                        $image->delete();
+                    }
+                }
+            }
+            $events = Event::find($id);
+            $events->delete();
+            $request->session()->flash('successMsg', 'Мэдээллийг амжилттай устгалаа!');
+            return redirect()->to('/events');
         }
     }
     public function deleteImg(Request $request, $img_id, $event){

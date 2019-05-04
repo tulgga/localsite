@@ -29,7 +29,21 @@
                         <tr>
                             <th scope="row">{{$i}}</th>
                             <td>{{$event->subject}}</td>
-                            <td><span class="text-success">{{$event->started}}</span> <i class="fa fa-caret-right"></i> <span class="text-danger">{{$event->ended}}</span></td>
+                            <td>
+                                @if($event->ended < date('Y-m-d'))
+                                    <span class="text-secondary">{{$event->started}}
+                                    <i class="fa fa-caret-right"></i>
+                                    {{$event->ended}}</span><i class="font-12"> (Дууссан)</i>
+                                @elseif($event->started > date('Y-m-d'))
+                                    <span class="text-warning">{{$event->started}}
+                                        <i class="fa fa-caret-right"></i>
+                                        {{$event->ended}}</span><i class="font-12"> (Удахгүй)</i>
+                                @else
+                                    <span class="text-success">{{$event->started}}</span>
+                                    <i class="fa fa-caret-right"></i>
+                                    <span class="text-danger">{{$event->ended}}</span><i class="font-12"> (Эхэлсэн)</i>
+                                @endif
+                            </td>
                             <td>{{$event->created_at}}</td>
                             <td>
                                 @if($event->status == 1)
@@ -40,7 +54,7 @@
                             </td>
                             <td>
                                 <a title="Засах" href="{{asset('eventform')}}/{{$event->id}}" class="btn btn-sm btn-secondary font-12"><i class="fa fa-cog"></i> </a>
-                                <a title="Устгах" href="#" class="btn btn-sm btn-danger font-12"><i class="fa fa-trash"></i> </a>
+                                <a title="Устгах" href="{{asset('eventdelete')}}/{{$event->id}}" class="btn btn-sm btn-danger font-12"><i class="fa fa-trash"></i> </a>
                             </td>
                         </tr>
                     <?php $i++; ?>

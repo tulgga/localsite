@@ -35,7 +35,7 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="subject">Гарчиг:</label>
-                                    <input class="w-100" type="file" id="images" name="images[]" multiple>
+                                    <input class="w-100" type="file"  name="images[]" required multiple>
                                 </div>
                             </div>
                         </div>

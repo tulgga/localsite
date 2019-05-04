@@ -57,9 +57,7 @@ class SubController extends BaseController
 
     public function news($account, $id){
         $data['info']=$this->getDomainInfo($account);
-        $data['news']= Post::where('id', $id)->
-        where('status',1)->with('Category')->
-        select('id', 'title', 'image', 'type','content','created_at','view_count')->first();
+        $data['news']= Post::where('id', $id)-> where('status',1)->with('Category')->select('id', 'title', 'image', 'type','content','created_at','view_count')->first();
         $data['news']->view_count += 1;
         $data['news']->save();
         $data['category'] = Category::where('site_id',$data['info']->id)->where('id',$data['news']['category'][0]->id)->select('*')->first();
@@ -81,6 +79,7 @@ class SubController extends BaseController
     public function archive($account){
         $data['info']=$this->getDomainInfo($account);
         $data['newslist'] = Post::where('site_id',$data['info']->id)->where('status',1)->orderBy('posts.created_at','DESC')->with('Category')->select('*')->get();
+        echo json_encode($data['newslist']);
         $data['categories'] = Category::where('site_id',$data['info']->id)->orderBy('order_num','ASC')->select('*')->get();
         return view('sub.archive', $data);
     }
