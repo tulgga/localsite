@@ -241,10 +241,6 @@ Route::middleware('auth:admin-api')->namespace('Admin')->prefix('admin')->group(
     //user
     Route::resource('users','AdminUserController');
     Route::post('users/{id}','AdminUserController@update');
-
-
-
-
 });
 
 Route::namespace('Admin')->prefix('admin')->group(function () {

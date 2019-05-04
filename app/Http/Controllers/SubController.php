@@ -57,9 +57,7 @@ class SubController extends BaseController
 
     public function news($account, $id){
         $data['info']=$this->getDomainInfo($account);
-        $data['news']= Post::where('id', $id)->
-        where('status',1)->with('Category')->
-        select('id', 'title', 'image', 'type','content','created_at','view_count')->first();
+        $data['news']= Post::where('id', $id)-> where('status',1)->with('Category')->select('id', 'title', 'image', 'type','content','created_at','view_count')->first();
         $data['news']->view_count += 1;
         $data['news']->save();
         $data['category'] = Category::where('site_id',$data['info']->id)->where('id',$data['news']['category'][0]->id)->select('*')->first();

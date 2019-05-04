@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,21 +17,30 @@ Route::get('/adminPanel/{vue_capture?}',function(){
     return view('admin');
 })->where('vue_capture', '[\/\w\.-]*');
 
-
 //Route::get('/!#/news/{id}', 'Controller@index');
 Route::get('/!/{vue_capture?}', 'Controller@index')->where('vue_capture', '[\/\w\.-]*');
 
 
-Route::domain('volunteer.bayankhongor.local')->group(function () {
+Route::domain('volunteer.bayankhongor.towersoft.mn')->group(function () {
     Route::get('/', 'VolunteerController@index');
     Route::get('/c/{id}', 'VolunteerController@category');
     Route::get('/login', 'VolunteerController@login');
     Route::get('/register', 'VolunteerController@register');
     Route::post('/userRegister', 'VolunteerController@userRegister');
     Route::post('/loginUser', 'VolunteerController@loginUser');
+    Route::get('/logout', 'VolunteerController@logoutUser');
+    Route::get('/profile', 'VolunteerController@profile');
+    Route::post('/profileUpdate', 'VolunteerController@profileUpdate');
+    Route::get('/events', 'VolunteerController@events');
+    Route::get('/eventform/{id}', 'VolunteerController@eventform');
+    Route::post('/saveEvent', 'VolunteerController@saveEvent');
+    Route::get('/eventdelete/{id}', 'VolunteerController@eventdelete');
+    Route::get('/deleteImg/{img_id}/{event}', 'VolunteerController@deleteImg');
+    Route::get('/eventUpdateStatus/{id}/{stat}', 'VolunteerController@eventUpdateStatus');
 });
 
 Route::domain('zar.bayankhongor.towersoft.local')->group(function () {
+
     Route::get('/', 'ZarController@index');
     Route::get('/c/{id}.html', 'ZarController@category');
     Route::get('/p/{id}.html', 'ZarController@single');
@@ -40,7 +49,7 @@ Route::domain('zar.bayankhongor.towersoft.local')->group(function () {
     Route::post('/postAdd', 'ZarController@postAdd');
 });
 
-Route::domain('{account}.bayankhongor.towersoft.local')->group(function () {
+Route::domain('{account}.bayankhongor.towersoft.mn')->group(function () {
     Route::get('/', 'SubController@index');
     Route::get('/p/{id}', 'SubController@page');
     Route::get('/news/{id}', 'SubController@news');

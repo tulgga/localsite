@@ -93,6 +93,13 @@ body{
 .service_conditions ul, .service_conditions ol{
     padding-left: 30px;
 }
+.profile_pic{
+    display: inline-block;
+    background-size: cover;
+    background-position: center center;
+    border-radius: 50%;
+    vertical-align: bottom;
+}
 .descip{
     color:#fff;
     top:50%;
@@ -260,12 +267,21 @@ footer{
 .four-column .column-inner:hover{
     border-color:#f06626;
 }
-
 .four-column .image-box{
     position:relative;
-    border-bottom:2px solid #f06626;
+    background-size: cover;
+    background-position: center center;
+    min-height: 220px;
 }
-
+.four-column .image-box.active{
+    border-bottom:3px solid #007700;
+}
+.four-column .image-box.comingsoon{
+    border-bottom:3px solid #ff5500;
+}
+.four-column .image-box.ended{
+    border-bottom:3px solid #666;
+}
 .four-column .image-box img{
     position:relative;
     display:block;
@@ -478,7 +494,14 @@ footer{
     -moz-border-radius:50%;
     -o-border-radius:50%;
 }
-
+.eventImg{
+    width: 100px;
+    height: 100px;
+    display: inline-flex;
+    background-position: center center;
+    background-size: cover;
+    vertical-align: middle;
+}
 .team-section .social-links .fa-facebook-f:hover{
     background:#4365c5;
     color:#ffffff;

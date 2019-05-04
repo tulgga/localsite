@@ -13,12 +13,12 @@
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item active" style="background-image: url('{{asset("main/volunteer/images/slide/001.jpg")}}');">
-                <div class="container pt-5 pb-5">
+                <div class="container">
                     <div class="row">
                         <div class="col-sm-8">
                             <div class="position-relative descip">
                             <h4>Мод тарих өдөр - 2019</h4>
-                            <div class="intro">Энэ өдөр бүх нийтээрээ Дэлхийн уур амьсгалын төлөө мод тарих САЙН ӨДӨР юи. Та бүхэн өргөнөөр оролцохыг хүсэж байна.</div>
+                            <div class="intro">Энэ өдөр бүх нийтээрээ Дэлхийн уур амьсгалын төлөө мод тарих САЙН ӨДӨР юм. Та бүхэн өргөнөөр оролцохыг хүсэж байна.</div>
                             </div>
                         </div>
                         <div class="col-sm-4">
@@ -39,17 +39,15 @@
                 <div class="link float-right font-14"><a href="#"><span class="fa fa-angle-right"></span> Бүгдийг харах</a></div>
             </div>
             <div class="row clearfix">
-                @foreach($volunteers as $volun)
+                @foreach($events as $event)
                 <!--Project Column-->
                 <div class="col-sm-3 column project-column">
                     <article class="column-inner hvr-float-shadow">
-                        <figure class="image-box">
-                            <a href="#"><img src="http://world5.commonsupport.com/html/volunteer/images/resource/{{$volun->images}}" alt="" title="Volunteer"></a>
-                        </figure>
+                        <figure class="image-box" style="background-image: url('/uploads/{{$event->image}}');"></figure>
                         <div class="lower-part">
                             <div class="text">
-                                <a href="#"><h3>{{$volun->name}}</h3></a>
-                                <p>{{$volun->intro}}</p>
+                                <a href="#"><h3>{{$event->subject}}</h3></a>
+                                <p>{{strip_tags(substr($event->content,0,200))}}</p>
                             </div>
                             <div class="row font-12">
                                 <div class="col-sm-6 border-right">

@@ -154,7 +154,7 @@ class AdminGroupController extends Controller
         $group = Group::findOrFail($data['id']);
         $group->status = $data['flg'];
         $group->save();
+        return response()->json(['success' => $data['id']]);
 
-        return response()->json(['success' => $data['id'],]);
     }
 }
