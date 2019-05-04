@@ -26,7 +26,7 @@ CRUD Edit, Create form
                                     <div class="control has-image">
                                         <div class="file is-boxed is-fullwidth">
                                             <label class="file-label">
-                                                <input class="file-input" type="file"  name="imageni" @change="onFileChange($event.target.name, $event.target.files)">
+                                                <input  type="file" accept="image/*"  v-validate="'required'" name="imageni" :class="{'file-input': true, 'is-danger': errors.has('imageni') }"  @change="onFileChange($event.target.name, $event.target.files)">
                                                 <span class="file-cta" >
                                                     <span v-if="imageni" class="file-icon" :style="'background-image: url('+imageni+');'">
                                                         <i class="ion-ios-add-outline"></i>
@@ -36,7 +36,7 @@ CRUD Edit, Create form
                                                     </span>
                                                 </span>
                                             </label>
-
+                                            <p v-show="errors.has('imageni')" class="help is-danger">Заавал бөглө</p>
                                         </div>
                                     </div>
                                 </div>
@@ -46,17 +46,18 @@ CRUD Edit, Create form
                                         <label class="label">Асуулт</label>
                                         <div class="control">
                                             <input type="text" name="question" v-validate="'required'" v-model="form.question" :class="{'input': true, 'is-danger': errors.has('question') }" />
-                                            <p v-show="errors.has('question')" class="help is-danger">{{ errors.first('question') }}</p>
+                                            <p v-show="errors.has('question')" class="help is-danger">Заавал бөглө</p>
                                         </div>
                                     </div>
                                     <div class="field">
                                         <label class="label">Дуусах огноо</label>
                                         <div class="control has-icons-right">
-                                            <flat-pickr class="input" v-model="form.finish_date" :config="{dateFormat: 'Y-m-d'}" />
+                                            <flat-pickr name="finish_date" v-validate="'required'" :class="{'input': true, 'is-danger': errors.has('finish_date') }" v-model="form.finish_date" :config="{dateFormat: 'Y-m-d'}" />
                                             <span class="icon is-right">
                                                 <i class="far fa-calendar-alt"></i>
                                             </span>
                                         </div>
+                                        <p v-show="errors.has('finish_date')" class="help is-danger">Заавал бөглө</p>
                                     </div>
                                 </div>
 
@@ -67,12 +68,12 @@ CRUD Edit, Create form
                                             <label class="label">Хариулт {{i+1}}</label>
                                             <div class="control">
                                                 <input type="text" name="text" v-validate="'required'" v-model="form.answer[i].answer" :class="{'input': true, 'is-danger': errors.has('text') }" />
-                                                <p v-show="errors.has('text')" class="help is-danger">{{ errors.first('text') }}</p>
+                                                <p v-show="errors.has('text')" class="help is-danger">Заавал бөглө</p>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="column is-2">
-                                        <p class="buttons" style="margin-top:22px;">
+                                        <p v-if="i>2" class="buttons" style="margin-top:22px;">
                                             <a @click="removeAnswer(i)"  class="button is-large is-danger">
                                                 <span class="icon ">
                                                   <i class="fas fa-trash"></i>
@@ -123,6 +124,7 @@ CRUD Edit, Create form
                     question: '',
                     site_id: this.$store.getters.domain.id,
                     answer: [
+                        { id:0, answer:''},
                         { id:0, answer:''},
                         { id:0, answer:''},
                     ],

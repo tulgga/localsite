@@ -4,18 +4,18 @@
 
             <div class="contact">
                 <div class="container pt-2 pb-2">
-                    <div class="columns">
+                    <div class="columns ">
                         <div class="column is-5">
                             <i class="fas fa-map-marker-alt"></i>
-                            <p class="description is-size-6-desktop" :title="contact.address">{{contact.address}}</p>
+                            <p class="description is-size-6-desktop" :title="contact.address" v-html="contact.address"></p>
                         </div>
                         <div class="column is-4">
                             <i class="fas fa-envelope"></i>
-                            <p class="description is-size-5-desktop" :title="contact.email">{{contact.email}}</p>
+                            <p class="description is-size-5-desktop" :title="contact.email" v-html="contact.email"></p>
                         </div>
                         <div class="column is-3">
                             <i class="fas fa-phone"></i>
-                            <p class="description is-size-5-desktop" :title="contact.phone">{{contact.phone}}</p>
+                            <p class="description is-size-5-desktop" :title="contact.phone" v-html="contact.phone"></p>
                         </div>
 
                     </div>
@@ -51,10 +51,12 @@
         <div class="modal is-active" v-if="SumModal">
             <div class="modal-background" v-on:click="SumModal = false"></div>
             <div class="modal-card" style="max-width: 610px">
+                <div class="has-text-white has-background-primary" style="padding:20px;">Сумдын холбоос</div>
                 <section class="modal-card-body pd0">
                     <sum></sum>
                 </section>
             </div>
+            <button v-on:click="SumModal = false" class="modal-close is-large" aria-label="close"></button>
         </div>
 
 
@@ -62,10 +64,12 @@
         <div class="modal is-active" v-if="AgentlagModal">
             <div class="modal-background" v-on:click="AgentlagModal = false"></div>
             <div class="modal-card" style="max-width: 1040px">
+                <div class="has-text-white has-background-primary" style="padding:20px;">Аймгийн хэлтэс агентлагууд</div>
                 <section class="modal-card-body pd0">
                     <agentlag></agentlag>
                 </section>
             </div>
+            <button v-on:click="AgentlagModal = false" class="modal-close is-large" aria-label="close"></button>
         </div>
     </div>
 

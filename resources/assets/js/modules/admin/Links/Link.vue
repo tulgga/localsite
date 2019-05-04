@@ -10,7 +10,7 @@
             <v-client-table v-if="fetched" :data="lists" :columns="columns" :options="options">
                 <template slot="image" slot-scope="props">
                     <figure v-if="props.row.image" style="border-radius:0px" class="image is-48x48" :style="'background-image: url('+siteurl+'/uploads/'+props.row.image+')'"></figure>
-                    <figure v-else="" style="border-radius:0px" class="image is-48x48">IMG</figure>
+                    <figure v-else="" style="border-radius:0px" class="image is-48x48"><i class="far fa-image"></i></figure>
                 </template>
                 <div slot="action" slot-scope="props" class="data-action">
                     <router-link :to="'link/'+props.row.id+'/update'">

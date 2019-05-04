@@ -22,10 +22,6 @@
                 </div>
             </div>
 
-
-
-
-
                 <v-server-table ref="tableni" :url="url"  :columns="columns" :options="options">
                     <template slot="image" slot-scope="props">
                         <figure v-if="props.row.type==2" style="border-radius:0px" class="image is-48x48"
@@ -35,7 +31,7 @@
                             <figure v-if="props.row.image" style="border-radius:0px" class="image is-48x48"
                                     :style="'background-image: url('+siteUrl+'/uploads/'+props.row.image.replace('images/', 'small/')+')'">
                             </figure>
-                            <figure v-else="" style="border-radius:0px" class="image is-48x48">IMG</figure>
+                            <figure v-else="" style="border-radius:0px" class="image is-48x48"><i class="far fa-image"></i></figure>
                         </div>
                     </template>
 
@@ -123,8 +119,18 @@
                     <p class="modal-card-title">{{ $store.getters.lang.messages.delete_data }}</p>
                 </header>
                 <section class="modal-card-body">
-                    <p class="has-text-centered">{{ $store.getters.lang.messages.sure_delete }}</p>
+
                     <p class="has-text-centered is-size-4"><strong class="has-text-black">{{deleteid.title}}</strong></p>
+                    <p class="has-text-centered">
+                        <strong>
+                        <template v-for="site in deleteid.site">
+                            <template v-if="site.id==0">Бүх дэд сайт</template>
+                            <template v-else>{{site.name}}</template>
+                            <template  v-if="deleteid.site.length>1">, </template>
+                        </template>
+                        </strong>
+                        дэд сайтуудад харуулж байна. {{deleteid.view_count}} хүн үзсэн байна. та устгахдаа итгэлтай байна уу
+                    </p>
                 </section>
                 <footer class="modal-card-foot">
                     <button class="button is-text" v-on:click="deletemodal = false">{{ $store.getters.lang.messages.is_back_button }}</button>
@@ -328,6 +334,8 @@
                 this.site_id = this.$store.getters.domain.id;
                 axios.get('/news_category/' + this.site_id).then((response) => {
                     this.categories = response.data.success;
+                    console.log(this.categories);
+                    this.categories.push({'name':'Ангилалгүй мэдээ', 'label':'Ангилалгүй мэдээ', 'id':-1})
                     this.fetched = true;
                 })
             },
@@ -356,6 +364,7 @@
             deleting(row){
                 this.deleteid = row;
                 this.deletemodal = true;
+                console.log(this.deleteid)
             },
 
             change_primary(row){

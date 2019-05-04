@@ -12,10 +12,15 @@
 
                 <v-server-table ref="tableni" :url="url"  :columns="columns" :options="options">
                     <template slot="image" slot-scope="props">
-                        <figure v-if="props.row.image" style="border-radius:0px" class="image is-48x48"
-                                :style="'background-image: url('+siteUrl+'/uploads/'+props.row.image.replace('images/', 'small/')+')'">
+                        <figure v-if="props.row.type==2" style="border-radius:0px" class="image is-48x48"
+                                :style="'background-image: url(https://img.youtube.com/vi/'+props.row.image+'/default.jpg)'">
                         </figure>
-                        <figure v-else="" style="border-radius:0px" class="image is-48x48">IMG</figure>
+                        <div v-else="">
+                            <figure v-if="props.row.image" style="border-radius:0px" class="image is-48x48"
+                                    :style="'background-image: url('+siteUrl+'/uploads/'+props.row.image.replace('images/', 'small/')+')'">
+                            </figure>
+                            <figure v-else="" style="border-radius:0px" class="image is-48x48"><i class="far fa-image"></i></figure>
+                        </div>
                     </template>
 
                     <template slot="main_site_publish" slot-scope="props">
@@ -26,7 +31,7 @@
                     </template>
 
                     <div slot="action" slot-scope="props">
-                        <a class="button is-primary" target="_blank"  >
+                        <a class="button is-primary" target="_blank"  :href="'http://'+props.row.domain+'.'+subdomain+'/news/'+props.row.id" >
                             <span class="icon is-small">
                               <i class="fas fa-eye"></i>
                             </span>
@@ -35,11 +40,6 @@
                 </v-server-table>
             </template>
             <div v-else class="main-bodoh is-loading"></div>
-
-            <div class="boxed-item-center absolute">
-                 <router-link :to="{ name: 'create_sub_news'}" class="add_button">+</router-link>
-            </div>
-
             <router-view></router-view>
 
         </div>
@@ -73,6 +73,7 @@
         data(){
             return {
                 siteUrl: window.surl,
+                subdomain: window.subdomain,
                 lists: [],
                 url: '/sub_news_publish',
                 site_id: 0,

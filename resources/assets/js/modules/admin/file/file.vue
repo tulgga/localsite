@@ -4,8 +4,22 @@
 
         <!-- Data table -->
         <div class="boxed">
+
             <div class="boxed-title">
-            	<div class="boxed-item-center title">Файлын сан</div>
+                <div class="columns">
+                    <div class="column is-8">
+                        <div class="boxed-item-center title">Файлын сан</div>
+                    </div>
+                    <div class="column is-4">
+                        <div class="field has-addons has-addons-centered">
+                            <p class="control">
+                                <treeselect v-model="selected_cat" placeholder="Ангилал сонгох"  :default-expand-level="10"  :options="categories" />
+                            </p>
+                            <p class="control"><a class="button is-large  is-primary" @click="fulter_category()" :class="{'is-loading':is_loading}" :disabled="is_loading" >шүүх</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
 
 			<v-server-table ref="tableni" :url="url" v-if="fetched" :columns="columns" :options="options">
@@ -79,6 +93,7 @@
                 lists: [],
                 url: '/file_show/'+this.$store.getters.domain.id,
                 showmodal:false,
+                categories:[],
                 file: false,
                 deletemodal:false,
                 deleteid: false,
@@ -87,7 +102,7 @@
                 fetched:true,
                 is_loading:false,
                 user:false,
-                columns: ['id', 'name', 'content',  'status', 'cat', 'active_date', 'publish_date', 'cart_number', 'type',  'action'],
+                columns: ['id', 'name',  'status', 'cat',  'type',  'action'],
                 options: {
                     perPage: 25,
                     perPageValues: [25,50,100],
@@ -174,12 +189,33 @@
             },
         },
         created: function () {
-
+            this.fetchData();
         },
         mounted(){
 
         },
         methods: {
+
+            fetchData() {
+                this.site_id = this.$store.getters.domain.id;
+                axios.get('/file_category/' + this.site_id).then((response) => {
+                    this.categories = response.data.success;
+                    console.log(this.categories);
+                    this.categories.push({'name':'Ангилалгүй файл', 'label':'Ангилалгүй файл', 'id':-1})
+                    this.fetched = true;
+                })
+            },
+
+            fulter_category(){
+                this.is_loading = true;
+                if(this.selected_cat){
+                    this.url= '/file_show/'+this.$store.getters.domain.id+'/'+this.selected_cat
+                } else {
+                    this.url= '/file_show/'+this.$store.getters.domain.id
+                }
+                this.$refs.tableni.refresh();
+                this.is_loading = false;
+            },
 
             // Устгах
             ustga(row){

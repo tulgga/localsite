@@ -40,7 +40,7 @@
                         <nav  class="pagination mt-2 mb-2" role="navigation" aria-label="pagination">
                             <a class="pagination-previous" @click="scrollToTop()" v-if="urgudul.current_page!=1" :href="'!#/report?page='+(urgudul.current_page-1)" >Өмнөх</a>
                             <a class="pagination-next" @click="scrollToTop()" v-if="urgudul.current_page!=urgudul.last_page" :href="'!#/report?page='+(urgudul.current_page+1)" >Дараах</a>
-                            <ul class="pagination-list">
+                            <ul v-if="urgudul.last_page>1" class="pagination-list">
                                 <template v-for="i in urgudul.last_page">
                                     <li>
                                         <a class="pagination-link"  @click="scrollToTop()" :class="{'is-current':urgudul.current_page===i}"  :href="'!#/report?page='+i" >{{i}}</a>
@@ -53,46 +53,56 @@
                 <div class="column  is-3">
                     <div class="bg-white p-15 mb-1 green shadow">
                         <h3 class="bTitle mb-1">Шүүлтүүр</h3>
-                        <div class="field">
-                            <label class="label">Төрөл</label>
-                            <div class="control select is-fullwidth">
-                                <select class="input" name="type"  v-model="fulter.type"  >
-                                    <option value="-1">Бүх төрөл</option>
-                                    <option value="0">Санал хүсэлт</option>
-                                    <option value="1">Өргөдөл</option>
-                                    <option value="2">Гомдол</option>
-                                    <option value="3">Бусад</option>
-                                </select>
+                            <div class="field">
+                                <label class="label">Төрөл</label>
+                                <div class="control select is-fullwidth">
+                                    <select class="input" name="type"  v-model="fulter.type"  >
+                                        <option value="-1">Бүх төрөл</option>
+                                        <option value="0">Санал хүсэлт</option>
+                                        <option value="1">Өргөдөл</option>
+                                        <option value="2">Гомдол</option>
+                                        <option value="3">Бусад</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div class="field">
-                            <label class="label">Төлөв</label>
-                            <div class="control select is-fullwidth">
-                                <select class="input" name="type"  v-model="fulter.status"  >
-                                    <option value="-1">Бүх төлөв</option>
-                                    <option value="0">Хүлээж авсан</option>
-                                    <option value="1">Хариулсан</option>
-                                </select>
+                            <div class="field">
+                                <label class="label">Төлөв</label>
+                                <div class="control select is-fullwidth">
+                                    <select class="input" name="type"  v-model="fulter.status"  >
+                                        <option value="-1">Бүх төлөв</option>
+                                        <option value="0">Хүлээж авсан</option>
+                                        <option value="1">Хариулсан</option>
+                                    </select>
+                                </div>
                             </div>
-
-                        </div>
-                        <div class="field">
-                            <label class="label">Эхлэх огноо</label>
-                            <div class="control">
-                                <input type="date"  class="input"  v-model="fulter.sdate"  />
+                            <div class="field">
+                                <label class="label">Хэлтэс</label>
+                                <div class="control select is-fullwidth">
+                                    <select  name="heltes_id"  v-model="fulter.heltes_id"   >
+                                        <option  value="0">Бүх хэлтэс</option>
+                                        <template v-for="h in heltes">
+                                            <option  :value="h.id">{{h.name}}</option>
+                                        </template>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div class="field">
-                            <label class="label">Дуусах огноо</label>
-                            <div class="control">
-                                <input type="date"  class="input"  v-model="fulter.fdate"  />
+                            <div class="field">
+                                <label class="label">Эхлэх огноо</label>
+                                <div class="control">
+                                    <input type="date"  class="input"  v-model="fulter.sdate"  />
+                                </div>
                             </div>
-                        </div>
-                        <div >
-                            <button @click="shuuh" class="button is-success" >
-                                <span>Шүүх</span>
-                            </button>
-                        </div>
+                            <div class="field">
+                                <label class="label">Дуусах огноо</label>
+                                <div class="control">
+                                    <input type="date"  class="input"  v-model="fulter.fdate"  />
+                                </div>
+                            </div>
+                            <div >
+                                <button @click="shuuh" class="button is-success" >
+                                    <span>Шүүх</span>
+                                </button>
+                            </div>
                     </div>
                     <div class="bg-light p-15 mb-1 blue  shadow">
                         <h3 class="bTitle mb-1">Санал хүсэлт, өргөдөл гомдол</h3>
@@ -109,39 +119,51 @@
                                 </div>
                             </div>
                             <div class="field">
+                                <label class="label">Хэлтэс</label>
+                                <div class="control select is-fullwidth">
+                                    <select  name="heltes_id"  v-model="form.heltes_id" v-validate="'required'" :class="{'input': true, 'is-danger': errors.has('heltes_id') }"  >
+                                        <template v-for="h in heltes">
+                                            <option  :value="h.id">{{h.name}}</option>
+                                        </template>
+                                    </select>
+
+                                </div>
+                                <p v-show="errors.has('heltes_id')" class="help is-danger">Та хэлтэс сонгоно уу</p>
+                            </div>
+                            <div class="field">
                                 <label class="label">Таны нэр</label>
                                 <div class="control">
                                     <input type="text" name="name" v-model="form.name" v-validate="'required'" :class="{'input': true, 'is-danger': errors.has('name') }" />
-                                    <p v-show="errors.has('name')" class="help is-danger">{{ errors.first('name') }}</p>
+                                    <p v-show="errors.has('name')" class="help is-danger">Та нэрээ оруулна уу</p>
                                 </div>
                             </div>
                             <div class="field">
                                 <label class="label">Утас</label>
                                 <div class="control">
                                     <input type="text" name="phone" v-model="form.phone" v-validate="'required'" :class="{'input': true, 'is-danger': errors.has('phone') }" />
-                                    <p v-show="errors.has('phone')" class="help is-danger">{{ errors.first('phone') }}</p>
+                                    <p v-show="errors.has('phone')" class="help is-danger">Та утсаа оруулна уу</p>
                                 </div>
                             </div>
                             <div class="field">
                                 <label class="label">Цахим шуудан</label>
                                 <div class="control">
-                                    <input type="text" name="email" v-model="form.email" v-validate="'required'" :class="{'input': true, 'is-danger': errors.has('email') }" />
-                                    <p v-show="errors.has('email')" class="help is-danger">{{ errors.first('email') }}</p>
+                                    <input type="text" name="email" v-model="form.email" v-validate="{'required':true, 'email':true}" :class="{'input': true, 'is-danger': errors.has('email') }" />
+                                    <p v-show="errors.has('email')" class="help is-danger">Та цахим шуудангаа оруулна уу</p>
                                 </div>
                             </div>
                             <div class="field">
                                 <label class="label">Текст</label>
                                 <textarea style="min-height: 80px;" v-model="form.content"  class="textarea" name="content"  v-validate="'required'" :class="{'input': true, 'is-danger': errors.has('content') }" ></textarea>
-                                <p v-show="errors.has('content')" class="help is-danger">{{ errors.first('content') }}</p>
+                                <p v-show="errors.has('content')" class="help is-danger">Та текст  оруулна уу</p>
                             </div>
                             <div class="field">
                                 <label class="label">Нэмэлт зураг хавсаргах</label>
                                 <div class="control">
-                                    <input type="file" name="image" @change="onFileChange($event.target.name, $event.target.files)"  />
+                                    <input type="file" accept="image/*" name="image" @change="onFileChange($event.target.name, $event.target.files)"  />
                                 </div>
                             </div>
                             <div >
-                        <button @click="nemeh" class="button is-primary" :class="{'is-loading':is_loading}" :disabled="is_loading || fetched === false">
+                        <button type="submit" class="button is-primary" :class="{'is-loading':is_loading}" :disabled="is_loading || fetched === false">
                             <span>Илгээх</span>
                         </button>
                             </div>
@@ -162,18 +184,22 @@
                 category: false,
                 siteUrl: window.surl,
                 is_loading: false,
+                is_loading_shuuh: false,
                 urgudul: null,
                 imageni:false,
+                heltes:[],
                 image: [],
                 fulter: {
                   type: -1,
                   status: -1,
+                  heltes_id: 0,
                   sdate: null,
                   fdate: null,
                 },
                 form: {
                     type:0,
                     name:'',
+                    heltest_id:0,
                     email:'',
                     phone:'',
                     content:'',
@@ -192,14 +218,18 @@
         methods: {
             fetchData: function () {
                 this.fetched=false;
+
                 axios.get('/urgudul/0').then((response) => {
                     this.fetched=true
                     this.urgudul=response.data.success
-                    console.log(this.urgudul)
+                    axios.get('/heltes').then((r) => {
+                        this.heltes=r.data.success
+                    })
                 })
             },
             nemeh: function() {
                 this.$validator.validateAll().then((result) => {
+                    console.log('add');
                     if (result) {
                         this.is_loading = true;
                         let formData = new FormData();
@@ -217,6 +247,16 @@
 
                     }
                 });
+            },
+            shuuh() {
+                this.fetched=false;
+                let formData = new FormData();
+                formData.append('data', JSON.stringify(this.fulter));
+                axios.post('/filterUrgudul', formData)
+                    .then((response) => {
+                        this.fetched=true;
+                        this.urgudul=response.data.success
+                    });
             },
             scrollToTop() {
                 window.scrollTo(0,0);

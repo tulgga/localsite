@@ -79,7 +79,6 @@ class SubController extends BaseController
     public function archive($account){
         $data['info']=$this->getDomainInfo($account);
         $data['newslist'] = Post::where('site_id',$data['info']->id)->where('status',1)->orderBy('posts.created_at','DESC')->with('Category')->select('*')->get();
-        echo json_encode($data['newslist']);
         $data['categories'] = Category::where('site_id',$data['info']->id)->orderBy('order_num','ASC')->select('*')->get();
         return view('sub.archive', $data);
     }

@@ -13,15 +13,6 @@ use App\Event_to_user;
 
 use App\Organization;
 use App\User_to_organization;
-use App\Volunteers_like;
-use App\Volunteers_rating;
-use App\User;
-use App\Site;
-use Illuminate\Support\Facades\Auth;
-
-class VolunteerController extends Controller
-{
-
 
     public function index(){
         $data['events'] = Event::select('*')->where('status', 1)->orderBy('created_at', 'desc')->limit(8)->with('EventImage')->select('*')->get();
@@ -65,6 +56,7 @@ class VolunteerController extends Controller
             $user->phone = $request->phone;
             $user->is_set_rd = 1;
             $user->is_volunteer = 1;
+
             $user->gender = $gender;
             $user->birth_date = $year."-".$month."-".$day;
             $user->save();
@@ -237,23 +229,37 @@ class VolunteerController extends Controller
             }
         }
     }
+
     public function loginUser(Request $request){
 
         if(is_numeric($request['username'])){
-            $check=['phone'=>$request['username'], 'password'=>$request['password'], 'is_volunteer'=>1];
+
+            $check=['phone'=>$request['username'], 'password'=>$request['password']];
+
         } elseif (filter_var($request['username'], FILTER_VALIDATE_EMAIL)) {
-            $check= ['email' => $request['username'], 'password'=>$request['password'], 'is_volunteer'=>1];
+
+            $check= ['email' => $request['username'], 'password'=>$request['password']];
+
         } else {
-            $check=['name' => $request['username'], 'password'=>$request['password'], 'is_volunteer'=>1];
+
+            $check=['name' => $request['username'], 'password'=>$request['password']];
+
         }
 
         if (Auth::attempt($check)) {
             $user = Auth::user();
             if($user->status == 0){
+
                 Auth::logout();
                 $request->session()->flash('loginMsg', 'Та эрхээ баталгаажуулаагүй байна.');
                 return redirect()->to('/login');
             }elseif($user->status == 1){
+
+                $request->session()->flash('loginMsg', 'Та эрхээ баталгаажуулаагүй байна.');
+                return redirect()->to('/login');
+            }elseif($user->status == 1){
+                $request->session()->get('user_id', $user->id);
+                $request->session()->get('logged_id', true);
                 return redirect()->to('/');
             }
 
@@ -262,6 +268,7 @@ class VolunteerController extends Controller
             return redirect()->to('/login');
         }
     }
+
     public function logoutUser(){
         Auth::logout();
         return redirect()->to('/');

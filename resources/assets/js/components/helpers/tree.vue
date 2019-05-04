@@ -19,9 +19,10 @@
                             </span>
                         </div>
                         <div class="column is-10">
-                            <input type="text" v-model="data.name" class="input" style="border:none"/>
+                            <input type="text" v-model="data.name" :name="'title'+data.id"  v-validate="{'required':true, 'min':3}" style="border:none" :class="{'input': true, 'is-danger': errors.has('title'+data.id) }"/>
+                            <p v-show="errors.has('title'+data.id)" class="help is-danger">Заавал бөглө, хамгийн багадаа 3 тэмдэгт байна.</p>
                         </div>
-                        <div  class="column is-1 has-text-right">
+                        <div v-if="displayedChildren.length==0"  class="column is-1 has-text-right">
                              <span @click="deletemodal=true" class="button">
                                 <span class="icon is-small">
                                     <i class="fas fa-trash"></i>
@@ -83,7 +84,6 @@
         computed: {
             amIEmptyNode () {
                 // data of an empty node is an empty object: {}
-
                  return !this.data.id
             },
             /**

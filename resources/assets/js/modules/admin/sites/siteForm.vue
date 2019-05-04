@@ -19,20 +19,20 @@ CRUD Edit, Create form
                 <section class="modal-card-body" v-if="fetched">
                     <form @submit.prevent="nemeh">
                         <div class="field">
-                            <label class="label">Нэр</label>
+                            <label class="label">Нэр <span class="has-text-danger">*</span></label>
                             <div class="control">
                                 <input type="text" name="name" v-validate="'required'" v-model="form.name" :class="{'input': true, 'is-danger': errors.has('name') }" />
-                                <p v-show="errors.has('name')" class="help is-danger">{{ errors.first('name') }}</p>
+                                <p v-show="errors.has('name')" class="help is-danger">Та сумын нэрээ оруулна уу</p>
                             </div>
                         </div>
                         <div class="field">
-                            <label class="label">Дэд сайт</label>
+                            <label class="label">Дэд сайт <span class="has-text-danger">*</span></label>
                             <div class="control has-icons-right">
                                 <input type="text" name="domain" v-validate="'required'" v-model="form.domain" :class="{'input': true, 'is-danger': errors.has('domain') }" />
                                 <span class="icon  is-right is-text-right" style="width: 11em">
                                  .{{site}}
                                 </span>
-                                <p v-show="errors.has('domain')" class="help is-danger">{{ errors.first('domain') }}</p>
+                                <p v-show="errors.has('domain')" class="help is-danger">Та домайн нэрээ оруулна уу</p>
                             </div>
                         </div>
                     </form>
@@ -54,6 +54,7 @@ CRUD Edit, Create form
 <script>
 
     export default {
+
         data(){
             return {
                 site: window.subdomain,

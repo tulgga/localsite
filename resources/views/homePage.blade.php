@@ -40,8 +40,8 @@
             </ul>
             <ul class="col-sm-6 right-menu">
                 <li><a href="#" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-list-ul"></i> Сумдын веб хуудас</a></li>
-                <li><a href="#"><i class="fa fa-sitemap"></i> Агентлагуудын холбоос</a></li>
-                <li><a href="#"><i class="fa fa-lightbulb-o"></i> Санал хүсэлт, өргөдөл гомдол</a></li>
+                <li><a href="#" data-toggle="modal" data-target=".bd-example-modal-lg-2"><i class="fa fa-sitemap"></i> Агентлагуудын холбоос</a></li>
+                <li><a href="http://bayankhongor.towersoft.mn/!#/report"><i class="fa fa-lightbulb-o"></i> Санал хүсэлт, өргөдөл гомдол</a></li>
             </ul>
         </div>
     </div>
@@ -59,8 +59,8 @@
                 <ul class="row">
                     @foreach($sumuud as $domain)
                         @if(!$domain->id == 0)
-                            <li class="col-sm-6">
-                                <a href="{{$domain->domain}}"><img src="{{ asset('uploads/'.$domain->favicon)}}"> {{$domain->name}}</a>
+                            <li class="col-6">
+                                <a href="{{$domain->domain}}">@if($domain->favicon)<img src="{{ asset('uploads/'.$domain->favicon)}}">@else<img src="{{ asset('uploads/favicon/XnjMhMUg3enV21GhLYDopC2L6uHsuQK0BqjTjCjP.png')}}">@endif {{$domain->name}}</a>
                             </li>
                         @endif
                     @endforeach
@@ -103,8 +103,9 @@
                                             </h2>
                                         </div>
                                         <div id="item1_{{$i}}" class="collapse" aria-labelledby="item_{{$i}}" data-parent="#accordionExample1">
-                                            @if(isset($item['item']))
                                             <div class="card-body">
+                                            @if(isset($item['item']))
+                                            <div class="accordion" id="accordionExample2">
                                                 @foreach($item['item'] as $i=>$itm)
                                                     <div class="card">
                                                         <div class="card-header" id="itm_{{$i}}">
@@ -117,18 +118,21 @@
                                                         <div id="itm1_{{$i}}" class="collapse" aria-labelledby="itm_{{$i}}" data-parent="#accordionExample2">
                                                             <div class="card-body">
                                                                 <ol style="list-style: inside decimal-leading-zero;">
-
+                                                                    <li>Хэрэгтэй мэдээлэл болон бүрдүүлэх материалын жагсаалт орно...</li>
                                                                 </ol>
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    
                                                 @endforeach
-                                            </div>
+                                                </div>
+                                            
                                             @else
                                                 <ol style="list-style: inside decimal-leading-zero;">
-
+                                                   <li>Хэрэгтэй мэдээлэл болон бүрдүүлэх материалын жагсаалт орно...</li>
                                                 </ol>
                                             @endif
+                                            </div>
                                         </div>
                                     </div>
                                     @endforeach
@@ -138,6 +142,25 @@
                     </div>
                     @endforeach
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade bd-example-modal-lg-2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content sumd">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Аймгийн хэлтэс агентлагууд</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <ul class="row">
+                    @foreach ($links as $link)
+                        <li class="col-sm-6"> <a target="_blank" href="{{$link->link}}">@if($domain->image)<img src="{{ asset('uploads/'.$domain->image)}}">@else<img src="{{ asset('images/soyombo.png')}}">@endif {{$link->name}}</a> </li>
+                    @endforeach
+                </ul>
             </div>
         </div>
     </div>

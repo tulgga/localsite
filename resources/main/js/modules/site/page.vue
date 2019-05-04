@@ -5,7 +5,7 @@
                 <div class="columns pt-2 pb-2">
 
                     <div  class="column is-9" :class="{'is-9':is_full===false, 'is-12':is_full===true}">
-                        <div class="has-background-white p-15 mb-2" >
+                        <div class="has-background-white p-15 mb-2" style="min-height: 400px;" >
                             <h1 class="is-size-4-tablet is-size-6-mobile mb-1">{{content.title}}</h1>
 
                             <template v-if="content.type==0">

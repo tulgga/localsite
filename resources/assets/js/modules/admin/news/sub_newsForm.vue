@@ -22,12 +22,23 @@ CRUD Edit, Create form
 
 
                             <div class="column is-12-mobile is-4-tablet is-3-desktop">
+                                <div class="field">
+                                    <label class="label">Төрөл</label>
+                                    <div class="control select">
+                                        <select class="input" name="type"  v-model="form.type" >
+                                            <option value="0">мэдээ</option>
+                                            <option value="1">фото</option>
+                                            <option value="2">видео</option>
+                                        </select>
+                                    </div>
+                                </div>
+
                                 <div class="field" v-if="form.type!=2">
                                     <label class="label">Зураг</label>
                                     <div class="control has-image">
                                         <div class="file is-boxed is-fullwidth">
                                             <label class="file-label">
-                                                <input class="file-input" type="file"  name="imageni" @change="onFileChange($event.target.name, $event.target.files)">
+                                                <input class="file-input" type="file"  accept="image/*" name="imageni" @change="onFileChange($event.target.name, $event.target.files)">
                                                 <span class="file-cta" >
                                                 <span v-if="imageni" class="file-icon" :style="'background-image: url('+imageni+');'">
                                                     <i class="ion-ios-add-outline"></i>
@@ -45,13 +56,14 @@ CRUD Edit, Create form
                                     <label class="label">Youtube код</label><small style="margin-top:10px;">https://www.youtube.com/watch?v=<span class="has-text-success">6XaaI4_nIHY</span></small>
                                     <div class="control">
                                         <input type="text" name="youtube" v-validate="'required'" v-model="form.youtube" :class="{'input': true, 'is-danger': errors.has('youtube') }" />
-                                        <p v-show="errors.has('youtube')" class="help is-danger">{{ errors.first('youtube') }}</p>
+                                        <p v-show="errors.has('youtube')" class="help is-danger">Та youbute кодоо оруулна уу</p>
                                     </div>
                                 </div>
 
                                 <div class="field">
-                                    <label class="label">Ангилал</label>
-                                        <treeselect v-model="form.cat_id" :flat="true"  :default-expand-level="10" :multiple="true" :options="options" />
+                                    <label class="label">Ангилал <span class="has-text-danger">*</span></label>
+                                    <treeselect v-validate="'required'" v-model="form.cat_id" :flat="true" placeholder="Ангилал сонгох"  :default-expand-level="10" :multiple="true" :options="options" />
+                                    <p v-show="errors.has('cat_id')" class="help is-danger">Та ангилал сонгоно уу</p>
                                 </div>
 
                                 <div class="field">
@@ -75,17 +87,6 @@ CRUD Edit, Create form
                                 </div>
 
                                 <div class="field">
-                                    <label class="label">Төрөл</label>
-                                    <div class="control select">
-                                        <select class="input" name="type"  v-model="form.type" >
-                                            <option value="0">мэдээ</option>
-                                            <option value="1">фото</option>
-                                            <option value="2">видео</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="field">
                                     <label class="label">Төлөв</label>
                                     <div class="control select">
                                         <select class="input" name="status"  v-model="form.status" >
@@ -95,36 +96,40 @@ CRUD Edit, Create form
                                     </div>
                                 </div>
 
-
-
                             </div>
                             <div class="column is-12-mobile is-8-tablet is-9-desktop">
                                 <div class="field">
-                                    <label class="label">Гарчиг</label>
+                                    <label class="label">Гарчиг <span class="has-text-danger">*</span></label>
                                     <div class="control">
                                         <input type="text" name="title" v-validate="'required'" v-model="form.title" :class="{'input': true, 'is-danger': errors.has('title') }" />
-                                        <p v-show="errors.has('title')" class="help is-danger">{{ errors.first('title') }}</p>
+                                        <p v-show="errors.has('title')" class="help is-danger">Заавал бөглө, хамгийн багадаа 3 тэмдэгт байна.</p>
                                     </div>
                                 </div>
 
                                 <div class="field">
-                                    <label class="label">Товч текст</label>
-                                    <textarea style="min-height: 80px;"  name="short_content" v-validate="'required'"   v-model="form.short_content" :class="{'textarea': true, 'is-danger': errors.has('short_content') }" ></textarea>
-                                    <p v-show="errors.has('short_content')" class="help is-danger">{{ errors.first('short_content') }}</p>
+                                    <label class="label">Товч текст <span v-if="form.type!=2" class="has-text-danger">*</span></label>
+                                    <template v-if="form.type!=2">
+                                        <textarea   v-validate="{'required':true, 'min':3}"  style="min-height: 80px; "  class="textarea" name="short_content" v-model="form.short_content" ></textarea>
+                                        <p v-show="errors.has('short_content')" class="help is-danger">Заавал бөглө, хамгийн багадаа 3 тэмдэгт байна.</p>
+                                    </template>
+                                    <template v-else>
+                                        <textarea  style="min-height: 80px; "  class="textarea" name="short_content" v-model="form.short_content" ></textarea>
+                                    </template>
                                 </div>
 
-
                                 <div class="field">
-                                    <label class="label">Дэлгэрэнгүй мэдээлэл</label>
+                                    <label class="label">Дэлгэрэнгүй мэдээлэл <span v-if="form.type!=2" class="has-text-danger">*</span></label>
                                     <div class="control has-autoblock">
-                                        <ckeditor v-model="form.content" name="content" v-validate="'required'" :config="ck_config" :class="{'is-danger': errors.has('content') }"></ckeditor>
-                                        <p v-show="errors.has('content')" class="help is-danger">{{ errors.first('content') }}</p>
+                                        <template v-if="form.type!=2">
+                                            <ckeditor v-validate="{'required':true}"  v-model="form.content" name="content" :config="ck_config" ></ckeditor>
+                                            <p v-show="errors.has('content')" class="help is-danger">Заавал бөглө</p>
+                                        </template>
+                                        <template v-else>
+                                            <ckeditor v-model="form.content" name="content" :config="ck_config" ></ckeditor>
+                                        </template>
                                     </div>
                                 </div>
                             </div>
-
-
-
 
                         </div>
                     </form>

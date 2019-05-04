@@ -90,15 +90,11 @@
                 <div class="column is-3 ">
                     <div class="bg-white p-15 mb-2  shadow">
                         <h3 class="bTitle mb-1">Ил тод байдал</h3>
-                        <v-bar wrapper="wrapper roboto-condensed" style="height: 490px;">
-                            <news-list  catId="150"  ></news-list>
-                        </v-bar>
+                            <news-list  catId="150" styles="height: 490px;"></news-list>
                     </div>
                     <div class="bg-white p-15 mb-1 green shadow">
                         <h3 class="bTitle mb-1">Тендерийн урилга</h3>
-                        <v-bar wrapper="wrapper roboto-condensed" style="height: 401px;">
-                            <news-list   catId="182"></news-list>
-                        </v-bar>
+                        <news-list  catId="182" styles="height: 401px;"></news-list>
                     </div>
                 </div>
             </div>

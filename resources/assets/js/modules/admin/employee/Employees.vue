@@ -12,13 +12,19 @@
 			<v-client-table v-if="fetched" :data="lists" :columns="columns" :options="options">
                 <template slot="profile_pic" slot-scope="props">
                     <figure v-if="props.row.profile_pic" class="image is-48x48" :style="'background-image: url('+siteurl+'/uploads/'+props.row.profile_pic+')'"></figure>
-                    <figure v-else="" class="image is-48x48">IMG</figure>
+                    <figure v-else="" class="image is-48x48"><i class="fa fa-user is-size-3"></i></figure>
                 </template>
                 <template slot="status" slot-scope="props">
-                    <div class="button" :class="[props.row.status === 1?'is-success':'is-light']" @click="statuschanging(props.row)">
-                        <template v-if="props.row.status === 1">Идэвхитэй</template>
-                        <template v-else="">Идэвхигүй</template>
-                    </div>
+                    <template v-if="props.row.status==1">
+                        <a class="icon has-text-success" @click="statuschanging(props.row)">
+                            <i class="fas fa-check-circle fa-lg"></i>
+                        </a>
+                    </template>
+                    <template v-else>
+                        <a class="icon has-text-danger"  @click="statuschanging(props.row)">
+                            <i class="fas fa-ban fa-lg"></i>
+                        </a>
+                    </template>
                 </template>
                 <div slot="action" slot-scope="props" class="data-action">
                     <router-link :to="'employees/'+props.row.id+'/update'">
@@ -48,7 +54,8 @@
                 </header>
                 <section class="modal-card-body">
                     <p class="has-text-centered">{{ $store.getters.lang.messages.sure_delete }}</p>
-                    <p class="has-text-centered is-size-4"><strong class="has-text-black">{{deleteid.f_name}}</strong></p>
+                    <p class="has-text-centered ">нэр: {{deleteid.f_name}}</p>
+                    <p class="has-text-centered ">мэйл: {{deleteid.email}}</p>
                 </section>
                 <footer class="modal-card-foot">
                     <button class="button is-text" v-on:click="deletemodal = false">{{ $store.getters.lang.messages.is_back_button }}</button>
@@ -130,24 +137,17 @@
                             {
                                 id: 1,
                                 text: 'нийтлэгч'
-                            }
-                            ,
+                            },
                             {
                                 id:2,
                                 text: 'дэд админ'
-                            }
-                            ,
+                            },
                             {
                                 id: 3,
                                 text: 'дэд нийтлэгч'
-                            },
-                        ],
-                        site_id:[
-                            {
-                                id:0,
-                                text: 'Үндсэн сайт'
                             }
-                         ]
+                        ],
+                        site_id:[{id:0, text: 'Үндсэн сайт'}]
                     },
                     texts:{
                         count : this.$store.getters.lang.table.count,

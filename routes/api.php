@@ -18,6 +18,13 @@ Route::fallback(function(){
 });
 
 Route::middleware('auth:api')->namespace('Api')->group(function () {
+
+
+    Route::get('groups', 'ApiGroupController@group');
+    Route::post('joinGroup', 'ApiGroupController@joinGroup');
+    Route::post('sendMessage', 'ApiGroupController@sendMessage');
+    Route::get('messages/{group_id}', 'ApiGroupController@messages');
+
     Route::get('userInfo', 'ApiUserController@userInfo');
 
 
@@ -232,7 +239,6 @@ Route::middleware('auth:admin-api')->namespace('Admin')->prefix('admin')->group(
     //user
     Route::resource('users','AdminUserController');
     Route::post('users/{id}','AdminUserController@update');
-
 });
 
 Route::namespace('Admin')->prefix('admin')->group(function () {

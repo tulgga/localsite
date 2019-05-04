@@ -6,7 +6,7 @@
                 <li v-if="user.admin_type==0" class="branchselect"><p>{{domain.name}}
                     <span @click="changeDomain" class="tag is-primary is-uppercase">өөрчлөх</span></p>
                 </li>
-                <p class="main-text has-text-centered is-size-6 p2">
+                <p class="main-text has-text-centered is-size-6 p2 is-uppercase">
                     <template  v-if="domain.domain!=''">{{domain.domain}}.{{site}}</template>
                     <template v-else>bayankhongor.gov.mn</template>
                 </p>
@@ -20,6 +20,7 @@
                              <div :class="{'is-active':item.path == $route.path}" v-on:click="changeRoute(item.path)">
                                  <span><i :class="item.icon" aria-hidden="true"></i></span>
                                  <p>{{item.title}}</p>
+                                 <span v-if="item.badge" class="tag is-danger is-pulled-right">{{badge}}</span>
                              </div>
                         </li>
                     </template>
@@ -30,6 +31,7 @@
                             <div :class="{'is-active':item.path == $route.path}" v-on:click="changeRoute(item.path)">
                                 <span><i :class="item.icon" aria-hidden="true"></i></span>
                                 <p>{{item.title}}</p>
+                                <span v-if="item.badge" class="tag is-danger is-pulled-right">{{badge}}</span>
                             </div>
                         </li>
                     </template>
@@ -50,6 +52,7 @@
                             <div :class="{'is-active':item.path == $route.path}" v-on:click="changeRoute(item.path)">
                                 <span><i :class="item.icon" aria-hidden="true"></i></span>
                                 <p>{{item.title}}</p>
+                                <span v-if="item.badge" class="tag is-danger is-pulled-right">{{badge}}</span>
                             </div>
                         </li>
                     </template>
@@ -60,11 +63,10 @@
                             <div :class="{'is-active':item.path == $route.path}" v-on:click="changeRoute(item.path)">
                                 <span><i :class="item.icon" aria-hidden="true"></i></span>
                                 <p>{{item.title}}</p>
+                                <span v-if="item.badge" class="tag is-danger is-pulled-right">{{badge}}</span>
                             </div>
                         </li>
                     </template>
-
-
             </template>
             </ul>
         </div>
@@ -105,6 +107,7 @@
                     name: 'Үндсэн сайт',
                     domain: ''
                 },
+                badge: 0,
                 domains:[],
                 domain:[],
                 domainmodal: false,
@@ -112,37 +115,40 @@
                 items: [
                     { subheader: 'Ерөнхий', role:0,},
                         { title: 'Дэд сайтууд', icon: 'fas fa-th', path: '/sites', role:0,},
+                        { title: 'Хэлтэс', icon: 'fas fa-code-branch', path: '/heltes', role:0,},
                         { title: 'Админ / ажилтан', icon: 'fas fa-users', path: '/employees', role:0,},
-                    { subheader: 'Тохиргоо', role:1,},
-                        { title: 'Тохиргоо', icon: 'fas fa-sliders-h', path: '/config',  role:1,},
+                        { title: "Хэрэглэгчид", icon: 'fas fa-users', path: '/users' ,  role:0},
+                    { subheader: 'Тохиргоо', role:0,},
+                        { title: 'Тохиргоо', icon: 'fas fa-sliders-h', path: '/config',  role:0,},
                         // { title: "Цэс", icon: 'fas fa-bars', path: '/menu' ,  role:1},
-                        { title: "Сутралчилгаа", icon: 'fab fa-goodreads', path: '/sidebar' ,  role:1},
+                        { title: "Сурталчилгаа", icon: 'fab fa-goodreads', path: '/sidebar' ,  role:0},
                     { subheader: 'Мэдээ',  role:1 },
-                        { title: 'Мэдээний ангилал', icon: 'fas fa-code-branch', path: '/news_category' ,  role:1 },
+                        { title: 'Мэдээний ангилал', icon: 'fas fa-code-branch', path: '/news_category' ,  role:0 },
                         { title: "Мэдээ", icon: 'fas fa-newspaper', path: '/news' ,  role:1},
-                        { title: "Орон нутгийн мэдээ", icon: 'fas fa-newspaper', path: '/sub_news_publish' ,  role:1},
-                        { title: 'Үндсэн цэс', icon: 'fas fa-bars', path: '/pages' ,  role:1},
-                        { title: 'Туслах цэс', icon: 'fas fa-bars', path: '/helppages' ,  role:1},
+                        { title: "Орон нутгийн мэдээ", icon: 'fas fa-newspaper', path: '/sub_news_publish' ,  role:0},
+                        { title: 'Үндсэн цэс', icon: 'fas fa-bars', path: '/pages' ,  role:0},
+                        { title: 'Туслах цэс', icon: 'fas fa-bars', path: '/helppages' ,  role:0},
                     { subheader: 'Файлын сан',  role:1},
-                        { title: "Файлын ангилал", icon: 'fas fa-code-branch', path: '/file_category',  role:1 },
+                        { title: "Файлын ангилал", icon: 'fas fa-code-branch', path: '/file_category',  role:0 },
                         { title: "Файлын сан", icon: 'fas fa-folder', path: '/files',  role:1 },
                     { subheader: 'Холбоос',  role:1},
-                        { title: "Холбоос ангилал", icon: 'fas fa-code-branch', path: '/link_category',  role:1 },
+                        { title: "Холбоос ангилал", icon: 'fas fa-code-branch', path: '/link_category',  role:0 },
                         { title: "Холбоос", icon: 'fas fa-link', path: '/link' ,  role:1},
-                    { subheader: 'Зар',  role:1},
-                        { title: "Зарийн ангилал", icon: 'fas fa-code-branch', path: '/zar_category' ,  role:1},
-                        { title: "Зар", icon: 'fas fa-chart-bar', path: '/zar' ,  role:1},
+                    { subheader: 'Зар',  role:0},
+                        { title: "Зарийн ангилал", icon: 'fas fa-code-branch', path: '/zar_category' ,  role:0},
+                        { title: "Зар", icon: 'fas fa-chart-bar', path: '/zar' ,  role:0},
                     { subheader: 'Бусад',  role:1},
-                        { title: "Санал асуулга", icon: 'fas fa-code-branch', path: '/poll' ,  role:1},
-                        { title: 'Санал хүсэлт', icon: 'far fa-comments', path: '/urgudul',  role:1,},
-
+                        { title: "Санал асуулга", icon: 'fas fa-code-branch', path: '/poll' ,  role:0},
+                        { title: 'Санал хүсэлт', icon: 'far fa-comments', path: '/urgudul',  role:1,  badge:1,},
+                    { subheader: 'Чат',  role:0},
+                        { title: "Групп", icon: 'fas fa-code-branch', path: '/group' ,  role:0},
 
 
                     // ded site
                     { subheader: 'Тохиргоо', role:2,},
                     { title: 'Тохиргоо', icon: 'fas fa-sliders-h', path: '/config',  role:2,},
                     // { title: "Цэс", icon: 'fas fa-bars', path: '/menu' ,  role:2},
-                    { title: "Сутралчилгаа", icon: 'fab fa-goodreads', path: '/sidebar' ,  role:2},
+                    { title: "Сурталчилгаа", icon: 'fab fa-goodreads', path: '/sidebar' ,  role:2},
                     { subheader: 'Мэдээ',  role:2 },
                     { title: 'Мэдээний ангилал', icon: 'fas fa-code-branch', path: '/news_category' ,  role:3 },
                     { title: "Мэдээ", icon: 'fas fa-newspaper', path: '/sub_news' ,  role:3},
@@ -156,31 +162,47 @@
                     { title: "Холбоос", icon: 'fas fa-link', path: '/link' ,  role:3},
                     { subheader: 'Бусад',  role:3},
                     { title: "Санал асуулга", icon: 'fas fa-code-branch', path: '/poll' ,  role:3},
-                    { title: 'Санал хүсэлт', icon: 'far fa-comments', path: '/urgudul',  role:3,},
+                    { title: 'Санал хүсэлт', icon: 'far fa-comments', path: '/urgudul',  role:3, badge:1, },
                 ],
                 badge_show: false,
             }
         },
         created: function () {
-            // this.checkAdminType();
+            this.checkAdminType();
             this.fetchData();
         },
+        mounted : function(){
+        },
         methods: {
+
+
             fetchData() {
                 this.user = this.$store.getters.authUser;
                 this.domain=this.$store.getters.domain;
+
+
+
+                axios.get('/webNotification/'+this.domain.id+'/'+this.user.heltes_id).then((response) => {
+                    this.badge = response.data.success;
+                })
+                setInterval(()=>{
+                    axios.get('/webNotification/'+this.domain.id+'/'+this.user.heltes_id).then((response) => {
+                        this.badge = response.data.success;
+                        console.log(this.badge);
+                    })
+                }, 40000);
             },
             checkAdminType() {
                 var admin_type=this.$store.getters.authUser.admin_type;
-                if(admin_type==0){
-                    this.$router.push('/sites');
-                } else if(admin_type==1){
-                    this.$router.push('/news');
-                } else if(admin_type==2){
-                    this.$router.push('/config');
-                } else if(admin_type==3){
-                    this.$router.push('/sub_news');
-                }
+                // if(admin_type==0){
+                //     this.$router.push('/sites');
+                // } else if(admin_type==1){
+                //     this.$router.push('/news');
+                // } else if(admin_type==2){
+                //     this.$router.push('/config');
+                // } else if(admin_type==3){
+                //     this.$router.push('/sub_news');
+                // }
             },
             drawerchange: function() {
                 if (this.$store.getters.drawer === true) {
@@ -227,7 +249,6 @@
                     this.$router.push({path:path});
                 // }
             },
-
         }
     }
 

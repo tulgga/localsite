@@ -28,10 +28,15 @@
 
                 <v-server-table ref="tableni" :url="url"  :columns="columns" :options="options">
                     <template slot="image" slot-scope="props">
-                        <figure v-if="props.row.image" style="border-radius:0px" class="image is-48x48"
-                                :style="'background-image: url('+siteUrl+'/uploads/'+props.row.image.replace('images/', 'small/')+')'">
+                        <figure v-if="props.row.type==2" style="border-radius:0px" class="image is-48x48"
+                                :style="'background-image: url(https://img.youtube.com/vi/'+props.row.image+'/default.jpg)'">
                         </figure>
-                        <figure v-else="" style="border-radius:0px" class="image is-48x48">IMG</figure>
+                        <div v-else="">
+                            <figure v-if="props.row.image" style="border-radius:0px" class="image is-48x48"
+                                    :style="'background-image: url('+siteUrl+'/uploads/'+props.row.image.replace('images/', 'small/')+')'">
+                            </figure>
+                            <figure v-else="" style="border-radius:0px" class="image is-48x48"><i class="far fa-image"></i></figure>
+                        </div>
                     </template>
 
                     <div slot="cat" slot-scope="props" >
@@ -115,8 +120,10 @@
                     <p class="modal-card-title">{{ $store.getters.lang.messages.delete_data }}</p>
                 </header>
                 <section class="modal-card-body">
-                    <p class="has-text-centered">{{ $store.getters.lang.messages.sure_delete }}</p>
                     <p class="has-text-centered is-size-4"><strong class="has-text-black">{{deleteid.title}}</strong></p>
+                    <p class="has-text-centered">
+                         {{deleteid.view_count}} хүн үзсэн байна. та устгахдаа итгэлтай байна уу
+                    </p>
                 </section>
                 <footer class="modal-card-foot">
                     <button class="button is-text" v-on:click="deletemodal = false">{{ $store.getters.lang.messages.is_back_button }}</button>
@@ -126,11 +133,6 @@
                 </footer>
             </div>
         </div>
-
-
-
-
-
 
         <!-- primary modal -->
         <div class="modal is-active" v-if="primarymodal">
@@ -328,12 +330,11 @@
         },
         methods: {
 
-
-
             fetchData() {
                 this.site_id = this.$store.getters.domain.id;
                 axios.get('/news_category/' + this.site_id).then((response) => {
                     this.categories = response.data.success;
+                    this.categories.push({'name':'Ангилалгүй мэдээ', 'label':'Ангилалгүй мэдээ', 'id':-1})
                     this.fetched = true;
                 })
             },

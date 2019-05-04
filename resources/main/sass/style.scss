@@ -4,6 +4,12 @@ body {
   font-size: 14px;
   margin: 0;
 }
+
+#app {
+  width: 100%;
+  overflow-x: hidden;
+}
+
 a {
   transition: color 0.2s ease-in-out, opacity 0.2s ease-in-out;
 }
@@ -60,6 +66,9 @@ a {
 .loading img {
   width: 50px;
 }
+
+
+
 
 @media only screen and (max-width: 1152px) {
   .ml-1 {

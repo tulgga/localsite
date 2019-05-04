@@ -17,7 +17,9 @@ Route::get('/adminPanel/{vue_capture?}',function(){
     return view('admin');
 })->where('vue_capture', '[\/\w\.-]*');
 
+//Route::get('/!#/news/{id}', 'Controller@index');
 Route::get('/!/{vue_capture?}', 'Controller@index')->where('vue_capture', '[\/\w\.-]*');
+
 
 Route::domain('volunteer.bayankhongor.towersoft.mn')->group(function () {
     Route::get('/', 'VolunteerController@index');
@@ -36,7 +38,9 @@ Route::domain('volunteer.bayankhongor.towersoft.mn')->group(function () {
     Route::get('/deleteImg/{img_id}/{event}', 'VolunteerController@deleteImg');
     Route::get('/eventUpdateStatus/{id}/{stat}', 'VolunteerController@eventUpdateStatus');
 });
-Route::domain('zar.bayankhongor.towersoft.mn')->group(function () {
+
+Route::domain('zar.bayankhongor.towersoft.local')->group(function () {
+
     Route::get('/', 'ZarController@index');
     Route::get('/c/{id}.html', 'ZarController@category');
     Route::get('/p/{id}.html', 'ZarController@single');

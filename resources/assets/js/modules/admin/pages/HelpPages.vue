@@ -21,53 +21,13 @@
                        <td ><b>{{list.title}}</b></td>
                        <td  class="p-0" >
                            <div class="data-action">
-                               <div @click="changePositionMain(i,-1)" ><i class="fas fa-arrow-up"></i></div>
-                               <div @click="changePositionMain(i,1)" ><i class="fas fa-arrow-down"></i></div>
+                               <div  :class="{'disabled':i==0}" @click="changePositionMain(i,-1)" ><i class="fas fa-arrow-up"></i></div>
+                               <div :class="{'disabled':lists.length-1==i}" @click="changePositionMain(i,1)" ><i class="fas fa-arrow-down"></i></div>
                                <router-link :to="'helppages/'+list.id+'/update'" ><i class="fas fa-pencil-alt"></i></router-link>
                                <div @click="delete_cat=list; deletemodal=true;"><i class="fas fa-trash"></i></div>
                            </div>
                        </td>
                    </tr>
-                   <template v-for="(child, a) in list.children">
-                       <tr >
-
-                           <td style="padding-left:25px;" >- {{child.title}}</td>
-                           <td  class="p-0">
-                               <div class="data-action">
-                                   <div @click="changePosition(i, a, -1)"><i class="fas fa-arrow-up"></i></div>
-                                   <div @click="changePosition(i, a,1)"><i class="fas fa-arrow-down"></i></div>
-                                   <router-link :to="'helppages/'+child.id+'/update'" ><i class="fas fa-pencil-alt"></i></router-link>
-                                   <div @click="delete_cat=child; deletemodal=true;"><i class="fas fa-trash"></i></div>
-                               </div>
-                           </td>
-                       </tr>
-                           <template v-for="(subchild, b) in child.children">
-                            <tr>
-                               <td style="padding-left:50px;" >-- {{subchild.title}}</td>
-                               <td  class="p-0">
-                                   <div class="data-action">
-                                       <div @click="changePositionSub(i, a, b, -1)"><i class="fas fa-arrow-up"></i></div>
-                                       <div @click="changePositionSub(i, a, b,1)"><i class="fas fa-arrow-down"></i></div>
-                                       <router-link :to="'helppages/'+subchild.id+'/update'" ><i class="fas fa-pencil-alt"></i></router-link>
-                                       <div @click="delete_cat=subchild; deletemodal=true;"><i class="fas fa-trash"></i></div>
-                                   </div>
-                               </td>
-                            </tr>
-                               <template v-for="(subsubchild, c) in subchild.children">
-                                   <tr>
-                                       <td style="padding-left:75px;" >--- {{subsubchild.title}}</td>
-                                       <td  class="p-0">
-                                           <div class="data-action">
-                                               <div @click="changePositionSubSub(i, a, b, c, -1)"><i class="fas fa-arrow-up"></i></div>
-                                               <div @click="changePositionSubSub(i, a, b, c, 1)"><i class="fas fa-arrow-down"></i></div>
-                                               <router-link :to="'helppages/'+subsubchild.id+'/update'" ><i class="fas fa-pencil-alt"></i></router-link>
-                                               <div @click="delete_cat=subsubchild; deletemodal=true;"><i class="fas fa-trash"></i></div>
-                                           </div>
-                                       </td>
-                                   </tr>
-                               </template>
-                            </template>
-                   </template>
                </template>
                </tbody>
            </table>

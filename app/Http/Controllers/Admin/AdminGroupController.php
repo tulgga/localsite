@@ -25,7 +25,7 @@ class AdminGroupController extends Controller
             LEFT JOIN (
                 select group_id,  COUNT(0) as joined_cnt
                 from group_users 
-                where status=0
+                where status=1
                 GROUP by group_id
             ) joined
             on joined.group_id=groups.id
@@ -152,8 +152,6 @@ class AdminGroupController extends Controller
         $group = Group::findOrFail($data['id']);
         $group->status = $data['flg'];
         $group->save();
-        return response()->json([
-            'success' => $data['id'],
-        ]);
+        return response()->json(['success' => $data['id']]);
     }
 }

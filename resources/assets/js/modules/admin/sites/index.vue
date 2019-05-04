@@ -41,7 +41,7 @@
             <div class="modal-background" v-on:click="deletemodal = false"></div>
             <div class="modal-card modal-card-small">
                 <header class="modal-card-head">
-                    <p class="modal-card-title">Дэд сайт устгах</p>
+                    <p class="modal-card-title">{{deleteid.name}}  дэд сайт устгах уу ?</p>
                 </header>
                 <section class="modal-card-body">
                     <p class="has-text-centered">Та итгэлтэй байна уу?</p>
@@ -144,6 +144,7 @@
             },
         }
     }
+
 </script>
 <style>
     .Vuetables  th:last-child {
@@ -152,5 +153,4 @@
     .VueTables  th:first-child {
         width: 80px;
     }
-
 </style>

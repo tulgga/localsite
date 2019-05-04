@@ -4,13 +4,17 @@ import store from '../store'
 
 import Dashboard from '../modules/admin/Dashboard'
 
-
 import Sites from '../modules/admin/sites/index'
 import siteForm from '../modules/admin/sites/siteForm'
+
+import Heltes from '../modules/admin/heltes/index'
+import heltesForm from '../modules/admin/heltes/heltesForm'
 
 import Employees from '../modules/admin/employee/Employees'
 import EmployeesForm from '../modules/admin/employee/EmployeesForm'
 
+import Users from '../modules/admin/user/Users'
+import UserForm from '../modules/admin/user/UserForm'
 
 import newsCategory from '../modules/admin/newsCategory/newsCategory'
 import zarCategory from '../modules/admin/zarCategory/zarCategory'
@@ -22,7 +26,6 @@ import PagesForm from '../modules/admin/pages/PagesForm'
 import HelpPages from '../modules/admin/pages/HelpPages'
 import HelpPagesForm from '../modules/admin/pages/HelpPagesForm'
 
-
 import LinkCategory from '../modules/admin/linkCategory/LinkCategory'
 import LinkCategoryForm from '../modules/admin/linkCategory/LinkCategoryForm'
 
@@ -32,9 +35,7 @@ import fileForm from '../modules/admin/file/fileForm';
 import News from '../modules/admin/news/news';
 import newsForm from '../modules/admin/news/newsForm';
 
-
 import subNewsPublish from '../modules/admin/news/sub_news_to_main';
-
 
 import subNews from '../modules/admin/news/sub_news';
 import subNewsForm from '../modules/admin/news/sub_newsForm';
@@ -60,6 +61,10 @@ import Login from '../modules/auth/Login'
 
 //system routes
 import NotFound from '../modules/system/NotFound'
+
+import Group from '../modules/admin/group/group';
+import GroupFrom from '../modules/admin/group/groupForm';
+import group_user_request from '../modules/admin/group/group_user_request';
 
 Vue.use(Router)
 
@@ -667,6 +672,63 @@ let routes = [
         ]
     },
     {
+        path: '/heltes',
+        name: 'heltes',
+        component: Heltes,
+        meta: {
+            requiresAuth: true,
+            page_title: 'Хэлтэс',
+            bread_crumbs: [
+                {
+                    title: 'ЕРӨНХИЙ',
+                    rname: 'home'
+                }
+            ]
+        },
+        children: [
+            {
+                path: 'create',
+                component: heltesForm,
+                name: 'create_heltes',
+                meta: {
+                    page_title: 'Нэмэх',
+                    bread_crumbs: [
+                        {
+                            title: 'ЕРӨНХИЙ',
+                            rname: 'home'
+                        },
+                        {
+                            title: 'Хэлтэс үүсгэх',
+                            rname: ''
+                        }
+                    ],
+                    notloading: true,
+                    is_modal: true,
+                }
+            },
+            {
+                path: ':id/update',
+                component: heltesForm,
+                name: 'update_heltes',
+                meta: {
+                    page_title: 'Засах',
+                    bread_crumbs: [
+                        {
+                            title: 'ЕРӨНХИЙ',
+                            rname: 'home'
+                        },
+                        {
+                            title: 'Хэлтэс засах',
+                            rname: ''
+                        }
+                    ],
+                    notloading: true,
+                    is_modal: true,
+                }
+            },
+        ]
+    },
+    {
         path: '/link_category',
         name: 'link_category',
         component: LinkCategory,
@@ -831,6 +893,143 @@ let routes = [
                         {
                             title: 'Админ',
                             rname: 'employees'
+                        }
+                    ],
+                    notloading: true,
+                    is_modal: true,
+                }
+            },
+        ]
+    },
+
+
+    {
+        path: '/users',
+        name: 'users',
+        component: Users,
+        meta: {
+            requiresAuth: true,
+            page_title: 'Админ / хэрэглэгч',
+            bread_crumbs: [
+                {
+                    title: 'Ерөнхий',
+                    rname: 'home'
+                }
+            ]
+        },
+        children: [
+            {
+                path: 'create',
+                component: UserForm,
+                name: 'create_user',
+                meta: {
+                    page_title: 'Нэмэх',
+                    bread_crumbs: [
+                        {
+                            title: 'Ерөнхий',
+                            rname: 'home'
+                        },
+                        {
+                            title: 'Админ',
+                            rname: 'users'
+                        }
+                    ],
+                    notloading: true,
+                    is_modal: true,
+                }
+            },
+            {
+                path: ':id/update',
+                component: UserForm,
+                name: 'update_user',
+                meta: {
+                    page_title: 'Засах',
+                    bread_crumbs: [
+                        {
+                            title: 'Ерөнхий',
+                            rname: 'home'
+                        },
+                        {
+                            title: 'хэрэглэгч',
+                            rname: 'users'
+                        }
+                    ],
+                    notloading: true,
+                    is_modal: true,
+                }
+            },
+        ]
+    },
+
+    {
+        path: '/group_user_request/:id',
+        name: 'group_user_request',
+        component: group_user_request,
+        meta: {
+            requiresAuth: true,
+            page_title: 'Хүсэлтүүд',
+            bread_crumbs: [
+                {
+                    title: 'Чат',
+                    rname: 'home'
+                },
+                {
+                    title: 'Групп',
+                    rname: 'group'
+                }
+            ],
+        }
+    },
+
+    {
+        path: '/group',
+        name: 'group',
+        component: Group,
+        meta: {
+            requiresAuth: true,
+            page_title: 'Групп',
+            bread_crumbs: [
+                {
+                    title: 'Чат',
+                    rname: 'home'
+                }
+            ]
+        },
+        children: [
+            {
+                path: 'create',
+                component: GroupFrom,
+                name: 'create_group',
+                meta: {
+                    page_title: 'Нэмэх',
+                    bread_crumbs: [
+                        {
+                            title: 'Чат',
+                            rname: 'home'
+                        },
+                        {
+                            title: 'Групп үүсгэх',
+                            rname: ''
+                        }
+                    ],
+                    notloading: true,
+                    is_modal: true,
+                }
+            },
+            {
+                path: ':id/update',
+                component: GroupFrom,
+                name: 'update_group',
+                meta: {
+                    page_title: 'Засах',
+                    bread_crumbs: [
+                        {
+                            title: 'Чат',
+                            rname: 'home'
+                        },
+                        {
+                            title: 'Групп засах',
+                            rname: ''
                         }
                     ],
                     notloading: true,

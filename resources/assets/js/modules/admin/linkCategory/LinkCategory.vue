@@ -121,9 +121,17 @@
                 axios.delete('/link_category/'+row.id).then((response) => {
                     this.deletemodal = false;
                     this.fetched = false;
+
                     this.fetchData();
                     this.is_loading = false;
-                    this.$toasted.global.toast_success({message: this.$store.getters.lang.messages.is_deleted_text}); // delete success toast
+
+                    if(response.data.success==0){
+                        this.$toasted.global.toast_error({message: 'Энэ холбоосын ангилалд '+response.data.cnt+' холбоос байна. устгах боломжтгүй'}); // delete success toast
+                    } else {
+                        this.$toasted.global.toast_success({message: this.$store.getters.lang.messages.is_deleted_text}); // delete success toast
+                    }
+
+
                 })
             },
             deleting(row){
