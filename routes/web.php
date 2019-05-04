@@ -37,6 +37,8 @@ Route::domain('volunteer.bayankhongor.towersoft.mn')->group(function () {
     Route::get('/eventdelete/{id}', 'VolunteerController@eventdelete');
     Route::get('/deleteImg/{img_id}/{event}', 'VolunteerController@deleteImg');
     Route::get('/eventUpdateStatus/{id}/{stat}', 'VolunteerController@eventUpdateStatus');
+    /*** Ajax request response ***/
+    Route::post('/event_like', 'VolunteerController@event_like');
 });
 
 Route::domain('zar.bayankhongor.towersoft.local')->group(function () {
