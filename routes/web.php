@@ -51,6 +51,15 @@ Route::domain('zar.bayankhongor.towersoft.local')->group(function () {
     Route::post('/postAdd', 'ZarController@postAdd');
 });
 
+Route::domain('dashboard.bayankhongor.local')->group(function () {
+  Route::get('/', 'dashboard@index');
+  Route::get('/police','dashboard@police');
+  Route::get('/hospital','dashboard@hospital');
+  Route::get('/nema','dashboard@nema');
+  Route::get('/schedule','dashboard@schedule');
+  Route::get('/budget','dashboard@budgets');
+});
+
 Route::domain('{account}.bayankhongor.towersoft.mn')->group(function () {
     Route::get('/', 'SubController@index');
     Route::get('/p/{id}', 'SubController@page');
