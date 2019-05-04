@@ -41,7 +41,7 @@ class ApiUrgudulController extends Controller
         }
 
         if(!is_null($data['fdate'])){
-            $urgudul=$urgudul->where('created_at','<=', $data['fdate'].' 00:00:00');
+            $urgudul=$urgudul->where('created_at','<=', $data['fdate'].' 23:59:59');
         }
 
         $urgudul=$urgudul->orderBy('created_at', 'desc')->paginate(40);

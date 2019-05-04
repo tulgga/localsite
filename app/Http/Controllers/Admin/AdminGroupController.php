@@ -110,6 +110,7 @@ class AdminGroupController extends Controller
 
         $info = Group::findOrFail($id);
         $info->name = $data['name'];
+        $info->admin_user_id = $data['admin_user_id'];
         $info->save();
 
         return response()->json([
@@ -126,6 +127,7 @@ class AdminGroupController extends Controller
 
         $info = new Group();
         $info->name = $data['name'];
+        $info->admin_user_id = $data['admin_user_id'];
         $info->save();
 
         return response()->json([
@@ -148,13 +150,11 @@ class AdminGroupController extends Controller
 
     public function change_status(Request $request)
     {
-
         $data = $request->get('data');
         $data = json_decode($data, true);
         $group = Group::findOrFail($data['id']);
         $group->status = $data['flg'];
         $group->save();
         return response()->json(['success' => $data['id']]);
-
     }
 }

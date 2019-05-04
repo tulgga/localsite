@@ -63,7 +63,5 @@ Route::domain('{account}.bayankhongor.towersoft.mn')->group(function () {
 });
 
 Route::get('/', 'Controller@homePage');
-
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');

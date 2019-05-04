@@ -15,6 +15,35 @@ use Illuminate\Pagination\Paginator;
 
 class ApiGroupController extends Controller
 {
+
+    public function myGroupAdmin(){
+        $user=Auth::user();
+        $query="
+            select groups.*
+            from groups
+            where groups.status=1 and admin_user_id=".$user->id."
+            order by groups.id DESC
+        ";
+        $results=\DB::select($query);
+        return response()->json([ 'success' => $results ]);
+    }
+
+    public function groupUsers($group_id){
+
+        $results=Group_user::where('group_id', $group_id)
+            ->join('users','users.id', '=','group_users.user_id')
+            ->select('group_users.id', 'users.name', 'users.profile_pic')
+        ->orderBy('group_users.created_at','desc');
+
+        foreach ($results as $i=>$result){
+            if(!is_null($result->profile_pic)){
+                $results[$i]->profile_pic=url('/uploads/'.$result->profile_pic);
+            }
+
+        }
+        return response()->json([ 'success' => $results ]);
+    }
+
     public function myGroup(){
         $user=Auth::user();
         $query="
@@ -114,7 +143,9 @@ class ApiGroupController extends Controller
                ->paginate(50);
        }
        foreach ($messages as $i=>$message){
-           $messages[$i]->profile_pic=url('/uploads/'.$message->profile_pic);
+           if(!is_null($message->profile_pic)){
+               $messages[$i]->profile_pic=url('/uploads/'.$message->profile_pic);
+           }
            $messages[$i]->is_me=0;
            if($message->user_id==$user->id){$messages[$i]->is_me = 1;}
        }
