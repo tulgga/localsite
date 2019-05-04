@@ -14,6 +14,7 @@ use App\Event_to_user;
 use App\Organization;
 use App\User_to_organization;
 
+class VolunteerController extends Controller{
     public function index(){
         $data['events'] = Event::select('*')->where('status', 1)->orderBy('created_at', 'desc')->limit(8)->with('EventImage')->select('*')->get();
         return view('volunteer.home', $data);
