@@ -19,7 +19,8 @@ Route::fallback(function(){
 
 Route::middleware('auth:api')->namespace('Api')->group(function () {
 
-
+    Route::get('myGroupAdmin', 'ApiGroupController@myGroupAdmin');
+    Route::get('groupUsers/{group_id}', 'ApiGroupController@groupUsers');
     Route::get('myGroup', 'ApiGroupController@myGroup');
     Route::get('groups', 'ApiGroupController@group');
     Route::post('joinGroup', 'ApiGroupController@joinGroup');
@@ -219,8 +220,6 @@ Route::middleware('auth:admin-api')->namespace('Admin')->prefix('admin')->group(
     Route::post('news_status','AdminNewsController@change_status');
     Route::post('main_site_publish','AdminNewsController@main_site_publish');
 
-
-
     //poll
     Route::resource('poll','AdminPollController');
     Route::get('poll_show/{site_id}','AdminPollController@index1');
@@ -237,10 +236,11 @@ Route::middleware('auth:admin-api')->namespace('Admin')->prefix('admin')->group(
     Route::resource('zar','AdminZarController');
     Route::post('zar/{id}','AdminZarController@update');
 
-
     //user
     Route::resource('users','AdminUserController');
+    Route::get('AllUsers','AdminUserController@AllUsers');
     Route::post('users/{id}','AdminUserController@update');
+
 });
 
 Route::namespace('Admin')->prefix('admin')->group(function () {

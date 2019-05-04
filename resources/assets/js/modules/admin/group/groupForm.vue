@@ -25,6 +25,13 @@ CRUD Edit, Create form
                                 <p v-show="errors.has('name')" class="help is-danger">Та хэлтсийн нэрээ оруулна уу</p>
                             </div>
                         </div>
+                        <div class="field">
+                            <label class="label">Админ <span class="has-text-danger">*</span></label>
+                            <div class="control">
+                                <treeselect v-model="form.admin_user_id" v-validate="'required'"  name="admin_user_id" placeholder="Админ сонгох"  :default-expand-level="10"  :options="users" />
+                                <p v-show="errors.has('admin_user_id')" class="help is-danger">Та админаа оруулна уу</p>
+                            </div>
+                        </div>
                     </form>
                 </section>
                 <div v-else class="main-bodoh is-loading"></div>
@@ -49,11 +56,12 @@ CRUD Edit, Create form
             return {
                 site: window.subdomain,
                 siteUrl: window.surl,
+                users:[],
                 m_id: false, 			// Edit үед id орж ирнэ
                 fetched: false,
                 is_loading: false,
                 user: false,
-                form:{name: '',},
+                form:{name: '', admin_user_id:0},
                 aldaanuud: [],
             }
         },
@@ -66,10 +74,14 @@ CRUD Edit, Create form
             fetchData: function () {
                 this.m_id = this.$route.params.id;  // route дээр ирж байгаа id-г авч байна / edit үед
                 this.user = this.$store.getters.authUser;
-
+                axios.get('/AllUsers').then((response) => {
+                            this.users = response.data.success;
+                            console.log(this.users);
+                })
                 if (this.m_id) {
                     axios.get('/group/'+this.m_id).then((response) => {
                         this.form.name = response.data.success.name;
+                        this.form.admin_user_id = response.data.success.admin_user_id;
                         this.fetched = true;
                     })
                 } else {

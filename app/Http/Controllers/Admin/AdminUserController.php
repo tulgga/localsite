@@ -10,8 +10,13 @@ use Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\DB;
 class AdminUserController extends Controller
 {
+    public function AllUsers(){
+        $result=User::orderBy('name', 'asc')->select('id', DB::raw("CONCAT(name, ' ', firstname,' ', lastname,' ', registration_no) AS label"))->get();
+        return  response()->json(['success'=>$result]);
+    }
     public function index()
     {
         extract(request()->only(['query', 'limit', 'page', 'orderBy', 'ascending', 'byColumn']));
