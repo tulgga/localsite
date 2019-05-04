@@ -16,7 +16,8 @@ use App\User_to_organization;
 
 class VolunteerController extends Controller{
     public function index(){
-        $data['events'] = Event::select('*')->where('status', 1)->orderBy('created_at', 'desc')->limit(8)->with('EventImage')->select('*')->get();
+        $data['events'] = Event::where('status', 1)->Join('event_to_images','event_to_images.event_id', '=','events.eid')->orderBy('events.created_at', 'desc')->limit(8)->select('events.subject','events.content','event_to_images.image')->get();
+        //echo json_encode($data['events']); die;
         return view('volunteer.home', $data);
     }
     public function login(){

@@ -43,9 +43,7 @@
                 <!--Project Column-->
                 <div class="col-sm-3 column project-column">
                     <article class="column-inner hvr-float-shadow">
-                        <figure class="image-box">
-                            <a href="#"><img src="/uploads/{{$event->event_image->image}}" title="{{$event->name}}"></a>
-                        </figure>
+                        <figure class="image-box" style="background-image: url('/uploads/{{$event->image}}');"></figure>
                         <div class="lower-part">
                             <div class="text">
                                 <a href="#"><h3>{{$event->subject}}</h3></a>

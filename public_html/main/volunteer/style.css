@@ -267,12 +267,21 @@ footer{
 .four-column .column-inner:hover{
     border-color:#f06626;
 }
-
 .four-column .image-box{
     position:relative;
-    border-bottom:2px solid #f06626;
+    background-size: cover;
+    background-position: center center;
+    min-height: 220px;
 }
-
+.four-column .image-box.active{
+    border-bottom:3px solid #007700;
+}
+.four-column .image-box.comingsoon{
+    border-bottom:3px solid #ff5500;
+}
+.four-column .image-box.ended{
+    border-bottom:3px solid #666;
+}
 .four-column .image-box img{
     position:relative;
     display:block;
