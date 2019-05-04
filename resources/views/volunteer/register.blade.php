@@ -15,9 +15,18 @@
             <div class="col-sm-4">
                 <h3 class="head mb-3">Бүртгэлийн <strong>хэсэг</strong></h3>
                 <form class="font-14" method="post" action="{{asset("userRegister")}}">
+                    @if(Session::has('error'))
+                        <div class="form-group">
+                            <div class="alert alert-danger">
+                                <ul>
+                                        <li>{{Session::get('error')}}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    @endif
                     {{ csrf_field() }}
                     <div class="form-group">
-                        <input value="{{ Session::get('username') }}" type="text" placeholder="Нэвтрэх нэр" name="username" class="form-control" required>
+                        <input value="{{ old('username') }}" type="text" placeholder="Нэвтрэх нэр" name="username" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <input value="{{ Session::get('lastname') }}" type="text" placeholder="Овог" name="lastname" class="form-control" required>

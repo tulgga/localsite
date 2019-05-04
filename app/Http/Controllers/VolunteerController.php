@@ -14,8 +14,10 @@ use App\Event_to_user;
 use App\Organization;
 use App\User_to_organization;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 use App\Site;
 use App\User;
+use App\User_social;
 
 class VolunteerController extends Controller{
     public function index(){
@@ -35,38 +37,53 @@ class VolunteerController extends Controller{
         return view('volunteer.register',$data);
     }
     public function userRegister(Request $request){
-        if($request->password == $request->verify_password){
+        //$emailcheck = User::select('id')->where('email',$request->email)->first();
+        $data = $request->post();
+        $validator = Validator::make($data, [
+            'name' => 'required|string|unique:users',
+            'password' => 'required|string|min:6',
+            'verify_password' => 'required|same:password',
+            'email' => 'required|email|unique:users',
+            'phone' => 'required|numeric|unique:users|digits:8'
+        ]);
 
-            $register = $request->registration_no;
-            $year = $register[4].$register[5];
-            $month = $register[6].$register[7];
-            $day = $register[8].$register[9];
-            $gender = $register[10]%2;
-            if($month > 12){
-                $year = 2000+$year;
-                $month -= 20;
-            }else{
-                $year = 1900+$year;
-            }
-
-            $user = New User();
-            $pass = bcrypt($request->verify_password);
-            $user->name = $request->username;
-            $user->lastname = $request->lastname;
-            $user->firstname = $request->firstname;
-            $user->registration_no = $request->registration_no;
-            $user->site_id = $request->site_id;
-            $user->password = $pass;
-            $user->email = $request->email;
-            $user->phone = $request->phone;
-            $user->is_set_rd = 1;
-            $user->is_volunteer = 1;
-
-            $user->gender = $gender;
-            $user->birth_date = $year."-".$month."-".$day;
-            $user->save();
-            $request->session()->flash('successMsg', 'Бүртгэл амжилттай хадгалагдлаа!');
+        if ($validator->fails()) {
+           $request->session()->flash('error', $validator->errors());
             return redirect()->to('/register');
+        }
+        $register = $request->registration_no;
+        $year = $register[4].$register[5];
+        $month = $register[6].$register[7];
+        $day = $register[8].$register[9];
+        $gender = $register[10]%2;
+        if($month > 12){
+            $year = 2000+$year;
+            $month -= 20;
+        }else{
+            $year = 1900+$year;
+        }
+
+        $user = New User();
+        $pass = bcrypt($request->verify_password);
+        $user->name = $request->username;
+        $user->lastname = $request->lastname;
+        $user->firstname = $request->firstname;
+        $user->registration_no = $request->registration_no;
+        $user->site_id = $request->site_id;
+        $user->password = $pass;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->is_set_rd = 1;
+        $user->is_volunteer = 1;
+
+        $user->gender = $gender;
+        $user->birth_date = $year."-".$month."-".$day;
+        $user->save();
+        $request->session()->flash('successMsg', 'Бүртгэл амжилттай хадгалагдлаа!');
+        return redirect()->to('/register');
+        /*if($request->password == $request->verify_password){
+
+
         }else{
             $request->session()->flash('username',$request->username);
             $request->session()->flash('lastname',$request->lastname);
@@ -77,7 +94,7 @@ class VolunteerController extends Controller{
             $request->session()->flash('registration_no',$request->registration_no);
             $request->session()->flash('passwordMatchMsg', 'Нууц уг таарахгүй байна!');
             return redirect()->to('/register');
-        }
+        }*/
 
     }
     public function profile(){
@@ -85,6 +102,18 @@ class VolunteerController extends Controller{
             return redirect()->to('/');
         }else{
             $data['site'] = Site::select('id', 'name')->orderBy('name', 'ASC')->get();
+            $social = User_social::select('*')->where('user_id',Auth::user()->id)->first();
+            if(is_null($social)){
+                $data['facebook'] = "";
+                $data['twitter'] = "";
+                $data['instagram'] = "";
+                $data['linkedin'] = "";
+            }else{
+                $data['facebook'] = $social->facebook;
+                $data['twitter'] = $social->twitter;
+                $data['instagram'] = $social->instagram;
+                $data['linkedin'] = $social->linkedin;
+            }
             return view('volunteer.profile', $data);
         }
     }
@@ -105,6 +134,49 @@ class VolunteerController extends Controller{
             $user->save();
             $request->session()->flash('successMsg', 'Мэдээллийг амжилттай хадгаллаа!');
             return redirect()->to('/profile');
+        }
+    }
+    public function changePassword(){
+        if(is_null(Auth::user())){
+            return redirect()->to('/');
+        }else{
+            return view('volunteer.changepassword');
+        }
+    }
+    public function updatePassword(Request $request){
+        if(is_null(Auth::user())){
+            return redirect()->to('/');
+        }else{
+            if($request->password == $request->verify_password) {
+                $user = User::find(Auth::user()->id);
+                $user->password = bcrypt($request->verify_password);
+                $user->save();
+                $request->session()->flash('successMsg', 'Нууц үг амжилттай солигдлоо.');
+                return redirect()->to('/changePassword');
+            }else{
+                $request->session()->flash('errorMsg', 'Нууц үг таарсангүй.');
+                return redirect()->to('/changePassword');
+            }
+        }
+    }
+    public function socialsave(Request $request){
+        if(is_null(Auth::user())){
+            return redirect()->to('/');
+        }else{
+                $result = User_social::select('id')->where('user_id',Auth::user()->id)->first();
+                if(is_null($result)){
+                    $social = New User_social();
+                }else{
+                    $social = User_social::find($result->id);
+                }
+                $social->user_id = Auth::user()->id;
+                $social->facebook = $request->facebook;
+                $social->twitter = $request->twitter;
+                $social->instagram = $request->instagram;
+                $social->linkedin = $request->linkedin;
+                $social->save();
+                $request->session()->flash('successMsg', 'Мэдээллийг амжилттай хадгаллаа!');
+                return redirect()->to('/profile');
         }
     }
     public function events(){

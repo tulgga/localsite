@@ -31,6 +31,9 @@ Route::domain('volunteer.bayankhongor.towersoft.mn')->group(function () {
     Route::get('/logout', 'VolunteerController@logoutUser');
     Route::get('/profile', 'VolunteerController@profile');
     Route::post('/profileUpdate', 'VolunteerController@profileUpdate');
+    Route::post('/socialsave', 'VolunteerController@socialsave');
+    Route::get('/changePassword', 'VolunteerController@changePassword');
+    Route::post('/updatePassword', 'VolunteerController@updatePassword');
     Route::get('/events', 'VolunteerController@events');
     Route::get('/eventform/{id}', 'VolunteerController@eventform');
     Route::post('/saveEvent', 'VolunteerController@saveEvent');

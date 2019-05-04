@@ -7,12 +7,13 @@
 @endsection
 @section('content')
 <div class="container pt-5 pb-5">
+    @if(Session::has('successMsg'))
+        <div class="alert alert-success font-14"><i class="fa fa-check"></i> {{ Session::get('successMsg') }} </div>
+    @endif
     <div class="row">
-        <div class="col-sm-9">
-            @if(Session::has('successMsg'))
-                <div class="alert alert-success font-14"><i class="fa fa-check"></i> {{ Session::get('successMsg') }} </div>
-            @endif
+        <div class="col-sm-8">
             <form class="rounded font-14 p-4 bg-white" method="post" action="{{asset('profileUpdate')}}" enctype="multipart/form-data">
+                <h6>Хувийн мэдээлэл засах</h6><hr/>
                 {{ csrf_field() }}
                 <div class="row">
                     <div class="col-sm-9">
@@ -76,7 +77,29 @@
                 </div>
             </form>
         </div>
-        <div class="col-sm-3"></div>
+        <div class="col-sm-4">
+            <form class="rounded font-14 p-4 bg-white" method="post" action="{{asset('socialsave')}}" enctype="multipart/form-data">
+                <h6>Олон нийтийн сүлжээ</h6><hr/>
+                {{ csrf_field() }}
+                <div class="form-group">
+                    <label for="email">Фэйсбүүк:</label>
+                    <input value="{{$facebook}}" type="text" class="form-control" name="facebook">
+                </div>
+                <div class="form-group">
+                    <label for="email">Твитер:</label>
+                    <input value="{{$twitter}}" type="text" class="form-control" name="twitter">
+                </div>
+                <div class="form-group">
+                    <label for="email">Инстаграм:</label>
+                    <input value="{{$instagram}}" type="text" class="form-control" name="instagram">
+                </div>
+                <div class="form-group">
+                    <label for="email">Линкэдн:</label>
+                    <input value="{{$linkedin}}" type="text" class="form-control" name="linkedin">
+                </div>
+                <button name="submit" type="submit" class="btn btn-sm btn-primary"><i class="fa fa-save"></i> Хадгалах</button>
+            </form>
+        </div>
     </div>
 </div>
 @endsection
