@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
@@ -39,6 +40,7 @@
 <script>
     console.log(window.location.hash);
     window.surl = "{{ url('/') }}";
+    window.sdate = "{{ $date }}";
     window.subdomain = "{{ env('SUB_DOMAIN') }}";
     window.logo = "{{$logo}}";
     window.icon = "{{$favicon}}";

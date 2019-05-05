@@ -62,7 +62,7 @@
             </div>
         </div>
 
-        <div class='col-sm-3'>
+        <div class='col-sm-2'>
             <div class="c">
                 <div class="c_t"> Эрүүл мэндийн төв </div>
                 <div class="c_b">
@@ -101,7 +101,7 @@
             </div>
         </div>
 
-        <div class='col-sm-3'>
+        <div class='col-sm-2'>
             <div class="c">
                 <div class="c_t"> Онцгой байдлын газар </div>
                 <div class="c_b">
@@ -130,7 +130,7 @@
             </div>
         </div>
 
-        <div class='col-sm-3'>
+        <div class='col-sm-5'>
             <div class="c">
                 <div class="c_t"> Төсөв </div>
                 <div class="c_b">

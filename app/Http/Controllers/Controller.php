@@ -32,6 +32,8 @@ class Controller extends BaseController
     }
 
     public function index(){
+        $week=['Ням', 'Даваа', 'Мягмар', 'Лхагва', 'Пүрэв', 'Баасан', 'Бямба'];
+        $data['date']=date('m сарын d, ').$week[date('w')];
 
         $info = Site::findOrFail(0);
         $data['config']= json_decode($info->config, true);
@@ -42,6 +44,8 @@ class Controller extends BaseController
         else { $data['news']=false;}
         return view('main', $data);
     }
+
+
 
     public function file_viewer(){
 

@@ -88,6 +88,7 @@ class AdminPagesController extends Controller
         }
         $Page->text=$data['text'];
         $Page->is_main=$data['is_main'];
+        if($data['parent_id']==0){ $data['parent_id']=null; }
         $Page->parent_id=$data['parent_id'];
         $Page->site_id=$data['site_id'];
         $Page->icon=$data['icon'];
@@ -116,6 +117,7 @@ class AdminPagesController extends Controller
         }else{
             $data['image'] = null;
         }
+        if($data['parent_id']==0){ $data['parent_id']=null; }
         $data['order_num']=Page::where('site_id', $data['site_id'])->where('is_main', $data['is_main'])->where('parent_id', $data['parent_id'])->get()->count();
 
         $Page= new Page();

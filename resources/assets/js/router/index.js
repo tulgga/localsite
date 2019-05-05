@@ -66,6 +66,24 @@ import Group from '../modules/admin/group/group';
 import GroupFrom from '../modules/admin/group/groupForm';
 import group_user_request from '../modules/admin/group/group_user_request';
 
+import dashboard_police from '../modules/admin/dashboard_police/dashboard_police';
+import dashboard_policeForm from '../modules/admin/dashboard_police/dashboard_policeForm';
+
+import dashboard_hospital from '../modules/admin/dashboard_hospital/dashboard_hospital';
+import dashboard_hospitalForm from '../modules/admin/dashboard_hospital/dashboard_hospitalForm';
+
+import dashboard_nema from '../modules/admin/dashboard_nema/dashboard_nema';
+import dashboard_nemaForm from '../modules/admin/dashboard_nema/dashboard_nemaForm';
+
+import dashboard_schedule from '../modules/admin/dashboard_schedule/dashboard_schedule';
+import dashboard_scheduleForm from '../modules/admin/dashboard_schedule/dashboard_scheduleForm';
+
+import dashboard_budget from '../modules/admin/dashboard_budget/dashboard_budget';
+import dashboard_budgetForm from '../modules/admin/dashboard_budget/dashboard_budgetForm';
+
+import dashboard_news from '../modules/admin/dashboard_news/dashboard_news';
+import dashboard_newsForm from '../modules/admin/dashboard_news/dashboard_newsForm';
+
 Vue.use(Router)
 
 let routes = [
@@ -1038,7 +1056,300 @@ let routes = [
             },
         ]
     },
-
+    {
+        path: '/dashboard_police',
+        name: 'dashboard_police',
+        component: dashboard_police,
+        meta: {
+            requiresAuth: true,
+            page_title: 'Цагдаа',
+            bread_crumbs: [
+                {
+                    title: 'Цагдаа',
+                    rname: ''
+                }
+            ]
+        },
+        children: [
+            {
+                path: 'create',
+                component: dashboard_policeForm,
+                name: 'create_dashboard_police',
+                meta: {
+                    page_title: 'Нэмэх',
+                    bread_crumbs: [
+                        {
+                            title: 'Цагдаа',
+                            rname: 'dashboard_police'
+                        }
+                    ],
+                    notloading: true,
+                    is_modal: true,
+                }
+            },
+            {
+                path: ':id/update',
+                component: dashboard_policeForm,
+                name: 'update_dashboard_police',
+                meta: {
+                    page_title: 'Цагдаа засах',
+                    bread_crumbs: [
+                        {
+                            title: 'Дашбоард',
+                            rname: 'dashboard_police'
+                        }
+                    ],
+                    notloading: true,
+                    is_modal: true,
+                }
+            },
+        ]
+    },
+    {
+        path: '/dashboard_hospital',
+        name: 'dashboard_hospital',
+        component: dashboard_hospital,
+        meta: {
+            requiresAuth: true,
+            page_title: 'Эрүүл мэнд',
+            bread_crumbs: [
+                {
+                    title: 'Эрүүл мэнд',
+                    rname: ''
+                }
+            ]
+        },
+        children: [
+            {
+                path: 'create',
+                component: dashboard_hospitalForm,
+                name: 'create_dashboard_hospital',
+                meta: {
+                    page_title: 'Нэмэх',
+                    bread_crumbs: [
+                        {
+                            title: 'Эрүүл мэнд',
+                            rname: 'dashboard_hospital'
+                        }
+                    ],
+                    notloading: true,
+                    is_modal: true,
+                }
+            },
+            {
+                path: ':id/update',
+                component: dashboard_policeForm,
+                name: 'update_dashboard_hospital',
+                meta: {
+                    page_title: 'Эрүүл мэнд',
+                    bread_crumbs: [
+                        {
+                            title: 'Дашбоард',
+                            rname: 'dashboard_hospital'
+                        }
+                    ],
+                    notloading: true,
+                    is_modal: true,
+                }
+            },
+        ]
+    },
+    {
+        path: '/dashboard_nema',
+        name: 'dashboard_nema',
+        component: dashboard_nema,
+        meta: {
+            requiresAuth: true,
+            page_title: 'Онцгой байдал',
+            bread_crumbs: [
+                {
+                    title: 'Онцгой байдал',
+                    rname: ''
+                }
+            ]
+        },
+        children: [
+            {
+                path: 'create',
+                component: dashboard_nemaForm,
+                name: 'create_dashboard_nema',
+                meta: {
+                    page_title: 'Нэмэх',
+                    bread_crumbs: [
+                        {
+                            title: 'Онцгой байдал',
+                            rname: 'dashboard_nema'
+                        }
+                    ],
+                    notloading: true,
+                    is_modal: true,
+                }
+            },
+            {
+                path: ':id/update',
+                component: dashboard_policeForm,
+                name: 'update_dashboard_nema',
+                meta: {
+                    page_title: 'Онцгой байдал',
+                    bread_crumbs: [
+                        {
+                            title: 'Дашбоард',
+                            rname: 'dashboard_nema'
+                        }
+                    ],
+                    notloading: true,
+                    is_modal: true,
+                }
+            },
+        ]
+    },
+    {
+        path: '/dashboard_schedule',
+        name: 'dashboard_schedule',
+        component: dashboard_schedule,
+        meta: {
+            requiresAuth: true,
+            page_title: 'Цагын хуваарь',
+            bread_crumbs: [
+                {
+                    title: 'Цагын хуваарь',
+                    rname: ''
+                }
+            ]
+        },
+        children: [
+            {
+                path: 'create',
+                component: dashboard_scheduleForm,
+                name: 'create_dashboard_schedule',
+                meta: {
+                    page_title: 'Нэмэх',
+                    bread_crumbs: [
+                        {
+                            title: 'Цагын хуваарь',
+                            rname: 'dashboard_schedule'
+                        }
+                    ],
+                    notloading: true,
+                    is_modal: true,
+                }
+            },
+            {
+                path: ':id/update',
+                component: dashboard_scheduleForm,
+                name: 'update_dashboard_schedule',
+                meta: {
+                    page_title: 'Цагыг хуваарь',
+                    bread_crumbs: [
+                        {
+                            title: 'Дашбоард',
+                            rname: 'dashboard_schedule'
+                        }
+                    ],
+                    notloading: true,
+                    is_modal: true,
+                }
+            },
+        ]
+    },
+    {
+        path: '/dashboard_budget',
+        name: 'dashboard_budget',
+        component: dashboard_budget,
+        meta: {
+            requiresAuth: true,
+            page_title: 'Төсөв',
+            bread_crumbs: [
+                {
+                    title: 'Төсөв',
+                    rname: ''
+                }
+            ]
+        },
+        children: [
+            {
+                path: 'create',
+                component: dashboard_budgetForm,
+                name: 'create_dashboard_budget',
+                meta: {
+                    page_title: 'Нэмэх',
+                    bread_crumbs: [
+                        {
+                            title: 'Төсөв',
+                            rname: 'dashboard_budget'
+                        }
+                    ],
+                    notloading: true,
+                    is_modal: true,
+                }
+            },
+            {
+                path: ':id/update',
+                component: dashboard_budgetForm,
+                name: 'update_dashboard_budget',
+                meta: {
+                    page_title: 'Төсөв',
+                    bread_crumbs: [
+                        {
+                            title: 'Дашбоард',
+                            rname: 'dashboard_budget'
+                        }
+                    ],
+                    notloading: true,
+                    is_modal: true,
+                }
+            },
+        ]
+    },
+    {
+        path: '/dashboard_news',
+        name: 'dashboard_news',
+        component: dashboard_news,
+        meta: {
+            requiresAuth: true,
+            page_title: 'Цаг үеийн асуудал',
+            bread_crumbs: [
+                {
+                    title: 'Цаг үеийн асуудал',
+                    rname: ''
+                }
+            ]
+        },
+        children: [
+            {
+                path: 'create',
+                component: dashboard_newsForm,
+                name: 'create_dashboard_news',
+                meta: {
+                    page_title: 'Нэмэх',
+                    bread_crumbs: [
+                        {
+                            title: 'Цаг үеийн асуудал',
+                            rname: 'dashboard_news'
+                        }
+                    ],
+                    notloading: true,
+                    is_modal: true,
+                }
+            },
+            {
+                path: ':id/update',
+                component: dashboard_budgetForm,
+                name: 'update_dashboard_news',
+                meta: {
+                    page_title: 'Цаг үеийн асуудал',
+                    bread_crumbs: [
+                        {
+                            title: 'Дашбоард',
+                            rname: 'dashboard_news'
+                        }
+                    ],
+                    notloading: true,
+                    is_modal: true,
+                }
+            },
+        ]
+    }
 
 ];
 

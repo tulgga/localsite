@@ -5,6 +5,7 @@
     "license": "MIT",
     "type": "project",
     "require": {
+        "laravie/parser": "^2.0",
         "php": "^7.1.3",
         "barryvdh/laravel-dompdf": "^0.8.3",
         "barryvdh/laravel-elfinder": "^0.4.1",

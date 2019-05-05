@@ -53,6 +53,7 @@ Route::domain('zar.bayankhongor.towersoft.local')->group(function () {
 
 Route::domain('dashboard.bayankhongor.local')->group(function () {
   Route::get('/', 'dashboard@index');
+  Route::get('/login', 'dashboard@login');
   Route::get('/police','dashboard@police');
   Route::get('/hospital','dashboard@hospital');
   Route::get('/nema','dashboard@nema');

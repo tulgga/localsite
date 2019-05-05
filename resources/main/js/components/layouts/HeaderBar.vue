@@ -105,11 +105,8 @@
                     <div class="container">
                         <nav class="level mb-0">
                             <div class="level-left ml-1" >
-                                <!--<p v-if="socail.facebook" class="level-item"><a target="_blank" :href="socail.facebook"><i class="fab fa-facebook"></i></a></p>-->
-                                <!--<p v-if="socail.twitter" class="level-item"><a target="_blank" :href="socail.twitter"><i class="fab fa-twitter-square"></i></a></p>-->
-                                <!--<p v-if="socail.messenger" class="level-item"><a target="_blank" :href="socail.messenger"><i class="fab fa-facebook-messenger"></i></a></p>-->
-                                <!--<p v-if="socail.google" class="level-item"><a target="_blank" :href="socail.google"><i class="fab fa-google-plus-g"></i></a></p>-->
-                                <!--<p v-if="socail.youtube" class="level-item"><a target="_blank" :href="socail.youtube"><i class="fab fa-youtube"></i></a></p>-->
+                                <p class="level-item"><i class="far fa-calendar-alt" style="margin-right: 10px;"></i> {{date}}</p>
+
                             </div>
                             <div class="level-right mr-1">
                                 <p class="level-item" ><a @click="SumModal=true">Сумдууд</a></p>
@@ -127,8 +124,8 @@
                     </div>
 
                 </div>
-                <div id="header-content" >
-                    <div class="container">
+                <div id="header-content"  >
+                    <div class="container" :style="'background-image:url('+siteUrl+'/images/header_bg.png);'">
                         <div  class="columns">
                             <div  class="column is-7">
                                 <figure class="image logo">
@@ -207,6 +204,7 @@
     export default {
     	data(){
     		return {
+    		    date:window.sdate,
                 subdomain: window.subdomain,
     		    si1:-1,
                 si2:-1,
@@ -260,6 +258,8 @@
                 }
             },
             fetchData: function () {
+
+
                     this.menu=this.$store.getters.menu;
                     this.fetched = true;
 

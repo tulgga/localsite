@@ -59,6 +59,7 @@ Route::middleware('auth:api')->namespace('Api')->group(function () {
 Route::namespace('Api')->group(function (){
 
     Route::get('ildot','ApiPageController@ildot');
+    Route::get('xml','XMLreader@index');
 
 
     Route::get('service','ApiSiteController@service');
@@ -235,6 +236,10 @@ Route::middleware('auth:admin-api')->namespace('Admin')->prefix('admin')->group(
     //zar
     Route::resource('zar','AdminZarController');
     Route::post('zar/{id}','AdminZarController@update');
+
+    //dashboard
+    Route::resource('dashboard_police','AdminDashboardPoliceController');
+    Route::post('dashboard_police/{id}','AdminDashboardPoliceController@update');
 
     //user
     Route::resource('users','AdminUserController');

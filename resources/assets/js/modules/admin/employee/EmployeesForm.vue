@@ -94,6 +94,18 @@ CRUD Edit, Create form
                                                     <option value="1">нийтлэгч</option>
                                                     <option value="2">дэд админ</option>
                                                     <option value="3">дэд нийтлэгч</option>
+                                                    <option value="10">дашбоард-цагдаа</option>
+                                                    <option value="11">дашбоард-эрүүл мэнд</option>
+                                                    <option value="12">дашбоард-онцгой</option>
+                                                    <option value="13">дашбоард-төсөв</option>
+                                                    <option value="14">дашбоард-төсөв /зөвхөн эд хөрөнгөтэй/</option>
+                                                    <option value="15">дашбоард-цагын хуваарь-засаг дарга</option>
+                                                    <option value="16">дашбоард-цагын хуваарь-хурлын дарга</option>
+                                                    <option value="17">дашбоард-цагын хуваарь-тамгийн дарга</option>
+                                                    <option value="18">дашбоард-цагын хуваарь-ХДТ</option>
+                                                    <option value="19">дашбоард-цагын хуваарь-Тэмүжин театр</option>
+                                                    <option value="20">дашбоард-цагын хуваарь-Сумын ЗДТГын зааланд</option>
+                                                    <option value="21">дашбоард-цагын хуваарь-Бусад</option>
                                                 </select>
                                             </div>
                                             <p v-show="errors.has('admin_type')" class="help is-danger">{{ errors.first('admin_type') }}</p>
@@ -124,7 +136,7 @@ CRUD Edit, Create form
                                         <div class="control">
                                             <div class="select">
                                                 <select name="site_id" v-model="form.site_id" v-validate="'required'" >
-                                                    <option value="">дэд сайт сонгох</option>
+                                                    <option value="0">Үндсэн сайт</option>
                                                     <template v-for="site in sites">
                                                         <option :value="site.id">{{site.name}}</option>
                                                     </template>
