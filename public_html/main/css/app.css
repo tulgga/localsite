@@ -19686,6 +19686,7 @@ a .col3newslist .title {
   position: relative;
   top: 5px;
   height: 20px;
+    width: 20px;
   float: left;
   margin-right: 10px;
 }
