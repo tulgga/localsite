@@ -242,27 +242,19 @@ body{
 }
 
 .sumd .modal-body ul li a:hover{
-
     color: #0054de;
-
     transform: translateX(10px);
-
     transition: all 450ms cubic-bezier(.485, .075, .12, .855);
-
 }
 
 @media (min-width: 768px){
 
 .logo{
-
 	padding: 100px 0 40px;
-
 }
 
 .logo > img{
-
 	max-width: 100%
-
 }
 
 /**left menu**/
