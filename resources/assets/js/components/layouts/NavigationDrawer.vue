@@ -123,8 +123,8 @@
                         // { title: "Цэс", icon: 'fas fa-bars', path: '/menu' ,  role:1},
                         { title: "Сурталчилгаа", icon: 'fab fa-goodreads', path: '/sidebar' ,  role:0},
                     { subheader: 'Мэдээ',  role:1 },
-                        { title: 'Мэдээний ангилал', icon: 'fas fa-code-branch', path: '/news_category' ,  role:0 },
-                        { title: "Мэдээ", icon: 'fas fa-newspaper', path: '/news' ,  role:1},
+                        { title: 'Ангилал', icon: 'fas fa-code-branch', path: '/news_category' ,  role:0 },
+                        { title: "Бичлэг", icon: 'fas fa-newspaper', path: '/news' ,  role:1},
                         { title: "Орон нутгийн мэдээ", icon: 'fas fa-newspaper', path: '/sub_news_publish' ,  role:0},
                         { title: 'Үндсэн цэс', icon: 'fas fa-bars', path: '/pages' ,  role:0},
                         { title: 'Толгой цэс', icon: 'fas fa-bars', path: '/toppages' ,  role:0},
@@ -158,8 +158,8 @@
                     // { title: "Цэс", icon: 'fas fa-bars', path: '/menu' ,  role:2},
                     { title: "Сурталчилгаа", icon: 'fab fa-goodreads', path: '/sidebar' ,  role:2},
                     { subheader: 'Мэдээ',  role:2 },
-                    { title: 'Мэдээний ангилал', icon: 'fas fa-code-branch', path: '/news_category' ,  role:3 },
-                    { title: "Мэдээ", icon: 'fas fa-newspaper', path: '/sub_news' ,  role:3},
+                    { title: 'Ангилал', icon: 'fas fa-code-branch', path: '/news_category' ,  role:3 },
+                    { title: "Бичлэг", icon: 'fas fa-newspaper', path: '/sub_news' ,  role:3},
                     { title: 'Үндсэн цэс', icon: 'fas fa-bars', path: '/pages' ,  role:3},
                     { title: 'Туслах цэс', icon: 'fas fa-bars', path: '/helppages' ,  role:3},
                     { subheader: 'Файлын сан',  role:3},
@@ -173,8 +173,8 @@
                     { title: 'Санал хүсэлт', icon: 'far fa-comments', path: '/urgudul',  role:3, badge:1, },
 
                     //dashboard
-                    { subheader: 'Дашбоард', role:10,},
-                    { title: "Цагдаа", icon: 'fas fa-code-branch', path: '/poll' ,  role:10},
+                    // { subheader: 'Дашбоард', role:10,},
+                    // { title: "Цагдаа", icon: 'fas fa-code-branch', path: '/poll' ,  role:10},
                 ],
                 badge_show: false,
             }
@@ -206,15 +206,15 @@
             },
             checkAdminType() {
                 var admin_type=this.$store.getters.authUser.admin_type;
-                // if(admin_type==0){
-                //     this.$router.push('/sites');
-                // } else if(admin_type==1){
-                //     this.$router.push('/news');
-                // } else if(admin_type==2){
-                //     this.$router.push('/config');
-                // } else if(admin_type==3){
-                //     this.$router.push('/sub_news');
-                // }
+                if(admin_type==0){
+                    this.$router.push('/sites');
+                } else if(admin_type==1){
+                    this.$router.push('/news');
+                } else if(admin_type==2){
+                    this.$router.push('/config');
+                } else if(admin_type==3){
+                    this.$router.push('/sub_news');
+                }
             },
             drawerchange: function() {
                 if (this.$store.getters.drawer === true) {

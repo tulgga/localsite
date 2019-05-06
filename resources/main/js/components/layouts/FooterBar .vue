@@ -2,44 +2,45 @@
 	<div>
         <footer id="footer"  class="roboto-condensed" :style="{'background-color': main.parent_color.hex}">
 
-            <div class="contact">
-                <div class="container pt-2 pb-2">
-                    <div class="columns ">
-                        <div class="column is-5">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <p class="description is-size-6-desktop" :title="contact.address" v-html="contact.address"></p>
-                        </div>
-                        <div class="column is-4">
-                            <i class="fas fa-envelope"></i>
-                            <p class="description is-size-5-desktop" :title="contact.email" v-html="contact.email"></p>
-                        </div>
-                        <div class="column is-3">
-                            <i class="fas fa-phone"></i>
-                            <p class="description is-size-5-desktop" :title="contact.phone" v-html="contact.phone"></p>
-                        </div>
 
-                    </div>
-                </div>
-            </div>
             <div :style="{'background-color': main.parent_color.hex}">
                 <div class="container footer-menu pt-2 pb-2" >
                     <div class="columns">
-                        <div class="column is-8 has-text-centered-mobile" >
-                            <a @click="SumModal=true">Сумдууд</a>
-                            <span>|</span>
-                            <a @click="AgentlagModal=true">Агентлагууд</a>
-                            <span>|</span>
-                            <a>Лавлагаа мэдээлэл</a>
-                            <span>|</span>
-                            <a>Зар</a>
-                            <span>|</span>
-                            <a href="!#/report">Санал хүсэлт, өргөдөл гомдол</a>
+                        <div class="column is-3" >
+                            <h3>СУМД</h3>
+                            <sum classes="is-6 p-0"></sum>
                         </div>
-                        <div class="column is-4 has-text-right-tablet has-text-centered-mobile">
+                        <div class="column is-6 " >
+                            <h3>ХЭЛТЭС АГЕНТЛАГ</h3>
+                            <agentlag classes="is-6 p-0"></agentlag>
+                        </div>
+                        <div class="column is-3 ">
+                            <h3>ХОЛБОО БАРИХ</h3>
+                            <div class="columns is-multiline">
+                                <div class="column is-1 pt-1">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="column is-11 ">
+                                    <p class="description " :title="contact.address" v-html="contact.address"></p>
+                                </div>
+                                <div class="column is-1 pt-1">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="column is-11">
+                                    <p class="description " :title="contact.email" v-html="contact.email"></p>
+                                </div>
+                                <div class="column is-1 pt-1">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div class="column is-11">
+                                    <p class="description " :title="contact.phone" v-html="contact.phone"></p>
+                                </div>
+                            </div>
+
+
                             <a v-if="socail.facebook" target="_blank" :href="socail.facebook"><i class="fab fa-facebook fa-lg"></i></a>
                             <a v-if="socail.twitter" target="_blank" :href="socail.twitter"><i class="fab fa-twitter-square fa-lg"></i></a>
                             <a v-if="socail.messenger" target="_blank" :href="socail.messenger"><i class="fab fa-facebook-messenger fa-lg"></i></a>
-                            <a v-if="socail.google" target="_blank" :href="socail.google"><i class="fab fa-google-plus-g fa-lg"></i></a>
                             <a v-if="socail.youtube" target="_blank" :href="socail.youtube"><i class="fab fa-youtube fa-lg"></i></a>
                         </div>
                     </div>

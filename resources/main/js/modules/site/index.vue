@@ -6,12 +6,15 @@
                     :navigationEnabled="true"
                     :paginationEnabled="true"
                     navigationNextLabel="<i class='fas fa-chevron-right'></i>"
-                    navigationPrevLabel="<i class='fas fa-chevron-left'></i>">
+                    navigationPrevLabel="<i class='fas fa-chevron-left'></i>"
+                    :autoplay="true"
+                    :autoplayTimeout="4000"
+            >
                 <template v-for="p in ontslokh">
                     <slide>
                         <b-img classes="bcarousel-list-ontslokh" :value="p" size="full">
                             <router-link :to="'/news/'+p.id">
-                                <div  class="ontslokhTitle roboto-condensed ">{{p.title}}</div>
+                                <div  class="ontslokhTitle roboto-condensed ">{{p.title}} <br> <span><i class="far fa-calendar-alt" style="margin-right: 10px;"></i>{{p.created_at.substr(0, 10)}}</span></div>
                             </router-link>
                         </b-img>
                     </slide>
