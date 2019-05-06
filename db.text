@@ -39,7 +39,6 @@ CREATE TABLE `dashboard_nemas` (
   `nema_date` date DEFAULT NULL COMMENT 'хамаарах огноо',
   `fo` int(11) NOT NULL DEFAULT '0' COMMENT 'ойн хээрийн түймэр',
   `ff` int(11) NOT NULL DEFAULT '0' COMMENT 'объектын гал түймэр',
-  `f` int(11) NOT NULL DEFAULT '0' COMMENT 'зөрчилийн гал түймэр',
   `sos` int(11) NOT NULL DEFAULT '0' COMMENT 'аюул үзэгдэл ослын дуудлага',
   `sos_description` varchar(255) DEFAULT NULL COMMENT 'аюул үзэгдэл ослын дуудлагын тайлбар',
   `admin_id` int(11) DEFAULT NULL COMMENT 'үүсгэсэн ажилтан',

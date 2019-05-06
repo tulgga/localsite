@@ -62,15 +62,6 @@
                 </div>
               </div>
 
-              {{-- f --}}
-              <div id="f" class="form-group required">
-                <label for="f" class="control-label col-md-6 requiredField"> зөрчилийн гал түймэр<span class="asteriskField">*</span>
-                </label>
-                <div class="controls col-md-6">
-                  <input class="input-md  textinput textInput form-control" id="f" maxlength="30" name="f" style="margin-bottom: 10px" type="number" />
-                </div>
-              </div>
-
               {{-- sos --}}
               <div id="sos" class="form-group required">
                 <label for="sos" class="control-label col-md-6 requiredField">аюул үзэгдэл ослын дуудлага<span class="asteriskField">*</span>

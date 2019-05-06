@@ -95337,6 +95337,7 @@ if (false) {(function () {
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["a"] = ({
     props: ['cat_id', 'link'],
@@ -97445,9 +97446,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 var state = {
     pageloader: false,
     menu: false
+};
 
-    // mutations
-};var mutations = _defineProperty({
+// mutations
+var mutations = _defineProperty({
     changepageloader: function changepageloader(state, n) {
         state.pageloader = n;
     }
@@ -97549,9 +97551,10 @@ var state = {
     lang: modules,
     selected_lang: select_lang_key,
     version_lang: version_key
+};
 
-    // mutations
-};var mutations = {};
+// mutations
+var mutations = {};
 
 // actions
 var actions = {};
@@ -100893,209 +100896,8 @@ if (false) {(function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm.files
-    ? _c("div", [
-        _c(
-          "table",
-          {
-            staticClass:
-              "fileTable table is-bordered is-hoverable roboto-condensed is-fullwidth mb-3"
-          },
-          [
-            _vm._m(0),
-            _vm._v(" "),
-            _c(
-              "tbody",
-              [
-                _vm._l(_vm.files.data, function(file) {
-                  return [
-                    _c("tr", [
-                      _c("td", { staticClass: "has-text-centered" }, [
-                        _vm._v(_vm._s(file.cart_number))
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _c(
-                          "a",
-                          {
-                            on: {
-                              click: function($event) {
-                                _vm.showmodal = true
-                                _vm.fileShow =
-                                  _vm.siteUrl +
-                                  "/file_viewer/?file=" +
-                                  file.file
-                              }
-                            }
-                          },
-                          [_vm._v(_vm._s(file.name))]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("td", { staticClass: "has-text-centered" }, [
-                        _vm._v(_vm._s(file.publish_date))
-                      ]),
-                      _vm._v(" "),
-                      _c("td", { staticClass: "has-text-centered" }, [
-                        _vm._v(_vm._s(file.active_date))
-                      ]),
-                      _vm._v(" "),
-                      _c("td", { staticClass: "has-text-centered" }, [
-                        _vm._v(_vm._s(file.status))
-                      ]),
-                      _vm._v(" "),
-                      _c("td", { staticClass: "has-text-centered" }, [
-                        _c("span", { staticClass: "tag" }, [
-                          _vm._v(_vm._s(_vm.fileType(file.file)))
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("td", { staticClass: "has-text-centered" }, [
-                        _c(
-                          "a",
-                          {
-                            attrs: {
-                              href: _vm.siteUrl + "/uploads/" + file.file,
-                              download: ""
-                            }
-                          },
-                          [_c("i", { staticClass: "fas fa-download" })]
-                        )
-                      ])
-                    ])
-                  ]
-                })
-              ],
-              2
-            )
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "nav",
-          {
-            staticClass: "pagination",
-            attrs: { role: "navigation", "aria-label": "pagination" }
-          },
-          [
-            _c(
-              "a",
-              {
-                staticClass: "pagination-previous",
-                attrs: {
-                  disabled: _vm.files.current_page === 1,
-                  href: _vm.link + "?page=" + (_vm.files.current_page - 1)
-                },
-                on: {
-                  click: function($event) {
-                    return _vm.scrollToTop()
-                  }
-                }
-              },
-              [_vm._v("Өмнөх")]
-            ),
-            _vm._v(" "),
-            _c(
-              "a",
-              {
-                staticClass: "pagination-next",
-                attrs: {
-                  disabled: _vm.files.current_page === _vm.files.last_page,
-                  href: _vm.link + "?page=" + (_vm.files.current_page + 1)
-                },
-                on: {
-                  click: function($event) {
-                    return _vm.scrollToTop()
-                  }
-                }
-              },
-              [_vm._v("Дараах")]
-            ),
-            _vm._v(" "),
-            _c(
-              "ul",
-              { staticClass: "pagination-list" },
-              [
-                _vm._l(_vm.files.last_page, function(i) {
-                  return [
-                    _c("li", [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "pagination-link",
-                          class: { "is-current": _vm.files.current_page === i },
-                          attrs: { href: _vm.link + "?page=" + i },
-                          on: {
-                            click: function($event) {
-                              return _vm.scrollToTop()
-                            }
-                          }
-                        },
-                        [_vm._v(_vm._s(i))]
-                      )
-                    ])
-                  ]
-                })
-              ],
-              2
-            )
-          ]
-        ),
-        _vm._v(" "),
-        _vm.showmodal
-          ? _c("div", { staticClass: "modal is-active" }, [
-              _c("div", {
-                staticClass: "modal-background",
-                on: {
-                  click: function($event) {
-                    _vm.showmodal = false
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _c("div", { staticClass: "modal-card" }, [
-                _c("section", { staticClass: "modal-card-body pd0" }, [
-                  _c("iframe", {
-                    staticStyle: { width: "100%", height: "600px" },
-                    attrs: { src: _vm.fileShow }
-                  })
-                ])
-              ])
-            ])
-          : _vm._e()
-      ])
-    : _c("loading")
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", { staticClass: "is-primary" }, [
-        _c("th", [_vm._v("Актын"), _c("br"), _vm._v("дугаар")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Нэр")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Батлагдсан "), _c("br"), _vm._v(" огноо")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Дагаж мөрдөх огноо")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Хүчинтэй")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Төрөл")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Татах")])
-      ])
-    ])
-  }
-]
-render._withStripped = true
-
+var render = function () {}
+var staticRenderFns = []
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
@@ -103856,9 +103658,10 @@ var state = {
     assetsPath: "http://www.ipadaspos.com/iRestaurant_v4/assets/",*/
     auser_org_id: 2,
     auser_id: 2
+};
 
-    // mutations
-};var mutations = {
+// mutations
+var mutations = {
     changedrawerstore: function changedrawerstore(state, n) {
         state.drawer = n;
         if (n) {
