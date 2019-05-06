@@ -5,7 +5,7 @@
         <div class="boxed">
 
             <div class="boxed-title">
-                <div class="boxed-item-center title">Үндсэн цэс</div>
+                <div class="boxed-item-center title">Толгой цэс</div>
             </div>
             <div class="table-responsive">
            <table v-if="fetched" class="category table is-bordered  is-hoverable  table-hover is-fullwidth">
@@ -24,7 +24,7 @@
 
                                <div :class="{'disabled':i==0}" @click="changePositionMain(i,-1)" ><i class="fas fa-arrow-up"></i></div>
                                <div :class="{'disabled':lists.length-1==i}" @click="changePositionMain(i,1)" ><i class="fas fa-arrow-down"></i></div>
-                               <router-link :to="'pages/'+list.id+'/update'" ><i class="fas fa-pencil-alt"></i></router-link>
+                               <router-link :to="'toppages/'+list.id+'/update'" ><i class="fas fa-pencil-alt"></i></router-link>
 
 
                                <div v-if="list.children==0" @click="delete_cat=list deletemodal=true;"><i
@@ -91,7 +91,7 @@
             </div>
 
             <div class="boxed-item-center absolute">
-                <router-link :to="{ name: 'create_page'}" class="add_button">+</router-link>
+                <router-link :to="{ name: 'create_toppages'}" class="add_button">+</router-link>
             </div>
             <router-view></router-view>
 
@@ -104,7 +104,7 @@
             <div class="modal-background" v-on:click="deletemodal = false"></div>
             <div class="modal-card modal-card-small">
                 <header class="modal-card-head">
-                    <p class="modal-card-title">Хуудас устгах</p>
+                    <p class="modal-card-title">Цэс устгах</p>
                 </header>
                 <section class="modal-card-body">
                     <p class="has-text-centered">Та итгэлтэй байна уу?</p>
@@ -161,7 +161,7 @@
             fetchData() {
                 this.fetched = false;
                 this.site_id=this.$store.getters.domain.id;
-                axios.get('/topPages/'+this.site_id).then((response) => {
+                axios.get('/pages/'+this.site_id+'/2').then((response) => {
                     this.lists = response.data.success;
                     this.fetched = true;
                 })

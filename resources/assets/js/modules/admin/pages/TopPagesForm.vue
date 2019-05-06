@@ -179,7 +179,7 @@ CRUD Edit, Create form
                     parent_id:null,
                     text: '',
                     type: 0,
-                    is_main:1,
+                    is_main:2,
                     icon: null,
                     type_id: null,
                     blank: 0,
@@ -256,7 +256,7 @@ CRUD Edit, Create form
                                         this.is_loading = false;
                                         return;
                                     }
-                                    this.$router.push('/topPages');
+                                    this.$router.push('/toppages');
                                     this.$toasted.global.toast_success({message: this.$store.getters.lang.messages.is_updated_text});
                                 })
                                 .catch(error => {
@@ -271,7 +271,7 @@ CRUD Edit, Create form
                             // Create
                             axios.post('/pages', formData)
                                 .then((response) => {
-                                    this.$router.push('/topPages');
+                                    this.$router.push('/toppages');
                                     this.$toasted.global.toast_success({message: this.$store.getters.lang.messages.is_created_text});
                                 })
                                 .catch(error => {
