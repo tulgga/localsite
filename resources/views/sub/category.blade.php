@@ -23,40 +23,89 @@
             </nav>
         </div>
     </div>
+
     <div class="row">
         <div class="container content-box">
             <div class="row">
                 <div class="col-sm-9">
                     <div class="posts-blog row">
                         @foreach($newslist as $news)
-                            @if($news->type == 2)
-                            <div class="news-blog">
-                                <a class="row" href="{{asset('news/'.$news->id)}}">
-                                    <div class="col-sm-4">
-                                        <div class="thumb d-block w-100 video" style="background-image: url('https://i.ytimg.com/vi/{{$news->image}}/mqdefault.jpg');" title="{{$news->title}}"><i class="fa fa-play"></i>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-8">
-                                        <h2>{{$news->title}}</h2>
-                                        <div class="intro-text">{{mb_substr($news->short_content, 0, 350)}}...</div>
-                                        <span class="create_date"><i class="far fa-clock"></i> {{$news->created_at->format('Y-m-d')}}</span>
-                                    </div>
-                                </a>
-                            </div>
-                            @else
-                                <div class="news-blog">
-                                    <a class="row" href="{{asset('news/'.$news->id)}}">
-                                        <div class="col-sm-4">
-                                            <div class="thumb d-block w-100" style="background-image: url('{{asset(str_replace("images","uploads/medium/",$news->image))}}');" title="{{$news->title}}">
+                            @if($news->type == 2) {{--видео--}}
+                                @if($category->order_num==3 || $category->order_num==4)
+                                    <div class="news-blog col-sm-{{$category->order_num}}">
+                                        <a class="row" href="{{asset('news/'.$news->id)}}">
+                                            <div class="col-sm-12">
+                                                <div class="thumb d-block w-100" style="background-image: url('https://i.ytimg.com/vi/{{$news->image}}/mqdefault.jpg');" title="{{$news->title}}">
+
+                                                    <h2 style="font-size: 12px;
+                                                        color: white;
+                                                        text-align: justify;
+                                                        padding: 10px;
+                                                        line-height: 12px;
+                                                        position: absolute;
+                                                        bottom: -12px;
+                                                        background: #ddd;
+                                                        opacity: 0.9;
+                                                        height: 50px;
+                                                        overflow: hidden;
+                                                        color: #262a49; width: 100%;">{{$news->title}}</h2>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-sm-8">
-                                            <h2>{{$news->title}}</h2>
-                                            <div class="intro-text">{{mb_substr($news->short_content, 0, 350)}}...</div>
-                                            <span class="create_date"><i class="far fa-clock"></i> {{$news->created_at->format('Y-m-d')}}</span>
-                                        </div>
-                                    </a>
-                                </div>
+                                        </a>
+                                    </div>
+                                @else
+                                    <div class="news-blog col-sm-12">
+                                        <a class="row" href="{{asset('news/'.$news->id)}}">
+                                            <div class="col-sm-4">
+                                                <div class="thumb d-block w-100 video" style="background-image: url('https://i.ytimg.com/vi/{{$news->image}}/mqdefault.jpg');" title="{{$news->title}}"><i class="fa fa-play"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <h2>{{$news->title}}</h2>
+                                                <div class="intro-text">{{mb_substr($news->short_content, 0, 350)}}...</div>
+                                                <span class="create_date"><i class="far fa-clock"></i> {{$news->created_at->format('Y-m-d')}}</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                @endif
+                            @else
+                                @if($category->order_num==3 || $category->order_num==4)
+                                    <div class="news-blog col-sm-{{$category->order_num}}">
+                                        <a class="row" href="{{asset('news/'.$news->id)}}">
+                                            <div class="col-sm-12">
+                                                <div class="thumb d-block w-100" style="background-image: url('{{asset(str_replace("images","uploads/medium/",$news->image))}}');" title="{{$news->title}}">
+
+                                                    <h2 style="font-size: 12px;
+                                                    color: white;
+                                                    text-align: justify;
+                                                    padding: 10px;
+                                                    line-height: 12px;
+                                                    position: absolute;
+                                                    bottom: -12px;
+                                                    background: #ddd;
+                                                    opacity: 0.9;
+                                                    height: 50px;
+                                                    overflow: hidden;
+                                                    color: #262a49; width: 100%;">{{$news->title}}</h2>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                @else
+                                    <div class="news-blog col-sm-12">
+                                        <a class="row" href="{{asset('news/'.$news->id)}}">
+                                            <div class="col-sm-4">
+                                                <div class="thumb d-block w-100" style="background-image: url('{{asset(str_replace("images","uploads/medium/",$news->image))}}');" title="{{$news->title}}">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <h2>{{$news->title}}</h2>
+                                                <div class="intro-text">{{mb_substr($news->short_content, 0, 350)}}...</div>
+                                                <span class="create_date"><i class="far fa-clock"></i> {{$news->created_at->format('Y-m-d')}}</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                @endif
                             @endif
                         @endforeach
                     </div>
