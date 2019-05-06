@@ -26,9 +26,6 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700&amp;subset=cyrillic,cyrillic-ext,latin-ext" rel="stylesheet">
     <!-- Javascript -->
     <script src="{{ asset('main/sub/js/jquery-2.1.1.min.js')}}" type="text/javascript"></script>
-    {{--<script src="{{ asset('style/js/jquery.event.frame.js')}}" type="text/javascript"></script>
-    <script src="{{ asset('style/js/jquery.parallax.min.js')}}" type="text/javascript"></script>
-    <script src="{{ asset('style/js/main.js')}}" type="text/javascript"></script>--}}
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 </head>
 <body style="padding: 0 10px">
@@ -44,7 +41,7 @@
             <ul class="col-sm-6 right-menu">
                 <li><a href="#" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-list-ul"></i> Сумдын веб хуудас</a></li>
                 <li><a href="#" data-toggle="modal" data-target=".bd-example-modal-lg-2"><i class="fa fa-sitemap"></i> Агентлагуудын холбоос</a></li>
-                <li><a href="http://bayankhongor.towersoft.mn/!#/report"><i class="fa fa-lightbulb-o"></i> Санал хүсэлт, өргөдөл гомдол</a></li>
+                <li><a href="{{asset('!#/report')}}"><i class="fa fa-lightbulb-o"></i> Санал хүсэлт, өргөдөл гомдол</a></li>
             </ul>
         </div>
     </div>
@@ -88,22 +85,6 @@
         $(target).offset({ left : x });
     };
 </script>
-{{--<div id="parallax_container">
-    <div id="parallax">
-        <div class="parallax-layer">
-            <img src="{{asset('style/images/sky.png')}}"/>
-        </div>
-        <div class="parallax-layer">
-            <img src="{{asset('style/images/bg_main.png')}}"/>
-        </div>
-        <div class="parallax-layer">
-            <img src="{{asset('style/images/flag.png')}}"/>
-        </div>
-        <div class="parallax-layer">
-            <img src="{{asset('style/images/soyombo.png')}}"/>
-        </div>
-    </div>
-</div>--}}
 
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
