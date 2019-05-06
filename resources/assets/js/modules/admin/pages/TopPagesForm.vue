@@ -179,7 +179,7 @@ CRUD Edit, Create form
                     parent_id:null,
                     text: '',
                     type: 0,
-                    is_main:1,
+                    is_main:2,
                     icon: null,
                     type_id: null,
                     blank: 0,
@@ -204,7 +204,7 @@ CRUD Edit, Create form
                 // pages_min
                 this.m_id = this.$route.params.id;
                 this.site_id= this.$store.getters.domain.id
-                axios.get('/pages/'+this.site_id).then((response) => {
+                axios.get('/pages/'+this.site_id+'/2').then((response) => {
                     this.pages = response.data.success;
                 })
 
@@ -256,7 +256,7 @@ CRUD Edit, Create form
                                         this.is_loading = false;
                                         return;
                                     }
-                                    this.$router.push('/topPages');
+                                    this.$router.push('/toppages');
                                     this.$toasted.global.toast_success({message: this.$store.getters.lang.messages.is_updated_text});
                                 })
                                 .catch(error => {
@@ -271,7 +271,7 @@ CRUD Edit, Create form
                             // Create
                             axios.post('/pages', formData)
                                 .then((response) => {
-                                    this.$router.push('/topPages');
+                                    this.$router.push('/toppages');
                                     this.$toasted.global.toast_success({message: this.$store.getters.lang.messages.is_created_text});
                                 })
                                 .catch(error => {
