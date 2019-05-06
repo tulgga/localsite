@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 //use http\Env\Request;
+use App\Link;
 use App\News_to_category;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -107,6 +108,8 @@ class SubController extends BaseController
         $site->config = json_decode($site->config, true);
         $site->menu = $this->getMenu($site->id);
         $site->subDomain = Site::select('id','name','domain','favicon')->orderBy('name','ASC')->get();
+
+        $site->agent = Link::where('site_id', 0)->limit(10)->get();
         return $site;
     }
     public function feedback($account){
