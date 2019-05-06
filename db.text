@@ -12,7 +12,7 @@ CREATE TABLE `dashboard_budgets` (
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'сүүлд өөрчилсөн огноо',
   PRIMARY KEY (`id`),
   KEY `index_budgets_on_admin_id` (`admin_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Create syntax for TABLE 'dashboard_hospitals'
 CREATE TABLE `dashboard_hospitals` (
@@ -59,7 +59,7 @@ CREATE TABLE `dashboard_news` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'үүсгэсэн огноо',
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'сүүлд өөрчилсөн огноо',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Create syntax for TABLE 'dashboard_polices'
 CREATE TABLE `dashboard_polices` (
@@ -82,6 +82,19 @@ CREATE TABLE `dashboard_polices` (
   KEY `index_dashboard_polices_on_admin_id` (`admin_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- Create syntax for TABLE 'dashboard_schedule_going'
+CREATE TABLE `dashboard_schedule_going` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'auto inc ID',
+  `dashboard_schedule_id` int(11) DEFAULT NULL COMMENT 'сум',
+  `user_id` int(11) DEFAULT NULL COMMENT 'үүсгэсэн ажилтан',
+  `ip` varchar(20) DEFAULT NULL,
+  `device` varchar(255) DEFAULT '',
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'үүсгэсэн огноо',
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'өөрчилсөн огноо',
+  PRIMARY KEY (`id`),
+  KEY `index_dashboard_schedules_on_admin_id` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 -- Create syntax for TABLE 'dashboard_schedules'
 CREATE TABLE `dashboard_schedules` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'auto inc ID',
@@ -92,8 +105,10 @@ CREATE TABLE `dashboard_schedules` (
   `end_time` time DEFAULT NULL COMMENT 'дуусах цаг',
   `description` varchar(255) DEFAULT NULL COMMENT 'тайлбар',
   `admin_id` int(11) DEFAULT NULL COMMENT 'үүсгэсэн ажилтан',
+  `is_publish` tinyint(1) NOT NULL DEFAULT '0',
+  `person_count` int(11) NOT NULL DEFAULT '0',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'үүсгэсэн огноо',
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'өөрчилсөн огноо',
   PRIMARY KEY (`id`),
   KEY `index_dashboard_schedules_on_admin_id` (`admin_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
