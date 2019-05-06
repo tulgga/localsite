@@ -263,7 +263,7 @@
                         @foreach($info->subDomain as $domain)
                             @if(!$domain->id == 0)
                                 <div class="col-sm-5 sum_item">
-                                    <a href="{{$domain->domain}}">@if($domain->favicon)<img src="{{ asset('uploads/'.$domain->favicon)}}">@else<img src="{{ asset('uploads/favicon/XnjMhMUg3enV21GhLYDopC2L6uHsuQK0BqjTjCjP.png')}}">@endif {{$domain->name}}</a>
+                                    <a href="{{$domain->domain}}">@if($domain->favicon)<img style="width: 20px;" src="{{ asset('uploads/'.$domain->favicon)}}">@else<img src="{{ asset('uploads/favicon/XnjMhMUg3enV21GhLYDopC2L6uHsuQK0BqjTjCjP.png')}}">@endif {{$domain->name}}</a>
                                 </div>
                             @endif
                         @endforeach
@@ -275,7 +275,7 @@
                     <div class="row">
                         @foreach($info->agent as $agent)
                             <div class="col-sm-12 sum_item">
-                                <a href="{{$agent->link}}"><img src="{{ asset('http://bayan-ovoo.bayankhongor.local:8888/images/soyombo.png')}}">{{$agent->name}}</a>
+                                <a href="{{$agent->link}}"><img src="{{ asset('images/soyombo.png')}}">{{$agent->name}}</a>
                             </div>
                         @endforeach
                     </div>
@@ -298,40 +298,6 @@
                     </ul>
                 </div>
 
-                {{--<div class="col-sm-12">
-                    <h4 class="row"> Санал хүсэлт, өргөдөл, гомдол</h4>
-                    <form method="post" action="{{asset('urgudul_save')}}" enctype="multipart/form-data">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="layout">
-                                    <select class="form-feedback" name="type">
-                                        <option value="0">Санал хүсэлт</option>
-                                        <option value="1">Өргөдөл</option>
-                                        <option value="2">Гомдол</option>
-                                        <option value="3">Бусад</option>
-                                    </select>
-                                </div>
-                                <div class="layout"><input class="form-feedback" name="your_name" type="text" placeholder="Таны нэр *" required></div>
-                                <div class="layout"><input class="form-feedback" name="your_phone" type="number" minlength="8" maxlength="8" placeholder="Таны утас *" required></div>
-                                <div class="layout"><input class="form-feedback" name="your_email" type="email" required placeholder="Таны цахим шуудан"></div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="layout">
-                                    <textarea style="min-height: 90px;" name="your_message" class="form-feedback" minlength="2" placeholder="Зурвас бичих...*" required></textarea></div>
-                                <div class="layout">
-                                    <a href="javascript:addImage();" class="attach_btn">
-                                        <i class="far fa-plus-square"></i> нэмэлт зураг хавсаргах</a>
-                                    <input style="display: none;" class="image-pp" accept="image/*" type="file" name="image"></div>
-                                <div class="layout">
-                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                    <button type="submit" class="btn btn-sm btn-outline-primary">
-                                        <i class="fa fa-paper-plane"></i>&nbsp; &nbsp;Илгээх</button>
-                                    <button title="Цэвэрлэх" type="reset" class="btn btn-sm btn-outline-secondary"><i class="fa fa-redo"></i> </button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>--}}
 
             </div>
 
