@@ -69,7 +69,7 @@
                 deep: true
             },
             subItems: function(newValue){
-                this.subs = newValue
+                this.subs = newValue;
                 if (newValue.length > 0) {
                     let indexni = this.getIndexIfObjWithOwnAttr(newValue, 'product_key', this.smodel.id);
                     this.subsText = newValue[indexni].name; 

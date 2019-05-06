@@ -7593,7 +7593,7 @@ var FontFace = (function FontFaceClosure() {
       for (var i in data) {
         this[i] = data[i];
       }
-      return;
+
     }
   }
   FontFace.prototype = {

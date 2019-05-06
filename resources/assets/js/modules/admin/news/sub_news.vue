@@ -334,7 +334,7 @@
                 this.site_id = this.$store.getters.domain.id;
                 axios.get('/news_category/' + this.site_id).then((response) => {
                     this.categories = response.data.success;
-                    this.categories.push({'name':'Ангилалгүй мэдээ', 'label':'Ангилалгүй мэдээ', 'id':-1})
+                    this.categories.push({'name':'Ангилалгүй мэдээ', 'label':'Ангилалгүй мэдээ', 'id':-1});
                     this.fetched = true;
                 })
             },

@@ -150,7 +150,7 @@ CRUD Edit, Create form
                 axios.get('/zar_category/0').then((response) => {
                     this.options = response.data.success;
                     console.log(this.options)
-                })
+                });
 
                 if (this.m_id) {
                     axios.get('/zar/'+this.m_id).then((response) => {
@@ -187,7 +187,7 @@ CRUD Edit, Create form
                             return;
                         }
                         formData.append('data', JSON.stringify(this.form));
-                        formData.append('image', this.image)
+                        formData.append('image', this.image);
                         // Create
                         if (this.m_id) {
                             axios.post('/zar/'+this.m_id, formData)

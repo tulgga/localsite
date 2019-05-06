@@ -26,7 +26,9 @@
                                <div :class="{'disabled':lists.length-1==i}" @click="changePositionMain(i,1)" ><i class="fas fa-arrow-down"></i></div>
                                <router-link :to="'toppages/'+list.id+'/update'" ><i class="fas fa-pencil-alt"></i></router-link>
 
-                               <div v-if="list.children==0" @click="delete_cat=list; deletemodal=true;"><i class="fas fa-trash"></i></div>
+
+                               <div v-if="list.children==0" @click="delete_cat=list deletemodal=true;"><i
+                                   class="fas fa-trash"></i></div>
                                <div v-else class="disabled"><i class="fas fa-trash"></i></div>
 
                            </div>
@@ -40,8 +42,9 @@
                                <div class="data-action">
                                    <div :class="{'disabled':a==0}" @click="changePosition(i, a, -1)"><i class="fas fa-arrow-up"></i></div>
                                    <div  :class="{'disabled':list.children.length-1==a}" @click="changePosition(i, a,1)"><i class="fas fa-arrow-down"></i></div>
-                                   <router-link :to="'toppages/'+child.id+'/update'" ><i class="fas fa-pencil-alt"></i></router-link>
-                                   <div v-if="child.children.length==0" @click="delete_cat=child; deletemodal=true;"><i class="fas fa-trash"></i></div>
+                                   <router-link :to="'pages/'+child.id+'/update'" ><i class="fas fa-pencil-alt"></i></router-link>
+                                   <div v-if="child.children.length==0" @click="delete_cat=child deletemodal=true;"><i
+                                       class="fas fa-trash"></i></div>
                                    <div v-else class="disabled"><i class="fas fa-trash"></i></div>
                                </div>
                            </td>
@@ -53,8 +56,10 @@
                                    <div class="data-action">
                                        <div :class="{'disabled':b==0}" @click="changePositionSub(i, a, b, -1)"><i class="fas fa-arrow-up"></i></div>
                                        <div :class="{'disabled':child.children-1==b}" @click="changePositionSub(i, a, b,1)"><i class="fas fa-arrow-down"></i></div>
-                                       <router-link :to="'toppages/'+subchild.id+'/update'" ><i class="fas fa-pencil-alt"></i></router-link>
-                                       <div v-if="subchild.children.length==0" @click="delete_cat=subchild; deletemodal=true;"><i class="fas fa-trash"></i></div>
+                                       <router-link :to="'pages/'+subchild.id+'/update'" ><i class="fas fa-pencil-alt"></i></router-link>
+                                       <div v-if="subchild.children.length==0"
+                                            @click="delete_cat=subchild deletemodal=true;"><i class="fas fa-trash"></i>
+                                       </div>
                                        <div v-else class="disabled"><i class="fas fa-trash"></i></div>
                                    </div>
                                </td>
@@ -66,8 +71,9 @@
                                            <div class="data-action">
                                                <div :class="{'disabled':b==c}" @click="changePositionSubSub(i, a, b, c, -1)"><i class="fas fa-arrow-up"></i></div>
                                                <div :class="{'disabled':subchild.children-1==c}" @click="changePositionSubSub(i, a, b, c, 1)"><i class="fas fa-arrow-down"></i></div>
-                                               <router-link :to="'toppages/'+subsubchild.id+'/update'" ><i class="fas fa-pencil-alt"></i></router-link>
-                                               <div  @click="delete_cat=subsubchild; deletemodal=true;"><i class="fas fa-trash"></i></div>
+                                               <router-link :to="'pages/'+subsubchild.id+'/update'" ><i class="fas fa-pencil-alt"></i></router-link>
+                                               <div @click="delete_cat=subsubchild deletemodal=true;"><i
+                                                   class="fas fa-trash"></i></div>
 
                                            </div>
                                        </td>
@@ -163,7 +169,7 @@
 
             nemeh: function(){
                 if(this.insert_cat.title===''){
-                    alert('Гарчиг  хоосон байна')
+                    alert('Гарчиг  хоосон байна');
                     return
                 }
                 this.is_loading=true;
@@ -204,7 +210,7 @@
                       id_1_num :  this.lists[index+action].order_num,
                       id_2: this.lists[index+action].id,
                       id_2_num :  this.lists[index].order_num,
-                  }
+                  };
 
                 let formData = new FormData();
                 formData.append('data', JSON.stringify(send));
@@ -228,14 +234,14 @@
                     id_1_num :  this.lists[index].children[subindex+action].order_num,
                     id_2: this.lists[index].children[subindex+action].id,
                     id_2_num :  this.lists[index].children[subindex].order_num,
-                }
+                };
 
                 let formData = new FormData();
                 formData.append('data', JSON.stringify(send));
-                this.fetched=false
+                this.fetched=false;
                 axios.post('/pages_change', formData).then((r) => {
                     this.fetchData();
-                    this.fetched=true
+                    this.fetched=true;
                     this.is_loading = false;
                     this.$toasted.global.toast_success({message: 'Амжилттай хадгаллаа'}); // delete success toast
                 })
@@ -252,14 +258,14 @@
                     id_1_num :  this.lists[index].children[childindex].children[subindex+action].order_num,
                     id_2: this.lists[index].children[childindex].children[subindex+action].id,
                     id_2_num :  this.lists[index].children[childindex].children[subindex].order_num,
-                }
+                };
 
                 let formData = new FormData();
                 formData.append('data', JSON.stringify(send));
-                this.fetched=false
+                this.fetched=false;
                 axios.post('/pages_change', formData).then((r) => {
                     this.fetchData();
-                    this.fetched=true
+                    this.fetched=true;
                     this.is_loading = false;
                     this.$toasted.global.toast_success({message: 'Амжилттай хадгаллаа'}); // delete success toast
                 })
@@ -276,14 +282,14 @@
                     id_1_num :  this.lists[index].children[index1].children[index2].children[index3+action].order_num,
                     id_2: this.lists[index].children[index1].children[index2].children[index3+action].id,
                     id_2_num :  this.lists[index].children[index1].children[index2].children[index3].order_num,
-                }
+                };
 
                 let formData = new FormData();
                 formData.append('data', JSON.stringify(send));
-                this.fetched=false
+                this.fetched=false;
                 axios.post('/pages_change', formData).then((r) => {
                     this.fetchData();
-                    this.fetched=true
+                    this.fetched=true;
                     this.is_loading = false;
                     this.$toasted.global.toast_success({message: 'Амжилттай хадгаллаа'}); // delete success toast
                 })

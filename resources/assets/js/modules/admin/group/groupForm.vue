@@ -77,7 +77,7 @@ CRUD Edit, Create form
                 axios.get('/AllUsers').then((response) => {
                             this.users = response.data.success;
                             console.log(this.users);
-                })
+                });
                 if (this.m_id) {
                     axios.get('/group/'+this.m_id).then((response) => {
                         this.form.name = response.data.success.name;

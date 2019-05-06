@@ -48,4 +48,4 @@ module.exports = {
 	welcome : 'Welcome to the Egulen POS',
 	send_password_reset_link : 'Send password reset link',
 	reset_password : 'Reset password',
-}
+};

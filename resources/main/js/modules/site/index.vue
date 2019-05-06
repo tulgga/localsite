@@ -111,7 +111,7 @@
                 axios.get('/news_ontslokh/'+0).then((response) => {
                     this.ontslokh=response.data.success;
 
-                })
+                });
                 axios.get('/submenu/'+0).then((response) => {
                     this.submenu=response.data.success;
                 })

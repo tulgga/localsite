@@ -1053,8 +1053,8 @@ function apply(file,external){
   var ext=file.split('.').pop();
   ext=ext.toLowerCase();
   var fill='';
-  var ext_audio=new Array('ogg','mp3','wav');
-  var ext_video=new Array('mp4','ogg','webm');
+  var ext_audio=['ogg','mp3','wav'];
+  var ext_video=['mp4','ogg','webm'];
   var is_return_relative_url = $('#return_relative_url').val();
   var url= encodeURL((is_return_relative_url == 1 ? subdir : base_url+path)+file);
 
@@ -1256,7 +1256,7 @@ function apply_none(file,external){
 		  });
 		}
 	}
-	return;
+
 }
 
 function apply_any(url) {

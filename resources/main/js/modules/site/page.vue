@@ -105,10 +105,10 @@
         methods: {
             fetchData: function () {
                 this.content=false;
-                this.id = this.$route.params.id
+                this.id = this.$route.params.id;
                 axios.get('/page/0/'+this.id).then((response) => {
-                    this.fetched=true
-                    this.content=response.data.success
+                    this.fetched=true;
+                    this.content=response.data.success;
 
                     if(this.content){
                         if(this.content.type==3) {
@@ -126,26 +126,26 @@
                             }
                         }
                         console.log(this.is_full);
-                        this.metaInfo.title=this.content.title
-                        this.metaInfo.meta[1].content=this.content.shortContent
-                        this.metaInfo.meta[2].content=this.content.title+' ← '+window.title
-                        this.metaInfo.meta[4].content=this.siteUrl+'/news/'+this.content.id
+                        this.metaInfo.title=this.content.title;
+                        this.metaInfo.meta[1].content=this.content.shortContent;
+                        this.metaInfo.meta[2].content=this.content.title+' ← '+window.title;
+                        this.metaInfo.meta[4].content=this.siteUrl+'/news/'+this.content.id;
                         if(this.content.image){
-                            this.metaInfo.meta[5].content=this.siteUrl+this.content.image.replace('images/', '/uploads/medium/')
-                            this.metaInfo.meta[11].content=this.siteUrl+this.content.image.replace('images/', '/uploads/medium/')
+                            this.metaInfo.meta[5].content=this.siteUrl+this.content.image.replace('images/', '/uploads/medium/');
+                            this.metaInfo.meta[11].content=this.siteUrl+this.content.image.replace('images/', '/uploads/medium/');
                             this.metaInfo.meta[14].content=this.siteUrl+this.content.image.replace('images/', '/uploads/medium/')
                         } else {
-                            this.metaInfo.meta[5].content=''
-                            this.metaInfo.meta[11].content=''
+                            this.metaInfo.meta[5].content='';
+                            this.metaInfo.meta[11].content='';
                             this.metaInfo.meta[14].content=''
                         }
 
-                        this.metaInfo.meta[6].content=this.content.shortContent
-                        this.metaInfo.meta[8].content=this.siteUrl+'/news/'+this.content.id
-                        this.metaInfo.meta[9].content=this.content.title+' ← '+window.title
-                        this.metaInfo.meta[10].content=this.content.shortContent
+                        this.metaInfo.meta[6].content=this.content.shortContent;
+                        this.metaInfo.meta[8].content=this.siteUrl+'/news/'+this.content.id;
+                        this.metaInfo.meta[9].content=this.content.title+' ← '+window.title;
+                        this.metaInfo.meta[10].content=this.content.shortContent;
 
-                        this.metaInfo.meta[12].content=this.content.title+' ← '+window.title
+                        this.metaInfo.meta[12].content=this.content.title+' ← '+window.title;
                         this.metaInfo.meta[13].content=this.content.shortContent
 
                     }

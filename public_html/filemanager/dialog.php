@@ -370,7 +370,7 @@ $get_params = http_build_query(array(
 		    }
 	    };
 	    if (image_editor) {
-	    var featherEditor = new Aviary.Feather({
+	    var featherEditor = new Aviary.Feather({;
 		<?php
 	        if (empty($aviary_options) || !is_array($aviary_options)) { $aviary_options = array(); }
 	        // First load any old format options into the array as needed
@@ -410,9 +410,9 @@ $get_params = http_build_query(array(
 	       onError: function(errorObj) {
 		   bootbox.alert(errorObj.message);
 	       }
-	    
-	   });
-	    }
+
+   })
+        }
 	</script>
 	<script type="text/javascript" src="js/include.min.js"></script>
 </head>
@@ -999,7 +999,7 @@ $files=array_merge(array($prev_folder),array($current_folder),$sorted);
     </div>
 </div>
 <script>
-    var files_prevent_duplicate = new Array();
+    var files_prevent_duplicate = [];
     <?php
     foreach ($files_prevent_duplicate as $key => $value): ?>
         files_prevent_duplicate[<?php echo $key;?>] = '<?php echo $value; ?>';

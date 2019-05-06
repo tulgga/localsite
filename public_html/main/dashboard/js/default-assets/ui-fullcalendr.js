@@ -139,7 +139,7 @@
                             start: start,
                             end: end,
                             className: className
-                        }
+                        };
                         $('#fullcalendar-default-view').fullCalendar('renderEvent', eventData, true);
                     }
 

@@ -24,7 +24,7 @@
                 y: 80
             }
         });
-    };
+    }
     notify('Hi, Welcomeback! - Admetro Dashboard', 'inverse');
     
 })(jQuery);

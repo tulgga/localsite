@@ -88,7 +88,7 @@ import dashboard_budgetForm from '../modules/admin/dashboard_budget/dashboard_bu
 import dashboard_news from '../modules/admin/dashboard_news/dashboard_news';
 import dashboard_newsForm from '../modules/admin/dashboard_news/dashboard_newsForm';
 
-Vue.use(Router)
+Vue.use(Router);
 
 let routes = [
     {
@@ -1448,6 +1448,6 @@ router.beforeEach((to, from, next) => {
 
 router.afterEach((to, from, next) => {
     setTimeout(() => store.commit('changepageloader', false), 1000)
-})
+});
 
 export default router;

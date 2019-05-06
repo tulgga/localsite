@@ -123,7 +123,7 @@ window.axios.interceptors.response.use(response => {
 
     return response;
 }, error => {
-    const { status } = error.response
+    const { status } = error.response;
     if(status === 404){
         router.push({ name: '/admin/404' })
     }
@@ -135,7 +135,7 @@ window.axios.interceptors.response.use(response => {
     if (status === 401) {
         //alert('401');
         //store.dispatch('refreshToken');
-        store.dispatch('logout')
+        store.dispatch('logout');
         router.push({ name: 'login' })
     }
 
@@ -168,7 +168,7 @@ Vue.use(VeeValidate,{
 Vue.use(VueCroppie);
 // Vue.use(SlVueTree);
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 import 'flatpickr/dist/flatpickr.css';
 

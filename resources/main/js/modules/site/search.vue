@@ -127,20 +127,20 @@
             }
         },
         created: function () {
-            this.fetchData()
+            this.fetchData();
             this.getCategory()
         },
         methods: {
             getCategory: function () {
                 axios.get('/news_category/0').then((response) => {
-                    this.fetched=true
+                    this.fetched=true;
                     this.category=response.data.success
                 })
             },
             fetchData: function () {
                 this.post=false;
                 this.page=this.$route.query.page;
-                this.search = this.$route.params.id
+                this.search = this.$route.params.id;
                 if(!this.page){
                     axios.get('/searchNews?s='+this.search).then((response) => {
                         this.post=response.data.success;

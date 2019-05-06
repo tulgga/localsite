@@ -210,4 +210,4 @@ module.exports = {
     th_feedback: 'Санал хүсэлт',
 
     what_words: 'What three words',
-}
+};

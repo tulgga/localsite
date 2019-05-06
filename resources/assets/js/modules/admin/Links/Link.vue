@@ -126,7 +126,7 @@
                 axios.get('/link_category_show/'+this.site_id).then((response) => {
                     this.options.listColumns.cat_id = response.data.success;
                     console.log(this.options.listColumns.cat_id)
-                })
+                });
                 axios.get('/link_show/'+this.site_id).then((response) => {
                     this.lists = response.data.success;
                     this.fetched = true;

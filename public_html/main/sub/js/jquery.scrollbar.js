@@ -262,7 +262,7 @@
                     if (c[scrollOffset]() == currentOffset && scrollCallback) {
                         scrollCallback();
                     }
-                }
+                };
                 var scrollToValue = 0;
 
                 if (!scrollx.scroll) {

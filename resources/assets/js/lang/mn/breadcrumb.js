@@ -34,4 +34,4 @@ module.exports = {
     create : "Нэмэх",
     update : "Засах",
     show : "Дэлгэрэнгүй",
-}
+};

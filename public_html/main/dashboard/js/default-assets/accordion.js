@@ -10,7 +10,7 @@
     skipClickDelay = function (e) {
         e.preventDefault();
         e.target.click();
-    }
+    };
 
     setAriaAttr = function (el, ariaType, newProperty) {
         el.setAttribute(ariaType, newProperty);

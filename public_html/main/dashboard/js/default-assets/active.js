@@ -148,7 +148,7 @@
     $('.portfolio-menu button.btn').on('click', function () {
         $('.portfolio-menu .btn').removeClass('active');
         $(this).addClass('active');
-    })
+    });
 
     // :: Tooltip Active Code
     if ($.fn.tooltip) {

@@ -97,28 +97,28 @@
             }
         },
         created: function () {
-            this.fetchData()
+            this.fetchData();
             this.getCategory()
         },
         methods: {
             getCategory: function () {
                 axios.get('/news_category/0').then((response) => {
-                    this.fetched=true
+                    this.fetched=true;
                     this.category=response.data.success
                 })
             },
             fetchData: function () {
                 this.fetched=false;
-                this.id = this.$route.params.id
+                this.id = this.$route.params.id;
                 axios.get('/categoryInfo/'+this.id).then((response) => {
-                    this.fetched=true
-                    this.content=response.data.success
+                    this.fetched=true;
+                    this.content=response.data.success;
                     if(this.content){
-                        this.metaInfo.title=this.content.name
-                        this.metaInfo.meta[2].content=this.content.name+' ← '+window.title
-                        this.metaInfo.meta[4].content=this.siteUrl+'/category/'+this.content.id
-                        this.metaInfo.meta[8].content=this.siteUrl+'/category/'+this.content.id
-                        this.metaInfo.meta[9].content=this.content.name+' ← '+window.title
+                        this.metaInfo.title=this.content.name;
+                        this.metaInfo.meta[2].content=this.content.name+' ← '+window.title;
+                        this.metaInfo.meta[4].content=this.siteUrl+'/category/'+this.content.id;
+                        this.metaInfo.meta[8].content=this.siteUrl+'/category/'+this.content.id;
+                        this.metaInfo.meta[9].content=this.content.name+' ← '+window.title;
                         this.metaInfo.meta[12].content=this.content.name+' ← '+window.title
                     }
                 })

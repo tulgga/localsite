@@ -19,7 +19,7 @@ import Login from '../modules/auth/Login'
 //system routes
 import NotFound from '../modules/system/NotFound'
 
-Vue.use(Router)
+Vue.use(Router);
 
 let routes = [
     {
@@ -98,6 +98,6 @@ const router = new Router({
 
 router.afterEach((to, from, next) => {
     setTimeout(() => store.commit('changepageloader', false), 1000)
-})
+});
 
 export default router;

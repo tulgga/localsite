@@ -80,18 +80,18 @@
             }
         },
         created: function () {
-            this.fetchData()
+            this.fetchData();
             this.getCategory()
         },
         methods: {
             getCategory: function () {
                 axios.get('/news_category/0').then((response) => {
-                    this.fetched=true
+                    this.fetched=true;
                     this.category=response.data.success
                 })
             },
             fetchData: function () {
-                this.type = this.$route.params.id
+                this.type = this.$route.params.id;
                 if(this.type=='main'){
                     this.ajax_url='/newsListPrimary/';
                     this.list_type=0;
