@@ -15,7 +15,7 @@
         <meta property="og:image" content="{{asset('uploads/'.$page->image)}}">
 @endsection
 @section('content')
-    <div class="row" style="background: #262b49;">
+    <div class="row" style="background: #f9f9f9;">
         <div class="container">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">

@@ -4627,7 +4627,7 @@ input[type="button"].btn-block {
   display: inline-flex;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  padding: 25px 0;
+  padding: 15px 0;
   margin-bottom: 0;
   font-size: 13px;
   line-height: 23px;
@@ -4635,7 +4635,6 @@ input[type="button"].btn-block {
   border-radius: 0.25rem;
 }
 .breadcrumb .breadcrumb-item a{
-  color:#fff;
   transition: all 0.3s ease-in-out;
 }
 .breadcrumb .breadcrumb-item a:hover{
