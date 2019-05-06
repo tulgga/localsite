@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 use App\Event;
 use App\Event_to_comment;
 use App\Event_to_image;
@@ -21,9 +21,36 @@ use App\User_social;
 
 class VolunteerController extends Controller{
     public function index(){
-        $data['events'] = Event::where('status', 1)->Join('event_to_images','event_to_images.event_id', '=','events.eid')->groupBy('event_to_images.event_id')->orderBy('events.created_at', 'desc')->select('events.subject','events.content','event_to_images.image','events.started','events.ended','events.id')->limit(8)->get();
-        //echo json_encode($data['likes']); die;
+        $data['events'] = Event::select('events.subject','events.content','event_to_images.image','events.started','events.ended','events.id',DB::raw('AVG(event_to_ratings.rating) as rate'))
+            ->where('status', 1)
+            ->leftJoin('event_to_ratings','event_to_ratings.event_id','=','events.id')
+            ->Join('event_to_images','event_to_images.event_id', '=','events.eid')
+            ->groupBy('event_to_images.event_id')
+            ->orderBy('events.created_at', 'desc')
+            ->limit(8)
+            ->get();
+        //echo json_encode($data['events']); die;
         return view('volunteer.home', $data);
+    }
+    public function eventlist(){
+        $paginate=80;
+        $data['events'] = Event::select('events.subject','events.content','event_to_images.image','events.started','events.ended','events.id',DB::raw('AVG(event_to_ratings.rating) as rate'))
+            ->where('status', 1)
+            ->leftJoin('event_to_ratings','event_to_ratings.event_id','=','events.id')
+            ->Join('event_to_images','event_to_images.event_id', '=','events.eid')
+            ->groupBy('event_to_images.event_id')
+            ->orderBy('events.created_at', 'desc')
+            ->paginate($paginate);
+        return view('volunteer.eventlist', $data);
+    }
+    public function event($id){
+        $data['event'] = Event::select('*')->where('id', $id)->first();
+        $data['createUser'] = User::select('lastname','firstname','profile_pic')->where('id', $data['event']->created_user_id)->first();
+        $data['likes'] = Event_to_like::select(DB::raw('COUNT(*) as counts'))->where('event_id',$id)->first();
+        $data['rating'] = Event_to_rating::select(DB::raw('AVG(event_to_ratings.rating) as rate'))->where('event_id',$id)->first();
+        $data['images'] = Event_to_image::select('image')->where('event_id',$data['event']->eid)->get();
+        //echo json_encode($data['events']); die;
+        return view('volunteer.single', $data);
     }
     public function login(){
         if(!is_null(Auth::user())){
@@ -36,8 +63,12 @@ class VolunteerController extends Controller{
         $data['site'] = Site::select('id','name')->orderBy('name','ASC')->get();
         return view('volunteer.register',$data);
     }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function userRegister(Request $request){
-        //$emailcheck = User::select('id')->where('email',$request->email)->first();
         $data = $request->post();
         $validator = Validator::make($data, [
             'name' => 'required|string|unique:users',
@@ -48,14 +79,20 @@ class VolunteerController extends Controller{
         ]);
 
         if ($validator->fails()) {
-            var_dump($validator->errors()); die;
-            foreach($validator->errors() as $error) {
-                $request->session()->flash('name', $error->name());
-                $request->session()->flash('password', $error->password());
-                $request->session()->flash('email', $error->email());
-                $request->session()->flash('phone', $error->phone());
-            }
-            return redirect()->to('/register');
+                $error = $validator->errors();
+                $request->session()->flash('nameerror', $error->first('name'));
+                $request->session()->flash('passworderror', $error->first('password'));
+                $request->session()->flash('verify_password', $error->first('verify_password'));
+                $request->session()->flash('emailerror', $error->first('email'));
+                $request->session()->flash('phoneerror', $error->first('phone'));
+                $request->session()->flash('username',$request->name);
+                $request->session()->flash('lastname',$request->lastname);
+                $request->session()->flash('firstname',$request->firstname);
+                $request->session()->flash('site_id',$request->site_id);
+                $request->session()->flash('email',$request->email);
+                $request->session()->flash('phone',$request->phone);
+                $request->session()->flash('registration_no',$request->registration_no);
+                return redirect()->to('/register');
         }
         $register = $request->registration_no;
         $year = $register[4].$register[5];
@@ -71,7 +108,7 @@ class VolunteerController extends Controller{
 
         $user = New User();
         $pass = bcrypt($request->verify_password);
-        $user->name = $request->username;
+        $user->name = $request->name;
         $user->lastname = $request->lastname;
         $user->firstname = $request->firstname;
         $user->registration_no = $request->registration_no;
@@ -87,20 +124,6 @@ class VolunteerController extends Controller{
         $user->save();
         $request->session()->flash('successMsg', 'Бүртгэл амжилттай хадгалагдлаа!');
         return redirect()->to('/register');
-        /*if($request->password == $request->verify_password){
-
-
-        }else{
-            $request->session()->flash('username',$request->username);
-            $request->session()->flash('lastname',$request->lastname);
-            $request->session()->flash('firstname',$request->firstname);
-            $request->session()->flash('site_id',$request->site_id);
-            $request->session()->flash('email',$request->email);
-            $request->session()->flash('phone',$request->phone);
-            $request->session()->flash('registration_no',$request->registration_no);
-            $request->session()->flash('passwordMatchMsg', 'Нууц уг таарахгүй байна!');
-            return redirect()->to('/register');
-        }*/
 
     }
     public function profile(){
@@ -221,19 +244,18 @@ class VolunteerController extends Controller{
         if(is_null(Auth::user())){
             return redirect()->to('/');
         }else{
-
             if($request->id == "0") {
-
                 $event = New Event();
                 $eid = rand(10000000, 99999999);
                 $event->eid = $eid;
                 $event->subject = $request->subject;
                 $event->started = $request->started;
                 $event->ended = $request->ended;
-                $event->content = htmlspecialchars($request->contentHTML);
+                $event->content = $request->contentHTML;
                 $event->created_user_id = Auth::user()->id;
                 $event->save();
-                if (!is_null($request->file('images'))) {
+                if (is_null($request->images)) {
+                }else{
                     foreach ($request->images as $key => $value) {
                         $image = New Event_to_image();
                         $image->event_id = $eid;
@@ -247,10 +269,10 @@ class VolunteerController extends Controller{
                 $event->subject = $request->subject;
                 $event->started = $request->started;
                 $event->ended = $request->ended;
-                $event->content = htmlspecialchars($request->contentHTML);
-                $event->created_user_id = Auth::user()->id;
+                $event->content = $request->contentHTML;
                 $event->save();
-                if (!is_null($request->file('images'))) {
+                if (is_null($request->images)) {
+                }else{
                     foreach ($request->images as $key => $value) {
                         $image = New Event_to_image();
                         $image->event_id = $event->eid;
@@ -365,6 +387,23 @@ class VolunteerController extends Controller{
                 $liked->save();
                 return response()->json(['result' => 'like', '_token' => csrf_token()]);
             }
+        }
+    }
+    public function event_rate(Request $request){
+        if(is_null(Auth::user())){
+            return redirect()->to('/');
+        } else {
+            $rating = Event_to_rating::select('id')->where('user_id',Auth::user()->id)->where('event_id',$request->event_id)->first();
+            if($rating) {
+                $rate = Event_to_rating::find($rating->id);
+            }else{
+                $rate = New Event_to_rating();
+            }
+            $rate->user_id = Auth::user()->id;
+            $rate->event_id = $request->event_id;
+            $rate->rating = $request->value;
+            $rate->save();
+            return response()->json(['success' => 'true', '_token' => csrf_token()]);
         }
     }
 }

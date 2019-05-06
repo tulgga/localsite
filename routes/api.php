@@ -54,13 +54,15 @@ Route::middleware('auth:api')->namespace('Api')->group(function () {
 
     Route::get('logOut', 'ApiUserController@logOut');
 
+    //Volunteer
+    Route::post('event_like','ApiVolunteerController@event_like');
+
 });
 
 Route::namespace('Api')->group(function (){
 
     Route::get('ildot','ApiPageController@ildot');
     Route::get('xml','XMLreader@index');
-
 
     Route::get('service','ApiSiteController@service');
     //sites
@@ -109,9 +111,6 @@ Route::namespace('Api')->group(function (){
     Route::get('heltes','ApiUrgudulController@heltes');
     Route::post('filterUrgudul','ApiUrgudulController@filterUrgudul');
 
-
-
-
     //Зарыг 20 бичлэгээр хуудаслаж авна
     Route::get('zar','ApiZarController@zar');
     //Бүх зарын ангилалыг авна
@@ -126,6 +125,10 @@ Route::namespace('Api')->group(function (){
     Route::get('poll','ApiPollController@poll');
     //Зөвхөн нэг санал асуулгын ID өгсөн тохиолдолд санал асуулгыг асуулт, хариултын хамт илгээнэ
     Route::get('poll/{id}','ApiPollController@getById');
+
+    //Сайн дурыхан
+    Route::get('eventslist','ApiVolunteerController@eventslist');
+    Route::get('event/{id}','ApiVolunteerController@event');
 });
 
 

@@ -78,7 +78,7 @@
             </div>
         </div>
     </div>
-    <div class="row menu-line">
+    <div class="row">
         <div class="container">
             <div class="row">
                 <div class="col-sm-4 col-9">
@@ -90,13 +90,21 @@
                         </div>
                     </a>
                 </div>
-                <div class="col-sm-8 col-3">
-                    <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="col-sm-8"></div>
+            </div>
+        </div>
+    </div>
+    <div class="row menu-line">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-3">
+                    <nav class="navbar navbar-expand-lg">
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="navbar-nav ml-sm-auto">
+                            <ul class="navbar-nav">
+                                <li class="nav-item"><a href="{{asset('')}}" class="nav-link"><i class="fa fa-home"></i> </a> </li>
                                 <?php foreach($info->menu as $mn){ ?>
                                 <?php if($mn->children){ ?>
                                 <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" @if($mn->blank == 1) target="_blank"

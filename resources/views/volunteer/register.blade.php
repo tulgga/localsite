@@ -15,21 +15,10 @@
             <div class="col-sm-4">
                 <h3 class="head mb-3">Бүртгэлийн <strong>хэсэг</strong></h3>
                 <form class="font-14" method="post" action="{{asset("userRegister")}}">
-                    @if(Session::has('error'))
-                        <div class="form-group">
-                            <div class="alert alert-danger">
-                                <ul>
-                                        <li>{{Session::get('name')}}</li>
-                                        <li>{{Session::get('password')}}</li>
-                                        <li>{{Session::get('email')}}</li>
-                                        <li>{{Session::get('phone')}}</li>
-                                </ul>
-                            </div>
-                        </div>
-                    @endif
                     {{ csrf_field() }}
                     <div class="form-group">
-                        <input value="{{ old('username') }}" type="text" placeholder="Нэвтрэх нэр" name="username" class="form-control" required>
+                        <input value="{{ Session::get('name') }}" type="text" placeholder="Нэвтрэх нэр" name="name" class="form-control" required>
+                        @if(Session::has('nameerror'))<font class="font-12" color="red">{{str_replace('The name has already been taken','Нэвтрэх нэр бүртгэгдсэн байна',Session::get('nameerror'))}}</font>@endif
                     </div>
                     <div class="form-group">
                         <input value="{{ Session::get('lastname') }}" type="text" placeholder="Овог" name="lastname" class="form-control" required>
@@ -51,16 +40,19 @@
                     </div>
                     <div class="form-group">
                         <input value="{{ Session::get('email') }}" type="email" placeholder="И-мэйл хаяг" name="email" class="form-control" required>
+                        @if(Session::has('emailerror'))<font class="font-12" color="red">{{str_replace('The email has already been taken','Имэйл хаяг бүртгэгдсэн байна',Session::get('emailerror'))}}</font>@endif
                     </div>
                     <div class="form-group">
                         <input value="{{ Session::get('phone') }}" type="number" placeholder="Утасны дугаар" name="phone" class="form-control" required>
+                        @if(Session::has('phoneerror'))<font class="font-12" color="red">{{str_replace('The phone has already been taken','Утасны дугаар бүртгэгдсэн байна',Session::get('phoneerror'))}}</font>@endif
                     </div>
                     <div class="form-group">
                         <input type="password" placeholder="Нууц үг" name="password" class="form-control form" required>
+                        @if(Session::has('passworderror'))<font class="font-12" color="red">{{str_replace('The password must be at least 6 characters','Нууц үг хамгийн багадаа 6 тэмдэгрт байна',Session::get('passworderror'))}}</font>@endif
                     </div>
                     <div class="form-group">
                         <input type="password" placeholder="Нууц үг давтах" name="verify_password" class="form-control" required>
-                        <font class="font-12" color="red">{{ Session::get('passwordMatchMsg') }}</font>
+                        @if(Session::has('verify_password'))<font class="font-12" color="red">{{str_replace('The verify password and password must match','Нууц үг тохирсонгүй',Session::get('verify_password'))}}</font>@endif
                     </div>
                     <div class="form-group">
                         <input type="checkbox" id="servicecondition" name="servicecondition" required>

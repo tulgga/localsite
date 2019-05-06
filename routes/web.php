@@ -35,6 +35,8 @@ Route::domain('volunteer.bayankhongor.towersoft.mn')->group(function () {
     Route::get('/changePassword', 'VolunteerController@changePassword');
     Route::post('/updatePassword', 'VolunteerController@updatePassword');
     Route::get('/events', 'VolunteerController@events');
+    Route::get('/eventlist', 'VolunteerController@eventlist');
+    Route::get('/event/{id}', 'VolunteerController@event');
     Route::get('/eventform/{id}', 'VolunteerController@eventform');
     Route::post('/saveEvent', 'VolunteerController@saveEvent');
     Route::get('/eventdelete/{id}', 'VolunteerController@eventdelete');
@@ -42,6 +44,7 @@ Route::domain('volunteer.bayankhongor.towersoft.mn')->group(function () {
     Route::get('/eventUpdateStatus/{id}/{stat}', 'VolunteerController@eventUpdateStatus');
     /*** Ajax request response ***/
     Route::post('/event_like', 'VolunteerController@event_like');
+    Route::post('/event_rate', 'VolunteerController@event_rate');
 });
 
 Route::domain('zar.bayankhongor.towersoft.local')->group(function () {

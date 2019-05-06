@@ -78,7 +78,7 @@ body{
     text-decoration: none;
     color:#ea5c3d;
 }
-.carousel-item{
+#VolunteerSlide .carousel-item{
     min-height: 650px;
     background-size: cover;
     background-position: center center;
@@ -287,7 +287,17 @@ footer{
     display:block;
     width:100%;
 }
-
+.rate_thanks{
+    position: absolute;
+    display: none;
+    width: 100%;
+    top: -4px;
+    left: 0;
+    text-align: center;
+    padding: 5px 0;
+    color: #fff;
+    background: var(--green);
+}
 .four-column .image-box .icon-box{
     position:absolute;
     right:20px;
@@ -566,6 +576,11 @@ footer{
     transform: translateY(5px);
     /* move the element down by 5px (it will stay in place because it's attached to the element that also moves up 5px) */
 }
+.thumbs{
+    background-size: cover;
+    background-position: center center;
+    min-height: 450px;
+}
 .rating{
     position: absolute;
     width: 100%;
@@ -596,7 +611,6 @@ footer{
 }
 /* Idle State of the stars */
 .rating-stars ul > li.star > i.fa {
-    font-size:16px; /* Change the size of the stars */
     color:#eee; /* Color on idle state */
 }
 /* Hover state of the stars */
@@ -605,7 +619,7 @@ footer{
 }
 /* Selected state of the stars */
 .rating-stars ul > li.star.selected > i.fa {
-    color:#FF912C;
+    color:#FFCC36;
 }
 .team-section .image-box:hover .rating{
     transform: translateY(0%);

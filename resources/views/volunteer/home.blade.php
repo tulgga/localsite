@@ -46,11 +46,11 @@
                         <figure class="image-box" style="background-image: url('/uploads/{{$event->image}}');"></figure>
                         <div class="lower-part">
                             <div class="text">
-                                <a href="#"><h3>{{$event->subject}}</h3></a>
+                                <a href="{{asset('event/'.$event->id)}}"><h3>{{$event->subject}}</h3></a>
                                 <p>{{strip_tags(substr($event->content,0,200))}}</p>
                             </div>
-                            <div class="row font-12 @if($event->ended < date('Y-m-d')) ended @elseif($event->started > date('Y-m-d')) comingsoon @else active @endif">
-                                <div class="col-sm-6 border-right like_{{$event->id}}">
+                            <div class="row @if($event->ended < date('Y-m-d')) ended @elseif($event->started > date('Y-m-d')) comingsoon @else active @endif">
+                                <div class="col-sm-6 border-right font-14 like_{{$event->id}}">
                                     @if(is_null(Auth::user()))
                                         <a href="#" data-toggle="modal" data-target="#LoginForm" class="text-secondary"><i class="far fa-heart"></i> Таалагдлаа</a>
                                     @else
@@ -63,14 +63,45 @@
                                     @endif
                                 </div>
                                 <div class="col-sm-6">
-                                    <div class="rating-stars float-right">
-                                        <ul id='stars'>
-                                            <li class='star' title='Муу' data-value='1'><i class='fa fa-star fa-fw'></i></li>
-                                            <li class='star' title='Дунд' data-value='2'><i class='fa fa-star fa-fw'></i></li>
-                                            <li class='star' title='Сайн' data-value='3'><i class='fa fa-star fa-fw'></i></li>
-                                            <li class='star' title='Маш сайн' data-value='4'><i class='fa fa-star fa-fw'></i></li>
-                                            <li class='star' title='Гайхалтай' data-value='5'><i class='fa fa-star fa-fw'></i></li>
-                                        </ul>
+                                    <div class="rate_thanks rating_{{$event->id}}">Баярлалаа</div>
+                                    <div class="rating-stars float-right font-16">
+                                        @if(is_null($event->rate))
+                                            @if(is_null(Auth::user()))
+                                                <ul id='stars'>
+                                                    <li class='star' data-value='1' title='Муу' data-toggle="modal" data-target="#LoginForm"><i class='fa fa-star fa-fw'></i></li>
+                                                    <li class='star' data-value='2' title='Дунд' data-toggle="modal" data-target="#LoginForm"><i class='fa fa-star fa-fw'></i></li>
+                                                    <li class='star' data-value='3' title='Сайн' data-toggle="modal" data-target="#LoginForm"><i class='fa fa-star fa-fw'></i></li>
+                                                    <li class='star' data-value='4' title='Маш сайн' data-toggle="modal" data-target="#LoginForm"><i class='fa fa-star fa-fw'></i></li>
+                                                    <li class='star' data-value='5' title='Гайхалтай' data-toggle="modal" data-target="#LoginForm"><i class='fa fa-star fa-fw'></i></li>
+                                                </ul>
+                                            @else
+                                                <ul id='stars'>
+                                                    <li class='star' data-value='1' title='Муу' onclick="rating(1,{{$event->id}}); return false;"><i class='fa fa-star fa-fw'></i></li>
+                                                    <li class='star' data-value='2' title='Дунд' onclick="rating(2,{{$event->id}}); return false;"><i class='fa fa-star fa-fw'></i></li>
+                                                    <li class='star' data-value='3' title='Сайн' onclick="rating(3,{{$event->id}}); return false;"><i class='fa fa-star fa-fw'></i></li>
+                                                    <li class='star' data-value='4' title='Маш сайн' onclick="rating(4,{{$event->id}}); return false;"><i class='fa fa-star fa-fw'></i></li>
+                                                    <li class='star' data-value='5' title='Гайхалтай' onclick="rating(5,{{$event->id}}); return false;"><i class='fa fa-star fa-fw'></i></li>
+                                                </ul>
+                                            @endif
+                                        @else
+                                            @if(is_null(Auth::user()))
+                                                <ul id='stars'>
+                                                    <li class='star @if($event->rate >= 1) selected @endif' data-value='1' title='Муу' data-toggle="modal" data-target="#LoginForm"><i class='fa fa-star fa-fw'></i></li>
+                                                    <li class='star @if($event->rate >= 2) selected @endif' data-value='2' title='Дунд' data-toggle="modal" data-target="#LoginForm"><i class='fa fa-star fa-fw'></i></li>
+                                                    <li class='star @if($event->rate >= 3) selected @endif' data-value='3' title='Сайн' data-toggle="modal" data-target="#LoginForm"><i class='fa fa-star fa-fw'></i></li>
+                                                    <li class='star @if($event->rate >= 4) selected @endif' data-value='4' title='Маш сайн' data-toggle="modal" data-target="#LoginForm"><i class='fa fa-star fa-fw'></i></li>
+                                                    <li class='star @if($event->rate >= 5) selected @endif' data-value='5' title='Гайхалтай' data-toggle="modal" data-target="#LoginForm"><i class='fa fa-star fa-fw'></i></li>
+                                                </ul>
+                                            @else
+                                            <ul id='stars'>
+                                                <li class='star @if($event->rate >= 1) selected @endif' data-value='1' title='Муу' onclick="rating(1,{{$event->id}}); return false;"><i class='fa fa-star fa-fw'></i></li>
+                                                <li class='star @if($event->rate >= 2) selected @endif' data-value='2' title='Дунд' onclick="rating(2,{{$event->id}}); return false;"><i class='fa fa-star fa-fw'></i></li>
+                                                <li class='star @if($event->rate >= 3) selected @endif' data-value='3' title='Сайн' onclick="rating(3,{{$event->id}}); return false;"><i class='fa fa-star fa-fw'></i></li>
+                                                <li class='star @if($event->rate >= 4) selected @endif' data-value='4' title='Маш сайн' onclick="rating(4,{{$event->id}}); return false;"><i class='fa fa-star fa-fw'></i></li>
+                                                <li class='star @if($event->rate == 5) selected @endif' data-value='5' title='Гайхалтай' onclick="rating(5,{{$event->id}}); return false;"><i class='fa fa-star fa-fw'></i></li>
+                                            </ul>
+                                            @endif
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -79,6 +110,25 @@
                 </div>
                 @endforeach
                 <script>
+                    function rating(value,event_id){
+                        var formData = {
+                            _token: $("#_token").val(),
+                            event_id: event_id,
+                            value: value
+                        }
+                        $.ajax({
+                            type:'POST',
+                            url:'/event_rate',
+                            data: formData,
+                            success:function(data){
+                                if(data.success == "true"){
+                                    $("#_token").val(data._token)
+                                    $(".rating_"+event_id).fadeIn(200);
+                                    setInterval(function(){ $(".rating_"+event_id).fadeOut(200); }, 1000);
+                                }
+                            }
+                        });
+                    }
                     likeQuery = function (event_id) {
                         var formData = {
                             _token: $("#_token").val(),
@@ -86,7 +136,7 @@
                         }
                         $.ajax({
                             type:'POST',
-                            url:'event_like',
+                            url:'/event_like',
                             data: formData,
                             success:function(data){
                                 //console.log(data);
@@ -103,6 +153,7 @@
                 </script>
             </div>
         </div>
+        <input type="hidden" id="_token" value="{{ csrf_token() }}">
     </section>
     <section class="four-column team-section">
         <div class="container">
@@ -234,6 +285,6 @@
                 </div>
             </div>
         </div>
-        <input type="hidden" id="_token" value="{{ csrf_token() }}">
+
     </section>
 @endsection

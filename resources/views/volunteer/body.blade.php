@@ -52,17 +52,14 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active">
+                        <li class="nav-item @if(Request::segment(1) == "") active @endif">
                             <a class="nav-link" href="{{asset("")}}">Эхлэл</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{asset("volunteer")}}">Сайн дурын ажлууд</a>
+                        <li class="nav-item @if(Request::segment(1) == "eventlist") active @endif">
+                            <a class="nav-link" href="{{asset("eventlist")}}">Сайн дурын ажлууд</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item @if(Request::segment(1) == "people") active @endif">
                             <a class="nav-link" href="{{asset("people")}}">Сайн дурынхан</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{asset("contact")}}">Холбогдох</a>
                         </li>
                     </ul>
                 </div>
@@ -145,8 +142,8 @@
                         <input type="password" name="password" class="form-control" required>
                     </div>
                     <button type="submit" class="btn btn-primary w-100">Нэвтрэх</button>
-                    <div class="registerOr"><span>эсвэл</span></div>
-                    <button type="button" class="facebookBTN"><i class="fab fa-facebook-square"></i> Фэйсбүүк</button>
+                    {{--<div class="registerOr"><span>эсвэл</span></div>
+                    <button type="button" class="facebookBTN"><i class="fab fa-facebook-square"></i> Фэйсбүүк</button>--}}
                 </form>
             </div>
         </div>
