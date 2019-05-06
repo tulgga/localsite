@@ -263,7 +263,7 @@
                         @foreach($info->subDomain as $domain)
                             @if(!$domain->id == 0)
                                 <div class="col-sm-5 sum_item">
-                                    <a href="{{$domain->domain}}">@if($domain->favicon)<img src="{{ asset('uploads/'.$domain->favicon)}}">@else<img src="{{ asset('uploads/favicon/XnjMhMUg3enV21GhLYDopC2L6uHsuQK0BqjTjCjP.png')}}">@endif {{$domain->name}}</a>
+                                    <a href="{{$domain->domain}}">@if($domain->favicon)<img style="width: 20px;" src="{{ asset('uploads/'.$domain->favicon)}}">@else<img src="{{ asset('uploads/favicon/XnjMhMUg3enV21GhLYDopC2L6uHsuQK0BqjTjCjP.png')}}">@endif {{$domain->name}}</a>
                                 </div>
                             @endif
                         @endforeach
@@ -275,7 +275,7 @@
                     <div class="row">
                         @foreach($info->agent as $agent)
                             <div class="col-sm-12 sum_item">
-                                <a href="{{$agent->link}}"><img src="{{ asset('http://bayan-ovoo.bayankhongor.local:8888/images/soyombo.png')}}">{{$agent->name}}</a>
+                                <a href="{{$agent->link}}"><img src="{{ asset('images/soyombo.png')}}">{{$agent->name}}</a>
                             </div>
                         @endforeach
                     </div>
@@ -332,12 +332,7 @@
                             @if(!is_null($info->config['socail']['google']))<li><a target="_blank" href="{{$info->config['socail']['google']}}"><i class="fab fa-google-plus"></i></a></li>@endif
                     </ul>
                 </div>
-
-
-
             </div>
-
-
             <div class="row copyright text-center">
                 <div class="col-sm-12">
                     Зохиогчийн бүх эрх хуулиар хамгаалагдсан © 2018  <strong>{{$info->config['main']['copyright']}}</strong>

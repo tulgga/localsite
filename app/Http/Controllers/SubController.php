@@ -191,6 +191,7 @@ class SubController extends BaseController
         $urgudul->ip = $_SERVER['REMOTE_ADDR'];
         $urgudul->user_agent=$_SERVER['HTTP_USER_AGENT'];
         $urgudul->save();
+        $request->session()->flash('successMsg', 'Таны зурвас амжилттай илгээгдлээ!');
         return redirect()->to('/feedback');
     }
 }
