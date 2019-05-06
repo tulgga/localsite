@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 //use http\Env\Request;
+use App\Dashboard_schedule;
 use App\Link;
 use App\News_to_category;
 use Illuminate\Http\Request;
@@ -32,7 +33,7 @@ class SubController extends BaseController
       $data['info']=$this->getDomainInfo($account);
       $tenders = Category::where('site_id', $data['info']->id)->where('name','Тендерийн урилга')->first();
       $data['tender_posts'] = News_to_category::orderBy('created_at','desc')->where('cat_id',$tenders->id)->get();
-        $data['tender_posts']=[];
+      $data['tender_posts']=[];
       $data['ontslokh']= Post::orderBy('created_at', 'desc')->where('site_id', $data['info']->id)->where('is_primary', 1)->where('status',1)->with('Category')->select('title', 'id', 'image', 'type','short_content','created_at')
           ->limit(5)->get();
       $data['latest_news']= Post::orderBy('created_at', 'desc')->where('site_id', $data['info']->id)->where('is_primary', 0)->where('status',1)->with('Category')->select('title', 'id', 'image', 'type','short_content','created_at')
@@ -100,6 +101,9 @@ class SubController extends BaseController
     }
 
     public function getDomainInfo($account){
+        date_default_timezone_set('Asia/Ulaanbaatar');
+        $start=date('Y-m-d');
+        $end=date('Y-m-d', strtotime( '+7 days' ));
         $site = Site::where('domain',$account)->first();
         if(is_null($site)){
             header('Location:'.env('APP_URL'));
@@ -109,7 +113,14 @@ class SubController extends BaseController
         $site->menu = $this->getMenu($site->id);
         $site->subDomain = Site::select('id','name','domain','favicon')->orderBy('name','ASC')->get();
 
-        $site->agent = Link::where('site_id', 0)->limit(10)->get();
+        $site->agent = Link::where('site_id', $site->id)->limit(10)->get();
+
+        $site->events = Dashboard_schedule::where('site_id', $site->id)
+            ->whereBetween('schedule_date', [$start, $end])
+            ->whereIn('head_id', [4,5,6,7,8,9])
+            ->where("is_publish", 1)
+            ->get();
+
         return $site;
     }
     public function feedback($account){

@@ -269,7 +269,7 @@
                         @endforeach
                     </div>
                 </div>
-
+                @if(count($info->agent)>0)
                 <div class="col-sm-4">
                     <h4 class="row"> ХЭЛТЭС АГЕНТЛАГ</h4>
                     <div class="row">
@@ -280,10 +280,45 @@
                         @endforeach
                     </div>
                 </div>
+                @else
+                    <div class="col-sm-4">
+                        <h4 class="row"> Санал хүсэлт, өргөдөл, гомдол</h4>
+                        <form method="post" action="{{asset('urgudul_save')}}" enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="layout">
+                                        <select class="form-feedback" name="type">
+                                            <option value="0">Санал хүсэлт</option>
+                                            <option value="1">Өргөдөл</option>
+                                            <option value="2">Гомдол</option>
+                                            <option value="3">Бусад</option>
+                                        </select>
+                                    </div>
+                                    <div class="layout"><input class="form-feedback" name="your_name" type="text" placeholder="Таны нэр *" required></div>
+                                    <div class="layout"><input class="form-feedback" name="your_phone" type="number" minlength="8" maxlength="8" placeholder="Таны утас *" required></div>
+                                    <div class="layout"><input class="form-feedback" name="your_email" type="email" required placeholder="Таны цахим шуудан"></div>
+
+                                    <div class="layout">
+                                        <textarea style="min-height: 90px;" name="your_message" class="form-feedback" minlength="2" placeholder="Зурвас бичих...*" required></textarea></div>
+                                    <div class="layout">
+                                        <a href="javascript:addImage();" class="attach_btn">
+                                            <i class="far fa-plus-square"></i> нэмэлт зураг хавсаргах</a>
+                                        <input style="display: none;" class="image-pp" accept="image/*" type="file" name="image"></div>
+                                    <div class="layout">
+                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                        <button type="submit" class="btn btn-sm btn-outline-primary">
+                                            <i class="fa fa-paper-plane"></i>&nbsp; &nbsp;Илгээх</button>
+                                        <button title="Цэвэрлэх" type="reset" class="btn btn-sm btn-outline-secondary"><i class="fa fa-redo"></i> </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                @endif
 
 
                 <div class="col-sm-4">
-                    <h4 class="row">Холбоо барих</h4>
+                    <h4 class="row" >Холбоо барих</h4>
                     <div class="intro-footer">
                         {{$info->config['meta']['description']}}
                     </div>
@@ -297,11 +332,7 @@
                             @if(!is_null($info->config['socail']['google']))<li><a target="_blank" href="{{$info->config['socail']['google']}}"><i class="fab fa-google-plus"></i></a></li>@endif
                     </ul>
                 </div>
-
-
             </div>
-
-
             <div class="row copyright text-center">
                 <div class="col-sm-12">
                     Зохиогчийн бүх эрх хуулиар хамгаалагдсан © 2018  <strong>{{$info->config['main']['copyright']}}</strong>

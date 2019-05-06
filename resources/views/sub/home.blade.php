@@ -225,38 +225,27 @@
                                     @endif
                                 @endforeach
                             @endforeach--}}
-                            <li>
-                                <a href="#">Морин хуурын чуулгын дөрвөл хөгжимчдийн тоглолт</a>
-                                <span class="create_date"><font color="black">Хаана:</font> Сумын соёлын төвд   |   <font color="black">Хэзээ:</font> 2019-05-10 19:00 цагт </span>
-                            </li>
-                            <li>
-                                <a href="#">Морин хуурын чуулгын дөрвөл хөгжимчдийн тоглолт</a>
-                                <span class="create_date"><font color="black">Хаана:</font> Сумын соёлын төвд   |   <font color="black">Хэзээ:</font> 2019-05-10 19:00 цагт </span>
-                            </li>
-                            <li>
-                                <a href="#">Морин хуурын чуулгын дөрвөл хөгжимчдийн тоглолт</a>
-                                <span class="create_date"><font color="black">Хаана:</font> Сумын соёлын төвд   |   <font color="black">Хэзээ:</font> 2019-05-10 19:00 цагт </span>
-                            </li>
-                            <li>
-                                <a href="#">Морин хуурын чуулгын дөрвөл хөгжимчдийн тоглолт</a>
-                                <span class="create_date"><font color="black">Хаана:</font> Сумын соёлын төвд   |   <font color="black">Хэзээ:</font> 2019-05-10 19:00 цагт </span>
-                            </li>
-                            <li>
-                                <a href="#">Морин хуурын чуулгын дөрвөл хөгжимчдийн тоглолт</a>
-                                <span class="create_date"><font color="black">Хаана:</font> Сумын соёлын төвд   |   <font color="black">Хэзээ:</font> 2019-05-10 19:00 цагт </span>
-                            </li>
-                            <li>
-                                <a href="#">Морин хуурын чуулгын дөрвөл хөгжимчдийн тоглолт</a>
-                                <span class="create_date"><font color="black">Хаана:</font> Сумын соёлын төвд   |   <font color="black">Хэзээ:</font> 2019-05-10 19:00 цагт </span>
-                            </li>
-                            <li>
-                                <a href="#">Морин хуурын чуулгын дөрвөл хөгжимчдийн тоглолт</a>
-                                <span class="create_date"><font color="black">Хаана:</font> Сумын соёлын төвд   |   <font color="black">Хэзээ:</font> 2019-05-10 19:00 цагт </span>
-                            </li>
-                            <li>
-                                <a href="#">Морин хуурын чуулгын дөрвөл хөгжимчдийн тоглолт</a>
-                                <span class="create_date"><font color="black">Хаана:</font> Сумын соёлын төвд   |   <font color="black">Хэзээ:</font> 2019-05-10 19:00 цагт </span>
-                            </li>
+                            @foreach($info->events as $row)
+                                <li>
+                                    <a href="#" style="color: #0a4f75"> {{$row->description}} </a>
+                                    <span class="create_date">
+                                        @if($row->head_id==4)
+                                            <font color="black">Хаана:</font> ХДТ
+                                        @elseif($row->head_id==5)
+                                            <font color="black">Хаана:</font> Тэмүжин театр
+                                        @elseif($row->head_id==6)
+                                            <font color="black">Хаана:</font> Баганат талбай
+                                        @elseif($row->head_id==7)
+                                            <font color="black">Хаана:</font> ЗДТГын заал
+                                        @elseif($row->head_id==8)
+                                            <font color="black">Хаана:</font> Сумын ЗДТГын заалан
+                                        @else
+                                        @endif
+
+                                        ({{$row->person_count}})   |
+                                           <font color="black">Хэзээ:</font> {{$row->schedule_date}} {{$row->start_time}} цагт </span>
+                                </li>
+                            @endforeach
                         </div>
                     </ul>
                 </div>
