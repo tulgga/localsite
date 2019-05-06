@@ -13,7 +13,7 @@ body {
     height: 100%;
     width: 100%;
     top: 0;
-    z-index: 99999;
+    z-index: 99;
 }
 #parallax {
     overflow: hidden;
@@ -37,7 +37,6 @@ body {
     bottom: 0;
 }
 .bg_main #bg_main{
-    transform: scale(1.05);
 }
 .soyombo {
     position: absolute;
@@ -83,7 +82,7 @@ body {
 
 .left-menu > li > a > i {
 
-    color: #0054de;
+    color: #2d70de;
 
     float: none;
 
@@ -161,7 +160,7 @@ body {
 
 .right-menu > li > a > i {
 
-    color: #0054de;
+    color: #2d70de;
 
     float: none;
 
@@ -201,7 +200,7 @@ body {
 
     color: #fff;
 
-    background: #0054de;
+    background: #2d70de;
 
 }
 
@@ -250,7 +249,7 @@ body {
 }
 
 .sumd .modal-body ul li a:hover {
-    color: #0054de;
+    color: #2d70de;
     transform: translateX(10px);
     transition: all 450ms cubic-bezier(.485, .075, .12, .855);
 }
@@ -296,7 +295,7 @@ body {
 
     .left-menu > li > a > i {
 
-        color: #0054de;
+        color: #2d70de;
 
         float: right;
 
@@ -320,7 +319,7 @@ body {
 
         padding-left: 50px;
 
-        border-right: 1px solid #0054de;
+        border-right: 1px solid #2d70de;
 
     }
 
@@ -359,7 +358,7 @@ body {
 
     .right-menu > li > a > i {
 
-        color: #0054de;
+        color: #2d70de;
 
         float: left;
 
@@ -383,7 +382,7 @@ body {
 
         padding-right: 50px;
 
-        border-left: 1px solid #0054de;
+        border-left: 1px solid #2d70de;
 
     }
 

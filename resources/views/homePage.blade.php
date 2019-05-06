@@ -69,17 +69,17 @@
         var soyombo = document.getElementById('soyombo');
         var flag = document.getElementById('flag');
         var sky = document.getElementById('sky');
-        var bg_main = document.getElementById('bg_main');
+        //var bg_main = document.getElementById('bg_main');
         soyombo.homePos = { x: soyombo.offsetLeft };
         flag.homePos = { x: flag.offsetLeft };
         sky.homePos = { x: sky.offsetLeft };
-        bg_main.homePos = { x: bg_main.offsetLeft };
+       // bg_main.homePos = { x: bg_main.offsetLeft };
 
         $('.menu_layout').mousemove(function (e) {
             parallax(e, soyombo, -150);
-            parallax(e, flag, 200);
+            parallax(e, flag, 400);
             parallax(e, sky, 50);
-            parallax(e, bg_main, 400);
+            //parallax(e, bg_main, 400);
         });
     });
 
@@ -206,7 +206,7 @@
     </div>
 </div>
 <div class="modal fade bd-example-modal-lg-2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content sumd">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalCenterTitle">Аймгийн хэлтэс агентлагууд</h5>
