@@ -85761,62 +85761,6 @@ var modules = requireContext.keys().map(function (file) {
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -90417,169 +90361,96 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c(
-      "div",
-      { staticClass: "container", attrs: { id: "ontslokh" } },
-      [
-        _c(
-          "carousel",
-          {
-            attrs: {
-              "per-page": 1,
-              navigationEnabled: true,
-              paginationEnabled: true,
-              navigationNextLabel: "<i class='fas fa-chevron-right'></i>",
-              navigationPrevLabel: "<i class='fas fa-chevron-left'></i>"
-            }
-          },
-          [
-            _vm._l(_vm.ontslokh, function(p) {
-              return [
-                _c(
-                  "slide",
-                  [
-                    _c(
-                      "b-img",
-                      {
-                        attrs: {
-                          classes: "bcarousel-list-ontslokh",
-                          value: p,
-                          size: "full"
-                        }
-                      },
-                      [
-                        _c("router-link", { attrs: { to: "/news/" + p.id } }, [
+  return _c(
+    "div",
+    [
+      _vm.ontslokh.length > 0
+        ? _c(
+            "div",
+            { staticClass: "container", attrs: { id: "ontslokh" } },
+            [
+              _c(
+                "carousel",
+                {
+                  attrs: {
+                    "per-page": 1,
+                    navigationEnabled: true,
+                    paginationEnabled: true,
+                    navigationNextLabel: "<i class='fas fa-chevron-right'></i>",
+                    navigationPrevLabel: "<i class='fas fa-chevron-left'></i>"
+                  }
+                },
+                [
+                  _vm._l(_vm.ontslokh, function(p) {
+                    return [
+                      _c(
+                        "slide",
+                        [
                           _c(
-                            "div",
-                            { staticClass: "CarTitle roboto-condensed " },
-                            [_vm._v(_vm._s(p.title))]
+                            "b-img",
+                            {
+                              attrs: {
+                                classes: "bcarousel-list-ontslokh",
+                                value: p,
+                                size: "full"
+                              }
+                            },
+                            [
+                              _c(
+                                "router-link",
+                                { attrs: { to: "/news/" + p.id } },
+                                [
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "ontslokhTitle roboto-condensed "
+                                    },
+                                    [_vm._v(_vm._s(p.title))]
+                                  )
+                                ]
+                              )
+                            ],
+                            1
                           )
-                        ])
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                )
-              ]
-            })
-          ],
-          2
-        )
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "columns  is-multiline mb-0" }, [
-        _c("div", { staticClass: "column  is-9" }, [
-          _c(
-            "div",
-            { staticClass: "bg-white p-15 mb-2 shadow carList" },
-            [
-              _c("news-carousel", {
-                attrs: { page: 3, color: "blue", title: "Шинэ мэдээ" }
-              })
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "bg-white p-15  shadow carList" },
-            [
-              _c("oran-nutag-carousel", {
-                attrs: { page: 3, color: "orange", title: "Орон нутгийн мэдээ" }
-              })
+                        ],
+                        1
+                      )
+                    ]
+                  })
+                ],
+                2
+              )
             ],
             1
           )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "column is-3 " }, [
-          _c(
-            "div",
-            { staticClass: "bg-white p-15   shadow" },
-            [
-              _c("h3", { staticClass: "bTitle mb-1" }, [
-                _vm._v("Ил тод байдал")
-              ]),
-              _vm._v(" "),
-              _c("news-list", {
-                attrs: { catId: "150", styles: "height: 490px;" }
-              })
-            ],
-            1
-          )
-        ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "homeMenu mb-2 mt-1 p-2" }, [
+        : _c("loading"),
+      _vm._v(" "),
       _c("div", { staticClass: "container" }, [
-        _c(
-          "div",
-          { staticClass: "columns is-mobile is-multiline has-text-centered " },
-          [
-            _vm._l(_vm.submenu, function(sub) {
-              return _vm.submenu
-                ? [
-                    _c("div", { staticClass: "column is-6-mobile" }, [
-                      _c("p", [
-                        _c("span", { staticClass: "icon is-large" }, [
-                          _c("i", { class: sub.icon })
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      sub.type == 1
-                        ? _c(
-                            "a",
-                            {
-                              attrs: { href: sub.link },
-                              on: { click: _vm.scrollToTop }
-                            },
-                            [
-                              _c("div", {
-                                domProps: { innerHTML: _vm._s(sub.title) }
-                              })
-                            ]
-                          )
-                        : _c(
-                            "a",
-                            {
-                              attrs: { href: "#" + sub.link },
-                              on: { click: _vm.scrollToTop }
-                            },
-                            [
-                              _c("div", {
-                                domProps: { innerHTML: _vm._s(sub.title) }
-                              })
-                            ]
-                          )
-                    ])
-                  ]
-                : _vm._e()
-            })
-          ],
-          2
-        )
-      ])
-    ]),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "container" },
-      [
         _c("div", { staticClass: "columns  is-multiline mb-0" }, [
           _c("div", { staticClass: "column  is-9" }, [
             _c(
               "div",
-              { staticClass: "bg-light p-15 mb-1 red shadow" },
+              { staticClass: "bg-white p-15 mb-2 shadow carList" },
               [
-                _c("h3", { staticClass: "bTitle mb-1" }, [_vm._v("Видео")]),
-                _vm._v(" "),
-                _c("video-list")
+                _c("news-carousel", {
+                  attrs: { page: 3, color: "blue", title: "Шинэ мэдээ" }
+                })
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "bg-white p-15  shadow carList" },
+              [
+                _c("oran-nutag-carousel", {
+                  attrs: {
+                    page: 3,
+                    color: "orange",
+                    title: "Орон нутгийн мэдээ"
+                  }
+                })
               ],
               1
             )
@@ -90588,26 +90459,118 @@ var render = function() {
           _c("div", { staticClass: "column is-3 " }, [
             _c(
               "div",
-              { staticClass: "bg-white p-15 mb-1 green shadow" },
+              { staticClass: "bg-white p-15   shadow" },
               [
                 _c("h3", { staticClass: "bTitle mb-1" }, [
-                  _vm._v("Тендерийн урилга")
+                  _vm._v("Ил тод байдал")
                 ]),
                 _vm._v(" "),
                 _c("news-list", {
-                  attrs: { catId: "182", styles: "height: 401px;" }
+                  attrs: { catId: "150", styles: "height: 490px;" }
                 })
               ],
               1
             )
           ])
-        ]),
-        _vm._v(" "),
-        _c("b-poll")
-      ],
-      1
-    )
-  ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "homeMenu mb-2 mt-1 p-2" }, [
+        _c("div", { staticClass: "container" }, [
+          _c(
+            "div",
+            {
+              staticClass: "columns is-mobile is-multiline has-text-centered "
+            },
+            [
+              _vm._l(_vm.submenu, function(sub) {
+                return _vm.submenu
+                  ? [
+                      _c("div", { staticClass: "column is-6-mobile" }, [
+                        _c("p", [
+                          _c("span", { staticClass: "icon is-large" }, [
+                            _c("i", { class: sub.icon })
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        sub.type == 1
+                          ? _c(
+                              "a",
+                              {
+                                attrs: { href: sub.link },
+                                on: { click: _vm.scrollToTop }
+                              },
+                              [
+                                _c("div", {
+                                  domProps: { innerHTML: _vm._s(sub.title) }
+                                })
+                              ]
+                            )
+                          : _c(
+                              "a",
+                              {
+                                attrs: { href: "#" + sub.link },
+                                on: { click: _vm.scrollToTop }
+                              },
+                              [
+                                _c("div", {
+                                  domProps: { innerHTML: _vm._s(sub.title) }
+                                })
+                              ]
+                            )
+                      ])
+                    ]
+                  : _vm._e()
+              })
+            ],
+            2
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "container" },
+        [
+          _c("div", { staticClass: "columns  is-multiline mb-0" }, [
+            _c("div", { staticClass: "column  is-9" }, [
+              _c(
+                "div",
+                { staticClass: "bg-light p-15 mb-1 red shadow" },
+                [
+                  _c("h3", { staticClass: "bTitle mb-1" }, [_vm._v("Видео")]),
+                  _vm._v(" "),
+                  _c("video-list")
+                ],
+                1
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "column is-3 " }, [
+              _c(
+                "div",
+                { staticClass: "bg-white p-15 mb-1 green shadow" },
+                [
+                  _c("h3", { staticClass: "bTitle mb-1" }, [
+                    _vm._v("Тендерийн урилга")
+                  ]),
+                  _vm._v(" "),
+                  _c("news-list", {
+                    attrs: { catId: "182", styles: "height: 401px;" }
+                  })
+                ],
+                1
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("b-poll")
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

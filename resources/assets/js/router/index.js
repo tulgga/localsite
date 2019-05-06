@@ -26,6 +26,10 @@ import PagesForm from '../modules/admin/pages/PagesForm'
 import HelpPages from '../modules/admin/pages/HelpPages'
 import HelpPagesForm from '../modules/admin/pages/HelpPagesForm'
 
+
+import TopPages from '../modules/admin/pages/TopPages'
+import TopPagesForm from '../modules/admin/pages/TopPagesForm'
+
 import LinkCategory from '../modules/admin/linkCategory/LinkCategory'
 import LinkCategoryForm from '../modules/admin/linkCategory/LinkCategoryForm'
 
@@ -220,6 +224,64 @@ let routes = [
         },
     },
 
+
+    {
+        path: '/toppages',
+        name: 'toppages',
+        component: TopPages,
+        meta: {
+            requiresAuth: true,
+            page_title: 'Толгой цэс',
+            bread_crumbs: [
+                {
+                    title: 'Мэдээ',
+                    rname: 'home'
+                }
+            ]
+        },
+        children: [
+            {
+                path: 'create',
+                component: TopPagesForm,
+                name: 'create_toppages',
+                meta: {
+                    page_title: 'Нэмэх',
+                    bread_crumbs: [
+                        {
+                            title: 'ЕРӨНХИЙ',
+                            rname: 'home'
+                        },
+                        {
+                            title: 'Дэд сайтууд',
+                            rname: 'sites'
+                        }
+                    ],
+                    notloading: true,
+                    is_modal: true,
+                }
+            },
+            {
+                path: ':id/update',
+                component: TopPagesForm,
+                name: 'update_toppages',
+                meta: {
+                    page_title: 'Засах',
+                    bread_crumbs: [
+                        {
+                            title: 'ЕРӨНХИЙ',
+                            rname: 'home'
+                        },
+                        {
+                            title: 'Дэд сайтууд',
+                            rname: 'sites'
+                        }
+                    ],
+                    notloading: true,
+                    is_modal: true,
+                }
+            },
+        ]
+    },
 
 
     {

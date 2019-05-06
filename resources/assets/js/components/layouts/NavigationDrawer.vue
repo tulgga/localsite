@@ -127,6 +127,7 @@
                         { title: "Мэдээ", icon: 'fas fa-newspaper', path: '/news' ,  role:1},
                         { title: "Орон нутгийн мэдээ", icon: 'fas fa-newspaper', path: '/sub_news_publish' ,  role:0},
                         { title: 'Үндсэн цэс', icon: 'fas fa-bars', path: '/pages' ,  role:0},
+                        { title: 'Толгой цэс', icon: 'fas fa-bars', path: '/toppages' ,  role:0},
                         { title: 'Туслах цэс', icon: 'fas fa-bars', path: '/helppages' ,  role:0},
                     { subheader: 'Файлын сан',  role:1},
                         { title: "Файлын ангилал", icon: 'fas fa-code-branch', path: '/file_category',  role:0 },
