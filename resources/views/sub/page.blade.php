@@ -41,10 +41,6 @@
                         <result>
                             <div>
                                 <div style="display: inline-flex;">
-                                    <script src="https://apis.google.com/js/platform.js" async defer></script>
-                                    <div class="g-plus" data-action="share" data-annotation="bubble" data-href="{{asset('news/'.$page->id)}}"></div>
-                                </div>
-                                <div style="display: inline-flex;">
                                     <a name="twitter_share" data-count="horizontal" href="http://twitter.com/share?url=&amp{{asset('news/'.$page->id)}};" class="twitter-share-button" >Tweet</a>
                                 </div>
                                 <div style="display: inline-flex;">
@@ -62,15 +58,13 @@
                             </div>
                         </result>
                         <div class="post_content">
+                            @if($page->image)
                             <img class="single_new_img" src="{{asset('uploads/'.$page->image)}}">
+                            @endif
                             {!!$page->text!!}
                         </div>
                         <result style="margin-top:15px;">
                             <div style="display: inline-block;">
-                                <div style="display: inline-flex;">
-                                    <script src="https://apis.google.com/js/platform.js" async defer></script>
-                                    <div class="g-plus" data-action="share" data-annotation="bubble" data-href="{{asset('news/'.$page->id)}}"></div>
-                                </div>
                                 <div style="display: inline-flex;">
                                     <a name="twitter_share" data-count="horizontal" href="http://twitter.com/share?url=&amp{{asset('news/'.$page->id)}};" class="twitter-share-button" >Tweet</a>
                                 </div>
@@ -95,6 +89,7 @@
                         @if($menu->id == $page['menu'][0]['id'])
                     <h3 class="head row"><span>{{$menu->name}}</span></h3>
                     <ul class="left-side-menu">
+                        @if($menu->children)
                         @foreach($menu->children as $submenu)
                         <li @if($page['menu'][1]['id'] == $submenu->id)class="active"@endif>
                             <a href="{{$submenu->link}}">{{$submenu->name}}</a>
@@ -109,6 +104,7 @@
                             @endif
                         </li>
                         @endforeach
+                        @endif
                     </ul>
                         @endif
                     @endforeach

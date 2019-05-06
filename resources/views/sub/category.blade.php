@@ -62,9 +62,10 @@
                     </div>
                 </div>
                 <div class="col-sm-3">
-                    <h3 class="head row"><span>Мэдээний ангилал</span></h3>
+                    <h3 class="head row"><span>Ангилал</span></h3>
                     <ul class="left-side-menu">
                         @php $i=1 @endphp
+
                         @foreach($categories as $cat)
                             @if($cat->parent_id == 0)
                                 <li>

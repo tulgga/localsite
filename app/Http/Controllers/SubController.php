@@ -71,6 +71,7 @@ class SubController extends BaseController
         $paginate=20;
         $data['newslist'] = Post::where('site_id',$data['info']->id)->where('status',1)->where('news_to_category.cat_id',$id)->Join('news_to_category','news_to_category.post_id', '=','posts.id')->orderBy('posts.created_at','DESC')->select('posts.title', 'posts.short_content','posts.id','posts.created_at','posts.image','posts.type')->paginate($paginate);
         $data['category'] = Category::where('site_id',$data['info']->id)->where('id',$id)->select('*')->first();
+        //echo json_encode($data['category']); die;
         $data['categories'] = Category::where('site_id',$data['info']->id)->orderBy('order_num','ASC')->select('*')->get();
         $data['category']->menu = $this->getCategoryID([['id'=>$data['category']->id, 'parent_id'=>$data['category']->parent_id, 'name'=>$data['category']->name]]);
 
