@@ -113,6 +113,34 @@
                                 <a href="#">Аймгийн 2016 оны авлигын эсрэг, авлигаас урьдчилан сэргийлэх, соён...</a>
                                 <span class="create_date">2018 оны 12 сар | Төсөв санхүү</span>
                             </li>
+                            <li>
+                                <a href="#">Аймгийн 2016 оны авлигын эсрэг, авлигаас урьдчилан сэргийлэх, соён...</a>
+                                <span class="create_date">2018 оны 12 сар | Төсөв санхүү</span>
+                            </li><li>
+                                <a href="#">Аймгийн 2016 оны авлигын эсрэг, авлигаас урьдчилан сэргийлэх, соён...</a>
+                                <span class="create_date">2018 оны 12 сар | Төсөв санхүү</span>
+                            </li>
+                            <li>
+                                <a href="#">Аймгийн 2016 оны авлигын эсрэг, авлигаас урьдчилан сэргийлэх, соён...</a>
+                                <span class="create_date">2018 оны 12 сар | Төсөв санхүү</span>
+                            </li>
+                            <li>
+                                <a href="#">Аймгийн 2016 оны авлигын эсрэг, авлигаас урьдчилан сэргийлэх, соён...</a>
+                                <span class="create_date">2018 оны 12 сар | Төсөв санхүү</span>
+                            </li>
+                            <li>
+                                <a href="#">Аймгийн 2016 оны авлигын эсрэг, авлигаас урьдчилан сэргийлэх, соён...</a>
+                                <span class="create_date">2018 оны 12 сар | Төсөв санхүү</span>
+                            </li>
+                            <li>
+                                <a href="#">Аймгийн 2016 оны авлигын эсрэг, авлигаас урьдчилан сэргийлэх, соён...</a>
+                                <span class="create_date">2018 оны 12 сар | Төсөв санхүү</span>
+                            </li>
+                            <li>
+                                <a href="#">Аймгийн 2016 оны авлигын эсрэг, авлигаас урьдчилан сэргийлэх, соён...</a>
+                                <span class="create_date">2018 оны 12 сар | Төсөв санхүү</span>
+                            </li>
+
                         </div>
                     </ul>
                 </div>
@@ -184,10 +212,10 @@
                     </ul>
                 </div>
                 <div class="col-sm-4">
-                    <h3 class="head row background-white"><span>Тендерийн урилга</span></h3>
+                    <h3 class="head row background-white"><span>ЭВЭНТ</span></h3>
                     <ul class="row iltod_news background-white">
                         <div class="iltod_scroll scrollbar-inner">
-                            @foreach($tender_posts as $tend)
+                            {{--@foreach($tender_posts as $tend)
                                 @foreach($latest_news as $nws)
                                     @if($tend->post_id == $nws->id)
                                     <li>
@@ -196,7 +224,39 @@
                                     </li>
                                     @endif
                                 @endforeach
-                            @endforeach
+                            @endforeach--}}
+                            <li>
+                                <a href="#">Морин хуурын чуулгын дөрвөл хөгжимчдийн тоглолт</a>
+                                <span class="create_date"><font color="black">Хаана:</font> Сумын соёлын төвд   |   <font color="black">Хэзээ:</font> 2019-05-10 19:00 цагт </span>
+                            </li>
+                            <li>
+                                <a href="#">Морин хуурын чуулгын дөрвөл хөгжимчдийн тоглолт</a>
+                                <span class="create_date"><font color="black">Хаана:</font> Сумын соёлын төвд   |   <font color="black">Хэзээ:</font> 2019-05-10 19:00 цагт </span>
+                            </li>
+                            <li>
+                                <a href="#">Морин хуурын чуулгын дөрвөл хөгжимчдийн тоглолт</a>
+                                <span class="create_date"><font color="black">Хаана:</font> Сумын соёлын төвд   |   <font color="black">Хэзээ:</font> 2019-05-10 19:00 цагт </span>
+                            </li>
+                            <li>
+                                <a href="#">Морин хуурын чуулгын дөрвөл хөгжимчдийн тоглолт</a>
+                                <span class="create_date"><font color="black">Хаана:</font> Сумын соёлын төвд   |   <font color="black">Хэзээ:</font> 2019-05-10 19:00 цагт </span>
+                            </li>
+                            <li>
+                                <a href="#">Морин хуурын чуулгын дөрвөл хөгжимчдийн тоглолт</a>
+                                <span class="create_date"><font color="black">Хаана:</font> Сумын соёлын төвд   |   <font color="black">Хэзээ:</font> 2019-05-10 19:00 цагт </span>
+                            </li>
+                            <li>
+                                <a href="#">Морин хуурын чуулгын дөрвөл хөгжимчдийн тоглолт</a>
+                                <span class="create_date"><font color="black">Хаана:</font> Сумын соёлын төвд   |   <font color="black">Хэзээ:</font> 2019-05-10 19:00 цагт </span>
+                            </li>
+                            <li>
+                                <a href="#">Морин хуурын чуулгын дөрвөл хөгжимчдийн тоглолт</a>
+                                <span class="create_date"><font color="black">Хаана:</font> Сумын соёлын төвд   |   <font color="black">Хэзээ:</font> 2019-05-10 19:00 цагт </span>
+                            </li>
+                            <li>
+                                <a href="#">Морин хуурын чуулгын дөрвөл хөгжимчдийн тоглолт</a>
+                                <span class="create_date"><font color="black">Хаана:</font> Сумын соёлын төвд   |   <font color="black">Хэзээ:</font> 2019-05-10 19:00 цагт </span>
+                            </li>
                         </div>
                     </ul>
                 </div>

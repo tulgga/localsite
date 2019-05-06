@@ -61,18 +61,20 @@
     <div class="row top-line">
         <div class="container">
             <div class="row">
-                <div class="col-sm-6 col-11">
+                <div class="col-sm-4 col-11">
                     <ul class="top-contact">
                         <li><a href="tel:{{$info->config['contact']['phone']}}"><i class="fa fa-phone"></i> {{$info->config['contact']['phone']}}</a></li>
                         <li><a href="mailto:{{$info->config['contact']['email']}}"><i class="fa fa-envelope"></i> {{$info->config['contact']['email']}}</a></li>
                     </ul>
                 </div>
-                <div class="col-sm-6 col-1">
+                <div class="col-sm-8 col-1">
                     <div class="top-menu-show-btn d-sm-none"><i class="fa fa-ellipsis-v"></i></div>
                     <ul class="top-menu">
                         <li><a href="#" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-link"></i> Бусад сумдууд</a></li>
                         <li><a href="{{asset('archive')}}"><i class="fa fa-archive"></i> Архив</a></li>
                         <li><a href="{{asset('feedback')}}"><i class="far fa-comments"></i> Санал хүсэлт, өргөдөл, гомдол</a></li>
+
+                    <a href="https://intranet.gov.mn/" target="_blank"><img style="height: 30px;margin: 9px 0 9px 15px;border-radius: 5px;" src="https://intranet.gov.mn/style/login/header/able.gif" /></a>
                     </ul>
                 </div>
             </div>
@@ -81,7 +83,7 @@
     <div class="row">
         <div class="container">
             <div class="row">
-                <div class="col-sm-4 col-9">
+                <div class="col-sm-6 col-9">
                     <a class="logo" href="{{asset('')}}">
                     <img src="{{ asset('uploads/'.$info->logo) }}">
                         <div>
@@ -90,7 +92,105 @@
                         </div>
                     </a>
                 </div>
-                <div class="col-sm-8"></div>
+                <div class="col-sm-6">
+                    <form method="post" action="" class="pt-4" enctype="multipart/form-data">
+                        <div class="input-group input-group-sm mb-3">
+                            <input type="search" class="form-control" style="font-size: 12px" placeholder="Хайх утгаа оруулна уу..." aria-label="Recipient's username" aria-describedby="button-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="button" id="button-addon2"><i class="fa fa-search"></i> </button>
+                            </div>
+                        </div>
+                    </form>
+                        <nav class="header-menu navbar navbar-expand-lg" style="z-index: 9">
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav ml-auto">
+                                <li class="nav-item dropdown">
+                                    <a href="#" class="nav-link dropdown-toggle">БОДЛОГЫН ХӨТӨЛБӨР</a>
+                                    <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        <li class="nav-item"><a class="dropdown-item" href="#">Засаг даргын үйл ажиллагааны хөтөлбөр</a> </li>
+                                        <li class="nav-item"><a class="dropdown-item" href="#">Эдийн засаг, нийгмийг хөгжүүлэх үндсэн чиглэл</a> </li>
+                                        <li class="nav-item"><a class="dropdown-item" href="#">Дэд хөтөлбөрүүд хэрэгжүүлэх төлөвлөгөө</a> </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a href="#" class="nav-link dropdown-toggle">ИЛ ТОД БАЙДАЛ</a>
+                                    <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        <li class="nav-item dropdown"><a class="dropdown-item" href="#">Хүний нөөц</a>
+                                            <ul>
+                                                <li class="nav-item"><a class="dropdown-item" href="#" >Стратеги зорилт, Зорилго</a></li>
+                                                <li class="nav-item"><a class="dropdown-item" href="#" >Сумын хүний нөөцийн мэдээлэл</a></li>
+                                                <li class="nav-item"><a class="dropdown-item" href="#" >Удирдах ажилтны сонгон шалгаруулалтын зар</a></li>
+                                                <li class="nav-item"><a class="dropdown-item" href="#" >Төрийн албаны мэргэшлийн шалгалтын зар</a></li>
+                                                <li class="nav-item"><a class="dropdown-item" href="#" >Нөөцөөс нөхөх иргэдийн зар</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="nav-item dropdown"><a class="dropdown-item" href="#">Төсөв санхүү</a>
+                                            <ul>
+                                                <li class="nav-item"><a class="dropdown-item" href="#" >Батлагдсан төсөв</a></li>
+                                                <li class="nav-item"><a class="dropdown-item" href="#" >Төсвийн гүйцэтгэл</a></li>
+                                                <li class="nav-item"><a class="dropdown-item" href="#" >Аудитын дүгнэлт, зөвлөмж</a></li>
+                                                <li class="nav-item dropdown"><a class="dropdown-item" href="#" >Хөрөнгө оруулалт</a>
+                                                    <ul>
+                                                        <li class="nav-item"><a class="dropdown-item" href="#" >Орон нутгийн хөгжлийн сан</a></li>
+                                                        <li class="nav-item"><a class="dropdown-item" href="#" >Улсын төсвийн хөрөнгө оруулалт</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="nav-item dropdown"><a class="dropdown-item" href="#">Худалдан авах ажиллагаа</a>
+                                            <ul>
+                                                <li class="nav-item"><a class="dropdown-item" href="#" >Төлөвлөгөө</a></li>
+                                                <li class="nav-item"><a class="dropdown-item" href="#" >Батлагдсан төлөвлөгөө</a></li>
+                                                <li class="nav-item dropdown"><a class="dropdown-item" href="#" >Тендер</a>
+                                                    <ul>
+                                                        <li class="nav-item"><a class="dropdown-item" href="#" >Урилга</a></li>
+                                                        <li class="nav-item"><a class="dropdown-item" href="#" >Үр дүн</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="nav-item"><a class="dropdown-item" href="#" >Тайлан мэдээ</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="nav-item dropdown"><a class="dropdown-item" href="#">Үйл ажиллагаа</a>
+                                            <ul>
+                                                <li class="nav-item dropdown"><a class="dropdown-item" href="#" >Авлигын эсрэг үйл ажиллагаа</a>
+                                                    <ul>
+                                                        <li class="nav-item"><a class="dropdown-item" href="#" >АЭҮА-ны төлөвлөгөө, тайлан</a></li>
+                                                        <li class="nav-item"><a class="dropdown-item" href="#" >Гадаадын зээл тусламж</a></li>
+                                                        <li class="nav-item"><a class="dropdown-item" href="#" >Бусад мэдээлэл</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="nav-item dropdown"><a class="dropdown-item" href="#" >Төрийн аудит</a>
+                                                    <ul>
+                                                        <li class="nav-item"><a class="dropdown-item" href="#" >Дүгнэлт</a></li>
+                                                        <li class="nav-item"><a class="dropdown-item" href="#" >Зөвлөмж</a></li>
+                                                        <li class="nav-item"><a class="dropdown-item" href="#" >Тайлан</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="nav-item dropdown"><a class="dropdown-item" href="#" >Дотоод аудит</a>
+                                                    <ul>
+                                                        <li class="nav-item"><a class="dropdown-item" href="#" >Дүгнэлт</a></li>
+                                                        <li class="nav-item"><a class="dropdown-item" href="#" >Зөвлөмж</a></li>
+                                                        <li class="nav-item"><a class="dropdown-item" href="#" >Тайлан</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" >Шилэн данс</a>
+                                    <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        <li class="nav-item"><a class="dropdown-item" href="#" >Төсвийн ерөнхийлөн захирагч</a></li>
+                                        <li class="nav-item"><a class="dropdown-item" href="#" >ИТХурал</a></li>
+                                        <li class="nav-item"><a class="dropdown-item" href="#" >Засаг даргын тамгын газар</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            </div>
+                        </nav>
+                </div>
             </div>
         </div>
     </div>
@@ -98,7 +198,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 col-3">
-                    <nav class="navbar navbar-expand-lg">
+                    <nav class="navbar navbar-expand-lg" style="z-index: 1">
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
@@ -107,7 +207,8 @@
                                 <li class="nav-item"><a href="{{asset('')}}" class="nav-link"><i class="fa fa-home"></i> </a> </li>
                                 <?php foreach($info->menu as $mn){ ?>
                                 <?php if($mn->children){ ?>
-                                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" @if($mn->blank == 1) target="_blank"
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="javascript:void(0);" @if($mn->blank == 1) target="_blank"
 @endif><?php echo $mn->name; ?></a>
                                     <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                         <?php foreach($mn->children as $child){ ?>
@@ -211,7 +312,7 @@
                 <div class="col-sm-12">
                     Зохиогчийн бүх эрх хуулиар хамгаалагдсан © 2018  <strong>{{$info->config['main']['copyright']}}</strong>
                 </br>
-                    Энэхүү веб хуудсыг Баянхонгор аймгийн ЗДТГ-ын захиалгаар <a href="http://towersoft.mn" target="_blank"> TАУЭРСОФТ ХХК</a> бүтээв.
+                    Энэхүү цахим мэдээллийн нэгдсэн системийг "Ухаалаг Баянхонгор" хөтөлбөрийн хүрээнд <a href="http://towersoft.mn" target="_blank"> TАУЭРСОФТ ХХК</a> бүтээв.
                 </div>
             </div>
         </div>
