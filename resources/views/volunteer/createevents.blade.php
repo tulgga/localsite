@@ -34,7 +34,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label for="subject">Гарчиг:</label>
+                                    <label for="subject">Зураг:</label>
                                     <input class="w-100" type="file"  name="images[]" @if($id == 0) required @endif multiple>
                                 </div>
                             </div>
@@ -55,7 +55,7 @@
                         </div>
                         @if($images)
                         <div class="form-group">
-                            <label>Оруулсан зурагнууд:</label>
+                            <label>Оруулсан зурагнууд: </label>
                                 @foreach($images as $img)
                                     <div class="eventImg" style="background-image: url({{asset('uploads')}}/{{$img->image}})">
                                         <a class="btn btn-sm btn-danger font-12 d-table" href="/deleteImg/{{$img->id}}/{{$id}}"><i class="fa fa-trash"></i></a>
@@ -63,6 +63,10 @@
                                 @endforeach
                         </div>
                         @endif
+                        <div class="form-group">
+                            <label>Хамтрагчид: </label>
+                            <textarea class="form-control"></textarea>
+                        </div>
                         <div class="form-group">
                             <label for="pagetext">Тайлбар:</label>
                             <textarea name="contentHTML" id="pagetext" rows="10">{{$content}}</textarea>
