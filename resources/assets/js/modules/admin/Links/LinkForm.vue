@@ -104,10 +104,10 @@
         methods: {
             fetchData: function () {
                 this.m_id = this.$route.params.id;  // route дээр ирж байгаа id-г авч байна / edit үед
-                this.form.site_id= this.$store.getters.domain.id
+                this.form.site_id= this.$store.getters.domain.id;
                 axios.get('/link_category_show/'+this.form.site_id).then((response) => {
                     this.cats = response.data.success;
-                })
+                });
 
                 if (this.m_id) {
                     axios.get('/link/'+this.m_id).then((response) => {
@@ -136,7 +136,7 @@
 
                         let formData = new FormData();
                         formData.append('data', JSON.stringify(this.form));
-                        formData.append('image', this.image)
+                        formData.append('image', this.image);
 
                         this.m_id = this.$route.params.id;
                         if (this.m_id) {

@@ -68,7 +68,7 @@
 
                 let data = {
                     username: this.name
-                }
+                };
                 axios.post('/password/email', data).then((response) => {
                     if(response.data.success){
                         this.loading = false;

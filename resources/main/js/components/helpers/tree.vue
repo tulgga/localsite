@@ -57,7 +57,7 @@
                 </section>
                 <footer class="modal-card-foot">
                     <button class="button is-text" v-on:click="deletemodal = false">Буцах</button>
-                    <button class="button is-danger add_button" v-on:click="remove(); deletemodal = false" >
+                    <button class="button is-danger add_button" v-on:click="remove() deletemodal = false">
                         <span>Устгах</span>
                     </button>
                 </footer>
@@ -92,10 +92,10 @@
              * (R means Real node, E means Empty node)
              */
             displayedChildren () {
-                const realNodes = this.data.children
-                if (!realNodes || !realNodes.length) return [] // an empty node or a real node without children
+                const realNodes = this.data.children;
+                if (!realNodes || !realNodes.length) return []; // an empty node or a real node without children
                 return realNodes.reduce((displayedChildren, realNode) => {
-                    displayedChildren.push(realNode, {}/* <--- empty node */)
+                    displayedChildren.push(realNode, {}/* <--- empty node */);
                     return displayedChildren
                 }, [{}])
             }
@@ -105,8 +105,8 @@
              * @context {this} - instance of drop-into node
              */
             isAllowedToDrop () {
-                let vm = this
-                const { draggingVm } = vm.shared
+                let vm = this;
+                const { draggingVm } = vm.shared;
                 // limitation 1: this cannot be the parent of the dragging node
                 if (vm === draggingVm.$parent) {
                     return false
@@ -117,7 +117,7 @@
                 }
                 // limitation 3: this cannot be the dragging node itself or its descendant
                 while (vm) {
-                    if (vm === draggingVm) return false
+                    if (vm === draggingVm) return false;
                     vm = vm.$parent.$options.name === 'TreeNode' ? vm.$parent : null
                 }
                 return true
@@ -127,7 +127,7 @@
              */
             handleDragStart () {
                 // this.shared.draggingVm = this // cannot ensure reactive
-                this.$set(this.shared, 'draggingVm', this) // ensure reactive
+                this.$set(this.shared, 'draggingVm', this); // ensure reactive
                 this.$el.classList.add('dragging-node')
             },
             /**
@@ -141,26 +141,26 @@
              * Note that this function invokes once per every few hundred milliseconds
              */
             handleDragOver (e) {
-                e.preventDefault() // must!!!
+                e.preventDefault(); // must!!!
                 e.dataTransfer.dropEffect = this.isAllowedToDrop() ? 'move' : 'none'
             },
             /**
              * @context {this} - instance of drop-into node
              */
             remove(){
-                const { draggingVm } = this.shared
+                const { draggingVm } = this.shared;
                 this.$parent.data.children.splice(this.vmIdx / 2, 1)
             },
             handleDrop () {
-                this.revertClass()
-                if (!this.isAllowedToDrop()) return
-                const { draggingVm } = this.shared
+                this.revertClass();
+                if (!this.isAllowedToDrop()) return;
+                const { draggingVm } = this.shared;
                 // remove from the original place
-                const realIdxOfOrigin = (draggingVm.vmIdx - 1) / 2
-                draggingVm.$parent.data.children.splice(realIdxOfOrigin, 1)
+                const realIdxOfOrigin = (draggingVm.vmIdx - 1) / 2;
+                draggingVm.$parent.data.children.splice(realIdxOfOrigin, 1);
                 // case 1: drop into an empty node
                 if (this.amIEmptyNode) {
-                    this.$parent.data.children.splice(this.vmIdx / 2, 0, draggingVm.data)
+                    this.$parent.data.children.splice(this.vmIdx / 2, 0, draggingVm.data);
                     return
                 }
                 // case 2: drop into a real node as its child
@@ -179,7 +179,7 @@
              * @context {this} - instance of dragging node
              */
             handleDragEnd () {
-                this.shared.draggingVm = null
+                this.shared.draggingVm = null;
                 this.$el.classList.remove('dragging-node')
             },
             revertClass () {

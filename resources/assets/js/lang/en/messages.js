@@ -185,4 +185,4 @@ module.exports = {
     th_district : 'District',
     th_khoroo : 'Khoroo',
     th_amount_last : 'Amount last',
-}
+};

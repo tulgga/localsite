@@ -145,9 +145,8 @@
 						}
 					}
 				});
-			};
-
-			// Register buttons
+            }
+            // Register buttons
 			editor.addButton('responsivefilemanager', 
 			{
 				title : 'Browse files',

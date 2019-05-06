@@ -12,4 +12,4 @@ module.exports = {
   	last : 'Сүүлчийн',
   	first : 'Эхний',
   	count : '{count} бичлэгээс {from}-{to} -г харуулж байна',
-}
+};

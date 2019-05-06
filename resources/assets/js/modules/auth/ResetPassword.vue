@@ -85,15 +85,15 @@
                     username: this.name,
                     password: this.password,
                     token: this.$route.query.token
-                }
+                };
                 axios.post('/password/reset', data).then((response) => {
                     if(response.data.success){
                         this.$store.dispatch('saveToken', {
                             token: response.data.success,
                             remember: this.remember
-                        })
+                        });
                         // Fetch the user.
-                        this.$store.dispatch('fetchUser')
+                        this.$store.dispatch('fetchUser');
                         // Redirect home.
                         this.$router.push({ name: 'home' })
                     }else{

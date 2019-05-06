@@ -164,7 +164,7 @@ CRUD Edit, Create form
                 this.m_id = this.$route.params.id;
                 axios.get('/file_category/'+this.site_id).then((response) => {
                     this.options = response.data.success;
-                })
+                });
 
                 if (this.m_id) {
                     axios.get('/file/'+this.m_id).then((response) => {
@@ -193,7 +193,7 @@ CRUD Edit, Create form
                         let formData = new FormData();
 
                         formData.append('data', JSON.stringify(this.form));
-                        formData.append('file', this.file)
+                        formData.append('file', this.file);
                         // Create
                         if (this.m_id) {
                             axios.post('/file/'+this.m_id, formData)

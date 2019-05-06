@@ -43,7 +43,7 @@
             }
         },
         created: function () {
-            window.addEventListener('resize', this.handleResize)
+            window.addEventListener('resize', this.handleResize);
             this.handleResize();
             this.fetchData();
             },

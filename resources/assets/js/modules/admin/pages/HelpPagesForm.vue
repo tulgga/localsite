@@ -186,10 +186,10 @@ CRUD Edit, Create form
             fetchData: function () {
                 // pages_min
                 this.m_id = this.$route.params.id;
-                this.site_id= this.$store.getters.domain.id
+                this.site_id= this.$store.getters.domain.id;
                 axios.get('/pages/'+this.site_id).then((response) => {
                     this.pages = response.data.success;
-                })
+                });
 
                 if (this.m_id) {
                     axios.get('/page_single/'+this.m_id).then((response) => {
@@ -227,9 +227,9 @@ CRUD Edit, Create form
                         this.is_loading = true;
                         this.form.site_id=this.site_id;
 
-                        let formData = new FormData()
-                        formData.append('data', JSON.stringify(this.form))
-                        formData.append('image', this.image)
+                        let formData = new FormData();
+                        formData.append('data', JSON.stringify(this.form));
+                        formData.append('image', this.image);
 
                         this.m_id = this.$route.params.id;
                         if (this.m_id) {
@@ -247,7 +247,7 @@ CRUD Edit, Create form
                                 .catch(error => {
                                     this.aldaanuud = error.response.data.errors;
                                     for (var i = 0; i < Object.keys(this.aldaanuud).length; i++) {
-                                        let tulhur = Object.keys(this.aldaanuud)[i]
+                                        let tulhur = Object.keys(this.aldaanuud)[i];
                                         this.errors.add({ field: tulhur, msg: this.aldaanuud[tulhur][0]});
                                     }
                                     this.is_loading = false;
@@ -295,14 +295,14 @@ CRUD Edit, Create form
                 if(this.form.type==2){
                     axios.get('/news_category/' + this.site_id).then((response) => {
                         this.types = response.data.success;
-                    })
+                    });
                     return
                 }
 
                 if(this.form.type==3){
                     axios.get('/page_select/' + this.site_id).then((response) => {
                         this.types = response.data.success;
-                    })
+                    });
                     return
                 }
 
@@ -310,7 +310,7 @@ CRUD Edit, Create form
                 if(this.form.type==4){
                     axios.get('/file_category/'+ this.site_id).then((response) => {
                         this.types = response.data.success;
-                    })
+                    });
                     return
                 }
 
@@ -318,11 +318,11 @@ CRUD Edit, Create form
                 if(this.form.type==5){
                     axios.get('/link_category_show/'+this.site_id).then((response) => {
                         this.types = response.data.success;
-                    })
+                    });
                     return
                 }
 
-                return
+
             },
 
         }

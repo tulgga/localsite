@@ -7,7 +7,7 @@ import * as types from '../mutation-types'
 export const state = {
     pageloader: false,
     menu: false,
-}
+};
 
 // mutations
 export const mutations = {
@@ -20,7 +20,7 @@ export const mutations = {
 
 
 
-}
+};
 
 // actions
 export const actions = {
@@ -28,10 +28,10 @@ export const actions = {
        const r = await axios.get('/menu/0');
        commit(types.SAVE_MENU, { menu: r.data.success })
     },
-}
+};
 
 // getters
 export const getters = {
     pageloader: state => state.pageloader,
     menu: state => state.menu,
-}
+};

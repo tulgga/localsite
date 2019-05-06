@@ -220,8 +220,8 @@
                 this.fetched=false;
 
                 axios.get('/urgudul/0').then((response) => {
-                    this.fetched=true
-                    this.urgudul=response.data.success
+                    this.fetched=true;
+                    this.urgudul=response.data.success;
                     axios.get('/heltes').then((r) => {
                         this.heltes=r.data.success
                     })
@@ -235,13 +235,13 @@
                         let formData = new FormData();
 
                         formData.append('data', JSON.stringify(this.form));
-                        formData.append('image', this.image)
+                        formData.append('image', this.image);
 
                         axios.post('/sendUrgudul', formData)
                             .then((response) => {
                                 this.is_loading = false;
                                 this.fetchData();
-                                this.form = {type:0, name:'', email:'', phone:'', content:''}
+                                this.form = {type:0, name:'', email:'', phone:'', content:''};
                                 this.$toasted.global.toast_success({message: this.$store.getters.lang.messages.is_created_text});
                         });
 

@@ -8369,7 +8369,7 @@ elFinder.prototype = {
 	 * @return String
 	 */
 	toLocaleString : function(num) {
-		var v = new Number(num);
+		var v = Number(num);
 		if (v) {
 			if (v.toLocaleString) {
 				return v.toLocaleString();
@@ -13231,7 +13231,7 @@ $.fn.elfindercontextmenu = function(fm) {
 									e.stopPropagation();
 									//e.preventDefault();
 									open(e.originalEvent.touches[0].pageX, e.originalEvent.touches[0].pageY);
-									cwd.data('longtap', true)
+									cwd.data('longtap', true);
 									tgt.one('touchend', function() {
 										setTimeout(function() {
 											cwd.removeData('longtap');
@@ -21767,7 +21767,7 @@ elFinder.prototype.commands.chmod = function() {
 			if (c == $.ui.keyCode.ENTER) {
 				e.stopPropagation();
 				save();
-				return;
+
 			}
 		}).on('focus', function(e){
 			$(this).trigger('select');
@@ -22744,7 +22744,7 @@ elFinder.prototype.commands.edit = function() {
 								}).fail(function(error) {
 									error && fm.error(error);
 									ta.elfinderdialog('destroy');
-									return;
+
 								});
 							} else {
 								_loaded = true;
@@ -24389,8 +24389,8 @@ elFinder.prototype.commands.fullscreen = function() {
 						elm.filter('a').each(function() {
 							var tgt = $(this);
 							if (!tgt.attr('target')) {
-								tgt.attr('target', '_blank');;
-							}
+                                tgt.attr('target', '_blank');
+                            }
 						});
 					}
 					if (elm) {
@@ -30774,7 +30774,7 @@ elFinder.prototype.commands.resize = function() {
 										}];
 									}
 									fm.confirm(cOpts);
-									return;
+
 								}
 							})
 							.on('keyup', function() {

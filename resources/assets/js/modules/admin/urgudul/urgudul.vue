@@ -217,7 +217,7 @@
             send(){
                 this.is_loading=true;
                 this.fetched = false;
-                var yvuulah = { reply: this.showid.reply }
+                var yvuulah = { reply: this.showid.reply };
 
                 let formData = new FormData();
                 formData.append('data', JSON.stringify(yvuulah));

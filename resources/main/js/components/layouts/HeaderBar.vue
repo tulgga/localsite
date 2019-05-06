@@ -239,7 +239,7 @@
             }
         },
     	created: function () {
-            this.checkSearch()
+            this.checkSearch();
             this.fetchData()
         },
         mounted(){

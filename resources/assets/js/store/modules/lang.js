@@ -8,12 +8,12 @@ var version_key = 'mn';
 //     select_lang_key = localStorage.getItem('lang_key');
 // }
 
-let fileni = require.context('../../lang', true, /\.js$/)
-const modules = {}
+let fileni = require.context('../../lang', true, /\.js$/);
+const modules = {};
 
 fileni.keys().forEach((key) => {
 
-    var neg = key.replace(/(\.\/|\.js)/g, '')
+    var neg = key.replace(/(\.\/|\.js)/g, '');
 
     // console.log(neg.includes('en/'));
 
@@ -25,7 +25,7 @@ fileni.keys().forEach((key) => {
     // } else {
         
     // }
-})
+});
 
 // console.log(modules)
 
@@ -34,19 +34,19 @@ export const state = {
     lang: modules,
     selected_lang: select_lang_key,
     version_lang: version_key,
-}
+};
 
 // mutations
 export const mutations = {
-}
+};
 
 // actions
 export const actions = {
-}
+};
 
 // getters
 export const getters = {
     lang: state => state.lang,
     selected_lang: state => state.selected_lang,
     version_lang: state => state.version_lang,
-}
+};

@@ -197,12 +197,12 @@ CRUD Edit, Create form
                 this.m_id = this.$route.params.id;
                 axios.get('/news_category/'+this.site_id).then((response) => {
                     this.options = response.data.success;
-                })
+                });
 
                 axios.get('/site').then((response) => {
                     this.sites = response.data.success;
                     console.log(this.sites);
-                })
+                });
                 if (this.m_id) {
                     axios.get('/news/'+this.m_id).then((response) => {
                         console.log( response.data.success);
@@ -238,7 +238,7 @@ CRUD Edit, Create form
                         let formData = new FormData();
 
                         formData.append('data', JSON.stringify(this.form));
-                        formData.append('image', this.image)
+                        formData.append('image', this.image);
                         // Create
                         if (this.m_id) {
                             axios.post('/news/'+this.m_id, formData)

@@ -206,7 +206,7 @@
 		},
 		updateConfig: function() { // This displays information about jPlayer's configuration in inspector
 		
-			var jPlayerInfo = "<p>This jPlayer instance is running in your browser where:<br />"
+			var jPlayerInfo = "<p>This jPlayer instance is running in your browser where:<br />";
 
 			for(i = 0; i < $(this).data("jPlayerInspector").jPlayer.data("jPlayer").solutions.length; i++) {
 				var solution = $(this).data("jPlayerInspector").jPlayer.data("jPlayer").solutions[i];
@@ -254,7 +254,7 @@
 			for(prop in $(this).data("jPlayerInspector").jPlayer.data("jPlayer").status.media) {
 				jPlayerInfo += "&nbsp;" + prop + ": " + $(this).data("jPlayerInspector").jPlayer.data("jPlayer").status.media[prop] + "<br />"; // Some are strings
 			}
-			jPlayerInfo += "};</code></p>"
+			jPlayerInfo += "};</code></p>";
 
 			jPlayerInfo += "<p>";
 			jPlayerInfo += "<code>status.videoWidth = '" + $(this).data("jPlayerInspector").jPlayer.data("jPlayer").status.videoWidth + "'</code>";

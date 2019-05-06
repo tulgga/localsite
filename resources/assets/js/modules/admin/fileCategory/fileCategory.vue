@@ -23,8 +23,8 @@
                            <div class="data-action">
                                <div @click="changePositionMain(i,1)" ><i class="fas fa-arrow-up"></i></div>
                                <div @click="changePositionMain(i,-1)" ><i class="fas fa-arrow-down"></i></div>
-                               <div @click="insert_cat=list; catmodal=true;"><i class="fas fa-pencil-alt"></i></div>
-                               <div @click="delete_cat=list; deletemodal=true;"><i class="fas fa-trash"></i></div>
+                               <div @click="insert_cat=list catmodal=true;"><i class="fas fa-pencil-alt"></i></div>
+                               <div @click="delete_cat=list deletemodal=true;"><i class="fas fa-trash"></i></div>
                            </div>
                        </td>
                    </tr>
@@ -36,8 +36,8 @@
                                <div class="data-action">
                                    <div @click="changePosition(i, a, 1)"><i class="fas fa-arrow-up"></i></div>
                                    <div @click="changePosition(i, a,-1)"><i class="fas fa-arrow-down"></i></div>
-                                   <div @click="insert_cat=child; catmodal=true;" ><i class="fas fa-pencil-alt"></i></div>
-                                   <div @click="delete_cat=child; deletemodal=true;"><i class="fas fa-trash"></i></div>
+                                   <div @click="insert_cat=child catmodal=true;"><i class="fas fa-pencil-alt"></i></div>
+                                   <div @click="delete_cat=child deletemodal=true;"><i class="fas fa-trash"></i></div>
                                </div>
                            </td>
                        </tr>
@@ -49,7 +49,7 @@
             </div>
 
             <div class="boxed-item-center absolute">
-                <a  @click="insert_cat=form; catmodal=true; " class="add_button">+</a>
+                <a @click="insert_cat=form catmodal=true; " class="add_button">+</a>
             </div>
 
         </div>
@@ -157,7 +157,7 @@
 
             nemeh: function(){
                 if(this.insert_cat.name===''){
-                    alert('Мэдээний ангиллын нэр хоосон байна')
+                    alert('Мэдээний ангиллын нэр хоосон байна');
                     return
                 }
 
@@ -204,7 +204,7 @@
                       id_1_num :  this.lists[index-action].order_num,
                       id_2: this.lists[index-action].id,
                       id_2_num :  this.lists[index].order_num,
-                  }
+                  };
 
                 let formData = new FormData();
                 formData.append('data', JSON.stringify(send));
@@ -228,14 +228,14 @@
                     id_1_num :  this.lists[index].children[subindex-action].order_num,
                     id_2: this.lists[index].children[subindex-action].id,
                     id_2_num :  this.lists[index].children[subindex].order_num,
-                }
+                };
 
                 let formData = new FormData();
                 formData.append('data', JSON.stringify(send));
-                this.fetched=false
+                this.fetched=false;
                 axios.post('/file_category/change', formData).then((r) => {
                     this.fetchData();
-                    this.fetched=true
+                    this.fetched=true;
                     this.is_loading = false;
                     this.$toasted.global.toast_success({message: 'Амжилттай хадгаллаа'}); // delete success toast
                 })

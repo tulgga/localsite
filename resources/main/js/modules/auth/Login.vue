@@ -66,7 +66,7 @@
                 let data = {
                     user_name: this.user_name,
                     password: this.password,
-                }
+                };
                 axios.post('/login', data).then((response) => {
                     if(response.data.success){
                         this.$store.dispatch('saveToken', {

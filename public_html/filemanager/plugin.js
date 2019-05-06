@@ -85,6 +85,6 @@ tinymce.PluginManager.add('filemanager', function(editor) {
 				}
 			}
 		});
-	};
-	return false;
+    }
+    return false;
 });
