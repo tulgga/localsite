@@ -24,7 +24,7 @@ a {
 }
 
 .searchform {
-  margin-top:33px;
+  margin-top:15px;
   width: 100%;
   position: relative;
 }
@@ -262,27 +262,28 @@ a {
 
     padding: 6px 0px 6px 0px;
     margin-bottom: 15px;
-    background: #e23b3b;
+    background: #1b3658;
   }
 
   #header-content {
-
+    background-repeat: no-repeat, repeat-x;
+    background-position: center 56px, bottom center;
 
     .logo img {
       width: 360px;
     }
     .container {
       padding-top:15px;
-      padding-bottom: 60px;
-      background-position: bottom right;
-      background-repeat: no-repeat;
+      padding-bottom: 5px;
+      //background-position: bottom right;
+      //background-repeat: no-repeat;
     }
   }
 
 
   #header-menu {
     //border-top: 1px solid rgba(255, 255, 255, 0.1);
-      height: 50px;
+      height: 40px;
       //overflow: hidden;
 
       #menu, #menu ul {
@@ -315,7 +316,7 @@ a {
       }
 
     #menu li.is-active a, #menu li.is-active li.is-active a, #menu li.is-active li.is-active  li.is-active a, #menu li.is-active li.is-active  li.is-active li.is-active a {
-      background: #224E8A;
+      background:  rgba(0,0,0,0.2);
       color:#FFF;
     }
     #menu li.is-active li a {
@@ -325,9 +326,10 @@ a {
 
 
 
+
     #menu a {
       float: left;
-      padding: 16px 12px 15px 11px;
+      padding: 11px 12px 10px 11px;
       text-transform: uppercase;
       text-decoration: none;
       /*text-shadow: 0 1px 0 #000;*/
@@ -340,7 +342,7 @@ a {
       opacity: 0;
       visibility: hidden;
       position: absolute;
-      top: 50px;
+      top: 40px;
       left: 0;
       z-index: 1;
       background: #FFF;
@@ -411,7 +413,36 @@ a {
   }
 }
 
+#header.fixed {
+  width: 100%;
+  z-index: 999;
+  position: fixed;
+  top: 0px;
+  #header-top {
+    margin-bottom: 0px;
+  }
+  #header-content {
+    display: none;
+  }
+
+  animation: fadeIn 0.2s ease-in both;
+}
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -20%, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+
 #footer {
+  padding: 0px;
   font-size: 14px;
   color: #FFF;
   a {
@@ -1064,4 +1095,127 @@ a .col3newslist .title {
 .feedlist li .sanal{}
 label {
   margin-bottom: 0.2em;
+}
+
+
+#header-topmenu {
+  //border-top: 1px solid rgba(255, 255, 255, 0.1);
+  height: 40px;
+  //overflow: hidden;
+
+  #topmenu, #topmenu ul {
+    margin: 0;
+    padding: 0;
+    font-size: 13px;
+    list-style: none;
+    float: right;
+    z-index: 999;
+    margin-top: 10px;
+
+  }
+  #topmenu:before,
+  #topmenu:after {
+    content: "";
+    display: table;
+  }
+
+  #topmenu:after {
+    clear: both;
+  }
+
+  #topmenu {
+    position: relative;
+    zoom:1;
+
+    z-index: 11;
+  }
+
+  #topmenu li {
+    float: left;
+    position: relative;
+  }
+  #topmenu li:last-child a i {
+    display: none;
+  }
+  //#topmenu li.is-active a, #topmenu li.is-active li.is-active a, #topmenu li.is-active li.is-active  li.is-active a, #topmenu li.is-active li.is-active  li.is-active li.is-active a {
+  //  background: #224E8A;
+  //  color:#FFF;
+  //}
+  #topmenu li.is-active li a {
+    background: #FFF;
+    color: #333;
+  }
+
+
+
+  #topmenu a {
+    float: left;
+    padding: 11px 12px 10px 11px;
+    text-transform: uppercase;
+    text-decoration: none;
+    /*text-shadow: 0 1px 0 #000;*/
+  }
+
+
+  #topmenu ul {
+    margin: 20px 0 0 0;
+    _margin: 0; /*IE6 only*/
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    top: 40px;
+    left: 0;
+    z-index: 999;
+    background: #FFF;
+    -moz-box-shadow: 0 -1px rgba(255,255,255,.3);
+    -webkit-box-shadow: 0 -1px 0 rgba(255,255,255,.3);
+    box-shadow: 0 -1px 0 rgba(255,255,255,.3);
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -ms-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+  }
+
+  #topmenu li:hover > ul {
+    opacity: 1;
+    visibility: visible;
+    margin: 0;
+  }
+
+  #topmenu ul ul {
+    top: 0;
+    left: 250px;
+    margin:0px;
+  }
+
+  #topmenu ul li {
+    float: none;
+    display: block;
+    border: 0;
+  }
+
+  #topmenu ul a {
+    color: #222222;
+    padding: 10px;
+    width: 250px;
+    _height: 10px; /*IE6 only*/
+    display: block;
+    //white-space: nowrap;
+    float: none;
+    text-transform: none;
+  }
+
+  #topmenu ul a:hover {
+    background-color: rgba(0,0,0, 0.1);
+  }
+
+
+
+
+}
+@media only screen and (max-width: 770px) {
+  #footer {
+    padding: 30px;
+  }
 }

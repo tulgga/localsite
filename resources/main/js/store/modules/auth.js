@@ -28,10 +28,14 @@ export const actions = {
        const r = await axios.get('/menu/0');
        commit(types.SAVE_MENU, { menu: r.data.success })
     },
+
+
 };
+
 
 // getters
 export const getters = {
     pageloader: state => state.pageloader,
     menu: state => state.menu,
-};
+}
+

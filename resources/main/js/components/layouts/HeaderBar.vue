@@ -61,6 +61,26 @@
                                          </ul>
                                     </li>
                                 </template>
+
+                                    <li v-for="(m1, i1) in topmenu" :class="{'is-active': i1==si1}">
+                                        <a  v-on:click="changeRoute(m1, i1, -1, -1, -1)" >{{m1.name}}</a>
+                                        <ul  v-if="m1.children" >
+                                            <li v-for="(m2, i2) in m1.children" >
+                                                <a v-on:click="changeRoute(m2, i1, i2, -1, -1)" >{{m2.name}}</a>
+                                                <ul  v-if="m2.children" >
+                                                    <li v-for="(m3, i3) in m2.children">
+                                                        <a v-on:click="changeRoute(m3, i1, i2, i3, -1)" >{{m3.name}}</a>
+                                                        <ul  v-if="m3.children" >
+                                                            <li v-for="(m4, i4) in m3.children" >
+                                                                <a v-on:click="changeRoute(m4, i1, i2, i3, i4)" >{{m4.name}}</a>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+
                             </ul>
                             <p class="menu-label"></p>
                             <p class="menu-label">Туслах цэс</p>
@@ -88,9 +108,12 @@
                     </div>
                     <div class="column is-8">
                         <div class="has-text-centered">
-                            <figure class="image ">
-                                <img :src="logo" :title="site_title"/>
-                            </figure>
+                            <router-link to="/">
+                                <figure class="image ">
+                                    <img :src="logo" :title="site_title"/>
+                                </figure>
+                            </router-link>
+
                         </div>
 
                     </div>
@@ -100,7 +123,7 @@
                 </div>
             </header>
 
-            <header  id="header" class="is-hidden-mobile" >
+            <header  id="header" :class="{'fixed':scrollPosition>215}" class="is-hidden-mobile" >
                 <div id="header-top"  :style="{'background-color': !main.parent_color.hex}">
                     <div class="container">
                         <nav class="level mb-0">
@@ -127,27 +150,51 @@
                     </div>
 
                 </div>
-                <div id="header-content"  >
-                    <div class="container" :style="'background-image:url('+siteUrl+'/images/header_bg.png);'">
+                <div id="header-content"  :style="'background-image:url('+siteUrl+'/images/header_bg1.png), url('+siteUrl+'/images/header_bg2.png) ;'">
+                    <div class="container" >
                         <div  class="columns">
-                            <div  class="column is-7">
+                            <div  class="column is-6">
+
                                 <figure class="image logo">
                                     <img :src="logo" :title="site_title"/>
                                 </figure>
                             </div>
-                            <div class="column is-5">
+                            <div class="column is-6">
                                 <div  class="is-pulled-right searchform" >
                                     <input type="text" v-model="search" placeholder="Хайх утгаа оруулна уу...">
                                     <button type="button" @click="searchClick" class="button-search"><i class="fa fa-search"></i></button>
                                 </div>
+                                        <div id="header-topmenu">
+                                        <ul id="topmenu">
+                                            <li v-for="(m1, i1) in topmenu" :class="{'is-active': i1==si1}">
+                                                <a  v-on:click="changeRoute(m1, i1, -1, -1, -1)" >{{m1.name}} <i class="fas fa-caret-down"></i></a>
+                                                <ul  v-if="m1.children" >
+                                                    <li v-for="(m2, i2) in m1.children" >
+                                                        <a v-on:click="changeRoute(m2, i1, i2, -1, -1)" >{{m2.name}}</a>
+                                                        <ul  v-if="m2.children" >
+                                                            <li v-for="(m3, i3) in m2.children">
+                                                                <a v-on:click="changeRoute(m3, i1, i2, i3, -1)" >{{m3.name}}</a>
+                                                                <ul  v-if="m3.children" >
+                                                                    <li v-for="(m4, i4) in m3.children" >
+                                                                        <a v-on:click="changeRoute(m4, i1, i2, i3, i4)" >{{m4.name}}</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                        </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
-                <div id="header-menu" :style="{'background-color': main.parent_color.hex}">
+                <div id="header-menu" :style="{'background-color': '#e23b3b'}">
                     <div class="container">
                         <ul id="menu">
-                            <li :class="{'is-active': $route.path=='/'}"><a style="padding: 16px 12px 11px 12px;" v-on:click="changeRoute('/')"><img :src="siteUrl+'/images/home.png'"/></a></li>
+                            <li :class="{'is-active': $route.path=='/'}"><a style="padding: 10px 12px 7px;" v-on:click="changeRoute('/')"><img :src="siteUrl+'/images/home.png'"/></a></li>
                             <li v-for="(m1, i1) in menu" :class="{'is-active': i1==si1}">
                                 <a  v-on:click="changeRoute(m1, i1, -1, -1, -1)" >{{m1.name}}</a>
                                 <ul  v-if="m1.children" >
@@ -172,7 +219,6 @@
             </header>
         </div>
         <loading v-else></loading>
-
 
         <!-- show modal -->
         <div class="modal is-active" v-if="SumModal">
@@ -209,6 +255,7 @@
     		return {
                 siteUrl: window.surl,
     		    date:window.sdate,
+                scrollPosition: null,
                 subdomain: window.subdomain,
     		    si1:-1,
                 si2:-1,
@@ -226,11 +273,7 @@
                 mobile_menu:false,
                 fetched: false,
                 menu: [],
-                top_menu:[
-                    {
-
-                    }
-                ],
+                top_menu:[],
     		}
     	},
         watch:{
@@ -243,9 +286,12 @@
             this.fetchData()
         },
         mounted(){
-
+            window.addEventListener('scroll', this.updateScroll);
         },
         methods: {
+            updateScroll() {
+                this.scrollPosition = window.scrollY
+            },
             searchClick(){
                 if(this.search.length<2){
                    alert('Хамгийн багадаа 2 тэмдэгт оруулна');
@@ -262,11 +308,11 @@
                 }
             },
             fetchData: function () {
-
-
-                    this.menu=this.$store.getters.menu;
+                this.menu=this.$store.getters.menu;
+                axios.get('/menu/0/2').then((response) => {
+                    this.topmenu=response.data.success
                     this.fetched = true;
-
+                })
             },
 
             changeRoute: function(menu, i1,i2,i3,i4){
