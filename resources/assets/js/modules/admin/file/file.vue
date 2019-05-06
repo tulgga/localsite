@@ -32,7 +32,8 @@
                         <span class="tag is-success" >{{fileType(props.row.file)}}</span>
                 </div>
                 <div slot="action" slot-scope="props" class="data-action">
-                    <div @click="showmodal=true; file=siteUrl+'/file_viewer/?file='+props.row.file" ><i class="fas fa-eye"></i></div>
+                    <div @click="showmodal=true file=siteUrl+'/file_viewer/?file='+props.row.file"><i
+                        class="fas fa-eye"></i></div>
                     <a :href="siteUrl+'/uploads/'+props.row.file" download><i class="fas fa-download"></i></a>
                     <router-link :to="'files/'+props.row.id+'/update'" ><i class="fas fa-pencil-alt"></i></router-link>
                     <div @click="deleting(props.row)">
@@ -201,7 +202,7 @@
                 axios.get('/file_category/' + this.site_id).then((response) => {
                     this.categories = response.data.success;
                     console.log(this.categories);
-                    this.categories.push({'name':'Ангилалгүй файл', 'label':'Ангилалгүй файл', 'id':-1})
+                    this.categories.push({'name':'Ангилалгүй файл', 'label':'Ангилалгүй файл', 'id':-1});
                     this.fetched = true;
                 })
             },
@@ -228,7 +229,7 @@
                 })
             },
             fileType(file){
-                var pieces = file.split(/[\s.]+/)
+                var pieces = file.split(/[\s.]+/);
               return pieces[pieces.length-1]
             },
             deleting(row){

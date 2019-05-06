@@ -12,7 +12,7 @@ export const state = {
     register_msg : null,
     user_branch: false,
     domain: false,
-}
+};
 
 // mutations
 export const mutations = {
@@ -21,7 +21,7 @@ export const mutations = {
     },
 
     [types.SAVE_TOKEN] (state, { token, remember }) {
-        state.token = token
+        state.token = token;
         Cookies.set('token', token, { expires: remember ? 365 : null })
     },
 
@@ -38,14 +38,14 @@ export const mutations = {
     },
 
     [types.FETCH_USER_FAILURE] (state) {
-        state.token = null
+        state.token = null;
         Cookies.remove('token')
     },
 
     [types.LOGOUT] (state) {
-        state.user = null
-        state.token = null
-        state.domain= false
+        state.user = null;
+        state.token = null;
+        state.domain= false;
         Cookies.remove('token')
     },
 
@@ -58,7 +58,7 @@ export const mutations = {
     [types.REGISTER_USER_MSG] (state, {msg}){
         state.register_msg = msg
     }
-}
+};
 
 // actions
 export const actions = {
@@ -75,7 +75,7 @@ export const actions = {
             const data = await axios.get('/user');
             commit(types.FETCH_USER_SUCCESS, { user: data.data.user })
         } catch (e) {
-            commit(types.FETCH_USER_FAILURE)
+            commit(types.FETCH_USER_FAILURE);
             router.push({name:'login'});
         }
     },
@@ -85,7 +85,7 @@ export const actions = {
             const { data } = await axios.get('/user');
             commit(types.FETCH_USER_SUCCESS, { user: data.data.user })
         } catch (e) {
-            commit(types.FETCH_USER_FAILURE)
+            commit(types.FETCH_USER_FAILURE);
             router.push({name:'login'});
         }
     },
@@ -97,12 +97,12 @@ export const actions = {
                 let exp = auth.split(" ");
                 commit(types.SAVE_TOKEN, { token: exp[1] })
             }).catch(function (error) {
-                commit(types.FETCH_USER_FAILURE)
+                commit(types.FETCH_USER_FAILURE);
                 router.push({name:'login'});
             });
 
         }catch (e) {
-            commit(types.FETCH_USER_FAILURE)
+            commit(types.FETCH_USER_FAILURE);
             router.push({name:'login'});
         }
     },
@@ -123,7 +123,7 @@ export const actions = {
     },
 
 
-}
+};
 
 // getters
 export const getters = {
@@ -133,4 +133,4 @@ export const getters = {
     authCheck: state => state.user !== null,
     domain: state=>  state.domain,
     registerMsg: state => state.register_msg,
-}
+};

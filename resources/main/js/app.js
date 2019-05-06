@@ -37,7 +37,7 @@ import  SocialSharing from 'vue-social-sharing';
 // import BCarousel from './components/helpers/carousel';
 
 Vue.use(VueRouter);
-Vue.use(Meta)
+Vue.use(Meta);
 sync(store, router);
 
 Vue.use(VueCarousel);
@@ -109,7 +109,7 @@ window.axios.interceptors.response.use(response => {
 
     return response;
 }, error => {
-    const { status } = error.response
+    const { status } = error.response;
     if(status === 404){
         router.push({ name: '/admin/404' })
     }
@@ -119,7 +119,7 @@ window.axios.interceptors.response.use(response => {
     }
 
     if (status === 401) {
-        store.dispatch('logout')
+        store.dispatch('logout');
         router.push({ name: 'login' })
     }
 
@@ -144,7 +144,7 @@ VeeValidate.Validator.extend('greater_than_zero', {
 Vue.use(VeeValidate);
 // Vue.use(SlVueTree);
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 Vue.component('flatPickr', flatPickr);
 Vue.component('SiteApp', require('./App.vue').default);
@@ -152,7 +152,7 @@ Vue.component('v-select', VueSelect);
 Vue.component('Loading', Loading);
 Vue.component('b-img', BImg);
 Vue.component('sum', Sum);
-Vue.component('agentlag', Agentlag)
+Vue.component('agentlag', Agentlag);
 Vue.component('SideBar', SideBar);
 Vue.component('NotFound', NotFound);
 Vue.component('v-bar', VBar);

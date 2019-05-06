@@ -51,7 +51,7 @@
         methods: {
             fetchData: function () {
                 this.m_id = this.$route.params.id;  // route дээр ирж байгаа id-г авч байна / edit үед
-                this.form.site_id= this.$store.getters.domain.id
+                this.form.site_id= this.$store.getters.domain.id;
                 this.user = this.$store.getters.authUser;
 
                 if (this.m_id) {

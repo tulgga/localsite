@@ -57,4 +57,4 @@ module.exports = {
   	auto_onoff_mode : 'Оффлайн/онлайн горимд автоматаар шилжих',
   	scan_barcode_by_scanner : 'Сканераар бар код уншуулах',
     niislel_tatvar : 'НХАТ',
-}
+};

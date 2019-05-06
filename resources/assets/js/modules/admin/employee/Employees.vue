@@ -240,7 +240,7 @@
                     for (var i=0; sites.length>i; i++){
                         this.options.listColumns.site_id.push(sites[i])
                     }
-                })
+                });
 
                 axios.get('/admins').then((response) => {
                     this.lists = response.data.success;

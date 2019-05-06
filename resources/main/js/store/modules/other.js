@@ -18,7 +18,7 @@ export const state = {
     assetsPath: "http://www.ipadaspos.com/iRestaurant_v4/assets/",*/
     auser_org_id: 2,
     auser_id: 2,
-}
+};
 
 // mutations
 export const mutations = {
@@ -57,11 +57,11 @@ export const mutations = {
             localStorage.removeItem('planStep');
         }
     },
-}
+};
 
 // actions
 export const actions = {
-}
+};
 
 // getters
 export const getters = {
@@ -76,4 +76,4 @@ export const getters = {
     assetsPath : state => state.assetsPath,
     planStep: state => state.planStep,
     basePath : state => state.basePath,
-}
+};

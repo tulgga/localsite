@@ -52,7 +52,7 @@
             saveSideBar(){
                 this.is_loading=true;
                 this.fetched = false;
-                var yvuulah = { sidebar: this.sidebar }
+                var yvuulah = { sidebar: this.sidebar };
 
                 let formData = new FormData();
                 formData.append('data', JSON.stringify(yvuulah));

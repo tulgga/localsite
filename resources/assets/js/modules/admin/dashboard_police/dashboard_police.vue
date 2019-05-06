@@ -148,7 +148,7 @@
             fetchData(){
                 axios.get('/zar_category_select').then((response) => {
                     this.options.listColumns.cat_id = response.data.success;
-                    console.log(this.options.listColumns.cat_id)
+                    console.log(this.options.listColumns.cat_id);
                     this.fetched=true;
                 })
             },

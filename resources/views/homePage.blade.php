@@ -26,10 +26,13 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700&amp;subset=cyrillic,cyrillic-ext,latin-ext" rel="stylesheet">
     <!-- Javascript -->
     <script src="{{ asset('main/sub/js/jquery-2.1.1.min.js')}}" type="text/javascript"></script>
+    {{--<script src="{{ asset('style/js/jquery.event.frame.js')}}" type="text/javascript"></script>
+    <script src="{{ asset('style/js/jquery.parallax.min.js')}}" type="text/javascript"></script>
+    <script src="{{ asset('style/js/main.js')}}" type="text/javascript"></script>--}}
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 </head>
 <body style="padding: 0 10px">
-<div class="row">
+<div class="row menu_layout">
     <div class="container text-center">
         <div class="logo"><img src="style/images/index-logo.png"></div>
         <div class="row">
@@ -45,7 +48,63 @@
             </ul>
         </div>
     </div>
+    <div class="clearfix"></div>
 </div>
+<div id="parallax">
+    <div class="sky">
+        <img id="sky" src="{{asset('style/images/sky.png')}}"/>
+    </div>
+    <div class="bg_main">
+        <img id="bg_main" src="{{asset('style/images/bg_main.png')}}"/>
+    </div>
+    <div class="flag">
+        <img id="flag" src="{{asset('style/images/flag.png')}}"/>
+    </div>
+    <div class="soyombo">
+        <img id="soyombo" src="{{asset('style/images/soyombo.png')}}"/>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        var soyombo = document.getElementById('soyombo');
+        var flag = document.getElementById('flag');
+        var sky = document.getElementById('sky');
+        var bg_main = document.getElementById('bg_main');
+        soyombo.homePos = { x: soyombo.offsetLeft };
+        flag.homePos = { x: flag.offsetLeft };
+        sky.homePos = { x: sky.offsetLeft };
+        bg_main.homePos = { x: bg_main.offsetLeft };
+
+        $('.menu_layout').mousemove(function (e) {
+            parallax(e, soyombo, -150);
+            parallax(e, flag, 200);
+            parallax(e, sky, 50);
+            parallax(e, bg_main, 400);
+        });
+    });
+
+    function parallax(e, target, layer) {
+        var x = target.homePos.x - (e.pageX - target.homePos.x) / layer;
+        $(target).offset({ left : x });
+    };
+</script>
+{{--<div id="parallax_container">
+    <div id="parallax">
+        <div class="parallax-layer">
+            <img src="{{asset('style/images/sky.png')}}"/>
+        </div>
+        <div class="parallax-layer">
+            <img src="{{asset('style/images/bg_main.png')}}"/>
+        </div>
+        <div class="parallax-layer">
+            <img src="{{asset('style/images/flag.png')}}"/>
+        </div>
+        <div class="parallax-layer">
+            <img src="{{asset('style/images/soyombo.png')}}"/>
+        </div>
+    </div>
+</div>--}}
+
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content sumd">

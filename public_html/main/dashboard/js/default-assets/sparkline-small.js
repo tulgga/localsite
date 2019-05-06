@@ -1,5 +1,5 @@
 $(function () {
-    'use strict'
+    'use strict';
 
     // LINE CHARTS //
     $('#sparkline1').sparkline('html', {

@@ -258,7 +258,7 @@ CRUD Edit, Create form
                         this.is_loading = true;
                         let formData = new FormData();
                         formData.append('data', JSON.stringify(this.form));
-                        formData.append('image', this.image)
+                        formData.append('image', this.image);
 
                         this.m_id = this.$route.params.id;
                         if (this.m_id) {
@@ -271,7 +271,7 @@ CRUD Edit, Create form
                                 .catch(error => {
                                     this.aldaanuud = error.response.data.errors;
                                     for (var i = 0; i < Object.keys(this.aldaanuud).length; i++) {
-                                        let tulhur = Object.keys(this.aldaanuud)[i]
+                                        let tulhur = Object.keys(this.aldaanuud)[i];
                                         this.errors.add({ field: tulhur, msg: this.aldaanuud[tulhur][0]});
                                     }
                                     this.is_loading = false;

@@ -93,4 +93,4 @@ module.exports = {
 
 	update_address: 'Update info',
 	update_personal_information : 'Update personal information',
-}
+};

@@ -24,7 +24,7 @@
                                <div  :class="{'disabled':i==0}" @click="changePositionMain(i,-1)" ><i class="fas fa-arrow-up"></i></div>
                                <div :class="{'disabled':lists.length-1==i}" @click="changePositionMain(i,1)" ><i class="fas fa-arrow-down"></i></div>
                                <router-link :to="'helppages/'+list.id+'/update'" ><i class="fas fa-pencil-alt"></i></router-link>
-                               <div @click="delete_cat=list; deletemodal=true;"><i class="fas fa-trash"></i></div>
+                               <div @click="delete_cat=list deletemodal=true;"><i class="fas fa-trash"></i></div>
                            </div>
                        </td>
                    </tr>
@@ -138,7 +138,7 @@
                       id_1_num :  this.lists[index+action].order_num,
                       id_2: this.lists[index+action].id,
                       id_2_num :  this.lists[index].order_num,
-                  }
+                  };
 
                 let formData = new FormData();
                 formData.append('data', JSON.stringify(send));
@@ -162,14 +162,14 @@
                     id_1_num :  this.lists[index].children[subindex+action].order_num,
                     id_2: this.lists[index].children[subindex+action].id,
                     id_2_num :  this.lists[index].children[subindex].order_num,
-                }
+                };
 
                 let formData = new FormData();
                 formData.append('data', JSON.stringify(send));
-                this.fetched=false
+                this.fetched=false;
                 axios.post('/pages_change', formData).then((r) => {
                     this.fetchData();
-                    this.fetched=true
+                    this.fetched=true;
                     this.is_loading = false;
                     this.$toasted.global.toast_success({message: 'Амжилттай хадгаллаа'}); // delete success toast
                 })
@@ -186,14 +186,14 @@
                     id_1_num :  this.lists[index].children[childindex].children[subindex+action].order_num,
                     id_2: this.lists[index].children[childindex].children[subindex+action].id,
                     id_2_num :  this.lists[index].children[childindex].children[subindex].order_num,
-                }
+                };
 
                 let formData = new FormData();
                 formData.append('data', JSON.stringify(send));
-                this.fetched=false
+                this.fetched=false;
                 axios.post('/pages_change', formData).then((r) => {
                     this.fetchData();
-                    this.fetched=true
+                    this.fetched=true;
                     this.is_loading = false;
                     this.$toasted.global.toast_success({message: 'Амжилттай хадгаллаа'}); // delete success toast
                 })
@@ -210,14 +210,14 @@
                     id_1_num :  this.lists[index].children[index1].children[index2].children[index3+action].order_num,
                     id_2: this.lists[index].children[index1].children[index2].children[index3+action].id,
                     id_2_num :  this.lists[index].children[index1].children[index2].children[index3].order_num,
-                }
+                };
 
                 let formData = new FormData();
                 formData.append('data', JSON.stringify(send));
-                this.fetched=false
+                this.fetched=false;
                 axios.post('/pages_change', formData).then((r) => {
                     this.fetchData();
-                    this.fetched=true
+                    this.fetched=true;
                     this.is_loading = false;
                     this.$toasted.global.toast_success({message: 'Амжилттай хадгаллаа'}); // delete success toast
                 })

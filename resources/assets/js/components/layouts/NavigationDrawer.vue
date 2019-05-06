@@ -196,7 +196,7 @@
 
                 axios.get('/webNotification/'+this.domain.id+'/'+this.user.heltes_id).then((response) => {
                     this.badge = response.data.success;
-                })
+                });
                 setInterval(()=>{
                     axios.get('/webNotification/'+this.domain.id+'/'+this.user.heltes_id).then((response) => {
                         this.badge = response.data.success;
@@ -241,7 +241,7 @@
 
                 this.$store.dispatch('saveDomain', {
                     domain: domain,
-                })
+                });
 
 
                 if(this.domain.id==0){
@@ -252,8 +252,8 @@
 
             },
             changeRoute: function(path){
-                this.$store.commit('changenavgroup', false)
-                this.$store.commit('changenavgroup_sub', false)
+                this.$store.commit('changenavgroup', false);
+                this.$store.commit('changenavgroup_sub', false);
 
                 // if (this.$route.path === path) {
                 //     this.$router.go({path:path});

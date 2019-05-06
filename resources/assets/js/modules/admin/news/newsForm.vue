@@ -201,7 +201,7 @@ CRUD Edit, Create form
                 axios.get('/news_category/'+this.site_id).then((response) => {
                     this.options = response.data.success;
 
-                })
+                });
 
                 axios.get('/site').then((response) => {
                     this.sites.push({ id:0, name:'Бүх дэд сайтад',  label:'Бүх дэд сайтад',  text:'Бүх дэд сайтад'});
@@ -209,7 +209,7 @@ CRUD Edit, Create form
                         this.sites.push(response.data.success[i]);
                     }
 
-                })
+                });
                 if (this.m_id) {
                     axios.get('/news/'+this.m_id).then((response) => {
                         console.log( response.data.success);
@@ -245,7 +245,7 @@ CRUD Edit, Create form
                         let formData = new FormData();
 
                         formData.append('data', JSON.stringify(this.form));
-                        formData.append('image', this.image)
+                        formData.append('image', this.image);
                         // Create
                         if (this.m_id) {
                             axios.post('/news/'+this.m_id, formData)

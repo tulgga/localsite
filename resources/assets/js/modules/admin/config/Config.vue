@@ -306,17 +306,17 @@
             },
 
             save(){
-                this.is_loading= true
+                this.is_loading= true;
 
-                let formData = new FormData()
-                formData.append('data', JSON.stringify(this.form))
-                formData.append('config', JSON.stringify(this.config))
-                formData.append('logo', this.logo)
-                formData.append('favicon', this.favicon)
+                let formData = new FormData();
+                formData.append('data', JSON.stringify(this.form));
+                formData.append('config', JSON.stringify(this.config));
+                formData.append('logo', this.logo);
+                formData.append('favicon', this.favicon);
                 axios.post('/site_config/'+this.site_id, formData)
                     .then((response) => {
-                        this.fetchData()
-                        this.is_loading= false
+                        this.fetchData();
+                        this.is_loading= false;
                         this.$toasted.global.toast_success({message: 'Амжилттай хадгаллаа'})
                     });
             },

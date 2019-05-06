@@ -169,8 +169,8 @@ CRUD Edit, Create form
                     if (result) {
                         this.is_loading = true;
                         let formData = new FormData();
-                        formData.append('data', JSON.stringify(this.form))
-                        formData.append('image', this.image)
+                        formData.append('data', JSON.stringify(this.form));
+                        formData.append('image', this.image);
                         // Create
                         if (this.m_id) {
                             axios.post('/poll/'+this.m_id, formData)

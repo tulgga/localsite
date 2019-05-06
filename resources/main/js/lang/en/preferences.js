@@ -57,4 +57,4 @@ module.exports = {
   	auto_onoff_mode : 'Auto offline/online mode',
   	scan_barcode_by_scanner : 'Scan barcode by scanner',
     niislel_tatvar : 'City tax',
-}
+};

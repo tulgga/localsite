@@ -48,4 +48,4 @@ module.exports = {
 	welcome : 'Эгүлэн ПОС-д тавтай морилно уу',
 	send_password_reset_link : 'Нууц үг сэргээх холбоос илгээх',
 	reset_password : 'Нууц үгийг хадгал',
-}
+};

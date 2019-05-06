@@ -115,14 +115,14 @@
                             _token: $("#_token").val(),
                             event_id: event_id,
                             value: value
-                        }
+                        };
                         $.ajax({
                             type:'POST',
                             url:'/event_rate',
                             data: formData,
                             success:function(data){
                                 if(data.success == "true"){
-                                    $("#_token").val(data._token)
+                                    $("#_token").val(data._token);
                                     $(".rating_"+event_id).fadeIn(200);
                                     setInterval(function(){ $(".rating_"+event_id).fadeOut(200); }, 1000);
                                 }
@@ -133,7 +133,7 @@
                         var formData = {
                             _token: $("#_token").val(),
                             event_id: event_id
-                        }
+                        };
                         $.ajax({
                             type:'POST',
                             url:'/event_like',

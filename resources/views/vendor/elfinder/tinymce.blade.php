@@ -51,7 +51,7 @@
                     // close popup window
                     tinyMCEPopup.close();
                 }
-            }
+            };
 
             tinyMCEPopup.onInit.add(FileBrowserDialogue.init, FileBrowserDialogue);
 

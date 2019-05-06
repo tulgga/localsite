@@ -54,4 +54,4 @@ module.exports = {
 	amount : 'Amount',
 	i_agree_terms : 'I agree to “Terms and Conditions”',
 	pay : 'Pay',
-}
+};

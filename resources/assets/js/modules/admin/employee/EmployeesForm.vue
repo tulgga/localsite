@@ -253,11 +253,11 @@ CRUD Edit, Create form
                 axios.get('/site').then((response) => {
                     this.sites = response.data.success;
                     console.log(this.sites);
-                })
+                });
                 axios.get('/heltes').then((response) => {
                     this.heltes = response.data.success;
                     console.log(this.heltes);
-                })
+                });
                 this.m_id = this.$route.params.id;  // route дээр ирж байгаа id-г авч байна / edit үед
                 if (this.m_id) {
                     axios.get('/admins/'+this.m_id).then((response) => {
@@ -301,7 +301,7 @@ CRUD Edit, Create form
                         this.is_loading = true;
                         let formData = new FormData();
                         formData.append('data', JSON.stringify(this.form));
-                        formData.append('image', this.image)
+                        formData.append('image', this.image);
 
                         this.m_id = this.$route.params.id;
                         if (this.m_id) {
@@ -314,7 +314,7 @@ CRUD Edit, Create form
                                 .catch(error => {
                                     this.aldaanuud = error.response.data.errors;
                                     for (var i = 0; i < Object.keys(this.aldaanuud).length; i++) {
-                                        let tulhur = Object.keys(this.aldaanuud)[i]
+                                        let tulhur = Object.keys(this.aldaanuud)[i];
                                         this.errors.add({ field: tulhur, msg: this.aldaanuud[tulhur][0]});
                                     }
                                     this.is_loading = false;

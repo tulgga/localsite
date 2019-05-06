@@ -40,9 +40,8 @@
 			res.end = res.begin + range.text.length;
 		}
 		return res;
-	};
-
-	function setCaretPosition(ctl, pos){		
+    }
+    function setCaretPosition(ctl, pos){
 		if(ctl.setSelectionRange){
 			ctl.focus();
 			ctl.setSelectionRange(pos,pos);
@@ -53,9 +52,8 @@
 			range.moveStart('character', pos);
 			range.select();
 		}
-	};
-	
-	//Predefined character definitions
+    }
+    //Predefined character definitions
 	var charMap={
 		'9':"[0-9]",
 		'а':"[А-Яа-яӨөҮү]",
@@ -105,8 +103,8 @@
 				setTimeout(function(){
 					setCaretPosition(input[0],0);
 				},0);
-			};			
-			input.bind("focus",focusEvent);
+            }
+            input.bind("focus",focusEvent);
 
 			input.bind("blur",checkVal);
 			
@@ -148,9 +146,9 @@
 					setCaretPosition(this,0);
 					return false;
 				}
-									
-			};
-			input.bind("keydown",keydownEvent);
+
+}
+            input.bind("keydown",keydownEvent);
 
 			function keypressEvent(e){					
 				if(ignore){
@@ -199,19 +197,20 @@
 				else
 					setCaretPosition(this,caretPos);
 				
-				return false;				
-			};
-			input.bind("keypress",keypressEvent);
+				return false;
+
+}
+            input.bind("keypress",keypressEvent);
 
 			/*Helper Methods*/
 			function clearBuffer(start,end){
 				for(var i=start;i<end;i++){
 					if(!locked[i])
 						buffer[i]=settings.placeholder;
-				}				
-			};
-			
-			function writeBuffer(pos){
+				}
+
+}
+            function writeBuffer(pos){
 				var s="";
 				for(var i=0;i<mask.length;i++){
 					s+=buffer[i];
@@ -220,9 +219,8 @@
 				}
 				input.val(s);
 				return s;
-			};
-			
-			function checkVal(){	
+            }
+            function checkVal(){
 				//try to place charcters where they belong
 				var test=input.val();
 				var pos=0;
@@ -242,10 +240,10 @@
 				if(!s.match(re)){							
 					input.val("");	
 					clearBuffer(0,mask.length);
-				}					
-			};
-			
-			input.one("unmask",function(){
+				}
+
+}
+            input.one("unmask",function(){
 				input.unbind("focus",focusEvent);
 				input.unbind("blur",checkVal);
 				input.unbind("keydown",keydownEvent);

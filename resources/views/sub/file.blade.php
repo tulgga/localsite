@@ -104,9 +104,9 @@
     </div>
     <script>
         $('.bd-example-modal-lg').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget)
-            var link = button.data('link')
-            var modal = $(this)
+            var button = $(event.relatedTarget);
+            var link = button.data('link');
+            var modal = $(this);
             modal.find('.modal-content iframe').attr('src', link)
         })
     </script>

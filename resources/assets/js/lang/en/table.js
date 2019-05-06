@@ -12,4 +12,4 @@ module.exports = {
   	last : 'Last',
   	first : 'First',
   	count : 'Showing {from} to {to} of {count} records|{count} records|One record',
-}
+};

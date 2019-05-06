@@ -319,7 +319,7 @@ var PDFFindController = {
     if (offset.pageIdx >= numPages || offset.pageIdx < 0) {
       offset.pageIdx = previous ? numPages - 1 : 0;
       offset.wrapped = true;
-      return;
+
     }
   },
 

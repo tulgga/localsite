@@ -59,7 +59,7 @@
             sendPoll(pollId, answerId, finished){
                 if(finished === false){
                     let formData = new FormData();
-                    var form = { pollId: pollId, answerId: answerId}
+                    var form = { pollId: pollId, answerId: answerId};
                     formData.append('data', JSON.stringify(form));
                     axios.post('/sendPoll', formData).then((response) => {
                         if(response.data.success.type===1){

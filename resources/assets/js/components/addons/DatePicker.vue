@@ -135,7 +135,7 @@
 				  days: _daysInMonths[11],
 				  month: 12,
 				  year: this.year - 1,
-				}
+				};
 				return {
 				  days: (this.month === 3 && this.isLeapYear) ? 29 : _daysInMonths[this.monthIndex - 1],
 				  month: this.month - 1,

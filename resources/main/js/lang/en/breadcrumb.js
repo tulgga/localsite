@@ -11,4 +11,4 @@ module.exports = {
     create : "Create",
     update : "Update",
     show : "Show",
-}
+};

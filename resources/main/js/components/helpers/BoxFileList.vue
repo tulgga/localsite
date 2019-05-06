@@ -18,7 +18,8 @@
                 <template v-for="file in files.data">
                 <tr>
                     <td class="has-text-centered">{{file.cart_number}}</td>
-                    <td><a @click="showmodal=true; fileShow=siteUrl+'/file_viewer/?file='+file.file" >{{file.name}}</a></td>
+                    <td><a @click="showmodal=true fileShow=siteUrl+'/file_viewer/?file='+file.file">{{file.name}}</a>
+                    </td>
                     <td class="has-text-centered">{{file.publish_date}}</td>
                     <td class="has-text-centered">{{file.active_date}}</td>
                     <td class="has-text-centered">{{file.status}}</td>
@@ -101,7 +102,7 @@
 
             },
             fileType(file){
-                var pieces = file.split(/[\s.]+/)
+                var pieces = file.split(/[\s.]+/);
                 return pieces[pieces.length-1]
             },
             scrollToTop() {
