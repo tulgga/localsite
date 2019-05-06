@@ -118,6 +118,9 @@
                                 <p class="level-item"><a :href="'http://zar.'+subdomain" target="_blank">Зар</a></p>
                                 <p class="level-item">|</p>
                                 <p class="level-item"><a href="!#/report">Санал хүсэлт, өргөдөл гомдол</a></p>
+                                <p class="level-item">|</p>
+
+                                <p class="level-item"><a href="http://intranet.gov.mn" target="_blank" ><img :src="siteUrl+'/images/able.png'" style="height: 12px; margin-top: 5px;" /></a></p>
                             </div>
                         </nav>
                         <div class="is-clearfix"></div>
@@ -204,6 +207,7 @@
     export default {
     	data(){
     		return {
+                siteUrl: window.surl,
     		    date:window.sdate,
                 subdomain: window.subdomain,
     		    si1:-1,

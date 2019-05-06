@@ -413,16 +413,16 @@ a {
 
 #footer {
   font-size: 14px;
-  color: rgba(255,255,255, 0.8);
+  color: #FFF;
   a {
 
     color: $white;
   }
-   h3.title {
-     border-left: 3px solid #224E8A;
-     padding: 0px 0px 0px 20px;
-     color: white;
-     text-transform: uppercase;
+
+   h3 {
+     border-bottom: 1px solid #FFF;
+     padding: 10px 0px;
+     margin-bottom: 20px;
    }
   .footer-link a {
 
@@ -468,7 +468,7 @@ a {
   }
 
   .footer-menu a {
-    margin: 5px;
+    margin: 2px 5px;
     text-decoration: none;
   }
 
@@ -764,6 +764,10 @@ li.VueCarousel-dot{
   padding:20px;
   font-size: 18px;
   color: #FFF;
+  span {
+    font-size: 14px;
+    opacity: 0.8;
+  }
 }
 
 .CarTitle {
@@ -973,6 +977,7 @@ a .col3newslist .title {
     position:relative;
     top:5px;
     height: 20px;
+    width: 15px;
     float: left;
     margin-right: 10px;
   }
@@ -990,10 +995,10 @@ a .col3newslist .title {
   z-index: 100;
 }
 .agentlaglist {
-  background-position: left center;
+  background-position: 5px center;
   background-size: 10px 20px;
   background-repeat: no-repeat;
-  padding-left: 20px;
+  padding-left: 25px;
   padding-top: 5px;
   min-height: 25px;
   color: #222;

@@ -19080,18 +19080,17 @@ a {
 
 #footer {
   font-size: 14px;
-  color: rgba(255, 255, 255, 0.8);
+  color: #FFF;
 }
 
 #footer a {
   color: white;
 }
 
-#footer h3.title {
-  border-left: 3px solid #224E8A;
-  padding: 0px 0px 0px 20px;
-  color: white;
-  text-transform: uppercase;
+#footer h3 {
+  border-bottom: 1px solid #FFF;
+  padding: 10px 0px;
+  margin-bottom: 20px;
 }
 
 #footer .footer-link a {
@@ -19137,7 +19136,7 @@ a {
 }
 
 #footer .footer-menu a {
-  margin: 5px;
+  margin: 2px 5px;
   text-decoration: none;
 }
 
@@ -19458,6 +19457,11 @@ li.VueCarousel-dot {
   color: #FFF;
 }
 
+.ontslokhTitle span {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
 .CarTitle {
   padding: 0.5em 1em 0.5em 1em;
   color: #FFF;
@@ -19697,6 +19701,7 @@ a .col3newslist .title {
   position: relative;
   top: 5px;
   height: 20px;
+  width: 15px;
   float: left;
   margin-right: 10px;
 }
@@ -19711,10 +19716,10 @@ a .col3newslist .title {
 }
 
 .agentlaglist {
-  background-position: left center;
+  background-position: 5px center;
   background-size: 10px 20px;
   background-repeat: no-repeat;
-  padding-left: 20px;
+  padding-left: 25px;
   padding-top: 5px;
   min-height: 25px;
   color: #222;

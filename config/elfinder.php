@@ -26,10 +26,10 @@ return array(
     |    ]
     */
     'disks' => [
-//        'public' => [
-//            'URL' => url('uploads/'),
-//            'alias' => 'Local storage',
-//        ]
+         'public' => [
+             'URL' => url('uploads/news/'),
+             'alias' => 'Local storage',
+          ]
     ],
 
     /*

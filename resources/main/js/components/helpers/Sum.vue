@@ -3,7 +3,7 @@
         <!--blog list-->
 
         <div class="columns is-multiline pb-1">
-             <div v-for="site in sites" class="column is-4  pb-0">
+             <div v-for="site in sites" class="column is-4  pb-0" :class="classes">
                  <a class="sumlist" :href="'http://'+site.domain+'.'+subdomain" target="_blank" >
                      <img v-if="site.favicon === null" :src="icon"/>
                      <img v-else="site.favicon === null" :src="siteUrl+'/uploads/'+site.favicon"/>
@@ -20,7 +20,9 @@
 
 <script>
     export default {
-
+        props:[
+            'classes'
+        ],
         data(){
             return {
                 sites: false,
