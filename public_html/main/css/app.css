@@ -18681,7 +18681,7 @@ a {
 }
 
 .searchform {
-  margin-top: 33px;
+  margin-top: 15px;
   width: 100%;
   position: relative;
 }
@@ -18939,7 +18939,12 @@ a {
 #header #header-top {
   padding: 6px 0px 6px 0px;
   margin-bottom: 15px;
-  background: #e23b3b;
+  background: #1b3658;
+}
+
+#header #header-content {
+  background-repeat: no-repeat, repeat-x;
+  background-position: center 56px, bottom center;
 }
 
 #header #header-content .logo img {
@@ -18948,13 +18953,11 @@ a {
 
 #header #header-content .container {
   padding-top: 15px;
-  padding-bottom: 60px;
-  background-position: bottom right;
-  background-repeat: no-repeat;
+  padding-bottom: 5px;
 }
 
 #header #header-menu {
-  height: 50px;
+  height: 40px;
 }
 
 #header #header-menu #menu,
@@ -18990,7 +18993,7 @@ a {
 #header #header-menu #menu li.is-active li.is-active a,
 #header #header-menu #menu li.is-active li.is-active li.is-active a,
 #header #header-menu #menu li.is-active li.is-active li.is-active li.is-active a {
-  background: #224E8A;
+  background: rgba(0, 0, 0, 0.2);
   color: #FFF;
 }
 
@@ -19001,7 +19004,7 @@ a {
 
 #header #header-menu #menu a {
   float: left;
-  padding: 16px 12px 15px 11px;
+  padding: 11px 12px 10px 11px;
   text-transform: uppercase;
   text-decoration: none;
   /*text-shadow: 0 1px 0 #000;*/
@@ -19014,7 +19017,7 @@ a {
   opacity: 0;
   visibility: hidden;
   position: absolute;
-  top: 50px;
+  top: 40px;
   left: 0;
   z-index: 1;
   background: #FFF;
@@ -19078,7 +19081,53 @@ a {
   }
 }
 
+#header.fixed {
+  width: 100%;
+  z-index: 999;
+  position: fixed;
+  top: 0px;
+  -webkit-animation: fadeIn 0.2s ease-in both;
+          animation: fadeIn 0.2s ease-in both;
+}
+
+#header.fixed #header-top {
+  margin-bottom: 0px;
+}
+
+#header.fixed #header-content {
+  display: none;
+}
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -20%, 0);
+            transform: translate3d(0, -20%, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -20%, 0);
+            transform: translate3d(0, -20%, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
+}
+
 #footer {
+  padding: 0px;
   font-size: 14px;
   color: #FFF;
 }
@@ -19793,5 +19842,114 @@ a .col3newslist .title {
 
 label {
   margin-bottom: 0.2em;
+}
+
+#header-topmenu {
+  height: 40px;
+}
+
+#header-topmenu #topmenu,
+#header-topmenu #topmenu ul {
+  margin: 0;
+  padding: 0;
+  font-size: 13px;
+  list-style: none;
+  float: right;
+  z-index: 999;
+  margin-top: 10px;
+}
+
+#header-topmenu #topmenu:before,
+#header-topmenu #topmenu:after {
+  content: "";
+  display: table;
+}
+
+#header-topmenu #topmenu:after {
+  clear: both;
+}
+
+#header-topmenu #topmenu {
+  position: relative;
+  zoom: 1;
+  z-index: 11;
+}
+
+#header-topmenu #topmenu li {
+  float: left;
+  position: relative;
+}
+
+#header-topmenu #topmenu li:last-child a i {
+  display: none;
+}
+
+#header-topmenu #topmenu li.is-active li a {
+  background: #FFF;
+  color: #333;
+}
+
+#header-topmenu #topmenu a {
+  float: left;
+  padding: 11px 12px 10px 11px;
+  text-transform: uppercase;
+  text-decoration: none;
+  /*text-shadow: 0 1px 0 #000;*/
+}
+
+#header-topmenu #topmenu ul {
+  margin: 20px 0 0 0;
+  _margin: 0;
+  /*IE6 only*/
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  top: 40px;
+  left: 0;
+  z-index: 999;
+  background: #FFF;
+  -webkit-box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.3);
+  box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.3);
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+}
+
+#header-topmenu #topmenu li:hover > ul {
+  opacity: 1;
+  visibility: visible;
+  margin: 0;
+}
+
+#header-topmenu #topmenu ul ul {
+  top: 0;
+  left: 250px;
+  margin: 0px;
+}
+
+#header-topmenu #topmenu ul li {
+  float: none;
+  display: block;
+  border: 0;
+}
+
+#header-topmenu #topmenu ul a {
+  color: #222222;
+  padding: 10px;
+  width: 250px;
+  _height: 10px;
+  /*IE6 only*/
+  display: block;
+  float: none;
+  text-transform: none;
+}
+
+#header-topmenu #topmenu ul a:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+@media only screen and (max-width: 770px) {
+  #footer {
+    padding: 30px;
+  }
 }
 

@@ -81,7 +81,7 @@ Route::namespace('Api')->group(function (){
 
     Route::get('sidebar/{id}','ApiSiteController@sidebar');
     Route::get('weather','ApiSiteController@weather');
-    Route::get('menu/{id}','ApiSiteController@page');
+    Route::get('menu/{id}/{is_main?}','ApiSiteController@page');
     Route::get('submenu/{id}','ApiSiteController@submenu');
 
     Route::get('site_news/{site_id}/{limit?}','ApiNewsController@site_news');

@@ -85470,6 +85470,7 @@ o[t.label]=e,o)),t._v(" "),t.multiple?n("button",{staticClass:"close",attrs:{dis
 /* unused harmony export REGISTER_USER_MSG */
 /* unused harmony export CHANGE_BRANCH */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SAVE_MENU; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return SAVE_TOP_MENU; });
 // auth.js
 var LOGOUT = 'LOGOUT';
 var SAVE_TOKEN = 'SAVE_TOKEN';
@@ -85481,6 +85482,7 @@ var UPDATE_USER = 'UPDATE_USER';
 var REGISTER_USER_MSG = 'REGISTER_USER_MSG';
 var CHANGE_BRANCH = 'CHANGE_BRANCH';
 var SAVE_MENU = 'SAVE_MENU';
+var SAVE_TOP_MENU = 'SAVE_TOP_MENU';
 
 /***/ }),
 /* 592 */
@@ -88798,6 +88800,52 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["a"] = ({
     data: function data() {
@@ -88806,6 +88854,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return _ref = {
             siteUrl: window.surl,
             date: window.sdate,
+            scrollPosition: null,
             subdomain: window.subdomain,
             si1: -1,
             si2: -1,
@@ -88816,7 +88865,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             search: '',
             site_title: window.title,
             socail: window.socail
-        }, _defineProperty(_ref, 'siteUrl', window.surl), _defineProperty(_ref, 'main', window.main), _defineProperty(_ref, 'logo', window.logo), _defineProperty(_ref, 'icon', window.icon), _defineProperty(_ref, 'mobile_menu', false), _defineProperty(_ref, 'fetched', false), _defineProperty(_ref, 'menu', []), _defineProperty(_ref, 'top_menu', [{}]), _ref;
+        }, _defineProperty(_ref, 'siteUrl', window.surl), _defineProperty(_ref, 'main', window.main), _defineProperty(_ref, 'logo', window.logo), _defineProperty(_ref, 'icon', window.icon), _defineProperty(_ref, 'mobile_menu', false), _defineProperty(_ref, 'fetched', false), _defineProperty(_ref, 'menu', []), _defineProperty(_ref, 'top_menu', []), _ref;
     },
 
     watch: {
@@ -88828,9 +88877,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.checkSearch();
         this.fetchData();
     },
-    mounted: function mounted() {},
+    mounted: function mounted() {
+        window.addEventListener('scroll', this.updateScroll);
+    },
 
     methods: {
+        updateScroll: function updateScroll() {
+            this.scrollPosition = window.scrollY;
+        },
         searchClick: function searchClick() {
             if (this.search.length < 2) {
                 alert('Хамгийн багадаа 2 тэмдэгт оруулна');
@@ -88848,9 +88902,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         },
 
         fetchData: function fetchData() {
+            var _this = this;
 
             this.menu = this.$store.getters.menu;
-            this.fetched = true;
+            axios.get('/menu/0/2').then(function (response) {
+                _this.topmenu = response.data.success;
+                _this.fetched = true;
+            });
         },
 
         changeRoute: function changeRoute(menu, i1, i2, i3, i4) {
@@ -89501,6 +89559,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mutation_types__ = __webpack_require__(591);
 
 
+var _mutations;
+
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -89514,21 +89574,25 @@ var state = {
     menu: false
 
     // mutations
-};var mutations = _defineProperty({
+};var mutations = (_mutations = {
     changepageloader: function changepageloader(state, n) {
         state.pageloader = n;
     }
-}, __WEBPACK_IMPORTED_MODULE_2__mutation_types__["a" /* SAVE_MENU */], function (state, _ref) {
+}, _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_2__mutation_types__["a" /* SAVE_MENU */], function (state, _ref) {
     var menu = _ref.menu;
 
     state.menu = menu;
-});
+}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_2__mutation_types__["b" /* SAVE_TOP_MENU */], function (state, _ref2) {
+    var menu = _ref2.menu;
+
+    state.menu = menu;
+}), _mutations);
 
 // actions
 var actions = {
     loadMenu: function () {
-        var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(_ref2) {
-            var commit = _ref2.commit;
+        var _ref4 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(_ref3) {
+            var commit = _ref3.commit;
             var r;
             return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
                 while (1) {
@@ -89551,10 +89615,40 @@ var actions = {
         }));
 
         function loadMenu(_x) {
-            return _ref3.apply(this, arguments);
+            return _ref4.apply(this, arguments);
         }
 
         return loadMenu;
+    }(),
+    loadTopMenu: function () {
+        var _ref6 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2(_ref5) {
+            var commit = _ref5.commit;
+            var r;
+            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+                while (1) {
+                    switch (_context2.prev = _context2.next) {
+                        case 0:
+                            _context2.next = 2;
+                            return __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('/menu/0/2');
+
+                        case 2:
+                            r = _context2.sent;
+
+                            commit(__WEBPACK_IMPORTED_MODULE_2__mutation_types__["b" /* SAVE_TOP_MENU */], { topmenu: r.data.success });
+
+                        case 4:
+                        case 'end':
+                            return _context2.stop();
+                    }
+                }
+            }, _callee2, this);
+        }));
+
+        function loadTopMenu(_x2) {
+            return _ref6.apply(this, arguments);
+        }
+
+        return loadTopMenu;
     }()
 };
 
@@ -89565,6 +89659,9 @@ var getters = {
     },
     menu: function menu(state) {
         return state.menu;
+    },
+    topmenu: function topmenu(state) {
+        return state.topmenu;
     }
 };
 
@@ -98538,7 +98635,7 @@ exports = module.exports = __webpack_require__(7)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -98905,6 +99002,121 @@ var render = function() {
                             ]
                           )
                         ]
+                      }),
+                      _vm._v(" "),
+                      _vm._l(_vm.topmenu, function(m1, i1) {
+                        return _c(
+                          "li",
+                          { class: { "is-active": i1 == _vm.si1 } },
+                          [
+                            _c(
+                              "a",
+                              {
+                                on: {
+                                  click: function($event) {
+                                    _vm.changeRoute(m1, i1, -1, -1, -1)
+                                  }
+                                }
+                              },
+                              [_vm._v(_vm._s(m1.name))]
+                            ),
+                            _vm._v(" "),
+                            m1.children
+                              ? _c(
+                                  "ul",
+                                  _vm._l(m1.children, function(m2, i2) {
+                                    return _c("li", [
+                                      _c(
+                                        "a",
+                                        {
+                                          on: {
+                                            click: function($event) {
+                                              _vm.changeRoute(
+                                                m2,
+                                                i1,
+                                                i2,
+                                                -1,
+                                                -1
+                                              )
+                                            }
+                                          }
+                                        },
+                                        [_vm._v(_vm._s(m2.name))]
+                                      ),
+                                      _vm._v(" "),
+                                      m2.children
+                                        ? _c(
+                                            "ul",
+                                            _vm._l(m2.children, function(
+                                              m3,
+                                              i3
+                                            ) {
+                                              return _c("li", [
+                                                _c(
+                                                  "a",
+                                                  {
+                                                    on: {
+                                                      click: function($event) {
+                                                        _vm.changeRoute(
+                                                          m3,
+                                                          i1,
+                                                          i2,
+                                                          i3,
+                                                          -1
+                                                        )
+                                                      }
+                                                    }
+                                                  },
+                                                  [_vm._v(_vm._s(m3.name))]
+                                                ),
+                                                _vm._v(" "),
+                                                m3.children
+                                                  ? _c(
+                                                      "ul",
+                                                      _vm._l(
+                                                        m3.children,
+                                                        function(m4, i4) {
+                                                          return _c("li", [
+                                                            _c(
+                                                              "a",
+                                                              {
+                                                                on: {
+                                                                  click: function(
+                                                                    $event
+                                                                  ) {
+                                                                    _vm.changeRoute(
+                                                                      m4,
+                                                                      i1,
+                                                                      i2,
+                                                                      i3,
+                                                                      i4
+                                                                    )
+                                                                  }
+                                                                }
+                                                              },
+                                                              [
+                                                                _vm._v(
+                                                                  _vm._s(
+                                                                    m4.name
+                                                                  )
+                                                                )
+                                                              ]
+                                                            )
+                                                          ])
+                                                        }
+                                                      )
+                                                    )
+                                                  : _vm._e()
+                                              ])
+                                            })
+                                          )
+                                        : _vm._e()
+                                    ])
+                                  })
+                                )
+                              : _vm._e()
+                          ]
+                        )
                       })
                     ],
                     2
@@ -98985,13 +99197,20 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "column is-8" }, [
-                      _c("div", { staticClass: "has-text-centered" }, [
-                        _c("figure", { staticClass: "image " }, [
-                          _c("img", {
-                            attrs: { src: _vm.logo, title: _vm.site_title }
-                          })
-                        ])
-                      ])
+                      _c(
+                        "div",
+                        { staticClass: "has-text-centered" },
+                        [
+                          _c("router-link", { attrs: { to: "/" } }, [
+                            _c("figure", { staticClass: "image " }, [
+                              _c("img", {
+                                attrs: { src: _vm.logo, title: _vm.site_title }
+                              })
+                            ])
+                          ])
+                        ],
+                        1
+                      )
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "column is-2 has-text-right" }, [
@@ -99014,7 +99233,11 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "header",
-                { staticClass: "is-hidden-mobile", attrs: { id: "header" } },
+                {
+                  staticClass: "is-hidden-mobile",
+                  class: { fixed: _vm.scrollPosition > 215 },
+                  attrs: { id: "header" }
+                },
                 [
                   _c(
                     "div",
@@ -99131,19 +99354,21 @@ var render = function() {
                     ]
                   ),
                   _vm._v(" "),
-                  _c("div", { attrs: { id: "header-content" } }, [
-                    _c(
-                      "div",
-                      {
-                        staticClass: "container",
-                        style:
-                          "background-image:url(" +
-                          _vm.siteUrl +
-                          "/images/header_bg.png);"
-                      },
-                      [
+                  _c(
+                    "div",
+                    {
+                      style:
+                        "background-image:url(" +
+                        _vm.siteUrl +
+                        "/images/header_bg1.png), url(" +
+                        _vm.siteUrl +
+                        "/images/header_bg2.png) ;",
+                      attrs: { id: "header-content" }
+                    },
+                    [
+                      _c("div", { staticClass: "container" }, [
                         _c("div", { staticClass: "columns" }, [
-                          _c("div", { staticClass: "column is-7" }, [
+                          _c("div", { staticClass: "column is-6" }, [
                             _c("figure", { staticClass: "image logo" }, [
                               _c("img", {
                                 attrs: { src: _vm.logo, title: _vm.site_title }
@@ -99151,7 +99376,7 @@ var render = function() {
                             ])
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "column is-5" }, [
+                          _c("div", { staticClass: "column is-6" }, [
                             _c(
                               "div",
                               { staticClass: "is-pulled-right searchform" },
@@ -99190,17 +99415,166 @@ var render = function() {
                                   [_c("i", { staticClass: "fa fa-search" })]
                                 )
                               ]
-                            )
+                            ),
+                            _vm._v(" "),
+                            _c("div", { attrs: { id: "header-topmenu" } }, [
+                              _c(
+                                "ul",
+                                { attrs: { id: "topmenu" } },
+                                _vm._l(_vm.topmenu, function(m1, i1) {
+                                  return _c(
+                                    "li",
+                                    { class: { "is-active": i1 == _vm.si1 } },
+                                    [
+                                      _c(
+                                        "a",
+                                        {
+                                          on: {
+                                            click: function($event) {
+                                              _vm.changeRoute(
+                                                m1,
+                                                i1,
+                                                -1,
+                                                -1,
+                                                -1
+                                              )
+                                            }
+                                          }
+                                        },
+                                        [
+                                          _vm._v(_vm._s(m1.name) + " "),
+                                          _c("i", {
+                                            staticClass: "fas fa-caret-down"
+                                          })
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      m1.children
+                                        ? _c(
+                                            "ul",
+                                            _vm._l(m1.children, function(
+                                              m2,
+                                              i2
+                                            ) {
+                                              return _c("li", [
+                                                _c(
+                                                  "a",
+                                                  {
+                                                    on: {
+                                                      click: function($event) {
+                                                        _vm.changeRoute(
+                                                          m2,
+                                                          i1,
+                                                          i2,
+                                                          -1,
+                                                          -1
+                                                        )
+                                                      }
+                                                    }
+                                                  },
+                                                  [_vm._v(_vm._s(m2.name))]
+                                                ),
+                                                _vm._v(" "),
+                                                m2.children
+                                                  ? _c(
+                                                      "ul",
+                                                      _vm._l(
+                                                        m2.children,
+                                                        function(m3, i3) {
+                                                          return _c("li", [
+                                                            _c(
+                                                              "a",
+                                                              {
+                                                                on: {
+                                                                  click: function(
+                                                                    $event
+                                                                  ) {
+                                                                    _vm.changeRoute(
+                                                                      m3,
+                                                                      i1,
+                                                                      i2,
+                                                                      i3,
+                                                                      -1
+                                                                    )
+                                                                  }
+                                                                }
+                                                              },
+                                                              [
+                                                                _vm._v(
+                                                                  _vm._s(
+                                                                    m3.name
+                                                                  )
+                                                                )
+                                                              ]
+                                                            ),
+                                                            _vm._v(" "),
+                                                            m3.children
+                                                              ? _c(
+                                                                  "ul",
+                                                                  _vm._l(
+                                                                    m3.children,
+                                                                    function(
+                                                                      m4,
+                                                                      i4
+                                                                    ) {
+                                                                      return _c(
+                                                                        "li",
+                                                                        [
+                                                                          _c(
+                                                                            "a",
+                                                                            {
+                                                                              on: {
+                                                                                click: function(
+                                                                                  $event
+                                                                                ) {
+                                                                                  _vm.changeRoute(
+                                                                                    m4,
+                                                                                    i1,
+                                                                                    i2,
+                                                                                    i3,
+                                                                                    i4
+                                                                                  )
+                                                                                }
+                                                                              }
+                                                                            },
+                                                                            [
+                                                                              _vm._v(
+                                                                                _vm._s(
+                                                                                  m4.name
+                                                                                )
+                                                                              )
+                                                                            ]
+                                                                          )
+                                                                        ]
+                                                                      )
+                                                                    }
+                                                                  )
+                                                                )
+                                                              : _vm._e()
+                                                          ])
+                                                        }
+                                                      )
+                                                    )
+                                                  : _vm._e()
+                                              ])
+                                            })
+                                          )
+                                        : _vm._e()
+                                    ]
+                                  )
+                                })
+                              )
+                            ])
                           ])
                         ])
-                      ]
-                    )
-                  ]),
+                      ])
+                    ]
+                  ),
                   _vm._v(" "),
                   _c(
                     "div",
                     {
-                      style: { "background-color": _vm.main.parent_color.hex },
+                      style: { "background-color": "#e23b3b" },
                       attrs: { id: "header-menu" }
                     },
                     [
@@ -99218,9 +99592,7 @@ var render = function() {
                                 _c(
                                   "a",
                                   {
-                                    staticStyle: {
-                                      padding: "16px 12px 11px 12px"
-                                    },
+                                    staticStyle: { padding: "10px 12px 7px" },
                                     on: {
                                       click: function($event) {
                                         _vm.changeRoute("/")
