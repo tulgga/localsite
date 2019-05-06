@@ -143,6 +143,13 @@
                     { subheader: 'Чат',  role:0},
                         { title: "Групп", icon: 'fas fa-code-branch', path: '/group' ,  role:0},
 
+                    { subheader: 'Дашбоард', role:0,},
+                    { title: "Цагдаа", icon: 'fas fa-code-branch', path: '/dashboard_police' ,  role:0},
+                    { title: "Эрүүл мэнп", icon: 'fas fa-code-branch', path: '/dashboard_hospital' ,  role:0},
+                    { title: "Онцгой байдал", icon: 'fas fa-code-branch', path: '/dashboard_nema' ,  role:0},
+                    { title: "Цагын хуваарь", icon: 'fas fa-code-branch', path: '/dashboard_schedule' ,  role:0},
+                    { title: "Төсөв", icon: 'fas fa-code-branch', path: '/dashboard_budgets' ,  role:0},
+                    { title: "Цагийн үеийн асуудал", icon: 'fas fa-code-branch', path: '/dashboard_news' ,  role:0},
 
                     // ded site
                     { subheader: 'Тохиргоо', role:2,},
@@ -163,6 +170,10 @@
                     { subheader: 'Бусад',  role:3},
                     { title: "Санал асуулга", icon: 'fas fa-code-branch', path: '/poll' ,  role:3},
                     { title: 'Санал хүсэлт', icon: 'far fa-comments', path: '/urgudul',  role:3, badge:1, },
+
+                    //dashboard
+                    { subheader: 'Дашбоард', role:10,},
+                    { title: "Цагдаа", icon: 'fas fa-code-branch', path: '/poll' ,  role:10},
                 ],
                 badge_show: false,
             }

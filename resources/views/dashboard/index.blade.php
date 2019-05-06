@@ -75,6 +75,8 @@
             </div>
         </div>
 
+
+
         <div class="col-sm-3">
             <div class="card card-chart">
                 <div class="card-header">
@@ -91,6 +93,7 @@
                                 <p class="row c_i">
                                     <b class="c_ik"> Төрсөн </b><b class="c_iv"> {{$h!=null ?$h->birth: 0}} </b>
                                 </p>
+
 
                                 <p class="row c_i">
                                     <b class="c_ik"> Нас барсан </b><b class="c_iv"> {{$h!=null ?$h->die: 0}}  </b>
@@ -159,7 +162,9 @@
             </div>
         </div>
 
+
         <div class='col-sm-4'>
+
             <div class="c">
                 <div class="c_t"> Төсөв </div>
                 <div class="c_b">

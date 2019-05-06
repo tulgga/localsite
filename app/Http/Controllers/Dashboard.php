@@ -70,6 +70,10 @@ class Dashboard extends Controller
       return view('dashboard/index', $data);
   }
 
+  public function login(){
+      return view('dashboard/login');
+  }
+
   public function police()
   {
     $data=$this->MainData();
