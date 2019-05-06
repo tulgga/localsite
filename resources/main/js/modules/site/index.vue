@@ -1,80 +1,24 @@
 <template>
     <div >
-        <!--ontslokh medee-->
-        <!--<div v-if="ontslokh.length>0" id="ontslokh" class="roboto-condensed ">-->
-            <!--<div class="container">-->
-                <!--<div class="tile is-ancestor " >-->
-                    <!--<div class="tile">-->
-                        <!--<div class="tile is-parent is-8 p-0" style="    margin-right: 2px !important;" >-->
-                            <!--<b-img :value="ontslokh[0]" classes="tile is-child notification"  size="full">-->
-                                <!--<div class="bgGrad"></div>-->
-                                <!--<router-link :to="'/news/'+ontslokh[0].id">-->
-                                <!--<div class="content">-->
-                                    <!--<div v-if="ontslokh[0].category.length>0" class="tags has-addons">-->
-                                        <!--<span class="tag is-info">{{ontslokh[0].category[0].name}}</span>-->
-                                        <!--<span v-if="ontslokh[0].category.length!=1" class="tag is-dark">+{{ontslokh[0].category.length-1}}</span>-->
-                                    <!--</div>-->
-                                    <!--<div class="title"><a class="is-size-4-desktop">{{ontslokh[0].title}}</a></div>-->
-                                    <!--<div class="date"><i class="far fa-clock"></i> {{ontslokh[0].created_at.substring(0, 16)}}</div>-->
-                                <!--</div>-->
-                                <!--</router-link>-->
-                            <!--</b-img>-->
-                        <!--</div>-->
-                        <!--<div class="tile is-parent is-vertical is-4 p-0" >-->
-                            <!--<b-img classes="tile is-child notification mb2px" :value="ontslokh[1]" size="large">-->
-                                <!--<div class="bgGrad"></div>-->
-                                <!--<router-link :to="'/news/'+ontslokh[1].id">-->
-                                <!--<div class="content">-->
-                                    <!--<div v-if="ontslokh[1].category.length>0" class="tags has-addons">-->
-                                        <!--<span class="tag is-success">{{ontslokh[1].category[0].name}}</span>-->
-                                        <!--<span v-if="ontslokh[1].category.length!=1" class="tag is-dark">+{{ontslokh[1].category.length-1}}</span>-->
-                                    <!--</div>-->
-
-                                    <!--<div class="title"><a class="is-size-6">{{ontslokh[1].title.substring(0, 80)}}<span v-if="ontslokh[1].title.length>80">...</span></a></div>-->
-                                    <!--<div class="date"><i class="far fa-clock"></i> {{ontslokh[1].created_at.substring(0, 16)}}</div>-->
-                                <!--</div>-->
-                                <!--</router-link>-->
-                            <!--</b-img>-->
-                            <!--<b-img classes="tile is-child notification" :value="ontslokh[2]" size="large">-->
-                                <!--<div class="bgGrad"></div>-->
-                                <!--<router-link :to="'/news/'+ontslokh[2].id">-->
-                                    <!--<div class="content">-->
-                                        <!--<div v-if="ontslokh[2].category.length>0" class="tags has-addons">-->
-                                            <!--<span class="tag is-warning">{{ontslokh[2].category[0].name}}</span>-->
-                                            <!--<span v-if="ontslokh[2].category.length!=1" class="tag is-dark">+{{ontslokh[2].category.length-1}}</span>-->
-                                        <!--</div>-->
-                                        <!--<div class="title"><a class="is-size-6">{{ontslokh[2].title.substring(0, 80)}}<span v-if="ontslokh[2].title.length>80">...</span></a></div>-->
-                                        <!--<div class="date"><i class="far fa-clock"></i> {{ontslokh[2].created_at.substring(0, 16)}}</div>-->
-                                    <!--</div>-->
-                                <!--</router-link>-->
-                            <!--</b-img>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-        <!--<loading v-else></loading>-->
-        <div class="container" id="ontslokh">
+        <div v-if="ontslokh.length>0" class="container" id="ontslokh">
             <carousel
                     :per-page="1"
                     :navigationEnabled="true"
                     :paginationEnabled="true"
                     navigationNextLabel="<i class='fas fa-chevron-right'></i>"
-                    navigationPrevLabel="<i class='fas fa-chevron-left'></i>"
-
-            >
+                    navigationPrevLabel="<i class='fas fa-chevron-left'></i>">
                 <template v-for="p in ontslokh">
                     <slide>
                         <b-img classes="bcarousel-list-ontslokh" :value="p" size="full">
                             <router-link :to="'/news/'+p.id">
-                                <div  class="CarTitle roboto-condensed ">{{p.title}}</div>
+                                <div  class="ontslokhTitle roboto-condensed ">{{p.title}}</div>
                             </router-link>
                         </b-img>
                     </slide>
                 </template>
             </carousel>
         </div>
-
+        <loading v-else></loading>
         <div class="container">
             <div class="columns  is-multiline mb-0">
                 <div class="column  is-9">
@@ -161,8 +105,6 @@
         },
         methods: {
             fetchData: function () {
-
-
                 axios.get('/news_ontslokh/'+0).then((response) => {
                     this.ontslokh=response.data.success;
 
