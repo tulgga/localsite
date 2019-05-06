@@ -1280,7 +1280,6 @@ h3.head.iltod span{
         float: right;
     }
     .back-history a{
-        background: rgba(255, 255, 255, 0.05);
         color: #666 !important;
         background: rgba(0, 0, 0, 0.03);
         font-size: 14px;
