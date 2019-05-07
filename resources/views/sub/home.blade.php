@@ -150,7 +150,7 @@
     <div class="row" style="background: #fafafa; border-top: 1px solid #f5f5f5;">
         <div class="container content-box">
             <div class="row">
-                <div class="col-sm-8">
+                <div class="col-sm-{{(count($info->events)>0) ? 8 : 12}}">
                     <h3 class="head row background-white"><span>Аймгийн мэдээ</span></h3>
                     <ul class="row latest_news background-white">
                         @foreach($province_news as $nws)
@@ -211,44 +211,46 @@
                         @endforeach
                     </ul>
                 </div>
-                <div class="col-sm-4">
-                    <h3 class="head row background-white"><span>ЭВЭНТ</span></h3>
-                    <ul class="row iltod_news background-white">
-                        <div class="iltod_scroll scrollbar-inner">
-                            {{--@foreach($tender_posts as $tend)
-                                @foreach($latest_news as $nws)
-                                    @if($tend->post_id == $nws->id)
-                                    <li>
-                                        <a href="{{asset('news/'.$nws->id)}}">{{mb_substr($nws->title, 0, 55)}}...</a>
-                                        <span class="create_date">Нийтэлсэн: {{$nws->created_at->format('Y-m-d')}}</span>
-                                    </li>
-                                    @endif
-                                @endforeach
-                            @endforeach--}}
-                            @foreach($info->events as $row)
-                                <li>
-                                    <a href="#" style="color: #0a4f75"> {{$row->description}} </a>
-                                    <span class="create_date">
-                                        @if($row->head_id==4)
-                                            <font color="black">Хаана:</font> ХДТ
-                                        @elseif($row->head_id==5)
-                                            <font color="black">Хаана:</font> Тэмүжин театр
-                                        @elseif($row->head_id==6)
-                                            <font color="black">Хаана:</font> Баганат талбай
-                                        @elseif($row->head_id==7)
-                                            <font color="black">Хаана:</font> ЗДТГын заал
-                                        @elseif($row->head_id==8)
-                                            <font color="black">Хаана:</font> Сумын ЗДТГын заалан
-                                        @else
+                @if(count($info->events)>0)
+                    <div class="col-sm-4">
+                        <h3 class="head row background-white"><span>ЭВЭНТ</span></h3>
+                        <ul class="row iltod_news background-white">
+                            <div class="iltod_scroll scrollbar-inner">
+                                {{--@foreach($tender_posts as $tend)
+                                    @foreach($latest_news as $nws)
+                                        @if($tend->post_id == $nws->id)
+                                        <li>
+                                            <a href="{{asset('news/'.$nws->id)}}">{{mb_substr($nws->title, 0, 55)}}...</a>
+                                            <span class="create_date">Нийтэлсэн: {{$nws->created_at->format('Y-m-d')}}</span>
+                                        </li>
                                         @endif
+                                    @endforeach
+                                @endforeach--}}
+                                @foreach($info->events as $row)
+                                    <li>
+                                        <a href="#" style="color: #0a4f75"> {{$row->description}} </a>
+                                        <span class="create_date">
+                                            @if($row->head_id==4)
+                                                <font color="black">Хаана:</font> ХДТ
+                                            @elseif($row->head_id==5)
+                                                <font color="black">Хаана:</font> Тэмүжин театр
+                                            @elseif($row->head_id==6)
+                                                <font color="black">Хаана:</font> Баганат талбай
+                                            @elseif($row->head_id==7)
+                                                <font color="black">Хаана:</font> ЗДТГын заал
+                                            @elseif($row->head_id==8)
+                                                <font color="black">Хаана:</font> Сумын ЗДТГын заалан
+                                            @else
+                                            @endif
 
-                                        ({{$row->person_count}})   |
-                                           <font color="black">Хэзээ:</font> {{$row->schedule_date}} {{$row->start_time}} цагт </span>
-                                </li>
-                            @endforeach
-                        </div>
-                    </ul>
-                </div>
+                                            ({{$row->person_count}})   |
+                                               <font color="black">Хэзээ:</font> {{$row->schedule_date}} {{$row->start_time}} цагт </span>
+                                    </li>
+                                @endforeach
+                            </div>
+                        </ul>
+                    </div>
+                @endif
             </div>
         </div>
     </div>

@@ -21,7 +21,7 @@ Route::get('/adminPanel/{vue_capture?}',function(){
 Route::get('/!/{vue_capture?}', 'Controller@index')->where('vue_capture', '[\/\w\.-]*');
 
 
-Route::domain('volunteer.bayankhongor.towersoft.mn')->group(function () {
+Route::domain('volunteer.'.env('SUB_DOMAIN'))->group(function () {
     Route::get('/', 'VolunteerController@index');
     Route::get('/c/{id}', 'VolunteerController@category');
     Route::get('/login', 'VolunteerController@login');
@@ -51,7 +51,7 @@ Route::domain('volunteer.bayankhongor.towersoft.mn')->group(function () {
     Route::post('/event_rate', 'VolunteerController@event_rate');
 });
 
-Route::domain('zar.bayankhongor.towersoft.local')->group(function () {
+Route::domain('zar.'.env('SUB_DOMAIN'))->group(function () {
 
     Route::get('/', 'ZarController@index');
     Route::get('/c/{id}.html', 'ZarController@category');
@@ -61,7 +61,7 @@ Route::domain('zar.bayankhongor.towersoft.local')->group(function () {
     Route::post('/postAdd', 'ZarController@postAdd');
 });
 
-Route::domain('dashboard.bayankhongor.local')->group(function () {
+Route::domain('dashboard.'.env('SUB_DOMAIN'))->group(function () {
   Route::get('/', 'dashboard@index');
   Route::get('/login', 'dashboard@login');
   Route::get('/police','dashboard@police');
@@ -71,7 +71,7 @@ Route::domain('dashboard.bayankhongor.local')->group(function () {
   Route::get('/budget','dashboard@budgets');
 });
 
-Route::domain('{account}.bayankhongor.local')->group(function () {
+Route::domain('{account}.'.env('SUB_DOMAIN'))->group(function () {
     Route::get('/', 'SubController@index');
     Route::get('/p/{id}', 'SubController@page');
     Route::get('/news/{id}', 'SubController@news');
