@@ -53,19 +53,19 @@
                                 </div>
                             </div>
                         </div>
-                        @if($images)
-                        <div class="form-group">
-                            <label>Оруулсан зурагнууд: </label>
-                                @foreach($images as $img)
-                                    <div class="eventImg" style="background-image: url({{asset('uploads')}}/{{$img->image}})">
-                                        <a class="btn btn-sm btn-danger font-12 d-table" href="/deleteImg/{{$img->id}}/{{$id}}"><i class="fa fa-trash"></i></a>
-                                    </div>
-                                @endforeach
-                        </div>
-                        @endif
-                        <div class="form-group">
-                            <label>Хамтрагчид: </label>
-                            <textarea class="form-control"></textarea>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                @if($images)
+                                <div class="form-group">
+                                    <label>Оруулсан зурагнууд: </label>
+                                        @foreach($images as $img)
+                                            <div class="eventImg" style="background-image: url({{asset('uploads')}}/{{$img->image}})">
+                                                <a class="btn btn-sm btn-danger font-12 d-table" href="/deleteImg/{{$img->id}}/{{$id}}"><i class="fa fa-trash"></i></a>
+                                            </div>
+                                        @endforeach
+                                </div>
+                                @endif
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="pagetext">Тайлбар:</label>
@@ -77,7 +77,7 @@
                     <div class="col-sm-12">
                         <a class="btn btn-sm btn-light" href="{{asset('events')}}">Буцах</a>
                         <input type="hidden" name="id" value="{{$id}}">
-                        <button name="submit" type="submit" class="btn btn-sm btn-primary"><i class="fa fa-save"></i> Хадгалах</button>
+                        <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-save"></i> Хадгалах</button>
                     </div>
                 </div>
             </form>

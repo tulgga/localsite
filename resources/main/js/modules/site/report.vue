@@ -2,7 +2,7 @@
     <div  class="container" >
         <template v-if="fetched">
 
-            <div class="columns   mt-1">
+            <div class="columns   ">
 
                 <div class="column  is-9">
                         <ul class="feedlist">

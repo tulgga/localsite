@@ -4,15 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Zar;
-use App\Zar_category;
+use App\Dashboard_police;
 
 class AdminDashboardPoliceController extends Controller
 {
     public function index()
     {
         extract(request()->only(['query', 'limit', 'page', 'orderBy', 'ascending', 'byColumn']));
-        $result=Zar::where('id', '!=', 0);
+        $result=Dashboard_police::where('id', '!=', 0);
 
         if (isset($query) && $query) {
             $result = $byColumn == 1 ?

@@ -61,7 +61,12 @@
                         </a>
                         <router-link v-else :to="'/news/'+p.id">
                             <b-img :value="p" classes="col3newslist"  size="medium">
-                                <div class="title roboto-condensed">{{p.title}}</div>
+                                <div class="title roboto-condensed">
+
+                                        {{p.title}}
+
+
+                                </div>
                             </b-img>
                         </router-link>
                     </div>

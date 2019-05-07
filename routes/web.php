@@ -35,6 +35,7 @@ Route::domain('volunteer.'.env('SUB_DOMAIN'))->group(function () {
     Route::get('/organizationform/{id}', 'VolunteerController@organizationform');
     Route::post('/organizationUpdate', 'VolunteerController@organizationUpdate');
     Route::get('/organizationUpdateStatus/{id}/{stat}', 'VolunteerController@organizationUpdateStatus');
+    Route::get('/organizationdelete/{id}', 'VolunteerController@organizationdelete');
     Route::post('/socialsave', 'VolunteerController@socialsave');
     Route::get('/changePassword', 'VolunteerController@changePassword');
     Route::post('/updatePassword', 'VolunteerController@updatePassword');
@@ -49,6 +50,8 @@ Route::domain('volunteer.'.env('SUB_DOMAIN'))->group(function () {
     /*** Ajax request response ***/
     Route::post('/event_like', 'VolunteerController@event_like');
     Route::post('/event_rate', 'VolunteerController@event_rate');
+    /** Comment Send **/
+    Route::post('/sendComment', 'VolunteerController@sendComment');
 });
 
 Route::domain('zar.'.env('SUB_DOMAIN'))->group(function () {
