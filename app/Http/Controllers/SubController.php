@@ -2,17 +2,14 @@
 
 namespace App\Http\Controllers;
 
-//use http\Env\Request;
 use App\Dashboard_schedule;
 use App\Link;
-use App\News_to_category;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\File;
-use Illuminate\Support\Facades\Redirect;
 use App\Site;
 use App\Img;
 use App\Page;
@@ -21,20 +18,15 @@ use App\Category;
 use App\File_category;
 use App\File_to_category;
 use App\Urgudul;
-use phpDocumentor\Reflection\Location;
-use function PHPSTORM_META\type;
 
 class SubController extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     public function index($account){
+      $data['home_url'] = Site::select('domain')->where('id',0)->first();
+      $data['info'] = $this->getDomainInfo($account);
 
-      $data['info']=$this->getDomainInfo($account);
-      $tenders = Category::where('site_id', $data['info']->id)
-          ->where('name','Тендерийн урилга')->first();
-      $data['tender_posts'] = News_to_category::orderBy('created_at','desc')->where('cat_id',$tenders->id)->get();
-      $data['tender_posts']=[];
       $data['ontslokh']= Post::orderBy('created_at', 'desc')->where('site_id', $data['info']->id)->where('is_primary', 1)->where('status',1)->with('Category')->select('title', 'id', 'image', 'type','short_content','created_at')
           ->limit(5)->get();
       $data['latest_news']= Post::orderBy('created_at', 'desc')->where('site_id', $data['info']->id)->where('is_primary', 0)->where('status',1)->with('Category')->select('title', 'id', 'image', 'type','short_content','created_at')

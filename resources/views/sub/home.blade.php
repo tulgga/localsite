@@ -110,16 +110,6 @@
                         <h3 class="head row background-white"><span>ЭВЭНТ</span></h3>
                         <ul class="row iltod_news background-white">
                             <div class="iltod_scroll scrollbar-inner">
-                                {{--@foreach($tender_posts as $tend)
-                                    @foreach($latest_news as $nws)
-                                        @if($tend->post_id == $nws->id)
-                                        <li>
-                                            <a href="{{asset('news/'.$nws->id)}}">{{mb_substr($nws->title, 0, 55)}}...</a>
-                                            <span class="create_date">Нийтэлсэн: {{$nws->created_at->format('Y-m-d')}}</span>
-                                        </li>
-                                        @endif
-                                    @endforeach
-                                @endforeach--}}
                                 @foreach($info->events as $row)
                                     <li>
                                         <a href="#" style="color: #0a4f75"> {{$row->description}} </a>
