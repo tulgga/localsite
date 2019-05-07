@@ -77,27 +77,25 @@
                 @endif
             </div>
             @if(count($data)>0)
-                <div class="section-top-border">
-                    <div class="row">
-                        @foreach($data as $row)
-                            <div class="col-md-4 mt-sm-30"; style="overflow: hidden">
-                                <a href="{{asset('/'.$row->id)}}">
-                                    <h3 class="mb-20">{{$row->title}}</h3>
-                                </a>
-                                @if(count($row->sub)>0)
-                                    <div class="">
-                                        <ol class="ordered-list">
-                                            @foreach($row->sub as $sub)
-                                                <a href="{{asset('/'.$sub->id)}}">
-                                                    <li><span>{{$sub->title}}</span></li>
-                                                </a>
-                                            @endforeach
-                                        </ol>
-                                    </div>
-                                @endif
-                            </div>
-                        @endforeach
-                    </div>
+                <div class="row">
+                    @foreach($data as $row)
+                        <div class="col-md-4 mt-sm-30"; style="overflow: hidden">
+                            <a href="{{asset('/'.$row->id)}}">
+                                <h4 class="mb-20">{{$row->title}}</h4>
+                            </a>
+                            @if(count($row->sub)>0)
+                                <div class="">
+                                    <ol class="ordered-list">
+                                        @foreach($row->sub as $sub)
+                                            <a href="{{asset('/'.$sub->id)}}">
+                                                <li><span>{{$sub->title}}</span></li>
+                                            </a>
+                                        @endforeach
+                                    </ol>
+                                </div>
+                            @endif
+                        </div>
+                    @endforeach
                 </div>
 
             @endif

@@ -877,25 +877,25 @@ h1, h2, h3, h4, h5, h6 {
 
 .genric-btn.primary {
   color: #fff;
-  background: #9820ec;
+  background: #1b3658;
   border: 1px solid transparent;
 }
 
 .genric-btn.primary:hover {
-  color: #9820ec;
-  border: 1px solid #9820ec;
+  color: #1b3658;
+  border: 1px solid #1b3658;
   background: #fff;
 }
 
 .genric-btn.primary-border {
-  color: #9820ec;
-  border: 1px solid #9820ec;
+  color: #1b3658;
+  border: 1px solid #1b3658;
   background: #fff;
 }
 
 .genric-btn.primary-border:hover {
   color: #fff;
-  background: #9820ec;
+  background: #1b3658;
   border: 1px solid transparent;
 }
 
@@ -1031,7 +1031,7 @@ h1, h2, h3, h4, h5, h6 {
 .generic-blockquote {
   padding: 30px 50px 30px 30px;
   background: #f9f9ff;
-  border-left: 2px solid #9820ec;
+  border-left: 2px solid #1b3658;
 }
 
 .progress-table-wrap {
@@ -1155,7 +1155,7 @@ h1, h2, h3, h4, h5, h6 {
   position: absolute;
   width: 14px;
   height: 14px;
-  border: 3px solid #9820ec;
+  border: 3px solid #1b3658;
   background: #fff;
   top: 4px;
   left: 0;
@@ -1168,7 +1168,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .ordered-list li {
   list-style-type: decimal-leading-zero;
-  color: #9820ec;
+  color: #1b3658;
   font-weight: 500;
   line-height: 1.82em !important;
 }
@@ -1181,7 +1181,7 @@ h1, h2, h3, h4, h5, h6 {
 .ordered-list-alpha li {
   margin-left: 30px;
   list-style-type: lower-alpha;
-  color: #9820ec;
+  color: #1b3658;
   font-weight: 500;
   line-height: 1.82em !important;
 }
@@ -1194,7 +1194,7 @@ h1, h2, h3, h4, h5, h6 {
 .ordered-list-roman li {
   margin-left: 30px;
   list-style-type: lower-roman;
-  color: #9820ec;
+  color: #1b3658;
   font-weight: 500;
   line-height: 1.82em !important;
 }
@@ -1266,7 +1266,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .single-input-primary:focus {
   outline: none;
-  border: 1px solid #9820ec;
+  border: 1px solid #1b3658;
 }
 
 .single-input-accent {
@@ -1327,7 +1327,7 @@ h1, h2, h3, h4, h5, h6 {
   width: 15px;
   height: 15px;
   border-radius: 50%;
-  background: #9820ec;
+  background: #1b3658;
   -webkit-transition: all 0.2s;
   -moz-transition: all 0.2s;
   -o-transition: all 0.2s;
@@ -1410,7 +1410,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .primary-switch input:checked + label:before {
-  background: #9820ec;
+  background: #1b3658;
 }
 
 .confirm-switch {
@@ -1759,12 +1759,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .default-select .nice-select .list .option.selected {
-  color: #9820ec;
+  color: #1b3658;
   background: transparent;
 }
 
 .default-select .nice-select .list .option:hover {
-  color: #9820ec;
+  color: #1b3658;
   background: transparent;
 }
 
@@ -1814,12 +1814,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .form-select .nice-select .list .option.selected {
-  color: #9820ec;
+  color: #1b3658;
   background: transparent;
 }
 
 .form-select .nice-select .list .option:hover {
-  color: #9820ec;
+  color: #1b3658;
   background: transparent;
 }
 
