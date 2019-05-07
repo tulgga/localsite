@@ -73,8 +73,8 @@ CRUD Edit, Create form
                                 <div class="control">
                                     <div class="select">
                                         <select  v-model="form.is_org" >
-                                            <option value="0">Хуулийн итгээд</option>
-                                            <option value="1">Байгууллага</option>
+                                            <option value="0">Иргэн</option>
+                                            <option value="1">Хуулийн итгээд</option>
                                         </select>
                                     </div>
                                 </div>
