@@ -24,6 +24,8 @@ Route::middleware('auth:api')->namespace('Api')->group(function () {
     Route::get('myGroup', 'ApiGroupController@myGroup');
     Route::get('groups', 'ApiGroupController@group');
     Route::post('joinGroup', 'ApiGroupController@joinGroup');
+    Route::post('joinAdminGroup', 'ApiGroupController@joinAdminGroup');
+    Route::post('outAdminGroup', 'ApiGroupController@outAdminGroup');
     Route::post('outGroup', 'ApiGroupController@outGroup');
     Route::post('sendMessage', 'ApiGroupController@sendMessage');
     Route::get('messages/{group_id}', 'ApiGroupController@messages');
@@ -184,6 +186,14 @@ Route::middleware('auth:admin-api')->namespace('Admin')->prefix('admin')->group(
     Route::post('zar_category_save/{site_id}','AdminZarCategoryController@save');
     Route::get('zar_category/{site_id}','AdminZarCategoryController@index1');
     Route::get('zar_category_select','AdminZarCategoryController@zar_category_select');
+
+    //lavlagaa
+    Route::post('lavlagaa','AdminLavlagaaController@insert');
+    Route::post('lavlagaa/{id}','AdminLavlagaaController@update');
+    Route::post('lavlagaa_delete','AdminLavlagaaController@delete');
+    Route::post('lavlagaa_change','AdminLavlagaaController@change');
+    Route::get('lavlagaa','AdminLavlagaaController@index');
+    Route::get('lavlagaa_single/{id}','AdminLavlagaaController@single');
 
     //pages
     Route::post('pages','AdminPagesController@insert');

@@ -32,8 +32,8 @@ class ApiGroupController extends Controller
 
         $results=Group_user::where('group_id', $group_id)
             ->join('users','users.id', '=','group_users.user_id')
-            ->select('group_users.id', 'users.name', 'users.profile_pic')
-        ->orderBy('group_users.created_at','desc');
+            ->select('group_users.group_id', 'group_users.user_id', 'users.name', 'users.profile_pic', 'group_users.status')
+        ->orderBy('group_users.created_at','desc')->get();
 
         foreach ($results as $i=>$result){
             if(!is_null($result->profile_pic)){
@@ -56,7 +56,7 @@ class ApiGroupController extends Controller
                 GROUP by group_id
             ) joined
             on joined.group_id=groups.id
-            where groups.status=1
+            where joined.status=1
             order by groups.id DESC
         ";
         $results=\DB::select($query);
@@ -82,6 +82,28 @@ class ApiGroupController extends Controller
         return response()->json([ 'success' => $results ]);
     }
 
+    public function outAdminGroup(Request $request){
+
+        $data = $request->post();
+        $find=Group_user::where('user_id',$data['user_id'])->where('group_id',$data['group_id'])->first();
+        if($find){ $find->delete(); }
+        return response()->json([ 'success' => 1 ]);
+    }
+
+    public function joinAdminGroup(Request $request){
+
+        $data = $request->post();
+
+        $find=Group_user::where('user_id',$data['user_id'])->where('group_id',$data['group_id'])->first();
+        if(!$find){
+            $Group_user=new Group_user();
+            $Group_user->user_id=$data['user_id'];
+            $Group_user->group_id=$data['group_id'];
+            $Group_user->save();
+
+        }
+        return response()->json([ 'success' => 1 ]);
+    }
 
     public function outGroup(Request $request){
         $user=Auth::user();
@@ -110,7 +132,7 @@ class ApiGroupController extends Controller
         $user=Auth::user();
         $data = $request->post();
 
-        $find=Group_user::where('user_id',$user->id)->where('group_id',$data['group_id'])->first();
+        $find=Group_user::where('user_id',$user->id)->where('group_id',$data['group_id'])->where('status', 1)->first();
         if($find){
             $message= new Messages();
             $message->user_id=$user->id;
@@ -126,7 +148,7 @@ class ApiGroupController extends Controller
     public function messages($group_id){
         $user=Auth::user();
         $messages=Messages::where('group_id', $group_id)->orderBy('id', 'asc')
-            ->join('users', 'users.id','=', 'messages.id')
+            ->join('users', 'users.id','=', 'messages.user_id')
             ->select('messages.*', 'users.name', 'users.profile_pic')
             ->paginate(50);
         $json=json_encode($messages);
@@ -138,7 +160,7 @@ class ApiGroupController extends Controller
                return $currentPage;
            });
            $messages=Messages::where('group_id', $group_id)->orderBy('id', 'asc')
-               ->join('users', 'users.id','=', 'messages.id')
+               ->join('users', 'users.id','=', 'messages.user_id')
                ->select('messages.*', 'users.name', 'users.profile_pic')
                ->paginate(50);
        }

@@ -129,6 +129,8 @@
                         { title: 'Үндсэн цэс', icon: 'fas fa-bars', path: '/pages' ,  role:0},
                         { title: 'Толгой цэс', icon: 'fas fa-bars', path: '/toppages' ,  role:0},
                         { title: 'Туслах цэс', icon: 'fas fa-bars', path: '/helppages' ,  role:0},
+                    { subheader: 'Лавлагаа мэдээлэл', role:0,},
+                        { title: "Лавлагаа мэдээлэл", icon: 'far fa-comments', path: '/lavlagaa' ,  role:0},
                     { subheader: 'Файлын сан',  role:1},
                         { title: "Файлын ангилал", icon: 'fas fa-code-branch', path: '/file_category',  role:0 },
                         { title: "Файлын сан", icon: 'fas fa-folder', path: '/files',  role:1 },
@@ -143,8 +145,7 @@
                         { title: 'Санал хүсэлт', icon: 'far fa-comments', path: '/urgudul',  role:1,  badge:1,},
                     { subheader: 'Чат',  role:0},
                         { title: "Групп", icon: 'fas fa-code-branch', path: '/group' ,  role:0},
-                    { subheader: 'Лавлагаа мэдээлэл', role:0,},
-                        { title: "Лавлагаа мэдээлэл", icon: 'fas fa-code-branch', path: '/lavlagaa' ,  role:0},
+
 
                     { subheader: 'Дашбоард', role:0,},
                     { title: "Цагдаа", icon: 'fas fa-code-branch', path: '/dashboard_police' ,  role:0},

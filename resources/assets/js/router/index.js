@@ -30,6 +30,9 @@ import HelpPagesForm from '../modules/admin/pages/HelpPagesForm'
 import TopPages from '../modules/admin/pages/TopPages'
 import TopPagesForm from '../modules/admin/pages/TopPagesForm'
 
+import Lavlagaa from '../modules/admin/lavlagaa/lavlagaa'
+import LavlagaaForm from '../modules/admin/lavlagaa/lavlagaaForm'
+
 import LinkCategory from '../modules/admin/linkCategory/LinkCategory'
 import LinkCategoryForm from '../modules/admin/linkCategory/LinkCategoryForm'
 
@@ -274,6 +277,57 @@ let routes = [
                         {
                             title: 'Дэд сайтууд',
                             rname: 'sites'
+                        }
+                    ],
+                    notloading: true,
+                    is_modal: true,
+                }
+            },
+        ]
+    },
+
+
+    {
+        path: '/lavlagaa',
+        name: 'lavlagaa',
+        component: Lavlagaa,
+        meta: {
+            requiresAuth: true,
+            page_title: 'Лавлагаа мэдээлэл',
+            bread_crumbs: [
+                {
+                    title: 'Лавлагаа мэдээлэл',
+                    rname: 'home'
+                }
+            ]
+        },
+        children: [
+            {
+                path: 'create',
+                component: LavlagaaForm,
+                name: 'create_lavlagaa',
+                meta: {
+                    page_title: 'Лавлагаа мэдээлэл',
+                    bread_crumbs: [
+                        {
+                            title: 'Лавлагаа мэдээлэл',
+                            rname: 'home'
+                        },
+                    ],
+                    notloading: true,
+                    is_modal: true,
+                }
+            },
+            {
+                path: ':id/update',
+                component: LavlagaaForm,
+                name: 'update_lavlagaa',
+                meta: {
+                    page_title: 'Засах',
+                    bread_crumbs: [
+                        {
+                            title: 'Лавлагаа мэдээлэл',
+                            rname: 'home'
                         }
                     ],
                     notloading: true,

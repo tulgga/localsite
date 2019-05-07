@@ -204,7 +204,7 @@ CRUD Edit, Create form
                 // pages_min
                 this.m_id = this.$route.params.id;
                 this.site_id= this.$store.getters.domain.id;
-                axios.get('/pages/'+this.site_id).then((response) => {
+                axios.get('/pages/'+this.site_id+'/2').then((response) => {
                     this.pages = response.data.success;
                 });
 
