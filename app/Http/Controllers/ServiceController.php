@@ -7,6 +7,7 @@ class ServiceController extends Controller
 {
     public function index($id=0){
         $data['site']= $site=Site::find(0);
+        $data['subDomain'] = Site::select('id','name','domain','favicon')->orderBy('name','ASC')->get();
         $data['conf']= json_decode($site->config, true);
         $d = Lavlagaa::where('parent_id', 0)->orderBy("order_num")->get();
         $arr=[];

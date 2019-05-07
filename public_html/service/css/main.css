@@ -2628,13 +2628,13 @@ body:after {
 }
 
 .single-widget {
-  margin-top: 30px;
+  margin-top: 50px;
 }
 
 .single-widget .icon {
   text-align: center;
-  height: 60px;
-  width: 60px;
+  height: 30px;
+  width: 30px;
   border-radius: 3px;
   border: 1px solid rgba(255, 255, 255, 0.5);
   position: relative;
@@ -2643,7 +2643,7 @@ body:after {
 .single-widget .icon span {
   position: relative;
   z-index: 2;
-  font-size: 24px;
+  font-size: 15px;
   color: #fff;
 }
 
@@ -2662,22 +2662,19 @@ body:after {
 }
 
 .single-widget .desc {
-  width: 72%;
-}
-
-@media (max-width: 991px) {
-  .single-widget .desc {
     width: 100%;
-  }
+    position: absolute;
+    margin-left: 40px;
 }
 
 .single-widget .desc h6 {
-  margin: 20px 0;
+  margin: 0;
   color: #fff;
 }
 
 .single-widget .desc .contact a {
   color: #fff;
+    font-size: 12px;
 }
 
 .single-widget .desc p {
@@ -2785,4 +2782,13 @@ footer .copy-right-text a {
 
 .switch-wrap p {
   margin: 0;
+}
+
+
+.header_title{
+    color: #ffffff;
+    font-size: 30px;
+    position: absolute;
+    right: 0px;
+    top: 20px;
 }
