@@ -71,9 +71,8 @@
                     <div class="top-menu-show-btn d-sm-none"><i class="fa fa-ellipsis-v"></i></div>
                     <ul class="top-menu">
                         <li><a href="#" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-link"></i> Бусад сумдууд</a></li>
-                        <li><a href="{{asset('archive')}}"><i class="fa fa-archive"></i> Архив</a></li>
+                        <li><a href="http://archive.{{$home_url->domain}}/{{$info['domain']}}" target="_blank"><i class="fab fa-internet-explorer"></i> Өмнөх хувилбар</a></li>
                         <li><a href="{{asset('feedback')}}"><i class="far fa-comments"></i> Санал хүсэлт, өргөдөл, гомдол</a></li>
-                        <li><a href="#" target="_blank">[Өмнөх хувилбар]</a></li>
 
                     <a href="https://intranet.gov.mn/" target="_blank"><img style="height: 30px;margin: 9px 0 9px 15px;border-radius: 5px;" src="https://intranet.gov.mn/style/login/header/able.gif" /></a>
                     </ul>
@@ -165,7 +164,7 @@
                         </button>
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav">
-                                <li class="nav-item"><a href="{{asset('')}}" class="nav-link"><i class="fa fa-home"></i> </a> </li>
+                                <li class="nav-item"><a href="{{asset('')}}" class="nav-link"><i class="fa fa-home" style="transform: scale(1.5);"></i> </a> </li>
                                 <?php foreach($info->menu as $mn){ ?>
                                 <?php if($mn->children){ ?>
                                 <li class="nav-item dropdown">
@@ -217,21 +216,21 @@
     @yield('content')
     <div class="row footer">
         <div class="container">
-            <div class="row contact sum_list">
-                <div class="col-sm-4">
+            <div class="row contact ">
+                <div class="col-sm-4 sum_list">
                     <h4 class="row">СУМД</h4>
                     <div class="row">
                         @foreach($info->subDomain as $domain)
                             @if(!$domain->id == 0)
                                 <div class="col-sm-5 sum_item">
-                                    <a href="{{$domain->domain}}">@if($domain->favicon)<img style="width: 20px;" src="{{ asset('uploads/'.$domain->favicon)}}">@else<img src="{{ asset('uploads/favicon/XnjMhMUg3enV21GhLYDopC2L6uHsuQK0BqjTjCjP.png')}}">@endif {{$domain->name}}</a>
+                                    <a href="{{$domain->domain}}">{{$domain->name}}</a>
                                 </div>
                             @endif
                         @endforeach
                     </div>
                 </div>
                 @if(count($info->agent)>0)
-                <div class="col-sm-4">
+                <div class="col-sm-4sum_list">
                     <h4 class="row"> ХЭЛТЭС АГЕНТЛАГ</h4>
                     <div class="row">
                         @foreach($info->agent as $agent)
@@ -291,6 +290,10 @@
                             @if(!is_null($info->config['socail']['twitter']))<li><a target="_blank" href="{{$info->config['socail']['twitter']}}"><i class="fab fa-twitter"></i></a></li>@endif
                             @if(!is_null($info->config['socail']['youtube']))<li><a target="_blank" href="{{$info->config['socail']['youtube']}}"><i class="fab fa-youtube"></i></a></li>@endif
                     </ul>
+                    <div class="row mt-3">
+                        <div class="col-sm-6"><a href="https://www.apple.com/ios/app-store/"><img src="{{asset('main/sub/images/appstore.png')}}" class="w-100"> </a></div>
+                        <div class="col-sm-6"><a href="https://play.google.com/store/apps"><img src="{{asset('main/sub/images/playstore.png')}}" class="w-100"> </a></div>
+                    </div>
                 </div>
             </div>
             <div class="row copyright text-center">

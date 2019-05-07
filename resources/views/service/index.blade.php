@@ -20,10 +20,10 @@
     <!--
     CSS
     ============================================= -->
-    <link href="{{ asset('/service/css/linearicons.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('/service/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('/service/css/bootstrap.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('/service/css/main.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('/main/service/css/linearicons.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('/main/service/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('/main/service/css/bootstrap.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('/main/service/css/main.css') }}" rel="stylesheet" type="text/css">
     </head>
 <body>
 <div class="main-wrapper-first">

@@ -52,8 +52,13 @@ class AdminPagesController extends Controller
                 }
             }
         }
+
+
         return response()->json([ 'success' => $pages ]);
     }
+
+
+
 
     public function single($id){
         $page= Page::find($id);
