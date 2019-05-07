@@ -3,7 +3,7 @@
     <div  class="app" >
         <div  v-if="fetched">
             <header-bar></header-bar>
-            <div id="body-content">
+            <div id="body-content" style="margin-top: 20px;">
                 <router-view></router-view>
             </div>
             <footer-bar></footer-bar>

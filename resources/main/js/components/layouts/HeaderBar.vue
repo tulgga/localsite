@@ -87,7 +87,7 @@
                             <ul class="menu-list">
                                 <li><a>Сумдууд</a></li>
                                 <li><a>Агентлагууд</a></li>
-                                <li><a>Лавлагаа мэдээл</a></li>
+                                <li><a>Лавлагаа мэдээлэл</a></li>
                                 <li><a :href="'http://zar.'+subdomain" target="_blank">Зар</a></li>
                                 <li ><a href="!#/report">Санал хүсэлт, өргөдөл гомдол</a></li>
                             </ul>

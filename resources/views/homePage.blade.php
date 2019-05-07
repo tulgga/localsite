@@ -35,13 +35,15 @@
         <div class="row">
             <ul class="col-sm-6 left-menu">
                 <li><a href="!"><i class="fa fa-home"></i> Үндсэн веб хуудас</a></li>
-                <li><a href="#" data-toggle="modal" data-target=".bd-example-modal-lg"><i class="fa fa-folder-o"></i> Лавлагаа мэдээлэл</a></li>
-                <li><a href="http://shilendans.gov.mn/org/36" target="_blank"><i class="fa fa-cube"></i> Шилэн дансны мэдээлэл</a></li>
+                <li><a href="#" data-toggle="modal" data-target=".bd-example-modal-lg"><i class="fa fa-folder-o"></i> ТӨРИЙН ҮЙЛЧИЛГЭЭ</a></li>
+                <li><a href="http://zar.{{env('SUB_DOMAIN')}}" target="_blank"><i class="fa fa-cube"></i> ЗАРЫН НЭГДСЭН САН</a></li>
+
             </ul>
             <ul class="col-sm-6 right-menu">
                 <li><a href="#" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-list-ul"></i> Сумдын веб хуудас</a></li>
                 <li><a href="#" data-toggle="modal" data-target=".bd-example-modal-lg-2"><i class="fa fa-sitemap"></i> Агентлагуудын холбоос</a></li>
-                <li><a href="{{asset('!#/report')}}"><i class="fa fa-lightbulb-o"></i> Санал хүсэлт, өргөдөл гомдол</a></li>
+                <li><a href="{{asset('!#/report')}}" target="_blank"><i class="fa fa-lightbulb-o"></i> Санал хүсэлт, өргөдөл гомдол</a></li>
+
             </ul>
         </div>
     </div>
@@ -109,83 +111,7 @@
         </div>
     </div>
 </div>
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content sumd">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalCenterTitle">Лавлагаа мэдээллийн цонх</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="accordion" id="accordionExample">
-                    @php $services = json_decode($service, TRUE); @endphp
-                    @foreach($services as $i=>$srvc)
-                    <div class="card">
-                        <div class="card-header" id="heading_{{$i}}">
-                            <h2 class="mb-0">
-                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse_{{$i}}" aria-expanded="false" aria-controls="collapse_{{$i}}">
-                                    {{$srvc['title']}}
-                                </button>
-                            </h2>
-                        </div>
-                        <div id="collapse_{{$i}}" class="collapse" aria-labelledby="heading_{{$i}}" data-parent="#accordionExample">
-                            <div class="card-body">
-                                <div class="accordion" id="accordionExample1">
-                                    @foreach($srvc['item'] as $i=>$item)
-                                    <div class="card">
-                                        <div class="card-header" id="item_{{$i}}">
-                                            <h2 class="mb-0">
-                                                <button class="btn btn-link text-left" type="button" data-toggle="collapse" data-target="#item1_{{$i}}" aria-expanded="false" aria-controls="item1_{{$i}}">
-                                                    {{$item['title']}}
-                                                </button>
-                                            </h2>
-                                        </div>
-                                        <div id="item1_{{$i}}" class="collapse" aria-labelledby="item_{{$i}}" data-parent="#accordionExample1">
-                                            <div class="card-body">
-                                            @if(isset($item['item']))
-                                            <div class="accordion" id="accordionExample2">
-                                                @foreach($item['item'] as $i=>$itm)
-                                                    <div class="card">
-                                                        <div class="card-header" id="itm_{{$i}}">
-                                                            <h2 class="mb-0">
-                                                                <button class="btn btn-link text-left" type="button" data-toggle="collapse" data-target="#itm1_{{$i}}" aria-expanded="false" aria-controls="itm1_{{$i}}">
-                                                                    {{$itm['title']}}
-                                                                </button>
-                                                            </h2>
-                                                        </div>
-                                                        <div id="itm1_{{$i}}" class="collapse" aria-labelledby="itm_{{$i}}" data-parent="#accordionExample2">
-                                                            <div class="card-body">
-                                                                <ol style="list-style: inside decimal-leading-zero;">
-                                                                    <li>Хэрэгтэй мэдээлэл болон бүрдүүлэх материалын жагсаалт орно...</li>
-                                                                </ol>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    
-                                                @endforeach
-                                                </div>
-                                            
-                                            @else
-                                                <ol style="list-style: inside decimal-leading-zero;">
-                                                   <li>Хэрэгтэй мэдээлэл болон бүрдүүлэх материалын жагсаалт орно...</li>
-                                                </ol>
-                                            @endif
-                                            </div>
-                                        </div>
-                                    </div>
-                                    @endforeach
-                                </div>
-                             </div>
-                        </div>
-                    </div>
-                    @endforeach
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
 <div class="modal fade bd-example-modal-lg-2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content sumd">

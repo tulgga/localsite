@@ -290,7 +290,6 @@
                         @if(!is_null($info->config['socail']['facebook']))<li><a target="_blank" href="{{$info->config['socail']['facebook']}}"><i class="fab fa-facebook-f"></i></a></li>@endif
                             @if(!is_null($info->config['socail']['twitter']))<li><a target="_blank" href="{{$info->config['socail']['twitter']}}"><i class="fab fa-twitter"></i></a></li>@endif
                             @if(!is_null($info->config['socail']['youtube']))<li><a target="_blank" href="{{$info->config['socail']['youtube']}}"><i class="fab fa-youtube"></i></a></li>@endif
-                            @if(!is_null($info->config['socail']['google']))<li><a target="_blank" href="{{$info->config['socail']['google']}}"><i class="fab fa-google-plus"></i></a></li>@endif
                     </ul>
                 </div>
             </div>

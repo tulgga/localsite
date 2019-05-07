@@ -26,7 +26,6 @@ class Controller extends BaseController
         $data['favicon']= url('/uploads/'.$info->favicon);
         $data['mainConfig']=Settings::where('id', 1)->select('google_api_key', 'google_analytics')->first();
         $data['sumuud'] = Site::select('id','name','domain','favicon')->orderBy('name','ASC')->get();
-        $data['service'] = file_get_contents(url('/uploads/service.json'));
         $data['links']=Link::where('cat_id', 3)->orderBy('name', 'asc')->where('site_id', 0)->get();
         return view('homePage', $data);
     }
