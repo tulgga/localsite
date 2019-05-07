@@ -31,7 +31,8 @@ class SubController extends BaseController
     public function index($account){
 
       $data['info']=$this->getDomainInfo($account);
-      $tenders = Category::where('site_id', $data['info']->id)->where('name','Тендерийн урилга')->first();
+      $tenders = Category::where('site_id', $data['info']->id)
+          ->where('name','Тендерийн урилга')->first();
       $data['tender_posts'] = News_to_category::orderBy('created_at','desc')->where('cat_id',$tenders->id)->get();
       $data['tender_posts']=[];
       $data['ontslokh']= Post::orderBy('created_at', 'desc')->where('site_id', $data['info']->id)->where('is_primary', 1)->where('status',1)->with('Category')->select('title', 'id', 'image', 'type','short_content','created_at')
@@ -111,6 +112,7 @@ class SubController extends BaseController
         }
         $site->config = json_decode($site->config, true);
         $site->menu = $this->getMenu($site->id);
+        $site->menu_head = $this->getHeadMenu($site->id);
         $site->subDomain = Site::select('id','name','domain','favicon')->orderBy('name','ASC')->get();
 
         $site->agent = [];
@@ -148,8 +150,22 @@ class SubController extends BaseController
         $data['feedlist']=$urgudul->paginate(50);
         return view('sub.pageTemplates.page-feedback', $data);
     }
+
     public function getMenu($site_id){
-        $page= Page::where('site_id',$site_id)->where('is_main',1)->select('id', 'title as name', 'type', 'type_id', 'parent_id', 'blank', 'link')->orderBy('order_num', 'asc')->get();
+        $page= Page::where('site_id',$site_id)
+            ->where('is_main',1)
+            ->select('id', 'title as name', 'type', 'type_id', 'parent_id', 'blank', 'link')
+            ->orderBy('order_num', 'asc')
+            ->get();
+        return  $this->buildTree($page);
+    }
+
+    public function getHeadMenu($site_id){
+        $page= Page::where('site_id',$site_id)
+            ->where('is_main',2)
+            ->select('id', 'title as name', 'type', 'type_id', 'parent_id', 'blank', 'link')
+            ->orderBy('order_num', 'asc')
+            ->get();
         return  $this->buildTree($page);
     }
 
