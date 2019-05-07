@@ -2,7 +2,7 @@
     <div  class="container" >
         <template v-if="fetched">
             <div v-if="content">
-                <div class="columns pt-2 pb-2">
+                <div class="columns pb-2">
                     <div class="column is-9">
                         <div class="has-background-white p-15 mb-2" >
                             <h1 class="is-size-4-tablet is-size-6-mobile ">{{content.name}}</h1>

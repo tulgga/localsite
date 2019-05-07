@@ -86560,6 +86560,11 @@ if (false) {(function () {
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["a"] = ({
     props: ['cat_id', 'link', 'ajax_url', 'list_type'],
@@ -91053,7 +91058,13 @@ var render = function() {
                                     _c(
                                       "div",
                                       { staticClass: "title roboto-condensed" },
-                                      [_vm._v(_vm._s(p.title))]
+                                      [
+                                        _vm._v(
+                                          "\n\n                                    " +
+                                            _vm._s(p.title) +
+                                            "\n\n\n                            "
+                                        )
+                                      ]
                                     )
                                   ]
                                 )
@@ -91143,7 +91154,7 @@ var render = function() {
       _vm.post
         ? [
             _c("div", [
-              _c("div", { staticClass: "columns pt-2 pb-2" }, [
+              _c("div", { staticClass: "columns pb-2" }, [
                 _c("div", { staticClass: "column is-9" }, [
                   _c(
                     "div",
@@ -91614,7 +91625,7 @@ var render = function() {
         ? [
             _vm.content
               ? _c("div", [
-                  _c("div", { staticClass: "columns pt-2 pb-2" }, [
+                  _c("div", { staticClass: "columns pb-2" }, [
                     _c("div", { staticClass: "column is-9" }, [
                       _c(
                         "div",
@@ -91924,7 +91935,7 @@ var render = function() {
     [
       _vm.fetched
         ? [
-            _c("div", { staticClass: "columns pt-2 pb-2" }, [
+            _c("div", { staticClass: "columns pb-2" }, [
               _c("div", { staticClass: "column is-9" }, [
                 _c(
                   "div",
@@ -92488,7 +92499,7 @@ var render = function() {
         ? [
             _vm.content
               ? _c("div", [
-                  _c("div", { staticClass: "columns pt-2 pb-2" }, [
+                  _c("div", { staticClass: "columns pb-2" }, [
                     _c("div", { staticClass: "column is-9" }, [
                       _c(
                         "div",
@@ -93263,7 +93274,7 @@ var render = function() {
         ? [
             _vm.content
               ? _c("div", [
-                  _c("div", { staticClass: "columns pt-2 pb-2" }, [
+                  _c("div", { staticClass: "columns  pb-2" }, [
                     _c(
                       "div",
                       {
@@ -93550,7 +93561,7 @@ var render = function() {
     [
       _vm.fetched
         ? [
-            _c("div", { staticClass: "columns   mt-1" }, [
+            _c("div", { staticClass: "columns   " }, [
               _c("div", { staticClass: "column  is-9" }, [
                 _c(
                   "ul",
@@ -99859,7 +99870,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("li", [_c("a", [_vm._v("Лавлагаа мэдээл")])])
+    return _c("li", [_c("a", [_vm._v("Лавлагаа мэдээлэл")])])
   },
   function() {
     var _vm = this
@@ -100201,7 +100212,10 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "div",
-                { attrs: { id: "body-content" } },
+                {
+                  staticStyle: { "margin-top": "20px" },
+                  attrs: { id: "body-content" }
+                },
                 [_c("router-view")],
                 1
               ),
