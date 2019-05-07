@@ -73,6 +73,7 @@
                         <li><a href="#" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-link"></i> Бусад сумдууд</a></li>
                         <li><a href="{{asset('archive')}}"><i class="fa fa-archive"></i> Архив</a></li>
                         <li><a href="{{asset('feedback')}}"><i class="far fa-comments"></i> Санал хүсэлт, өргөдөл, гомдол</a></li>
+                        <li><a href="#" target="_blank">[Өмнөх хувилбар]</a></li>
 
                     <a href="https://intranet.gov.mn/" target="_blank"><img style="height: 30px;margin: 9px 0 9px 15px;border-radius: 5px;" src="https://intranet.gov.mn/style/login/header/able.gif" /></a>
                     </ul>
