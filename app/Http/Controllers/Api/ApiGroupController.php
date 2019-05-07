@@ -132,8 +132,10 @@ class ApiGroupController extends Controller
         $user=Auth::user();
         $data = $request->post();
 
-        $find=Group_user::where('user_id',$user->id)->where('group_id',$data['group_id'])->where('status', 1)->first();
-        if($find){
+        $find1=Group::where('id', $data['group_id'])->where('admin_user_id', $user->id)->first();
+        $find2=Group_user::where('user_id',$user->id)->where('group_id',$data['group_id'])->where('status', 1)->first();
+
+        if($find1 or $find2){
             $message= new Messages();
             $message->user_id=$user->id;
             $message->group_id=$data['group_id'];
