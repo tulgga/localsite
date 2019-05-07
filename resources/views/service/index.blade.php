@@ -36,7 +36,8 @@
                             <img src="{{ asset('uploads/'.$site->logo) }}" alt="">
                         </a>
                         <h1 class="header_title">
-                            төрийн үйлчилгээ
+                            ТӨРИЙН ҮЙЛЧИЛГЭЭНИЙ <br/>
+                            НЭГДСЭН ТӨВӨӨР <br/>ҮЗҮҮЛЖ БУЙ ҮЙЛЧИЛГЭЭ
                         </h1>
                     </div>
                 </div>
@@ -46,62 +47,83 @@
 
     <section class="sample-text-area" style="padding-top: 20px;">
         <div class="container">
-            @if($now!=null)
-                <div class="row">
-                    <div class="col-md-12">
-                        <h3 >{{$now->title}}</h3>
-                        <div class="row">
-                        <div class="col-md-3">
-                            <img src="{{ $now->image ? asset('uploads/'.$now->image) : '/images/image.png' }}" alt="" style="width: 100%;">
-                        </div>
-                        <div class="col-md-9"> {!! $now->text !!} </div>
-                        </div>
-                    </div>
-                </div>
-            @endif
-            <div class="col-sm-12">
-                @if(count($now_data)>0)
-                    <div class="row">
-                        @foreach($now_data as $row)
-                            <div class="col-md-4">
-                                <div class="single-feature">
-                                    <a href="{{asset('/'.$row->id)}}">
-                                        <img src="{{ $row->image ? asset('uploads/'.$row->image) : '/images/image.png' }}" alt="" style="width: 100px; height: 100px">
-                                    </a>
-                                    <div class="desc text-center">
-                                        <a href="{{asset('/'.$row->id)}}">
-                                            <h6 class="title text-uppercase">{{$row->title}}</h6>
-                                        </a>
-                                    </div>
-                                </div>
+            <div class="col-md-12 mt-sm-30">
+                <h3 class="mb-20" style="font-size: 15px;">
+                    @if($now!=null &&  $now->id)
+                        @foreach($main as $row)
+                            <div class="btn-group">
+                                <a href="{{asset('/'.$row->id)}}">
+                                    <button type="button btn-sm" class="btn btn-secondary"
+                                        style="font-size: 9px; margin-bottom:5px; background: {{($row->id==$now->id ) ? 'green' : ''}}" >
+                                    {{$row->title}}
+                                    </button>
+                                </a>
                             </div>
                         @endforeach
-                    </div>
-                @endif
-            </div>
-            @if(count($data)>0)
-                <div class="row">
-                    @foreach($data as $row)
-                        <div class="col-md-4 mt-sm-30"; style="overflow: hidden">
-                            <a href="{{asset('/'.$row->id)}}">
-                                <h4 class="mb-20">{{$row->title}}</h4>
-                            </a>
-                            @if(count($row->sub)>0)
-                                <div class="">
-                                    <ol class="ordered-list">
-                                        @foreach($row->sub as $sub)
-                                            <a href="{{asset('/'.$sub->id)}}">
-                                                <li><span>{{$sub->title}}</span></li>
-                                            </a>
-                                        @endforeach
-                                    </ol>
-                                </div>
-                            @endif
-                        </div>
-                    @endforeach
-                </div>
+                    @else
+                        ТӨРИЙН ҮЙЛЧИЛГЭЭНИЙ НЭГДСЭН ТӨВӨӨР ҮЗҮҮЛЖ БУЙ ҮЙЛЧИЛГЭЭ
+                    @endif
+                </h3>
+                <section class="featured-area" style="padding-top: 0px;">
+                    <div class="container">
+                        <div class="row">
+                            @foreach($data as $row)
+                                @if($row->parent_id==0)
+                                    <div class="col-md-4">
+                                        <div class="single-feature">
+                                                <img src="{{ $row->image ? asset('uploads/'.$row->image) : '/images/image.png' }}" alt="" style="width: 50%;">
+                                            <div class="desc text-center">
+                                                <a href="{{asset('/'.$row->id)}}">
 
-            @endif
+                                                <h6 class="title text-uppercase">{{$row->title}}</h6>
+                                                </a>
+
+                                                @if(count($row->sub)>0)
+                                                    @foreach($row->sub as $sub)
+                                                        <span style="margin-right: 5px;">{{$sub->title}}</span>
+                                                    @endforeach
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                @else
+                                    <div class="accordion col-sm-12" id="acc{{$row->id}}">
+                                        <br/>
+                                        <br/>
+                                        <h3>{{$row->title}} ({{$row->is_organization==1 ? "хуулийн этгээд" : "иргэн" }})</h3>
+                                        @foreach($row->sub as $i)
+                                            <div class="card">
+                                                <div class="card-header" id="head{{$row->id}}_{{$i->id}}">
+                                                    <h5 class="mb-0" style="overflow: hidden">
+                                                        <button class="btn btn-link"
+                                                                type="button"
+                                                                style="overflow: hidden"
+                                                                data-toggle="collapse"
+                                                                data-target="#collapse{{$row->id}}_{{$i->id}}"
+                                                                aria-expanded="true"
+                                                                aria-controls="collapse{{$row->id}}_{{$i->id}}">
+                                                            {{$i->title}}
+                                                        </button>
+                                                    </h5>
+                                                </div>
+                                                <div
+                                                    id="collapse{{$row->id}}_{{$i->id}}"
+                                                    class="collapse"
+                                                    aria-labelledby="head{{$row->id}}_{{$i->id}}"
+                                                    data-parent="#acc{{$row->id}}">
+                                                    <div class="card-body">
+                                                        {!! $i->text !!}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                @endif
+                            @endforeach
+                        </div>
+                    </div>
+                </section>
+            </div>
         </div>
     </section>
 
@@ -198,5 +220,6 @@
 </div>
 
 <script src="{{ asset('/service/js/vendor/jquery-2.2.4.min.js') }}"></script>
+<script src="{{ asset('/service/js/vendor/bootstrap.min.js') }}"></script>
 </body>
 </html>
