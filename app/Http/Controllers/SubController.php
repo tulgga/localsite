@@ -113,13 +113,23 @@ class SubController extends BaseController
         $site->menu = $this->getMenu($site->id);
         $site->subDomain = Site::select('id','name','domain','favicon')->orderBy('name','ASC')->get();
 
-        $site->agent = Link::where('site_id', $site->id)->limit(10)->get();
+        $site->agent = [];
+        if(count(Link::where('site_id', $site->id)->limit(10)->get())){
+            $site->agent=Link::where('site_id', $site->id)->limit(10)->get();
+        }
 
-        $site->events = Dashboard_schedule::where('site_id', $site->id)
+        $site->events = [];
+        if(count(Dashboard_schedule::where('site_id', $site->id)
             ->whereBetween('schedule_date', [$start, $end])
             ->whereIn('head_id', [4,5,6,7,8,9])
             ->where("is_publish", 1)
-            ->get();
+            ->get())>0){
+            $site->events = Dashboard_schedule::where('site_id', $site->id)
+                ->whereBetween('schedule_date', [$start, $end])
+                ->whereIn('head_id', [4,5,6,7,8,9])
+                ->where("is_publish", 1)
+                ->get();
+        }
 
         return $site;
     }
