@@ -28,10 +28,10 @@
             <div class="columns  is-multiline mb-0">
                 <div class="column  is-9">
                     <div class="bg-white p-15 mb-2 shadow carList">
-                        <news-carousel :page="3" color="blue" title="Шинэ мэдээ" ></news-carousel>
+                        <news-carousel :page="3" color="red" title="Шинэ мэдээ" ></news-carousel>
                     </div>
                     <div class="bg-white p-15  shadow carList">
-                        <oran-nutag-carousel :page="3" color="orange" title="Орон нутгийн мэдээ" ></oran-nutag-carousel>
+                        <oran-nutag-carousel :page="3" color="blue" title="Орон нутгийн мэдээ" ></oran-nutag-carousel>
                     </div>
                 </div>
                 <div class="column is-3 ">

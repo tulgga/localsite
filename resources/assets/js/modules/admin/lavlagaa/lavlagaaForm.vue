@@ -125,7 +125,7 @@ CRUD Edit, Create form
                 form:{
                     title: '',
                     parent_id:0,
-                    text:0,
+                    text:'',
                     is_org: 0,
                 },
                 imageni:false,

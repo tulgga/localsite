@@ -36,7 +36,7 @@ a {
 }
 .searchform input[type="text"] {
   border: none;
-  color: #FFF;
+  color: #2371f1;
   text-shadow: 1.4px 1.4px 1px rgba(0, 0, 0, 0.15);
   font-size: 13px;
   padding: 15px;
@@ -63,9 +63,12 @@ a {
   outline: none;
 }
 .searchform input[type="text"]::placeholder {
-
   color: #2371f1;
   text-shadow: 1.4px 1.4px 1px rgba(0, 0, 0, 0.15);
+}
+.searchform  input[type="text"]:focus::placeholder {
+  color: #1b3658 !important;
+  text-shadow: none;
 }
 .loading {
     text-align: center;
@@ -738,21 +741,21 @@ a {
 
 
 .blue .bTitle,.blue  .newslist:hover  a {
-  color: #2068de;
-  border-color: #2068de;
+  color: #1b3658;
+  border-color: #1b3658;
 }
 
 .blue .VueCarousel-navigation-button:hover, .blue .tag, .blue .bar--vertical-internal  {
-  background-color: #2068de !important;
+  background-color: #1b3658 !important;
 }
 
 .red .bTitle,.red  a:hover  {
-  color: #f63946;
-  border-color: #f63946;
+  color: rgb(226, 59, 59);
+  border-color: rgb(226, 59, 59);
 }
 
 .red .VueCarousel-navigation-button:hover, .red .tag, .red .bar--vertical-internal  {
-  background-color: #f63946 !important;
+  background-color: rgb(226, 59, 59) !important;
 }
 
 .orange .bTitle, .orange  a:hover   {
@@ -802,7 +805,7 @@ li.VueCarousel-dot{
 .ontslokhTitle {
   position: absolute;
   left: 0;
-  width: 80%;
+  max-width: 80%;
   bottom: 30px;
   background: rgba(27, 54, 88, 0.8);
   padding:20px;
@@ -1004,7 +1007,7 @@ a .col3newslist .title {
     right: 0;
     background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0.8)));
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.8) 100%);
-  max-height: 43px;
+    max-height: 43px;
     overflow: hidden;
     color: #FFF;
     line-height: 18px;
