@@ -89,7 +89,18 @@ class AdminPagesController extends Controller
         $Page->text=$data['text'];
         $Page->is_main=$data['is_main'];
         if($data['parent_id']==0){ $data['parent_id']=null; }
-        $Page->parent_id=$data['parent_id'];
+
+        if($Page->parent_id!=$data['parent_id']){
+            $Page->order_num=Page::where('parent_id', $data['parent_id'])->get()->count();
+            $cats= Page::where('parent_id', $Page->parent_id)->orderBy('order_num', 'asc')->get();
+            foreach ($cats as $i=>$cat){
+                $save=Lavlagaa::find($cat->id);
+                $save->order_num=$i;
+                $save->save();
+            }
+            $Page->parent_id=$data['parent_id'];
+        }
+
         $Page->site_id=$data['site_id'];
         $Page->icon=$data['icon'];
 

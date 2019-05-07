@@ -24,6 +24,8 @@ Route::middleware('auth:api')->namespace('Api')->group(function () {
     Route::get('myGroup', 'ApiGroupController@myGroup');
     Route::get('groups', 'ApiGroupController@group');
     Route::post('joinGroup', 'ApiGroupController@joinGroup');
+    Route::post('joinAdminGroup', 'ApiGroupController@joinAdminGroup');
+    Route::post('outAdminGroup', 'ApiGroupController@outAdminGroup');
     Route::post('outGroup', 'ApiGroupController@outGroup');
     Route::post('sendMessage', 'ApiGroupController@sendMessage');
     Route::get('messages/{group_id}', 'ApiGroupController@messages');
@@ -141,7 +143,6 @@ Route::middleware('auth:admin-api')->namespace('Admin')->prefix('admin')->group(
     Route::resource('heltes','AdminHeltesController');
     Route::post('heltes/{id}','AdminHeltesController@update');
 
-
     //group
     Route::resource('group','AdminGroupController');
     Route::post('group/change_status','AdminGroupController@change_status');
@@ -149,10 +150,6 @@ Route::middleware('auth:admin-api')->namespace('Admin')->prefix('admin')->group(
     Route::get('group/user_change_no/{id}','AdminGroupController@user_change_no');
     Route::get('group/users/{id}','AdminGroupController@users');
     Route::post('group/{id}','AdminGroupController@update');
-
-
-
-
 
     //ded site
     Route::resource('site','AdminSiteController');
@@ -185,6 +182,14 @@ Route::middleware('auth:admin-api')->namespace('Admin')->prefix('admin')->group(
     Route::get('zar_category/{site_id}','AdminZarCategoryController@index1');
     Route::get('zar_category_select','AdminZarCategoryController@zar_category_select');
 
+    //lavlagaa
+    Route::post('lavlagaa','AdminLavlagaaController@insert');
+    Route::post('lavlagaa/{id}','AdminLavlagaaController@update');
+    Route::post('lavlagaa_delete','AdminLavlagaaController@delete');
+    Route::post('lavlagaa_change','AdminLavlagaaController@change');
+    Route::get('lavlagaa','AdminLavlagaaController@index');
+    Route::get('lavlagaa_single/{id}','AdminLavlagaaController@single');
+
     //pages
     Route::post('pages','AdminPagesController@insert');
     Route::post('pages/{id}','AdminPagesController@update');
@@ -210,7 +215,6 @@ Route::middleware('auth:admin-api')->namespace('Admin')->prefix('admin')->group(
     Route::get('file_show/{site_id}/{cat_id?}','AdminFileController@index1');
     Route::get('file_select/{site_id}','AdminFileController@file_select');
     Route::post('file/{id}','AdminFileController@update');
-
 
     //news
     Route::resource('news','AdminNewsController');
