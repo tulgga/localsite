@@ -71,7 +71,14 @@ Route::domain('dashboard.'.env('SUB_DOMAIN'))->group(function () {
   Route::get('/budget','dashboard@budgets');
 });
 
-Route::domain('{account}.'.env('SUB_DOMAIN'))->group(function () {
+
+Route::domain('eservice.bayankhongor.local')->group(function () {
+    Route::get('/', 'ServiceController@index');
+    Route::get('/{id}', 'ServiceController@index');
+    Route::get('/index/{id}', 'ServiceController@index');
+});
+
+Route::domain('{account}.bayankhongor.local')->group(function () {
     Route::get('/', 'SubController@index');
     Route::get('/p/{id}', 'SubController@page');
     Route::get('/news/{id}', 'SubController@news');
