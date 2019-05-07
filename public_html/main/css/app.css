@@ -18686,19 +18686,26 @@ a {
   position: relative;
 }
 
+@media only screen and (max-width: 700px) {
+  .searchform input[type="text"] {
+    width: 100% !important;
+    float: none !important;
+  }
+}
+
 .searchform input[type="text"] {
   border: none;
-  color: #224E8A;
+  color: #FFF;
   text-shadow: 1.4px 1.4px 1px rgba(0, 0, 0, 0.15);
   font-size: 13px;
   padding: 15px;
-  width: 65%;
   height: 34px;
   border-radius: 17px;
   -webkit-box-shadow: inset 1.4px 1.4px 1px 0 rgba(0, 0, 0, 0.1);
   box-shadow: inset 1.4px 1.4px 1px 0 rgba(0, 0, 0, 0.1);
   background: #1b3658;
   outline: none;
+  width: 65%;
   float: right;
 }
 

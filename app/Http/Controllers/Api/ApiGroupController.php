@@ -25,6 +25,12 @@ class ApiGroupController extends Controller
             order by groups.id DESC
         ";
         $results=\DB::select($query);
+        foreach ($results as $i=>$result){
+            $results[$i]->message= Messages::where('group_id', $result->id)->orderBy('id', 'desc')
+                ->join('users', 'users.id','=', 'messages.user_id')
+                ->select('messages.*', 'users.name', 'users.profile_pic')
+                ->first();
+        }
         return response()->json([ 'success' => $results ]);
     }
 
@@ -60,6 +66,12 @@ class ApiGroupController extends Controller
             order by groups.id DESC
         ";
         $results=\DB::select($query);
+        foreach ($results as $i=>$result){
+            $results[$i]->message= Messages::where('group_id', $result->id)->orderBy('id', 'desc')
+                ->join('users', 'users.id','=', 'messages.user_id')
+                ->select('messages.*', 'users.name', 'users.profile_pic')
+                ->first();
+        }
         return response()->json([ 'success' => $results ]);
     }
 
@@ -79,6 +91,12 @@ class ApiGroupController extends Controller
             order by groups.id DESC
         ";
         $results=\DB::select($query);
+        foreach ($results as $i=>$result){
+            $results[$i]->message= Messages::where('group_id', $result->id)->orderBy('id', 'desc')
+                ->join('users', 'users.id','=', 'messages.user_id')
+                ->select('messages.*', 'users.name', 'users.profile_pic')
+                ->first();
+        }
         return response()->json([ 'success' => $results ]);
     }
 
