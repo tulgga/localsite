@@ -24,7 +24,7 @@
                                <div  :class="{'disabled':i==0}" @click="changePositionMain(i,-1)" ><i class="fas fa-arrow-up"></i></div>
                                <div :class="{'disabled':lists.length-1==i}" @click="changePositionMain(i,1)" ><i class="fas fa-arrow-down"></i></div>
                                <router-link :to="'helppages/'+list.id+'/update'" ><i class="fas fa-pencil-alt"></i></router-link>
-                               <div @click="delete_cat=list deletemodal=true;"><i class="fas fa-trash"></i></div>
+                               <div @click="delete_cat=list; deletemodal=true;"><i class="fas fa-trash"></i></div>
                            </div>
                        </td>
                    </tr>

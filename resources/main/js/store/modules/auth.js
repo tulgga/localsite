@@ -17,7 +17,9 @@ export const mutations = {
     [types.SAVE_MENU] (state, { menu }) {
         state.menu = menu;
     },
-
+    [types.SAVE_TOP_MENU] (state, { menu }) {
+        state.menu = menu;
+    },
 
 
 };
@@ -29,7 +31,10 @@ export const actions = {
        commit(types.SAVE_MENU, { menu: r.data.success })
     },
 
-
+    async loadTopMenu ({ commit }) {
+        const r = await axios.get('/menu/0/2');
+        commit(types.SAVE_TOP_MENU, { topmenu: r.data.success })
+    },
 };
 
 
@@ -37,5 +42,5 @@ export const actions = {
 export const getters = {
     pageloader: state => state.pageloader,
     menu: state => state.menu,
+    topmenu: state => state.topmenu,
 }
-

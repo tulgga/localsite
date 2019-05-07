@@ -85470,8 +85470,8 @@ o[t.label]=e,o)),t._v(" "),t.multiple?n("button",{staticClass:"close",attrs:{dis
 /* unused harmony export REGISTER_USER_MSG */
 /* unused harmony export CHANGE_BRANCH */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SAVE_MENU; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return SAVE_TOP_MENU; });
 // auth.js
-
 var LOGOUT = 'LOGOUT';
 var SAVE_TOKEN = 'SAVE_TOKEN';
 var SAVE_DOMAIN = 'SAVE_DOMAIN';
@@ -85482,6 +85482,7 @@ var UPDATE_USER = 'UPDATE_USER';
 var REGISTER_USER_MSG = 'REGISTER_USER_MSG';
 var CHANGE_BRANCH = 'CHANGE_BRANCH';
 var SAVE_MENU = 'SAVE_MENU';
+var SAVE_TOP_MENU = 'SAVE_TOP_MENU';
 
 /***/ }),
 /* 592 */
@@ -89559,6 +89560,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mutation_types__ = __webpack_require__(591);
 
 
+var _mutations;
+
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -89573,21 +89576,25 @@ var state = {
 };
 
 // mutations
-var mutations = _defineProperty({
+var mutations = (_mutations = {
     changepageloader: function changepageloader(state, n) {
         state.pageloader = n;
     }
-}, __WEBPACK_IMPORTED_MODULE_2__mutation_types__["a" /* SAVE_MENU */], function (state, _ref) {
+}, _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_2__mutation_types__["a" /* SAVE_MENU */], function (state, _ref) {
     var menu = _ref.menu;
 
     state.menu = menu;
-});
+}), _defineProperty(_mutations, __WEBPACK_IMPORTED_MODULE_2__mutation_types__["b" /* SAVE_TOP_MENU */], function (state, _ref2) {
+    var menu = _ref2.menu;
+
+    state.menu = menu;
+}), _mutations);
 
 // actions
 var actions = {
     loadMenu: function () {
-        var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(_ref2) {
-            var commit = _ref2.commit;
+        var _ref4 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(_ref3) {
+            var commit = _ref3.commit;
             var r;
             return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
                 while (1) {
@@ -89610,10 +89617,40 @@ var actions = {
         }));
 
         function loadMenu(_x) {
-            return _ref3.apply(this, arguments);
+            return _ref4.apply(this, arguments);
         }
 
         return loadMenu;
+    }(),
+    loadTopMenu: function () {
+        var _ref6 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2(_ref5) {
+            var commit = _ref5.commit;
+            var r;
+            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+                while (1) {
+                    switch (_context2.prev = _context2.next) {
+                        case 0:
+                            _context2.next = 2;
+                            return __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('/menu/0/2');
+
+                        case 2:
+                            r = _context2.sent;
+
+                            commit(__WEBPACK_IMPORTED_MODULE_2__mutation_types__["b" /* SAVE_TOP_MENU */], { topmenu: r.data.success });
+
+                        case 4:
+                        case 'end':
+                            return _context2.stop();
+                    }
+                }
+            }, _callee2, this);
+        }));
+
+        function loadTopMenu(_x2) {
+            return _ref6.apply(this, arguments);
+        }
+
+        return loadTopMenu;
     }()
 };
 
@@ -89624,6 +89661,9 @@ var getters = {
     },
     menu: function menu(state) {
         return state.menu;
+    },
+    topmenu: function topmenu(state) {
+        return state.topmenu;
     }
 };
 
@@ -93004,8 +93044,209 @@ if (false) {(function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return staticRenderFns; });
-var render = function () {}
-var staticRenderFns = []
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm.files
+    ? _c("div", [
+        _c(
+          "table",
+          {
+            staticClass:
+              "fileTable table is-bordered is-hoverable roboto-condensed is-fullwidth mb-3"
+          },
+          [
+            _vm._m(0),
+            _vm._v(" "),
+            _c(
+              "tbody",
+              [
+                _vm._l(_vm.files.data, function(file) {
+                  return [
+                    _c("tr", [
+                      _c("td", { staticClass: "has-text-centered" }, [
+                        _vm._v(_vm._s(file.cart_number))
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _c(
+                          "a",
+                          {
+                            on: {
+                              click: function($event) {
+                                _vm.showmodal = true
+                                _vm.fileShow =
+                                  _vm.siteUrl +
+                                  "/file_viewer/?file=" +
+                                  file.file
+                              }
+                            }
+                          },
+                          [_vm._v(_vm._s(file.name))]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "has-text-centered" }, [
+                        _vm._v(_vm._s(file.publish_date))
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "has-text-centered" }, [
+                        _vm._v(_vm._s(file.active_date))
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "has-text-centered" }, [
+                        _vm._v(_vm._s(file.status))
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "has-text-centered" }, [
+                        _c("span", { staticClass: "tag" }, [
+                          _vm._v(_vm._s(_vm.fileType(file.file)))
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "has-text-centered" }, [
+                        _c(
+                          "a",
+                          {
+                            attrs: {
+                              href: _vm.siteUrl + "/uploads/" + file.file,
+                              download: ""
+                            }
+                          },
+                          [_c("i", { staticClass: "fas fa-download" })]
+                        )
+                      ])
+                    ])
+                  ]
+                })
+              ],
+              2
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "nav",
+          {
+            staticClass: "pagination",
+            attrs: { role: "navigation", "aria-label": "pagination" }
+          },
+          [
+            _c(
+              "a",
+              {
+                staticClass: "pagination-previous",
+                attrs: {
+                  disabled: _vm.files.current_page === 1,
+                  href: _vm.link + "?page=" + (_vm.files.current_page - 1)
+                },
+                on: {
+                  click: function($event) {
+                    _vm.scrollToTop()
+                  }
+                }
+              },
+              [_vm._v("Өмнөх")]
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "pagination-next",
+                attrs: {
+                  disabled: _vm.files.current_page === _vm.files.last_page,
+                  href: _vm.link + "?page=" + (_vm.files.current_page + 1)
+                },
+                on: {
+                  click: function($event) {
+                    _vm.scrollToTop()
+                  }
+                }
+              },
+              [_vm._v("Дараах")]
+            ),
+            _vm._v(" "),
+            _c(
+              "ul",
+              { staticClass: "pagination-list" },
+              [
+                _vm._l(_vm.files.last_page, function(i) {
+                  return [
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "pagination-link",
+                          class: { "is-current": _vm.files.current_page === i },
+                          attrs: { href: _vm.link + "?page=" + i },
+                          on: {
+                            click: function($event) {
+                              _vm.scrollToTop()
+                            }
+                          }
+                        },
+                        [_vm._v(_vm._s(i))]
+                      )
+                    ])
+                  ]
+                })
+              ],
+              2
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _vm.showmodal
+          ? _c("div", { staticClass: "modal is-active" }, [
+              _c("div", {
+                staticClass: "modal-background",
+                on: {
+                  click: function($event) {
+                    _vm.showmodal = false
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-card" }, [
+                _c("section", { staticClass: "modal-card-body pd0" }, [
+                  _c("iframe", {
+                    staticStyle: { width: "100%", height: "600px" },
+                    attrs: { src: _vm.fileShow }
+                  })
+                ])
+              ])
+            ])
+          : _vm._e()
+      ])
+    : _c("loading")
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", { staticClass: "is-primary" }, [
+        _c("th", [_vm._v("Актын"), _c("br"), _vm._v("дугаар")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Нэр")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Батлагдсан "), _c("br"), _vm._v(" огноо")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Дагаж мөрдөх огноо")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Хүчинтэй")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Төрөл")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Татах")])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
