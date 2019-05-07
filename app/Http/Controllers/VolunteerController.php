@@ -49,7 +49,8 @@ class VolunteerController extends Controller{
         $data['likes'] = Event_to_like::select(DB::raw('COUNT(*) as counts'))->where('event_id',$id)->first();
         $data['rating'] = Event_to_rating::select(DB::raw('AVG(event_to_ratings.rating) as rate'))->where('event_id',$id)->first();
         $data['images'] = Event_to_image::select('image')->where('event_id',$data['event']->eid)->get();
-        //echo json_encode($data['events']); die;
+        $data['comments'] = Event_to_comment::select('event_to_comments.ips','event_to_comments.created_at','event_to_comments.comment', 'users.firstname','users.profile_pic')->leftJoin('users','users.id','=','event_to_comments.user_id')->where('event_to_comments.event_id',$id)->orderBy('event_to_comments.created_at','DESC')->get();
+        //echo json_encode($data['comments']); die;
         return view('volunteer.single', $data);
     }
     public function login(){
@@ -335,7 +336,6 @@ class VolunteerController extends Controller{
             } else {
                 $orga = Organization::find($request->id);
             }
-            die;
             if (is_null($request->logo)) {
             }else{
                 $orga->logo = $request->logo->store('company_logo');
@@ -361,6 +361,20 @@ class VolunteerController extends Controller{
             $event->status = $stat;
             $event->save();
             return redirect()->to('/organization');
+        }
+    }
+    public function organizationdelete(Request $request,$id){
+        if(is_null(Auth::user())){
+            return redirect()->to('/login');
+        }else{
+            $orga = Organization::select('logo')->where('user_id', Auth::user()->id)->where('id', $id)->first();
+            if($orga->logo) {
+                unlink('uploads/'.$orga->logo);
+            }
+            $orga = Organization::find($id);
+            $orga->delete();
+            $request->session()->flash('successMsg', 'Мэдээллийг амжилттай устгалаа!');
+            return redirect()->to('/events');
         }
     }
     public function eventUpdateStatus($id,$stat){
@@ -478,5 +492,19 @@ class VolunteerController extends Controller{
             $rate->save();
             return response()->json(['success' => 'true', '_token' => csrf_token()]);
         }
+    }
+    public function sendComment(Request $request){
+        $comment = New Event_to_comment();
+        if(is_null(Auth::user())){
+            $comment->user_id = 0;
+        } else {
+            $comment->user_id = Auth::user()->id;
+        }
+        $comment->event_id = $request->event_id;
+        $comment->comment = $request->comment;
+        $comment->ips = $_SERVER['REMOTE_ADDR'];
+        $request->session()->flash('successMsg', 'Таны сэтгэгдэл амжилттай илгээгдлээ!');
+        $comment->save();
+        return redirect()->to($request->back_url);
     }
 }

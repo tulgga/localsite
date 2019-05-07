@@ -36,7 +36,48 @@
                     </a>
                 </div>
                 <h5 class="pt-3 font-weight-bold">{{$event->subject}}</h5>
+                <content>
                 {!! $event->content !!}
+                </content>
+                <h6>Уншигчдын сэтгэгдэл:</h6>
+                <hr/>
+                <ul class="list-comments mb-4 list-group font-14">
+                    @php $i=1; @endphp
+                    @foreach($comments as $comment)
+                        <li class="list-group-item" @if($i%2 == 0) style="background: #fafafa" @endif>
+                            <div class="mb-2">
+                            @if($comment->profile_pic)
+                                <div class="profile_pic" style="width:25px;height:25px;background-image: url({{asset('uploads/'.$comment->profile_pic)}}"></div>
+                            @else
+                                <img style="border-radius: 50%" width="25" src="https://britz.mcmaster.ca/images/nouserimage.gif/image">
+                            @endif
+                            @if($comment->firstname)
+                                    <strong>{{$comment->firstname}}</strong>
+                            @else
+                                    <strong>Зочин</strong>
+                            @endif &nbsp;|&nbsp; <i class="fa fa-clock text-warning"></i> {{$comment->created_at}} &nbsp;|&nbsp; <i class="fa fa-map-marker-alt text-danger"></i> {{$comment->ips}}
+                            </div>
+                            {{$comment->comment}}
+                        </li>
+                    @php $i++; @endphp
+                    @endforeach
+                </ul>
+                <p><strong>Сэтгэгдэл бичих:</strong></p>
+                @if(Session::has('successMsg'))
+                    <div class="alert alert-success font-14"><i class="fa fa-check"></i> {{ Session::get('successMsg') }} </div>
+                @endif
+                <form method="post" action="{{asset('sendComment')}}" enctype="multipart/form-data">
+                    {{csrf_field()}}
+                    <div class="form-group">
+                    <textarea class="form-control" name="comment" rows="5" placeholder="Та энд сэтгэгдлээ бичнэ үү..." required></textarea>
+                    </div>
+                    <div class="form-group text-right">
+                        <input type="hidden" name="event_id" value="{{$event->id}}">
+                        <input type="hidden" name="back_url" value="{{$_SERVER['REQUEST_URI']}}">
+                        <button type="reset" class="btn btn-outline-secondary"><i class="fa fa-eraser"></i> </button>
+                        <button class="btn btn-primary"><i class="fa fa-paper-plane"></i> Сэтгэгдэл илгээх</button>
+                    </div>
+                </form>
             </div>
             <div class="col-sm-3">
                 <div class="font-14" style="min-height: 50px">
