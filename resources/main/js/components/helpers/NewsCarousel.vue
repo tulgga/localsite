@@ -63,7 +63,7 @@
 
             },
             fetchData: function () {
-                axios.get('/site_news/'+0+'/6').then((response) => {
+                axios.get('/newsListByCategoryBox/0/9/164').then((response) => {
                     this.post=response.data.success.data;
                 })
             },

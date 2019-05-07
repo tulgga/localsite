@@ -85951,7 +85951,7 @@ if (false) {(function () {
         fetchData: function fetchData() {
             var _this = this;
 
-            axios.get('/site_news/' + 0 + '/6').then(function (response) {
+            axios.get('/newsListByCategoryBox/0/9/164').then(function (response) {
                 _this.post = response.data.success.data;
             });
         }
@@ -88849,11 +88849,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["a"] = ({
     data: function data() {
@@ -88873,7 +88868,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             search: '',
             site_title: window.title,
             socail: window.socail
-        }, _defineProperty(_ref, 'siteUrl', window.surl), _defineProperty(_ref, 'main', window.main), _defineProperty(_ref, 'logo', window.logo), _defineProperty(_ref, 'icon', window.icon), _defineProperty(_ref, 'mobile_menu', false), _defineProperty(_ref, 'fetched', false), _defineProperty(_ref, 'menu', []), _defineProperty(_ref, 'top_menu', []), _ref;
+        }, _defineProperty(_ref, 'siteUrl', window.surl), _defineProperty(_ref, 'main', window.main), _defineProperty(_ref, 'logo', window.logo), _defineProperty(_ref, 'icon', window.icon), _defineProperty(_ref, 'mobile_menu', false), _defineProperty(_ref, 'fetched', false), _defineProperty(_ref, 'menu', []), _defineProperty(_ref, 'topmenu', []), _ref;
     },
 
     watch: {
@@ -90594,7 +90589,7 @@ var render = function() {
               { staticClass: "bg-white p-15 mb-2 shadow carList" },
               [
                 _c("news-carousel", {
-                  attrs: { page: 3, color: "blue", title: "Шинэ мэдээ" }
+                  attrs: { page: 3, color: "red", title: "Шинэ мэдээ" }
                 })
               ],
               1
@@ -90605,11 +90600,7 @@ var render = function() {
               { staticClass: "bg-white p-15  shadow carList" },
               [
                 _c("oran-nutag-carousel", {
-                  attrs: {
-                    page: 3,
-                    color: "orange",
-                    title: "Орон нутгийн мэдээ"
-                  }
+                  attrs: { page: 3, color: "blue", title: "Орон нутгийн мэдээ" }
                 })
               ],
               1
@@ -98640,7 +98631,7 @@ exports = module.exports = __webpack_require__(7)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -99010,118 +99001,122 @@ var render = function() {
                       }),
                       _vm._v(" "),
                       _vm._l(_vm.topmenu, function(m1, i1) {
-                        return _c(
-                          "li",
-                          { class: { "is-active": i1 == _vm.si1 } },
-                          [
-                            _c(
-                              "a",
-                              {
-                                on: {
-                                  click: function($event) {
-                                    _vm.changeRoute(m1, i1, -1, -1, -1)
-                                  }
-                                }
-                              },
-                              [_vm._v(_vm._s(m1.name))]
-                            ),
-                            _vm._v(" "),
-                            m1.children
-                              ? _c(
-                                  "ul",
-                                  _vm._l(m1.children, function(m2, i2) {
-                                    return _c("li", [
-                                      _c(
-                                        "a",
-                                        {
-                                          on: {
-                                            click: function($event) {
-                                              _vm.changeRoute(
-                                                m2,
-                                                i1,
-                                                i2,
-                                                -1,
-                                                -1
-                                              )
-                                            }
-                                          }
-                                        },
-                                        [_vm._v(_vm._s(m2.name))]
-                                      ),
-                                      _vm._v(" "),
-                                      m2.children
-                                        ? _c(
-                                            "ul",
-                                            _vm._l(m2.children, function(
-                                              m3,
-                                              i3
-                                            ) {
-                                              return _c("li", [
-                                                _c(
-                                                  "a",
-                                                  {
-                                                    on: {
-                                                      click: function($event) {
-                                                        _vm.changeRoute(
-                                                          m3,
-                                                          i1,
-                                                          i2,
-                                                          i3,
-                                                          -1
-                                                        )
-                                                      }
-                                                    }
-                                                  },
-                                                  [_vm._v(_vm._s(m3.name))]
-                                                ),
-                                                _vm._v(" "),
-                                                m3.children
-                                                  ? _c(
-                                                      "ul",
-                                                      _vm._l(
-                                                        m3.children,
-                                                        function(m4, i4) {
-                                                          return _c("li", [
-                                                            _c(
-                                                              "a",
-                                                              {
-                                                                on: {
-                                                                  click: function(
-                                                                    $event
-                                                                  ) {
-                                                                    _vm.changeRoute(
-                                                                      m4,
-                                                                      i1,
-                                                                      i2,
-                                                                      i3,
-                                                                      i4
-                                                                    )
-                                                                  }
-                                                                }
-                                                              },
-                                                              [
-                                                                _vm._v(
-                                                                  _vm._s(
-                                                                    m4.name
-                                                                  )
-                                                                )
-                                                              ]
+                        return _vm.topmenu
+                          ? _c(
+                              "li",
+                              { class: { "is-active": i1 == _vm.si1 } },
+                              [
+                                _c(
+                                  "a",
+                                  {
+                                    on: {
+                                      click: function($event) {
+                                        _vm.changeRoute(m1, i1, -1, -1, -1)
+                                      }
+                                    }
+                                  },
+                                  [_vm._v(_vm._s(m1.name))]
+                                ),
+                                _vm._v(" "),
+                                m1.children
+                                  ? _c(
+                                      "ul",
+                                      _vm._l(m1.children, function(m2, i2) {
+                                        return _c("li", [
+                                          _c(
+                                            "a",
+                                            {
+                                              on: {
+                                                click: function($event) {
+                                                  _vm.changeRoute(
+                                                    m2,
+                                                    i1,
+                                                    i2,
+                                                    -1,
+                                                    -1
+                                                  )
+                                                }
+                                              }
+                                            },
+                                            [_vm._v(_vm._s(m2.name))]
+                                          ),
+                                          _vm._v(" "),
+                                          m2.children
+                                            ? _c(
+                                                "ul",
+                                                _vm._l(m2.children, function(
+                                                  m3,
+                                                  i3
+                                                ) {
+                                                  return _c("li", [
+                                                    _c(
+                                                      "a",
+                                                      {
+                                                        on: {
+                                                          click: function(
+                                                            $event
+                                                          ) {
+                                                            _vm.changeRoute(
+                                                              m3,
+                                                              i1,
+                                                              i2,
+                                                              i3,
+                                                              -1
                                                             )
-                                                          ])
+                                                          }
                                                         }
-                                                      )
-                                                    )
-                                                  : _vm._e()
-                                              ])
-                                            })
-                                          )
-                                        : _vm._e()
-                                    ])
-                                  })
-                                )
-                              : _vm._e()
-                          ]
-                        )
+                                                      },
+                                                      [_vm._v(_vm._s(m3.name))]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    m3.children
+                                                      ? _c(
+                                                          "ul",
+                                                          _vm._l(
+                                                            m3.children,
+                                                            function(m4, i4) {
+                                                              return _c("li", [
+                                                                _c(
+                                                                  "a",
+                                                                  {
+                                                                    on: {
+                                                                      click: function(
+                                                                        $event
+                                                                      ) {
+                                                                        _vm.changeRoute(
+                                                                          m4,
+                                                                          i1,
+                                                                          i2,
+                                                                          i3,
+                                                                          i4
+                                                                        )
+                                                                      }
+                                                                    }
+                                                                  },
+                                                                  [
+                                                                    _vm._v(
+                                                                      _vm._s(
+                                                                        m4.name
+                                                                      )
+                                                                    )
+                                                                  ]
+                                                                )
+                                                              ])
+                                                            }
+                                                          )
+                                                        )
+                                                      : _vm._e()
+                                                  ])
+                                                })
+                                              )
+                                            : _vm._e()
+                                        ])
+                                      })
+                                    )
+                                  : _vm._e()
+                              ]
+                            )
+                          : _vm._e()
                       })
                     ],
                     2
@@ -99134,12 +99129,6 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("ul", { staticClass: "menu-list" }, [
-                    _vm._m(0),
-                    _vm._v(" "),
-                    _vm._m(1),
-                    _vm._v(" "),
-                    _vm._m(2),
-                    _vm._v(" "),
                     _c("li", [
                       _c(
                         "a",
@@ -99153,7 +99142,7 @@ var render = function() {
                       )
                     ]),
                     _vm._v(" "),
-                    _vm._m(3)
+                    _vm._m(0)
                   ])
                 ])
               ])
@@ -99197,7 +99186,7 @@ var render = function() {
                             }
                           }
                         },
-                        [_vm._m(4)]
+                        [_vm._m(1)]
                       )
                     ]),
                     _vm._v(" "),
@@ -99229,7 +99218,7 @@ var render = function() {
                             }
                           }
                         },
-                        [_vm._m(5)]
+                        [_vm._m(2)]
                       )
                     ])
                   ])
@@ -99300,12 +99289,6 @@ var render = function() {
                               _vm._v("|")
                             ]),
                             _vm._v(" "),
-                            _vm._m(6),
-                            _vm._v(" "),
-                            _c("p", { staticClass: "level-item" }, [
-                              _vm._v("|")
-                            ]),
-                            _vm._v(" "),
                             _c("p", { staticClass: "level-item" }, [
                               _c(
                                 "a",
@@ -99323,7 +99306,7 @@ var render = function() {
                               _vm._v("|")
                             ]),
                             _vm._v(" "),
-                            _vm._m(7),
+                            _vm._m(3),
                             _vm._v(" "),
                             _c("p", { staticClass: "level-item" }, [
                               _vm._v("|")
@@ -99426,154 +99409,160 @@ var render = function() {
                               ]
                             ),
                             _vm._v(" "),
-                            _c("div", { attrs: { id: "header-topmenu" } }, [
-                              _c(
-                                "ul",
-                                { attrs: { id: "topmenu" } },
-                                _vm._l(_vm.topmenu, function(m1, i1) {
-                                  return _c(
-                                    "li",
-                                    { class: { "is-active": i1 == _vm.si1 } },
-                                    [
-                                      _c(
-                                        "a",
+                            _vm.topmenu
+                              ? _c("div", { attrs: { id: "header-topmenu" } }, [
+                                  _c(
+                                    "ul",
+                                    { attrs: { id: "topmenu" } },
+                                    _vm._l(_vm.topmenu, function(m1, i1) {
+                                      return _c(
+                                        "li",
                                         {
-                                          on: {
-                                            click: function($event) {
-                                              _vm.changeRoute(
-                                                m1,
-                                                i1,
-                                                -1,
-                                                -1,
-                                                -1
-                                              )
-                                            }
-                                          }
+                                          class: { "is-active": i1 == _vm.si1 }
                                         },
                                         [
-                                          _vm._v(_vm._s(m1.name) + " "),
-                                          _c("i", {
-                                            staticClass: "fas fa-caret-down"
-                                          })
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      m1.children
-                                        ? _c(
-                                            "ul",
-                                            _vm._l(m1.children, function(
-                                              m2,
-                                              i2
-                                            ) {
-                                              return _c("li", [
-                                                _c(
-                                                  "a",
-                                                  {
-                                                    on: {
-                                                      click: function($event) {
-                                                        _vm.changeRoute(
-                                                          m2,
-                                                          i1,
-                                                          i2,
-                                                          -1,
-                                                          -1
-                                                        )
-                                                      }
-                                                    }
-                                                  },
-                                                  [_vm._v(_vm._s(m2.name))]
-                                                ),
-                                                _vm._v(" "),
-                                                m2.children
-                                                  ? _c(
-                                                      "ul",
-                                                      _vm._l(
-                                                        m2.children,
-                                                        function(m3, i3) {
-                                                          return _c("li", [
-                                                            _c(
-                                                              "a",
-                                                              {
-                                                                on: {
-                                                                  click: function(
-                                                                    $event
-                                                                  ) {
-                                                                    _vm.changeRoute(
-                                                                      m3,
-                                                                      i1,
-                                                                      i2,
-                                                                      i3,
-                                                                      -1
+                                          _c(
+                                            "a",
+                                            {
+                                              on: {
+                                                click: function($event) {
+                                                  _vm.changeRoute(
+                                                    m1,
+                                                    i1,
+                                                    -1,
+                                                    -1,
+                                                    -1
+                                                  )
+                                                }
+                                              }
+                                            },
+                                            [
+                                              _vm._v(_vm._s(m1.name) + " "),
+                                              _c("i", {
+                                                staticClass: "fas fa-caret-down"
+                                              })
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          m1.children
+                                            ? _c(
+                                                "ul",
+                                                _vm._l(m1.children, function(
+                                                  m2,
+                                                  i2
+                                                ) {
+                                                  return _c("li", [
+                                                    _c(
+                                                      "a",
+                                                      {
+                                                        on: {
+                                                          click: function(
+                                                            $event
+                                                          ) {
+                                                            _vm.changeRoute(
+                                                              m2,
+                                                              i1,
+                                                              i2,
+                                                              -1,
+                                                              -1
+                                                            )
+                                                          }
+                                                        }
+                                                      },
+                                                      [_vm._v(_vm._s(m2.name))]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    m2.children
+                                                      ? _c(
+                                                          "ul",
+                                                          _vm._l(
+                                                            m2.children,
+                                                            function(m3, i3) {
+                                                              return _c("li", [
+                                                                _c(
+                                                                  "a",
+                                                                  {
+                                                                    on: {
+                                                                      click: function(
+                                                                        $event
+                                                                      ) {
+                                                                        _vm.changeRoute(
+                                                                          m3,
+                                                                          i1,
+                                                                          i2,
+                                                                          i3,
+                                                                          -1
+                                                                        )
+                                                                      }
+                                                                    }
+                                                                  },
+                                                                  [
+                                                                    _vm._v(
+                                                                      _vm._s(
+                                                                        m3.name
+                                                                      )
                                                                     )
-                                                                  }
-                                                                }
-                                                              },
-                                                              [
-                                                                _vm._v(
-                                                                  _vm._s(
-                                                                    m3.name
-                                                                  )
-                                                                )
-                                                              ]
-                                                            ),
-                                                            _vm._v(" "),
-                                                            m3.children
-                                                              ? _c(
-                                                                  "ul",
-                                                                  _vm._l(
-                                                                    m3.children,
-                                                                    function(
-                                                                      m4,
-                                                                      i4
-                                                                    ) {
-                                                                      return _c(
-                                                                        "li",
-                                                                        [
-                                                                          _c(
-                                                                            "a",
-                                                                            {
-                                                                              on: {
-                                                                                click: function(
-                                                                                  $event
-                                                                                ) {
-                                                                                  _vm.changeRoute(
-                                                                                    m4,
-                                                                                    i1,
-                                                                                    i2,
-                                                                                    i3,
-                                                                                    i4
-                                                                                  )
-                                                                                }
-                                                                              }
-                                                                            },
+                                                                  ]
+                                                                ),
+                                                                _vm._v(" "),
+                                                                m3.children
+                                                                  ? _c(
+                                                                      "ul",
+                                                                      _vm._l(
+                                                                        m3.children,
+                                                                        function(
+                                                                          m4,
+                                                                          i4
+                                                                        ) {
+                                                                          return _c(
+                                                                            "li",
                                                                             [
-                                                                              _vm._v(
-                                                                                _vm._s(
-                                                                                  m4.name
-                                                                                )
+                                                                              _c(
+                                                                                "a",
+                                                                                {
+                                                                                  on: {
+                                                                                    click: function(
+                                                                                      $event
+                                                                                    ) {
+                                                                                      _vm.changeRoute(
+                                                                                        m4,
+                                                                                        i1,
+                                                                                        i2,
+                                                                                        i3,
+                                                                                        i4
+                                                                                      )
+                                                                                    }
+                                                                                  }
+                                                                                },
+                                                                                [
+                                                                                  _vm._v(
+                                                                                    _vm._s(
+                                                                                      m4.name
+                                                                                    )
+                                                                                  )
+                                                                                ]
                                                                               )
                                                                             ]
                                                                           )
-                                                                        ]
+                                                                        }
                                                                       )
-                                                                    }
-                                                                  )
-                                                                )
-                                                              : _vm._e()
-                                                          ])
-                                                        }
-                                                      )
-                                                    )
-                                                  : _vm._e()
-                                              ])
-                                            })
-                                          )
-                                        : _vm._e()
-                                    ]
+                                                                    )
+                                                                  : _vm._e()
+                                                              ])
+                                                            }
+                                                          )
+                                                        )
+                                                      : _vm._e()
+                                                  ])
+                                                })
+                                              )
+                                            : _vm._e()
+                                        ]
+                                      )
+                                    })
                                   )
-                                })
-                              )
-                            ])
+                                ])
+                              : _vm._e()
                           ])
                         ])
                       ])
@@ -99858,24 +99847,6 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("li", [_c("a", [_vm._v("Сумдууд")])])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [_c("a", [_vm._v("Агентлагууд")])])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [_c("a", [_vm._v("Лавлагаа мэдээлэл")])])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("li", [
       _c("a", { attrs: { href: "!#/report" } }, [
         _vm._v("Санал хүсэлт, өргөдөл гомдол")
@@ -99896,14 +99867,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("span", { staticClass: "icon is-white " }, [
       _c("i", { staticClass: "fas fa-search " })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("p", { staticClass: "level-item" }, [
-      _c("a", [_vm._v("Лавлагаа мэдээл")])
     ])
   },
   function() {

@@ -62,7 +62,7 @@
                                     </li>
                                 </template>
 
-                                    <li v-for="(m1, i1) in topmenu" :class="{'is-active': i1==si1}">
+                                    <li v-if="topmenu" v-for="(m1, i1) in topmenu" :class="{'is-active': i1==si1}">
                                         <a  v-on:click="changeRoute(m1, i1, -1, -1, -1)" >{{m1.name}}</a>
                                         <ul  v-if="m1.children" >
                                             <li v-for="(m2, i2) in m1.children" >
@@ -85,9 +85,6 @@
                             <p class="menu-label"></p>
                             <p class="menu-label">Туслах цэс</p>
                             <ul class="menu-list">
-                                <li><a>Сумдууд</a></li>
-                                <li><a>Агентлагууд</a></li>
-                                <li><a>Лавлагаа мэдээлэл</a></li>
                                 <li><a :href="'http://zar.'+subdomain" target="_blank">Зар</a></li>
                                 <li ><a href="!#/report">Санал хүсэлт, өргөдөл гомдол</a></li>
                             </ul>
@@ -136,8 +133,6 @@
                                 <p class="level-item">|</p>
                                 <p class="level-item" ><a @click="AgentlagModal=true">Агентлагууд</a></p>
                                 <p class="level-item">|</p>
-                                <p class="level-item"><a>Лавлагаа мэдээл</a></p>
-                                <p class="level-item">|</p>
                                 <p class="level-item"><a :href="'http://zar.'+subdomain" target="_blank">Зар</a></p>
                                 <p class="level-item">|</p>
                                 <p class="level-item"><a href="!#/report">Санал хүсэлт, өргөдөл гомдол</a></p>
@@ -164,7 +159,7 @@
                                     <input type="text" v-model="search" placeholder="Хайх утгаа оруулна уу...">
                                     <button type="button" @click="searchClick" class="button-search"><i class="fa fa-search"></i></button>
                                 </div>
-                                        <div id="header-topmenu">
+                                        <div  v-if="topmenu" id="header-topmenu">
                                         <ul id="topmenu">
                                             <li v-for="(m1, i1) in topmenu" :class="{'is-active': i1==si1}">
                                                 <a  v-on:click="changeRoute(m1, i1, -1, -1, -1)" >{{m1.name}} <i class="fas fa-caret-down"></i></a>
@@ -271,9 +266,10 @@
                 logo: window.logo,
                 icon:window.icon,
                 mobile_menu:false,
+
                 fetched: false,
                 menu: [],
-                top_menu:[],
+                topmenu:[],
     		}
     	},
         watch:{
