@@ -100,7 +100,7 @@
                     @foreach($sumuud as $domain)
                         @if(!$domain->id == 0)
                             <li class="col-6">
-                                <a href="{{$domain->domain}}">@if($domain->favicon)<img src="{{ asset('uploads/'.$domain->favicon)}}">@else<img src="{{ asset('uploads/favicon/XnjMhMUg3enV21GhLYDopC2L6uHsuQK0BqjTjCjP.png')}}">@endif {{$domain->name}}</a>
+                                <a href="http://{{$domain->domain}}.{{env('SUB_DOMAIN')}}" target="_blank">@if($domain->favicon)<img src="{{ asset('uploads/'.$domain->favicon)}}">@else<img src="{{ asset('uploads/favicon/XnjMhMUg3enV21GhLYDopC2L6uHsuQK0BqjTjCjP.png')}}">@endif {{$domain->name}}</a>
                             </li>
                         @endif
                     @endforeach

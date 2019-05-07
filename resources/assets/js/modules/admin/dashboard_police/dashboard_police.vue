@@ -3,7 +3,7 @@
         <!-- Data table -->
         <div class="boxed">
             <div class="boxed-title">
-            	<div class="boxed-item-center title">Зар</div>
+            	<div class="boxed-item-center title">Цагдаа</div>
             </div>
 			<v-server-table ref="tableni" :url="url"  v-if="fetched" :columns="columns" :options="options">
                 <div slot="action" slot-scope="props" class="data-action">

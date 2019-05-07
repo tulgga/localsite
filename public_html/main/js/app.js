@@ -85780,6 +85780,8 @@ var modules = requireContext.keys().map(function (file) {
 //
 //
 //
+//
+//
 
 
 
@@ -89004,20 +89006,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["a"] = ({
     data: function data() {
@@ -89030,8 +89018,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             logo: window.logo,
             icon: window.icon,
             contact: window.contact,
-            SumModal: false,
-            AgentlagModal: false,
             user_menu: false,
             user: false,
             user_nav: false,
@@ -89041,19 +89027,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
 
     created: function created() {
-        // this.fetchData();
+        this.fetchData();
     },
     mounted: function mounted() {},
 
     methods: {
-        // fetchData(){
-        //     axios.get('sites').then((response) => {
-        //         this.sites=response.data.success
-        //     })
-        //     axios.get('agentlag').then((response) => {
-        //         this.agentlag=response.data.success
-        //     })
-        // }
+        fetchData: function fetchData() {
+            var _this = this;
+
+            axios.get('sites').then(function (response) {
+                _this.sites = response.data.success;
+            });
+            axios.get('agentlag').then(function (response) {
+                _this.agentlag = response.data.success;
+            });
+        }
     }
 });
 
@@ -90527,7 +90515,9 @@ var render = function() {
                     navigationNextLabel: "<i class='fas fa-chevron-right'></i>",
                     navigationPrevLabel: "<i class='fas fa-chevron-left'></i>",
                     autoplay: true,
-                    autoplayTimeout: 4000
+                    autoplayTimeout: 4000,
+                    autoplayHoverPause: true,
+                    loop: true
                   }
                 },
                 [
@@ -99332,6 +99322,10 @@ var render = function() {
                               _c(
                                 "a",
                                 {
+                                  staticStyle: {
+                                    padding: "1px 5px",
+                                    background: "rgb(226, 59, 59)"
+                                  },
                                   attrs: {
                                     href: "http://intranet.gov.mn",
                                     target: "_blank"
@@ -99986,238 +99980,168 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c(
-      "footer",
-      {
-        staticClass: "roboto-condensed",
-        style: { "background-color": _vm.main.parent_color.hex },
-        attrs: { id: "footer" }
-      },
-      [
-        _c(
-          "div",
-          { style: { "background-color": _vm.main.parent_color.hex } },
-          [
-            _c("div", { staticClass: "container footer-menu pt-2 pb-2" }, [
-              _c("div", { staticClass: "columns" }, [
-                _c(
-                  "div",
-                  { staticClass: "column is-3" },
-                  [
-                    _c("h3", [_vm._v("СУМД")]),
-                    _vm._v(" "),
-                    _c("sum", { attrs: { classes: "is-6 p-0" } })
-                  ],
-                  1
-                ),
+  return _c(
+    "footer",
+    {
+      staticClass: "roboto-condensed",
+      style: { "background-color": _vm.main.parent_color.hex },
+      attrs: { id: "footer" }
+    },
+    [
+      _c("div", { style: { "background-color": _vm.main.parent_color.hex } }, [
+        _c("div", { staticClass: "container pt-2 pb-2" }, [
+          _c("div", { staticClass: "columns" }, [
+            _c("div", { staticClass: "column is-3  footer-menu" }, [
+              _c("h3", [_vm._v("СУМД")]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "columns is-multiline pb-1 m-0" },
+                _vm._l(_vm.sites, function(site) {
+                  return _c("div", { staticClass: "column is-6 p-0 " }, [
+                    _c(
+                      "a",
+                      {
+                        attrs: {
+                          href: "http://" + site.domain + "." + _vm.subdomain,
+                          target: "_blank"
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                                " +
+                            _vm._s(site.name) +
+                            "\n                            "
+                        )
+                      ]
+                    )
+                  ])
+                })
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "column is-6  footer-menu" }, [
+              _c("h3", [_vm._v("ХЭЛТЭС АГЕНТЛАГ")]),
+              _vm._v(" "),
+              _vm.agentlag
+                ? _c("div", [
+                    _c(
+                      "div",
+                      { staticClass: "columns is-multiline pb-1 m-0" },
+                      _vm._l(_vm.agentlag, function(link) {
+                        return _c("div", { staticClass: "column is-6 p-0 " }, [
+                          _c(
+                            "a",
+                            { attrs: { href: link.link, target: "_blank" } },
+                            [
+                              _vm._v(
+                                "\n                                    " +
+                                  _vm._s(link.name) +
+                                  "\n                                "
+                              )
+                            ]
+                          )
+                        ])
+                      })
+                    )
+                  ])
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "column is-3 " }, [
+              _c("h3", [_vm._v("ХОЛБОО БАРИХ")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "columns is-multiline" }, [
+                _vm._m(0),
                 _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "column is-6 " },
-                  [
-                    _c("h3", [_vm._v("ХЭЛТЭС АГЕНТЛАГ")]),
-                    _vm._v(" "),
-                    _c("agentlag", { attrs: { classes: "is-6 p-0" } })
-                  ],
-                  1
-                ),
+                _c("div", { staticClass: "column is-11 " }, [
+                  _c("p", {
+                    staticClass: "description ",
+                    attrs: { title: _vm.contact.address },
+                    domProps: { innerHTML: _vm._s(_vm.contact.address) }
+                  })
+                ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "column is-3 " }, [
-                  _c("h3", [_vm._v("ХОЛБОО БАРИХ")]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "columns is-multiline" }, [
-                    _vm._m(0),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "column is-11 " }, [
-                      _c("p", {
-                        staticClass: "description ",
-                        attrs: { title: _vm.contact.address },
-                        domProps: { innerHTML: _vm._s(_vm.contact.address) }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _vm._m(1),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "column is-11" }, [
-                      _c("p", {
-                        staticClass: "description ",
-                        attrs: { title: _vm.contact.email },
-                        domProps: { innerHTML: _vm._s(_vm.contact.email) }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _vm._m(2),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "column is-11" }, [
-                      _c("p", {
-                        staticClass: "description ",
-                        attrs: { title: _vm.contact.phone },
-                        domProps: { innerHTML: _vm._s(_vm.contact.phone) }
-                      })
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _vm.socail.facebook
-                    ? _c(
-                        "a",
-                        {
-                          attrs: { target: "_blank", href: _vm.socail.facebook }
-                        },
-                        [_c("i", { staticClass: "fab fa-facebook fa-lg" })]
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm.socail.twitter
-                    ? _c(
-                        "a",
-                        {
-                          attrs: { target: "_blank", href: _vm.socail.twitter }
-                        },
-                        [
-                          _c("i", {
-                            staticClass: "fab fa-twitter-square fa-lg"
-                          })
-                        ]
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm.socail.messenger
-                    ? _c(
-                        "a",
-                        {
-                          attrs: {
-                            target: "_blank",
-                            href: _vm.socail.messenger
-                          }
-                        },
-                        [
-                          _c("i", {
-                            staticClass: "fab fa-facebook-messenger fa-lg"
-                          })
-                        ]
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm.socail.youtube
-                    ? _c(
-                        "a",
-                        {
-                          attrs: { target: "_blank", href: _vm.socail.youtube }
-                        },
-                        [_c("i", { staticClass: "fab fa-youtube fa-lg" })]
-                      )
-                    : _vm._e()
+                _vm._m(1),
+                _vm._v(" "),
+                _c("div", { staticClass: "column is-11" }, [
+                  _c("p", {
+                    staticClass: "description ",
+                    attrs: { title: _vm.contact.email },
+                    domProps: { innerHTML: _vm._s(_vm.contact.email) }
+                  })
+                ]),
+                _vm._v(" "),
+                _vm._m(2),
+                _vm._v(" "),
+                _c("div", { staticClass: "column is-11" }, [
+                  _c("p", {
+                    staticClass: "description ",
+                    attrs: { title: _vm.contact.phone },
+                    domProps: { innerHTML: _vm._s(_vm.contact.phone) }
+                  })
                 ])
-              ])
+              ]),
+              _vm._v(" "),
+              _vm.socail.facebook
+                ? _c(
+                    "a",
+                    {
+                      staticClass: "footer-socail-menu",
+                      attrs: { target: "_blank", href: _vm.socail.facebook }
+                    },
+                    [_c("i", { staticClass: "fab fa-facebook fa-lg" })]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.socail.twitter
+                ? _c(
+                    "a",
+                    {
+                      staticClass: "footer-socail-menu",
+                      attrs: { target: "_blank", href: _vm.socail.twitter }
+                    },
+                    [_c("i", { staticClass: "fab fa-twitter-square fa-lg" })]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.socail.messenger
+                ? _c(
+                    "a",
+                    {
+                      staticClass: "footer-socail-menu",
+                      attrs: { target: "_blank", href: _vm.socail.messenger }
+                    },
+                    [
+                      _c("i", {
+                        staticClass: "fab fa-facebook-messenger fa-lg"
+                      })
+                    ]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.socail.youtube
+                ? _c(
+                    "a",
+                    {
+                      staticClass: "footer-socail-menu",
+                      attrs: { target: "_blank", href: _vm.socail.youtube }
+                    },
+                    [_c("i", { staticClass: "fab fa-youtube fa-lg" })]
+                  )
+                : _vm._e()
             ])
-          ]
-        ),
-        _vm._v(" "),
-        _c("div", {
-          staticClass: "copyright p-15 has-text-centered",
-          staticStyle: { "font-size": "13px" },
-          domProps: { innerHTML: _vm._s(_vm.main.copyright) }
-        })
-      ]
-    ),
-    _vm._v(" "),
-    _vm.SumModal
-      ? _c("div", { staticClass: "modal is-active" }, [
-          _c("div", {
-            staticClass: "modal-background",
-            on: {
-              click: function($event) {
-                _vm.SumModal = false
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "modal-card",
-              staticStyle: { "max-width": "610px" }
-            },
-            [
-              _c(
-                "div",
-                {
-                  staticClass: "has-text-white has-background-primary",
-                  staticStyle: { padding: "20px" }
-                },
-                [_vm._v("Сумдын холбоос")]
-              ),
-              _vm._v(" "),
-              _c(
-                "section",
-                { staticClass: "modal-card-body pd0" },
-                [_c("sum")],
-                1
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c("button", {
-            staticClass: "modal-close is-large",
-            attrs: { "aria-label": "close" },
-            on: {
-              click: function($event) {
-                _vm.SumModal = false
-              }
-            }
-          })
+          ])
         ])
-      : _vm._e(),
-    _vm._v(" "),
-    _vm.AgentlagModal
-      ? _c("div", { staticClass: "modal is-active" }, [
-          _c("div", {
-            staticClass: "modal-background",
-            on: {
-              click: function($event) {
-                _vm.AgentlagModal = false
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "modal-card",
-              staticStyle: { "max-width": "1040px" }
-            },
-            [
-              _c(
-                "div",
-                {
-                  staticClass: "has-text-white has-background-primary",
-                  staticStyle: { padding: "20px" }
-                },
-                [_vm._v("Аймгийн хэлтэс агентлагууд")]
-              ),
-              _vm._v(" "),
-              _c(
-                "section",
-                { staticClass: "modal-card-body pd0" },
-                [_c("agentlag")],
-                1
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c("button", {
-            staticClass: "modal-close is-large",
-            attrs: { "aria-label": "close" },
-            on: {
-              click: function($event) {
-                _vm.AgentlagModal = false
-              }
-            }
-          })
-        ])
-      : _vm._e()
-  ])
+      ]),
+      _vm._v(" "),
+      _c("div", {
+        staticClass: "copyright p-15 has-text-centered",
+        staticStyle: { "font-size": "13px" },
+        domProps: { innerHTML: _vm._s(_vm.main.copyright) }
+      })
+    ]
+  )
 }
 var staticRenderFns = [
   function() {

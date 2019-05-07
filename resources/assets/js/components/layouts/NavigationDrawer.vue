@@ -143,6 +143,8 @@
                         { title: 'Санал хүсэлт', icon: 'far fa-comments', path: '/urgudul',  role:1,  badge:1,},
                     { subheader: 'Чат',  role:0},
                         { title: "Групп", icon: 'fas fa-code-branch', path: '/group' ,  role:0},
+                    { subheader: 'Лавлагаа мэдээлэл', role:0,},
+                        { title: "Лавлагаа мэдээлэл", icon: 'fas fa-code-branch', path: '/lavlagaa' ,  role:0},
 
                     { subheader: 'Дашбоард', role:0,},
                     { title: "Цагдаа", icon: 'fas fa-code-branch', path: '/dashboard_police' ,  role:0},

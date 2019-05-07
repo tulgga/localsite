@@ -9,6 +9,8 @@
                     navigationPrevLabel="<i class='fas fa-chevron-left'></i>"
                     :autoplay="true"
                     :autoplayTimeout="4000"
+                    :autoplayHoverPause="true"
+                    :loop="true"
             >
                 <template v-for="p in ontslokh">
                     <slide>

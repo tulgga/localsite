@@ -18692,13 +18692,14 @@ a {
   text-shadow: 1.4px 1.4px 1px rgba(0, 0, 0, 0.15);
   font-size: 13px;
   padding: 15px;
-  width: 100%;
+  width: 65%;
   height: 34px;
   border-radius: 17px;
   -webkit-box-shadow: inset 1.4px 1.4px 1px 0 rgba(0, 0, 0, 0.1);
-          box-shadow: inset 1.4px 1.4px 1px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: inset 1.4px 1.4px 1px 0 rgba(0, 0, 0, 0.1);
   background: #1b3658;
   outline: none;
+  float: right;
 }
 
 .searchform .button-search {
@@ -18876,7 +18877,7 @@ a {
 }
 
 #mobile-menu .card-content {
-  border-top: 1px solid #dbdbdb;
+  border-top: 1px solid #dbdabdb;
 }
 
 #mobile-menu .content ul {
@@ -18952,8 +18953,8 @@ a {
 }
 
 #header #header-content .container {
-  padding-top: 15px;
-  padding-bottom: 5px;
+  padding-top: 0px;
+  padding-bottom: 9px;
 }
 
 #header #header-menu {
@@ -19185,8 +19186,14 @@ a {
 }
 
 #footer .footer-menu a {
-  margin: 2px 5px;
+  margin: 0px;
+  margin-bottom: 5px;
+  display: block;
   text-decoration: none;
+}
+
+#footer .footer-socail-menu {
+  margin-right: 10px;
 }
 
 #footer .copyright {

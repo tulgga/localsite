@@ -143,7 +143,7 @@
                                 <p class="level-item"><a href="!#/report">Санал хүсэлт, өргөдөл гомдол</a></p>
                                 <p class="level-item">|</p>
 
-                                <p class="level-item"><a href="http://intranet.gov.mn" target="_blank" ><img :src="siteUrl+'/images/able.png'" style="height: 12px; margin-top: 5px;" /></a></p>
+                                <p class="level-item"><a href="http://intranet.gov.mn" style="padding: 1px 5px; background: rgb(226, 59, 59);" target="_blank" ><img :src="siteUrl+'/images/able.png'" style="height: 12px; margin-top: 5px;" /></a></p>
                             </div>
                         </nav>
                         <div class="is-clearfix"></div>
