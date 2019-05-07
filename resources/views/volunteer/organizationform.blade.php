@@ -4,78 +4,79 @@
     <meta name="title" content="Хувийн мэдээлэл">
     <meta name="keywords" content="Хувийн мэдээлэл">
     <meta name="description" content="Хувийн мэдээлэл">
-    <script src="{{asset('main/volunteer')}}/tinymce/tinymce.min.js"></script>
-    <script type="text/javascript">
-        var $base_url = '{{asset('')}}';
-    </script>
-    <script src="{{asset('main/volunteer')}}/js/init_editor.js"></script>
 @endsection
 @section('content')
-<div class="container mt-5 mb-5 bg-white p-4">
+<div class="container pt-5 pb-5">
+    @if(Session::has('successMsg'))
+        <div class="alert alert-success font-14"><i class="fa fa-check"></i> {{ Session::get('successMsg') }} </div>
+    @endif
     <div class="row">
         <div class="col-sm-12">
-            <h6>Шинэ мэдээлэл нэмэх</h6>
-            <hr/>
-            @if(Session::has('successMsg'))
-                <div class="alert alert-success font-14"><i class="fa fa-check"></i> {{ Session::get('successMsg') }} </div>
-            @elseif(Session::has('errorMsg'))
-                <div class="alert alert-danger font-14"><i class="fa fa-check"></i> {{ Session::get('errorMsg') }} </div>
-            @endif
-            <form class="font-14" method="post" action="{{asset('saveEvent')}}" enctype="multipart/form-data">
+            <form class="rounded font-14 p-4 bg-white" method="post" action="{{asset('organizationUpdate')}}" enctype="multipart/form-data">
+                <h6>Байгууллагын мэдээлэл</h6><hr/>
                 {{ csrf_field() }}
                 <div class="row">
-                    <div class="col-sm-12">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="subject">Гарчиг:</label>
-                                    <input value="{{$subject}}" type="text" class="form-control" id="subject" name="subject" required>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="subject">Зураг:</label>
-                                    <input class="w-100" type="file"  name="images[]" @if($id == 0) required @endif multiple>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="subject">Эхлэх огноо:</label>
-                                    <input value="{{$started}}" type="date" class="form-control" id="started" name="started" required>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="subject">Дуусах огноо:</label>
-                                    <input value="{{$ended}}" type="date" class="form-control" id="ended" name="ended" required>
-                                </div>
-                            </div>
-                        </div>
-                        @if($images)
+                    <div class="col-sm-9">
                         <div class="form-group">
-                            <label>Оруулсан зурагнууд: </label>
-                                @foreach($images as $img)
-                                    <div class="eventImg" style="background-image: url({{asset('uploads')}}/{{$img->image}})">
-                                        <a class="btn btn-sm btn-danger font-12 d-table" href="/deleteImg/{{$img->id}}/{{$id}}"><i class="fa fa-trash"></i></a>
-                                    </div>
-                                @endforeach
+                            <label for="logo">Лого:</label>
+                            <input type="file" class="w-100" name="logo" id="logo">
                         </div>
+                    </div>
+                    <div class="col-sm-3 text-right">
+                        @if($logo)
+                            <div class="profile_pic" style="width:65px;height:65px;background-image: url({{asset('uploads/'.$logo)}}"></div>
+                        @else
+                        <img style="opacity: 0.5;border-radius: 50%" width="65" src="https://britz.mcmaster.ca/images/nouserimage.gif/image">
                         @endif
-                        <div class="form-group">
-                            <label>Хамтрагчид: </label>
-                            <textarea class="form-control"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="pagetext">Тайлбар:</label>
-                            <textarea name="contentHTML" id="pagetext" rows="10">{{$content}}</textarea>
-                        </div>
                     </div>
                 </div>
                 <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="name">Байгууллагын нэр:</label>
+                            <input value="{{$name}}" type="text" class="form-control" name="name" id="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="bag">Баг:</label>
+                            <input value="{{$bag}}" type="text" class="form-control" name="bag" id="bag" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">И-мэйл:</label>
+                            <input value="{{$email}}" type="email" class="form-control" name="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="web">Веб сайт:</label>
+                            <input value="{{$web}}" type="text" class="form-control" name="web" id="web">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="site_id">Харьяа сум:</label>
+                            <select name="sum" id="site_id" class="form-control" required>
+                                <option value=""> Сум сонгох </option>
+                                <?php foreach($site as $st){ ?>
+                                <option value="<?php echo $st->id; ?>" @if($sum == $st->id) selected @endif><?php echo $st->name; ?> </option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Хаяг:</label>
+                            <input value="{{$address}}" type="text" class="form-control" id="address" name="address">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Утасны дугаар:</label>
+                            <input value="{{$phone}}" type="number" class="form-control" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="social_link">Сошиал холбоос:</label>
+                            <input value="{{$social_link}}" type="text" class="form-control" name="social_link" id="social_link">
+                        </div>
+                    </div>
+                </div>
+                <hr/>
+                <div class="row">
                     <div class="col-sm-12">
-                        <a class="btn btn-sm btn-light" href="{{asset('events')}}">Буцах</a>
+                        <a class="btn btn-sm btn-light" href="{{asset('organization')}}">Буцах</a>
                         <input type="hidden" name="id" value="{{$id}}">
                         <button name="submit" type="submit" class="btn btn-sm btn-primary"><i class="fa fa-save"></i> Хадгалах</button>
                     </div>

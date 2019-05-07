@@ -17,8 +17,8 @@
                     <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Байгууллагын нэр</th>
                         <th scope="col">Лого</th>
+                        <th scope="col">Байгууллагын нэр</th>
                         <th scope="col">Бүртгэсэн огноо</th>
                         <th scope="col">Төлөв</th>
                         <th scope="col" width="90">Үйлдэл</th>
@@ -28,33 +28,25 @@
                     <?php $i=1; ?>@foreach($events as $event)
                         <tr>
                             <th scope="row">{{$i}}</th>
-                            <td>{{$event->subject}}</td>
                             <td>
-                                @if($event->ended < date('Y-m-d'))
-                                    <span class="text-secondary">{{$event->started}}
-                                    <i class="fa fa-caret-right"></i>
-                                    {{$event->ended}}</span><i class="font-12"> (Дууссан)</i>
-                                @elseif($event->started > date('Y-m-d'))
-                                    <span class="text-warning">{{$event->started}}
-                                        <i class="fa fa-caret-right"></i>
-                                        {{$event->ended}}</span><i class="font-12"> (Удахгүй)</i>
+                                @if($event->logo)
+                                    <div class="profile_pic" style="width:35px;height:35px;background-image: url({{asset('uploads/'.$event->logo)}}"></div>
                                 @else
-                                    <span class="text-success">{{$event->started}}</span>
-                                    <i class="fa fa-caret-right"></i>
-                                    <span class="text-danger">{{$event->ended}}</span><i class="font-12"> (Эхэлсэн)</i>
+                                    <img style="opacity: 0.5;border-radius: 50%" width="35" src="https://britz.mcmaster.ca/images/nouserimage.gif/image">
                                 @endif
                             </td>
+                            <td>{{$event->name}}</td>
                             <td>{{$event->created_at}}</td>
                             <td>
                                 @if($event->status == 1)
-                                <a href="{{asset('eventUpdateStatus')}}/{{$event->id}}/0" class="btn btn-sm btn-success font-12">Нийтэлсэн</a>
+                                <a href="{{asset('organizationUpdateStatus')}}/{{$event->id}}/0" class="btn btn-sm btn-success font-12">Нийтэлсэн</a>
                                 @else
-                                <a href="{{asset('eventUpdateStatus')}}/{{$event->id}}/1" class="btn btn-sm btn-secondary font-12">Нийтлэх</a>
+                                <a href="{{asset('organizationUpdateStatus')}}/{{$event->id}}/1" class="btn btn-sm btn-secondary font-12">Нийтлэх</a>
                                 @endif
                             </td>
                             <td>
-                                <a title="Засах" href="{{asset('eventform')}}/{{$event->id}}" class="btn btn-sm btn-secondary font-12"><i class="fa fa-cog"></i> </a>
-                                <a title="Устгах" href="{{asset('eventdelete')}}/{{$event->id}}" class="btn btn-sm btn-danger font-12"><i class="fa fa-trash"></i> </a>
+                                <a title="Засах" href="{{asset('organizationform')}}/{{$event->id}}" class="btn btn-sm btn-secondary font-12"><i class="fa fa-cog"></i> </a>
+                                <a title="Устгах" href="{{asset('organizationdelete')}}/{{$event->id}}" class="btn btn-sm btn-danger font-12"><i class="fa fa-trash"></i> </a>
                             </td>
                         </tr>
                     <?php $i++; ?>

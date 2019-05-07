@@ -54,7 +54,7 @@ class VolunteerController extends Controller{
     }
     public function login(){
         if(!is_null(Auth::user())){
-            return redirect()->to('/');
+            return redirect()->to('/login');
         }else {
             return view('volunteer.login');
         }
@@ -128,7 +128,7 @@ class VolunteerController extends Controller{
     }
     public function profile(){
         if(is_null(Auth::user())){
-            return redirect()->to('/');
+            return redirect()->to('/login');
         }else{
             $data['site'] = Site::select('id', 'name')->orderBy('name', 'ASC')->get();
             $social = User_social::select('*')->where('user_id',Auth::user()->id)->first();
@@ -148,7 +148,7 @@ class VolunteerController extends Controller{
     }
     public function profileUpdate(Request $request){
         if(is_null(Auth::user())){
-            return redirect()->to('/');
+            return redirect()->to('/login');
         }else{
             $user = User::find(Auth::user()->id);
 
@@ -167,14 +167,14 @@ class VolunteerController extends Controller{
     }
     public function changePassword(){
         if(is_null(Auth::user())){
-            return redirect()->to('/');
+            return redirect()->to('/login');
         }else{
             return view('volunteer.changepassword');
         }
     }
     public function updatePassword(Request $request){
         if(is_null(Auth::user())){
-            return redirect()->to('/');
+            return redirect()->to('/login');
         }else{
             if($request->password == $request->verify_password) {
                 $user = User::find(Auth::user()->id);
@@ -190,7 +190,7 @@ class VolunteerController extends Controller{
     }
     public function socialsave(Request $request){
         if(is_null(Auth::user())){
-            return redirect()->to('/');
+            return redirect()->to('/login');
         }else{
                 $result = User_social::select('id')->where('user_id',Auth::user()->id)->first();
                 if(is_null($result)){
@@ -210,7 +210,7 @@ class VolunteerController extends Controller{
     }
     public function events(){
         if(is_null(Auth::user())){
-            return redirect()->to('/');
+            return redirect()->to('/login');
         }else{
             $data['events'] = Event::select('*')->where('created_user_id', Auth::user()->id)->orderBy('created_at', 'desc')->get();
             return view('volunteer.events',$data);
@@ -218,7 +218,7 @@ class VolunteerController extends Controller{
     }
     public function eventform($id){
         if(is_null(Auth::user())){
-            return redirect()->to('/');
+            return redirect()->to('/login');
         }else{
             if($id) {
                 $events = Event::select('*')->where('created_user_id', Auth::user()->id)->where('id', $id)->first();
@@ -242,7 +242,7 @@ class VolunteerController extends Controller{
     public function saveEvent(Request $request){
 
         if(is_null(Auth::user())){
-            return redirect()->to('/');
+            return redirect()->to('/login');
         }else{
             if($request->id == "0") {
                 $event = New Event();
@@ -294,9 +294,78 @@ class VolunteerController extends Controller{
             return view('volunteer.organization',$data);
         }
     }
+    public function organizationform($id){
+        if(is_null(Auth::user())){
+            return redirect()->to('/login');
+        }else{
+            $data['site'] = Site::select('id', 'name')->orderBy('name', 'ASC')->get();
+            if($id) {
+                $orga = Organization::select('*')->where('user_id', Auth::user()->id)->where('id', $id)->first();
+                $data['name'] = $orga->name;
+                $data['sum'] = $orga->sum;
+                $data['bag'] = $orga->bag;
+                $data['address'] = $orga->address;
+                $data['phone'] = $orga->phone;
+                $data['email'] = $orga->email;
+                $data['web'] = $orga->web;
+                $data['social_link'] = $orga->social_link;
+                $data['logo'] = $orga->logo;
+                $data['id'] = $id;
+            }else{
+                $data['id'] = $id;
+                $data['name'] = "";
+                $data['sum'] = "";
+                $data['bag'] = "";
+                $data['address'] = "";
+                $data['phone'] = "";
+                $data['email'] = "";
+                $data['web'] = "";
+                $data['social_link'] = "";
+                $data['logo'] = "";
+            }
+            return view('volunteer.organizationform', $data);
+        }
+    }
+    public function organizationUpdate(Request $request){
+        if(is_null(Auth::user())){
+            return redirect()->to('/login');
+        }else{
+            if($request->id == 0){
+                $orga = New Organization();
+            } else {
+                $orga = Organization::find($request->id);
+            }
+            die;
+            if (is_null($request->logo)) {
+            }else{
+                $orga->logo = $request->logo->store('company_logo');
+            }
+            $orga->name = $request->name;
+            $orga->sum = $request->sum;
+            $orga->bag = $request->bag;
+            $orga->address = $request->address;
+            $orga->phone = $request->phone;
+            $orga->email = $request->email;
+            $orga->web = $request->web;
+            $orga->social_link = $request->social_link;
+            $orga->save();
+            $request->session()->flash('successMsg', 'Мэдээллийг амжилттай хадгаллаа!');
+            return redirect()->to('/organization');
+        }
+    }
+    public function organizationUpdateStatus($id,$stat){
+        if(is_null(Auth::user())){
+            return redirect()->to('/login');
+        }else{
+            $event = Organization::find($id);
+            $event->status = $stat;
+            $event->save();
+            return redirect()->to('/organization');
+        }
+    }
     public function eventUpdateStatus($id,$stat){
         if(is_null(Auth::user())){
-            return redirect()->to('/');
+            return redirect()->to('/login');
         }else{
             $event = Event::find($id);
             $event->status = $stat;
@@ -306,7 +375,7 @@ class VolunteerController extends Controller{
     }
     public function eventdelete(Request $request,$id){
         if(is_null(Auth::user())){
-            return redirect()->to('/');
+            return redirect()->to('/login');
         }else{
             $event = Event::select('eid')->where('created_user_id', Auth::user()->id)->where('id', $id)->first();
             $images = Event_to_image::select('id','image')->where('event_id', $event->eid)->get();
@@ -327,7 +396,7 @@ class VolunteerController extends Controller{
     }
     public function deleteImg(Request $request, $img_id, $event){
         if(is_null(Auth::user())){
-            return redirect()->to('/');
+            return redirect()->to('/login');
         }else{
             $img = Event_to_image::select('image')->where('id', $img_id)->first();
             $delete = unlink('uploads/'.$img->image);
@@ -361,10 +430,6 @@ class VolunteerController extends Controller{
                 $request->session()->flash('loginMsg', 'Та эрхээ баталгаажуулаагүй байна.');
                 return redirect()->to('/login');
             }elseif($user->status == 1){
-
-                $request->session()->flash('loginMsg', 'Та эрхээ баталгаажуулаагүй байна.');
-                return redirect()->to('/login');
-            }elseif($user->status == 1){
                 $request->session()->get('user_id', $user->id);
                 $request->session()->get('logged_id', true);
                 return redirect()->to('/');
@@ -381,7 +446,7 @@ class VolunteerController extends Controller{
     }
     public function event_like(Request $request){
         if(is_null(Auth::user())){
-            return redirect()->to('/');
+            return redirect()->to('/login');
         } else {
             $like = Event_to_like::select('id')->where('user_id',Auth::user()->id)->where('event_id',$request->event_id)->first();
             if($like) {
@@ -399,7 +464,7 @@ class VolunteerController extends Controller{
     }
     public function event_rate(Request $request){
         if(is_null(Auth::user())){
-            return redirect()->to('/');
+            return redirect()->to('/login');
         } else {
             $rating = Event_to_rating::select('id')->where('user_id',Auth::user()->id)->where('event_id',$request->event_id)->first();
             if($rating) {
