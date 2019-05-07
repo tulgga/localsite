@@ -69,20 +69,25 @@
                         <div class="row">
                             @foreach($data as $row)
                                 @if($row->parent_id==0)
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <div class="single-feature">
                                                 <img src="{{ $row->image ? asset('uploads/'.$row->image) : '/images/image.png' }}" alt="" style="width: 50%;">
                                             <div class="desc text-center">
                                                 <a href="{{asset('/'.$row->id)}}">
 
-                                                <h6 class="title text-uppercase">{{$row->title}}</h6>
+                                                <button class="primary-btn hover d-inline-flex align-items-center" style="width: 100%; text-overflow: hidden">
+                                                    <span class="mr-10" style="font-size: 10px"
+                                                    >{{$row->title}}</span>
+                                                        <span class="lnr lnr-arrow-right" style="position: absolute; right: 10px; top:12px;"></span>
+                                                </button>
                                                 </a>
 
-                                                @if(count($row->sub)>0)
-                                                    @foreach($row->sub as $sub)
-                                                        <span style="margin-right: 5px;">{{$sub->title}}</span>
-                                                    @endforeach
-                                                @endif
+
+{{--                                                @if(count($row->sub)>0)--}}
+{{--                                                    @foreach($row->sub as $sub)--}}
+{{--                                                        <span style="margin-right: 5px;">{{$sub->title}}</span>--}}
+{{--                                                    @endforeach--}}
+{{--                                                @endif--}}
                                             </div>
                                         </div>
                                     </div>
