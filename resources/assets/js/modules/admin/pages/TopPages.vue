@@ -27,7 +27,7 @@
                                <router-link :to="'toppages/'+list.id+'/update'" ><i class="fas fa-pencil-alt"></i></router-link>
 
 
-                               <div v-if="list.children==0" @click="delete_cat=list deletemodal=true;"><i
+                               <div v-if="list.children==0" @click="delete_cat=list; deletemodal=true;"><i
                                    class="fas fa-trash"></i></div>
                                <div v-else class="disabled"><i class="fas fa-trash"></i></div>
 
@@ -43,7 +43,7 @@
                                    <div :class="{'disabled':a==0}" @click="changePosition(i, a, -1)"><i class="fas fa-arrow-up"></i></div>
                                    <div  :class="{'disabled':list.children.length-1==a}" @click="changePosition(i, a,1)"><i class="fas fa-arrow-down"></i></div>
                                    <router-link :to="'pages/'+child.id+'/update'" ><i class="fas fa-pencil-alt"></i></router-link>
-                                   <div v-if="child.children.length==0" @click="delete_cat=child deletemodal=true;"><i
+                                   <div v-if="child.children.length==0" @click="delete_cat=child; deletemodal=true;"><i
                                        class="fas fa-trash"></i></div>
                                    <div v-else class="disabled"><i class="fas fa-trash"></i></div>
                                </div>
@@ -58,7 +58,7 @@
                                        <div :class="{'disabled':child.children-1==b}" @click="changePositionSub(i, a, b,1)"><i class="fas fa-arrow-down"></i></div>
                                        <router-link :to="'pages/'+subchild.id+'/update'" ><i class="fas fa-pencil-alt"></i></router-link>
                                        <div v-if="subchild.children.length==0"
-                                            @click="delete_cat=subchild deletemodal=true;"><i class="fas fa-trash"></i>
+                                            @click="delete_cat=subchild; deletemodal=true;"><i class="fas fa-trash"></i>
                                        </div>
                                        <div v-else class="disabled"><i class="fas fa-trash"></i></div>
                                    </div>
@@ -72,7 +72,7 @@
                                                <div :class="{'disabled':b==c}" @click="changePositionSubSub(i, a, b, c, -1)"><i class="fas fa-arrow-up"></i></div>
                                                <div :class="{'disabled':subchild.children-1==c}" @click="changePositionSubSub(i, a, b, c, 1)"><i class="fas fa-arrow-down"></i></div>
                                                <router-link :to="'pages/'+subsubchild.id+'/update'" ><i class="fas fa-pencil-alt"></i></router-link>
-                                               <div @click="delete_cat=subsubchild deletemodal=true;"><i
+                                               <div @click="delete_cat=subsubchild; deletemodal=true;"><i
                                                    class="fas fa-trash"></i></div>
 
                                            </div>

@@ -1,5 +1,4 @@
 // auth.js
-
 export const LOGOUT = 'LOGOUT';
 export const SAVE_TOKEN = 'SAVE_TOKEN';
 export const SAVE_DOMAIN = 'SAVE_DOMAIN';
@@ -10,5 +9,6 @@ export const UPDATE_USER = 'UPDATE_USER';
 export const REGISTER_USER_MSG = 'REGISTER_USER_MSG';
 export const CHANGE_BRANCH = 'CHANGE_BRANCH';
 export const SAVE_MENU = 'SAVE_MENU';
+export const SAVE_TOP_MENU = 'SAVE_TOP_MENU'
 
 

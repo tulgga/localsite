@@ -32,7 +32,7 @@
                         <span class="tag is-success" >{{fileType(props.row.file)}}</span>
                 </div>
                 <div slot="action" slot-scope="props" class="data-action">
-                    <div @click="showmodal=true file=siteUrl+'/file_viewer/?file='+props.row.file"><i
+                    <div @click="showmodal=true; file=siteUrl+'/file_viewer/?file='+props.row.file"><i
                         class="fas fa-eye"></i></div>
                     <a :href="siteUrl+'/uploads/'+props.row.file" download><i class="fas fa-download"></i></a>
                     <router-link :to="'files/'+props.row.id+'/update'" ><i class="fas fa-pencil-alt"></i></router-link>

@@ -58,7 +58,7 @@
                 </section>
                 <footer class="modal-card-foot">
                     <button class="button is-text" v-on:click="deletemodal = false">Буцах</button>
-                    <button class="button is-danger add_button" v-on:click="remove() deletemodal = false">
+                    <button class="button is-danger add_button" v-on:click="remove(); deletemodal = false">
                         <span>Устгах</span>
                     </button>
                 </footer>
