@@ -254,7 +254,7 @@ class VolunteerController extends Controller{
                 $event->content = $request->contentHTML;
                 $event->created_user_id = Auth::user()->id;
                 $event->save();
-                if (is_null($request->images)) {
+                if (is_null($request->images)){
                 }else{
                     foreach ($request->images as $key => $value) {
                         $image = New Event_to_image();
@@ -284,6 +284,14 @@ class VolunteerController extends Controller{
             }
             $request->session()->flash('successMsg', 'Мэдээллийг амжилттай хадгаллаа!');
             return redirect()->to('/events');
+        }
+    }
+    public function organization(){
+        if(is_null(Auth::user())){
+            return redirect()->to('/login');
+        }else{
+            $data['events'] = Organization::select('*')->where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->get();
+            return view('volunteer.organization',$data);
         }
     }
     public function eventUpdateStatus($id,$stat){
