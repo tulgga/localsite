@@ -1,21 +1,19 @@
 @extends('zar.body')
 @section('meta')
 
-    {{--<title>{{$selected_cat->name}}</title>--}}
-    {{--<meta name="title" content="{{$selected_cat->name}}">--}}
-    {{--<meta name="description" content="Мэдээ мэдээлэл зарын сайт">--}}
-    {{--<meta name="image" content="{{url('images/noImage.jpg')}}">--}}
+    <title>{{$_GET['s']}}</title>
+    <meta name="title" content="{{$_GET['s']}}">
+    <meta name="description" content="Мэдээ мэдээлэл зарын сайт">
+    <meta name="image" content="{{url('images/noImage.jpg')}}">
 
+    {{--<meta property="og:url" content="{{url('c/'.$selected_cat->id.'.html')}}">
+    <meta property="og:type" content="category">
+    <meta property="og:title" content="{{$selected_cat->name}}">--}}
 
-
-    {{--<meta property="og:url" content="{{url('c/'.$selected_cat->id.'.html')}}">--}}
-    {{--<meta property="og:type" content="category">--}}
-    {{--<meta property="og:title" content="{{$selected_cat->name}}">--}}
-
-    {{--<meta property="og:locale" content="mn_MN">--}}
-    {{--<meta property="og:locale:alternate" content="en_GB">--}}
-    {{--<meta property="og:description" content="Баянхонгор аймгийн зарын сайт">--}}
-{{--@endsection--}}
+    <meta property="og:locale" content="mn_MN">
+    <meta property="og:locale:alternate" content="en_GB">
+    <meta property="og:description" content="Баянхонгор аймгийн зарын сайт">
+@endsection
 @section('content')
     <div class="gradient-title">
         <div class="row">

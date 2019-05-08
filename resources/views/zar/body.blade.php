@@ -19,33 +19,25 @@
     <header>
         <div id="header-three" class="header-style1 header-fixed">
 
-            <div class="main-menu-area bg-primary" id="sticker">
+            <div class="main-menu-area" style="background-color: #224e8a" id="sticker">
                 <div class="container">
                     <div class="row no-gutters d-flex align-items-center text-center text-md-left">
-                        <div class="col-lg-4 col-md-4 ">
+                        <div class="col-lg-3 col-md-3 ">
                             <div class="logo-area">
                                 <a  href="{{url('/')}}" class="img-fluid">
                                     <img src="{{asset('main/zar/img/logo.png')}}" alt="logo">
                                 </a>
                             </div>
                         </div>
-                        <div class="col-lg-5 col-md-5 possition-static">
+                        <div class="col-lg-7 col-md-7 possition-static">
                             <form method="get" action="{{url('search.html')}}" class="searchform mb-3 mt-3 mb-md-0 mt-md-0">
                                 <div class="row">
                                     <div class="col-md-3 col-5 pr-0">
-                                        <select name="cat" class="form-control">
-                                            <?php if(isset($_GET['cat'])){ $cat=$_GET['cat']; } else { $cat=0; } ?>
-                                            <option value="0">Бүх зар</option>
-                                            @foreach($category as $c)
-                                                @if($c->children)
-                                                    <optgroup label="{{$c->name}}">
-                                                    @foreach($c->children as $cc)
-                                                        <option @if($cat==$cc->id) selected @endif value="{{$cc->id}}"> -- {{$cc->name}}</option>
-                                                    @endforeach
-                                                    </optgroup>
-                                                @else
-                                                    <option @if($cat==$c->id) selected @endif value="{{$c->id}}">{{$c->name}}</option>
-                                                 @endif
+                                        <select name="site_id" class="form-control">
+                                            <option value="0">Бүх байршил</option>
+                                            <?php if(isset($_GET['site_id'])){ $site_id=$_GET['site_id']; } else { $site_id=''; } ?>
+                                            @foreach($sumd as $sum)
+                                                <option value="{{$sum->id}}" @if($site_id == $sum->id) selected @endif>{{$sum->name}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -57,18 +49,34 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="col-lg-3 col-md-3 text-center text-md-right">
+                        <div class="col-lg-2 col-md-2 text-center text-md-right">
                             <a href="{{url('post-ad.html')}}" class="cp-default-btn add-btn"><i class="fa fa-plus"></i> Зар нэмэх</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
     </header>
-
-
-    <section class="pt-2 pt-sm-5 mt-sm-5 bg-accent-shadow-body">
+    <div class="mt-sm-5 pt-5 pb-4">
+        <div class="container">
+            <img src="http://shuurhai.mn/uploads/banner/1552450152-60537911.gif" class="w-100">
+            <ul class="row categories">
+                <?php $cat=0; if(isset($selected_cat->id)){ $cat=$selected_cat->id;  }?>
+                @foreach($category as $c)
+                    <li class="col-sm-3"><a href="{{url('c/'.$c->id.'.html')}}" @if($cat==$c->id) class="active" @endif ><i class="fa fa-shopping-basket"></i> {{$c->name}}</a>
+                    @if($c->children)
+                         <ul class="children">
+                        @foreach($c->children as $cc)
+                            <li><a href="{{url('c/'.$cc->id.'.html')}}" @if($cat==$cc->id) class="active" @endif><i class="fa fa-angle-right"></i> {{$cc->name}}</a></li>
+                        @endforeach
+                         </ul>
+                    @endif
+                    </li>
+                @endforeach
+            </ul>
+        </div>
+    </div>
+    <section class="pt-3 bg-accent-shadow-body">
         <div class="container pb-40">
             <div class="row">
                 <div class="order-xl-2 col-lg-9 col-md-12 col-sm-12 col-12 mb--sm">
@@ -77,24 +85,7 @@
                     </div>
                 </div>
                 <div class="order-xl-1 order-lg-1 col-xl-3 col-lg-4 col-md-12 col-sm-12 col-12">
-                    <div class="sidebar-item-box">
-                        <div class="gradient-wrapper">
-                            <div class="gradient-title">
-                                <h3>Ангилал</h3>
-                            </div>
-                            <ul class="sidebar-category-list">
-                                <?php $cat=0; if(isset($selected_cat->id)){ $cat=$selected_cat->id;  }?>
-                                @foreach($category as $c)
-                                    <li><a href="{{url('c/'.$c->id.'.html')}}" @if($cat==$c->id) class="active" @endif >{{$c->name}}</a></li>
-                                    @if($c->children)
-                                        @foreach($c->children as $cc)
-                                            <li class="child"><a href="{{url('c/'.$cc->id.'.html')}}" @if($cat==$cc->id) class="active" @endif>{{$cc->name}}</a></li>
-                                        @endforeach
-                                    @endif
-                                @endforeach
-                            </ul>
-                        </div>
-                    </div>
+                    <img class="w-100" src="http://www.shuurhai.mn/uploads/banners/jHotel.jpg">
                 </div>
             </div>
         </div>

@@ -708,6 +708,21 @@ h3.head.iltod span{
     background-position: center center;
     transition: all 450ms cubic-bezier(.485, .075, .12, .855);
 }
+.posts-blog h4{
+    font-size: 14px;
+    padding: 10px 15px;
+    line-height: 24px;
+    position: absolute;
+    bottom: 0;
+    background: rgba(0,0,0,0.6);
+    max-height: 65px;
+    overflow: hidden;
+    color: #fff;
+    width: 100%;
+    margin: 0;
+    font-weight: 600;
+    transition: all 450ms cubic-bezier(.485, .075, .12, .855);
+}
 .posts-blog h2{
     color: var(--MainColor);
     font-weight: 700;
@@ -741,11 +756,9 @@ h3.head.iltod span{
     display: block;
     margin: 10px 0 5px;
 }
-.posts-blog a:hover .thumb{
-    transform: translateX(-10px);
-}
-.posts-blog .news-blog-4 a:hover .thumb, .posts-blog .news-blog-3 a:hover .thumb{
-    transform: translateY(-10px);
+.posts-blog .thumb:hover > h4{
+    background-color: rgba(255,255,255,0.95);
+    color:var(--MainColor);
 }
 .posts-blog a:hover h2{
     color:var(--SecondColor);
@@ -1169,7 +1182,7 @@ h3.head.iltod span{
     line-height: 24px;
     overflow: hidden;
     max-height: 25px;
-    color:var(--MainColor);
+    color:var(--SecondColor);
 }
 .news-list p{
     color: #666;

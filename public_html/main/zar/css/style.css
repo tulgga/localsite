@@ -4335,6 +4335,7 @@ p.text-bold-primary {
 
 .category-list-layout3 .product-box .item-content {
     padding-right: 10%;
+    width: 100%;
 }
 
 .category-list-layout3 .product-box .item-content .title-ctg {
@@ -5132,6 +5133,59 @@ ul.specification-layout2 > li:before {
 /*=======================================================================
 [14] Sidebar Style
 =========================================================================*/
+.categories{
+    padding: 15px 15px 0;
+}
+.categories > li{}
+.categories > li > a{
+    display: block;
+    font-size: 15px;
+    font-weight: bold;
+    color: #224e8a;
+    padding: 5px 0 5px 30px;
+    position: relative;
+    transition: all 0.5s ease-out;
+}
+.categories > li > a > i{
+    color: #fcaf01;
+    font-size: 18px;
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    margin-top: -9px;
+    left: 0;
+}
+.categories > li > .children{
+    position: relative;
+    border: 0px solid #eee;
+    border-top:0px solid #fcaf01;
+    visibility: hidden;
+    overflow: hidden;
+    padding: 0px 0;
+    max-height: 0;
+    opacity: 0;
+    transition: all 750ms cubic-bezier(.485,.075,.12,.855);
+}
+.categories > li > .children > li{}
+.categories > li > .children > li > a{
+    display: block;
+    font-size: 15px;
+    font-weight: 400;
+    color: #224e8a;
+    background: #f5f5f5;
+    padding: 5px 10px;
+}
+.categories > li > .children > li > a > i{}
+.categories > li:hover > .children{
+    visibility: visible;
+    opacity: 1;
+    max-height: 500px;
+    padding: 0;
+    transition: all 750ms cubic-bezier(.485,.075,.12,.855);
+}
+.categories > li a:hover{
+    color:#CB0011 !important;
+}
 .sidebar-item-box {
     margin-bottom: 30px;
 }
@@ -5139,7 +5193,6 @@ ul.specification-layout2 > li:before {
 .sidebar-item-box:last-child {
     margin-bottom: 0;
 }
-
 ul.sidebar-category-list li {
     position: relative;
     text-transform: capitalize;
@@ -5153,11 +5206,6 @@ ul.sidebar-category-list li {
 
 ul.sidebar-category-list li:last-child {
     border-bottom: 0;
-}
-
-.child {
-    background: rgba(0,0,0,0.03);
-    border:none !important;
 }
 ul.sidebar-category-list li.child a {
     padding: 8px 0px 8px 20px;
@@ -7433,34 +7481,29 @@ ul.sidebar-ads-from-user li .price {
 
 .searchform input[type="text"] {
     border: none;
-    color: #2371f1;
-    text-shadow: 1.4px 1.4px 1px rgba(0, 0, 0, 0.15);
+    color: #333;
     font-size: 13px;
     padding: 15px;
     width: 100%;
     height: 34px;
     border-top-right-radius: 17px;
     border-bottom-right-radius: 17px;
-    -webkit-box-shadow: inset 1.4px 1.4px 1px 0 rgba(0, 0, 0, 0.1);
-    box-shadow: inset 1.4px 1.4px 1px 0 rgba(0, 0, 0, 0.1);
-    background: #184da6;
+    background: #fff;
     outline: none;
 }
 
 .searchform select {
     border: none;
-    color: #2371f1;
-    text-shadow: 1.4px 1.4px 1px rgba(0, 0, 0, 0.15);
+    color: #333;
     font-size: 13px;
     width: 100%;
     height: 34px !important;
     border-radius: 0px;
     border-top-left-radius: 17px;
     border-bottom-left-radius: 17px;
-    -webkit-box-shadow: inset 1.4px 1.4px 1px 0 rgba(0, 0, 0, 0.1);
-    box-shadow: inset 1.4px 1.4px 1px 0 rgba(0, 0, 0, 0.1);
-    background: #184da6;
+    background: #fff;
     outline: none;
+    border-right: 1px solid #eee;
 }
 
 .searchform .button-search {
@@ -7471,9 +7514,8 @@ ul.sidebar-ads-from-user li .price {
     height: 100%;
     width: 40px;
     border: 0;
-    color: #2068de;
+    color: #333;
     background: none;
-    text-shadow: 1.4px 1.4px 1px rgba(0, 0, 0, 0.15);
     outline: none;
 }
 
@@ -7482,23 +7524,19 @@ ul.sidebar-ads-from-user li .price {
 }
 
 .searchform input[type="text"]::-webkit-input-placeholder {
-    color: #2371f1;
-    text-shadow: 1.4px 1.4px 1px rgba(0, 0, 0, 0.15);
+    color: #fff;
 }
 
 .searchform input[type="text"]:-ms-input-placeholder {
-    color: #2371f1;
-    text-shadow: 1.4px 1.4px 1px rgba(0, 0, 0, 0.15);
+    color: #333;
 }
 
 .searchform input[type="text"]::-ms-input-placeholder {
-    color: #2371f1;
-    text-shadow: 1.4px 1.4px 1px rgba(0, 0, 0, 0.15);
+    color: #333;
 }
 
 .searchform input[type="text"]::placeholder {
-    color: #2371f1;
-    text-shadow: 1.4px 1.4px 1px rgba(0, 0, 0, 0.15);
+    color: #333;
 }
 
 .main-menu-area {
