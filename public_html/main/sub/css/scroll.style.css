@@ -3,8 +3,6 @@
 	position: relative;
 }
 .scroll-wrapper > .scroll-content {
-	border: none !important;
-	box-sizing: content-box !important;
 	height: auto;
 	left: 0;
 	margin: 0;
@@ -77,11 +75,11 @@
 	background-color: #e5e5e5;
 }
 .scrollbar-inner > .scroll-element .scroll-bar {
-	background-color: #485977;
+	background-color: var(--MainColor);
 }
 .scrollbar-inner > .scroll-element:hover .scroll-bar {
-	background-color: #ed1c24;
+	background-color: var(--SecondColor);
 }
 .scrollbar-inner > .scroll-element.scroll-draggable .scroll-bar {
-	background-color: #ed1c24;
+	background-color: var(--SecondColor);
 }

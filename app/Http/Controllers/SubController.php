@@ -18,15 +18,19 @@ use App\Category;
 use App\File_category;
 use App\File_to_category;
 use App\Urgudul;
+use App\Zar;
+use App\Zar_category;
 
 class SubController extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     public function index($account){
+      $week=['Ням', 'Даваа', 'Мягмар', 'Лхагва', 'Пүрэв', 'Баасан', 'Бямба'];
+      $data['date']=date('m сарын d, ').$week[date('w')];
       $data['home_url'] = Site::select('domain')->where('id',0)->first();
       $data['info'] = $this->getDomainInfo($account);
-
+        $data['zar'] = Zar::select('zar.id','zar.title','zar.image','zar.created_at','zar_category.name','zar.cat_id')->where('zar.site_id',$data['info']->id)->Join('zar_category', 'zar_category.id','=','zar.cat_id')->orderBy('zar.created_at','DESC')->limit(20)->get();
       $data['ontslokh']= Post::orderBy('created_at', 'desc')->where('site_id', $data['info']->id)->where('is_primary', 1)->where('status',1)->with('Category')->select('title', 'id', 'image', 'type','short_content','created_at')
           ->limit(5)->get();
       $data['latest_news']= Post::orderBy('created_at', 'desc')->where('site_id', $data['info']->id)->where('is_primary', 0)->where('status',1)->with('Category')->select('title', 'id', 'image', 'type','short_content','created_at')
@@ -45,6 +49,11 @@ class SubController extends BaseController
 
     public function page($account, $id){
         $data['info'] = $this->getDomainInfo($account);
+        $week=['Ням', 'Даваа', 'Мягмар', 'Лхагва', 'Пүрэв', 'Баасан', 'Бямба'];
+        $data['date']=date('m сарын d, ').$week[date('w')];
+        $data['home_url'] = Site::select('domain')->where('id',0)->first();
+        $data['zar'] = Zar::select('zar.id','zar.title','zar.image','zar.created_at','zar_category.name','zar.cat_id')->where('zar.site_id',$data['info']->id)->Join('zar_category', 'zar_category.id','=','zar.cat_id')->orderBy('zar.created_at','DESC')->limit(20)->get();
+
         $data['page'] = Page::where('site_id', $data['info']->id)->where('id',$id)->first();
         $data['page']->menu = $this->getPageMainMenuID([['id'=>$data['page']->id, 'parent_id'=>$data['page']->parent_id, 'title'=>$data['page']->title]]);
         return view('sub.page', $data);
@@ -52,6 +61,11 @@ class SubController extends BaseController
 
     public function news($account, $id){
         $data['info']=$this->getDomainInfo($account);
+        $week=['Ням', 'Даваа', 'Мягмар', 'Лхагва', 'Пүрэв', 'Баасан', 'Бямба'];
+        $data['date']=date('m сарын d, ').$week[date('w')];
+        $data['home_url'] = Site::select('domain')->where('id',0)->first();
+        $data['zar'] = Zar::select('zar.id','zar.title','zar.image','zar.created_at','zar_category.name','zar.cat_id')->where('zar.site_id',$data['info']->id)->Join('zar_category', 'zar_category.id','=','zar.cat_id')->orderBy('zar.created_at','DESC')->limit(20)->get();
+
         $data['news']= Post::where('id', $id)-> where('status',1)->with('Category')->select('id', 'title', 'image', 'type','content','created_at','view_count')->first();
         $data['news']->view_count += 1;
         $data['news']->save();
@@ -63,6 +77,11 @@ class SubController extends BaseController
 
     public function category($account, $id){
         $data['info']=$this->getDomainInfo($account);
+        $week=['Ням', 'Даваа', 'Мягмар', 'Лхагва', 'Пүрэв', 'Баасан', 'Бямба'];
+        $data['date']=date('m сарын d, ').$week[date('w')];
+        $data['home_url'] = Site::select('domain')->where('id',0)->first();
+
+        $data['zar'] = Zar::select('zar.id','zar.title','zar.image','zar.created_at','zar_category.name','zar.cat_id')->where('zar.site_id',$data['info']->id)->Join('zar_category', 'zar_category.id','=','zar.cat_id')->orderBy('zar.created_at','DESC')->limit(20)->get();
         $paginate=20;
         $data['newslist'] = Post::where('site_id',$data['info']->id)->where('status',1)->where('news_to_category.cat_id',$id)->Join('news_to_category','news_to_category.post_id', '=','posts.id')->orderBy('posts.created_at','DESC')->select('posts.title', 'posts.short_content','posts.id','posts.created_at','posts.image','posts.type')->paginate($paginate);
         $data['category'] = Category::where('site_id',$data['info']->id)->where('id',$id)->select('*')->first();
@@ -81,6 +100,11 @@ class SubController extends BaseController
 
     public function files($account, $id){
         $data['info']=$this->getDomainInfo($account);
+        $week=['Ням', 'Даваа', 'Мягмар', 'Лхагва', 'Пүрэв', 'Баасан', 'Бямба'];
+        $data['date']=date('m сарын d, ').$week[date('w')];
+        $data['home_url'] = Site::select('domain')->where('id',0)->first();
+        $data['zar'] = Zar::select('zar.id','zar.title','zar.image','zar.created_at','zar_category.name','zar.cat_id')->where('zar.site_id',$data['info']->id)->Join('zar_category', 'zar_category.id','=','zar.cat_id')->orderBy('zar.created_at','DESC')->limit(20)->get();
+
         $data['fileCat'] = File_to_category::where('cat_id',$id)->select('file_id')->first();
         if(isset($data['fileCat']->file_id)) {
             $data['filelist'] = File::where('site_id', $data['info']->id)->where('id', $data['fileCat']->file_id)->where('status', 1)->select('*')->orderBy('created_at', 'DESC')->get();
@@ -128,6 +152,9 @@ class SubController extends BaseController
         return $site;
     }
     public function feedback($account){
+        $week=['Ням', 'Даваа', 'Мягмар', 'Лхагва', 'Пүрэв', 'Баасан', 'Бямба'];
+        $data['date']=date('m сарын d, ').$week[date('w')];
+        $data['home_url'] = Site::select('domain')->where('id',0)->first();
         $data['info']=$this->getDomainInfo($account);
         $urgudul = Urgudul::where('site_id',$data['info']->id)->orderBy('created_at','DESC');
 

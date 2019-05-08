@@ -62,10 +62,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-4 col-11">
-                    <ul class="top-contact">
-                        <li><a href="tel:{{$info->config['contact']['phone']}}"><i class="fa fa-phone"></i> {{$info->config['contact']['phone']}}</a></li>
-                        <li><a href="mailto:{{$info->config['contact']['email']}}"><i class="fa fa-envelope"></i> {{$info->config['contact']['email']}}</a></li>
-                    </ul>
+                    <div class="date"><i class="fa fa-calendar"></i> {{$date}}</div>
                 </div>
                 <div class="col-sm-8 col-1">
                     <div class="top-menu-show-btn d-sm-none"><i class="fa fa-ellipsis-v"></i></div>
@@ -223,7 +220,7 @@
                         @foreach($info->subDomain as $domain)
                             @if(!$domain->id == 0)
                                 <div class="col-sm-5 sum_item">
-                                    <a href="{{$domain->domain}}">{{$domain->name}}</a>
+                                    <a href="http://{{$domain->domain}}.{{$home_url->domain}}">{{$domain->name}}</a>
                                 </div>
                             @endif
                         @endforeach
@@ -325,7 +322,7 @@
                 @foreach($info->subDomain as $domain)
                     @if(!$domain->id == 0)
                         <li class="col-sm-6">
-                        <a href="{{$domain->domain}}">@if($domain->favicon)<img src="{{ asset('uploads/'.$domain->favicon)}}">@else<img src="{{ asset('uploads/favicon/XnjMhMUg3enV21GhLYDopC2L6uHsuQK0BqjTjCjP.png')}}">@endif {{$domain->name}}</a>
+                        <a href="http://{{$domain->domain}}.{{$home_url->domain}}">@if($domain->favicon)<img src="{{ asset('uploads/'.$domain->favicon)}}">@else<img src="{{ asset('uploads/favicon/XnjMhMUg3enV21GhLYDopC2L6uHsuQK0BqjTjCjP.png')}}">@endif {{$domain->name}}</a>
                         </li>
                     @endif
                 @endforeach

@@ -59,7 +59,7 @@
     <div class="row">
         <div class="container content-box">
             <div class="row">
-                <div class="col-sm-8">
+                <div class="col-sm-{{(count($info->events)>0) ? 8 : 12}}">
                     <h3 class="head latest row"><span>Шинэ мэдээ</span></h3>
                     <ul class="row latest_news">
                         @foreach($latest_news as $nws)
@@ -141,7 +141,7 @@
     <div class="row" style="background: #fafafa; border-top: 1px solid #f5f5f5;">
         <div class="container content-box">
             <div class="row">
-                <div class="col-sm-{{(count($info->events)>0) ? 8 : 12}}">
+                <div class="col-sm-8">
                     <h3 class="head row background-white"><span>Аймгийн мэдээ</span></h3>
                     <ul class="row latest_news background-white">
                         @foreach($province_news as $nws)

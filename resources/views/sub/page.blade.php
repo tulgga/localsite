@@ -85,29 +85,36 @@
                     </div>
                 </div>
                 <div class="col-sm-3">
-                    @foreach($info->menu as $menu)
-                        @if($menu->id == $page['menu'][0]['id'])
-                    <h3 class="head row"><span>{{$menu->name}}</span></h3>
-                    <ul class="left-side-menu">
-                        @if($menu->children)
-                        @foreach($menu->children as $submenu)
-                        <li @if($page['menu'][1]['id'] == $submenu->id)class="active"@endif>
-                            <a href="{{$submenu->link}}">{{$submenu->name}}</a>
-                            @if( $submenu->children)
-                            <ul>
-                                @foreach($submenu->children as $submenu2)
-                                <li @if(isset($page['menu'][2]['id']) and $page['menu'][2]['id'] == $submenu2->id)class="active"@endif>
-                                    <a href="{{$submenu2->link}}">{{$submenu2->name}}</a>
-                                </li>
+                    @if($info->sidebar)
+                        <h3 class="head row"><span>Суртчилгаа</span></h3>
+                        {!! $info->sidebar !!}
+                    @endif
+                    @if($info->config['socail']['facebook'])
+                        <h3 class="head row"><span>Биднийг дэмжээрэй</span></h3>
+                        <div id="fb-root"></div>
+                        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v3.3"></script>
+                        <div class="fb-page" data-href="{{$info->config['socail']['facebook']}}" data-tabs="timeline" data-width="" data-height="" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+                            <blockquote cite="{{$info->config['socail']['facebook']}}" class="fb-xfbml-parse-ignore"><a href="{{$info->config['socail']['facebook']}}">{{$info->name}}</a></blockquote>
+                        </div>
+                    @endif
+                    @if($zar)
+                        <h3 class="head row background-white"><span>ЗАР МЭДЭЭ</span></h3>
+                        <ul class="row iltod_news background-white">
+                            <div class="iltod_scroll scrollbar-inner">
+                                @foreach($zar as $zr)
+                                    <li class="row">
+                                        <div class="col-sm-4">
+                                            <div class="zar_thumb" style="background-image: url('{{asset('uploads')}}/{{$zr->image}}')"></div>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <a href="http://zar.{{$home_url->domain}}/p/{{$zr->id}}.html">{{mb_substr($zr->title, 0, 55)}}...</a>
+                                            <span class="create_date"><i class="far fa-clock"></i> {{$zr->created_at}}</span>
+                                        </div>
+                                    </li>
                                 @endforeach
-                            </ul>
-                            @endif
-                        </li>
-                        @endforeach
-                        @endif
-                    </ul>
-                        @endif
-                    @endforeach
+                            </div>
+                        </ul>
+                    @endif
                 </div>
             </div>
         </div>
