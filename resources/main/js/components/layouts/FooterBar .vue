@@ -56,6 +56,19 @@
                             <a class="footer-socail-menu" v-if="socail.twitter" target="_blank" :href="socail.twitter"><i class="fab fa-twitter-square fa-lg"></i></a>
                             <a class="footer-socail-menu" v-if="socail.messenger" target="_blank" :href="socail.messenger"><i class="fab fa-facebook-messenger fa-lg"></i></a>
                             <a class="footer-socail-menu" v-if="socail.youtube" target="_blank" :href="socail.youtube"><i class="fab fa-youtube fa-lg"></i></a>
+                            <div class="columns mt-1 is-mobile">
+                                <div class="column is-6">
+                                    <a class="store-link" :href="appstore" target="_blank">
+                                        <img :src="siteUrl+'/images/appstore.png'" class="w-100">
+                                    </a>
+                                </div>
+                                <div class="column is-6">
+                                    <a class="store-link" :href="playstore" target="_blank">
+                                        <img :src="siteUrl+'/images/playstore.png'" class="w-100">
+                                    </a>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -70,6 +83,8 @@
     		return {
                 site_title: window.title,
                 socail:  window.socail,
+                appstore: window.appstore,
+                playstore: window.playstore,
                 subdomain: window.subdomain,
                 siteUrl: window.surl,
                 main: window.main,

@@ -89046,12 +89046,27 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["a"] = ({
     data: function data() {
         return {
             site_title: window.title,
             socail: window.socail,
+            appstore: window.appstore,
+            playstore: window.playstore,
             subdomain: window.subdomain,
             siteUrl: window.surl,
             main: window.main,
@@ -100246,7 +100261,41 @@ var render = function() {
                     },
                     [_c("i", { staticClass: "fab fa-youtube fa-lg" })]
                   )
-                : _vm._e()
+                : _vm._e(),
+              _vm._v(" "),
+              _c("div", { staticClass: "columns mt-1 is-mobile" }, [
+                _c("div", { staticClass: "column is-6" }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "store-link",
+                      attrs: { href: _vm.appstore, target: "_blank" }
+                    },
+                    [
+                      _c("img", {
+                        staticClass: "w-100",
+                        attrs: { src: _vm.siteUrl + "/images/appstore.png" }
+                      })
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "column is-6" }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "store-link",
+                      attrs: { href: _vm.playstore, target: "_blank" }
+                    },
+                    [
+                      _c("img", {
+                        staticClass: "w-100",
+                        attrs: { src: _vm.siteUrl + "/images/playstore.png" }
+                      })
+                    ]
+                  )
+                ])
+              ])
             ])
           ])
         ])

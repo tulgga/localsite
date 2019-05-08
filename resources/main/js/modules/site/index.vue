@@ -31,7 +31,7 @@
                         <news-carousel :page="3" color="red" title="Шинэ мэдээ" ></news-carousel>
                     </div>
                     <div class="bg-white p-15  shadow carList">
-                        <oran-nutag-carousel :page="3" color="blue" title="Орон нутгийн мэдээ" ></oran-nutag-carousel>
+                        <oran-nutag-carousel :page="3" color="blue" title="Орон нутгийн мэдээ"></oran-nutag-carousel>
                     </div>
                 </div>
                 <div class="column is-3 ">
