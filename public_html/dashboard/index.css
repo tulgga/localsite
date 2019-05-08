@@ -73,3 +73,29 @@ table td{
     font-weight: 300 !important;
     text-align: left !important;
 }
+
+.button_desc {
+    font-size: 10px;
+    color: #fff;
+    border-bottom: 0.5px solid #9a9a9a;
+    height: 50px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.button_left{
+    font-size: 10px;
+    color: #9a9a9a;
+    background: transparent;
+    border: none;
+}
+
+
+.button_right{
+    font-size: 10px;
+    color: #9a9a9a;
+    background: transparent;
+    border: none;
+    position: absolute;
+    right: 10px;
+}
