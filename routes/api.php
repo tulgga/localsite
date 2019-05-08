@@ -137,6 +137,9 @@ Route::namespace('Api')->group(function (){
     //Сайн дурыхан
     Route::get('eventslist','ApiVolunteerController@eventslist');
     Route::get('event/{id}','ApiVolunteerController@event');
+
+    Route::get('events','ApiEventController@index');
+    Route::get('events/{id}','ApiEventController@index');
 });
 
 

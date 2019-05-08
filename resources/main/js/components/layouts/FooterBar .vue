@@ -5,7 +5,7 @@
             <div :style="{'background-color': main.parent_color.hex}">
                 <div class="container pt-2 pb-2" >
                     <div class="columns">
-                        <div class="column is-3  footer-menu" >
+                        <div class="column is-3  footer-menu is-hidden-mobile" >
                             <h3>СУМД</h3>
                             <div class="columns is-multiline pb-1 m-0">
                                 <div v-for="site in sites" class="column is-6 p-0 " >
@@ -15,7 +15,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="column is-6  footer-menu" >
+                        <div class="column is-6  footer-menu is-hidden-mobile" >
                             <h3>ХЭЛТЭС АГЕНТЛАГ</h3>
                             <div  v-if="agentlag" >
                                 <!--blog list-->
@@ -28,9 +28,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="column is-3 ">
+                        <div  class="column is-3 ">
                             <h3>ХОЛБОО БАРИХ</h3>
-                            <div class="columns is-multiline">
+                            <div class="columns is-multiline is-mobile">
                                 <div class="column is-1 pt-1">
                                     <i class="fas fa-map-marker-alt"></i>
                                 </div>

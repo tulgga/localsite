@@ -65,7 +65,10 @@ class ApiUrgudulController extends Controller
         $urgudul->name = $data['name'];
         $urgudul->phone = $data['phone'];
         $urgudul->email = $data['email'];
-        $urgudul->site_id = $data['site_id'];
+        if(isset($data['site_id'])){
+            $urgudul->site_id = $data['site_id'];
+        }
+
         $urgudul->heltes_id = $data['heltes_id'];
         $urgudul->content = $data['content'];
         $urgudul->ip = $_SERVER['REMOTE_ADDR'];
