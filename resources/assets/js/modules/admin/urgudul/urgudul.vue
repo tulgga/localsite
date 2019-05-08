@@ -62,7 +62,7 @@
                         <tr><th class="has-text-right">IP:</th><td>{{showid.ip}}</td></tr>
                         <tr ><th class="has-text-right">Огноо:</th><td>{{showid.created_at}}</td></tr>
                         <tr ><th class="has-text-right">Агуулга:</th><td>{{showid.content}}</td></tr>
-                        <tr v-if="showid.image" ><th class="has-text-right">Зураг</th><td><img :src="siteUrl+'/uploads/'+showid.image" class="image"/></td></tr>
+                        <tr v-if="showid.image" ><th class="has-text-right">Зураг</th><td><img v-if="showid.image" :src="siteUrl+'/uploads/'+showid.image" class="image"/></td></tr>
                         <tr>
                             <th  class="has-text-right">Төлөв:</th>
                             <td>
@@ -71,6 +71,12 @@
                                     <template v-else="">Хариулаагүй</template>
                                 </div>
                                 <textarea class="textarea" v-model="showid.reply"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th  class="has-text-right">зураг:</th>
+                            <td><img v-if="showid.reply_image" :src="siteUrl+'/uploads/'+showid.reply_image" class="image"/><br>
+                                <input type="file" accept="image/*" name="imageni" @change="onFileChange($event.target.name, $event.target.files)">
                             </td>
                         </tr>
                     </table>
@@ -97,6 +103,8 @@
                 url: '/urgudul_show/'+this.$store.getters.domain.id,
                 deletemodal:false,
                 deleteid: false,
+                imageni:false,
+                image: [],
                 showmodal:false,
                 showid: false,
                 fetched: true,
@@ -221,6 +229,7 @@
 
                 let formData = new FormData();
                 formData.append('data', JSON.stringify(yvuulah));
+                formData.append('image', this.image);
                 axios.post('/urgudul/'+this.showid.id, formData).then((r) => {
                     this.showmodal = false;
                     this.fetched = true;
@@ -237,6 +246,24 @@
             deleting(row){
                 this.deleteid = row;
                 this.deletemodal = true;
+            },
+            onFileChange(fieldName, fileList){
+                const formData = new FormData();
+                // append the files to FormData
+                Array
+                    .from(Array(fileList.length).keys())
+                    .map(x => {
+                        formData.append(fieldName, fileList[x], fileList[x].name);
+                    });
+
+                this.image = formData.get(fieldName);
+
+
+                let reader = new FileReader();
+                reader.addEventListener("load", (e) => {
+                    this.imageni = reader.result;
+                });
+                reader.readAsDataURL(fileList[0]);
             },
         }
     }

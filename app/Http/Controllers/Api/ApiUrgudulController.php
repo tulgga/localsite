@@ -23,17 +23,22 @@ class ApiUrgudulController extends Controller
         $data = json_decode($data, true);
 
 
+
             $urgudul=Urgudul::where('site_id', 0);
         if($data['type']!=-1){
             $urgudul=$urgudul->where('type', $data['type']);
         }
 
-        if($data['status']!=-1){
-            $urgudul=$urgudul->where('status', $data['status']);
+        if($data['site_id']!=-0){
+            $urgudul=$urgudul->where('site_id', $data['site_id']);
+        } else {
+            if($data['heltes_id']!=0){
+                $urgudul=$urgudul->where('heltes_id', $data['heltes_id']);
+            }
         }
 
-        if($data['heltes_id']!=0){
-            $urgudul=$urgudul->where('heltes_id', $data['heltes_id']);
+        if($data['status']!=-1){
+            $urgudul=$urgudul->where('status', $data['status']);
         }
 
         if(!is_null($data['sdate'])){
@@ -60,6 +65,7 @@ class ApiUrgudulController extends Controller
         $urgudul->name = $data['name'];
         $urgudul->phone = $data['phone'];
         $urgudul->email = $data['email'];
+        $urgudul->site_id = $data['site_id'];
         $urgudul->heltes_id = $data['heltes_id'];
         $urgudul->content = $data['content'];
         $urgudul->ip = $_SERVER['REMOTE_ADDR'];

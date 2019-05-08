@@ -85781,9 +85781,6 @@ var modules = requireContext.keys().map(function (file) {
 //
 //
 //
-//
-//
-//
 
 
 
@@ -87126,8 +87123,9 @@ if (false) {(function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_helpers_BoxNewsList__ = __webpack_require__(254);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_helpers_BoxFileList__ = __webpack_require__(926);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_helpers_ZarList__ = __webpack_require__(1070);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_helpers_BoxNewsList__ = __webpack_require__(254);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_helpers_BoxFileList__ = __webpack_require__(926);
 //
 //
 //
@@ -87187,11 +87185,22 @@ if (false) {(function () {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
-    components: { BoxNewsList: __WEBPACK_IMPORTED_MODULE_0__components_helpers_BoxNewsList__["a" /* default */], BoxFileList: __WEBPACK_IMPORTED_MODULE_1__components_helpers_BoxFileList__["a" /* default */] },
+    components: { BoxNewsList: __WEBPACK_IMPORTED_MODULE_1__components_helpers_BoxNewsList__["a" /* default */], BoxFileList: __WEBPACK_IMPORTED_MODULE_2__components_helpers_BoxFileList__["a" /* default */], ZarList: __WEBPACK_IMPORTED_MODULE_0__components_helpers_ZarList__["a" /* default */] },
     data: function data() {
         return {
             id: false,
@@ -87200,6 +87209,7 @@ if (false) {(function () {
             content: null,
             is_full: true,
             selectedMenu: false,
+            menu_ids: false,
             metaInfo: {
                 title: '404',
                 meta: [{ name: 'viewport', content: 'width=device-width, initial-scale=1' }, { name: 'description', content: '' }, { property: 'og:title', content: '' }, { property: 'og:type', content: 'website' }, { property: 'og:url', content: '' }, { property: 'og:image', content: '' }, { property: 'og:description', content: '' }, { name: 'twitter:card', content: '' }, { name: 'twitter:site', content: '' }, { name: 'twitter:title', content: '' }, { name: 'twitter:description', content: '' }, { name: 'twitter:image:src', content: '' }, { itemprop: 'name', content: '' }, { itemprop: 'description', content: '' }, { itemprop: 'image', content: '' }]
@@ -87223,7 +87233,9 @@ if (false) {(function () {
 
             this.content = false;
             this.id = this.$route.params.id;
-            axios.get('/page/0/' + this.id).then(function (response) {
+            axios.get('/selected_menus/' + this.id).then(function (response) {
+                _this.menu_ids = response.data.success;
+            }), axios.get('/page/0/' + this.id).then(function (response) {
                 _this.fetched = true;
                 _this.content = response.data.success;
 
@@ -87242,7 +87254,7 @@ if (false) {(function () {
                             _this.selectedMenu = _this.$store.getters.menu[i];
                         }
                     }
-                    console.log(_this.is_full);
+
                     _this.metaInfo.title = _this.content.title;
                     _this.metaInfo.meta[1].content = _this.content.shortContent;
                     _this.metaInfo.meta[2].content = _this.content.title + ' ← ' + window.title;
@@ -88071,6 +88083,12 @@ if (false) {(function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_helpers_ZarList__ = __webpack_require__(1070);
+//
+//
+//
+//
+//
 //
 //
 //
@@ -88080,7 +88098,9 @@ if (false) {(function () {
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["a"] = ({
+    components: { ZarList: __WEBPACK_IMPORTED_MODULE_0__components_helpers_ZarList__["a" /* default */] },
     name: 'SideBar',
     props: [],
     data: function data() {
@@ -89278,18 +89298,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_helpers_Sum__ = __webpack_require__(955);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_helpers_Agentlag__ = __webpack_require__(957);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__components_layouts_SideBar__ = __webpack_require__(959);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__modules_system_NotFound__ = __webpack_require__(679);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_vue_flatpickr_component__ = __webpack_require__(458);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_vue_flatpickr_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_16_vue_flatpickr_component__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_vue_select__ = __webpack_require__(590);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_vue_select___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_17_vue_select__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18_vue_carousel__ = __webpack_require__(961);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18_vue_carousel___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_18_vue_carousel__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_vue_meta__ = __webpack_require__(962);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_vue_meta___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_19_vue_meta__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_v_bar__ = __webpack_require__(963);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21_vue_social_sharing__ = __webpack_require__(968);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21_vue_social_sharing___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_21_vue_social_sharing__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__components_layouts_SideBarMore__ = __webpack_require__(1073);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__modules_system_NotFound__ = __webpack_require__(679);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_vue_flatpickr_component__ = __webpack_require__(458);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_vue_flatpickr_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_17_vue_flatpickr_component__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18_vue_select__ = __webpack_require__(590);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18_vue_select___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_18_vue_select__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_vue_carousel__ = __webpack_require__(961);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_vue_carousel___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_19_vue_carousel__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_vue_meta__ = __webpack_require__(962);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_vue_meta___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_20_vue_meta__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21_v_bar__ = __webpack_require__(963);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22_vue_social_sharing__ = __webpack_require__(968);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22_vue_social_sharing___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_22_vue_social_sharing__);
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -89326,15 +89347,16 @@ __webpack_require__(896);
 
 
 
+
 // import BCarousel from './components/helpers/carousel';
 
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]);
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_19_vue_meta___default.a);
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_20_vue_meta___default.a);
 Object(__WEBPACK_IMPORTED_MODULE_3_vuex_router_sync__["sync"])(__WEBPACK_IMPORTED_MODULE_2__store__["a" /* default */], __WEBPACK_IMPORTED_MODULE_4__router__["a" /* default */]);
 
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_18_vue_carousel___default.a);
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_19_vue_carousel___default.a);
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_5_vuebar___default.a);
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_21_vue_social_sharing___default.a);
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_22_vue_social_sharing___default.a);
 
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_6_vue_toasted___default.a, {
     iconPack: 'fontawesome' // Toast icon package / material or fontawesome
@@ -89433,16 +89455,17 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_9_vee_
 
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.config.productionTip = false;
 
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('flatPickr', __WEBPACK_IMPORTED_MODULE_16_vue_flatpickr_component___default.a);
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('flatPickr', __WEBPACK_IMPORTED_MODULE_17_vue_flatpickr_component___default.a);
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('SiteApp', __webpack_require__(969).default);
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('v-select', __WEBPACK_IMPORTED_MODULE_17_vue_select___default.a);
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('v-select', __WEBPACK_IMPORTED_MODULE_18_vue_select___default.a);
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('Loading', __WEBPACK_IMPORTED_MODULE_10__components_helpers_loading__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('b-img', __WEBPACK_IMPORTED_MODULE_11__components_helpers_BImg__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('sum', __WEBPACK_IMPORTED_MODULE_12__components_helpers_Sum__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('agentlag', __WEBPACK_IMPORTED_MODULE_13__components_helpers_Agentlag__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('SideBar', __WEBPACK_IMPORTED_MODULE_14__components_layouts_SideBar__["a" /* default */]);
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('NotFound', __WEBPACK_IMPORTED_MODULE_15__modules_system_NotFound__["a" /* default */]);
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('v-bar', __WEBPACK_IMPORTED_MODULE_20_v_bar__["a" /* default */]);
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('SideBarMore', __WEBPACK_IMPORTED_MODULE_15__components_layouts_SideBarMore__["a" /* default */]);
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('NotFound', __WEBPACK_IMPORTED_MODULE_16__modules_system_NotFound__["a" /* default */]);
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('v-bar', __WEBPACK_IMPORTED_MODULE_21_v_bar__["a" /* default */]);
 
 // Vue.component('BCarousel', BCarousel);
 
@@ -90605,22 +90628,7 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "column is-3 " }, [
-            _c(
-              "div",
-              { staticClass: "bg-white p-15   shadow" },
-              [
-                _c("h3", { staticClass: "bTitle mb-1" }, [
-                  _vm._v("Ил тод байдал")
-                ]),
-                _vm._v(" "),
-                _c("news-list", {
-                  attrs: { catId: "150", styles: "height: 490px;" }
-                })
-              ],
-              1
-            )
-          ])
+          _c("div", { staticClass: "column is-3 " }, [_c("side-bar")], 1)
         ])
       ]),
       _vm._v(" "),
@@ -92584,7 +92592,7 @@ var render = function() {
                       "div",
                       { staticClass: "column is-3" },
                       [
-                        _c("side-bar"),
+                        _c("side-bar-more"),
                         _vm._v(" "),
                         _c(
                           "div",
@@ -92967,202 +92975,224 @@ var render = function() {
             _vm.content
               ? _c("div", [
                   _c("div", { staticClass: "columns  pb-2" }, [
-                    _c(
-                      "div",
-                      {
-                        staticClass: "column is-9",
-                        class: {
-                          "is-9": _vm.is_full === false,
-                          "is-12": _vm.is_full === true
-                        }
-                      },
-                      [
-                        _c(
-                          "div",
-                          {
-                            staticClass: "has-background-white p-15 mb-2",
-                            staticStyle: { "min-height": "400px" }
-                          },
-                          [
-                            _c(
-                              "h1",
-                              {
-                                staticClass:
-                                  "is-size-4-tablet is-size-6-mobile mb-1"
-                              },
-                              [_vm._v(_vm._s(_vm.content.title))]
-                            ),
-                            _vm._v(" "),
-                            _vm.content.type == 0
+                    _c("div", { staticClass: "column is-9" }, [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "has-background-white p-15 mb-2",
+                          staticStyle: { "min-height": "400px" }
+                        },
+                        [
+                          _c(
+                            "h1",
+                            {
+                              staticClass:
+                                "is-size-4-tablet is-size-6-mobile mb-1"
+                            },
+                            [_vm._v(_vm._s(_vm.content.title))]
+                          ),
+                          _vm._v(" "),
+                          _vm.content.type == 0
+                            ? [
+                                _vm.content.image
+                                  ? _c("figure", { staticClass: "image" }, [
+                                      _c("img", {
+                                        attrs: {
+                                          src:
+                                            _vm.siteUrl +
+                                            _vm.content.image.replace(
+                                              "images/",
+                                              "/uploads/full/"
+                                            )
+                                        }
+                                      })
+                                    ])
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _c("div", {
+                                  staticClass: "content mt-1 mb-1",
+                                  domProps: {
+                                    innerHTML: _vm._s(_vm.content.text)
+                                  }
+                                })
+                              ]
+                            : _vm.content.type == 2
                               ? [
-                                  _vm.content.image
-                                    ? _c("figure", { staticClass: "image" }, [
-                                        _c("img", {
-                                          attrs: {
-                                            src:
-                                              _vm.siteUrl +
-                                              _vm.content.image.replace(
-                                                "images/",
-                                                "/uploads/full/"
-                                              )
-                                          }
-                                        })
-                                      ])
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  _c("div", {
-                                    staticClass: "content mt-1 mb-1",
-                                    domProps: {
-                                      innerHTML: _vm._s(_vm.content.text)
+                                  _c("box-news-list", {
+                                    attrs: {
+                                      link: "#/p/" + _vm.id,
+                                      list_type: _vm.content.list_type,
+                                      ajax_url: "/newsListByCategoryBox/0/",
+                                      cat_id: _vm.content.type_id
                                     }
                                   })
                                 ]
-                              : _vm.content.type == 2
+                              : _vm.content.type == 4
                                 ? [
-                                    _c("box-news-list", {
+                                    _c("box-file-list", {
                                       attrs: {
                                         link: "#/p/" + _vm.id,
-                                        list_type: _vm.content.list_type,
-                                        ajax_url: "/newsListByCategoryBox/0/",
                                         cat_id: _vm.content.type_id
                                       }
                                     })
                                   ]
-                                : _vm.content.type == 4
-                                  ? [
-                                      _c("box-file-list", {
-                                        attrs: {
-                                          link: "#/p/" + _vm.id,
-                                          cat_id: _vm.content.type_id
-                                        }
-                                      })
-                                    ]
-                                  : _vm._e()
-                          ],
-                          2
-                        )
-                      ]
-                    ),
+                                : _vm._e()
+                        ],
+                        2
+                      )
+                    ]),
                     _vm._v(" "),
-                    _vm.is_full === false
-                      ? _c(
-                          "div",
-                          { staticClass: "column is-3" },
-                          [
-                            _c("aside", { staticClass: "menu mb-2" }, [
-                              _c("p", { staticClass: "menu-label" }, [
-                                _vm._v(
-                                  "\n                               " +
-                                    _vm._s(_vm.selectedMenu.name) +
-                                    "\n                            "
-                                )
+                    _c(
+                      "div",
+                      { staticClass: "column is-3" },
+                      [
+                        _vm.content.is_main == 1
+                          ? [
+                              _c("aside", { staticClass: "menu mb-2" }, [
+                                _c("p", { staticClass: "menu-label" }, [
+                                  _vm._v(
+                                    "\n                               " +
+                                      _vm._s(_vm.selectedMenu.name) +
+                                      "\n                            "
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _vm.selectedMenu.children
+                                  ? _c(
+                                      "ul",
+                                      { staticClass: "menu-list" },
+                                      _vm._l(
+                                        _vm.selectedMenu.children,
+                                        function(m1) {
+                                          return _c("li", [
+                                            _c("span", {
+                                              domProps: {
+                                                innerHTML: _vm._s(
+                                                  _vm.echoLink(m1)
+                                                )
+                                              },
+                                              on: { click: _vm.scrollToTop }
+                                            }),
+                                            _vm._v(" "),
+                                            m1.children &&
+                                            _vm.menu_ids[1] == m1.id
+                                              ? _c(
+                                                  "ul",
+                                                  _vm._l(m1.children, function(
+                                                    m2
+                                                  ) {
+                                                    return _c("li", [
+                                                      _c("span", {
+                                                        domProps: {
+                                                          innerHTML: _vm._s(
+                                                            _vm.echoLink(m2)
+                                                          )
+                                                        },
+                                                        on: {
+                                                          click: _vm.scrollToTop
+                                                        }
+                                                      }),
+                                                      _vm._v(" "),
+                                                      m2.children &&
+                                                      _vm.menu_ids[2] == m2.id
+                                                        ? _c(
+                                                            "ul",
+                                                            _vm._l(
+                                                              m2.children,
+                                                              function(m3) {
+                                                                return _c(
+                                                                  "li",
+                                                                  [
+                                                                    _c("span", {
+                                                                      domProps: {
+                                                                        innerHTML: _vm._s(
+                                                                          _vm.echoLink(
+                                                                            m3
+                                                                          )
+                                                                        )
+                                                                      },
+                                                                      on: {
+                                                                        click:
+                                                                          _vm.scrollToTop
+                                                                      }
+                                                                    }),
+                                                                    _vm._v(" "),
+                                                                    m3.children &&
+                                                                    _vm
+                                                                      .menu_ids[3] ==
+                                                                      m3.id
+                                                                      ? _c(
+                                                                          "ul",
+                                                                          _vm._l(
+                                                                            m3.children,
+                                                                            function(
+                                                                              m4
+                                                                            ) {
+                                                                              return _c(
+                                                                                "li",
+                                                                                [
+                                                                                  _c(
+                                                                                    "span",
+                                                                                    {
+                                                                                      domProps: {
+                                                                                        innerHTML: _vm._s(
+                                                                                          _vm.echoLink(
+                                                                                            m4
+                                                                                          )
+                                                                                        )
+                                                                                      },
+                                                                                      on: {
+                                                                                        click:
+                                                                                          _vm.scrollToTop
+                                                                                      }
+                                                                                    }
+                                                                                  )
+                                                                                ]
+                                                                              )
+                                                                            }
+                                                                          )
+                                                                        )
+                                                                      : _vm._e()
+                                                                  ]
+                                                                )
+                                                              }
+                                                            )
+                                                          )
+                                                        : _vm._e()
+                                                    ])
+                                                  })
+                                                )
+                                              : _vm._e()
+                                          ])
+                                        }
+                                      )
+                                    )
+                                  : _vm._e()
                               ]),
                               _vm._v(" "),
-                              _vm.selectedMenu.children
-                                ? _c(
-                                    "ul",
-                                    { staticClass: "menu-list" },
-                                    _vm._l(_vm.selectedMenu.children, function(
-                                      m1
-                                    ) {
-                                      return _c("li", [
-                                        _c("span", {
-                                          domProps: {
-                                            innerHTML: _vm._s(_vm.echoLink(m1))
-                                          },
-                                          on: { click: _vm.scrollToTop }
-                                        }),
-                                        _vm._v(" "),
-                                        m1.children
-                                          ? _c(
-                                              "ul",
-                                              _vm._l(m1.children, function(m2) {
-                                                return _c("li", [
-                                                  _c("span", {
-                                                    domProps: {
-                                                      innerHTML: _vm._s(
-                                                        _vm.echoLink(m2)
-                                                      )
-                                                    },
-                                                    on: {
-                                                      click: _vm.scrollToTop
-                                                    }
-                                                  }),
-                                                  _vm._v(" "),
-                                                  m2.children
-                                                    ? _c(
-                                                        "ul",
-                                                        _vm._l(
-                                                          m2.children,
-                                                          function(m3) {
-                                                            return _c("li", [
-                                                              _c("span", {
-                                                                domProps: {
-                                                                  innerHTML: _vm._s(
-                                                                    _vm.echoLink(
-                                                                      m3
-                                                                    )
-                                                                  )
-                                                                },
-                                                                on: {
-                                                                  click:
-                                                                    _vm.scrollToTop
-                                                                }
-                                                              }),
-                                                              _vm._v(" "),
-                                                              m3.children
-                                                                ? _c(
-                                                                    "ul",
-                                                                    _vm._l(
-                                                                      m3.children,
-                                                                      function(
-                                                                        m4
-                                                                      ) {
-                                                                        return _c(
-                                                                          "li",
-                                                                          [
-                                                                            _c(
-                                                                              "span",
-                                                                              {
-                                                                                domProps: {
-                                                                                  innerHTML: _vm._s(
-                                                                                    _vm.echoLink(
-                                                                                      m4
-                                                                                    )
-                                                                                  )
-                                                                                },
-                                                                                on: {
-                                                                                  click:
-                                                                                    _vm.scrollToTop
-                                                                                }
-                                                                              }
-                                                                            )
-                                                                          ]
-                                                                        )
-                                                                      }
-                                                                    )
-                                                                  )
-                                                                : _vm._e()
-                                                            ])
-                                                          }
-                                                        )
-                                                      )
-                                                    : _vm._e()
-                                                ])
-                                              })
-                                            )
-                                          : _vm._e()
-                                      ])
-                                    })
-                                  )
-                                : _vm._e()
-                            ]),
-                            _vm._v(" "),
-                            _c("side-bar")
-                          ],
-                          1
-                        )
-                      : _vm._e()
+                              _c("side-bar")
+                            ]
+                          : [
+                              _c("side-bar-more"),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "bg-white p-15 mt-1  shadow" },
+                                [
+                                  _c("h3", { staticClass: "bTitle mb-1" }, [
+                                    _vm._v("Зар")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("zar-list", {
+                                    attrs: { styles: "height: 400px;" }
+                                  })
+                                ],
+                                1
+                              )
+                            ]
+                      ],
+                      2
+                    )
                   ])
                 ])
               : _c("loading")
@@ -96232,9 +96262,20 @@ var render = function() {
     [
       _vm.fetched
         ? _c("div", { domProps: { innerHTML: _vm._s(_vm.fetched) } })
-        : _c("loading")
+        : [
+            _c(
+              "div",
+              { staticClass: "bg-white p-15   shadow" },
+              [
+                _c("h3", { staticClass: "bTitle mb-1" }, [_vm._v("Зар")]),
+                _vm._v(" "),
+                _c("zar-list", { attrs: { styles: "height: 490px;" } })
+              ],
+              1
+            )
+          ]
     ],
-    1
+    2
   )
 }
 var staticRenderFns = []
@@ -100177,6 +100218,130 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-49ca4fe1", { render: render, staticRenderFns: staticRenderFns })
+  }
+}
+
+/***/ }),
+/* 1072 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+    name: 'SideBar',
+    props: [],
+    data: function data() {
+        return {
+            fetched: false
+        };
+    },
+
+    created: function created() {
+        this.fetchData();
+    },
+    mounted: function mounted() {},
+
+    methods: {
+        fetchData: function fetchData() {
+            var _this = this;
+
+            axios.get('/sidebar1/' + 0).then(function (response) {
+                _this.fetched = response.data.success;
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 1073 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_plugins_transform_object_rest_spread_transform_runtime_polyfill_false_helpers_false_node_modules_vue_loader_lib_selector_type_script_index_0_SideBarMore_vue__ = __webpack_require__(1072);
+/* unused harmony namespace reexport */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_508d8f2d_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_SideBarMore_vue__ = __webpack_require__(1074);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_runtime_component_normalizer__ = __webpack_require__(1);
+var disposed = false
+/* script */
+
+
+/* template */
+
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+
+var Component = Object(__WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_runtime_component_normalizer__["a" /* default */])(
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_plugins_transform_object_rest_spread_transform_runtime_polyfill_false_helpers_false_node_modules_vue_loader_lib_selector_type_script_index_0_SideBarMore_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_508d8f2d_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_SideBarMore_vue__["a" /* render */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_508d8f2d_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_SideBarMore_vue__["b" /* staticRenderFns */],
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\main\\js\\components\\layouts\\SideBarMore.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-508d8f2d", Component.options)
+  } else {
+    hotAPI.reload("data-v-508d8f2d", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+/* harmony default export */ __webpack_exports__["a"] = (Component.exports);
+
+
+/***/ }),
+/* 1074 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _vm.fetched
+        ? _c("div", { domProps: { innerHTML: _vm._s(_vm.fetched) } })
+        : _c("loading")
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-508d8f2d", { render: render, staticRenderFns: staticRenderFns })
   }
 }
 

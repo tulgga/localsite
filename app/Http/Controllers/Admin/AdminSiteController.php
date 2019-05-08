@@ -35,6 +35,7 @@ class AdminSiteController extends Controller
         $data = json_decode($data, true);
         $info = Site::findOrFail($id);
         $info->sidebar = $data['sidebar'];
+        $info->sidebar1 = $data['sidebar1'];
         $info->save();
     }
 
