@@ -25,7 +25,7 @@
                     <div class="posts-blog">
                         @foreach($posts as $post)
                             <div class="news-list">
-                                <a href="#" class="text-primary">{{$post->title}}...</a>
+                                <a href="#">{{$post->title}}...</a>
                                 <p>{{$post->short_content}}</p>
                             </div>
                         @endforeach
