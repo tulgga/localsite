@@ -37,6 +37,7 @@ html, body {
     color: #9a9a9a;
     font-weight: 300;
     font-size: .75rem;
+    text-transform: uppercase;
 }
 
 #carouselExampleIndicators h1{
@@ -50,8 +51,10 @@ table{
     line-height: 10px;
     color: white !important;
 }
-table thead, table thead th{
-border:none
+
+table thead,
+table thead th{
+    border:none !important;
 }
 table tr td{
     color: white !important;
