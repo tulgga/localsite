@@ -56,7 +56,7 @@ class SubController extends BaseController
         $data['date']=date('m сарын d, ').$week[date('w')];
         $data['home_url'] = Site::select('domain')->where('id',0)->first();
         $data['zar'] = Zar::select('zar.id','zar.title','zar.image','zar.created_at','zar_category.name','zar.cat_id')->where('zar.site_id',$data['info']->id)->Join('zar_category', 'zar_category.id','=','zar.cat_id')->orderBy('zar.created_at','DESC')->limit(20)->get();
-        $data['posts'] = Post::select('title','id','short_content','image','type')->where('title','LIKE','%'.$_GET['search_query'].'%')->get();
+        $data['posts'] = Post::select('title','id','short_content','image','type')->where('site_id',$data['info']->id)->where('title','LIKE','%'.$_GET['search_query'].'%')->get();
         //echo json_encode($data['posts']); die;
         return view('sub.pageTemplates.page-search', $data);
 

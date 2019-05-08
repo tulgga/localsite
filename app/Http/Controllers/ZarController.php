@@ -9,24 +9,28 @@ use App\Zar_category;
 use App\Zar;
 use App\Zar_image;
 use App\Img;
+use Illuminate\Support\Carbon;
 use function PhpParser\filesInDir;
 
 class ZarController extends Controller
 {
     public function index(){
         $data = $this->MainData();
-        $data['zar']=Zar::select('zar.*', 'zar_category.name as category')->join('zar_category', 'zar_category.id', '=', 'zar.cat_id')->orderBy('zar.created_at', 'desc')->paginate(12);
+        /*->whereDate('zar.created_at', '>', Carbon::now()->subDays(30))*/
+        $data['zar'] = Zar::select('zar.*', 'zar_category.name as category')->where('zar.is_pin',0)->join('zar_category', 'zar_category.id', '=', 'zar.cat_id')->orderBy('zar.created_at', 'desc')->paginate(12);
+        $data['pinzar'] = Zar::select('zar.*', 'zar_category.name as category')->where('zar.is_pin',1)->join('zar_category', 'zar_category.id', '=', 'zar.cat_id')->orderBy('zar.created_at', 'desc')->get();
         return view('zar.home', $data);
     }
 
     public function search(){
         $data=$this->MainData();
-        if(!isset($_GET['cat']) || !isset($_GET['s'])) { return view(url()); }
-        $cat=$_GET['cat'];
+        if(!isset($_GET['site_id']) && !isset($_GET['s'])) { return view(url()); }
+        $cat=$_GET['site_id'];
         $s=$_GET['s'];
         $zar=Zar::select('zar.*', 'zar_category.name as category')->join('zar_category', 'zar_category.id', '=', 'zar.cat_id')->where('zar.title', 'LIKE', "%$s%");
-        if($cat!=0){$zar=$zar->where('zar.cat_id', $cat);}
+        if($cat!=0){$zar=$zar->where('zar.site_id', $cat);}
         $data['zar']=$zar->orderBy('zar.created_at', 'desc')->paginate(12);
+//        dd( $data['zar']);
         return view('zar.search', $data);
     }
 
@@ -69,6 +73,7 @@ class ZarController extends Controller
 
         $zar= new Zar();
         $zar->cat_id=$request->cat_id;
+        $zar->site_id=$request->site_id;
         $zar->title=strip_tags($request->title);
         $zar->content=strip_tags($request->post('content'));
         $zar->price=strip_tags($request->price);
@@ -99,6 +104,7 @@ class ZarController extends Controller
 
 
     public function MainData(){
+        $data['sumd'] = Site::select('id','name')->where('id','!=',0)->orderBy('name','ASC')->get();
         $data['sumuud'] = Site::select('id','name','domain','favicon')->orderBy('name','ASC')->get();
         $data['agentlag'] = Link::where('cat_id', 3)->orderBy('name', 'asc')->where('site_id', 0)->get();
         $data['category']= $this->buildTree(Zar_category::orderBy('order_num', 'asc')->get());

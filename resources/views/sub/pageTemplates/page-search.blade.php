@@ -25,8 +25,8 @@
                     <div class="posts-blog">
                         @foreach($posts as $post)
                             <div class="news-list">
-                                <a href="#">{{$post->title}}...</a>
-                                <p>{{$post->short_content}}</p>
+                                <a href="{{asset('news')}}/{{$post->id}}">{!! str_replace($_GET['search_query'],'<span class="text-white bg-warning">'.$_GET['search_query']."</span>",$post->title) !!}...</a>
+                                <p>{!! str_replace($_GET['search_query'],'<span class="text-white bg-warning">'.$_GET['search_query']."</span>",$post->short_content) !!}</p>
                             </div>
                         @endforeach
                     </div>
