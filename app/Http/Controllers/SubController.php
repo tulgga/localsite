@@ -50,6 +50,7 @@ class SubController extends BaseController
       return view('sub.home', $data);
     }
     public function search($account){
+
         $data['info'] = $this->getDomainInfo($account);
         $week=['Ням', 'Даваа', 'Мягмар', 'Лхагва', 'Пүрэв', 'Баасан', 'Бямба'];
         $data['date']=date('m сарын d, ').$week[date('w')];
@@ -58,6 +59,7 @@ class SubController extends BaseController
         $data['posts'] = Post::select('title','id','short_content','image','type')->where('title','LIKE','%'.$_GET['search_query'].'%')->get();
         //echo json_encode($data['posts']); die;
         return view('sub.pageTemplates.page-search', $data);
+
     }
     public function page($account, $id){
         $data['info'] = $this->getDomainInfo($account);

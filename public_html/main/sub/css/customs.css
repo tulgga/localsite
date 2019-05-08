@@ -1160,6 +1160,8 @@ h3.head.iltod span{
 /*** news-list ***/
 .news-list{
     font-size: 14px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 12px;
 }
 .news-list a{
     font-weight: 700;
@@ -1169,7 +1171,12 @@ h3.head.iltod span{
     max-height: 25px;
     color:var(--MainColor);
 }
-.news-list p{}
+.news-list p{
+    color: #666;
+    line-height: 24px;
+    max-height: 50px;
+    overflow: hidden;
+}
 @media (min-width: 768px){
     .logo > img{
         height: 110px;
