@@ -15,52 +15,45 @@
         <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
 
         <title>DASHBOARD</title>
+        <style>
+            #nema_chart, #police_chart, #hospital_chart {
+                width: 100%;
+                height: 100px;
+            }
+
+        </style>
     </head>
-    <?php
-
-    $dataPoints = array(
-        array("y" => 25, "label" => "Sunday"),
-        array("y" => 15, "label" => "Monday"),
-        array("y" => 25, "label" => "Tuesday"),
-        array("y" => 5, "label" => "Wednesday"),
-        array("y" => 10, "label" => "Thursday"),
-        array("y" => 0, "label" => "Friday"),
-        array("y" => 20, "label" => "Saturday")
-    );
-
-    ?>
-
-
-
-
-
     <body class="full-height mh-100 mw-100">
         <div class="col-sm-12">
             <div class="h-auto item_cell row">
-                <div class="h-auto item_cell col-sm-3">
-                    <div class="h-100 child third">
-                        <p class="count">{{$today}}</p>
+                <div class="h-auto item_cell col-sm-1">
+                    <div class="h-100 child third" style="text-align: center">
+                        <img src="{{ asset('uploads/'.$site->favicon) }}" style="width: 50%;">
+
+                        <p class="count">
+                            <br/>
+                            {{$today_md}}
+                        </p>
                         <h1 class="title">Өнөөдөр</h1>
                     </div>
                 </div>
 
 
-                <div class="h-auto item_cell col-sm-3">
+                <div class="h-auto item_cell col-sm-4">
                     <div class="h-100 child first">
-                        <p class="count">{{$h !=null ? (int)$h->total : 0}}</p>
                         <h1 class="title">Эрүүл мэндийн төв</h1>
+                        <p class="count">{{$h !=null ? (int)$h->total : 0}}</p>
                         <div id="hospital_chart"></div>
                     </div>
                 </div>
 
-                <div class="h-auto item_cell col-sm-3">
+                <div class="h-auto item_cell col-sm-4">
                     <div class="h-100 child second">
                         <p class="count">{{$p !=null ? (int)$p->total : 0}}</p>
                         <h1 class="title">Цагдаагийн газар</h1>
                         <div id="police_chart"></div>
                     </div>
                 </div>
-
 
                 <div class="h-auto item_cell col-sm-3">
                     <div class="h-100 child third">
@@ -150,9 +143,85 @@
                         </div>
                     </div>
                 </div>
+                <div class="h-auto item_cell col-sm-4">
+                    <div class="h-100 child first">
+                        <div><h1 class="title">Цагийн хуваарь</h1></div>
+                        <div class="row">
 
-                <div class="h-auto item_cell col-sm-3">
-                    <div class="h-100 child second">
+                            @foreach($owner_schedule as $schedule)
+                                <table class="table col-sm-6 border_none " >
+                                    <thead>
+                                    <tr>
+                                        <th style="text-align: left; padding: 10px">{{$schedule['date']}}</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($schedule['data'] as $row)
+                                        <tr>
+                                            <td>
+                                                {{$row->start_time}} - {{$row->end_time}} <br/>
+                                                {{$row->description}}
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+
+                <div class="h-auto item_cell col-sm-5">
+                    @if($budgets)
+                        <table class="table h-100 child first">
+                            <thead>
+                            <tr><th colspan="5">Төсөв</th></tr>
+                                <tr>
+                                    <th></th>
+                                    <th scope="col">батлагдсан</th>
+                                    <th scope="col">зарцуулагдсан</th>
+                                    <th scope="col">хэрэгжиж байгаа</th>
+                                    <th scope="col">үлдэгдэл</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($budgets as $budget)
+                                <tr>
+                                    <th scope="row">
+                                        @if($budget!=null)
+                                            @if($budget->b_type==1)
+                                                Улсын
+                                            @elseif($budget->b_type==2)
+                                                ОНХС
+                                            @elseif($budget->b_type==3)
+                                                Замын сан
+                                            @elseif($budget->b_type==4)
+                                                ЗД-ын нөөц
+                                            @else
+                                                Төсвийн нэр
+                                            @endif
+                                        @else
+                                            Төсвийн нэр
+                                        @endif
+                                    </th>
+                                    <td>{{$budget!=null ? $budget->b_approved : 0}}</td>
+                                    <td>{{$budget!=null ? $budget->b_done : 0}}</td>
+                                    <td>{{$budget!=null ? $budget->b_doing : 0}}</td>
+                                    <td>{{$budget!=null ? $budget->b_do : 0}}</td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    @endif
+                </div>
+
+
+
+            </div>
+            <div class="h-30 item_cell row">
+
+                <div class="h-auto item_cell col-sm-6">
+                    <div class="child second">
                         <h1 class="title"> ЭВЭНТ</h1>
                         @if($t)
                             <div id="carouselEvent" class="carousel slide" data-ride="carousel">
@@ -211,7 +280,10 @@
                                 </div>
                             </div>
                         @endif
-                        <br/>
+                    </div>
+                </div>
+                <div class="h-auto item_cell col-sm-6">
+                    <div class="child second">
                         @if(count($news)>0)
                             <h1 class="title"> Цаг үеийн асуудал</h1>
                             <div id="carouselNews" class="carousel slide" data-ride="carousel">
@@ -259,86 +331,6 @@
                             </div>
                         @endif
                     </div>
-                </div>
-
-                <div class="h-auto item_cell col-sm-6">
-                    @if($budgets)
-                        <table class="table h-100 child first">
-                            <thead>
-                            <tr><th colspan="5">Төсөв</th></tr>
-                                <tr>
-                                    <th></th>
-                                    <th scope="col">батлагдсан</th>
-                                    <th scope="col">зарцуулагдсан</th>
-                                    <th scope="col">хэрэгжиж байгаа</th>
-                                    <th scope="col">үлдэгдэл</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($budgets as $budget)
-                                <tr>
-                                    <th scope="row">
-                                        @if($budget!=null)
-                                            @if($budget->b_type==1)
-                                                Улсын
-                                            @elseif($budget->b_type==2)
-                                                ОНХС
-                                            @elseif($budget->b_type==3)
-                                                Замын сан
-                                            @elseif($budget->b_type==4)
-                                                ЗД-ын нөөц
-                                            @else
-                                                Төсвийн нэр
-                                            @endif
-                                        @else
-                                            Төсвийн нэр
-                                        @endif
-                                    </th>
-                                    <td>{{$budget!=null ? $budget->b_approved : 0}}</td>
-                                    <td>{{$budget!=null ? $budget->b_done : 0}}</td>
-                                    <td>{{$budget!=null ? $budget->b_doing : 0}}</td>
-                                    <td>{{$budget!=null ? $budget->b_do : 0}}</td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                    @endif
-                </div>
-
-
-
-            </div>
-            <div class="h-30 item_cell row">
-                <div class="h-100 item_cell col-sm-12">
-                    <div class="h-50 child first">
-                        <div><h1 class="title">Цагийн хуваарь</h1></div>
-                        <div class="row">
-
-                        @foreach($owner_schedule as $schedule)
-                            <table class="table col-sm-4 border_none " >
-                                <thead>
-                                <tr>
-                                    <th>{{$schedule['date']}}</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($schedule['data'] as $row)
-                                    <tr>
-                                        <th scope="">
-                                            {{$row->start_time}} - {{$row->end_time}} <br/>
-                                            {{$row->description}}
-                                        </th>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
-                        @endforeach
-                        </div>
-                    </div>
-                </div>
-                <div class="h-100 item_cell col-sm-4">
-
-
                 </div>
             </div>
         </div>
@@ -389,6 +381,7 @@
             am4core.ready(function() {
                 var chart = am4core.create("nema_chart", am4charts.XYChart);
                 chart.paddingRight = 0;
+                chart.color = am4core.color("white");
                 chart.data = <?=json_encode($chart_data)?>;
 
                 // Create axes

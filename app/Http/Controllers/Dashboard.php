@@ -10,7 +10,8 @@ class Dashboard extends Controller
   public function index($site_id=0, $user_role=0)
   {
       $data=$this->MainData();
-      $data['t']=[]; // event
+      $data['site'] = Site::find($site_id); // site
+      $data['t'] = []; // event
       $hospital_data = null; // hospital
       $nema_data = null; // hospital
       $police_data = null; // hospital
@@ -171,8 +172,6 @@ class Dashboard extends Controller
 
 
 
-
-
       return view('dashboard/index', $data);
   }
 
@@ -213,8 +212,9 @@ class Dashboard extends Controller
     date_default_timezone_set('Asia/Ulaanbaatar');
     $data['y_8']=date('Y-m-d', strtotime( '-7 days' ) );
     $data['y']=date('Y-m-d', strtotime( '-1 days' ) );
+    $data['today_md'] = date('m/d');
     $data['today']=date('Y-m-d');
-    $data['date14']=date('Y-m-d', strtotime( '+2 days' ) );
+    $data['date14']=date('Y-m-d', strtotime( '+1 days' ) );
     $data['sites'] = Site::select('id','name','domain','favicon')->orderBy('name','ASC')->get();
     return $data;
   }
