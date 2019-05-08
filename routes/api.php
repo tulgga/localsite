@@ -58,6 +58,7 @@ Route::middleware('auth:api')->namespace('Api')->group(function () {
 
     //Volunteer
     Route::post('event_like','ApiVolunteerController@event_like');
+    Route::post('event_rate','ApiVolunteerController@event_rate');
 
 });
 

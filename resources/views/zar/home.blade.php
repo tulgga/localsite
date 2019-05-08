@@ -48,7 +48,13 @@
                             <h3 class="short-title"><a href="{{url('p/'.$z->id.'.html')}}">{{$z->title}}</a></h3>
                             <h3 class="long-title"><a href="{{url('p/'.$z->id.'.html')}}">{{$z->title}}</a></h3>
                             <ul class="upload-info">
-                                <li class="date"><i class="fa fa-clock-o" aria-hidden="true"></i>{{$z->created_at->format('Y-m-d H:i')}}</li>
+                                @if($z->created_at->format('Y-m-d') == date('Y-m-d'))
+                                    <li class="date"><i class="fa fa-clock-o" aria-hidden="true"></i> Өнөөдөр, {{$z->created_at->format('H:i')}}</li>
+                                @elseif($z->created_at->format('Y-m-d') == date('Y-m-d',strtotime("-1 days")))
+                                    <li class="date"><i class="fa fa-clock-o" aria-hidden="true"></i>Өчигдөр, {{$z->created_at->format('H:i')}}</li>
+                                @else
+                                    <li class="date"><i class="fa fa-clock-o" aria-hidden="true"></i>{{$z->created_at->format('Y-m-d H:i')}}</li>
+                                @endif
                                 <li class="tag-ctg"><i class="fa fa-tag" aria-hidden="true"></i>{{$z->category}}</li>
                             </ul>
                             <p class="pr-sm-5">{{mb_substr($z->content, 0,200)}}...</p>
@@ -86,7 +92,13 @@
                             <h3 class="short-title"><a href="{{url('p/'.$z->id.'.html')}}">{{$z->title}}</a></h3>
                             <h3 class="long-title"><a href="{{url('p/'.$z->id.'.html')}}">{{$z->title}}</a></h3>
                             <ul class="upload-info">
-                                <li class="date"><i class="fa fa-clock-o" aria-hidden="true"></i>{{$z->created_at->format('Y-m-d H:i')}}</li>
+                                @if($z->created_at->format('Y-m-d') == date('Y-m-d'))
+                                    <li class="date"><i class="fa fa-clock-o" aria-hidden="true"></i> Өнөөдөр, {{$z->created_at->format('H:i')}}</li>
+                                @elseif($z->created_at->format('Y-m-d') == date('Y-m-d',strtotime("-1 days")))
+                                    <li class="date"><i class="fa fa-clock-o" aria-hidden="true"></i>Өчигдөр, {{$z->created_at->format('H:i')}}</li>
+                                @else
+                                    <li class="date"><i class="fa fa-clock-o" aria-hidden="true"></i>{{$z->created_at->format('Y-m-d H:i')}}</li>
+                                @endif
                                 <li class="tag-ctg"><i class="fa fa-tag" aria-hidden="true"></i>{{$z->category}}</li>
                             </ul>
                             <p class="pr-sm-5">{{mb_substr($z->content, 0,200)}}...</p>
