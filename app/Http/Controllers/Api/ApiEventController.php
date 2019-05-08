@@ -13,15 +13,7 @@ class ApiEventController extends Controller
         $events = []; // event
 
         if($site_id > 0){
-//            if(Dashboard_schedule::whereNotIn('head_id', [1,2,3])->where('schedule_date','>=', $data['y'])->where('site_id', $site_id)->get()) {
-//                $events= Dashboard_schedule::whereNotIn('head_id', [1,2,3])
-//                    ->where('schedule_date','>=', $data['y'])
-//                    ->where('site_id', $site_id)
-//                    ->with('Dashboard_schedule_going')
-//                    ->orderBy('schedule_date', 'DESC')->get();
-//            }
-
-            $events = DB::select("select id, schedule_date as date,head_id as org_type, start_time, end_time, description,person_count, ifnull(cnt, 0) as person_going_count from dashboard_schedules 
+            $events = DB::select("select id, schedule_date as date,head_id as org_type, start_time as start, end_time as end, description,person_count, ifnull(cnt, 0) as person_going_count from dashboard_schedules 
                 left join (
                     select dashboard_schedule_id, count(0) as cnt 
                     from  Dashboard_schedule_going 
