@@ -63,7 +63,12 @@
                                 @if($feed->reply)
                                     <div class="row" style="    margin-bottom: 10px;    padding: 10px 0;    background: rgba(71, 177, 255, 0.1);">
                                         <div class="col-sm-1" style="text-align: right"><i class="fa fa-retweet"></i> </div>
-                                        <div class="col-sm-11">{{$feed->reply}}</div>
+                                        <div class="col-sm-10">{{$feed->reply}}</div>
+                                        <div class="col-sm-1">
+                                            @if($feed->reply_image)
+                                            <img src="{{asset('uploads/'.$feed->reply_image)}}" class="w-100">
+                                            @endif
+                                        </div>
                                     </div>
                                 @endif
                                 <span class="cdate"><i class="far fa-calendar-alt"></i> {{$feed->created_at}}</span>
