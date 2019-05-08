@@ -65,13 +65,15 @@ Route::domain('zar.'.env('SUB_DOMAIN'))->group(function () {
 });
 
 Route::domain('dashboard.'.env('SUB_DOMAIN'))->group(function () {
-  Route::get('/', 'dashboard@index');
-  Route::get('/login', 'dashboard@login');
-  Route::get('/police','dashboard@police');
-  Route::get('/hospital','dashboard@hospital');
-  Route::get('/nema','dashboard@nema');
-  Route::get('/schedule','dashboard@schedule');
-  Route::get('/budget','dashboard@budgets');
+    Route::get('/', 'dashboard@index');
+    Route::get('/{site_id}/{role}', 'dashboard@index');
+    Route::get('/index/{site_id}/{role}', 'dashboard@index');
+    Route::get('/login', 'dashboard@login');
+    Route::get('/police','dashboard@police');
+    Route::get('/hospital','dashboard@hospital');
+    Route::get('/nema','dashboard@nema');
+    Route::get('/schedule','dashboard@schedule');
+    Route::get('/budget','dashboard@budgets');
 });
 
 
