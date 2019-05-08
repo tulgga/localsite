@@ -19,4 +19,5 @@ public_html/.DS_Store
 /.DS_Store
 ~$.DS_Store
 public_html/uploads/*
-
+public_html/main/js/app.js
+public_html/main/css/app.css
