@@ -145,7 +145,7 @@
                                 </div>
                                 <div class="layout"><input class="form-feedback" name="your_name" type="text" placeholder="Таны нэр *" required></div>
                                 <div class="layout"><input class="form-feedback" name="your_phone" type="number" minlength="8" maxlength="8" placeholder="Таны утас *" required></div>
-                                <div class="layout"><input class="form-feedback" name="your_email" type="email" placeholder="Таны цахим шуудан"></div>
+                                <div class="layout"><input class="form-feedback" name="your_email" type="email" required placeholder="Таны цахим шуудан"></div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="layout">

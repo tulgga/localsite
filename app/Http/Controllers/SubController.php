@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 
+//use http\Env\Request;
 use App\Dashboard_schedule;
 use App\Link;
+use App\News_to_category;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\File;
+use Illuminate\Support\Facades\Redirect;
 use App\Site;
 use App\Img;
 use App\Page;

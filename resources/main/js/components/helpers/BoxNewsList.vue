@@ -1,5 +1,5 @@
 <template>
-    <div  >
+    <div  v-if="post" >
         <!--blog list-->
         <template v-if="list_type==0" v-for="p in post.data">
             <div  class="boxnewslist  m-1">
@@ -54,7 +54,7 @@
             <div class="columns is-multiline mb-2">
                 <template v-for="p in post.data">
                     <div class="column is-3">
-                        <a  v-if="p.domain" target="_blank" :href="'http://'+p.domain+'.khongor.gov.mn/news/'+p.id">
+                        <a  v-if="p.domain" target="_blank" :href="'http://'+p.domain+'.'+subdomain+'/news/'+p.id">
                             <b-img :value="p" classes="col3newslist"  size="medium">
                                 <div class="title roboto-condensed">  <span class="tag is-warning mb-05">{{p.site}}</span><br>{{p.title}}</div>
                             </b-img>
@@ -62,10 +62,7 @@
                         <router-link v-else :to="'/news/'+p.id">
                             <b-img :value="p" classes="col3newslist"  size="medium">
                                 <div class="title roboto-condensed">
-
                                         {{p.title}}
-
-
                                 </div>
                             </b-img>
                         </router-link>
@@ -73,16 +70,35 @@
                 </template>
             </div>
         </template>
-        <nav  class="pagination" role="navigation" aria-label="pagination">
-            <!--<a class="pagination-previous" @click="scrollToTop()" v-if="post.current_page!=1" :href="link+'?page='+(post.current_page-1)" >Өмнөх</a>-->
-            <!--<a class="pagination-next" @click="scrollToTop()" v-if="post.current_page!=post.last_page" :href="link+'?page='+(post.current_page+1)" >Дараах</a>-->
+
+        <nav  class="pagination mt-2" role="navigation" aria-label="pagination">
+
             <ul class="pagination-list" v-if="post.last_page>1">
-                <template v-for="i in post.last_page">
-                    <li>
-                        <a class="pagination-link"  @click="scrollToTop()" :class="{'is-current':post.current_page===i}"  :href="link+'?page='+i" >{{i}}</a>
-                    </li>
-                </template>
+                <li>
+                    <a  class="pagination-link" @click="scrollToTop" :href="link+'?page=1'" >
+                        <span aria-hidden="true">« Эхэнд</span>
+                    </a>
+                </li>
+                <li >
+                    <a  class="pagination-link" @click="scrollToTop" :href="link+'?page='+(post.current_page-1)" >
+                        <span aria-hidden="true">« Өмнөх</span>
+                    </a>
+                </li>
+                <li v-for="page in pagesNumber" >
+                    <a  class="pagination-link" @click="scrollToTop" :class="{'is-current': page == post.current_page}" :href="link+'?page='+page">{{ page }}</a>
+                </li>
+                <li >
+                    <a  class="pagination-link"  @click="scrollToTop" :href="link+'?page='+(post.current_page+1)">
+                        <span aria-hidden="true">Дараах »</span>
+                    </a>
+                </li>
+                <li >
+                    <a  class="pagination-link"  @click="scrollToTop" :href="link+'?page='+(post.last_page)">
+                        <span aria-hidden="true">Сүүлд »</span>
+                    </a>
+                </li>
             </ul>
+
         </nav>
     </div>
 
@@ -105,6 +121,7 @@
                 post: {
                     data:[]
                 },
+
                 limit: 10,
             }
         },
@@ -119,7 +136,28 @@
         created: function () {
             this.fetchData();
             },
+        computed: {
+            pagesNumber() {
+                if (!this.post.to) {
+                    return [];
+                }
+                let from = this.post.current_page - 4;
+                if (from < 1) {
+                    from = 1;
+                }
+                let to = from + (4 * 2);
+                if (to >= this.post.last_page) {
+                    to = this.post.last_page;
+                }
+                let pagesArray = [];
+                for (let page = from; page <= to; page++) {
+                    pagesArray.push(page);
+                }
+                return pagesArray;
+            }
+        },
         methods: {
+
             fetchData: function () {
                 this.post=false;
                 this.page=this.$route.query.page;

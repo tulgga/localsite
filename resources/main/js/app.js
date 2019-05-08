@@ -157,6 +157,7 @@ Vue.component('SideBar', SideBar);
 Vue.component('NotFound', NotFound);
 Vue.component('v-bar', VBar);
 
+
 // Vue.component('BCarousel', BCarousel);
 
 const app = new Vue({
