@@ -123,6 +123,7 @@ Route::namespace('Api')->group(function (){
     Route::get('zarSingle/{id}','ApiZarController@zarSingle');
 
 
+
     //Бүх санал асуулга хэлбэржүүлж авах
     Route::get('poll','ApiPollController@poll');
     //Зөвхөн нэг санал асуулгын ID өгсөн тохиолдолд санал асуулгыг асуулт, хариултын хамт илгээнэ

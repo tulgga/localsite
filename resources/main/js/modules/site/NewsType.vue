@@ -12,40 +12,11 @@
 
                     <div class="column is-3">
                         <aside class="menu">
-                            <p class="menu-label">
-                                Мэдээ мэдээлэл
-                            </p>
-                            <ul class="menu-list">
-                                <li><a href="#/newsType/main" @click="scrollToTop()">Онцлох мэдээ</a></li>
-                                <li><a href="#/newsType/recent" @click="scrollToTop()">Шинэ мэдээ</a></li>
-                                <li><a href="#/newsType/oronnutag" @click="scrollToTop()">Орон нутгийн мэдээ</a></li>
-                                <li><a href="#/newsType/photo" @click="scrollToTop()">Фото мэдээ</a></li>
-                                <li><a href="#/newsType/video" @click="scrollToTop()">Видео мэдээ</a></li>
-                            </ul>
-                            <p class="menu-label">
-                                Мэдээний ангилал
-                            </p>
-                            <ul v-if="category" class="menu-list">
-                                <li v-for="m1 in category">
-                                    <a  @click="scrollToTop()" :href="'#/category/'+m1.id">{{m1.name}}</a>
-                                    <ul  v-if="m1.children" >
-                                        <li v-for="m2 in m1.children">
-                                            <a @click="scrollToTop()"  :href="'#/category/'+m2.id">{{m2.name}}</a>
-                                            <ul  v-if="m2.children" >
-                                                <li v-for="m3 in m2.children">
-                                                    <a  @click="scrollToTop()" :href="'#/category/'+m3.id">{{m3.name}}</a>
-                                                    <ul  v-if="m3.children" >
-                                                        <li v-for="m4 in m3.children">
-                                                            <a  @click="scrollToTop()" :href="'#/category/'+m4.id">{{m4.name}}</a>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <loading v-else=""></loading>
+                            <side-bar></side-bar>
+                            <div class="bg-white p-15 mt-1  shadow">
+                                <h3 class="bTitle mb-1">Зар</h3>
+                                <zar-list  styles="height: 400px;"></zar-list>
+                            </div>
                         </aside>
                         <side-bar></side-bar>
                     </div>

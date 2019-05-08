@@ -147,8 +147,8 @@
                             <div class="field">
                                 <label class="label">Цахим шуудан</label>
                                 <div class="control">
-                                    <input type="text" name="email" v-model="form.email" v-validate="{'required':true, 'email':true}" :class="{'input': true, 'is-danger': errors.has('email') }" />
-                                    <p v-show="errors.has('email')" class="help is-danger">Та цахим шуудангаа оруулна уу</p>
+                                    <input type="text" name="email" v-model="form.email"  :class="{'input': true, }" />
+
                                 </div>
                             </div>
                             <div class="field">

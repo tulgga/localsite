@@ -86825,35 +86825,6 @@ if (false) {(function () {
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
@@ -87009,8 +86980,9 @@ if (false) {(function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_helpers_NewsCarousel__ = __webpack_require__(660);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_helpers_OranNutagCarousel__ = __webpack_require__(662);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_helpers_ZarList__ = __webpack_require__(1070);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_helpers_NewsCarousel__ = __webpack_require__(660);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_helpers_OranNutagCarousel__ = __webpack_require__(662);
 //
 //
 //
@@ -87073,45 +87045,12 @@ if (false) {(function () {
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
 
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
-    components: { NewsCarousel: __WEBPACK_IMPORTED_MODULE_0__components_helpers_NewsCarousel__["a" /* default */], OranNutagCarousel: __WEBPACK_IMPORTED_MODULE_1__components_helpers_OranNutagCarousel__["a" /* default */] },
+    components: { NewsCarousel: __WEBPACK_IMPORTED_MODULE_1__components_helpers_NewsCarousel__["a" /* default */], OranNutagCarousel: __WEBPACK_IMPORTED_MODULE_2__components_helpers_OranNutagCarousel__["a" /* default */], ZarList: __WEBPACK_IMPORTED_MODULE_0__components_helpers_ZarList__["a" /* default */] },
     data: function data() {
         return {
             id: false,
@@ -92117,208 +92056,22 @@ var render = function() {
                     "aside",
                     { staticClass: "menu" },
                     [
-                      _c("p", { staticClass: "menu-label" }, [
-                        _vm._v(
-                          "\n                            Мэдээ мэдээлэл\n                        "
-                        )
-                      ]),
+                      _c("side-bar"),
                       _vm._v(" "),
-                      _c("ul", { staticClass: "menu-list" }, [
-                        _c("li", [
-                          _c(
-                            "a",
-                            {
-                              attrs: { href: "#/newsType/main" },
-                              on: {
-                                click: function($event) {
-                                  _vm.scrollToTop()
-                                }
-                              }
-                            },
-                            [_vm._v("Онцлох мэдээ")]
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("li", [
-                          _c(
-                            "a",
-                            {
-                              attrs: { href: "#/newsType/recent" },
-                              on: {
-                                click: function($event) {
-                                  _vm.scrollToTop()
-                                }
-                              }
-                            },
-                            [_vm._v("Шинэ мэдээ")]
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("li", [
-                          _c(
-                            "a",
-                            {
-                              attrs: { href: "#/newsType/oronnutag" },
-                              on: {
-                                click: function($event) {
-                                  _vm.scrollToTop()
-                                }
-                              }
-                            },
-                            [_vm._v("Орон нутгийн мэдээ")]
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("li", [
-                          _c(
-                            "a",
-                            {
-                              attrs: { href: "#/newsType/photo" },
-                              on: {
-                                click: function($event) {
-                                  _vm.scrollToTop()
-                                }
-                              }
-                            },
-                            [_vm._v("Фото мэдээ")]
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("li", [
-                          _c(
-                            "a",
-                            {
-                              attrs: { href: "#/newsType/video" },
-                              on: {
-                                click: function($event) {
-                                  _vm.scrollToTop()
-                                }
-                              }
-                            },
-                            [_vm._v("Видео мэдээ")]
-                          )
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("p", { staticClass: "menu-label" }, [
-                        _vm._v(
-                          "\n                            Мэдээний ангилал\n                        "
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _vm.category
-                        ? _c(
-                            "ul",
-                            { staticClass: "menu-list" },
-                            _vm._l(_vm.category, function(m1) {
-                              return _c("li", [
-                                _c(
-                                  "a",
-                                  {
-                                    attrs: { href: "#/category/" + m1.id },
-                                    on: {
-                                      click: function($event) {
-                                        _vm.scrollToTop()
-                                      }
-                                    }
-                                  },
-                                  [_vm._v(_vm._s(m1.name))]
-                                ),
-                                _vm._v(" "),
-                                m1.children
-                                  ? _c(
-                                      "ul",
-                                      _vm._l(m1.children, function(m2) {
-                                        return _c("li", [
-                                          _c(
-                                            "a",
-                                            {
-                                              attrs: {
-                                                href: "#/category/" + m2.id
-                                              },
-                                              on: {
-                                                click: function($event) {
-                                                  _vm.scrollToTop()
-                                                }
-                                              }
-                                            },
-                                            [_vm._v(_vm._s(m2.name))]
-                                          ),
-                                          _vm._v(" "),
-                                          m2.children
-                                            ? _c(
-                                                "ul",
-                                                _vm._l(m2.children, function(
-                                                  m3
-                                                ) {
-                                                  return _c("li", [
-                                                    _c(
-                                                      "a",
-                                                      {
-                                                        attrs: {
-                                                          href:
-                                                            "#/category/" +
-                                                            m3.id
-                                                        },
-                                                        on: {
-                                                          click: function(
-                                                            $event
-                                                          ) {
-                                                            _vm.scrollToTop()
-                                                          }
-                                                        }
-                                                      },
-                                                      [_vm._v(_vm._s(m3.name))]
-                                                    ),
-                                                    _vm._v(" "),
-                                                    m3.children
-                                                      ? _c(
-                                                          "ul",
-                                                          _vm._l(
-                                                            m3.children,
-                                                            function(m4) {
-                                                              return _c("li", [
-                                                                _c(
-                                                                  "a",
-                                                                  {
-                                                                    attrs: {
-                                                                      href:
-                                                                        "#/category/" +
-                                                                        m4.id
-                                                                    },
-                                                                    on: {
-                                                                      click: function(
-                                                                        $event
-                                                                      ) {
-                                                                        _vm.scrollToTop()
-                                                                      }
-                                                                    }
-                                                                  },
-                                                                  [
-                                                                    _vm._v(
-                                                                      _vm._s(
-                                                                        m4.name
-                                                                      )
-                                                                    )
-                                                                  ]
-                                                                )
-                                                              ])
-                                                            }
-                                                          )
-                                                        )
-                                                      : _vm._e()
-                                                  ])
-                                                })
-                                              )
-                                            : _vm._e()
-                                        ])
-                                      })
-                                    )
-                                  : _vm._e()
-                              ])
-                            })
-                          )
-                        : _c("loading")
+                      _c(
+                        "div",
+                        { staticClass: "bg-white p-15 mt-1  shadow" },
+                        [
+                          _c("h3", { staticClass: "bTitle mb-1" }, [
+                            _vm._v("Зар")
+                          ]),
+                          _vm._v(" "),
+                          _c("zar-list", {
+                            attrs: { styles: "height: 400px;" }
+                          })
+                        ],
+                        1
+                      )
                     ],
                     1
                   ),
@@ -92803,7 +92556,7 @@ var render = function() {
                           _c("news-carousel", {
                             attrs: {
                               page: 3,
-                              color: "blue",
+                              color: "red",
                               title: "Шинэ мэдээ"
                             }
                           })
@@ -92818,7 +92571,7 @@ var render = function() {
                           _c("oran-nutag-carousel", {
                             attrs: {
                               page: 3,
-                              color: "orange",
+                              color: "blue",
                               title: "Орон нутгийн мэдээ"
                             }
                           })
@@ -92831,232 +92584,22 @@ var render = function() {
                       "div",
                       { staticClass: "column is-3" },
                       [
+                        _c("side-bar"),
+                        _vm._v(" "),
                         _c(
-                          "aside",
-                          { staticClass: "menu" },
+                          "div",
+                          { staticClass: "bg-white p-15 mt-1  shadow" },
                           [
-                            _c("p", { staticClass: "menu-label" }, [
-                              _vm._v(
-                                "\n                            Мэдээ мэдээлэл\n                        "
-                              )
+                            _c("h3", { staticClass: "bTitle mb-1" }, [
+                              _vm._v("Зар")
                             ]),
                             _vm._v(" "),
-                            _c("ul", { staticClass: "menu-list" }, [
-                              _c("li", [
-                                _c(
-                                  "a",
-                                  {
-                                    attrs: { href: "#/newsType/main" },
-                                    on: {
-                                      click: function($event) {
-                                        _vm.scrollToTop()
-                                      }
-                                    }
-                                  },
-                                  [_vm._v("Онцлох мэдээ")]
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("li", [
-                                _c(
-                                  "a",
-                                  {
-                                    attrs: { href: "#/newsType/recent" },
-                                    on: {
-                                      click: function($event) {
-                                        _vm.scrollToTop()
-                                      }
-                                    }
-                                  },
-                                  [_vm._v("Шинэ мэдээ")]
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("li", [
-                                _c(
-                                  "a",
-                                  {
-                                    attrs: { href: "#/newsType/oronnutag" },
-                                    on: {
-                                      click: function($event) {
-                                        _vm.scrollToTop()
-                                      }
-                                    }
-                                  },
-                                  [_vm._v("Орон нутгийн мэдээ")]
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("li", [
-                                _c(
-                                  "a",
-                                  {
-                                    attrs: { href: "#/newsType/photo" },
-                                    on: {
-                                      click: function($event) {
-                                        _vm.scrollToTop()
-                                      }
-                                    }
-                                  },
-                                  [_vm._v("Фото мэдээ")]
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("li", [
-                                _c(
-                                  "a",
-                                  {
-                                    attrs: { href: "#/newsType/video" },
-                                    on: {
-                                      click: function($event) {
-                                        _vm.scrollToTop()
-                                      }
-                                    }
-                                  },
-                                  [_vm._v("Видео мэдээ")]
-                                )
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("p", { staticClass: "menu-label" }, [
-                              _vm._v(
-                                "\n                            Мэдээний ангилал\n                        "
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _vm.category
-                              ? _c(
-                                  "ul",
-                                  { staticClass: "menu-list" },
-                                  _vm._l(_vm.category, function(m1) {
-                                    return _c("li", [
-                                      _c(
-                                        "a",
-                                        {
-                                          attrs: {
-                                            href: "#/category/" + m1.id
-                                          },
-                                          on: {
-                                            click: function($event) {
-                                              _vm.scrollToTop()
-                                            }
-                                          }
-                                        },
-                                        [_vm._v(_vm._s(m1.name))]
-                                      ),
-                                      _vm._v(" "),
-                                      m1.children
-                                        ? _c(
-                                            "ul",
-                                            _vm._l(m1.children, function(m2) {
-                                              return _c("li", [
-                                                _c(
-                                                  "a",
-                                                  {
-                                                    attrs: {
-                                                      href:
-                                                        "#/category/" + m2.id
-                                                    },
-                                                    on: {
-                                                      click: function($event) {
-                                                        _vm.scrollToTop()
-                                                      }
-                                                    }
-                                                  },
-                                                  [_vm._v(_vm._s(m2.name))]
-                                                ),
-                                                _vm._v(" "),
-                                                m2.children
-                                                  ? _c(
-                                                      "ul",
-                                                      _vm._l(
-                                                        m2.children,
-                                                        function(m3) {
-                                                          return _c("li", [
-                                                            _c(
-                                                              "a",
-                                                              {
-                                                                attrs: {
-                                                                  href:
-                                                                    "#/category/" +
-                                                                    m3.id
-                                                                },
-                                                                on: {
-                                                                  click: function(
-                                                                    $event
-                                                                  ) {
-                                                                    _vm.scrollToTop()
-                                                                  }
-                                                                }
-                                                              },
-                                                              [
-                                                                _vm._v(
-                                                                  _vm._s(
-                                                                    m3.name
-                                                                  )
-                                                                )
-                                                              ]
-                                                            ),
-                                                            _vm._v(" "),
-                                                            m3.children
-                                                              ? _c(
-                                                                  "ul",
-                                                                  _vm._l(
-                                                                    m3.children,
-                                                                    function(
-                                                                      m4
-                                                                    ) {
-                                                                      return _c(
-                                                                        "li",
-                                                                        [
-                                                                          _c(
-                                                                            "a",
-                                                                            {
-                                                                              attrs: {
-                                                                                href:
-                                                                                  "#/category/" +
-                                                                                  m4.id
-                                                                              },
-                                                                              on: {
-                                                                                click: function(
-                                                                                  $event
-                                                                                ) {
-                                                                                  _vm.scrollToTop()
-                                                                                }
-                                                                              }
-                                                                            },
-                                                                            [
-                                                                              _vm._v(
-                                                                                _vm._s(
-                                                                                  m4.name
-                                                                                )
-                                                                              )
-                                                                            ]
-                                                                          )
-                                                                        ]
-                                                                      )
-                                                                    }
-                                                                  )
-                                                                )
-                                                              : _vm._e()
-                                                          ])
-                                                        }
-                                                      )
-                                                    )
-                                                  : _vm._e()
-                                              ])
-                                            })
-                                          )
-                                        : _vm._e()
-                                    ])
-                                  })
-                                )
-                              : _c("loading")
+                            _c("zar-list", {
+                              attrs: { styles: "height: 400px;" }
+                            })
                           ],
                           1
-                        ),
-                        _vm._v(" "),
-                        _c("side-bar")
+                        )
                       ],
                       1
                     )
@@ -94461,18 +94004,9 @@ var render = function() {
                                 rawName: "v-model",
                                 value: _vm.form.email,
                                 expression: "form.email"
-                              },
-                              {
-                                name: "validate",
-                                rawName: "v-validate",
-                                value: { required: true, email: true },
-                                expression: "{'required':true, 'email':true}"
                               }
                             ],
-                            class: {
-                              input: true,
-                              "is-danger": _vm.errors.has("email")
-                            },
+                            class: { input: true },
                             attrs: { type: "text", name: "email" },
                             domProps: { value: _vm.form.email },
                             on: {
@@ -94483,23 +94017,7 @@ var render = function() {
                                 _vm.$set(_vm.form, "email", $event.target.value)
                               }
                             }
-                          }),
-                          _vm._v(" "),
-                          _c(
-                            "p",
-                            {
-                              directives: [
-                                {
-                                  name: "show",
-                                  rawName: "v-show",
-                                  value: _vm.errors.has("email"),
-                                  expression: "errors.has('email')"
-                                }
-                              ],
-                              staticClass: "help is-danger"
-                            },
-                            [_vm._v("Та цахим шуудангаа оруулна уу")]
-                          )
+                          })
                         ])
                       ]),
                       _vm._v(" "),
@@ -100401,6 +99919,264 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-553b7f9c", { render: render, staticRenderFns: staticRenderFns })
+  }
+}
+
+/***/ }),
+/* 977 */,
+/* 978 */,
+/* 979 */,
+/* 980 */,
+/* 981 */,
+/* 982 */,
+/* 983 */,
+/* 984 */,
+/* 985 */,
+/* 986 */,
+/* 987 */,
+/* 988 */,
+/* 989 */,
+/* 990 */,
+/* 991 */,
+/* 992 */,
+/* 993 */,
+/* 994 */,
+/* 995 */,
+/* 996 */,
+/* 997 */,
+/* 998 */,
+/* 999 */,
+/* 1000 */,
+/* 1001 */,
+/* 1002 */,
+/* 1003 */,
+/* 1004 */,
+/* 1005 */,
+/* 1006 */,
+/* 1007 */,
+/* 1008 */,
+/* 1009 */,
+/* 1010 */,
+/* 1011 */,
+/* 1012 */,
+/* 1013 */,
+/* 1014 */,
+/* 1015 */,
+/* 1016 */,
+/* 1017 */,
+/* 1018 */,
+/* 1019 */,
+/* 1020 */,
+/* 1021 */,
+/* 1022 */,
+/* 1023 */,
+/* 1024 */,
+/* 1025 */,
+/* 1026 */,
+/* 1027 */,
+/* 1028 */,
+/* 1029 */,
+/* 1030 */,
+/* 1031 */,
+/* 1032 */,
+/* 1033 */,
+/* 1034 */,
+/* 1035 */,
+/* 1036 */,
+/* 1037 */,
+/* 1038 */,
+/* 1039 */,
+/* 1040 */,
+/* 1041 */,
+/* 1042 */,
+/* 1043 */,
+/* 1044 */,
+/* 1045 */,
+/* 1046 */,
+/* 1047 */,
+/* 1048 */,
+/* 1049 */,
+/* 1050 */,
+/* 1051 */,
+/* 1052 */,
+/* 1053 */,
+/* 1054 */,
+/* 1055 */,
+/* 1056 */,
+/* 1057 */,
+/* 1058 */,
+/* 1059 */,
+/* 1060 */,
+/* 1061 */,
+/* 1062 */,
+/* 1063 */,
+/* 1064 */,
+/* 1065 */,
+/* 1066 */,
+/* 1067 */,
+/* 1068 */,
+/* 1069 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+    props: ['catId', 'styles'],
+    data: function data() {
+        return {
+            siteUrl: window.surl,
+            subdomain: window.subdomain,
+            post: false
+        };
+    },
+
+    created: function created() {
+        this.fetchData();
+    },
+    methods: {
+        fetchData: function fetchData() {
+            var _this = this;
+
+            axios.get('/zar/').then(function (response) {
+                _this.post = response.data.success;
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 1070 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_plugins_transform_object_rest_spread_transform_runtime_polyfill_false_helpers_false_node_modules_vue_loader_lib_selector_type_script_index_0_ZarList_vue__ = __webpack_require__(1069);
+/* unused harmony namespace reexport */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_49ca4fe1_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_ZarList_vue__ = __webpack_require__(1071);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_runtime_component_normalizer__ = __webpack_require__(1);
+var disposed = false
+/* script */
+
+
+/* template */
+
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+
+var Component = Object(__WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_runtime_component_normalizer__["a" /* default */])(
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_plugins_transform_object_rest_spread_transform_runtime_polyfill_false_helpers_false_node_modules_vue_loader_lib_selector_type_script_index_0_ZarList_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_49ca4fe1_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_ZarList_vue__["a" /* render */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_49ca4fe1_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_ZarList_vue__["b" /* staticRenderFns */],
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\main\\js\\components\\helpers\\ZarList.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-49ca4fe1", Component.options)
+  } else {
+    hotAPI.reload("data-v-49ca4fe1", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+/* harmony default export */ __webpack_exports__["a"] = (Component.exports);
+
+
+/***/ }),
+/* 1071 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm.post
+    ? _c(
+        "div",
+        [
+          _c(
+            "v-bar",
+            {
+              style: _vm.styles,
+              attrs: { wrapper: "wrapper roboto-condensed" }
+            },
+            [
+              _vm._l(_vm.post.data, function(p) {
+                return [
+                  _c("div", { staticClass: "newslist roboto-condensed " }, [
+                    _c(
+                      "a",
+                      {
+                        attrs: {
+                          href: "http://zar." + _vm.subdomain + "/p/" + p.id,
+                          target: "_blank"
+                        }
+                      },
+                      [
+                        _c("div", { staticClass: "newslist-title" }, [
+                          _vm._v(_vm._s(p.title))
+                        ])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "date" }, [
+                      _c("i", { staticClass: "far fa-clock" }),
+                      _vm._v("  " + _vm._s(p.created_at.substring(0, 16)))
+                    ])
+                  ])
+                ]
+              })
+            ],
+            2
+          )
+        ],
+        1
+      )
+    : _c("loading")
+}
+var staticRenderFns = []
+render._withStripped = true
+
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-49ca4fe1", { render: render, staticRenderFns: staticRenderFns })
   }
 }
 
