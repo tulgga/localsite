@@ -29,8 +29,9 @@ body {
     z-index: -1;
 }
 .sky #sky{
-    transform: scale(1.1);
-    width: 100%;
+    transform: scale(1) translateX(-50%);
+    width: auto;
+    height: 100%;
 }
 .bg_main {
     position: absolute;
@@ -39,7 +40,8 @@ body {
     bottom: 0;
 }
 .bg_main #bg_main{
-    width: 100%;
+    width: 215%;
+    transform: translateX(-40%);
 }
 .soyombo {
     position: absolute;
@@ -57,7 +59,8 @@ body {
     width: 100%;
 }
 .flag #flag{
-    width: 100%;
+    width: auto;
+    transform: translateX(-50%);
 }
 .logo {
     padding: 30px;
@@ -78,95 +81,56 @@ body {
     display: block;
 }
 .left-menu > li > a {
-    color: #666;
+    color: #fff;
     display: block;
     font-size: 18px;
     font-weight: 300;
     text-transform: uppercase;
-    padding: 10px;
+    padding: 10px 20px;
     border-right: 1px solid transparent;
     transition: all 450ms cubic-bezier(.485, .075, .12, .855);
     border-radius: 0;
 }
 
 .left-menu > li > a > i {
-
     color: #2d70de;
-
     float: none;
-
     width: 40px;
-
     text-align: center;
-
     line-height: 26px;
-
     font-size: 24px;
-
     transition: all 450ms cubic-bezier(.485, .075, .12, .855);
-
 }
-
 .left-menu > li > a:hover {
-
     background: #2d70de;
-
     color: #fff !important;
-
     padding-left: 10px;
-
     border-right: 1px solid transparent;
-
 }
-
 .left-menu > li > a:hover > i {
-
-    color: #fff
-
+   color: #fff
 }
-
 /**right menu**/
-
 .right-menu {
-
     list-style: none;
-
     text-align: left;
-
     margin: 0;
-
     padding: 0 15px;
-
 }
-
 .right-menu > li {
-
     display: block;
-
 }
-
 .right-menu > li > a {
-
-    color: #666;
-
+    color: #fff;
     display: block;
-
     font-size: 18px;
-
     font-weight: 300;
-
     text-transform: uppercase;
-
-    padding: 10px;
-
+    padding: 10px 20px;
     border-left: 1px solid transparent;
-
     transition: all 450ms cubic-bezier(.485, .075, .12, .855);
-
     border-radius: 0;
-
 }
-
 .right-menu > li > a > i {
 
     color: #2d70de;
@@ -262,7 +226,6 @@ body {
     transform: translateX(10px);
     transition: all 450ms cubic-bezier(.485, .075, .12, .855);
 }
-
 @media (min-width: 768px) {
     .sky {
         position: absolute;
@@ -270,9 +233,40 @@ body {
         z-index: -1;
     }
     .sky #sky{
-        transform: scale(1.1);
+        transform: scale(1) translateX(-50%);
         width: auto;
         height: 100%;
+    }
+    .bg_main {
+        position: absolute;
+        z-index: -1;
+        width: 100%;
+        bottom: 0;
+    }
+    .bg_main #bg_main{
+        width: 250%;
+        transform: translateX(-40%);
+    }
+    .soyombo {
+        position: absolute;
+        z-index: -1;
+        bottom: 0;
+        width: 100%;
+    }
+    .soyombo #soyombo{
+        width: auto;
+        transform: translateX(-30%);
+    }
+    .flag {
+        position: absolute;
+        z-index: -1;
+        bottom: 0;
+        width: 100%;
+    }
+    .flag #flag{
+        height: 100%;
+        transform: translateX(-35%);
+        width: auto;
     }
     .logo {
         padding: 100px 0 40px;
@@ -362,5 +356,48 @@ body {
     }
    .right-menu > li > a:hover > i {
         color: #fff
+    }
+}
+@media (min-width: 1024px) {
+    .sky {
+        position: absolute;
+        width: 100%;
+        z-index: -1;
+    }
+    .sky #sky{
+        transform: scale(1.1) translateX(0%);
+        width: 100%;
+        height: auto;
+    }
+    .bg_main {
+        position: absolute;
+        z-index: -1;
+        width: 100%;
+        bottom: 0;
+    }
+    .bg_main #bg_main{
+        width: 100%;
+        transform: translateX(0%);
+    }
+    .soyombo {
+        position: absolute;
+        z-index: -1;
+        bottom: 0;
+        width: 100%;
+    }
+    .soyombo #soyombo{
+        width: 100%;
+        transform: translateX(0%);
+    }
+    .flag {
+        position: absolute;
+        z-index: -1;
+        bottom: 0;
+        width: 100%;
+    }
+    .flag #flag{
+        height: auto;
+        transform: translateX(0%);
+        width: 100%;
     }
 }

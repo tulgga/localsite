@@ -4075,6 +4075,8 @@ p.text-bold-primary {
     border: none;
     border-radius: 0;
     margin-bottom: 10px;
+    overflow: hidden;
+    position: relative;
 }
 
 .category-grid-layout3 .product-box .item-content h3 {
@@ -4312,7 +4314,7 @@ p.text-bold-primary {
     overflow: hidden;
     position: relative;
 }
-.category-list-layout3 .pin .product-box .item-mask-wrapper:after {
+.pin .product-box .item-mask-wrapper:after {
     position: absolute;
     background-color: #00d300;
     content: "Онцлох";

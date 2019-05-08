@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Http\Request;
 use App\Event;
 use App\Event_to_like;
 use App\Event_to_image;
+use App\Event_to_rating;
 
 class ApiVolunteerController extends Controller
 {
@@ -28,10 +29,9 @@ class ApiVolunteerController extends Controller
         return response()->json($data);
     }
     public function event_like(Request $request){
-            $data = $request->post('data');
-            $data = json_decode($data, true);
+            $data = $request->post();
             $like = Event_to_like::select('id')->where('user_id',$data['user_id'])->where('event_id',$data['event_id'])->first();
-            if($like) {
+            if($like){
                 $unlike = Event_to_like::find($like->id);
                 $unlike->delete();
                 return response()->json(['success'=>true, 'result' => 'unlike']);
@@ -43,4 +43,18 @@ class ApiVolunteerController extends Controller
                 return response()->json(['success'=>true, 'result' => 'like']);
             }
     }
+    public function event_rate(Request $request){
+            $data = $request->post();
+            $rating = Event_to_rating::select('id')->where('user_id',$data['user_id'])->where('event_id',$data['event_id'])->first();
+            if($rating) {
+                $rate = Event_to_rating::find($rating->id);
+            }else{
+                $rate = New Event_to_rating();
+                $rate->user_id = $data['user_id'];
+            }
+            $rate->event_id = $data['event_id'];
+            $rate->rating = $data['value'];
+            $rate->save();
+            return response()->json(['success' => true]);
+        }
 }
