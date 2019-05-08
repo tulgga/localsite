@@ -18,7 +18,7 @@ class ZarController extends Controller
         $data = $this->MainData();
         /*->whereDate('zar.created_at', '>', Carbon::now()->subDays(30))*/
         $data['zar'] = Zar::select('zar.*', 'zar_category.name as category')->where('zar.is_pin',0)->join('zar_category', 'zar_category.id', '=', 'zar.cat_id')->orderBy('zar.created_at', 'desc')->paginate(12);
-        $data['pinzar'] = Zar::select('zar.*', 'zar_category.name as category')->where('zar.is_pin',1)->join('zar_category', 'zar_category.id', '=', 'zar.cat_id')->orderBy('zar.created_at', 'desc')->get();
+        $data['pinzar'] = Zar::select('zar.*', 'zar_category.name as category')->where('zar.is_pin',1)->leftJoin('zar_category', 'zar_category.id', '=', 'zar.cat_id')->orderBy('zar.created_at', 'desc')->get();
         return view('zar.home', $data);
     }
 

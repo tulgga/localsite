@@ -31,7 +31,7 @@
             @foreach($pinzar as $z)
                 <div class="col-xl-4 col-lg-6 col-md-4 col-sm-6 col-12 pin">
                     <div class="product-box item-mb zoom-gallery">
-                        <div class="item-mask-wrapper">
+                        <div class="item-mask-wrapper" style="min-width: 180px;">
                             <div class="item-mask secondary-bg-box">
                                 @if($z->image)
                                     <img src="{{url('uploads/'.$z->image)}}" alt="categories" class="img-fluid">
@@ -52,7 +52,7 @@
                                 <li class="tag-ctg"><i class="fa fa-tag" aria-hidden="true"></i>{{$z->category}}</li>
                             </ul>
                             <p class="pr-sm-5">{{mb_substr($z->content, 0,200)}}...</p>
-                            <div class="price">{{$z->price}} ₮</div>
+                            <div class="price" style="font-size: 24px;">{{$z->price}} ₮</div>
                             <a href="{{url('p/'.$z->id.'.html')}}" class="product-details-btn">Цааш нь</a>
                         </div>
                     </div>
