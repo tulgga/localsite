@@ -140,7 +140,7 @@ Route::namespace('Api')->group(function (){
 
     Route::get('events','ApiEventController@index');
     Route::get('events/{id}','ApiEventController@index');
-    Route::get('events/going/{id}','ApiEventController@index');
+    Route::get('events/going/{id},{$user_id},{ip}, {device}','ApiEventController@index');
 });
 
 

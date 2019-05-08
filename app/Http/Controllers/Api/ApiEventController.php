@@ -29,7 +29,7 @@ class ApiEventController extends Controller
         return response()->json( $events);
     }
 
-    public function going($user_id=0)
+    public function going($id, $user_id=0,$ip="", $device="")
     {
 //        $data=$this->MainData();
 //        $events = []; // event
