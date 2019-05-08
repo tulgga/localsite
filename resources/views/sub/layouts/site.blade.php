@@ -32,7 +32,7 @@
             });
             /**Scroll bar launch**/
             $('.scrollbar-inner').scrollbar();
-            $('.scrollbar-inner.iltod_scroll').css("height","360px");
+            $('.scrollbar-inner.iltod_scroll').css("height","370px");
             /**Back to Top**/
             $('.back-to-top').click(function(){
                 $('html, body').animate({
@@ -77,7 +77,7 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row" style="background-color: #fafafa">
         <div class="container">
             <div class="row">
                 <div class="col-sm-6 col-9">

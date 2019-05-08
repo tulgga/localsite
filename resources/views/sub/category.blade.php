@@ -35,20 +35,8 @@
                                     <div class="news-blog col-sm-{{$category->order_num}}">
                                         <a class="row" href="{{asset('news/'.$news->id)}}">
                                             <div class="col-sm-12">
-                                                <div class="thumb d-block w-100" style="background-image: url('https://i.ytimg.com/vi/{{$news->image}}/mqdefault.jpg');" title="{{$news->title}}">
-
-                                                    <h2 style="font-size: 12px;
-                                                        color: white;
-                                                        text-align: justify;
-                                                        padding: 10px;
-                                                        line-height: 12px;
-                                                        position: absolute;
-                                                        bottom: -12px;
-                                                        background: #ddd;
-                                                        opacity: 0.9;
-                                                        height: 50px;
-                                                        overflow: hidden;
-                                                        color: #262a49; width: 100%;">{{$news->title}}</h2>
+                                                <div class="thumb rounded d-block w-100" style="background-image: url('https://i.ytimg.com/vi/{{$news->image}}/mqdefault.jpg');" title="{{$news->title}}">
+                                                    <h4>{{$news->title}}</h4>
                                                 </div>
                                             </div>
                                         </a>
@@ -57,7 +45,7 @@
                                     <div class="news-blog col-sm-12">
                                         <a class="row" href="{{asset('news/'.$news->id)}}">
                                             <div class="col-sm-4">
-                                                <div class="thumb d-block w-100 video" style="background-image: url('https://i.ytimg.com/vi/{{$news->image}}/mqdefault.jpg');" title="{{$news->title}}"><i class="fa fa-play"></i>
+                                                <div class="thumb rounded d-block w-100 video" style="background-image: url('https://i.ytimg.com/vi/{{$news->image}}/mqdefault.jpg');" title="{{$news->title}}"><i class="fa fa-play"></i>
                                                 </div>
                                             </div>
                                             <div class="col-sm-8">
@@ -73,20 +61,8 @@
                                     <div class="news-blog col-sm-{{$category->order_num}}">
                                         <a class="row" href="{{asset('news/'.$news->id)}}">
                                             <div class="col-sm-12">
-                                                <div class="thumb d-block w-100" style="background-image: url('{{asset(str_replace("images","uploads/medium/",$news->image))}}');" title="{{$news->title}}">
-
-                                                    <h2 style="font-size: 12px;
-                                                    color: white;
-                                                    text-align: justify;
-                                                    padding: 10px;
-                                                    line-height: 12px;
-                                                    position: absolute;
-                                                    bottom: -12px;
-                                                    background: #ddd;
-                                                    opacity: 0.9;
-                                                    height: 50px;
-                                                    overflow: hidden;
-                                                    color: #262a49; width: 100%;">{{$news->title}}</h2>
+                                                <div class="thumb rounded d-block w-100" style="background-image: url('{{asset(str_replace("images","uploads/medium/",$news->image))}}');" title="{{$news->title}}">
+                                                    <h4>{{$news->title}}</h4>
                                                 </div>
                                             </div>
                                         </a>
@@ -95,7 +71,7 @@
                                     <div class="news-blog col-sm-12">
                                         <a class="row" href="{{asset('news/'.$news->id)}}">
                                             <div class="col-sm-4">
-                                                <div class="thumb d-block w-100" style="background-image: url('{{asset(str_replace("images","uploads/medium/",$news->image))}}');" title="{{$news->title}}">
+                                                <div class="thumb rounded d-block w-100" style="background-image: url('{{asset(str_replace("images","uploads/medium/",$news->image))}}');" title="{{$news->title}}">
                                                 </div>
                                             </div>
                                             <div class="col-sm-8">
