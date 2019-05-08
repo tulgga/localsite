@@ -28,7 +28,7 @@ class ApiEventController extends Controller
                 where is_publish =1 and schedule_date >= '".$data['y']."'" );
         }
 
-        return response()->json( $events);
+        return response()->json( ['success'=>$events]);
     }
 
     public function going($id, $user_id=0, $ip='', $device="")
@@ -40,9 +40,9 @@ class ApiEventController extends Controller
             $go->ip = $ip;
             $go->device = $device;
             $go->save();
-            return response()->json(["status"=> 1, 'msg'=>"Амжилттай"]);
+            return response()->json(["success"=> 1]);
         }
-        return response()->json(["status"=> 0, 'msg'=>"Энэ үйлдлийг хийх боломжгүй байна"]);
+        return response()->json(["success"=> 0]);
     }
 
 
