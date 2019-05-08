@@ -46,7 +46,7 @@
                     </div>
 
                     <div class="column is-3">
-                        <side-bar></side-bar>
+                        <side-bar-more></side-bar-more>
                         <div class="bg-white p-15 mt-1  shadow">
                             <h3 class="bTitle mb-1">Зар</h3>
                             <zar-list  styles="height: 400px;"></zar-list>

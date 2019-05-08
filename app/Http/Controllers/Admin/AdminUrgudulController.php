@@ -123,10 +123,13 @@ class AdminUrgudulController extends Controller
 
         $info =Urgudul::find($id);
         $info->reply=$data['reply'];
+        if($request->hasFile('image')){
+            $info->reply_image =Img::upload($request);
+        }
         $info->status=1;
         $info->save();
 
-        Mail::to($info->email)->send(new SanalHuseltMail($info->reply, 'Санал хүсэлтийн хариу'));
+//        Mail::to($info->email)->send(new SanalHuseltMail($info->reply, 'Санал хүсэлтийн хариу'));
 
         return response()->json([
             'success' => $info,

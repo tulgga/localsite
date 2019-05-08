@@ -64,7 +64,8 @@ Route::middleware('auth:api')->namespace('Api')->group(function () {
 Route::namespace('Api')->group(function (){
 
     Route::get('ildot','ApiPageController@ildot');
-    Route::get('xml','XMLreader@index');
+    Route::get('lavlagaa','ApiPageController@Lavlagaa');
+
 
     Route::get('service','ApiSiteController@service');
     //sites
@@ -82,6 +83,7 @@ Route::namespace('Api')->group(function (){
     Route::post('FacebookLogin', 'ApiUserController@FacebookLogin');
 
     Route::get('sidebar/{id}','ApiSiteController@sidebar');
+    Route::get('sidebar1/{id}','ApiSiteController@sidebar1');
     Route::get('weather','ApiSiteController@weather');
     Route::get('menu/{id}/{is_main?}','ApiSiteController@page');
     Route::get('submenu/{id}','ApiSiteController@submenu');
@@ -98,6 +100,8 @@ Route::namespace('Api')->group(function (){
     Route::get('categoryInfo/{id}','ApiNewsController@categoryInfo');
 
     Route::get('page/{site_id}/{id}', 'ApiPageController@single');
+    Route::get('selected_menus/{id}', 'ApiPageController@selected_menus');
+
 
     Route::get('newsListPrimary/{limit?}','ApiNewsController@newsListPrimary');
     Route::get('newsListRecent/{limit?}','ApiNewsController@newsListRecent');

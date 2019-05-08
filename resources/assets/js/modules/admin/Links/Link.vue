@@ -12,6 +12,12 @@
                     <figure v-if="props.row.image" style="border-radius:0px" class="image is-48x48" :style="'background-image: url('+siteurl+'/uploads/'+props.row.image+')'"></figure>
                     <figure v-else="" style="border-radius:0px" class="image is-48x48"><i class="far fa-image"></i></figure>
                 </template>
+                <template slot="link" slot-scope="props">
+
+                    <a v-if="props.row.link!='#'" :href="props.row.link" target="_blank"  class=" button is-primary" >
+                        үзэх
+                    </a>
+                </template>
                 <div slot="action" slot-scope="props" class="data-action">
                     <router-link :to="'link/'+props.row.id+'/update'">
                         <i class="fas fa-pencil-alt"></i>
@@ -63,7 +69,7 @@
                 is_loading: false,
                 columns: [ 'id', 'image', 'name', 'cat_id', 'link',  'action'],
                 options: {
-                    perPage: 10,
+                    perPage: 50,
                     perPageValues: [100],
                     headings: {
                         image: "Зураг",
@@ -73,8 +79,8 @@
                         link: "Линк",
                         action: "",
                     },
-                    sortable: [ 'name', 'cat_id', 'link',],
-                    filterable:[ 'name', 'cat_id',  'link',],
+                    sortable: [ 'name', 'cat_id', ],
+                    filterable:[ 'name', 'cat_id',  ],
                     filterByColumn: true,
                     listColumns: {
                         cat_id: []

@@ -15,37 +15,34 @@
         <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
 
         <title>DASHBOARD</title>
+        <style>
+            #nema_chart, #police_chart, #hospital_chart {
+                width: 100%;
+                height: 200px;
+                color: #fff !important;
+            }
+
+        </style>
     </head>
-    <?php
-
-    $dataPoints = array(
-        array("y" => 25, "label" => "Sunday"),
-        array("y" => 15, "label" => "Monday"),
-        array("y" => 25, "label" => "Tuesday"),
-        array("y" => 5, "label" => "Wednesday"),
-        array("y" => 10, "label" => "Thursday"),
-        array("y" => 0, "label" => "Friday"),
-        array("y" => 20, "label" => "Saturday")
-    );
-
-    ?>
-
-
-
-
-
     <body class="full-height mh-100 mw-100">
         <div class="col-sm-12">
             <div class="h-auto item_cell row">
-                <div class="h-auto item_cell col-sm-3">
-                    <div class="h-100 child third">
-                        <p class="count">{{$today}}</p>
+                <div class="h-auto item_cell col-sm-1">
+                    <div class="h-100 child third" style="text-align: center">
+                        <img src="{{ asset('uploads/'.$site->favicon) }}" style="width: 50%;">
+
+                        <p class="count">
+                            <br/>
+                            <br/>
+                            <br/>
+                            {{$today_md}}
+                        </p>
                         <h1 class="title">Өнөөдөр</h1>
                     </div>
                 </div>
 
 
-                <div class="h-auto item_cell col-sm-3">
+                <div class="h-auto item_cell col-sm-4">
                     <div class="h-100 child first">
                         <p class="count">{{$h !=null ? (int)$h->total : 0}}</p>
                         <h1 class="title">Эрүүл мэндийн төв</h1>
@@ -53,14 +50,13 @@
                     </div>
                 </div>
 
-                <div class="h-auto item_cell col-sm-3">
+                <div class="h-auto item_cell col-sm-4">
                     <div class="h-100 child second">
                         <p class="count">{{$p !=null ? (int)$p->total : 0}}</p>
                         <h1 class="title">Цагдаагийн газар</h1>
                         <div id="police_chart"></div>
                     </div>
                 </div>
-
 
                 <div class="h-auto item_cell col-sm-3">
                     <div class="h-100 child third">
@@ -150,122 +146,39 @@
                         </div>
                     </div>
                 </div>
+                <div class="h-auto item_cell col-sm-4">
+                    <div class="h-100 child first">
+                        <div><h1 class="title">Цагийн хуваарь</h1></div>
+                        <div class="row">
 
-                <div class="h-auto item_cell col-sm-3">
-                    <div class="h-100 child second">
-                        <h1 class="title"> ЭВЭНТ</h1>
-                        @if($t)
-                            <div id="carouselEvent" class="carousel slide" data-ride="carousel">
-                                <div class="carousel-inner">
-                                    @foreach($t as $i)
-                                        @if($i->id == $t[0]->id)
-                                            <div class="carousel-item {{$i->id==$t[0]->id ? 'active' : ''}}">
-                                                <div class='row'>
-                                                    <div class='col-sm' id='item1{{$i->id}}'>
-                                                        <h3 style="font-size: 15px;">{{$i->description}} </h3>
-                                                        @if($i->head_id==4)
-                                                            <p>ХДТ</p>
-                                                        @elseif($i->head_id==5)
-                                                            <p>Тэмүжин театр</p>
-                                                        @elseif($i->head_id==6)
-                                                            <p>Баганат талбайд</p>
-                                                        @elseif($i->head_id==7)
-                                                            <p>ЗДТГын зааланд</p>
-                                                        @elseif($i->head_id==8)
-                                                            <p>Сумын ЗДТГын зааланд</p>
-                                                        @elseif($i->head_id==9)
-                                                            <p>Бусад</p>
-                                                        @else
-                                                            <p>-</p>
-                                                        @endif
-                                                        <p>{{$i->schedule_date}}</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @else
-                                            <div class="carousel-item">
-                                                <div class='row'>
-                                                    <div class='col-sm' id='item1'>
-                                                        <h3 style="font-size: 15px;">{{$i->description}} </h3>
-                                                        @if($i->head_id==4)
-                                                            <p>ХДТ</p>
-                                                        @elseif($i->head_id==5)
-                                                            <p>Тэмүжин театр</p>
-                                                        @elseif($i->head_id==6)
-                                                            <p>Баганат талбайд</p>
-                                                        @elseif($i->head_id==7)
-                                                            <p>ЗДТГын зааланд</p>
-                                                        @elseif($i->head_id==8)
-                                                            <p>Сумын ЗДТГын зааланд</p>
-                                                        @elseif($i->head_id==9)
-                                                            <p>Бусад</p>
-                                                        @else
-                                                            <p>-</p>
-                                                        @endif
-                                                        <p>{{$i->schedule_date}}</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @endif
+                            @foreach($owner_schedule as $schedule)
+                                <table class="table col-sm-6 border_none " >
+                                    <thead>
+                                    <tr>
+                                        <th style="text-align: left; padding: 10px">{{$schedule['date']}}</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($schedule['data'] as $row)
+                                        <tr>
+                                            <td>
+                                                {{$row->start_time}} - {{$row->end_time}} <br/>
+                                                {{$row->description}}
+                                            </td>
+                                        </tr>
                                     @endforeach
-                                </div>
-                            </div>
-                        @endif
-                        <br/>
-                        @if(count($news)>0)
-                            <h1 class="title"> Цаг үеийн асуудал</h1>
-                            <div id="carouselNews" class="carousel slide" data-ride="carousel">
-                                <div class="carousel-inner">
-                                    @foreach($news as $i)
-                                        @if($i->id == $news[0]->id)
-                                            <div class="carousel-item {{$i->id==$news[0]->id ? 'active' : ''}}">
-                                                <div class='row'>
-                                                    <div class='col-sm' id='item_news_{{$i->id}}'>
-                                                        <h3 style="font-size: 15px;">{{$i->desc}} </h3>
-                                                        @if($i->created_type==1)
-                                                            <p>Цагдаа</p>
-                                                        @elseif($i->created_type==2)
-                                                            <p>эрүүл мэнд</p>
-                                                        @elseif($i->created_type==3)
-                                                            <p>Онцгой</p>
-                                                        @else
-                                                            <p>-</p>
-                                                        @endif
-                                                        <p>{{$i->created_at}}</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @else
-                                            <div class="carousel-item">
-                                                <div class='row'>
-                                                    <div class='col-sm' id='item_news_{{$i->id}}'>
-                                                        <h3 style="font-size: 15px;">{{$i->desc}} </h3>
-                                                        @if($i->created_type==1)
-                                                            <p>Цагдаа</p>
-                                                        @elseif($i->created_type==2)
-                                                            <p>эрүүл мэнд</p>
-                                                        @elseif($i->created_type==3)
-                                                            <p>Онцгой</p>
-                                                        @else
-                                                            <p>-</p>
-                                                        @endif
-                                                        <p>{{$i->created_at}}</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @endif
-                                    @endforeach
-                                </div>
-                            </div>
-                        @endif
+                                    </tbody>
+                                </table>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
 
-                <div class="h-auto item_cell col-sm-6">
+                <div class="h-auto item_cell col-sm-5">
                     @if($budgets)
                         <table class="table h-100 child first">
                             <thead>
-                            <tr><th colspan="5">Төсөв</th></tr>
+                            <tr><th colspan="5"><h1 class="title">Төсөв</h1></th></tr>
                                 <tr>
                                     <th></th>
                                     <th scope="col">батлагдсан</th>
@@ -309,36 +222,132 @@
 
             </div>
             <div class="h-30 item_cell row">
-                <div class="h-100 item_cell col-sm-12">
-                    <div class="h-50 child first">
-                        <div><h1 class="title">Цагийн хуваарь</h1></div>
-                        <div class="row">
 
-                        @foreach($owner_schedule as $schedule)
-                            <table class="table col-sm-4 border_none " >
-                                <thead>
-                                <tr>
-                                    <th>{{$schedule['date']}}</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($schedule['data'] as $row)
-                                    <tr>
-                                        <th scope="">
-                                            {{$row->start_time}} - {{$row->end_time}} <br/>
-                                            {{$row->description}}
-                                        </th>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
-                        @endforeach
-                        </div>
+                <div class="h-auto item_cell col-sm-6">
+                    <div class="child second">
+                        <h1 class="title"> ЭВЭНТ</h1>
+                        @if($t)
+                            <div id="carouselEvent" class="carousel slide" data-ride="carousel">
+                                <div class="carousel-inner">
+                                    @foreach($t as $i)
+                                        @if($i->id == $t[0]->id)
+                                            <div class="carousel-item {{$i->id==$t[0]->id ? 'active' : ''}}">
+                                                <div class='row'>
+                                                    <div class='col-sm' id='item1{{$i->id}}'>
+                                                        <h3 class="button_desc">{{$i->description}} </h3>
+                                                        <button class="button_left">
+                                                            @if($i->head_id==4)
+                                                                <p>ХДТ</p>
+                                                            @elseif($i->head_id==5)
+                                                                <p>Тэмүжин театр</p>
+                                                            @elseif($i->head_id==6)
+                                                                <p>Баганат талбайд</p>
+                                                            @elseif($i->head_id==7)
+                                                                <p>ЗДТГын зааланд</p>
+                                                            @elseif($i->head_id==8)
+                                                                <p>Сумын ЗДТГын зааланд</p>
+                                                            @elseif($i->head_id==9)
+                                                                <p>Бусад</p>
+                                                            @else
+                                                                <p>-</p>
+                                                            @endif
+                                                        </button>
+                                                        <button class="button_right">
+                                                            {{$i->schedule_date}}
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @else
+                                            <div class="carousel-item">
+                                                <div class='row'>
+                                                    <div class='col-sm' id='item1'>
+                                                        <h3 class="button_desc">{{$i->description}} </h3>
+                                                        <button class="button_left">
+                                                            @if($i->head_id==4)
+                                                                <p>ХДТ</p>
+                                                            @elseif($i->head_id==5)
+                                                                <p>Тэмүжин театр</p>
+                                                            @elseif($i->head_id==6)
+                                                                <p>Баганат талбайд</p>
+                                                            @elseif($i->head_id==7)
+                                                                <p>ЗДТГын зааланд</p>
+                                                            @elseif($i->head_id==8)
+                                                                <p>Сумын ЗДТГын зааланд</p>
+                                                            @elseif($i->head_id==9)
+                                                                <p>Бусад</p>
+                                                            @else
+                                                                <p>-</p>
+                                                            @endif
+                                                        </button>
+                                                        <button class="button_right">
+                                                            {{$i->schedule_date}}
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endif
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
-                <div class="h-100 item_cell col-sm-4">
-
-
+                <div class="h-auto item_cell col-sm-6">
+                    <div class="child second">
+                        @if(count($news)>0)
+                            <h1 class="title"> Цаг үеийн асуудал</h1>
+                            <div id="carouselNews" class="carousel slide" data-ride="carousel">
+                                <div class="carousel-inner">
+                                    @foreach($news as $i)
+                                        @if($i->id == $news[0]->id)
+                                            <div class="carousel-item {{$i->id==$news[0]->id ? 'active' : ''}}">
+                                                <div class='row'>
+                                                    <div class='col-sm' id='item_news_{{$i->id}}'>
+                                                        <h3 class="button_desc">{{$i->desc}} </h3>
+                                                        <button class="button_left">
+                                                            @if($i->created_type==1)
+                                                                <p>Цагдаа</p>
+                                                            @elseif($i->created_type==2)
+                                                                <p>эрүүл мэнд</p>
+                                                            @elseif($i->created_type==3)
+                                                                <p>Онцгой</p>
+                                                            @else
+                                                                <p>-</p>
+                                                            @endif
+                                                        </button>
+                                                        <button class="button_right">
+                                                            {{$i->created_at}}
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @else
+                                            <div class="carousel-item">
+                                                <div class='row'>
+                                                    <div class='col-sm' id='item_news_{{$i->id}}'>
+                                                        <h3 class="button_desc">{{$i->desc}} </h3>
+                                                        <button class="button_left">
+                                                            @if($i->created_type==1)
+                                                                <p>Цагдаа</p>
+                                                            @elseif($i->created_type==2)
+                                                                <p>эрүүл мэнд</p>
+                                                            @elseif($i->created_type==3)
+                                                                <p>Онцгой</p>
+                                                            @else
+                                                                <p>-</p>
+                                                            @endif
+                                                        </button>
+                                                        <button class="button_right">{{$i->created_at}}</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endif
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>
@@ -389,6 +398,7 @@
             am4core.ready(function() {
                 var chart = am4core.create("nema_chart", am4charts.XYChart);
                 chart.paddingRight = 0;
+                chart.color = am4core.color("white");
                 chart.data = <?=json_encode($chart_data)?>;
 
                 // Create axes

@@ -16,6 +16,10 @@ class ApiSiteController extends Controller
         $site= Site::find($site_id);
         return response()->json([ 'success' => $site->sidebar ]);
     }
+    public function sidebar1($site_id){
+        $site= Site::find($site_id);
+        return response()->json([ 'success' => $site->sidebar1 ]);
+    }
 
     public function sites(){
         $sites=Site::where('id', '!=', 0)->orderBy('name', 'asc')->select('favicon', 'name', 'domain', 'id')->get();
