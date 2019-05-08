@@ -40,6 +40,8 @@
 <script>
     console.log(window.location.hash);
     window.surl = "{{ url('/') }}";
+    window.appstore = "{{ env('APP_STORE') }}";
+    window.playstore = "{{ env('PLAY_STORE') }}";
     window.sdate = "{{ $date }}";
     window.subdomain = "{{ env('SUB_DOMAIN') }}";
     window.logo = "{{$logo}}";
