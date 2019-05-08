@@ -90,6 +90,8 @@ Route::domain('{account}.'.env('SUB_DOMAIN'))->group(function () {
     Route::get('/feedback', 'SubController@feedback');
     Route::get('/archive', 'SubController@archive');
     Route::post('/urgudul_save', 'SubController@urgudul_save');
+    /*** Search ***/
+    Route::get('search','SubController@search');
 });
 
 Route::get('/', 'Controller@homePage');

@@ -153,15 +153,3 @@
         </div>
     </div>
 @endsection
-@php function menu($menus,$parent_id, $active, $i){ @endphp
-<ul>
-@php foreach($menus as $menu):
-if($menu->parent_id == $parent_id) { @endphp
-<li @if($active == $menu->id)class="active"@endif>
-<a href="{{asset("category/".$menu->id)}}">{{$menu->name}}</a>
-@php $i++;
-$i = menu($menus,$menu->id, $active, $i); @endphp
-</li>
-@php } endforeach; @endphp
-</ul>
-@php } @endphp

@@ -90,11 +90,11 @@
                     </a>
                 </div>
                 <div class="col-sm-6">
-                    <form method="post" action="" class="pt-4" enctype="multipart/form-data">
+                    <form method="get" action="{{asset('search')}}" class="pt-4" enctype="multipart/form-data">
                         <div class="input-group input-group-sm mb-3">
-                            <input type="search" class="form-control" style="font-size: 12px" placeholder="Хайх утгаа оруулна уу..." aria-label="Recipient's username" aria-describedby="button-addon2">
+                            <input type="search" name="search_query" class="form-control" style="font-size: 12px" placeholder="Хайх утгаа оруулна уу...">
                             <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="button" id="button-addon2"><i class="fa fa-search"></i> </button>
+                                <button class="btn btn-outline-secondary" type="submit" id="button-addon2"><i class="fa fa-search"></i> </button>
                             </div>
                         </div>
                     </form>
@@ -288,8 +288,8 @@
                             @if(!is_null($info->config['socail']['youtube']))<li><a target="_blank" href="{{$info->config['socail']['youtube']}}"><i class="fab fa-youtube"></i></a></li>@endif
                     </ul>
                     <div class="row mt-3">
-                        <div class="col-sm-6"><a href="https://www.apple.com/ios/app-store/"><img src="{{asset('main/sub/images/appstore.png')}}" class="w-100"> </a></div>
-                        <div class="col-sm-6"><a href="https://play.google.com/store/apps"><img src="{{asset('main/sub/images/playstore.png')}}" class="w-100"> </a></div>
+                        <div class="col-sm-6"><a href="{{env('APP_STORE')}}"><img src="{{asset('main/sub/images/appstore.png')}}" class="w-100"> </a></div>
+                        <div class="col-sm-6"><a href="{{env('PLAY_STORE')}}"><img src="{{asset('main/sub/images/playstore.png')}}" class="w-100"> </a></div>
                     </div>
                 </div>
             </div>

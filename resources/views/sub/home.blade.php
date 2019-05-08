@@ -213,42 +213,24 @@
                     </ul>
                 </div>
                 <div class="col-sm-4">
-                    <h3 class="head row background-white"><span>ЭВЭНТ</span></h3>
-                    <ul class="row iltod_news background-white">
-                        <div class="iltod_scroll scrollbar-inner">
-                            {{--@foreach($tender_posts as $tend)
-                                @foreach($latest_news as $nws)
-                                    @if($tend->post_id == $nws->id)
-                                    <li>
-                                        <a href="{{asset('news/'.$nws->id)}}">{{mb_substr($nws->title, 0, 55)}}...</a>
-                                        <span class="create_date">Нийтэлсэн: {{$nws->created_at->format('Y-m-d')}}</span>
+                    @if($zar)
+                        <h3 class="head row background-white"><span>ЗАР МЭДЭЭ</span></h3>
+                        <ul class="row iltod_news background-white">
+                            <div class="iltod_scroll scrollbar-inner">
+                                @foreach($zar as $zr)
+                                    <li class="row">
+                                        <div class="col-sm-4">
+                                            <div class="zar_thumb" style="background-image: url('{{asset('uploads')}}/{{$zr->image}}')"></div>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <a href="http://zar.{{$home_url->domain}}/p/{{$zr->id}}.html">{{mb_substr($zr->title, 0, 55)}}...</a>
+                                            <span class="create_date"><i class="far fa-clock"></i> {{$zr->created_at}}</span>
+                                        </div>
                                     </li>
-                                    @endif
                                 @endforeach
-                            @endforeach--}}
-                            @foreach($info->events as $row)
-                                <li>
-                                    <a href="#" style="color: #0a4f75"> {{$row->description}} </a>
-                                    <span class="create_date">
-                                            @if($row->head_id==4)
-                                            <font color="black">Хаана:</font> ХДТ
-                                        @elseif($row->head_id==5)
-                                            <font color="black">Хаана:</font> Тэмүжин театр
-                                        @elseif($row->head_id==6)
-                                            <font color="black">Хаана:</font> Баганат талбай
-                                        @elseif($row->head_id==7)
-                                            <font color="black">Хаана:</font> ЗДТГын заал
-                                        @elseif($row->head_id==8)
-                                            <font color="black">Хаана:</font> Сумын ЗДТГын заалан
-                                        @else
-                                        @endif
-
-                                        ({{$row->person_count}})   |
-                                               <font color="black">Хэзээ:</font> {{$row->schedule_date}} {{$row->start_time}} цагт </span>
-                                </li>
-                            @endforeach
-                        </div>
-                    </ul>
+                            </div>
+                        </ul>
+                    @endif
                 </div>
             </div>
         </div>

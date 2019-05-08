@@ -1157,6 +1157,19 @@ h3.head.iltod span{
 .xaax:hover{
     color:var(--red);
 }
+/*** news-list ***/
+.news-list{
+    font-size: 14px;
+}
+.news-list a{
+    font-weight: 700;
+    display: block;
+    line-height: 24px;
+    overflow: hidden;
+    max-height: 25px;
+    color:var(--MainColor);
+}
+.news-list p{}
 @media (min-width: 768px){
     .logo > img{
         height: 110px;
