@@ -1910,7 +1910,7 @@ nav a:hover {
 
 body {
     background-attachment: fixed;
-    background-image: url("../img/body-bg.jpg");
+    background-image: url("/images/service.jpg");
     background-position: top center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -2628,7 +2628,7 @@ body:after {
 }
 
 .single-widget {
-    margin-top: 50px;
+    margin-top: 5px;
 }
 
 .single-widget .icon {
@@ -2663,8 +2663,6 @@ body:after {
 
 .single-widget .desc {
     width: 100%;
-    position: absolute;
-    margin-left: 40px;
 }
 
 .single-widget .desc h6 {

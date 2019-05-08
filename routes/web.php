@@ -75,7 +75,7 @@ Route::domain('dashboard.'.env('SUB_DOMAIN'))->group(function () {
 });
 
 
-Route::domain('eservice.'.env('SUB_DOMAIN'))->group(function () {
+Route::domain('eservice.bayankhongor.local')->group(function () {
     Route::get('/', 'ServiceController@index');
     Route::get('/{id}', 'ServiceController@index');
     Route::get('/index/{id}', 'ServiceController@index');
