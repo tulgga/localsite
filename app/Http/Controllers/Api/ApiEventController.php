@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Api;
 use App\Dashboard_schedule;
+use App\Dashboard_schedule_going;
 use App\Http\Controllers\Controller;
 
+use App\User;
 use Illuminate\Support\Facades\DB;
 class ApiEventController extends Controller
 {
@@ -13,15 +15,7 @@ class ApiEventController extends Controller
         $events = []; // event
 
         if($site_id > 0){
-//            if(Dashboard_schedule::whereNotIn('head_id', [1,2,3])->where('schedule_date','>=', $data['y'])->where('site_id', $site_id)->get()) {
-//                $events= Dashboard_schedule::whereNotIn('head_id', [1,2,3])
-//                    ->where('schedule_date','>=', $data['y'])
-//                    ->where('site_id', $site_id)
-//                    ->with('Dashboard_schedule_going')
-//                    ->orderBy('schedule_date', 'DESC')->get();
-//            }
-
-            $events = DB::select("select id, schedule_date as date,head_id as org_type, start_time, end_time, description,person_count, ifnull(cnt, 0) as person_going_count from dashboard_schedules 
+            $events = DB::select("select id, schedule_date as date,head_id as org_type, start_time as start, end_time as end, description,person_count, ifnull(cnt, 0) as person_going_count from dashboard_schedules 
                 left join (
                     select dashboard_schedule_id, count(0) as cnt 
                     from  Dashboard_schedule_going 
@@ -35,6 +29,20 @@ class ApiEventController extends Controller
         }
 
         return response()->json( $events);
+    }
+
+    public function going($id, $user_id=0, $ip='', $device="")
+    {
+        if(count(Dashboard_schedule_going::where('dashboard_schedule_id',$id)->where('user_id',$user_id)->get())==0 ){
+            $go = new Dashboard_schedule_going();
+            $go->dashboard_schedule_id = $id;
+            $go->user_id = $user_id;
+            $go->ip = $ip;
+            $go->device = $device;
+            $go->save();
+            return response()->json(["status"=> 1, 'msg'=>"Амжилттай"]);
+        }
+        return response()->json(["status"=> 0, 'msg'=>"Энэ үйлдлийг хийх боломжгүй байна"]);
     }
 
 
