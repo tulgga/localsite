@@ -4,7 +4,7 @@
             <div v-if="content">
                 <div class="columns  pb-2">
 
-                    <div  class="column is-9" :class="{'is-9':is_full===false, 'is-12':is_full===true}">
+                    <div  class="column is-9" >
                         <div class="has-background-white p-15 mb-2" style="min-height: 400px;" >
                             <h1 class="is-size-4-tablet is-size-6-mobile mb-1">{{content.title}}</h1>
 
@@ -22,7 +22,8 @@
                             </template>
                         </div>
                     </div>
-                    <div  v-if="is_full===false" class="column is-3">
+                    <div    class="column is-3">
+                        <template  v-if="content.is_main==1" >
                         <aside class="menu mb-2">
                                 <p class="menu-label">
                                    {{selectedMenu.name}}
@@ -30,13 +31,13 @@
                                 <ul v-if="selectedMenu.children" class="menu-list">
                                     <li v-for="m1 in selectedMenu.children">
                                         <span v-html="echoLink(m1)" @click="scrollToTop"></span>
-                                        <ul  v-if="m1.children" >
+                                        <ul  v-if="m1.children && menu_ids[1]==m1.id" >
                                             <li v-for="m2 in m1.children" >
                                                 <span v-html="echoLink(m2)" @click="scrollToTop"></span>
-                                                <ul  v-if="m2.children" >
-                                                    <li v-for="m3 in m2.children"  >
+                                                <ul  v-if="m2.children  && menu_ids[2]==m2.id" >
+                                                    <li v-for="m3 in m2.children  "  >
                                                         <span v-html="echoLink(m3)" @click="scrollToTop"></span>
-                                                        <ul  v-if="m3.children" >
+                                                        <ul  v-if="m3.children && menu_ids[3]==m3.id" >
                                                             <li v-for="m4 in m3.children">
                                                                 <span v-html="echoLink(m4)" @click="scrollToTop"></span>
                                                             </li>
@@ -49,6 +50,15 @@
                                 </ul>
                         </aside>
                         <side-bar></side-bar>
+                        </template>
+                        <template v-else>
+                            <side-bar-more></side-bar-more>
+                            <div class="bg-white p-15 mt-1  shadow">
+                                <h3 class="bTitle mb-1">Зар</h3>
+                                <zar-list  styles="height: 400px;"></zar-list>
+                            </div>
+                        </template>
+
                     </div>
                 </div>
             </div>
@@ -58,10 +68,11 @@
     </div>
 </template>
 <script>
+    import ZarList from '../../components/helpers/ZarList';
     import BoxNewsList from "../../components/helpers/BoxNewsList";
     import BoxFileList from "../../components/helpers/BoxFileList";
     export default {
-        components: {BoxNewsList, BoxFileList},
+        components: {BoxNewsList, BoxFileList, ZarList},
         data() {
             return {
                 id: false,
@@ -70,6 +81,7 @@
                 content: null,
                 is_full: true,
                 selectedMenu:false,
+                menu_ids: false,
                 metaInfo:{
                     title: '404',
                     meta: [
@@ -106,6 +118,9 @@
             fetchData: function () {
                 this.content=false;
                 this.id = this.$route.params.id;
+                axios.get('/selected_menus/'+this.id).then((response) => {
+                    this.menu_ids=response.data.success;
+                }),
                 axios.get('/page/0/'+this.id).then((response) => {
                     this.fetched=true;
                     this.content=response.data.success;
@@ -125,7 +140,7 @@
                                 this.selectedMenu=this.$store.getters.menu[i];
                             }
                         }
-                        console.log(this.is_full);
+
                         this.metaInfo.title=this.content.title;
                         this.metaInfo.meta[1].content=this.content.shortContent;
                         this.metaInfo.meta[2].content=this.content.title+' ← '+window.title;

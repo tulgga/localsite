@@ -35,10 +35,7 @@
                     </div>
                 </div>
                 <div class="column is-3 ">
-                    <div class="bg-white p-15   shadow">
-                        <h3 class="bTitle mb-1">Ил тод байдал</h3>
-                        <news-list  catId="150" styles="height: 490px;"></news-list>
-                    </div>
+                   <side-bar></side-bar>
                 </div>
             </div>
         </div>

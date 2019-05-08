@@ -27,6 +27,7 @@ import BImg from './components/helpers/BImg';
 import Sum from './components/helpers/Sum';
 import Agentlag from './components/helpers/Agentlag';
 import SideBar from './components/layouts/SideBar';
+import SideBarMore from './components/layouts/SideBarMore';
 import NotFound from './modules/system/NotFound';
 import flatPickr from 'vue-flatpickr-component';
 import VueSelect from 'vue-select';
@@ -154,6 +155,7 @@ Vue.component('b-img', BImg);
 Vue.component('sum', Sum);
 Vue.component('agentlag', Agentlag);
 Vue.component('SideBar', SideBar);
+Vue.component('SideBarMore', SideBarMore);
 Vue.component('NotFound', NotFound);
 Vue.component('v-bar', VBar);
 
