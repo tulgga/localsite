@@ -28,10 +28,16 @@ class ApiVolunteerController extends Controller
             ->select('events.subject','events.content','event_to_images.image','events.started','events.ended','events.id')->paginate(10);
         foreach($events as $key=>$val){
             $like = Event_to_like::where('event_id',$val->id)->where('user_id',$user->id)->first();
+            $rate = Event_to_rating::where('event_id',$val->id)->where('user_id',$user->id)->first();
             if($like){
                 $events[$key]->isliked = 1;
             }else{
                 $events[$key]->isliked = 0;
+            }
+            if($rate){
+                $events[$key]->rating = $rate->rating;
+            }else{
+                $events[$key]->rating = 0;
             }
         }
         return response()->json(['success'=>$events]);
@@ -40,12 +46,19 @@ class ApiVolunteerController extends Controller
         $event = Event::select('*')->where('id', $id)->first();
         $images = Event_to_image::select('image')->where('event_id', $event->eid)->get();
         $event->isliked = 0;
+        $event->rating = 0;
         if($user_id) {
                 $like = Event_to_like::where('event_id',$id)->where('user_id',$user_id)->first();
                 if($like){
                     $event->isliked = 1;
                 }else{
                     $event->isliked = 0;
+                }
+                $rate = Event_to_rating::where('event_id',$id)->where('user_id',$user_id)->first();
+                if($rate){
+                    $event->rating = $rate->rating;
+                }else{
+                    $event->rating = 0;
                 }
         }
 
@@ -56,6 +69,7 @@ class ApiVolunteerController extends Controller
             'started' => $event->started,
             'ended' => $event->ended,
             'isliked' => $event->isliked,
+            'rating' => $event->rating,
             'created_at' => $event->created_at->format('Y-m-d H:i:s'),
             'images' => $images
         );
