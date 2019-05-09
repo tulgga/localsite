@@ -6,6 +6,7 @@
     <meta name="keywords" content="{{$category->name}}">
 @endsection
 @section('content')
+    <?php $now_selected= null;?>
     <div class="row" style="background: #f9f9f9;">
         <div class="container">
             <nav aria-label="breadcrumb">
@@ -15,6 +16,7 @@
                         @if(count($category->menu)-1!=$index)
                             <li class="breadcrumb-item"><a href="#">{{$menu['name']}}</a><hex></hex></li>
                         @else
+                            <?php $now_selected =$menu; ?>
                             <li class="breadcrumb-item active" aria-current="page">{{$menu['name']}}</li>
                         @endif
                     @endforeach
@@ -25,8 +27,8 @@
     </div>
     @if($list_type==3)
     <section id=timeline>
-            <h1>A Flexbox Timeline</h1>
-            <p class="leader">All cards must be the same height and width for space calculations on large screens.</p>
+            <h1>{{$now_selected['name']}}</h1>
+            <p class="leader">Он цагийн дараалал</p>
         	<div class="demo-card-wrapper">
         	    <?php $index=1;?>
         	    @foreach($newslist as $news)
@@ -39,8 +41,8 @@
             				<h2><span class="small">{{mb_substr($news->title, 0, 8)}}</span> Technology</h2>
             			</div>
             			<div class="body">
-            				<p>{{mb_substr($news->short_content, 0, 200)}}</p>
-            				<div class="image_div"><img src="{{$img}}" alt="Graphic"></div>
+            				<p>{{mb_substr($news->short_content, 0, 400)}}</p>
+            				<div class=""><img src="{{$img}}" alt="Graphic"></div>
             			</div>
             		</div>
             		<?php $index= $index+1?>
