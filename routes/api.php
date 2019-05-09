@@ -36,11 +36,9 @@ Route::middleware('auth:api')->namespace('Api')->group(function () {
     Route::post('userInfoUpdate', 'ApiUserController@userInfoUpdate');
     Route::post('verify', 'ApiUserController@verify');
 
-
     Route::post('verifyPhone', 'ApiUserController@verifyPhone');
     Route::get('verifyEmail', 'ApiUserController@verifyEmail');
     Route::post('notificationUpdate', 'ApiUserController@notificationUpdate');
-
 
 
     Route::post('changeEmailRequest', 'ApiUserController@changeEmailRequest');
@@ -57,7 +55,7 @@ Route::middleware('auth:api')->namespace('Api')->group(function () {
     Route::get('logOut', 'ApiUserController@logOut');
 
     //Volunteer
-    Route::get('eventslist','ApiVolunteerController@eventslist');
+    Route::get('eventslistlogin','ApiVolunteerController@eventslistlogin');
     Route::post('event_like','ApiVolunteerController@event_like');
     Route::post('event_rate','ApiVolunteerController@event_rate');
 
@@ -67,7 +65,6 @@ Route::namespace('Api')->group(function (){
 
     Route::get('ildot','ApiPageController@ildot');
     Route::get('lavlagaa','ApiPageController@Lavlagaa');
-
 
     Route::get('service','ApiSiteController@service');
     //sites
@@ -128,8 +125,6 @@ Route::namespace('Api')->group(function (){
 
     Route::get('zarSingle/{id}','ApiZarController@zarSingle');
 
-
-
     //Бүх санал асуулга хэлбэржүүлж авах
     Route::get('poll','ApiPollController@poll');
     //Зөвхөн нэг санал асуулгын ID өгсөн тохиолдолд санал асуулгыг асуулт, хариултын хамт илгээнэ
@@ -137,13 +132,11 @@ Route::namespace('Api')->group(function (){
 
     //Сайн дурыхан
     Route::get('eventslist','ApiVolunteerController@eventslist');
-    Route::get('event/{id}','ApiVolunteerController@event');
+    Route::get('event/{id}/{user_id}','ApiVolunteerController@event');
 
     Route::get('events','ApiEventController@index');
     Route::get('events_going/{id}/{user_id}/{ip}/{device}','ApiEventController@going');
 });
-
-
 
 Route::middleware('auth:admin-api')->namespace('Admin')->prefix('admin')->group(function () {
 
