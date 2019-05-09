@@ -1606,6 +1606,103 @@ h3.head.iltod span{
 
 
 
+
+/* Some Cool Stuff */
+.demo-card:nth-child(1) { order: 1; }
+.demo-card:nth-child(2) { order: 4; }
+.demo-card:nth-child(3) { order: 2; }
+.demo-card:nth-child(4) { order: 5; }
+.demo-card:nth-child(5) { order: 3; }
+.demo-card:nth-child(6) { order: 6; }
+.demo-card:nth-child(7) { order: 7; }
+.demo-card:nth-child(8) { order: 8; }
+.demo-card:nth-child(9) { order: 9; }
+.demo-card:nth-child(10) { order: 10; }
+
+.demo-card:nth-child(11) { order: 11; }
+.demo-card:nth-child(12) { order: 14; }
+.demo-card:nth-child(13) { order: 12; }
+.demo-card:nth-child(14) { order: 15; }
+.demo-card:nth-child(15) { order: 13; }
+.demo-card:nth-child(16) { order: 16; }
+.demo-card:nth-child(17) { order: 17; }
+.demo-card:nth-child(18) { order: 18; }
+.demo-card:nth-child(19) { order: 19; }
+.demo-card:nth-child(20) { order: 20; }
+
+.demo-card:nth-child(21) { order: 21; }
+.demo-card:nth-child(22) { order: 24; }
+.demo-card:nth-child(23) { order: 22; }
+.demo-card:nth-child(24) { order: 25; }
+.demo-card:nth-child(25) { order: 23; }
+.demo-card:nth-child(26) { order: 26; }
+.demo-card:nth-child(27) { order: 27; }
+.demo-card:nth-child(28) { order: 28; }
+.demo-card:nth-child(29) { order: 29; }
+.demo-card:nth-child(20) { order: 20; }
+
+
+.demo-card:nth-child(31) { order: 31; }
+.demo-card:nth-child(32) { order: 34; }
+.demo-card:nth-child(33) { order: 32; }
+.demo-card:nth-child(34) { order: 35; }
+.demo-card:nth-child(35) { order: 33; }
+.demo-card:nth-child(36) { order: 36; }
+.demo-card:nth-child(37) { order: 37; }
+.demo-card:nth-child(38) { order: 38; }
+.demo-card:nth-child(39) { order: 39; }
+.demo-card:nth-child(40) { order: 40; }
+
+
+.demo-card:nth-child(51) { order: 51; }
+.demo-card:nth-child(52) { order: 54; }
+.demo-card:nth-child(53) { order: 52; }
+.demo-card:nth-child(54) { order: 55; }
+.demo-card:nth-child(55) { order: 53; }
+.demo-card:nth-child(56) { order: 56; }
+.demo-card:nth-child(57) { order: 57; }
+.demo-card:nth-child(58) { order: 58; }
+.demo-card:nth-child(59) { order: 59; }
+.demo-card:nth-child(60) { order: 60; }
+
+
+.demo-card:nth-child(71) { order: 71; }
+.demo-card:nth-child(72) { order: 74; }
+.demo-card:nth-child(73) { order: 72; }
+.demo-card:nth-child(74) { order: 75; }
+.demo-card:nth-child(75) { order: 73; }
+.demo-card:nth-child(76) { order: 76; }
+.demo-card:nth-child(77) { order: 77; }
+.demo-card:nth-child(78) { order: 78; }
+.demo-card:nth-child(79) { order: 79; }
+.demo-card:nth-child(80) { order: 80; }
+
+
+.demo-card:nth-child(81) { order: 81; }
+.demo-card:nth-child(82) { order: 84; }
+.demo-card:nth-child(83) { order: 82; }
+.demo-card:nth-child(84) { order: 85; }
+.demo-card:nth-child(85) { order: 83; }
+.demo-card:nth-child(86) { order: 86; }
+.demo-card:nth-child(87) { order: 87; }
+.demo-card:nth-child(88) { order: 88; }
+.demo-card:nth-child(89) { order: 89; }
+.demo-card:nth-child(90) { order: 90; }
+
+
+.demo-card:nth-child(91) { order: 91; }
+.demo-card:nth-child(92) { order: 94; }
+.demo-card:nth-child(93) { order: 92; }
+.demo-card:nth-child(94) { order: 95; }
+.demo-card:nth-child(95) { order: 93; }
+.demo-card:nth-child(96) { order: 96; }
+.demo-card:nth-child(97) { order: 97; }
+.demo-card:nth-child(98) { order: 98; }
+.demo-card:nth-child(99) { order: 99; }
+.demo-card:nth-child(100) { order: 100; }
+
+
+
 /* Media Queries */
 /* Card sizing */
 /* Colors */
@@ -1626,34 +1723,10 @@ h3.head.iltod span{
     content: "";
     width: 9px;
     height: 9px;
-    background-color: #bdbdbd;
+    background-color: #007b;
     border-radius: 9px;
     box-shadow: 0px 0px 2px 8px #f7f7f7;
   }
-}
-/* Some Cool Stuff */
-.demo-card:nth-child(1) {
-  order: 1;
-}
-
-.demo-card:nth-child(2) {
-  order: 4;
-}
-
-.demo-card:nth-child(3) {
-  order: 2;
-}
-
-.demo-card:nth-child(4) {
-  order: 5;
-}
-
-.demo-card:nth-child(5) {
-  order: 3;
-}
-
-.demo-card:nth-child(6) {
-  order: 6;
 }
 
 /* Border Box */
@@ -1744,6 +1817,7 @@ body {
     border-left-width: 15px;
     border-left-style: solid;
     left: 100%;
+    color: #006cff;
   }
   #timeline .demo-card:nth-child(odd) .head::before {
     left: 491.5px;
@@ -1752,24 +1826,28 @@ body {
     margin-left: 45px;
   }
   #timeline .demo-card:nth-child(even) .head::after {
-    border-right-width: 15px;
-    border-right-style: solid;
-    right: 100%;
+    border-right-width: 15px !important;
+    border-right-style: solid !important;
+    right: 100% !important;
+    color: #006cff;
   }
   #timeline .demo-card:nth-child(even) .head::before {
-    right: 489.5px;
+    right: 489.5px !important;
   }
   #timeline .demo-card:nth-child(2) {
     margin-top: 180px;
   }
 }
+
 #timeline .demo-card .head {
   position: relative;
   display: flex;
   align-items: center;
   color: #fff;
   font-weight: 400;
+  background: #006CFF;
 }
+
 #timeline .demo-card .head .number-box {
   display: inline;
   float: left;
@@ -1806,52 +1884,30 @@ body {
   }
 }
 #timeline .demo-card .body {
-  background: #fff;
-  border: 1px solid rgba(191, 191, 191, 0.4);
-  border-top: 0;
-  padding: 15px;
+    background: #fff;
+    border: 1px solid rgba(191, 191, 191, 0.4);
+    border-top: 0;
+    padding: 15px;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
 }
 @media (min-width: 1000px) {
   #timeline .demo-card .body {
     height: 315px;
+        overflow: hidden;
   }
+}
+.image_div{
+    background: #ddd;
 }
 #timeline .demo-card .body p {
   font-size: 14px;
   line-height: 18px;
   margin-bottom: 15px;
+  background: #ddd;
+    opacity: 0.5;
 }
 #timeline .demo-card .body img {
   display: block;
   width: 100%;
-}
-#timeline .demo-card--step1 {
-  background-color: #46b8e9;
-}
-#timeline .demo-card--step1 .head::after {
-  border-color: #46b8e9;
-}
-#timeline .demo-card--step2 {
-  background-color: #3ee9d1;
-}
-#timeline .demo-card--step2 .head::after {
-  border-color: #3ee9d1;
-}
-#timeline .demo-card--step3 {
-  background-color: #ce43eb;
-}
-#timeline .demo-card--step3 .head::after {
-  border-color: #ce43eb;
-}
-#timeline .demo-card--step4 {
-  background-color: #4d92eb;
-}
-#timeline .demo-card--step4 .head::after {
-  border-color: #4d92eb;
-}
-#timeline .demo-card--step5 {
-  background-color: #46b8e9;
-}
-#timeline .demo-card--step5 .head::after {
-  border-color: #46b8e9;
 }
