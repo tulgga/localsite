@@ -101,7 +101,18 @@ class SubController extends BaseController
         //echo json_encode($data['category']); die;
         $data['categories'] = Category::where('site_id',$data['info']->id)->orderBy('order_num','ASC')->select('*')->get();
         $data['category']->menu = $this->getCategoryID([['id'=>$data['category']->id, 'parent_id'=>$data['category']->parent_id, 'name'=>$data['category']->name]]);
-
+        
+        
+        $list_type= 0;
+        
+        if(count(Page::where("type", 2)->where("type_id", $id)->where("site_id", $data["info"]->id)->get()) > 0){
+            $list_type= Page::where("type", 2)->where("type_id", $id)->where("site_id", $data["info"]->id)->first();
+            
+            if($list_type){
+                $list_type=$list_type->list_type;
+            }
+        }
+        $data['list_type']=$list_type;
         return view('sub.category', $data);
     }
     public function archive($account){
