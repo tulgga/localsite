@@ -171,7 +171,7 @@ body{
 }
 .nav-item > a.nav-link{
 	color: var(--white) !important;
-    font-size: 12px;
+    font-size: 11px;
     padding: 20px 15px !important;
 	font-weight: 600;
     text-transform: uppercase;
@@ -1734,14 +1734,9 @@ h3.head.iltod span{
   box-sizing: border-box;
 }
 
-/* Fonts */
-body {
-  font-family: Roboto;
-}
-
 #timeline {
   padding: 100px 0;
-  background: #f7f7f7;
+  background: #ffffff;
   border-top: 1px solid rgba(191, 191, 191, 0.4);
   border-bottom: 1px solid rgba(191, 191, 191, 0.4);
 }
@@ -1897,17 +1892,21 @@ body {
         overflow: hidden;
   }
 }
-.image_div{
-    background: #ddd;
-}
+
+
 #timeline .demo-card .body p {
   font-size: 14px;
   line-height: 18px;
   margin-bottom: 15px;
-  background: #ddd;
-    opacity: 0.5;
+  display: flex;
 }
+
+
+
 #timeline .demo-card .body img {
-  display: block;
-  width: 100%;
+    width: 100px;
+    margin-right:10px;
+    height: 100px;
+    border-radius: 50%;
+        display: -webkit-box;
 }

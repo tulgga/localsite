@@ -5,6 +5,7 @@
                 <div class="columns  pb-2">
 
                     <div  class="column is-9" >
+
                         <div class="has-background-white p-15 mb-2" style="min-height: 400px;" >
                             <h1 class="is-size-4-tablet is-size-6-mobile mb-1">{{content.title}}</h1>
 
@@ -14,8 +15,11 @@
                                 </figure>
                                 <div class="content mt-1 mb-1" v-html="content.text"></div>
                             </template>
-                            <template v-else-if="content.type==2">
+                            <template v-else-if="content.type==2 && content.list_type<3">
                                 <box-news-list :link="'#/p/'+id" :list_type="content.list_type" :ajax_url="'/newsListByCategoryBox/0/'" :cat_id="content.type_id"></box-news-list>
+                            </template>
+                            <template v-else-if="content.type==2 && content.list_type==3">
+                                <time-line :cat_id="content.type_id"></time-line>
                             </template>
                             <template v-else-if="content.type==4">
                                 <box-file-list :link="'#/p/'+id"  :cat_id="content.type_id"></box-file-list>
@@ -71,8 +75,9 @@
     import ZarList from '../../components/helpers/ZarList';
     import BoxNewsList from "../../components/helpers/BoxNewsList";
     import BoxFileList from "../../components/helpers/BoxFileList";
+    import TimeLine from '../../components/helpers/TimeLine';
     export default {
-        components: {BoxNewsList, BoxFileList, ZarList},
+        components: {BoxNewsList, BoxFileList, ZarList, TimeLine},
         data() {
             return {
                 id: false,

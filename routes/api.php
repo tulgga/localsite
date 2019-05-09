@@ -110,6 +110,7 @@ Route::namespace('Api')->group(function (){
     Route::get('newsListOronnutag/{limit?}','ApiNewsController@newsListOronnutag');
     Route::get('newsListPhoto/{limit?}','ApiNewsController@newsListPhoto');
     Route::get('newsListVideo/{limit?}','ApiNewsController@newsListVideo');
+    Route::get('CatTimeLine/{catid?}', 'ApiNewsController@CatTimeLine');
     Route::get('searchNews','ApiNewsController@searchNews');
     Route::get('boxFileList/{cat_id}', 'ApiFileController@boxFileList');
 

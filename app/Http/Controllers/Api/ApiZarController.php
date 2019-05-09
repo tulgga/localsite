@@ -16,7 +16,7 @@ class ApiZarController extends Controller
     public function zar(){
         $zar=Zar::select("zar.*",
             DB::raw('CONCAT("'.env('APP_URL').'", "/uploads/", zar.image) AS image'),
-            "zar_category.name as category")->join('zar_category', 'zar_category.id', '=', 'zar.cat_id')->orderBy('zar.created_at', 'desc')->paginate(20);
+            "zar_category.name as category")->join('zar_category', 'zar_category.id', '=', 'zar.cat_id')->orderBy('zar.is_pin', 'desc')->orderBy('zar.created_at', 'desc')->paginate(20);
         return response()->json(['success' => $zar]);
     }
 

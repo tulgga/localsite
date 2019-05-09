@@ -154,12 +154,20 @@ class ApiGroupController extends Controller
         $find2=Group_user::where('user_id',$user->id)->where('group_id',$data['group_id'])->where('status', 1)->first();
 
         if($find1 or $find2){
+            $profile_pic="";
+            if(!is_null($user->profile_pic)){
+               $profile_pic=url('/uploads/'.$user->profile_pic);
+            }
+           
             $message= new Messages();
             $message->user_id=$user->id;
             $message->group_id=$data['group_id'];
             $message->message=$data['message'];
             $message->ip=$_SERVER['SERVER_ADDR'];
             $message->save();
+            
+            $message['name']=$user->name;
+            $message->profile_pic=$profile_pic;
             return response()->json([ 'success' => 1, 'data'=>$message]);
         }
         return response()->json([ 'success' => 0 ]);
