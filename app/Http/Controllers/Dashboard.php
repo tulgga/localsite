@@ -76,7 +76,9 @@ class Dashboard extends Controller
               $nema_data->sos_description  ="-";
           }
           $data['n'] =$nema_data;
-          $policeChart = Dashboard_police::select(DB::raw('SUM(crime_kill) as crime_kill'),
+          $policeChart = Dashboard_police::select(DB::raw('MONTH(police_date) as month'),
+              DB::raw('DAY(police_date) as day'),
+              DB::raw('SUM(crime_kill) as crime_kill'),
               DB::raw('SUM(crime_theft) as crime_theft'),
               DB::raw('SUM(crime_movement) as crime_movement'),
               DB::raw('SUM(crime_other) as crime_other'),

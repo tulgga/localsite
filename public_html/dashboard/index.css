@@ -48,14 +48,17 @@ html, body {
     font-weight: 700;
     font-size: 30px;
     display: block;
-    line-height: 30px;
+    line-height: 40px;
 }
 .box .grid-list-item > li > .item > .title{
     font-weight: 400;
     font-size: 14px;
     display: block;
-    line-height: 16px;
+    line-height: 14px;
     word-break: break-word;
+    padding-left: 6px;
+    padding-top: 2px;
+    border-left: 4px solid transparent;
 }
 .table{
     margin: 0;

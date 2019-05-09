@@ -22,12 +22,12 @@
                     <div class="box">
                         <h1 class="title"><img src="{{asset('main/doctor.png')}}"/> <span>Эрүүл мэндийн салбар</span></h1>
                         <ul class="grid-list-item clearfix">
-                            <li><div class="item"><span class="num">{{$h!=null ?$h->birth: 0}}</span><span class="title">Төрөлт</span></div></li>
-                            <li><div class="item"><span class="num">{{$h!=null ?$h->die: 0}}</span><span class="title">Нас баралт</span></div></li>
-                            <li><div class="item"><span class="num">{{$h!=null ?$h->inspection: 0}}</span><span class="title">Үзлэг</span></div></li>
-                            <li><div class="item"><span class="num">{{$h!=null ?$h->call_near: 0}}</span><span class="title">Ойрын дуудлага</span></div></li>
-                            <li><div class="item"><span class="num">{{$h!=null ?$h->call_remote : 0 }}</span><span class="title">Холын дуудлага</span></div></li>
-                            <li><div class="item"><span class="num">{{$h!=null ?$h->ytt: 0}}</span><span class="title">ЯТТусламж</span></div></li>
+                            <li><div class="item"><span class="num">{{$h!=null ?$h->birth: 0}}</span><span class="title" style="border-color:#dc5332">Төрөлт</span></div></li>
+                            <li><div class="item"><span class="num">{{$h!=null ?$h->die: 0}}</span><span class="title" style="border-color:#567dcc">Нас баралт</span></div></li>
+                            <li><div class="item"><span class="num">{{$h!=null ?$h->inspection: 0}}</span><span class="title" style="border-color:#3d9642">Үзлэг</span></div></li>
+                            <li><div class="item"><span class="num">{{$h!=null ?$h->call_near: 0}}</span><span class="title" style="border-color:#ffab2c">Ойрын дуудлага</span></div></li>
+                            <li><div class="item"><span class="num">{{$h!=null ?$h->call_remote : 0 }}</span><span class="title" style="border-color:#999">Холын дуудлага</span></div></li>
+                            <li><div class="item"><span class="num">{{$h!=null ?$h->ytt: 0}}</span><span class="title" style="border-color:#8959a8">ЯТТусламж</span></div></li>
                         </ul>
                         <div class="clearfix"></div>
                     </div>
@@ -39,12 +39,12 @@
                             <div class="col-sm-6 pr-sm-0">
                                 <h6 style="padding: 0 15px;text-transform: uppercase;color: #ff7900;text-align: right;margin: 0 0 -13px;">Гэмт хэрэг</h6>
                                 <ul class="grid-list-item clearfix">
-                                    <li><div class="item"><span class="num">{{$p!=null ?$p->crime_kill: 0}}</span><span class="title">Хүн амь</span></div></li>
-                                    <li><div class="item"><span class="num">{{$p!=null ?$p->crime_theft: 0}}</span><span class="title">Хулгай</span></div></li>
-                                    <li><div class="item"><span class="num">{{$p!=null ?$p->crime_movement: 0}}</span><span class="title">Хөдөлгөөний аюулгүй байдал</span></div></li>
-                                    <li><div class="item"><span class="num">{{$p!=null ?$p->crime_other: 0}}</span><span class="title">Бусад</span></div></li>
+                                    <li><div class="item"><span class="num">{{$p!=null ?$p->crime_kill: 0}}</span><span class="title" style="border-color:#dc5332">Хүн амь</span></div></li>
+                                    <li><div class="item"><span class="num">{{$p!=null ?$p->crime_theft: 0}}</span><span class="title" style="border-color:#567dcc">Хулгай</span></div></li>
+                                    <li><div class="item"><span class="num">{{$p!=null ?$p->crime_movement: 0}}</span><span class="title" style="border-color:#3d9642">Хөдөлгөөний аюулгүй байдал</span></div></li>
+                                    <li><div class="item"><span class="num">{{$p!=null ?$p->crime_other: 0}}</span><span class="title" style="border-color:#ffab2c">Бусад</span></div></li>
                                 </ul>
-                                <div id="chart_div" style="width: 100%; height: 200px;"></div>
+                                <div id="policee1_chart_div" style="width: 100%; height: 200px; padding: 0 15px;"></div>
                                 <script>
                                     google.charts.load('current', {'packages':['corechart']});
                                     google.charts.setOnLoadCallback(drawVisualization);
@@ -53,25 +53,31 @@
                                         // Some raw data (not necessarily accurate)
                                         var data = google.visualization.arrayToDataTable([
                                             ['Month', 'Хүн амь', 'Хулгай', 'Хөдөлгөөний аюулгүй байдал', 'Бусад'],
-                                            ['2004/05',  165,      938,         522,             998],
-                                            ['2005/06',  135,      1120,        599,             1268],
-                                            ['2006/07',  157,      1167,        587,             807],
-                                            ['2007/08',  139,      1110,        615,             968],
-                                            ['2008/09',  136,      691,         629,             1026]
+                                            @foreach($policeChart as $p)
+                                            ['{{$p->month}} сарын {{$p->day}}', {{(int)$p->crime_kill}},{{(int)$p->crime_theft}},{{(int)$p->crime_movement}},{{(int)$p->crime_other}}],
+                                            @endforeach
                                         ]);
 
                                         var options = {
+                                            colors:['#999','#ffab2c','#3d9642','#567dcc','#dc5332'],
+                                            chartArea:{left:20,top:10,width:'100%',height:'75%'},
                                             legend:'none',
-                                            title : 'Monthly Coffee Production by Country',
                                             isStacked: true,
-                                            vAxis: {title: 'Cups'},
-                                            hAxis: {title: 'Month'},
+                                            vAxis: {textColor: '#999',gridlines:{color:'#333'},minorGridlines:{color:'#444'}},
+                                            hAxis: {textColor: '#999'},
                                             seriesType: 'bars',
-                                            series: {5: {type: 'line'}},
+                                            series: {4: {type: 'line'}},
+                                            slices: {
+                                                0: { color: '#ffab2c'},
+                                                1: { color: '#dc5332'},
+                                                2: { color: '#3d9642'},
+                                                3: { color: '#567dcc'}
+                                            },
+                                            animation:{duration:'650',easing:'Out',startup:true},
                                             backgroundColor:'transparent'
                                         };
 
-                                        var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
+                                        var chart = new google.visualization.ComboChart(document.getElementById('policee1_chart_div'));
                                         chart.draw(data, options);
                                     }
                                 </script>
@@ -79,12 +85,43 @@
                             <div class="col-sm-6 pl-sm-0">
                                 <h6 style="padding: 0 15px;text-transform: uppercase;color: #ff7900;text-align: right;margin: 0 0 -13px;">Захиргааны зөрчил</h6>
                                 <ul class="grid-list-item clearfix">
-                                    <li><div class="item"><span class="num">{{$p!=null ?$p->ac_family: 0}}</span><span class="title">Гэр бүрлийн хүчирхийлэл</span></div></li>
-                                    <li><div class="item"><span class="num">{{$p!=null ?$p->ac_healing: 0}}</span><span class="title">Эрүүлжүүлэх</span></div></li>
-                                    <li><div class="item"><span class="num">{{$p!=null ?$p->ac_arrest: 0}}</span><span class="title">Баривчлагдсан</span></div></li>
-                                    <li><div class="item"><span class="num">{{$p!=null ?$p->ac_fine: 0}}</span><span class="title">Торгууль</span></div></li>
-                                    <li><div class="item"><span class="num">{{$p!=null ?$p->ac_other: 0}}</span><span class="title">Бусад</span></div></li>
+                                    <li><div class="item"><span class="num">{{$p!=null ?$p->ac_family: 0}}</span><span class="title" style="border-color:#dc5332">Гэр бүрлийн хүчирхийлэл</span></div></li>
+                                    <li><div class="item"><span class="num">{{$p!=null ?$p->ac_healing: 0}}</span><span class="title" style="border-color:#567dcc">Эрүүлжүүлэх</span></div></li>
+                                    <li><div class="item"><span class="num">{{$p!=null ?$p->ac_arrest: 0}}</span><span class="title" style="border-color:#3d9642">Баривчлагдсан</span></div></li>
+                                    <li><div class="item"><span class="num">{{$p!=null ?$p->ac_fine: 0}}</span><span class="title" style="border-color:#ffab2c">Торгууль</span></div></li>
+                                    <li><div class="item"><span class="num">{{$p!=null ?$p->ac_other: 0}}</span><span class="title" style="border-color:#999">Бусад</span></div></li>
                                 </ul>
+                                <div id="policee2_chart_div" style="width: 100%; height: 200px; padding: 0 15px;"></div>
+                                <script>
+                                    google.charts.load('current', {'packages':['corechart']});
+                                    google.charts.setOnLoadCallback(drawVisualization);
+
+                                    function drawVisualization() {
+                                        // Some raw data (not necessarily accurate)
+                                        var data = google.visualization.arrayToDataTable([
+                                            ['Month','Бусад', 'Торгууль', 'Баривчлагдсан','Эрүүлжүүлэх', 'Гэр бүрлийн хүчирхийлэл'],
+                                                @foreach($policeChart as $p)
+                                            ['{{$p->month}} сарын {{$p->day}}',{{(int)$p->ac_other}},{{(int)$p->ac_fine}},{{(int)$p->ac_arrest}},{{(int)$p->ac_healing}}, {{(int)$p->ac_family}}],
+                                            @endforeach
+                                        ]);
+
+                                        var options = {
+                                            colors:['#999','#ffab2c','#3d9642','#567dcc','#dc5332'],
+                                            chartArea:{left:20,top:10,width:'100%',height:'75%'},
+                                            legend:'none',
+                                            isStacked: true,
+                                            vAxis: {textColor: '#999',gridlines:{color:'#333'},minorGridlines:{color:'#444'}},
+                                            hAxis: {textColor: '#999'},
+                                            seriesType: 'bars',
+                                            series: {5: {type: 'line'}},
+                                            animation:{duration:'650',easing:'Out',startup:true},
+                                            backgroundColor:'transparent'
+                                        };
+
+                                        var chart = new google.visualization.ComboChart(document.getElementById('policee2_chart_div'));
+                                        chart.draw(data, options);
+                                    }
+                                </script>
                             </div>
                         </div>
                     </div>
