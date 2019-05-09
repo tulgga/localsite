@@ -26,6 +26,13 @@ class ApiVolunteerController extends Controller
             ->groupBy('event_to_images.event_id')
             ->orderBy('events.created_at', 'desc')
             ->select('events.subject','events.content','event_to_images.image','events.started','events.ended','events.id')->paginate(10);
+        if($flg==1){
+            $events = Event::where('status', 1)->where('created_user_id', $user->id)
+            ->Join('event_to_images','event_to_images.event_id', '=','events.eid')
+            ->groupBy('event_to_images.event_id')
+            ->orderBy('events.created_at', 'desc')
+            ->select('events.subject','events.content','event_to_images.image','events.started','events.ended','events.id')->paginate(10);
+        }
         foreach($events as $key=>$val){
             $like = Event_to_like::where('event_id',$val->id)->where('user_id',$user->id)->first();
             $rate = Event_to_rating::where('event_id',$val->id)->where('user_id',$user->id)->first();
