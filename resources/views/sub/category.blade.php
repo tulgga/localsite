@@ -38,11 +38,10 @@
             				<div class="number-box">
             					<span>{{$index}}</span>
             				</div>
-            				<h2><span class="small">{{mb_substr($news->title, 0, 8)}}</span> Technology</h2>
+            				<h2> {{mb_substr($news->title, 0, 8)}}</h2>
             			</div>
             			<div class="body">
-            				<p>{{mb_substr($news->short_content, 0, 400)}}</p>
-            				<div class=""><img src="{{$img}}" alt="Graphic"></div>
+                            <p> <img src="{{$img}}"/> {{mb_substr($news->short_content, 0, 400)}}</p>
             			</div>
             		</div>
             		<?php $index= $index+1?>
