@@ -11,3 +11,45 @@ html, body {
     font-size: 12px;
     color: white;
 }
+.box{
+    background: #1c2023;
+    margin: 15px 0 0;
+}
+.box h1.title{
+    background: #ff7900;
+    text-transform: uppercase;
+    font-size: 20px;
+    padding: 5px;
+    max-height: 45px;
+    margin: 0 0 25px;
+}
+.box .title img{
+    max-height: 50px;
+    margin-bottom: -10px;
+}
+.box .title .span{}
+.box .grid-list-item{
+    list-style: none;
+    margin: 0;
+    padding: 10px;
+}
+.box .grid-list-item > li{
+    float: left;
+    padding: 5px;
+    width: 33.33333333%;
+}
+.box .grid-list-item > li > .item{
+    background: #2b2b2b;
+    color: #bababa;
+    padding: 10px;
+}
+.box .grid-list-item > li > .item > .num{
+    font-weight: 700;
+    font-size: 42px;
+    display: block;
+}
+.box .grid-list-item > li > .item > .title{
+    font-weight: 400;
+    font-size: 16px;
+    display: block;
+}

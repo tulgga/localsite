@@ -21,18 +21,59 @@
                 <div class="col-sm-3">
                     <div class="box">
                         <h1 class="title"><img src="{{asset('main/doctor.png')}}"/> <span>Эрүүл мэндийн салбар</span></h1>
-                        <ul>
-                            <li><span class="num">{{$h!=null ?$h->birth: 0}}</span><span class="title">Төрөлт</span></li>
-                            <li><span class="num">{{$h!=null ?$h->die: 0}}</span><span class="title">Нас баралт</span></li>
-                            <li><span class="num">{{$h!=null ?$h->inspection: 0}}</span><span class="title">Үзлэг</span></li>
-                            <li><span class="num">{{$h!=null ?$h->call_near: 0}}</span><span class="title">Ойрын дуудлага</span></li>
-                            <li><span class="num">{{$h!=null ?$h->call_remote : 0 }}</span><span class="title">Холын дуудлага</span></li>
-                            <li><span class="num">{{$h!=null ?$h->ytt: 0}}</span><span class="title">ЯТТусламж</span></li>
+                        <ul class="grid-list-item clearfix">
+                            <li><div class="item"><span class="num">{{$h!=null ?$h->birth: 0}}</span><span class="title">Төрөлт</span></div></li>
+                            <li><div class="item"><span class="num">{{$h!=null ?$h->die: 0}}</span><span class="title">Нас баралт</span></div></li>
+                            <li><div class="item"><span class="num">{{$h!=null ?$h->inspection: 0}}</span><span class="title">Үзлэг</span></div></li>
+                            <li><div class="item"><span class="num">{{$h!=null ?$h->call_near: 0}}</span><span class="title">Ойрын дуудлага</span></div></li>
+                            <li><div class="item"><span class="num">{{$h!=null ?$h->call_remote : 0 }}</span><span class="title">Холын дуудлага</span></div></li>
+                            <li><div class="item"><span class="num">{{$h!=null ?$h->ytt: 0}}</span><span class="title">ЯТТусламж</span></div></li>
                         </ul>
+                        <div class="clearfix"></div>
                     </div>
                 </div>
-                <div class="col-sm-6"></div>
-                <div class="col-sm-3"></div>
+                <div class="col-sm-6 p-sm-0">
+                    <div class="box">
+                        <h1 class="title"><img src="{{asset('main/police.png')}}"/> <span>Цагдаагийн газар</span></h1>
+                        <div class="row">
+                            <div class="col-sm-6 pr-sm-0">
+                                <h6 style="padding: 0 15px;text-transform: uppercase;color: #ff7900;text-align: right;margin: 0 0 -13px;">Гэмт хэрэг</h6>
+                                <ul class="grid-list-item clearfix">
+                                    <li><div class="item"><span class="num">{{$h!=null ?$h->birth: 0}}</span><span class="title">Төрөлт</span></div></li>
+                                    <li><div class="item"><span class="num">{{$h!=null ?$h->die: 0}}</span><span class="title">Нас баралт</span></div></li>
+                                    <li><div class="item"><span class="num">{{$h!=null ?$h->inspection: 0}}</span><span class="title">Үзлэг</span></div></li>
+                                    <li><div class="item"><span class="num">{{$h!=null ?$h->call_near: 0}}</span><span class="title">Ойрын дуудлага</span></div></li>
+                                    <li><div class="item"><span class="num">{{$h!=null ?$h->call_remote : 0 }}</span><span class="title">Холын дуудлага</span></div></li>
+                                    <li><div class="item"><span class="num">{{$h!=null ?$h->ytt: 0}}</span><span class="title">ЯТТусламж</span></div></li>
+                                </ul>
+                            </div>
+                            <div class="col-sm-6 pl-sm-0">
+                                <h6 style="padding: 0 15px;text-transform: uppercase;color: #ff7900;text-align: right;margin: 0 0 -13px;">Захиргааны зөрчил</h6>
+                                <ul class="grid-list-item clearfix">
+                                    <li><div class="item"><span class="num">{{$h!=null ?$h->birth: 0}}</span><span class="title">Төрөлт</span></div></li>
+                                    <li><div class="item"><span class="num">{{$h!=null ?$h->die: 0}}</span><span class="title">Нас баралт</span></div></li>
+                                    <li><div class="item"><span class="num">{{$h!=null ?$h->inspection: 0}}</span><span class="title">Үзлэг</span></div></li>
+                                    <li><div class="item"><span class="num">{{$h!=null ?$h->call_near: 0}}</span><span class="title">Ойрын дуудлага</span></div></li>
+                                    <li><div class="item"><span class="num">{{$h!=null ?$h->call_remote : 0 }}</span><span class="title">Холын дуудлага</span></div></li>
+                                    <li><div class="item"><span class="num">{{$h!=null ?$h->ytt: 0}}</span><span class="title">ЯТТусламж</span></div></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="box">
+                        <h1 class="title"><img src="{{asset('main/emergency.png')}}"/> <span>Онцгой байдлын газар</span></h1>
+                        <ul class="grid-list-item clearfix">
+                            <li><div class="item"><span class="num">{{$h!=null ?$h->birth: 0}}</span><span class="title">Төрөлт</span></div></li>
+                            <li><div class="item"><span class="num">{{$h!=null ?$h->die: 0}}</span><span class="title">Нас баралт</span></div></li>
+                            <li><div class="item"><span class="num">{{$h!=null ?$h->inspection: 0}}</span><span class="title">Үзлэг</span></div></li>
+                            <li><div class="item"><span class="num">{{$h!=null ?$h->call_near: 0}}</span><span class="title">Ойрын дуудлага</span></div></li>
+                            <li><div class="item"><span class="num">{{$h!=null ?$h->call_remote : 0 }}</span><span class="title">Холын дуудлага</span></div></li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </body>
