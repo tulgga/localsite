@@ -288,7 +288,7 @@ body{
     top: 0;
     left: 0;
     list-style: none;
-    background-color: #fbfbfb;
+    background-color: #f9f9f9;
     background-clip: padding-box;
     border-radius: 3px;
     visibility: hidden;
@@ -297,7 +297,6 @@ body{
     height: 0;
     opacity: 0;
     transition: all 450ms cubic-bezier(.485,.075,.12,.855);
-    box-shadow: 1px 1px 5px rgba(0,0,0,0.1);
 }
 .header-menu .dropdown-menu > li > ul .dropdown:hover > ul{
     visibility: visible;
