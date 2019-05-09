@@ -1723,7 +1723,7 @@ h3.head.iltod span{
     content: "";
     width: 9px;
     height: 9px;
-    background-color: #007b;
+    background-color: #262b49;
     border-radius: 9px;
     box-shadow: 0px 0px 2px 8px #f7f7f7;
   }
@@ -1799,7 +1799,7 @@ h3.head.iltod span{
 @media (min-width: 1000px) {
   #timeline .demo-card {
     max-width: 450px;
-    height: 400px;
+    height: 290px;
     margin: 90px;
     margin-top: 45px;
     margin-bottom: 45px;
@@ -1811,7 +1811,7 @@ h3.head.iltod span{
     border-left-width: 15px;
     border-left-style: solid;
     left: 100%;
-    color: #006cff;
+    color: #262b49;
   }
   #timeline .demo-card:nth-child(odd) .head::before {
     left: 491.5px;
@@ -1823,7 +1823,7 @@ h3.head.iltod span{
     border-right-width: 15px !important;
     border-right-style: solid !important;
     right: 100% !important;
-    color: #006cff;
+    color: #262b49;
   }
   #timeline .demo-card:nth-child(even) .head::before {
     right: 489.5px !important;
@@ -1839,7 +1839,7 @@ h3.head.iltod span{
   align-items: center;
   color: #fff;
   font-weight: 400;
-  background: #006CFF;
+  background: #262b49;
 }
 
 #timeline .demo-card .head .number-box {
