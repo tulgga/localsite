@@ -126,6 +126,7 @@ Route::namespace('Api')->group(function (){
     Route::get('zarCategory','ApiZarCategoryController@zarCategory');
     //Зарыг 20 бичлэгээр хуудаслаж авна
     Route::get('zarByCategoryId/{id}','ApiZarController@zarByCategoryId');
+    Route::get('zarByCategoryId/{id}/{site_id}','ApiZarController@zarByCategoryId');
 
     Route::get('zarSingle/{id}','ApiZarController@zarSingle');
 
