@@ -57,6 +57,7 @@ Route::middleware('auth:api')->namespace('Api')->group(function () {
     Route::get('logOut', 'ApiUserController@logOut');
 
     //Volunteer
+    Route::get('eventslist','ApiVolunteerController@eventslist');
     Route::post('event_like','ApiVolunteerController@event_like');
     Route::post('event_rate','ApiVolunteerController@event_rate');
 

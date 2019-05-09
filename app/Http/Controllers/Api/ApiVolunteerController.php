@@ -7,12 +7,34 @@ use App\Event;
 use App\Event_to_like;
 use App\Event_to_image;
 use App\Event_to_rating;
+use Illuminate\Support\Facades\Auth;
 
 class ApiVolunteerController extends Controller
 {
     public function eventslist(){
-        $events = Event::where('status', 1)->Join('event_to_images','event_to_images.event_id', '=','events.eid')->groupBy('event_to_images.event_id')->orderBy('events.created_at', 'desc')->select('events.subject','events.content','event_to_images.image','events.started','events.ended','events.id')->get();
-        return response()->json($events);
+        if(Auth::user()){
+            $events = Event::where('status', 1)
+                ->Join('event_to_images','event_to_images.event_id', '=','events.eid')
+                ->groupBy('event_to_images.event_id')
+                ->orderBy('events.created_at', 'desc')
+                ->select('events.subject','events.content','event_to_images.image','events.started','events.ended','events.id')->paginate(10);
+            foreach($events as $key=>$val){
+                $like = Event_to_like::where('event_id',$val->id)->where('user_id',Auth::user()->id)->first();
+                if($like){
+                    $events[$key]->isliked = 1;
+                }else{
+                    $events[$key]->isliked = 0;
+                }
+            }
+        }else{
+            $events = Event::where('status', 1)
+                ->Join('event_to_images','event_to_images.event_id', '=','events.eid')
+                ->groupBy('event_to_images.event_id')
+                ->orderBy('events.created_at', 'desc')
+                ->select('events.subject','events.content','event_to_images.image','events.started','events.ended','events.id')->paginate(10);
+
+        }
+        return response()->json(['success'=>$events]);
     }
     public function event($id){
         $event = Event::select('*')->where('id',$id)->first();
