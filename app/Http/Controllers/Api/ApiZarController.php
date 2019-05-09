@@ -20,10 +20,14 @@ class ApiZarController extends Controller
         return response()->json(['success' => $zar]);
     }
 
-    public function zarByCategoryId($id){
+    public function zarByCategoryId($id=0, $site_id=0){
         $childs=Zar_category::where('parent_id', $id)->get();
-
-        $zar=Zar::select('zar.*', DB::raw('CONCAT("'.env('APP_URL').'", "/uploads/", zar.image) AS image'), 'zar_category.name as category')->join('zar_category', 'zar_category.id', '=', 'zar.cat_id');
+        $zar=Zar::select('zar.*', DB::raw('CONCAT("'.env('APP_URL').'", "/uploads/", zar.image) AS image'), 'zar_category.name as category')
+            ->join('zar_category', 'zar_category.id', '=', 'zar.cat_id');
+        
+        if($site_id!=0){
+            $zar=$zar->where('zar.site_id', $site_id);
+        }
 
         if(count($childs)>0){
             foreach ($childs as $child): $ids[]=$child->id; endforeach;
