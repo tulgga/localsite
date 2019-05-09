@@ -31,6 +31,7 @@ Route::middleware('auth:api')->namespace('Api')->group(function () {
     Route::get('messages/{group_id}', 'ApiGroupController@messages');
 
     Route::get('userInfo', 'ApiUserController@userInfo');
+    Route::get('urgudul_me', 'ApiUserController@urgudul');
 
 
     Route::post('userInfoUpdate', 'ApiUserController@userInfoUpdate');
