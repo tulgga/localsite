@@ -4,423 +4,218 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         @yield('meta')
-        <link rel="stylesheet" href="{{ asset('main/zar/css/bootstrap.min.css')}}">
+        <link rel="stylesheet" href="{{ asset('dashboard/bootstrap.min.css')}}">
         <script src="{{ asset('main/zar/js/jquery-3.2.1.min.js') }}"></script>
         <script src="{{ asset('main/zar/js/popper.js') }}"></script>
         <script src="{{ asset('main/zar/js/bootstrap.min.js') }}"></script>
         <link href="{{ asset('/dashboard/index.css') }}" rel="stylesheet" type="text/css">
 
-        <script src="https://www.amcharts.com/lib/4/core.js"></script>
-        <script src="https://www.amcharts.com/lib/4/charts.js"></script>
-        <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
-
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <title>DASHBOARD</title>
-        <style>
-            #nema_chart, #police_chart, #hospital_chart {
-                width: 100%;
-                height: 200px;
-                color: #fff !important;
-            }
 
-        </style>
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700&amp;subset=cyrillic,cyrillic-ext,latin-ext" rel="stylesheet">
     </head>
-    <body class="full-height mh-100 mw-100">
+    <body class="full-height">
         <div class="col-sm-12">
-            <div class="h-auto item_cell row">
-                <div class="h-auto item_cell col-sm-1">
-                    <div class="h-100 child third" style="text-align: center">
-                        <img src="{{ asset('uploads/'.$site->favicon) }}" style="width: 50%;">
-
-                        <p class="count">
-                            <br/>
-                            <br/>
-                            <br/>
-                            {{$today_md}}
-                        </p>
-                        <h1 class="title">Өнөөдөр</h1>
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="box">
+                        <h1 class="title"><img src="{{asset('main/doctor.png')}}"/> <span>Эрүүл мэндийн салбар</span></h1>
+                        <ul class="grid-list-item clearfix">
+                            <li><div class="item"><span class="num">{{$h!=null ?$h->birth: 0}}</span><span class="title">Төрөлт</span></div></li>
+                            <li><div class="item"><span class="num">{{$h!=null ?$h->die: 0}}</span><span class="title">Нас баралт</span></div></li>
+                            <li><div class="item"><span class="num">{{$h!=null ?$h->inspection: 0}}</span><span class="title">Үзлэг</span></div></li>
+                            <li><div class="item"><span class="num">{{$h!=null ?$h->call_near: 0}}</span><span class="title">Ойрын дуудлага</span></div></li>
+                            <li><div class="item"><span class="num">{{$h!=null ?$h->call_remote : 0 }}</span><span class="title">Холын дуудлага</span></div></li>
+                            <li><div class="item"><span class="num">{{$h!=null ?$h->ytt: 0}}</span><span class="title">ЯТТусламж</span></div></li>
+                        </ul>
+                        <div class="clearfix"></div>
                     </div>
                 </div>
+                <div class="col-sm-6 p-sm-0">
+                    <div class="box">
+                        <h1 class="title"><img src="{{asset('main/police.png')}}"/> <span>Цагдаагийн газар</span></h1>
+                        <div class="row">
+                            <div class="col-sm-6 pr-sm-0">
+                                <h6 style="padding: 0 15px;text-transform: uppercase;color: #ff7900;text-align: right;margin: 0 0 -13px;">Гэмт хэрэг</h6>
+                                <ul class="grid-list-item clearfix">
+                                    <li><div class="item"><span class="num">{{$p!=null ?$p->crime_kill: 0}}</span><span class="title">Хүн амь</span></div></li>
+                                    <li><div class="item"><span class="num">{{$p!=null ?$p->crime_theft: 0}}</span><span class="title">Хулгай</span></div></li>
+                                    <li><div class="item"><span class="num">{{$p!=null ?$p->crime_movement: 0}}</span><span class="title">Хөдөлгөөний аюулгүй байдал</span></div></li>
+                                    <li><div class="item"><span class="num">{{$p!=null ?$p->crime_other: 0}}</span><span class="title">Бусад</span></div></li>
+                                </ul>
+                                <div id="chart_div" style="width: 100%; height: 200px;"></div>
+                                <script>
+                                    google.charts.load('current', {'packages':['corechart']});
+                                    google.charts.setOnLoadCallback(drawVisualization);
 
+                                    function drawVisualization() {
+                                        // Some raw data (not necessarily accurate)
+                                        var data = google.visualization.arrayToDataTable([
+                                            ['Month', 'Хүн амь', 'Хулгай', 'Хөдөлгөөний аюулгүй байдал', 'Бусад'],
+                                            ['2004/05',  165,      938,         522,             998],
+                                            ['2005/06',  135,      1120,        599,             1268],
+                                            ['2006/07',  157,      1167,        587,             807],
+                                            ['2007/08',  139,      1110,        615,             968],
+                                            ['2008/09',  136,      691,         629,             1026]
+                                        ]);
 
-                <div class="h-auto item_cell col-sm-4">
-                    <div class="h-100 child first">
-                        <h1 class="title">Эрүүл мэндийн төв - {{$h !=null ? (int)$h->total : 0}}</h1>
-                        <div id="hospital_chart"></div>
-                    </div>
-                </div>
+                                        var options = {
+                                            legend:'none',
+                                            title : 'Monthly Coffee Production by Country',
+                                            isStacked: true,
+                                            vAxis: {title: 'Cups'},
+                                            hAxis: {title: 'Month'},
+                                            seriesType: 'bars',
+                                            series: {5: {type: 'line'}},
+                                            backgroundColor:'transparent'
+                                        };
 
-                <div class="h-auto item_cell col-sm-4">
-                    <div class="h-100 child second">
-                        <h1 class="title">Цагдаагийн газар - {{$p !=null ? (int)$p->total : 0}} <font color="white" class="float-right">/ Гэмт хэрэг /</font></h1>
-                        <div class='col-sm' id='item1'>
-                            <table class="table">
-                                <tbody>
-                                <tr><th scope="row">Хүн амь</th><td>{{$p!=null ?$p->crime_kill: 0}}</td></tr>
-                                <tr><th scope="row">Хулгай </th><td>{{$p!=null ?$p->crime_theft: 0}}</td></tr>
-                                <tr><th scope="row">Хөдөлгөөний аюулгүй байдал </th><td>{{$p!=null ?$p->crime_movement: 0}}</td></tr>
-                                <tr><th scope="row">Бусад </th><td>{{$p!=null ?$p->crime_other: 0}}</td></tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div id="police_chart"></div>
-                    </div>
-                </div>
-
-                <div class="h-auto item_cell col-sm-3">
-                    <div class="h-100 child third">
-                        <h1 class="title">Онцгой байдлын газар - {{$n !=null ? (int)$n->total : 0}}</h1>
-                        <div id="nema_chart"></div>
-                    </div>
-                </div>
-
-
-            </div>
-            <div class="h-40 item_cell row">
-                <div class="h-auto item_cell col-sm-3">
-                    <div class="h-100 child fourth">
-                        <h1 class="title">Дэлгэрэнгүй мэдээлэл</h1>
-                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <div class='col-sm' id='item1'>
-                                        <table class="table">
-                                            <thead>
-                                            <tr>
-                                                <th scope="col" colspan="2">Цагдаагийн газар(Гэмт хэрэг)</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr><th scope="row">Хүн амь</th><td>{{$p!=null ?$p->crime_kill: 0}}</td></tr>
-                                            <tr><th scope="row">Хулгай </th><td>{{$p!=null ?$p->crime_theft: 0}}</td></tr>
-                                            <tr><th scope="row">Хөдөлгөөний аюулгүй байдал </th><td>{{$p!=null ?$p->crime_movement: 0}}</td></tr>
-                                            <tr><th scope="row">Бусад </th><td>{{$p!=null ?$p->crime_other: 0}}</td></tr>
-                                            <tr><th></th><td>-</td></tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-
-                                <div class="carousel-item">
-                                    <div class='col-sm' id='item2'>
-                                        <table class="table">
-                                            <thead>
-                                            <tr>
-                                                <th scope="col" colspan="2">Цагдаагийн газар(Захиргааны зөрчил)</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr><th scope="row">Гэр бүрлийн хүчирхийлэл </th><td>{{$p!=null ?$p->ac_family: 0}}</td></tr>
-                                            <tr><th scope="row">Эрүүлжүүлэх</th><td>{{$p!=null ?$p->ac_healing: 0}}</td></tr>
-                                            <tr><th scope="row">Баривчлагдсан </th><td>{{$p!=null ?$p->ac_arrest: 0}}</td></tr>
-                                            <tr><th scope="row">Торгууль </th><td>{{$p!=null ?$p->ac_fine: 0}}</td></tr>
-                                            <tr><th scope="row">Бусад </th><td>{{$p!=null ?$p->ac_other: 0}}</td></tr>
-                                            </tbody>
-                                        </table>
-
-                                    </div>
-                                </div>
-
-                                <div class="carousel-item">
-                                    <div class='col-sm' id='item3'>
-                                        <table class="table">
-                                            <thead><tr><th scope="col" colspan="2">Эрүүл мэндийн төв</th></tr></thead>
-                                            <tbody>
-                                            <tr><th scope="row">Төрсөн хүний тоо</th><td>{{$h!=null ?$h->birth: 0}}</td></tr>
-                                            <tr><th scope="row">Нас барсан хүний тоо</th><td>{{$h!=null ?$h->die: 0}}</td></tr>
-                                            <tr><th scope="row">Урьдчилан сэргийлэх үзлэг </th><td>{{$h!=null ?$h->inspection: 0}}</td></tr>
-                                            <tr><th scope="row">Яаралтай тусламжийн төвөөр </th><td>{{$h!=null ?$h->ytt: 0}}</td></tr>
-                                            <tr><th scope="row">Дуудлага ойр/алсын </th><td>{{$h!=null ?$h->call_near: 0}}/{{$h!=null ?$h->call_remote : 0 }}</td></tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-
-                                <div class="carousel-item">
-                                    <div class='col-sm' id='item4'>
-                                        <table class="table">
-                                            <thead><tr><th scope="col" colspan="2">Онцгой байдлын газар</th></tr></thead>
-                                            <tbody>
-                                            <tr><th scope="row">Түймэр</th><td></td></tr>
-                                            <tr><th scope="row">Ойн хээрийн</th><td>{{$n!=null ?$n->fo: 0}}</td></tr>
-                                            <tr><th scope="row">объектын</th><td>{{$n!=null ?$n->ff: 0}}</td></tr>
-                                            <tr><th scope="row">Аюул үзэгдэл, ослын дуудлага</th><td>{{$n!=null ?$n->sos: 0}}</td></tr>
-                                            <tr><th scope="row" colspan="2">{{$n!=null ? $n->sos_description : ''}}</th></tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
+                                        var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
+                                        chart.draw(data, options);
+                                    }
+                                </script>
+                            </div>
+                            <div class="col-sm-6 pl-sm-0">
+                                <h6 style="padding: 0 15px;text-transform: uppercase;color: #ff7900;text-align: right;margin: 0 0 -13px;">Захиргааны зөрчил</h6>
+                                <ul class="grid-list-item clearfix">
+                                    <li><div class="item"><span class="num">{{$p!=null ?$p->ac_family: 0}}</span><span class="title">Гэр бүрлийн хүчирхийлэл</span></div></li>
+                                    <li><div class="item"><span class="num">{{$p!=null ?$p->ac_healing: 0}}</span><span class="title">Эрүүлжүүлэх</span></div></li>
+                                    <li><div class="item"><span class="num">{{$p!=null ?$p->ac_arrest: 0}}</span><span class="title">Баривчлагдсан</span></div></li>
+                                    <li><div class="item"><span class="num">{{$p!=null ?$p->ac_fine: 0}}</span><span class="title">Торгууль</span></div></li>
+                                    <li><div class="item"><span class="num">{{$p!=null ?$p->ac_other: 0}}</span><span class="title">Бусад</span></div></li>
+                                </ul>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="h-auto item_cell col-sm-4">
-                    <div class="h-100 child first">
-                        <div><h1 class="title">Цагийн хуваарь</h1></div>
-                        <div class="row">
+                <div class="col-sm-3">
+                    <div class="box">
+                        <h1 class="title"><img src="{{asset('main/emergency.png')}}"/> <span>Онцгой байдлын газар</span></h1>
+                        <ul class="grid-list-item clearfix">
+                            <li><div class="item"><span class="num">{{$n!=null ?$n->fo: 0}}</span><span class="title">Ойн хээрийн түймэр</span></div></li>
+                            <li><div class="item"><span class="num">{{$n!=null ?$n->ff: 0}}</span><span class="title">Ообъектын түймэр</span></div></li>
+                            <li><div class="item"><span class="num">{{$n!=null ?$n->sos: 0}}</span><span class="title">Аюул ослын дуудлага</span></div></li>
+                            <li><div class="item"><span class="num">{{$n !=null ? (int)$n->total : 0}}</span><span class="title">Нийт дуудлага</span></div></li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-6 p-sm-0">
+                    <div class="box" style="padding: 15px;">
+                        <h1 class="title"><span>Төсөв, санхүү</span></h1>
+                            <div id="tosovchart" class="carousel slide" data-ride="carousel">
+                                <div class="carousel-inner">
+                                    <?php $i=1; ?>
+                                    @foreach($budgets as $budget)
+                                        @if($i==1 || $i==3)
+                                            <div class="carousel-item @if($i==1) active @endif">
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        @endif
+                                                        <div style="width:100%;height: 200px;" id="tusuvchart_{{$budget->id}}"></div>
+                                                        <script type="text/javascript">
+                                                            google.charts.load("current", {packages:["corechart"]});
+                                                            google.charts.setOnLoadCallback(drawChart_{{$budget->id}});
+                                                            function drawChart_{{$budget->id}}() {
+                                                                var data_{{$budget->id}} = google.visualization.arrayToDataTable([
+                                                                    ['Tesk', 'Amount'],
+                                                                    ['Өссөн /сар/', {{$budget->monthUp}}],
+                                                                    ['Үлдэгдэл',  {{$budget->b_do}}],
+                                                                    ['Хийгдсэн', {{$budget->b_done}}],
+                                                                    ['Гүйцэтгэл', {{$budget->b_doing}}]
 
-                            @foreach($owner_schedule as $schedule)
-                                <table class="table col-sm-6 border_none " >
+                                                                ]);
+                                                                var options_{{$budget->id}} = {
+                                                                    legend: 'none',
+                                                                    is3D:'true',
+                                                                    chartArea: {
+                                                                        left:0,
+                                                                        top:0,
+                                                                        width:'100%',
+                                                                        height:'100%'
+                                                                    },
+                                                                    width:'100%',
+                                                                    slices: {
+                                                                        0: { color: '#ffab2c'},
+                                                                        1: { color: '#dc5332' ,offset: '0.05'},
+                                                                        2: { color: '#3d9642' ,offset: '0.05'},
+                                                                        3: { color: '#567dcc' ,offset: '0.05'}
+                                                                    },
+                                                                    backgroundColor:'transparent'
+                                                                };
+
+                                                                var chart_{{$budget->id}} = new google.visualization.PieChart(document.getElementById('tusuvchart_{{$budget->id}}'));
+                                                                chart_{{$budget->id}}.draw(data_{{$budget->id}}, options_{{$budget->id}});
+                                                            }
+                                                        </script>
+                                                        @if($i==1 || $i==3)
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        @endif
+                                                        @if($i==2 || $i==4)
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endif
+                                        <?php $i++; ?>
+                                    @endforeach
+                                </div>
+                            </div>
+                            @if($budgets)
+                                <table class="table">
                                     <thead>
                                     <tr>
-                                        <th style="text-align: left; padding: 10px">{{$schedule['date']}}</th>
+                                        <th></th>
+                                        @foreach($budgets as $budget)
+                                            @if($budget->b_type==1)
+                                                <th scope="col">Улсын</th>
+                                            @elseif($budget->b_type==2)
+                                                <th scope="col">ОНХС</th>
+                                            @elseif($budget->b_type==3)
+                                                <th scope="col">Замын сан</th>
+                                            @elseif($budget->b_type==4)
+                                                <th scope="col">ЗД-ын нөөц</th>
+                                            @endif
+                                        @endforeach
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($schedule['data'] as $row)
-                                        <tr>
-                                            <td>
-                                                {{$row->start_time}} - {{$row->end_time}} <br/>
-                                                {{$row->description}}
-                                            </td>
-                                        </tr>
-                                    @endforeach
+                                    <tr style="color: #ccc;">
+                                        <th scope="row">Батлагдсан /жил/</th>
+                                        @foreach($budgets as $budget)
+                                            <td>{{$budget->b_approved}}</td>
+                                        @endforeach
+                                    </tr>
+                                    <tr style="color: #ffab2c;"><th scope="row">Өссөн /сар/</th>
+                                        @foreach($budgets as $budget)
+                                            <td>{{$budget->monthUp}}</td>
+                                        @endforeach
+                                    </tr>
+                                    <tr style="color: #567dcc;"><th scope="row">Гүйцэтгэл</th>
+                                        @foreach($budgets as $budget)
+                                            <td>{{$budget->b_doing}}</td>
+                                        @endforeach
+                                    </tr>
+                                    <tr style="color:#3d9642;"><th scope="row">Хийгдсэн</th>
+                                        @foreach($budgets as $budget)
+                                            <td>{{$budget->b_done}}</td>
+                                        @endforeach</tr>
+                                    <tr style="color:#dc5332;"><th scope="row">Үлдэгдэл</th>
+                                        @foreach($budgets as $budget)
+                                            <td>{{$budget->b_do}}</td>
+                                        @endforeach
+                                    </tr>
                                     </tbody>
                                 </table>
-                            @endforeach
-                        </div>
+                            @endif
                     </div>
                 </div>
-
-                <div class="h-auto item_cell col-sm-5">
-                    @if($budgets)
-                        <table class="table h-100 child first">
-                            <thead>
-                            <tr><th colspan="5"><h1 class="title">Төсөв</h1></th></tr>
-                                <tr>
-                                    <th></th>
-                                    <th scope="col">Батлагдсан</th>
-                                    <th scope="col">Зарцуулагдсан</th>
-                                    <th scope="col">Хэрэгжиж байгаа</th>
-                                    <th scope="col">Үлдэгдэл</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($budgets as $budget)
-                                <tr>
-                                    <th scope="row">
-                                        @if($budget!=null)
-                                            @if($budget->b_type==1)
-                                                Улсын
-                                            @elseif($budget->b_type==2)
-                                                ОНХС
-                                            @elseif($budget->b_type==3)
-                                                Замын сан
-                                            @elseif($budget->b_type==4)
-                                                ЗД-ын нөөц
-                                            @else
-                                                Төсвийн нэр
-                                            @endif
-                                        @else
-                                            Төсвийн нэр
-                                        @endif
-                                    </th>
-                                    <td>{{$budget!=null ? $budget->b_approved : 0}}</td>
-                                    <td>{{$budget!=null ? $budget->b_done : 0}}</td>
-                                    <td>{{$budget!=null ? $budget->b_doing : 0}}</td>
-                                    <td>{{$budget!=null ? $budget->b_do : 0}}</td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                    @endif
-                </div>
-
-
-
-            </div>
-            <div class="h-30 item_cell row">
-
-                <div class="h-auto item_cell col-sm-6">
-                    <div class="child second">
-                        <h1 class="title"> ЭВЭНТ</h1>
-                        @if($t)
-                            <div id="carouselEvent" class="carousel slide" data-ride="carousel">
-                                <div class="carousel-inner">
-                                    @foreach($t as $i)
-                                        @if($i->id == $t[0]->id)
-                                            <div class="carousel-item {{$i->id==$t[0]->id ? 'active' : ''}}">
-                                                <div class='row'>
-                                                    <div class='col-sm' id='item1{{$i->id}}'>
-                                                        <h3 class="button_desc">{{$i->description}} </h3>
-                                                        <button class="button_left">
-                                                            @if($i->head_id==4)
-                                                                <p>ХДТ</p>
-                                                            @elseif($i->head_id==5)
-                                                                <p>Тэмүжин театр</p>
-                                                            @elseif($i->head_id==6)
-                                                                <p>Баганат талбайд</p>
-                                                            @elseif($i->head_id==7)
-                                                                <p>ЗДТГын зааланд</p>
-                                                            @elseif($i->head_id==8)
-                                                                <p>Сумын ЗДТГын зааланд</p>
-                                                            @elseif($i->head_id==9)
-                                                                <p>Бусад</p>
-                                                            @else
-                                                                <p>-</p>
-                                                            @endif
-                                                        </button>
-                                                        <button class="button_right">
-                                                            {{$i->schedule_date}}
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @else
-                                            <div class="carousel-item">
-                                                <div class='row'>
-                                                    <div class='col-sm' id='item1'>
-                                                        <h3 class="button_desc">{{$i->description}} </h3>
-                                                        <button class="button_left">
-                                                            @if($i->head_id==4)
-                                                                <p>ХДТ</p>
-                                                            @elseif($i->head_id==5)
-                                                                <p>Тэмүжин театр</p>
-                                                            @elseif($i->head_id==6)
-                                                                <p>Баганат талбайд</p>
-                                                            @elseif($i->head_id==7)
-                                                                <p>ЗДТГын зааланд</p>
-                                                            @elseif($i->head_id==8)
-                                                                <p>Сумын ЗДТГын зааланд</p>
-                                                            @elseif($i->head_id==9)
-                                                                <p>Бусад</p>
-                                                            @else
-                                                                <p>-</p>
-                                                            @endif
-                                                        </button>
-                                                        <button class="button_right">
-                                                            {{$i->schedule_date}}
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @endif
-                                    @endforeach
-                                </div>
-                            </div>
-                        @endif
-                    </div>
-                </div>
-                <div class="h-auto item_cell col-sm-6">
-                    <div class="child second">
-                        @if(count($news)>0)
-                            <h1 class="title"> Цаг үеийн асуудал</h1>
-                            <div id="carouselNews" class="carousel slide" data-ride="carousel">
-                                <div class="carousel-inner">
-                                    @foreach($news as $i)
-                                        @if($i->id == $news[0]->id)
-                                            <div class="carousel-item {{$i->id==$news[0]->id ? 'active' : ''}}">
-                                                <div class='row'>
-                                                    <div class='col-sm' id='item_news_{{$i->id}}'>
-                                                        <h3 class="button_desc">{{$i->desc}} </h3>
-                                                        <button class="button_left">
-                                                            @if($i->created_type==1)
-                                                                <p>Цагдаа</p>
-                                                            @elseif($i->created_type==2)
-                                                                <p>эрүүл мэнд</p>
-                                                            @elseif($i->created_type==3)
-                                                                <p>Онцгой</p>
-                                                            @else
-                                                                <p>-</p>
-                                                            @endif
-                                                        </button>
-                                                        <button class="button_right">
-                                                            {{$i->created_at}}
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @else
-                                            <div class="carousel-item">
-                                                <div class='row'>
-                                                    <div class='col-sm' id='item_news_{{$i->id}}'>
-                                                        <h3 class="button_desc">{{$i->desc}} </h3>
-                                                        <button class="button_left">
-                                                            @if($i->created_type==1)
-                                                                <p>Цагдаа</p>
-                                                            @elseif($i->created_type==2)
-                                                                <p>эрүүл мэнд</p>
-                                                            @elseif($i->created_type==3)
-                                                                <p>Онцгой</p>
-                                                            @else
-                                                                <p>-</p>
-                                                            @endif
-                                                        </button>
-                                                        <button class="button_right">{{$i->created_at}}</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @endif
-                                    @endforeach
-                                </div>
-                            </div>
-                        @endif
-                    </div>
-                </div>
+                <div class="col-sm-3"></div>
             </div>
         </div>
-
-        <script>
-            am4core.ready(function() {
-                var chart = am4core.create("police_chart", am4charts.XYChart);
-                chart.paddingRight = 0;
-                chart.data = <?=json_encode($chart_data)?>;
-
-                // Create axes
-                var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
-                dateAxis.renderer.grid.template.location = 0;
-                dateAxis.renderer.minGridDistance = 50;
-
-                var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-
-                var series = chart.series.push(new am4charts.LineSeries());
-                series.dataFields.valueY = "police_count";
-                series.dataFields.dateX = "date";
-                series.strokeWidth = 3;
-                series.fillOpacity = 0.5;
-            });
-        </script>
-
-        <script>
-            am4core.ready(function() {
-                var chart = am4core.create("hospital_chart", am4charts.XYChart);
-                chart.paddingRight = 0;
-                chart.data = <?=json_encode($chart_data)?>;
-
-                // Create axes
-                var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
-                dateAxis.renderer.grid.template.location = 0;
-                dateAxis.renderer.minGridDistance = 50;
-
-                var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-
-                var series = chart.series.push(new am4charts.LineSeries());
-                series.dataFields.valueY = "hospital_count";
-                series.dataFields.dateX = "date";
-                series.strokeWidth = 3;
-                series.fillOpacity = 0.5;
-            });
-        </script>
-
-        <script>
-            am4core.ready(function() {
-                var chart = am4core.create("nema_chart", am4charts.XYChart);
-                chart.paddingRight = 0;
-                chart.color = am4core.color("white");
-                chart.data = <?=json_encode($chart_data)?>;
-
-                // Create axes
-                var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
-                dateAxis.renderer.grid.template.location = 0;
-                dateAxis.renderer.minGridDistance = 50;
-
-                var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-
-                var series = chart.series.push(new am4charts.LineSeries());
-                series.dataFields.valueY = "nema_count";
-                series.dataFields.dateX = "date";
-                series.strokeWidth = 3;
-                series.fillOpacity = 0.5;
-            });
-        </script>
     </body>
 </html>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Hashing\BcryptHasher;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Urgudul;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use phpseclib\Crypt\Hash;
@@ -206,6 +207,15 @@ class ApiUserController extends Controller
         $user->new_phone_verify=null;
         $user->save();
         return response()->json(['success' => 1, 'message' => 'Амжилттай']);
+    }
+    
+    public function urgudul(){
+        $user = Auth::user();
+        
+        $urgudul=Urgudul::where('user_id', $user->id)->orderBy('created_at', 'desc')->paginate(40);
+        return response()->json(
+            ['success'=>$urgudul]
+        );
     }
 
 

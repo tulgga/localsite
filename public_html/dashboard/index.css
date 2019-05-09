@@ -1,101 +1,70 @@
+*{
+    font-family: 'Roboto Condensed' !important;
+    padding: 0;
+    margin: 0;
+}
 html, body {
     height: 100%;
     width: 100%;
     margin: 0;
-    background-color: #1e1e2f;
+    background-color: #010101;
     font-size: 12px;
     color: white;
 }
-
-.full-height {
-    background-color: #1e1e2f;
-    height: 100%;
+.box{
+    background: #1c2023;
+    margin: 15px 0 0;
 }
-
-.item_cell{
-    padding: 5px;
-}
-
-.item_cell .child{
-    padding: 0.5rem;
-    word-wrap: break-word;
-    background-color: #27293d;
-
-    border: 1px solid #23282c;
-    border-radius: .25rem;
-}
-
-.item_cell .child .count{
-    line-height: 1.4em;
-    color: #fff;
-    font-weight: 100;
-    margin-bottom: 0px;
-    position: relative;
-    right: 0px;
-}
-.item_cell .child .title{
-    color: #9a9a9a;
-    font-weight: 600;
-    font-size: 16px;
+.box h1.title{
+    background: #ff7900;
     text-transform: uppercase;
-}
-
-#carouselExampleIndicators h1{
-    font-size: 10px;
-    line-height: 10px;
-    color: white;
-}
-
-table{
-    font-size: 10px;
-    line-height: 10px;
-    color: white !important;
-}
-
-table thead,
-table thead th{
-    border:none !important;
-}
-table tr td{
-    color: white !important;
-    text-align: center;
+    font-size: 18px;
     padding: 5px;
+    max-height: 40px;
+    margin: 0 0 10px;
 }
-.border_none tr th,
-.border_none tr,
-.border_none tr td{
-    border: none;
+.box .title img{
+    max-height: 40px;
+    margin-bottom: -10px;
+}
+.box .title .span{}
+.box .grid-list-item{
+    list-style: none;
+    margin: 0;
+    padding: 10px;
+}
+.box .grid-list-item > li{
+    float: left;
     padding: 5px;
+    width: 33.33333333%;
 }
-
-table td{
-    font-size: 10px !important;
-    font-weight: 300 !important;
-    text-align: left !important;
+.box .grid-list-item > li > .item{
+    background: #2b2b2b;
+    color: #bababa;
+    padding: 5px 8px;
+    height: 88px;
 }
-
-.button_desc {
-    font-size: 10px;
-    color: #fff;
-    border-bottom: 0.5px solid #9a9a9a;
-    height: 50px;
-    overflow: hidden;
-    margin-top: 10px;
+.box .grid-list-item > li > .item > .num{
+    font-weight: 700;
+    font-size: 30px;
+    display: block;
+    line-height: 30px;
 }
-
-.button_left{
-    font-size: 10px;
-    color: #9a9a9a;
-    background: transparent;
-    border: none;
+.box .grid-list-item > li > .item > .title{
+    font-weight: 400;
+    font-size: 14px;
+    display: block;
+    line-height: 16px;
+    word-break: break-word;
 }
-
-
-.button_right{
-    font-size: 10px;
-    color: #9a9a9a;
-    background: transparent;
-    border: none;
-    position: absolute;
-    right: 10px;
+.table{
+    margin: 0;
+    font-size: 14px;
+}
+.table thead th{
+    border-bottom: 1px solid #666;
+}
+.table tr th, .table tr td{
+    padding: 5px 0;
+    border-top:0;
 }

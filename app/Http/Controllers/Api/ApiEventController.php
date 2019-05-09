@@ -13,35 +13,52 @@ class ApiEventController extends Controller
     {
         $data=$this->MainData();
         $events = []; // event
-
         if($site_id > 0 ){
-            $events = DB::select("select id, schedule_date as date,head_id as org_type, start_time as start, 
+            $val4 = ($site_id==49) ? "ХДТ" :"Соёлын төв";
+            $events = DB::select("select id, schedule_date as date,
+            
+            CASE
+                WHEN head_id = 4 THEN '".$val4."'
+                WHEN head_id = 5 THEN 'Тэмүжин театр'
+                WHEN head_id = 6 THEN 'Баганат талбайд'
+                WHEN head_id = 7 THEN 'ЗДТГын зааланд'
+                WHEN head_id = 8 THEN 'Сумын ЗДТГын зааланд'
+                ELSE 'Бусад'
+            END as org, start_time as start, 
+            ifnull(users, '') as users,
             end_time as end, description,person_count, ifnull(cnt, 0) as person_going_count 
             
             from dashboard_schedules 
                 left join (
-                    select dashboard_schedule_id, count(0) as cnt 
+                    select dashboard_schedule_id, count(0) as cnt, GROUP_CONCAT(user_id) as users 
                     from  dashboard_schedule_goings 
                     where created_at >= '".$data['y']."'
                     group by dashboard_schedule_id 
                 ) going on dashboard_schedules.id = going.dashboard_schedule_id
                 
-            where is_publish =1 and schedule_date >= '".$data['y']."'" );
+                
+            where head_id>3 and is_publish =1 and site_id=".$site_id." and schedule_date >= '".$data['y']."'" );
         }
 
         return response()->json( ['success'=>$events]);
     }
 
-    public function going($id, $user_id=0, $ip='', $device="")
+    public function going($id, $user_id=0, $ip="", $device="")
     {
-        if(count(Dashboard_schedule_going::where('dashboard_schedule_id',$id)->where('user_id',$user_id)->get())==0 ){
-            $go = new Dashboard_schedule_going();
-            $go->dashboard_schedule_id = $id;
-            $go->user_id = $user_id;
-            $go->ip = $ip;
-            $go->device = $device;
-            $go->save();
-            return response()->json(["success"=> 1]);
+        if(count(Dashboard_schedule::where('id',$id)->where('head_id','>',3)->get())> 0){
+            if(count(Dashboard_schedule_going::where('dashboard_schedule_id',$id)->where('user_id',$user_id)->get())==0 ){
+                $go = new Dashboard_schedule_going();
+                $go->dashboard_schedule_id = $id;
+                $go->user_id = $user_id;
+                $go->ip = $ip;
+                $go->device = $device;
+                $go->save();
+                return response()->json(["success"=> 1, "message"=>"явах"]);
+            }else{
+                $back = Dashboard_schedule_going::where('dashboard_schedule_id',$id)->where('user_id',$user_id)->first();
+                $back->delete();
+                return response()->json(["success"=> 1, "message"=>"болих"]);
+            }
         }
         return response()->json(["success"=> 0]);
     }

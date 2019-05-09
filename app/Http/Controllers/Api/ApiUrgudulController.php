@@ -22,13 +22,14 @@ class ApiUrgudulController extends Controller
         $data = $request->get('data');
         $data = json_decode($data, true);
 
-
-
-            $urgudul=Urgudul::where('site_id', 0);
+        $urgudul=Urgudul::where('site_id', 0);
+        if($data['user_id']!=-1){
+            $urgudul=$urgudul->where('user_id', $data['user_id']);
+        }
         if($data['type']!=-1){
             $urgudul=$urgudul->where('type', $data['type']);
         }
-
+    
         if($data['site_id']!=-0){
             $urgudul=$urgudul->where('site_id', $data['site_id']);
         } else {
@@ -48,12 +49,14 @@ class ApiUrgudulController extends Controller
         if(!is_null($data['fdate'])){
             $urgudul=$urgudul->where('created_at','<=', $data['fdate'].' 23:59:59');
         }
+        
 
         $urgudul=$urgudul->orderBy('created_at', 'desc')->paginate(40);
         return response()->json(
             ['success'=>$urgudul]
         );
     }
+    
 
     public function sendUrgudul(Request $request){
         $data = $request->get('data');
@@ -65,10 +68,12 @@ class ApiUrgudulController extends Controller
         $urgudul->name = $data['name'];
         $urgudul->phone = $data['phone'];
         $urgudul->email = $data['email'];
+        if(isset($data['user_id'])){
+            $urgudul->user_id = $data['user_id'];
+        }
         if(isset($data['site_id'])){
             $urgudul->site_id = $data['site_id'];
         }
-
         $urgudul->heltes_id = $data['heltes_id'];
         $urgudul->content = $data['content'];
         $urgudul->ip = $_SERVER['REMOTE_ADDR'];

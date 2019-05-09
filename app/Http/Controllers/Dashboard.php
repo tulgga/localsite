@@ -4,7 +4,12 @@ namespace App\Http\Controllers;
 use App\Dashboard_news;
 use App\Dashboard_budget;
 use App\Dashboard_schedule;
+use App\Dashboard_police;
+use App\Dashboard_hospital;
+use App\Dashboard_nema;
 use App\Site;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Carbon;
 class Dashboard extends Controller
 {
   public function index($site_id=0, $user_role=0)
@@ -35,9 +40,8 @@ class Dashboard extends Controller
               $data['t']= Dashboard_schedule::whereNotIn('head_id', [1,2,3])->where('schedule_date','>=', $data['y'])->orderBy('id', 'DESC')->get();
           }
 
-
           $hospital_data =
-              \DB::select('SELECT sum(die) as die,
+              DB::select('SELECT sum(die) as die,
                 sum(birth) as birth,
                  sum(call_remote)  as call_remote,
                  sum(call_near)  as call_near,
@@ -48,7 +52,7 @@ class Dashboard extends Controller
                  SUM(die + birth + call_remote+ call_near+ inspection+ inpatient+ ytt+ inspection) as total
                  FROM dashboard_hospitals WHERE site_id > 0 AND hospical_date = ?', [$data['y']]);
 
-          $police_data = \DB::select('SELECT sum(crime_kill) as crime_kill,
+          $police_data = DB::select('SELECT sum(crime_kill) as crime_kill,
              sum(crime_theft)  as crime_theft,
              sum(crime_movement)  as crime_movement,
              sum(crime_other)  as crime_other,
@@ -60,7 +64,7 @@ class Dashboard extends Controller
              SUM(crime_kill + crime_theft+ crime_movement + crime_other+ ac_family+ ac_healing+ ac_arrest+ac_fine+ac_other) as total
              FROM dashboard_polices WHERE site_id > 0 AND police_date = ?', [$data['y']]);
 
-          $nema_data = \DB::select('SELECT sum(fo)  as fo,
+          $nema_data = DB::select('SELECT sum(fo)  as fo,
              sum(ff)  as ff,
              sum(sos)  as sos,
              SUM(fo + ff+ sos) as total,
@@ -72,40 +76,19 @@ class Dashboard extends Controller
               $nema_data->sos_description  ="-";
           }
           $data['n'] =$nema_data;
-
-          $chart_data=[];
-          $interval_date = $data['y_8'];
-          while (strtotime($interval_date) <= strtotime($data['y'])) {
-              $obj['date'] = $interval_date;
-              $police_count = \DB::select('SELECT SUM(crime_kill + crime_theft+ crime_movement + crime_other+ ac_family+ ac_healing+ ac_arrest+ac_fine+ac_other) as total FROM dashboard_polices WHERE site_id > 0 AND police_date = ?', [$interval_date]);
-              $police_count = $police_count!=null && count($police_count)>0 ? $police_count[0] : null;
-
-              if($police_count != null){
-                  $police_count =$police_count->total;
-              }
-              $obj['police_count'] =(int) $police_count;
-
-
-              $hospital_count = \DB::select('SELECT SUM(die + birth + call_remote+ call_near+ inspection+ inpatient+ ytt+ inspection) as total FROM dashboard_hospitals WHERE site_id > 0 AND hospical_date = ?', [$interval_date]);
-              $hospital_count = $hospital_count!=null && count($hospital_count)>0 ? $hospital_count[0] : null;
-
-              if($hospital_count != null){
-                  $hospital_count =$hospital_count->total;
-              }
-              $obj['hospital_count'] =(int) $hospital_count;
-
-              $nema_count = \DB::select('SELECT  SUM(fo + ff+ sos) as total FROM dashboard_nemas WHERE site_id > 0 AND nema_date = ?', [$interval_date]);
-              $nema_count = $nema_count!=null && count($nema_count)>0 ? $nema_count[0] : null;
-
-              if($nema_count != null){
-                  $nema_count =$nema_count->total;
-              }
-              $obj['nema_count'] =(int) $nema_count;
-
-              $interval_date = date ("Y-m-d", strtotime("+1 day", strtotime($interval_date)));
-              array_push($chart_data, $obj);
-          }
-          $data['chart_data'] =$chart_data;
+          $policeChart = Dashboard_police::select(DB::raw('SUM(crime_kill) as crime_kill'),
+              DB::raw('SUM(crime_theft) as crime_theft'),
+              DB::raw('SUM(crime_movement) as crime_movement'),
+              DB::raw('SUM(crime_other) as crime_other'),
+              DB::raw('SUM(ac_family) as ac_family'),
+              DB::raw('SUM(ac_healing) as ac_healing'),
+              DB::raw('SUM(ac_arrest) as ac_arrest'),
+              DB::raw('SUM(ac_fine) as ac_fine'),
+              DB::raw('SUM(ac_other) as ac_other')
+              )
+              ->whereDate('police_date', '>', Carbon::now()->subDays(7))->groupBy('police_date')->get();
+          //echo json_encode($policeChart); die;
+          $data['policeChart'] = $policeChart;
 
       }else{ // sum
           if(Dashboard_news::where('created_at','>=', $data['y'])->where('site_id', $site_id)->first()) {
@@ -114,48 +97,13 @@ class Dashboard extends Controller
           if(Dashboard_schedule::whereNotIn('head_id', [1,2,3])->where('schedule_date','>=', $data['y'])->where('site_id', $site_id)->get()) {
               $data['t']= Dashboard_schedule::whereNotIn('head_id', [1,2,3])->where('schedule_date','>=', $data['y'])->where('site_id', $site_id)->orderBy('id', 'DESC')->get();
           }
-          $hospital_data =\DB::select('SELECT die, birth, call_remote,call_near, inspection, inpatient, ytt, inspection, SUM(die + birth + call_remote+ call_near+ inspection+ inpatient+ ytt+ inspection) as total FROM dashboard_hospitals WHERE site_id = ? AND hospical_date = ?', [(int)$site_id,$data['y']]);
+          $hospital_data =DB::select('SELECT die, birth, call_remote,call_near, inspection, inpatient, ytt, inspection, SUM(die + birth + call_remote+ call_near+ inspection+ inpatient+ ytt+ inspection) as total FROM dashboard_hospitals WHERE site_id = ? AND hospical_date = ?', [(int)$site_id,$data['y']]);
 
-          $police_data = \DB::select('SELECT crime_kill,crime_theft, crime_movement,crime_other,ac_family,ac_healing,ac_arrest,ac_fine,ac_other, SUM(crime_kill + crime_theft+ crime_movement + crime_other+ ac_family+ ac_healing+ ac_arrest+ac_fine+ac_other) as total FROM dashboard_polices WHERE site_id = ? AND police_date = ?', [(int)$site_id,$data['y']]);
+          $police_data = DB::select('SELECT crime_kill,crime_theft, crime_movement,crime_other,ac_family,ac_healing,ac_arrest,ac_fine,ac_other, SUM(crime_kill + crime_theft+ crime_movement + crime_other+ ac_family+ ac_healing+ ac_arrest+ac_fine+ac_other) as total FROM dashboard_polices WHERE site_id = ? AND police_date = ?', [(int)$site_id,$data['y']]);
 
-          $nema_data= \DB::select('SELECT fo,ff, sos,sos_description,SUM(fo + ff+ sos) as total FROM dashboard_nemas WHERE site_id = ? AND nema_date = ?', [(int)$site_id,$data['y']]);
+          $nema_data= DB::select('SELECT fo,ff, sos,sos_description,SUM(fo + ff+ sos) as total FROM dashboard_nemas WHERE site_id = ? AND nema_date = ?', [(int)$site_id,$data['y']]);
           $data['n'] = $nema_data!=null && count($nema_data)>0 ? $nema_data[0] : null;
 
-
-
-          $chart_data=[];
-          $interval_date = $data['y_8'];
-          while (strtotime($interval_date) <= strtotime($data['y'])) {
-              $obj['date'] = $interval_date;
-              $police_count = \DB::select('SELECT SUM(crime_kill + crime_theft+ crime_movement + crime_other+ ac_family+ ac_healing+ ac_arrest+ac_fine+ac_other) as total FROM dashboard_polices WHERE site_id =? AND police_date = ?', [$site_id,$interval_date]);
-              $police_count = $police_count!=null && count($police_count)>0 ? $police_count[0] : null;
-
-              if($police_count != null){
-                  $police_count =$police_count->total;
-              }
-              $obj['police_count'] =(int) $police_count;
-
-
-              $hospital_count = \DB::select('SELECT SUM(die + birth + call_remote+ call_near+ inspection+ inpatient+ ytt+ inspection) as total FROM dashboard_hospitals WHERE site_id =? AND hospical_date = ?', [$site_id,$interval_date]);
-              $hospital_count = $hospital_count!=null && count($hospital_count)>0 ? $hospital_count[0] : null;
-
-              if($hospital_count != null){
-                  $hospital_count =$hospital_count->total;
-              }
-              $obj['hospital_count'] =(int) $hospital_count;
-
-              $nema_count = \DB::select('SELECT  SUM(fo + ff+ sos) as total FROM dashboard_nemas WHERE site_id=? AND nema_date = ?', [$site_id,$interval_date]);
-              $nema_count = $nema_count!=null && count($nema_count)>0 ? $nema_count[0] : null;
-
-              if($nema_count != null){
-                  $nema_count =$nema_count->total;
-              }
-              $obj['nema_count'] =(int) $nema_count;
-
-              $interval_date = date ("Y-m-d", strtotime("+1 day", strtotime($interval_date)));
-              array_push($chart_data, $obj);
-          }
-          $data['chart_data'] =$chart_data;
       }
 
       $data['h'] = $hospital_data!=null && count($hospital_data)>0 ? $hospital_data[0] : null;
