@@ -3,31 +3,26 @@
         <!-- Data table -->
         <div class="columns" v-model="fetched">
 
-            <div class="column is-3">
-                    <h1>Нүүр хуудас</h1>
-                    <textarea  style="min-height:400px;" class="textarea mb1" v-model="sidebar"></textarea>
+            <div class="column is-4">
+                    <h1>Толгой баннер</h1>
+                    <textarea  style="min-height:400px;" class="textarea mb1" v-model="top_banner"></textarea>
                     <button @click="saveSideBar" class="button is-primary " :class="{'is-loading':is_loading}" :disabled="is_loading || fetched === false">
                         <span>Хадгалах</span>
                     </button>
             </div>
-            <div class="column is-3">
-                <h1>Мэдээний дэлгэрэнгүй</h1>
-                <textarea  style="min-height:400px;" class="textarea mb1" v-model="sidebar1"></textarea>
+            <div class="column is-4">
+                <h1>Зүүн баннер</h1>
+                <textarea  style="min-height:400px;" class="textarea mb1" v-model="left_banner"></textarea>
                 <button @click="saveSideBar" class="button is-primary " :class="{'is-loading':is_loading}" :disabled="is_loading || fetched === false">
                     <span>Хадгалах</span>
                 </button>
             </div>
-            <div class="column is-3">
-                <h1>Нүүр хуудас</h1>
-                <div class="boxed">
-                    <div  v-html="sidebar" class="sidebar"></div>
-                </div>
-            </div>
-            <div class="column is-3">
-                <h1>Мэдээний дэлгэрэнгүй</h1>
-                <div class="boxed">
-                    <div  v-html="sidebar1" class="sidebar"></div>
-                </div>
+            <div class="column is-4">
+                <h1>Гол баннер</h1>
+                <textarea  style="min-height:400px;" class="textarea mb1" v-model="center_banner"></textarea>
+                <button @click="saveSideBar" class="button is-primary " :class="{'is-loading':is_loading}" :disabled="is_loading || fetched === false">
+                    <span>Хадгалах</span>
+                </button>
             </div>
         </div>
 
@@ -46,8 +41,9 @@
                 fetched:false,
                 site_id: false,
                 is_loading:false,
-                sidebar: '',
-                sidebar1: '',
+                left_banner: '',
+                center_banner: '',
+                top_banner: '',
             }
         },
         mounted(){
@@ -59,20 +55,21 @@
         methods: {
             fetchData(){
                 this.site_id=this.$store.getters.domain.id;
-                axios.get('/site/'+this.$store.getters.domain.id).then((response) => {
-                    this.sidebar = response.data.success.sidebar;
-                    this.sidebar1 = response.data.success.sidebar1;
+                axios.get('/zarBanner').then((response) => {
+                    this.top_banner = response.data.success.top_banner;
+                    this.left_banner = response.data.success.left_banner;
+                    this.center_banner = response.data.success.center_banner;
                     this.fetched = true;
                 })
             },
             saveSideBar(){
                 this.is_loading=true;
                 this.fetched = false;
-                var yvuulah = { sidebar: this.sidebar, sidebar1: this.sidebar1 };
+                var yvuulah = { top_banner: this.top_banner, left_banner: this.left_banner, center_banner: this.center_banner };
 
                 let formData = new FormData();
                 formData.append('data', JSON.stringify(yvuulah));
-                axios.post('/site_sidebar/'+this.site_id, formData).then((r) => {
+                axios.post('/zarBanner', formData).then((r) => {
                     this.fetched = true;
                     this.is_loading = false;
                     this.fetchData();

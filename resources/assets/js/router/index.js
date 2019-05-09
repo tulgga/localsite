@@ -51,6 +51,7 @@ import menu from '../modules/admin/menu/menu';
 
 import Urgudul from '../modules/admin/urgudul/urgudul';
 import Sidebar from '../modules/admin/sidebar/sidebar';
+import zarBanner from '../modules/admin/zar/zarBanner';
 
 import Poll from '../modules/admin/poll/poll';
 import pollForm from '../modules/admin/poll/pollForm';
@@ -696,6 +697,21 @@ let routes = [
         }
     },
 
+    {
+        path: '/zarBanner',
+        name: 'zarBanner',
+        component: zarBanner,
+        meta: {
+            requiresAuth: true,
+            page_title: 'Зарын баннер',
+            bread_crumbs: [
+                {
+                    title: 'Зар',
+                    rname: ''
+                }
+            ]
+        }
+    },
     {
         path: '/zar',
         name: 'zar',

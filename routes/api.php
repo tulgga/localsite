@@ -82,6 +82,7 @@ Route::namespace('Api')->group(function (){
     Route::post('FacebookLogin', 'ApiUserController@FacebookLogin');
 
     Route::get('sidebar/{id}','ApiSiteController@sidebar');
+
     Route::get('sidebar1/{id}','ApiSiteController@sidebar1');
     Route::get('weather','ApiSiteController@weather');
     Route::get('menu/{id}/{is_main?}','ApiSiteController@page');
@@ -245,6 +246,9 @@ Route::middleware('auth:admin-api')->namespace('Admin')->prefix('admin')->group(
     //zar
     Route::resource('zar','AdminZarController');
     Route::post('zar/{id}','AdminZarController@update');
+
+    Route::get('zarBanner','AdminZarBannerController@index');
+    Route::post('zarBanner','AdminZarBannerController@save');
 
     //dashboard
     Route::resource('dashboard_police','AdminDashboardPoliceController');
