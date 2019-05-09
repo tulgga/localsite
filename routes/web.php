@@ -21,7 +21,7 @@ Route::get('/adminPanel/{vue_capture?}',function(){
 Route::get('/!/{vue_capture?}', 'Controller@index')->where('vue_capture', '[\/\w\.-]*');
 
 
-Route::domain('volunteer.'.env('SUB_DOMAIN'))->group(function () {
+Route::domain('volunteer.'.env('DOMAIN_NAME', 'bayankhongor.gov.mn'))->group(function () {
     Route::get('/', 'VolunteerController@index');
     Route::get('/c/{id}', 'VolunteerController@category');
     Route::get('/login', 'VolunteerController@login');
@@ -54,7 +54,7 @@ Route::domain('volunteer.'.env('SUB_DOMAIN'))->group(function () {
     Route::post('/sendComment', 'VolunteerController@sendComment');
 });
 
-Route::domain('zar.'.env('SUB_DOMAIN'))->group(function () {
+Route::domain('zar.'.env('DOMAIN_NAME', 'bayankhongor.gov.mn'))->group(function () {
 
     Route::get('/', 'ZarController@index');
     Route::get('/c/{id}.html', 'ZarController@category');
@@ -64,21 +64,21 @@ Route::domain('zar.'.env('SUB_DOMAIN'))->group(function () {
     Route::post('/postAdd', 'ZarController@postAdd');
 });
 
-//Route::domain('dashboard.'.env('SUB_DOMAIN'))->group(function () {
-    Route::domain('dashboard.bayankhongor.local')->group(function () {
-        Route::get('/', 'Dashboard@index');
-        Route::get('/{site_id}/{role}', 'Dashboard@index');
-        Route::get('/index/{site_id}/{role}', 'Dashboard@index');
-        Route::get('/login', 'Dashboard@login');
-        Route::get('/police','Dashboard@police');
-        Route::get('/hospital','Dashboard@hospital');
-        Route::get('/nema','Dashboard@nema');
-        Route::get('/schedule','Dashboard@schedule');
-        Route::get('/budget','Dashboard@budgets');
-    });
+
+Route::domain('dashboard.'.env('DOMAIN_NAME', 'bayankhongor.gov.mn'))->group(function () {
+    Route::get('/', 'Dashboard@index');
+    Route::get('/{site_id}/{role}', 'Dashboard@index');
+    Route::get('/index/{site_id}/{role}', 'Dashboard@index');
+    Route::get('/login', 'Dashboard@login');
+    Route::get('/police','Dashboard@police');
+    Route::get('/hospital','Dashboard@hospital');
+    Route::get('/nema','Dashboard@nema');
+    Route::get('/schedule','Dashboard@schedule');
+    Route::get('/budget','Dashboard@budgets');
+});
 
 
-Route::domain('eservice.'.env('SUB_DOMAIN'))->group(function () {
+Route::domain('eservice.'.env('DOMAIN_NAME', 'bayankhongor.gov.mn'))->group(function () {
     Route::get('/', 'ServiceController@index');
     Route::get('/{id}', 'ServiceController@index');
     Route::get('/index/{id}', 'ServiceController@index');

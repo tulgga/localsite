@@ -85,7 +85,7 @@
                             <p class="menu-label"></p>
                             <p class="menu-label">Туслах цэс</p>
                             <ul class="menu-list">
-                                <li><a :href="'http://zar.'+subdomain" target="_blank">Зар</a></li>
+                                <li><a href="http://zar.bayankhongor.gov.mn" target="_blank">Зар</a></li>
                                 <li ><a href="!#/report">Санал хүсэлт, өргөдөл гомдол</a></li>
                             </ul>
                         </aside>
@@ -133,7 +133,7 @@
                                 <p class="level-item">|</p>
                                 <p class="level-item" ><a @click="AgentlagModal=true">Агентлагууд</a></p>
                                 <p class="level-item">|</p>
-                                <p class="level-item"><a :href="'http://zar.'+subdomain" target="_blank">Зар</a></p>
+                                <p class="level-item"><a href="http://zar.bayankhongor.gov.mn" target="_blank">Зар</a></p>
                                 <p class="level-item">|</p>
                                 <p class="level-item"><a href="!#/report">Санал хүсэлт, өргөдөл гомдол</a></p>
                                 <p class="level-item">|</p>
