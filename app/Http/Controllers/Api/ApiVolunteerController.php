@@ -36,15 +36,25 @@ class ApiVolunteerController extends Controller
         }
         return response()->json(['success'=>$events]);
     }
-    public function event($id,$user_id){
-        $event = Event::select('*')->where('id',$id)->first();
-        $images = Event_to_image::select('image')->where('event_id',$event->eid)->get();
+    public function event($id,$user_id=0){
+        $event = Event::select('*')->where('id', $id)->first();
+        $images = Event_to_image::select('image')->where('event_id', $event->eid)->get();
+        $event->isliked = 0;
+        if($user_id) {
+                $like = Event_to_like::where('event_id',$id)->where('user_id',$user_id)->first();
+                if($like){
+                    $event->isliked = 1;
+                }else{
+                    $event->isliked = 0;
+                }
+        }
 
         $data = array(
             'subject' => $event->subject,
             'content' => $event->content,
             'started' => $event->started,
             'ended' => $event->ended,
+            'isliked' => $event->isliked,
             'created_at' => $event->created_at->format('Y-m-d H:i:s'),
             'images' => $images
         );
