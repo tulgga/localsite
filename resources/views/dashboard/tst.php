@@ -58,7 +58,7 @@
                     <tr><th scope="row">Түймэр</th><td></td></tr>
                     <tr><th scope="row">Ойн хээрийн</th><td>{{$n!=null ?$n->fo: 0}}</td></tr>
                     <tr><th scope="row">объектын</th><td>{{$n!=null ?$n->ff: 0}}</td></tr>
-                    <tr><th scope="row">Аюул үзэгдэл, ослын дуудлага</th><td>{{$n!=null ?$n->sos: 0}}</td></tr>
+                    <tr><th scope="row">Аюул ослын дуудлага</th><td>{{$n!=null ?$n->sos: 0}}</td></tr>
                     <tr><th scope="row" colspan="2">{{$n!=null ? $n->sos_description : ''}}</th></tr>
                     </tbody>
                 </table>
