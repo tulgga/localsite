@@ -52,14 +52,14 @@
                                     function drawVisualization() {
                                         // Some raw data (not necessarily accurate)
                                         var data = google.visualization.arrayToDataTable([
-                                            ['Month', 'Хүн амь', 'Хулгай', 'Хөдөлгөөний аюулгүй байдал', 'Бусад'],
+                                            ['Month', 'Бусад', 'Хөдөлгөөний аюулгүй байдал', 'Хулгай', 'Хүн амь'],
                                             @foreach($policeChart as $p)
-                                            ['{{$p->month}} сарын {{$p->day}}', {{(int)$p->crime_kill}},{{(int)$p->crime_theft}},{{(int)$p->crime_movement}},{{(int)$p->crime_other}}],
+                                            ['{{$p->month}} сарын {{$p->day}}',{{(int)$p->crime_other}},{{(int)$p->crime_movement}},{{(int)$p->crime_theft}}, {{(int)$p->crime_kill}}],
                                             @endforeach
                                         ]);
 
                                         var options = {
-                                            colors:['#999','#ffab2c','#3d9642','#567dcc','#dc5332'],
+                                            colors:['#ffab2c','#3d9642','#567dcc','#dc5332'],
                                             chartArea:{left:20,top:10,width:'100%',height:'75%'},
                                             legend:'none',
                                             isStacked: true,
