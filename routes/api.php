@@ -133,8 +133,9 @@ Route::namespace('Api')->group(function (){
     //Сайн дурыхан
     Route::get('eventslist','ApiVolunteerController@eventslist');
     Route::get('event/{id}/{user_id?}','ApiVolunteerController@event');
-    Route::get('events','ApiEventController@index');
-    Route::get('events_going/{id}/{user_id}/{ip}/{device}','ApiEventController@going');
+    
+    Route::get('dash_events/{id}','ApiEventController@index');
+    Route::get('dash_events/going/{id}/{user_id}/{ip}/{device}','ApiEventController@going');
 });
 
 Route::middleware('auth:admin-api')->namespace('Admin')->prefix('admin')->group(function () {
