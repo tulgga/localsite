@@ -1901,9 +1901,12 @@ h3.head.iltod span{
   display: flex;
 }
 
+
+
 #timeline .demo-card .body img {
     width: 100px;
     margin-right:10px;
     height: 100px;
     border-radius: 50%;
+        display: -webkit-box;
 }
