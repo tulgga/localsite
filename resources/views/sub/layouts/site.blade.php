@@ -119,9 +119,22 @@
                                                 <a class="dropdown-item" href="{{$child->link}}" @if($child->blank == 1) target="_blank" @endif><?php echo $child->name; ?></a>
                                             @endif
                                             <ul>
-                                                <?php foreach($child->children as $subchuld){ ?>
-                                                <li class="nav-item">
-                                                    <a class="dropdown-item" href="{{$subchuld->link}}" @if($subchuld->blank == 1) target="_blank" @endif><?php echo $subchuld->name; ?></a>
+                                                <?php foreach($child->children as $subchild){ ?>
+                                                <li class="nav-item @if($subchild->children) dropdown @endif">
+                                                    <a class="dropdown-item" href="{{$subchild->link}}" @if($subchild->blank == 1) target="_blank" @endif><?php echo $subchild->name; ?></a>
+                                                    @if($subchild->children)
+                                                        <ul>
+                                                            <?php foreach($subchild->children as $dedchild){ ?>
+                                                            <li class="nav-item">
+                                                                @if($dedchild->type == 2)
+                                                                    <a class="dropdown-item" href="{{asset('category/'.$dedchild->type_id)}}"><?php echo $dedchild->name; ?></a>
+                                                                @else
+                                                                    <a class="dropdown-item" href="{{$dedchild->link}}" @if($dedchild->blank == 1) target="_blank" @endif><?php echo $dedchild->name; ?></a>
+                                                                @endif
+                                                            </li>
+                                                            <?php } ?>
+                                                        </ul>
+                                                    @endif
                                                 </li>
                                                 <?php } ?>
                                             </ul>

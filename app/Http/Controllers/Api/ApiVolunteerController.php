@@ -50,6 +50,7 @@ class ApiVolunteerController extends Controller
         }
 
         $data = array(
+            'id'=>$event->id,
             'subject' => $event->subject,
             'content' => $event->content,
             'started' => $event->started,

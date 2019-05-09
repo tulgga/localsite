@@ -137,7 +137,7 @@
                 </div>
             </div>
             <div class="alert alert-warning">
-                <strong><i class="fa fa-exclamation-triangle"></i> Санамж: </strong> Таны оруулсан 30 хоногийн дараа хаагдах болохыг анхаарна уу. Мөн мэдээлэл дутуу болон хууль бус зар оруулахгүй байхыг хүсье.
+                <strong><i class="fa fa-exclamation-triangle"></i> Санамж: </strong> Таны оруулсан зар 30 хоногийн дараа хаагдах болохыг анхаарна уу. Мөн мэдээлэл дутуу болон хууль бус зар оруулахгүй байхыг хүсье.
             </div>
             <div class="form-group mt-20">
                 <button type="submit" class="cp-default-btn-sm">Нэмэх</button>

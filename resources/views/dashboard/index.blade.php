@@ -44,24 +44,31 @@
 
                 <div class="h-auto item_cell col-sm-4">
                     <div class="h-100 child first">
-                        <p class="count">{{$h !=null ? (int)$h->total : 0}}</p>
-                        <h1 class="title">Эрүүл мэндийн төв</h1>
+                        <h1 class="title">Эрүүл мэндийн төв - {{$h !=null ? (int)$h->total : 0}}</h1>
                         <div id="hospital_chart"></div>
                     </div>
                 </div>
 
                 <div class="h-auto item_cell col-sm-4">
                     <div class="h-100 child second">
-                        <p class="count">{{$p !=null ? (int)$p->total : 0}}</p>
-                        <h1 class="title">Цагдаагийн газар</h1>
+                        <h1 class="title">Цагдаагийн газар - {{$p !=null ? (int)$p->total : 0}} <font color="white" class="float-right">/ Гэмт хэрэг /</font></h1>
+                        <div class='col-sm' id='item1'>
+                            <table class="table">
+                                <tbody>
+                                <tr><th scope="row">Хүн амь</th><td>{{$p!=null ?$p->crime_kill: 0}}</td></tr>
+                                <tr><th scope="row">Хулгай </th><td>{{$p!=null ?$p->crime_theft: 0}}</td></tr>
+                                <tr><th scope="row">Хөдөлгөөний аюулгүй байдал </th><td>{{$p!=null ?$p->crime_movement: 0}}</td></tr>
+                                <tr><th scope="row">Бусад </th><td>{{$p!=null ?$p->crime_other: 0}}</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
                         <div id="police_chart"></div>
                     </div>
                 </div>
 
                 <div class="h-auto item_cell col-sm-3">
                     <div class="h-100 child third">
-                        <p class="count">{{$n !=null ? (int)$n->total : 0}}</p>
-                        <h1 class="title">Онцгой байдлын газар</h1>
+                        <h1 class="title">Онцгой байдлын газар - {{$n !=null ? (int)$n->total : 0}}</h1>
                         <div id="nema_chart"></div>
                     </div>
                 </div>
@@ -181,10 +188,10 @@
                             <tr><th colspan="5"><h1 class="title">Төсөв</h1></th></tr>
                                 <tr>
                                     <th></th>
-                                    <th scope="col">батлагдсан</th>
-                                    <th scope="col">зарцуулагдсан</th>
-                                    <th scope="col">хэрэгжиж байгаа</th>
-                                    <th scope="col">үлдэгдэл</th>
+                                    <th scope="col">Батлагдсан</th>
+                                    <th scope="col">Зарцуулагдсан</th>
+                                    <th scope="col">Хэрэгжиж байгаа</th>
+                                    <th scope="col">Үлдэгдэл</th>
                                 </tr>
                             </thead>
                             <tbody>
