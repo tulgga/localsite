@@ -22,31 +22,33 @@ class ApiUrgudulController extends Controller
         $data = $request->get('data');
         $data = json_decode($data, true);
 
-
-
-            $urgudul=Urgudul::where('site_id', 0);
-        if($data['type']!=-1){
-            $urgudul=$urgudul->where('type', $data['type']);
-        }
-
-        if($data['site_id']!=-0){
-            $urgudul=$urgudul->where('site_id', $data['site_id']);
-        } else {
-            if($data['heltes_id']!=0){
-                $urgudul=$urgudul->where('heltes_id', $data['heltes_id']);
+        $urgudul=Urgudul::where('site_id', 0);
+        if($data['user_id']==-1){
+            if($data['type']!=-1){
+                $urgudul=$urgudul->where('type', $data['type']);
             }
-        }
-
-        if($data['status']!=-1){
-            $urgudul=$urgudul->where('status', $data['status']);
-        }
-
-        if(!is_null($data['sdate'])){
-            $urgudul=$urgudul->where('created_at','>=', $data['sdate'].' 00:00:00');
-        }
-
-        if(!is_null($data['fdate'])){
-            $urgudul=$urgudul->where('created_at','<=', $data['fdate'].' 23:59:59');
+        
+            if($data['site_id']!=-0){
+                $urgudul=$urgudul->where('site_id', $data['site_id']);
+            } else {
+                if($data['heltes_id']!=0){
+                    $urgudul=$urgudul->where('heltes_id', $data['heltes_id']);
+                }
+            }
+    
+            if($data['status']!=-1){
+                $urgudul=$urgudul->where('status', $data['status']);
+            }
+    
+            if(!is_null($data['sdate'])){
+                $urgudul=$urgudul->where('created_at','>=', $data['sdate'].' 00:00:00');
+            }
+    
+            if(!is_null($data['fdate'])){
+                $urgudul=$urgudul->where('created_at','<=', $data['fdate'].' 23:59:59');
+            }
+        } else {
+            $urgudul=$urgudul->where('user_id', $data['user_id']);
         }
 
         $urgudul=$urgudul->orderBy('created_at', 'desc')->paginate(40);
