@@ -14,10 +14,11 @@ class ApiEventController extends Controller
         $data=$this->MainData();
         $events = []; // event
         if($site_id > 0 ){
+            $val4 = ($site_id==49) ? "ХДТ" :"Соёлын төв";
             $events = DB::select("select id, schedule_date as date,
             
             CASE
-                WHEN head_id = 4 THEN 'ХДТ'
+                WHEN head_id = 4 THEN '".$val4."'
                 WHEN head_id = 5 THEN 'Тэмүжин театр'
                 WHEN head_id = 6 THEN 'Баганат талбайд'
                 WHEN head_id = 7 THEN 'ЗДТГын зааланд'
@@ -42,16 +43,22 @@ class ApiEventController extends Controller
         return response()->json( ['success'=>$events]);
     }
 
-    public function going($id, $user_id=0, $ip='', $device="")
+    public function going($id, $user_id=0, $ip="", $device="")
     {
-        if(count(Dashboard_schedule::where('id',$id)->where('head_id','>',3)->get())> 0 && count(Dashboard_schedule_going::where('dashboard_schedule_id',$id)->where('user_id',$user_id)->get())==0 ){
-            $go = new Dashboard_schedule_going();
-            $go->dashboard_schedule_id = $id;
-            $go->user_id = $user_id;
-            $go->ip = $ip;
-            $go->device = $device;
-            $go->save();
-            return response()->json(["success"=> 1]);
+        if(count(Dashboard_schedule::where('id',$id)->where('head_id','>',3)->get())> 0){
+            if(count(Dashboard_schedule_going::where('dashboard_schedule_id',$id)->where('user_id',$user_id)->get())==0 ){
+                $go = new Dashboard_schedule_going();
+                $go->dashboard_schedule_id = $id;
+                $go->user_id = $user_id;
+                $go->ip = $ip;
+                $go->device = $device;
+                $go->save();
+                return response()->json(["success"=> 1, "message"=>"явах"]);
+            }else{
+                $back = Dashboard_schedule_going::where('dashboard_schedule_id',$id)->where('user_id',$user_id)->first();
+                $back->delete();
+                return response()->json(["success"=> 1, "message"=>"болих"]);
+            }
         }
         return response()->json(["success"=> 0]);
     }
