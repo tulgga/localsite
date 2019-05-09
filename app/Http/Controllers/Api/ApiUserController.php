@@ -211,7 +211,7 @@ class ApiUserController extends Controller
     public function urgudul(){
         $user = Auth::user();
         
-        $urgudul=Urgudul::where('site_id', $user->id)->orderBy('created_at', 'desc')->paginate(40);
+        $urgudul=Urgudul::where('user_id', $user->id)->orderBy('created_at', 'desc')->paginate(40);
         return response()->json(
             ['success'=>$urgudul]
         );
