@@ -5,14 +5,21 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Dashboard_police;
+use Illuminate\Support\Facades\Auth;
 
 class AdminDashboardPoliceController extends Controller
 {
     public function index()
     {
-        extract(request()->only(['query', 'limit', 'page', 'orderBy', 'ascending', 'byColumn']));
-        $result=Dashboard_police::where('id', '!=', 0);
+        $user=auth()->guard('admin-api')->user();
 
+        extract(request()->only(['query', 'limit', 'page', 'orderBy', 'ascending', 'byColumn']));
+        $result=Dashboard_police::join('admin', 'admin.id', '=', 'dashboard_polices.admin_id')
+            ->select('dashboard_polices.*', 'admin.user_name');
+
+        if($user->admin_type>0){
+            $result=$result->where('admin_id', $user->id);
+        }
         if (isset($query) && $query) {
             $result = $byColumn == 1 ?
                 $this->filterByColumn($result, $query) :
@@ -23,7 +30,7 @@ class AdminDashboardPoliceController extends Controller
             $direction = $ascending == 1 ? 'ASC' : 'DESC';
             $result = $result->orderBy($orderBy, $direction);
         } else {
-            $result = $result->orderBy('id', 'desc');
+            $result = $result->orderBy('dashboard_polices.id', 'desc');
         }
 
         $result = $result->paginate($limit);
@@ -39,10 +46,10 @@ class AdminDashboardPoliceController extends Controller
         return $data->where(function ($q) use ($queries) {
             foreach ($queries as $field => $query) {
                 if (is_string($query)) {
-                    if($field=='cat_id'){
-                        $q->where($field,  "{$query}");
+                    if($field=='site_id'){
+                        $q->where('dashboard_polices.'.$field,  "{$query}");
                     } else {
-                        $q->where($field, 'LIKE', "%{$query}%");
+                        $q->where('dashboard_polices.'.$field, 'LIKE', "%{$query}%");
                     }
                 }
             }
@@ -55,10 +62,10 @@ class AdminDashboardPoliceController extends Controller
         return $data->where(function ($q) use ($query, $fields) {
             foreach ($fields as $index => $field) {
                 $method = $index > 0 ? 'orWhere' : 'where';
-                if($field=='cat_id'){
-                    $q->{$method}($field,  "{$query}");
+                if($field=='site_id'){
+                    $q->{$method}('dashboard_polices.'.$field,  "{$query}");
                 } else {
-                    $q->{$method}($field, 'LIKE', "%{$query}%");
+                    $q->{$method}('dashboard_polices.'.$field, 'LIKE', "%{$query}%");
                 }
             }
         });
@@ -84,17 +91,19 @@ class AdminDashboardPoliceController extends Controller
     {
         $data = $request->get('data');
         $data = json_decode($data, true);
-
-        $img=Img::zar($request);
-
-        $info = new Zar();
-        $info->title=$data['title'];
-        $info->content=$data['content'];
-        $info->price=$data['price'];
-        $info->phone=$data['phone'];
-        $info->email=$data['email'];
-        $info->cat_id=$data['cat_id'];
-        $info->image=$img;
+        $info = new Dashboard_police();
+        $info->police_date=$data['police_date'];
+        $info->crime_kill=$data['crime_kill'];
+        $info->crime_theft=$data['crime_theft'];
+        $info->crime_movement=$data['crime_movement'];
+        $info->crime_other=$data['crime_other'];
+        $info->ac_family=$data['ac_family'];
+        $info->ac_healing=$data['ac_healing'];
+        $info->ac_arrest=$data['ac_arrest'];
+        $info->ac_fine=$data['ac_fine'];
+        $info->ac_other=$data['ac_other'];
+        $info->admin_id=$data['admin_id'];
+        $info->site_id=$data['site_id'];
         $info->save();
 
         return response()->json([
@@ -110,7 +119,7 @@ class AdminDashboardPoliceController extends Controller
      */
     public function show($id)
     {
-        $file=Zar::find($id);
+        $file=Dashboard_police::find($id);
         return response()->json([
             'success' => $file,
         ]);
@@ -139,16 +148,21 @@ class AdminDashboardPoliceController extends Controller
         $data = $request->get('data');
         $data = json_decode($data, true);
 
-        $img=Img::zar($request);
 
-        $info =  Zar::Find($id);
-        $info->title=$data['title'];
-        $info->content=$data['content'];
-        $info->price=$data['price'];
-        $info->phone=$data['phone'];
-        $info->email=$data['email'];
-        $info->cat_id=$data['cat_id'];
-        if(!is_null($img)){ $info->image=$img; }
+
+        $info =  Dashboard_police::Find($id);
+        $info->police_date=$data['police_date'];
+        $info->crime_kill=$data['crime_kill'];
+        $info->crime_theft=$data['crime_theft'];
+        $info->crime_movement=$data['crime_movement'];
+        $info->crime_other=$data['crime_other'];
+        $info->ac_family=$data['ac_family'];
+        $info->ac_healing=$data['ac_healing'];
+        $info->ac_arrest=$data['ac_arrest'];
+        $info->ac_fine=$data['ac_fine'];
+        $info->ac_other=$data['ac_other'];
+        $info->admin_id=$data['admin_id'];
+        $info->site_id=$data['site_id'];
         $info->save();
 
         return response()->json([
@@ -164,12 +178,7 @@ class AdminDashboardPoliceController extends Controller
      */
     public function destroy($id)
     {
-        $zar=Zar::find($id);
-        if(!is_null($zar->image)){
-            Img::file_delete($zar->image);
-            Img::file_delete(str_replace('zar/', 'zar/small/',$zar->image));
-
-        }
+        $zar=Dashboard_police::find($id);
         $zar->delete();
     }
 }

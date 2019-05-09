@@ -1270,7 +1270,7 @@ let routes = [
             },
             {
                 path: ':id/update',
-                component: dashboard_policeForm,
+                component: dashboard_hospitalForm,
                 name: 'update_dashboard_hospital',
                 meta: {
                     page_title: 'Эрүүл мэнд',
@@ -1319,7 +1319,7 @@ let routes = [
             },
             {
                 path: ':id/update',
-                component: dashboard_policeForm,
+                component: dashboard_nemaForm,
                 name: 'update_dashboard_nema',
                 meta: {
                     page_title: 'Онцгой байдал',
@@ -1341,10 +1341,10 @@ let routes = [
         component: dashboard_schedule,
         meta: {
             requiresAuth: true,
-            page_title: 'Цагын хуваарь',
+            page_title: 'Цагийн хуваарь',
             bread_crumbs: [
                 {
-                    title: 'Цагын хуваарь',
+                    title: 'Цагийн хуваарь',
                     rname: ''
                 }
             ]
@@ -1358,7 +1358,7 @@ let routes = [
                     page_title: 'Нэмэх',
                     bread_crumbs: [
                         {
-                            title: 'Цагын хуваарь',
+                            title: 'Цагийн хуваарь',
                             rname: 'dashboard_schedule'
                         }
                     ],
@@ -1371,7 +1371,7 @@ let routes = [
                 component: dashboard_scheduleForm,
                 name: 'update_dashboard_schedule',
                 meta: {
-                    page_title: 'Цагыг хуваарь',
+                    page_title: 'Цагийн хуваарь',
                     bread_crumbs: [
                         {
                             title: 'Дашбоард',
@@ -1466,7 +1466,7 @@ let routes = [
             },
             {
                 path: ':id/update',
-                component: dashboard_budgetForm,
+                component: dashboard_newsForm,
                 name: 'update_dashboard_news',
                 meta: {
                     page_title: 'Цаг үеийн асуудал',

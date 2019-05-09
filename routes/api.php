@@ -255,6 +255,28 @@ Route::middleware('auth:admin-api')->namespace('Admin')->prefix('admin')->group(
     Route::resource('dashboard_police','AdminDashboardPoliceController');
     Route::post('dashboard_police/{id}','AdminDashboardPoliceController@update');
 
+    //hospital
+    Route::resource('dashboard_hospital','AdminDashboardHospitalController');
+    Route::post('dashboard_hospital/{id}','AdminDashboardHospitalController@update');
+
+    //nema
+    Route::resource('dashboard_nema','AdminDashboardNemaController');
+    Route::post('dashboard_nema/{id}','AdminDashboardNemaController@update');
+
+
+    //nema
+    Route::resource('dashboard_budget','AdminDashboardBudgetController');
+    Route::post('dashboard_budget/{id}','AdminDashboardBudgetController@update');
+
+
+    //news
+    Route::resource('dashboard_news','AdminDashboardNewsController');
+    Route::post('dashboard_news/{id}','AdminDashboardNewsController@update');
+
+    //news
+    Route::resource('dashboard_schedule','AdminDashboardScheduleController');
+    Route::post('dashboard_schedule/{id}','AdminDashboardScheduleController@update');
+
     //user
     Route::resource('users','AdminUserController');
     Route::get('AllUsers','AdminUserController@AllUsers');

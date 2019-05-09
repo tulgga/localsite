@@ -3,11 +3,20 @@
         <!-- Data table -->
         <div class="boxed">
             <div class="boxed-title">
-            	<div class="boxed-item-center title">Зар</div>
+                <div class="boxed-item-center title">Онцгой байдал</div>
             </div>
-			<v-server-table ref="tableni" :url="url"  v-if="fetched" :columns="columns" :options="options">
+            <v-server-table ref="tableni" :url="url"  v-if="fetched" :columns="columns" :options="options">
+                <div slot="col1" slot-scope="props" class="data-action">
+                    ойн хээрийн түймэр:{{props.row.fo}}<br>
+                    объектын гал түймэр: {{props.row.ff}}<br>
+                </div>
+                <div slot="col2" slot-scope="props" class="data-action">
+                  аюул үзэгдэл ослын дуудлага: {{props.row.sos}}<br><br>
+                  {{props.row.sos_description}}
+
+                </div>
                 <div slot="action" slot-scope="props" class="data-action">
-                    <router-link :to="'zar/'+props.row.id+'/update'" ><i class="fas fa-pencil-alt"></i></router-link>
+                    <router-link :to="'dashboard_nema/'+props.row.id+'/update'" ><i class="fas fa-pencil-alt"></i></router-link>
                     <div @click="deleting(props.row)">
                         <i class="fas fa-trash"></i>
                     </div>
@@ -16,7 +25,7 @@
 
             <div v-else class="main-bodoh is-loading"></div>
             <div class="boxed-item-center absolute">
-                 <router-link :to="{ name: 'create_zar'}" class="add_button">+</router-link>
+                <router-link :to="{ name: 'create_dashboard_nema'}" class="add_button">+</router-link>
             </div>
 
             <router-view></router-view>
@@ -48,13 +57,13 @@
         data(){
             return {
                 siteUrl: window.surl,
-                url: '/zar',
+                url: '/dashboard_nema',
                 deletemodal:false,
                 deleteid: false,
                 fetched:false,
                 is_loading:false,
                 user:false,
-                columns: ['id', 'title',   'cat_id',   'price', 'phone', 'email',  'content',  'created_at', 'action',],
+                columns: ['id', 'nema_date',   'site_id', 'user_name',  'col1',  'col2',   'action'],
                 options: {
 
                     perPage: 25,
@@ -62,33 +71,26 @@
                     pagetitle: "Файлын сан",
                     headings: {
                         id: '№',
-                        title: "Гарчиг",
-                        cat_id: "Ангилал",
-                        content: "Агууллага",
-                        price: "Үнэ",
-                        phone: "Утас",
-                        email: "Имэйл",
-                        created_at: "огноо",
+                        nema_date: "огноо",
+                        site_id: "Сум",
+                        user_name: "Админ",
+                        col1: "",
+                        col2: "",
                         action: " ",
                     },
                     filterByColumn: true,
-                    sortable: [ 'title', 'content',  'cat_id', 'price', 'phone', 'email', ],
-                    filterable: ['title', 'content',  'cat_id', 'price', 'phone', 'email' ],
-                    columnsDisplay:{
-                        content: 'desktop',
-                        phone: 'desktop',
-                        email: 'desktop',
-                        price: 'desktop',
-                        created_at: 'desktop',
-                    },
+                    sortable: [ 'nema_date' ],
+                    filterable: ['nema_date' ],
                     sortIcon: {
-                        base:'fas', 
-                        up:'fa-sort-up', 
-                        down:'fa-sort-down', 
-                        is:'fa-sort' 
+                        base:'fas',
+                        up:'fa-sort-up',
+                        down:'fa-sort-down',
+                        is:'fa-sort'
                     },
+                    sortable: [ 'nema_date', 'site_id',  ],
+                    filterable: ['nema_date', 'site_id',  ],
                     listColumns: {
-                        cat_id:[]
+                        site_id:[],
                     },
                     texts:{
                         count : this.$store.getters.lang.table.count,
@@ -146,16 +148,15 @@
         },
         methods: {
             fetchData(){
-                axios.get('/zar_category_select').then((response) => {
-                    this.options.listColumns.cat_id = response.data.success;
-                    console.log(this.options.listColumns.cat_id);
-                    this.fetched=true;
+                axios.get('site').then((r) => {
+                    this.options.listColumns.site_id=r.data.success;
+                    this.fetched = true;
                 })
             },
             // Устгах
             ustga(row){
                 this.is_loading = true;
-                axios.delete('/zar/'+row.id).then((response) => {
+                axios.delete('/dashboard_nema/'+row.id).then((response) => {
                     this.deletemodal = false;
                     this.$refs.tableni.refresh();
                     this.is_loading = false;

@@ -6,8 +6,21 @@
             	<div class="boxed-item-center title">Цагдаа</div>
             </div>
 			<v-server-table ref="tableni" :url="url"  v-if="fetched" :columns="columns" :options="options">
+                <div slot="chrime" slot-scope="props" class="data-action">
+                    Хүн амь: {{props.row.crime_kill}}<br>
+                    Хулгай: {{props.row.crime_theft}}<br>
+                    XAБХ: {{props.row.crime_movement}}<br>
+                    Бусад: {{props.row.crime_other}}
+                </div>
+                <div slot="ac" slot-scope="props" class="data-action">
+                    гэр бүлийн хүчирхийлэл: {{props.row.ac_family}}<br>
+                    эрүүлжүүлэх: {{props.row.ac_healing}}<br>
+                    баривчлагдсан: {{props.row.ac_arrest}}<br>
+                    торгууль: {{props.row.ac_fine}}<br>
+                    Бусад: {{props.row.ac_other}}
+                </div>
                 <div slot="action" slot-scope="props" class="data-action">
-                    <router-link :to="'zar/'+props.row.id+'/update'" ><i class="fas fa-pencil-alt"></i></router-link>
+                    <router-link :to="'dashboard_police/'+props.row.id+'/update'" ><i class="fas fa-pencil-alt"></i></router-link>
                     <div @click="deleting(props.row)">
                         <i class="fas fa-trash"></i>
                     </div>
@@ -54,7 +67,7 @@
                 fetched:false,
                 is_loading:false,
                 user:false,
-                columns: ['id', 'title',   'cat_id',   'price', 'phone', 'email',  'content',  'created_at', 'action',],
+                columns: ['id', 'police_date',   'site_id', 'user_name',  'chrime',  'ac',    'action'],
                 options: {
 
                     perPage: 25,
@@ -62,33 +75,26 @@
                     pagetitle: "Файлын сан",
                     headings: {
                         id: '№',
-                        title: "Гарчиг",
-                        cat_id: "Ангилал",
-                        content: "Агууллага",
-                        price: "Үнэ",
-                        phone: "Утас",
-                        email: "Имэйл",
-                        created_at: "огноо",
+                        police_date: "огноо",
+                        site_id: "Сум",
+                        user_name: "Админ",
+                        chrime: "Гэмт хэрэг",
+                        ac: "Захиргааны зөрчил",
                         action: " ",
                     },
                     filterByColumn: true,
-                    sortable: [ 'title', 'content',  'cat_id', 'price', 'phone', 'email', ],
-                    filterable: ['title', 'content',  'cat_id', 'price', 'phone', 'email' ],
-                    columnsDisplay:{
-                        content: 'desktop',
-                        phone: 'desktop',
-                        email: 'desktop',
-                        price: 'desktop',
-                        created_at: 'desktop',
-                    },
+                    sortable: [ 'police_date' ],
+                    filterable: ['police_date' ],
                     sortIcon: {
                         base:'fas', 
                         up:'fa-sort-up', 
                         down:'fa-sort-down', 
                         is:'fa-sort' 
                     },
+                    sortable: [ 'police_date', 'site_id',  ],
+                    filterable: ['police_date', 'site_id',  ],
                     listColumns: {
-                        cat_id:[]
+                        site_id:[],
                     },
                     texts:{
                         count : this.$store.getters.lang.table.count,
@@ -146,16 +152,15 @@
         },
         methods: {
             fetchData(){
-                axios.get('/zar_category_select').then((response) => {
-                    this.options.listColumns.cat_id = response.data.success;
-                    console.log(this.options.listColumns.cat_id);
-                    this.fetched=true;
+                axios.get('site').then((r) => {
+                    this.options.listColumns.site_id=r.data.success;
+                    this.fetched = true;
                 })
             },
             // Устгах
             ustga(row){
                 this.is_loading = true;
-                axios.delete('/zar/'+row.id).then((response) => {
+                axios.delete('/dashboard_police/'+row.id).then((response) => {
                     this.deletemodal = false;
                     this.$refs.tableni.refresh();
                     this.is_loading = false;

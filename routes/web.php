@@ -65,7 +65,7 @@ Route::domain('zar.'.env('SUB_DOMAIN'))->group(function () {
 });
 
 //Route::domain('dashboard.'.env('SUB_DOMAIN'))->group(function () {
-    Route::domain('dashboard.bayankhongor.towersoft.mn')->group(function () {
+    Route::domain('dashboard.bayankhongor.local')->group(function () {
         Route::get('/', 'Dashboard@index');
         Route::get('/{site_id}/{role}', 'Dashboard@index');
         Route::get('/index/{site_id}/{role}', 'Dashboard@index');

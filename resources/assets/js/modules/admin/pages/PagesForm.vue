@@ -131,6 +131,7 @@ CRUD Edit, Create form
                                                     <option value="0">Блог жагсаалт</option>
                                                     <option value="1">3 багана</option>
                                                     <option value="2">4 багана</option>
+                                                    <option value="3">Timeline</option>
                                                 </select>
                                             </div>
                                         </div>

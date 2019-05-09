@@ -3,11 +3,12 @@
         <!-- Data table -->
         <div class="boxed">
             <div class="boxed-title">
-            	<div class="boxed-item-center title">Зар</div>
+                <div class="boxed-item-center title">Төсөв</div>
             </div>
-			<v-server-table ref="tableni" :url="url"  v-if="fetched" :columns="columns" :options="options">
+            <v-server-table ref="tableni" :url="url"  v-if="fetched" :columns="columns" :options="options">
+
                 <div slot="action" slot-scope="props" class="data-action">
-                    <router-link :to="'zar/'+props.row.id+'/update'" ><i class="fas fa-pencil-alt"></i></router-link>
+                    <router-link :to="'dashboard_budget/'+props.row.id+'/update'" ><i class="fas fa-pencil-alt"></i></router-link>
                     <div @click="deleting(props.row)">
                         <i class="fas fa-trash"></i>
                     </div>
@@ -16,7 +17,7 @@
 
             <div v-else class="main-bodoh is-loading"></div>
             <div class="boxed-item-center absolute">
-                 <router-link :to="{ name: 'create_zar'}" class="add_button">+</router-link>
+                <router-link :to="{ name: 'create_dashboard_budget'}" class="add_button">+</router-link>
             </div>
 
             <router-view></router-view>
@@ -48,13 +49,13 @@
         data(){
             return {
                 siteUrl: window.surl,
-                url: '/zar',
+                url: '/dashboard_budget',
                 deletemodal:false,
                 deleteid: false,
                 fetched:false,
                 is_loading:false,
                 user:false,
-                columns: ['id', 'title',   'cat_id',   'price', 'phone', 'email',  'content',  'created_at', 'action',],
+                columns: ['id','site_id','user_name', 'b_type', 'b_approved',  'b_done','b_doing', 'b_do', 'created_at',  'action'],
                 options: {
 
                     perPage: 25,
@@ -62,33 +63,45 @@
                     pagetitle: "Файлын сан",
                     headings: {
                         id: '№',
-                        title: "Гарчиг",
-                        cat_id: "Ангилал",
-                        content: "Агууллага",
-                        price: "Үнэ",
-                        phone: "Утас",
-                        email: "Имэйл",
-                        created_at: "огноо",
-                        action: " ",
+                        site_id: "Сум",
+                        user_name: "Админ",
+                        b_type: "төрөл",
+                        b_approved: "Батлагдсан",
+                        b_done: "зарцуулагдсан",
+                        b_doing: "хэрэгжиж байгаа",
+                        b_do: "үлдэгдэл",
+                        created_at:"огноо",
+                        action: "",
                     },
                     filterByColumn: true,
-                    sortable: [ 'title', 'content',  'cat_id', 'price', 'phone', 'email', ],
-                    filterable: ['title', 'content',  'cat_id', 'price', 'phone', 'email' ],
-                    columnsDisplay:{
-                        content: 'desktop',
-                        phone: 'desktop',
-                        email: 'desktop',
-                        price: 'desktop',
-                        created_at: 'desktop',
-                    },
                     sortIcon: {
-                        base:'fas', 
-                        up:'fa-sort-up', 
-                        down:'fa-sort-down', 
-                        is:'fa-sort' 
+                        base:'fas',
+                        up:'fa-sort-up',
+                        down:'fa-sort-down',
+                        is:'fa-sort'
                     },
+                    sortable: [ 'b_type', 'site_id', 'created_at' ],
+                    filterable: ['b_type', 'site_id',  ],
                     listColumns: {
-                        cat_id:[]
+                        b_type:[
+                            {
+                                id: 1,
+                                text: 'Улсын төсөв'
+                            },
+                            {
+                                id: 2,
+                                text: 'ОНХ сангийн төсөв'
+                            },
+                            {
+                                id: 3,
+                                text: 'Замын төсөв'
+                            },
+                            {
+                                id: 4,
+                                text: 'ЗД ын нөөц хөрөнгө'
+                            },
+                        ],
+                        site_id:[],
                     },
                     texts:{
                         count : this.$store.getters.lang.table.count,
@@ -146,16 +159,15 @@
         },
         methods: {
             fetchData(){
-                axios.get('/zar_category_select').then((response) => {
-                    this.options.listColumns.cat_id = response.data.success;
-                    console.log(this.options.listColumns.cat_id);
-                    this.fetched=true;
+                axios.get('site').then((r) => {
+                    this.options.listColumns.site_id=r.data.success;
+                    this.fetched = true;
                 })
             },
             // Устгах
             ustga(row){
                 this.is_loading = true;
-                axios.delete('/zar/'+row.id).then((response) => {
+                axios.delete('/dashboard_budget/'+row.id).then((response) => {
                     this.deletemodal = false;
                     this.$refs.tableni.refresh();
                     this.is_loading = false;
