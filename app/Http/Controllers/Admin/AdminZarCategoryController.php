@@ -60,6 +60,7 @@ class AdminZarCategoryController extends Controller
             $cat->site_id=$site_id;
             $cat->order_num=$i;
             $cat->parent_id=$parent_id;
+            $cat->image=$d['image'];
             $cat->save();
             if(array_key_exists('children', $d)){
                  $this->extractTree($d['children'], $cat->id, $site_id);

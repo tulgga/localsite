@@ -18,7 +18,7 @@
 
 </template>
 <script>
-    import TreeNode from '../../../components/helpers/tree'
+    import TreeNode from '../../../components/helpers/treeZar'
     export default {
         components: { TreeNode },
         data: () => ({
@@ -27,6 +27,7 @@
             site_id:0,
             treeData: {
                 name: 'Зарын ангилал',
+                image: null,
                 children: []
             },
 

@@ -31,6 +31,37 @@ CRUD Edit, Create form
                                         </div>
                                     </div>
                                 </div>
+                                <div class="column is-12-mobile is-12-tablet">
+                                    <div class="field">
+                                        <label class="label">Сум  <span class="has-text-danger">*</span></label>
+                                        <div class="control">
+                                            <treeselect  v-validate="'required'" v-model="form.site_id"  name="cat_id" placeholder="Cум сонгох" :class="{ 'is-danger': errors.has('site_id') }" :multiple="false" :options="sites" />
+                                            <p v-show="errors.has('site_id')" class="help is-danger">Заавал сонго</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="column is-12-mobile is-12-tablet">
+                                    <div class="field">
+                                        <label class="label">Онцлох зар  <span class="has-text-danger">*</span></label>
+                                        <div class="control">
+                                            <div class="select">
+                                                <select name="gender" v-model="form.is_pin" v-validate="'required'" >
+                                                    <option value="0">үгүй</option>
+                                                    <option value="1">Тийм</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div v-if="form.is_pin==1" class="column is-12-mobile is-12-tablet">
+                                    <div class="field">
+                                        <label class="label">Онцлох зар дуусах огноо <span class="has-text-danger">*</span></label>
+                                        <div class="control">
+                                            <input type="date" name="pin_date" v-validate="{'required':true, }" v-model="form.pin_date" :class="{'input': true, 'is-danger': errors.has('pin_date') }" />
+                                            <p v-show="errors.has('pin_date')" class="help is-danger">Заавал бөглө</p>
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <div class="column is-12-mobile is-12-tablet">
                                     <div class="field">
@@ -56,7 +87,7 @@ CRUD Edit, Create form
                                         <div class="control has-image">
                                             <div class="file is-boxed is-fullwidth">
                                                 <label class="file-label">
-                                                    <input class="file-input" accept="image/*"  :class="{'textarea': true, 'is-danger': errors.has('image2') }" v-validate="'required'" type="file" name="image2" @change="onFileChange($event.target.name, $event.target.files)">
+                                                    <input class="file-input" accept="image/*"  :class="{'textarea': true, }" type="file" name="image2" @change="onFileChange($event.target.name, $event.target.files)">
                                                     <span class="file-cta">
                                                             <span v-if="imageni" class="file-icon" :style="'background-image: url('+imageni+');'">
                                                                 <i class="ion-ios-add-outline"></i>
@@ -66,7 +97,7 @@ CRUD Edit, Create form
                                                             </span>
                                                         </span>
                                                 </label>
-                                                <p v-show="errors.has('image2')" class="help is-danger">Заавал бөглө</p>
+
                                             </div>
                                         </div>
                                     </div>
@@ -90,10 +121,9 @@ CRUD Edit, Create form
                                     </div>
 
                                     <div class="field">
-                                        <label class="label">Email  <span class="has-text-danger">*</span></label>
+                                        <label class="label">Email</label>
                                         <div class="control ">
-                                            <input type="text" name="email" v-validate="{'required':true, 'email':true}" v-model="form.email" :class="{'input': true, 'is-danger': errors.has('email') }" />
-                                            <p v-show="errors.has('email')" class="help is-danger">Заавал бөглө, их мэйл хаяг биш байна</p>
+                                            <input type="text" name="email"  v-model="form.email"  :class="{'input': true,  }" />
                                         </div>
                                     </div>
                                 </div>
@@ -122,6 +152,7 @@ CRUD Edit, Create form
         data(){
             return {
                 options: [],
+                sites:[],
                 siteUrl: window.surl,			// Edit үед id орж ирнэ
                 fetched: false,
                 site_id: this.$store.getters.domain.id,
@@ -135,6 +166,9 @@ CRUD Edit, Create form
                     price: '',
                     phone: '',
                     email: '',
+                    is_pin: 0,
+                    pin_date: null,
+                    site_id: 49,
                 },
                 aldaanuud: [],
             }
@@ -149,7 +183,10 @@ CRUD Edit, Create form
                 this.m_id = this.$route.params.id;
                 axios.get('/zar_category/0').then((response) => {
                     this.options = response.data.success;
-                    console.log(this.options)
+                    axios.get('site').then((r) => {
+                        this.sites=r.data.success;
+                        this.fetched = true;
+                    })
                 });
 
                 if (this.m_id) {
@@ -160,6 +197,9 @@ CRUD Edit, Create form
                         this.form.phone = response.data.success.phone;
                         this.form.email = response.data.success.email;
                         this.form.cat_id=response.data.success.cat_id;
+                        this.form.site_id=response.data.success.site_id;
+                        this.form.is_pin=response.data.success.is_pin;
+                        this.form.pin_date=response.data.success.pin_date;
 
                         if (response.data.success.image) {
                             this.imageni = this.siteUrl+'/uploads/'+response.data.success.image;

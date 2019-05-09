@@ -167,12 +167,9 @@
             fetchdata(){
                 axios.get('site').then((response) => {
                     this.options.listColumns.site_id=response.data.success;
-                    console.log(this.options.listColumns.site_id);
                     this.fetched = true;
                 })
-
             },
-
             // Устгах
             ustga(row){
                 this.is_loading = true;

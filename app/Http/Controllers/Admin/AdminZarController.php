@@ -96,6 +96,13 @@ class AdminZarController extends Controller
         $info->phone=$data['phone'];
         $info->email=$data['email'];
         $info->cat_id=$data['cat_id'];
+        $info->site_id=$data['site_id'];
+        $info->is_pin=$data['is_pin'];
+        if($data['is_pin']==1){
+            $info->pin_date=$data['pin_date'];
+        } else {
+            $info->pin_date=null;
+        }
         $info->image=$img;
         $info->save();
 
@@ -150,6 +157,13 @@ class AdminZarController extends Controller
         $info->phone=$data['phone'];
         $info->email=$data['email'];
         $info->cat_id=$data['cat_id'];
+        $info->site_id=$data['site_id'];
+        $info->is_pin=$data['is_pin'];
+        if($data['is_pin']==1){
+            $info->pin_date=$data['pin_date'];
+        } else {
+            $info->pin_date=null;
+        }
         if(!is_null($img)){ $info->image=$img; }
         $info->save();
 

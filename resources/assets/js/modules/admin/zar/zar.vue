@@ -54,7 +54,7 @@
                 fetched:false,
                 is_loading:false,
                 user:false,
-                columns: ['id', 'title',   'cat_id',   'price', 'phone', 'email',  'content',  'created_at', 'action',],
+                columns: ['id', 'title', 'is_pin', 'site_id',   'cat_id',    'phone',   'created_at', 'action',],
                 options: {
 
                     perPage: 25,
@@ -64,16 +64,17 @@
                         id: '№',
                         title: "Гарчиг",
                         cat_id: "Ангилал",
-                        content: "Агууллага",
                         price: "Үнэ",
                         phone: "Утас",
                         email: "Имэйл",
+                        site_id: "сум",
+                        is_pin: "онцлох",
                         created_at: "огноо",
                         action: " ",
                     },
                     filterByColumn: true,
-                    sortable: [ 'title', 'content',  'cat_id', 'price', 'phone', 'email', ],
-                    filterable: ['title', 'content',  'cat_id', 'price', 'phone', 'email' ],
+                    sortable: [ 'title', 'is_pin', 'content', 'site_id',   'cat_id',  'phone',  ],
+                    filterable: ['title', 'is_pin', 'content', 'site_id',  'cat_id', 'phone', ],
                     columnsDisplay:{
                         content: 'desktop',
                         phone: 'desktop',
@@ -88,7 +89,18 @@
                         is:'fa-sort' 
                     },
                     listColumns: {
-                        cat_id:[]
+                        is_pin: [
+                            {
+                                id: 0,
+                                text: 'үгүй'
+                            },
+                            {
+                                id: 1,
+                                text: 'тийм'
+                            },
+                        ],
+                        cat_id:[],
+                        site_id: [],
                     },
                     texts:{
                         count : this.$store.getters.lang.table.count,
@@ -148,9 +160,13 @@
             fetchData(){
                 axios.get('/zar_category_select').then((response) => {
                     this.options.listColumns.cat_id = response.data.success;
-                    console.log(this.options.listColumns.cat_id);
-                    this.fetched=true;
+                    axios.get('site').then((r) => {
+                        this.options.listColumns.site_id=r.data.success;
+                        console.log(this.options.listColumns.site_id);
+                        this.fetched = true;
+                    })
                 })
+
             },
             // Устгах
             ustga(row){
