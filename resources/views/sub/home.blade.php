@@ -223,7 +223,7 @@
                                             <div class="zar_thumb" style="background-image: url('{{asset('uploads')}}/{{$zr->image}}')"></div>
                                         </div>
                                         <div class="col-sm-8">
-                                            <a href="http://zar.{{$home_url->domain}}/p/{{$zr->id}}.html">{{mb_substr($zr->title, 0, 55)}}...</a>
+                                            <a href="http://zar.bayankhongor.gov.mn/p/{{$zr->id}}.html">{{mb_substr($zr->title, 0, 55)}}...</a>
                                             <span class="create_date"><i class="far fa-clock"></i> {{$zr->created_at}}</span>
                                         </div>
                                     </li>

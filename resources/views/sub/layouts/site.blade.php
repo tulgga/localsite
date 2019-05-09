@@ -11,8 +11,8 @@
     @yield('meta')
     <style>
         :root{
-            --MainColor: {{$info->config['main']['main_color']['hex']}};
-            --SecondColor: {{$info->config['main']['parent_color']['hex']}};
+            --MainColor: @if(isset($info->config['main']['main_color']['hex'])) {{$info->config['main']['main_color']['hex']}};  @else {{$info->config['main']['main_color']}};  @endif
+            --SecondColor: @if(isset($info->config['main']['parent_color']['hex'])) {{$info->config['main']['parent_color']['hex']}};  @else {{$info->config['main']['parent_color']}};  @endif;
         }
     </style>
     <link href="{{ asset('main/sub/css/bootstrap.css') }}" rel="stylesheet" type="text/css">
@@ -69,7 +69,7 @@
                     <div class="top-menu-show-btn d-sm-none"><i class="fa fa-ellipsis-v"></i></div>
                     <ul class="top-menu">
                         <li><a href="#" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-link"></i> Бусад сумдууд</a></li>
-                        <li><a href="http://archive.{{$home_url->domain}}/{{$info['domain']}}" target="_blank"><i class="fab fa-internet-explorer"></i> Өмнөх хувилбар</a></li>
+                        <li><a href="http://archive.bayankhongor.gov.mn/{{$info['domain']}}" target="_blank"><i class="fab fa-internet-explorer"></i> Өмнөх хувилбар</a></li>
                         <li><a href="{{asset('feedback')}}"><i class="far fa-comments"></i> Санал хүсэлт, өргөдөл, гомдол</a></li>
 
                     <a href="https://intranet.gov.mn/" target="_blank"><img style="height: 30px;margin: 9px 0 9px 15px;border-radius: 5px;" src="https://intranet.gov.mn/style/login/header/able.gif" /></a>
@@ -234,7 +234,7 @@
                         @foreach($info->subDomain as $domain)
                             @if(!$domain->id == 0)
                                 <div class="col-sm-5 sum_item">
-                                    <a href="http://{{$domain->domain}}.{{$home_url->domain}}">{{$domain->name}}</a>
+                                    <a href="http://{{$domain->domain}}.{{env('SUB_DOMAIN')}}">{{$domain->name}}</a>
                                 </div>
                             @endif
                         @endforeach
@@ -336,7 +336,7 @@
                 @foreach($info->subDomain as $domain)
                     @if(!$domain->id == 0)
                         <li class="col-sm-6">
-                        <a href="http://{{$domain->domain}}.{{$home_url->domain}}">@if($domain->favicon)<img src="{{ asset('uploads/'.$domain->favicon)}}">@else<img src="{{ asset('uploads/favicon/XnjMhMUg3enV21GhLYDopC2L6uHsuQK0BqjTjCjP.png')}}">@endif {{$domain->name}}</a>
+                        <a href="http://{{$domain->domain}}.{{env('SUB_DOMAIN')}}">@if($domain->favicon)<img src="{{ asset('uploads/'.$domain->favicon)}}">@else<img src="{{ asset('uploads/favicon/XnjMhMUg3enV21GhLYDopC2L6uHsuQK0BqjTjCjP.png')}}">@endif {{$domain->name}}</a>
                         </li>
                     @endif
                 @endforeach

@@ -31,7 +31,7 @@ class SubController extends BaseController
     public function index($account){
       $week=['Ням', 'Даваа', 'Мягмар', 'Лхагва', 'Пүрэв', 'Баасан', 'Бямба'];
       $data['date']=date('m сарын d, ').$week[date('w')];
-      $data['home_url'] = Site::select('domain')->where('id',0)->first();
+      $data['home_url'] = env('SUB_DOMAIN', 'bkh.gov.mn');
       $data['info'] = $this->getDomainInfo($account);
         $data['zar'] = Zar::select('zar.id','zar.title','zar.image','zar.created_at','zar_category.name','zar.cat_id')->where('zar.site_id',$data['info']->id)->Join('zar_category', 'zar_category.id','=','zar.cat_id')->orderBy('zar.created_at','DESC')->limit(20)->get();
       $data['ontslokh']= Post::orderBy('created_at', 'desc')->where('site_id', $data['info']->id)->where('is_primary', 1)->where('status',1)->with('Category')->select('title', 'id', 'image', 'type','short_content','created_at')
