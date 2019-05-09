@@ -13,9 +13,17 @@ class ApiEventController extends Controller
     {
         $data=$this->MainData();
         $events = []; // event
-
         if($site_id > 0 ){
-            $events = DB::select("select id, schedule_date as date,head_id as org_type, start_time as start, 
+            $events = DB::select("select id, schedule_date as date,
+            
+            CASE
+                WHEN head_id = 4 THEN 'ХДТ'
+                WHEN head_id = 5 THEN 'Тэмүжин театр'
+                WHEN head_id = 6 THEN 'Баганат талбайд'
+                WHEN head_id = 7 THEN 'ЗДТГын зааланд'
+                WHEN head_id = 8 THEN 'Сумын ЗДТГын зааланд'
+                ELSE 'Бусад'
+            END as org, start_time as start, 
             end_time as end, description,person_count, ifnull(cnt, 0) as person_going_count 
             
             from dashboard_schedules 
