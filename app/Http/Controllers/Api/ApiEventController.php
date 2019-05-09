@@ -14,18 +14,19 @@ class ApiEventController extends Controller
         $data=$this->MainData();
         $events = []; // event
 
-        if($site_id > 0){
-            $events = DB::select("select id, schedule_date as date,head_id as org_type, start_time as start, end_time as end, description,person_count, ifnull(cnt, 0) as person_going_count from dashboard_schedules 
+        if($site_id > 0 ){
+            $events = DB::select("select id, schedule_date as date,head_id as org_type, start_time as start, 
+            end_time as end, description,person_count, ifnull(cnt, 0) as person_going_count 
+            
+            from dashboard_schedules 
                 left join (
                     select dashboard_schedule_id, count(0) as cnt 
-                    from  Dashboard_schedule_going 
+                    from  dashboard_schedule_goings 
                     where created_at >= '".$data['y']."'
                     group by dashboard_schedule_id 
-                ) going
+                ) going on dashboard_schedules.id = going.dashboard_schedule_id
                 
-                on dashboard_schedules.id = going.dashboard_schedule_id
-                
-                where is_publish =1 and schedule_date >= '".$data['y']."'" );
+            where is_publish =1 and schedule_date >= '".$data['y']."'" );
         }
 
         return response()->json( ['success'=>$events]);
