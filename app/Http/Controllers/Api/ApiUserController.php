@@ -207,6 +207,15 @@ class ApiUserController extends Controller
         $user->save();
         return response()->json(['success' => 1, 'message' => 'Амжилттай']);
     }
+    
+    public function urgudul(){
+        $user = Auth::user();
+        
+        $urgudul=Urgudul::where('site_id', $user->id)->orderBy('created_at', 'desc')->paginate(40);
+        return response()->json(
+            ['success'=>$urgudul]
+        );
+    }
 
 
     public function changePassword(Request $request){
