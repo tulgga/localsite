@@ -37,7 +37,7 @@ class ApiEventController extends Controller
                 ) going on dashboard_schedules.id = going.dashboard_schedule_id
                 
                 
-            where head_id>3 and is_publish =1 and schedule_date >= '".$data['y']."'" );
+            where head_id>3 and is_publish =1 and site_id=".$site_id." and schedule_date >= '".$data['y']."'" );
         }
 
         return response()->json( ['success'=>$events]);
