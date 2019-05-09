@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Hashing\BcryptHasher;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Urgudul;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use phpseclib\Crypt\Hash;
