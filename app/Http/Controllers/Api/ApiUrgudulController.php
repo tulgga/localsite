@@ -18,11 +18,25 @@ class ApiUrgudulController extends Controller
         );
     }
 
+    
     public function filterUrgudul(Request $request){
         $data = $request->get('data');
         $data = json_decode($data, true);
 
-        $urgudul=Urgudul::where('site_id', 0);
+        $urgudul=[];
+        
+        if($data['site_id']==0){
+            $urgudul= Urgudul::where('site_id', 0);
+        
+            if($data['heltes_id']!=0){
+                $urgudul=$urgudul->where('heltes_id', $data['heltes_id']);
+            }
+        }else{
+            $urgudul=Urgudul::where('site_id', $data['site_id']);
+             
+        }
+        
+        
         if($data['user_id']!=-1){
             $urgudul=$urgudul->where('user_id', $data['user_id']);
         }
@@ -30,13 +44,7 @@ class ApiUrgudulController extends Controller
             $urgudul=$urgudul->where('type', $data['type']);
         }
     
-        if($data['site_id']!=-0){
-            $urgudul=$urgudul->where('site_id', $data['site_id']);
-        } else {
-            if($data['heltes_id']!=0){
-                $urgudul=$urgudul->where('heltes_id', $data['heltes_id']);
-            }
-        }
+      
 
         if($data['status']!=-1){
             $urgudul=$urgudul->where('status', $data['status']);
@@ -56,7 +64,6 @@ class ApiUrgudulController extends Controller
             ['success'=>$urgudul]
         );
     }
-    
 
     public function sendUrgudul(Request $request){
         $data = $request->get('data');
