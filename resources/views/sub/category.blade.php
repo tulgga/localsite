@@ -26,28 +26,83 @@
         </div>
     </div>
     @if($list_type==3)
-    <section id=timeline>
-            <h1>{{$now_selected['name']}}</h1>
-            <p class="leader">Он цагийн дараалал</p>
-        	<div class="demo-card-wrapper">
-        	    <?php $index=1;?>
-        	    @foreach($newslist as $news)
-                    <?php $img = ($news->type == 2) ? "https://i.ytimg.com/vi/{{$news->image}}/mqdefault.jpg" : asset(str_replace("images","uploads/medium/",$news->image)); ?>
-                   <div class="demo-card demo-card--step{{$index}}">
-            			<div class="head">
-            				<div class="number-box">
-            					<span>{{$index}}</span>
-            				</div>
-            				<h2> {{mb_substr($news->title, 0, 8)}}</h2>
-            			</div>
-            			<div class="body">
-                            <p> <img src="{{$img}}"/> {{mb_substr($news->short_content, 0, 400)}}</p>
-            			</div>
-            		</div>
-            		<?php $index= $index+1?>
-                @endforeach
-        	</div>
-        </section>          
+        <div class="timeline-container" id="timeline-1">
+          <div class="timeline-header">
+            <h2 class="timeline-header__title">{{$now_selected['name']}}</h2>
+          </div>
+          <div class="timeline">
+            <?php $index=1;?>
+    	    @foreach($newslist as $news)
+                <?php $img = ($news->type == 2) ? "https://i.ytimg.com/vi/{{$news->image}}/mqdefault.jpg" : asset(str_replace("images","uploads/medium/",$news->image)); ?>
+               <div class="timeline-item" data-text="{{$news->short_content}}">
+                  <div class="timeline__content"><img class="timeline__img" src="{{$img}}"/>
+                    <h2 class="timeline__content-title">{{mb_substr($news->short_content, 0, 50)}}</h2>
+                    <p class="timeline__content-desc">{!!$news->contant !!}</p>
+                  </div>
+                </div>
+        		<?php $index= $index+1?>
+            @endforeach
+          </div>
+        </div>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+        <script >
+        (function($) {
+        $.fn.timeline = function() {
+        var selectors = {
+          id: $(this),
+          item: $(this).find(".timeline-item"),
+          activeClass: "timeline-item--active",
+          img: ".timeline__img"
+        };
+        selectors.item.eq(0).addClass(selectors.activeClass);
+        selectors.id.css(
+          "background-image",
+          "url(" +
+            selectors.item
+              .first()
+              .find(selectors.img)
+              .attr("src") +
+            ")"
+        );
+        var itemLength = selectors.item.length;
+        $(window).scroll(function() {
+          var max, min;
+          var pos = $(this).scrollTop();
+          selectors.item.each(function(i) {
+            min = $(this).offset().top;
+            max = $(this).height() + $(this).offset().top;
+            var that = $(this);
+            if (i == itemLength - 2 && pos > min + $(this).height() / 2) {
+              selectors.item.removeClass(selectors.activeClass);
+              selectors.id.css(
+                "background-image",
+                "url(" +
+                  selectors.item
+                    .last()
+                    .find(selectors.img)
+                    .attr("src") +
+                  ")"
+              );
+              selectors.item.last().addClass(selectors.activeClass);
+            } else if (pos <= max - 40 && pos >= min) {
+              selectors.id.css(
+                "background-image",
+                "url(" +
+                  $(this)
+                    .find(selectors.img)
+                    .attr("src") +
+                  ")"
+              );
+              selectors.item.removeClass(selectors.activeClass);
+              $(this).addClass(selectors.activeClass);
+            }
+          });
+        });
+        };
+        })(jQuery);
+        
+        $("#timeline-1").timeline();
+        </script>
     @else
         <div class="row">
             <div class="container content-box">
