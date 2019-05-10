@@ -91,7 +91,7 @@ class ApiNewsController extends Controller
 
     public function CatTimeLine($catID){
         $news=Post::where('posts.site_id',0)->where('posts.status', 1)->where('news_to_category.cat_id', $catID)
-            ->select('posts.id', 'posts.title', 'posts.short_content', 'posts.type', 'posts.image')
+            ->select('posts.id', 'posts.title', 'posts.short_content', 'posts.content', 'posts.type', 'posts.image')
             ->Join('news_to_category', 'news_to_category.post_id', '=', 'posts.id')
             ->groupBy('posts.id')
             ->orderBy('posts.created_at', 'asc')->limit(50)->get();

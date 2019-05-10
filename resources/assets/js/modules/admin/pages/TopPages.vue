@@ -77,7 +77,7 @@
 
                                            </div>
                                        </td>
-                                   </tr>no
+                                   </tr>
                                </template>
                             </template>
                    </template>

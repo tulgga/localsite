@@ -4,7 +4,7 @@
             <div v-if="content">
                 <div class="columns  pb-2">
 
-                    <div  class="column is-9" >
+                    <div  class="column is-9" :class="{'is-12': content.type==2 && content.list_type==3}" >
 
                         <div class="has-background-white p-15 mb-2" style="min-height: 400px;" >
                             <h1 class="is-size-4-tablet is-size-6-mobile mb-1">{{content.title}}</h1>
@@ -26,7 +26,7 @@
                             </template>
                         </div>
                     </div>
-                    <div    class="column is-3">
+                    <div  v-if="(content.type==2 && content.list_type==3)===false"   class="column is-3">
                         <template  v-if="content.is_main==1" >
                         <aside class="menu mb-2">
                                 <p class="menu-label">

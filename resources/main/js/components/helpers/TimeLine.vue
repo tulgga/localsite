@@ -1,12 +1,13 @@
 <template>
     <div  v-if="post" >
-        <div class="timeline">
-            <header class="timeline-header">
-                <span class="tag is-medium is-success">Эхлэл</span>
-            </header>
+        <div class="timeline is-centered">
+
             <template v-for="p in post">
+                <header class="timeline-header">
+                    <span class="tag is-primary">{{p.short_content.substring(0,4)}}</span>
+                </header>
                 <div class="timeline-item">
-                    <div class="timeline-marker"></div>
+
                     <div class="timeline-content">
                         <div class="p-2" style="border:1px solid #dbdbdb">
                             <p class="heading is-size-4" ><a @click="Modal=p ">{{p.title}}</a></p>
@@ -14,8 +15,7 @@
                                 <img v-if="p.type===2" :src="'https://img.youtube.com/vi/'+p.image+'/0.jpg'"/>
                                 <img v-else :src="siteUrl+p.image.replace('images/', '/uploads/medium/')"/>
                             </p>
-                            <p>{{p.short_content}}</p>
-
+                            <p v-html="p.content"></p>
                         </div>
 
                     </div>
@@ -23,9 +23,7 @@
             </template>
 
 
-            <div class="timeline-header">
-                <span class="tag is-medium is-success">Төгсгөл</span>
-            </div>
+
         </div>
 
         <div class="modal is-active" v-if="Modal">
