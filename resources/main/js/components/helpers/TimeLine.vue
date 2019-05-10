@@ -4,14 +4,14 @@
 
             <template v-for="p in post">
                 <header class="timeline-header">
-                    <span class="tag is-primary">{{p.short_content.substring(0,4)}}</span>
+                    <span class="tag is-medium is-primary">{{p.short_content}}</span>
                 </header>
                 <div class="timeline-item">
 
                     <div class="timeline-content">
                         <div class="p-2" style="border:1px solid #dbdbdb">
                             <p class="heading is-size-4" ><a @click="Modal=p ">{{p.title}}</a></p>
-                            <p>
+                            <p v-if="p.image">
                                 <img v-if="p.type===2" :src="'https://img.youtube.com/vi/'+p.image+'/0.jpg'"/>
                                 <img v-else :src="siteUrl+p.image.replace('images/', '/uploads/medium/')"/>
                             </p>
@@ -32,11 +32,12 @@
             <div class="modal-card" style="max-width: 610px">
                 <div class="has-text-white has-background-primary" style="padding:20px;">{{Modal.title}}</div>
                 <section class="modal-card-body pd0">
-                    <p>
+                    <p v-if="Modal.image">
                         <img v-if="Modal.type===2" :src="'https://img.youtube.com/vi/'+p.image+'/0.jpg'"/>
                         <img v-else :src="siteUrl+Modal.image.replace('images/', '/uploads/medium/')"/>
                     </p>
-                    <p>{{Modal.short_content}}</p>
+                    <span class="tag is-primary mt-1 mb-1">{{Modal.short_content}}</span>
+                    <p v-html="Modal.content"></p>
                 </section>
             </div>
             <button v-on:click="Modal = false" class="modal-close is-large" aria-label="close"></button>

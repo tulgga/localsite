@@ -15,6 +15,9 @@ class ApiNewsController extends Controller
     public function site_news($site_id, $limit=20){
         $news=Post::where('site_id',$site_id)->where('status', 1)
             ->select('id', 'title', 'short_content', 'image', 'type', 'is_primary', 'view_count', 'created_at')
+            ->Join('news_to_category', 'news_to_category.post_id', '=', 'posts.id')
+            ->where('news_to_category.cat_id', 164)
+            ->groupBy('posts.id')
             ->with('Category', 'Site')->orderBy('created_at', 'desc')
             ->paginate($limit);
         return response()->json(['success'=>$news]);
@@ -94,7 +97,7 @@ class ApiNewsController extends Controller
             ->select('posts.id', 'posts.title', 'posts.short_content', 'posts.content', 'posts.type', 'posts.image')
             ->Join('news_to_category', 'news_to_category.post_id', '=', 'posts.id')
             ->groupBy('posts.id')
-            ->orderBy('posts.created_at', 'asc')->limit(50)->get();
+            ->orderBy('posts.created_at', 'desc')->limit(50)->get();
         return response()->json(['success'=>$news]);
     }
 
