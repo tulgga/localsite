@@ -26,7 +26,9 @@
         </div>
     </div>
     @if($list_type==3)
+        <div class="row">
         <div class="timeline-container" id="timeline-1">
+            
           <div class="timeline-header">
             <h2 class="timeline-header__title">{{$now_selected['name']}}</h2>
           </div>
@@ -44,6 +46,9 @@
             @endforeach
           </div>
         </div>
+        
+        </div>
+        
         <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
         <script >
         (function($) {
