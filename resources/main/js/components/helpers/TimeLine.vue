@@ -4,16 +4,16 @@
 
             <template v-for="p in post">
                 <header class="timeline-header">
-                    <span class="tag is-medium is-primary">{{p.short_content}}</span>
+                    <span class="tag is-large is-primary"><b>{{p.short_content}}</b></span>
                 </header>
                 <div class="timeline-item">
 
                     <div class="timeline-content">
                         <div class="p-2" style="border:1px solid #dbdbdb">
-                            <p class="heading is-size-4" ><a @click="Modal=p ">{{p.title}}</a></p>
+                            <p class="heading is-size-5" ><a @click="Modal=p ">{{p.title}}</a></p>
                             <p v-if="p.image">
                                 <img v-if="p.type===2" :src="'https://img.youtube.com/vi/'+p.image+'/0.jpg'"/>
-                                <img v-else :src="siteUrl+p.image.replace('images/', '/uploads/medium/')"/>
+                                <img v-else :src="siteUrl+p.image.replace('images/', '/uploads/small/')"/>
                             </p>
                             <p v-html="p.content"></p>
                         </div>
@@ -34,7 +34,7 @@
                 <section class="modal-card-body pd0">
                     <p v-if="Modal.image">
                         <img v-if="Modal.type===2" :src="'https://img.youtube.com/vi/'+p.image+'/0.jpg'"/>
-                        <img v-else :src="siteUrl+Modal.image.replace('images/', '/uploads/medium/')"/>
+                        <img v-else :src="siteUrl+Modal.image.replace('images/', '/uploads/large/')"/>
                     </p>
                     <span class="tag is-primary mt-1 mb-1">{{Modal.short_content}}</span>
                     <p v-html="Modal.content"></p>

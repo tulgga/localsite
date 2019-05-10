@@ -99,7 +99,7 @@ class AdminPagesController extends Controller
             $Page->order_num=Page::where('parent_id', $data['parent_id'])->get()->count();
             $cats= Page::where('parent_id', $Page->parent_id)->orderBy('order_num', 'asc')->get();
             foreach ($cats as $i=>$cat){
-                $save=Lavlagaa::find($cat->id);
+                $save=Page::find($cat->id);
                 $save->order_num=$i;
                 $save->save();
             }
