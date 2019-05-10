@@ -4,24 +4,46 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         @yield('meta')
+
+        <title>DASHBOARD</title>
         <link rel="stylesheet" href="{{ asset('dashboard/bootstrap.min.css')}}">
+        <link href="{{ asset('main/volunteer/fontawesome/css/all.css') }}">
+        <link href="{{ asset('/dashboard/index.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ asset('main/volunteer/fontawesome/css/all.css') }}" rel="stylesheet">
+
         <script src="{{ asset('main/zar/js/jquery-3.2.1.min.js') }}"></script>
+        <script src="{{ asset('dashboard/jquery.pause.js') }}"></script>
+        <script src="{{ asset('dashboard/jquery.easing.min.js') }}"></script>
+        <script src="{{ asset('dashboard/jquery.marquee.js') }}"></script>
         <script src="{{ asset('main/zar/js/popper.js') }}"></script>
         <script src="{{ asset('main/zar/js/bootstrap.min.js') }}"></script>
-
-        <link href="{{ asset('/dashboard/index.css') }}" rel="stylesheet" type="text/css">
-        <link href="{{ asset('main/volunteer/fontawesome/css/all.css') }}">
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-        <title>DASHBOARD</title>
-
+        <script>
+            $(document).ready(function(){
+                setInterval(function(){
+                    location.reload(true);
+                },600000);
+                $('.carousel').carousel({
+                    interval: 20000
+                });
+            })
+        </script>
         <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700&amp;subset=cyrillic,cyrillic-ext,latin-ext" rel="stylesheet">
     </head>
     <body class="full-height">
         <div class="col-sm-12">
             <div class="row">
+                <div class="col-sm-12" style="    font-size: 20px;
+    text-transform: uppercase;
+    text-align: center;
+    padding-top: 5px;">
+                    Ухаалаг Баянхонгор хөтөлбөр - Шуурхай мэдээллийн самбар
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-sm-3">
                     <div class="box">
-                        <h1 class="title"><img src="{{asset('main/doctor.png')}}"/> <span>Эрүүл мэндийн салбар</span></h1>
+                        <h1 class="title" style="background-color: #3d9642;"><img src="{{asset('main/doctor.png')}}"/> <span>Эрүүл мэндийн салбар</span></h1>
                         <ul class="grid-list-item clearfix">
                             <li><div class="item"><span class="num">{{$h!=null ?$h->birth: 0}}</span><span class="title" style="border-color:#dc5332">Төрөлт</span></div></li>
                             <li><div class="item"><span class="num">{{$h!=null ?$h->die: 0}}</span><span class="title" style="border-color:#567dcc">Нас баралт</span></div></li>
@@ -65,7 +87,7 @@
                 </div>
                 <div class="col-sm-6 p-sm-0">
                     <div class="box">
-                        <h1 class="title"><img src="{{asset('main/police.png')}}"/> <span>Цагдаагийн газар</span></h1>
+                        <h1 class="title" style="background-color: #567dcc;"><img src="{{asset('main/police.png')}}"/> <span>Цагдаагийн газар</span></h1>
                         <div class="row">
                             <div class="col-sm-6 pr-sm-0">
                                 <h6 style="padding: 0 15px;text-transform: uppercase;color: #ff7900;text-align: right;margin: 0 0 -13px;">Гэмт хэрэг</h6>
@@ -153,7 +175,7 @@
                 </div>
                 <div class="col-sm-3">
                     <div class="box">
-                        <h1 class="title"><img src="{{asset('main/emergency.png')}}"/> <span>Онцгой байдлын газар</span></h1>
+                        <h1 class="title" style="background-color: #dc5332;"><img src="{{asset('main/emergency.png')}}"/> <span>Онцгой байдлын газар</span></h1>
                         <ul class="grid-list-item clearfix">
                             <li><div class="item"><span class="num">{{$n!=null ?$n->fo: 0}}</span><span class="title" style="border-color:#dc5332">Ойн хээрийн түймэр</span></div></li>
                             <li><div class="item"><span class="num">{{$n!=null ?$n->ff: 0}}</span><span class="title" style="border-color:#567dcc">Ообъектын түймэр</span></div></li>
@@ -197,29 +219,47 @@
             <div class="row">
                 <div class="col-sm-3">
                     @if($events)
-                    <div class="box">
-                        <h1 class="title"><img src="{{asset('main/finance_full.png')}}"/> <span>Эвент</span></h1>
+                    <div class="box" style="max-height: 475px;min-height: 475px;overflow: hidden;">
+                        <h1 class="title" style="margin-bottom: 20px;background-color: #ffab2c"><img src="{{asset('main/calendar.png')}}"/> <span>Эвент</span></h1>
                         @foreach($events as $event)
                             <div class="event_list">
                                 <div class="row">
-                                <div class="col-sm-1"><i class="fa fa-check"></i></div>
-                                <div class="col-sm-9">
-                                <div class="desc">{{$event->description}}</div>
-                                <div class="where"></div>
+                                <div class="col-sm-2 text-center"><i class="far fa-calendar-alt"></i></div>
+                                <div class="col-sm-8">
+                                <div class="desc @if(strlen($event->description) > 45) marquee @endif">{{$event->description}}</div>
+                                <div class="where">Соёлын төв</div>
                                 </div>
-                                <div class="col-sm-2">
-                                        <div class="date">{{$event->schedule_date}}</div>
-                                        <div class="time">{{$event->start_time}}</div>
+                                <div class="col-sm-2 text-center">
+                                        <div class="date">{{date("m/d", strtotime($event->schedule_date))}}</div>
+                                        <div class="time">{{date("H:i", strtotime($event->start_time))}}</div>
                                 </div>
                                 </div>
                             </div>
                         @endforeach
                     </div>
+                        <script>
+                            $(function() {
+                                $('.marquee').marquee({
+                                    allowCss3Support:true,
+                                    //speed in milliseconds of the marquee
+                                    speed: 10000,
+                                    //gap in pixels between the tickers
+                                    gap: 100,
+                                    //gap in pixels between the tickers
+                                    delayBeforeStart: 3000,
+                                    //'left' or 'right'
+                                    direction: 'left',
+                                    //true or false - should the marquee be duplicated to show an effect of continues flow
+                                    duplicated: true
+
+                                });
+                            });
+                        </script>
                     @endif
                 </div>
                 <div class="col-sm-6 p-sm-0">
-                    <div class="box">
-                        <h1 class="title"><img src="{{asset('main/finance_full.png')}}"/> <span>Төсөв, санхүү</span></h1>
+                    <div class="box" style="max-height: 475px;min-height: 475px;overflow: hidden;">
+                        <h1 class="title" style="background-color: #999;"><img src="{{asset('main/finance_full.png')}}"/> <span>Төсөв, санхүү</span></h1>
                             <div id="tosovchart" class="carousel slide" data-ride="carousel">
                                 <div class="carousel-inner">
                                     <?php $i=1; ?>
@@ -243,11 +283,21 @@
 
                                                                 ]);
                                                                 var options_{{$budget->id}} = {
+                                                                    @if($budget->b_type==1)
+                                                                        title:'Улсын төсөв',
+                                                                    @elseif($budget->b_type==2)
+                                                                        title:'Орон нутгийн нөөц хөрөнгө',
+                                                                    @elseif($budget->b_type==3)
+                                                                        title:'Замын сан',
+                                                                    @elseif($budget->b_type==4)
+                                                                        title:'Засаг даргын нөөц хөрөнгө',
+                                                                    @endif
                                                                     legend: 'none',
                                                                     is3D:'true',
+                                                                    titleTextStyle:{color:'#fff'},
                                                                     chartArea: {
-                                                                        left:0,
-                                                                        top:0,
+                                                                        left:20,
+                                                                        top:20,
                                                                         width:'100%',
                                                                         height:'100%'
                                                                     },
@@ -268,6 +318,7 @@
                                                         @if($i==1 || $i==3)
                                                     </div>
                                                     <div class="col-sm-6">
+
                                                         @endif
                                                         @if($i==2 || $i==4)
                                                     </div>
@@ -329,7 +380,77 @@
                             @endif
                     </div>
                 </div>
-                <div class="col-sm-3"></div>
+                <div class="col-sm-3">
+                    @if($news)
+                        <div class="box" style="max-height: 475px;min-height: 475px;overflow: hidden;">
+                            <h1 class="title" style="margin-bottom: 20px;background-color: #8959a8"><img src="{{asset('main/calendar.png')}}"/> <span>Ажлын төлөвлөгөө</span></h1>
+                            <div class="kt-portlet__body">
+                                <!--Begin::Timeline 3 -->
+                                <div class="kt-timeline-v2">
+                                    <div class="kt-timeline-v2__items marquee-up">
+                                        @foreach($schedule as $sch)
+                                            <?php $rand = array('danger','primary','warning','info','secondary'); $random_keys=array_rand($rand,1) ?>
+                                        <div class="kt-timeline-v2__item">
+                                            <span class="kt-timeline-v2__item-time">{{date("H:i", strtotime($sch->start_time))}}</span>
+                                            <div class="kt-timeline-v2__item-cricle">
+                                                <i class="fa fa-genderless text-<?php echo $rand[$random_keys]; ?>"></i>
+                                            </div>
+                                            <div class="kt-timeline-v2__item-text  kt-padding-top-5">{{$sch->description}}</div>
+                                        </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                                <!--End::Timeline 3 -->
+                            </div>
+                        </div>
+                        <script>
+                            $(function() {
+                                $('.marquee-up').marquee({
+                                    allowCss3Support:true,
+                                    //speed in milliseconds of the marquee
+                                    speed: 10000,
+                                    //gap in pixels between the tickers
+                                    gap: 100,
+                                    //gap in pixels between the tickers
+                                    delayBeforeStart: 0,
+                                    //'left' or 'right'
+                                    direction: 'up',
+                                    //true or false - should the marquee be duplicated to show an effect of continues flow
+                                    duplicated: false
+
+                                });
+                            });
+                        </script>
+                    @endif
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 clearfix">
+                    <div class="shuurhai">
+                    <span class="head_title">Шуурхай мэдээ:</span>
+                    <ul class="marquee_shuurhai">
+                        @foreach($news as $nw)
+                            <li><span class="date">{{$nw->created_at->format('Y-m-d')}}</span>{{$nw->desc}}</li>
+                        @endforeach
+                    </ul>
+                    </div>
+                </div>
+                <script>
+                    $(function() {
+                        $('.marquee_shuurhai').marquee({
+                            allowCss3Support:true,
+                            //speed in milliseconds of the marquee
+                            speed: 30000,
+                            //gap in pixels between the tickers
+                            gap: 10,
+                            //gap in pixels between the tickers
+                            delayBeforeStart: 0,
+                            //'left' or 'right'
+                            direction: 'left',
+
+                        });
+                    });
+                </script>
             </div>
         </div>
     </body>
