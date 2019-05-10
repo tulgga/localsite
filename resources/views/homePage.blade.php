@@ -41,7 +41,7 @@
 
             </ul>
             <ul class="col-sm-6 right-menu">
-                <li><a href="http://eservice.bayankhongor.gov.mn/" ><i class="fa fa-folder-o"></i> ТӨРИЙН ҮЙЛЧИЛГЭЭ</a></li>
+                <li><a href="http://eservice.bayankhongor.gov.mn/" target="_blank"><i class="fa fa-folder-o"></i> ТӨРИЙН ҮЙЛЧИЛГЭЭ</a></li>
                 <li><a href="http://zar.bayankhongor.gov.mn" target="_blank"><i class="fa fa-cube"></i> ЗАРЫН НЭГДСЭН САН</a></li>
                 <li><a href="{{asset('!#/report')}}" target="_blank"><i class="fa fa-lightbulb-o"></i> Санал хүсэлт, өргөдөл гомдол</a></li>
 
