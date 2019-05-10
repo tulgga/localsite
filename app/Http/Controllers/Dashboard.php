@@ -10,6 +10,7 @@ use App\Dashboard_nema;
 use App\Site;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
+
 class Dashboard extends Controller
 {
   public function index($site_id=0, $user_role=0)
@@ -23,11 +24,10 @@ class Dashboard extends Controller
       $data['news'] = [];
 
       if($site_id==0){ // аймаг
-          if(Dashboard_news::where('created_at','>=', $data['y'])->first()) {
-              $data['news']= Dashboard_news::where('created_at', '>=', $data['y'])->get();
-          }
-          $data['events']= Dashboard_schedule::select('*')->where('schedule_date','>=', date('Y-m-d'))->orderBy('id', 'DESC')->get();
 
+          $data['events']= Dashboard_schedule::select('*')->whereNotIn('head_id',[1,2,3])->where('schedule_date','>=', date('Y-m-d'))->orderBy('id', 'DESC')->limit(8)->get();
+          $data['schedule']= Dashboard_schedule::select('*')->whereNotIn('head_id',[4,5,6,7,8,9])->where('schedule_date','>=', date('Y-m-d'))->orderBy('start_time', 'ASC')->get();
+          $data['news']= Dashboard_news::select('*')->where('created_at', '>=', $data['y'])->orderBy('created_at', 'DESC')->get();
           $hospital_data = Dashboard_hospital::select(DB::raw('SUM(birth) as birth'),
               DB::raw('SUM(die) as die'),
               DB::raw('SUM(call_near) as call_near'),
@@ -97,11 +97,6 @@ class Dashboard extends Controller
               array_push($data['budgets'], Dashboard_budget::where('b_type', $i)->orderBy('id', 'DESC')->first());
           }
       }
-
-
-
-
-
       return view('dashboard/index', $data);
   }
 
