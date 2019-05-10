@@ -13,12 +13,35 @@ use App\Site;
 use App\Settings;
 use App\Post;
 use App\Link;
+use App\Page;
 
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+    public function addMenu(){
+        $sites=Site::whereNotIn('id', [0,50])->get();
+        $pages=Page::where('site_id', 50)->orderBy('id','asc')->get();
 
+        foreach ($sites as $site){
+            foreach ($pages as $p){
+                $page= new Page();
+                $page->id=$p->id+$site->id*1000;
+                $page->title=$p->title;
+                $page->image=$p->image;
+                $page->text=$p->text;
+                $page->site_id=$site->id;
+                $page->order_num=$p->order_num;
+                if(!is_null($p->parent_id)){
+                    $page->parent_id=$p->parent_id+$site->id*1000;
+                }
+                $page->is_main=$p->is_main;
+                $page->icon=$p->icon;
+                $page->save();
+            }
+        }
+
+    }
     public function homePage(){
         $info = Site::findOrFail(0);
         $data['config']= json_decode($info->config, true);
