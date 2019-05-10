@@ -36,7 +36,7 @@ class ApiZarController extends Controller
             $zar=$zar->where('zar.cat_id', $id);
         }
 
-        $zar=$zar->orderBy('zar.created_at', 'desc')->paginate(20);
+        $zar=$zar->orderBy('zar.is_pin', 'desc')->orderBy('zar.created_at', 'desc')->paginate(20);
         return response()->json(['success' => $zar]);
     }
 
