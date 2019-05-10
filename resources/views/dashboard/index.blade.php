@@ -8,8 +8,9 @@
         <script src="{{ asset('main/zar/js/jquery-3.2.1.min.js') }}"></script>
         <script src="{{ asset('main/zar/js/popper.js') }}"></script>
         <script src="{{ asset('main/zar/js/bootstrap.min.js') }}"></script>
-        <link href="{{ asset('/dashboard/index.css') }}" rel="stylesheet" type="text/css">
 
+        <link href="{{ asset('/dashboard/index.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ asset('main/volunteer/fontawesome/css/all.css') }}">
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <title>DASHBOARD</title>
 
@@ -29,7 +30,37 @@
                             <li><div class="item"><span class="num">{{$h!=null ?$h->call_remote : 0 }}</span><span class="title" style="border-color:#999">Холын дуудлага</span></div></li>
                             <li><div class="item"><span class="num">{{$h!=null ?$h->ytt: 0}}</span><span class="title" style="border-color:#8959a8">ЯТТусламж</span></div></li>
                         </ul>
-                        <div class="clearfix"></div>
+                        <div id="hospital_chart_div" style="width: 100%; height: 200px; padding: 0 15px;"></div>
+                        <script>
+                            google.charts.load('current', {'packages':['corechart']});
+                            google.charts.setOnLoadCallback(drawVisualization);
+
+                            function drawVisualization() {
+                                // Some raw data (not necessarily accurate)
+                                var data = google.visualization.arrayToDataTable([
+                                    ['Month', 'ЯТТусламж','Холын дуудлага','Ойрын дуудлага', 'Үзлэг', 'Нас баралт', 'Төрөлт'],
+                                        @foreach($hospitalChart as $hh)
+                                    ['{{$hh->month}} сарын {{$hh->day}}',{{(int)$hh->ytt}},{{(int)$hh->call_remote}},{{(int)$hh->call_near}},{{(int)$hh->inspection}},{{(int)$hh->die}},{{(int)$hh->birth}}],
+                                    @endforeach
+                                ]);
+
+                                var options = {
+                                    colors:['#ffab2c','#3d9642','#567dcc','#dc5332','#999','#8959a8'],
+                                    chartArea:{left:20,top:10,width:'100%',height:'75%'},
+                                    legend:'none',
+                                    isStacked: true,
+                                    vAxis: {textColor: '#999',gridlines:{color:'#333'},minorGridlines:{color:'#444'}},
+                                    hAxis: {textColor: '#999'},
+                                    seriesType: 'bars',
+                                    series: {4: {type: 'line'}},
+                                    animation:{duration:'650',easing:'Out',startup:true},
+                                    backgroundColor:'transparent'
+                                };
+
+                                var chart = new google.visualization.ComboChart(document.getElementById('hospital_chart_div'));
+                                chart.draw(data, options);
+                            }
+                        </script>
                     </div>
                 </div>
                 <div class="col-sm-6 p-sm-0">
@@ -53,8 +84,8 @@
                                         // Some raw data (not necessarily accurate)
                                         var data = google.visualization.arrayToDataTable([
                                             ['Month', 'Бусад', 'Хөдөлгөөний аюулгүй байдал', 'Хулгай', 'Хүн амь'],
-                                            @foreach($policeChart as $p)
-                                            ['{{$p->month}} сарын {{$p->day}}',{{(int)$p->crime_other}},{{(int)$p->crime_movement}},{{(int)$p->crime_theft}}, {{(int)$p->crime_kill}}],
+                                            @foreach($policeChart as $pp)
+                                            ['{{$pp->month}} сарын {{$pp->day}}',{{(int)$pp->crime_other}},{{(int)$pp->crime_movement}},{{(int)$pp->crime_theft}}, {{(int)$pp->crime_kill}}],
                                             @endforeach
                                         ]);
 
@@ -67,12 +98,6 @@
                                             hAxis: {textColor: '#999'},
                                             seriesType: 'bars',
                                             series: {4: {type: 'line'}},
-                                            slices: {
-                                                0: { color: '#ffab2c'},
-                                                1: { color: '#dc5332'},
-                                                2: { color: '#3d9642'},
-                                                3: { color: '#567dcc'}
-                                            },
                                             animation:{duration:'650',easing:'Out',startup:true},
                                             backgroundColor:'transparent'
                                         };
@@ -130,20 +155,71 @@
                     <div class="box">
                         <h1 class="title"><img src="{{asset('main/emergency.png')}}"/> <span>Онцгой байдлын газар</span></h1>
                         <ul class="grid-list-item clearfix">
-                            <li><div class="item"><span class="num">{{$n!=null ?$n->fo: 0}}</span><span class="title">Ойн хээрийн түймэр</span></div></li>
-                            <li><div class="item"><span class="num">{{$n!=null ?$n->ff: 0}}</span><span class="title">Ообъектын түймэр</span></div></li>
-                            <li><div class="item"><span class="num">{{$n!=null ?$n->sos: 0}}</span><span class="title">Аюул ослын дуудлага</span></div></li>
-                            <li><div class="item"><span class="num">{{$n !=null ? (int)$n->total : 0}}</span><span class="title">Нийт дуудлага</span></div></li>
+                            <li><div class="item"><span class="num">{{$n!=null ?$n->fo: 0}}</span><span class="title" style="border-color:#dc5332">Ойн хээрийн түймэр</span></div></li>
+                            <li><div class="item"><span class="num">{{$n!=null ?$n->ff: 0}}</span><span class="title" style="border-color:#567dcc">Ообъектын түймэр</span></div></li>
+                            <li><div class="item"><span class="num">{{$n!=null ?$n->sos: 0}}</span><span class="title" style="border-color:#3d9642">Аюул ослын дуудлага</span></div></li>
+                            <li><div class="item"><span class="num">{{(int)$n->sos+(int)$n->ff+(int)$n->fo}}</span><span class="title" style="border-color:#ffab2c">Нийт дуудлага</span></div></li>
                         </ul>
-                        <div class="clearfix"></div>
+                        <div id="nemas_chart_div" style="width: 100%; height: 200px; padding: 0 15px;"></div>
+                        <script>
+                            google.charts.load('current', {'packages':['corechart']});
+                            google.charts.setOnLoadCallback(drawVisualization);
+
+                            function drawVisualization() {
+                                // Some raw data (not necessarily accurate)
+                                var data = google.visualization.arrayToDataTable([
+                                    ['Month', 'Аюул ослын дуудлага', 'Ообъектын түймэр','Ойн хээрийн түймэр'],
+                                        @foreach($nemaChart as $nn)
+                                    ['{{$p->month}} сарын {{$nn->day}}',{{(int)$nn->sos}},{{(int)$nn->ff}}, {{(int)$nn->fo}}],
+                                    @endforeach
+                                ]);
+
+                                var options = {
+                                    colors:['#3d9642','#567dcc','#dc5332'],
+                                    chartArea:{left:20,top:10,width:'100%',height:'75%'},
+                                    legend:'none',
+                                    isStacked: true,
+                                    vAxis: {textColor: '#999',gridlines:{color:'#333'},minorGridlines:{color:'#444'}},
+                                    hAxis: {textColor: '#999'},
+                                    seriesType: 'bars',
+                                    series: {5: {type: 'line'}},
+                                    animation:{duration:'650',easing:'Out',startup:true},
+                                    backgroundColor:'transparent'
+                                };
+
+                                var chart = new google.visualization.ComboChart(document.getElementById('nemas_chart_div'));
+                                chart.draw(data, options);
+                            }
+                        </script>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-3"></div>
+                <div class="col-sm-3">
+                    @if($events)
+                    <div class="box">
+                        <h1 class="title"><img src="{{asset('main/finance_full.png')}}"/> <span>Эвент</span></h1>
+                        @foreach($events as $event)
+                            <div class="event_list">
+                                <div class="row">
+                                <div class="col-sm-1"><i class="fa fa-check"></i></div>
+                                <div class="col-sm-9">
+                                <div class="desc">{{$event->description}}</div>
+                                <div class="where"></div>
+                                </div>
+                                <div class="col-sm-2">
+                                        <div class="date">{{$event->schedule_date}}</div>
+                                        <div class="time">{{$event->start_time}}</div>
+                                </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                    @endif
+                </div>
                 <div class="col-sm-6 p-sm-0">
-                    <div class="box" style="padding: 15px;">
-                        <h1 class="title"><span>Төсөв, санхүү</span></h1>
+                    <div class="box">
+                        <h1 class="title"><img src="{{asset('main/finance_full.png')}}"/> <span>Төсөв, санхүү</span></h1>
                             <div id="tosovchart" class="carousel slide" data-ride="carousel">
                                 <div class="carousel-inner">
                                     <?php $i=1; ?>
@@ -203,6 +279,7 @@
                                 </div>
                             </div>
                             @if($budgets)
+                                <div style="padding: 0 15px 15px;">
                                 <table class="table">
                                     <thead>
                                     <tr>
@@ -248,6 +325,7 @@
                                     </tr>
                                     </tbody>
                                 </table>
+                                </div>
                             @endif
                     </div>
                 </div>

@@ -110,10 +110,25 @@ class ApiNewsController extends Controller
 
 
     public function news($site_id,$id){
-        $news=Post::where('site_id',$site_id)->where('id', $id)->where('status', 1)->with('Category')->first();
-        $news->view_count +=1;
-        $news->save();
-        return response()->json(['success'=>$news]);
+        if($site_id>0){
+            $news=Post::where('posts.site_id',$site_id)->where('posts.id', $id)->where('posts.status', 1)
+            ->select('posts.*', 'sites.name as site', 'sites.domain')
+            ->Join('sites', 'sites.id', '=', 'posts.site_id')
+            ->with('Category')->first();
+        
+            $news->view_count +=1;
+            $news->save();
+            return response()->json(['success'=>$news]);
+        }else{
+            $news=Post::where('site_id',$site_id)
+            ->where('id', $id)
+            ->where('status', 1)
+            ->with('Category')->first();
+            
+            $news->view_count +=1;
+            $news->save();    
+            return response()->json(['success'=>$news]);
+        }
     }
 
     public function news_ontslokh($id){
