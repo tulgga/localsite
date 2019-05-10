@@ -35,6 +35,7 @@ class Controller extends BaseController
                 if(!is_null($p->parent_id)){
                     $page->parent_id=$p->parent_id+$site->id*1000;
                 }
+                $page->link='/p/'.($p->parent_id+$site->id*1000);
                 $page->is_main=$p->is_main;
                 $page->icon=$p->icon;
                 $page->save();
