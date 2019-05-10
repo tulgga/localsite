@@ -19,7 +19,7 @@ class ApiVolunteerController extends Controller
                 ->select('events.subject','events.content','event_to_images.image','events.started','events.ended','events.id')->paginate(10);
         return response()->json(['success'=>$events]);
     }
-    public function eventslistlogin($flg==0){
+    public function eventslistlogin($flg=0){
         $user = Auth::user();
         $events = Event::where('status', 1)
             ->Join('event_to_images','event_to_images.event_id', '=','events.eid')
