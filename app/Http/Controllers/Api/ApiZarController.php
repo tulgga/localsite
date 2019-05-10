@@ -36,7 +36,7 @@ class ApiZarController extends Controller
             $zar=$zar->where('zar.cat_id', $id);
         }
 
-        $zar=$zar->orderBy('zar.created_at', 'desc')->paginate(20);
+        $zar=$zar->orderBy('zar.is_pin', 'desc')->orderBy('zar.created_at', 'desc')->paginate(20);
         return response()->json(['success' => $zar]);
     }
 
@@ -55,6 +55,15 @@ class ApiZarController extends Controller
         $zar->price=strip_tags($request->price);
         $zar->phone=strip_tags($request->phone);
         $zar->email=strip_tags($request->email);
+        
+        if(isset($request->user_id)){
+            $zar->user_id=strip_tags($request->user_id);
+        }
+        
+        if(isset($request->site_id)){
+            $zar->site_id=strip_tags($request->site_id);
+        }
+        
         $zar->save();
 
         if($request->file()){
