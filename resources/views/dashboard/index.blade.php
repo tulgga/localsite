@@ -178,7 +178,7 @@
                         <h1 class="title" style="background-color: #dc5332;"><img src="{{asset('main/emergency.png')}}"/> <span>Онцгой байдлын газар</span></h1>
                         <ul class="grid-list-item clearfix">
                             <li><div class="item"><span class="num">{{$n!=null ?$n->fo: 0}}</span><span class="title" style="border-color:#dc5332">Ойн хээрийн түймэр</span></div></li>
-                            <li><div class="item"><span class="num">{{$n!=null ?$n->ff: 0}}</span><span class="title" style="border-color:#567dcc">Ообъектын түймэр</span></div></li>
+                            <li><div class="item"><span class="num">{{$n!=null ?$n->ff: 0}}</span><span class="title" style="border-color:#567dcc">Объектын түймэр</span></div></li>
                             <li><div class="item"><span class="num">{{$n!=null ?$n->sos: 0}}</span><span class="title" style="border-color:#3d9642">Аюул ослын дуудлага</span></div></li>
                             <li><div class="item"><span class="num">{{(int)$n->sos+(int)$n->ff+(int)$n->fo}}</span><span class="title" style="border-color:#ffab2c">Нийт дуудлага</span></div></li>
                         </ul>
@@ -294,7 +294,7 @@
                                                                     @endif
                                                                     legend: 'none',
                                                                     is3D:'true',
-                                                                    titleTextStyle:{color:'#fff'},
+                                                                    titleTextStyle:{color:'#fff',fontSize:16},
                                                                     chartArea: {
                                                                         left:20,
                                                                         top:20,
