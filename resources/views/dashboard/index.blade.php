@@ -180,7 +180,7 @@
                             <li><div class="item"><span class="num">{{$n!=null ?$n->fo: 0}}</span><span class="title" style="border-color:#dc5332">Ойн хээрийн түймэр</span></div></li>
                             <li><div class="item"><span class="num">{{$n!=null ?$n->ff: 0}}</span><span class="title" style="border-color:#567dcc">Объектын түймэр</span></div></li>
                             <li><div class="item"><span class="num">{{$n!=null ?$n->sos: 0}}</span><span class="title" style="border-color:#3d9642">Аюул ослын дуудлага</span></div></li>
-                            <li><div class="item"><span class="num">{{(int)$n->sos+(int)$n->ff+(int)$n->fo}}</span><span class="title" style="border-color:#ffab2c">Нийт дуудлага</span></div></li>
+                            <li><div class="item"><span class="num">{{$n!=null ?(int)$n->sos+(int)$n->ff+(int)$n->fo: 0}}</span><span class="title" style="border-color:#ffab2c">Нийт дуудлага</span></div></li>
                         </ul>
                         <div id="nemas_chart_div" style="width: 100%; height: 200px; padding: 0 15px;"></div>
                         <script>
