@@ -64,6 +64,7 @@ import LinkForm from '../modules/admin/Links/LinkForm'
 
 import Profile from '../modules/admin/employee/Profile';
 import Config from '../modules/admin/config/Config';
+import Report from '../modules/admin/config/report';
 
 import Login from '../modules/auth/Login'
 
@@ -161,6 +162,22 @@ let routes = [
             bread_crumbs: [
                 {
                     title: 'Тохиргоо',
+                    rname: ''
+                }
+            ]
+        },
+    },
+
+    {
+        path: '/report',
+        name: 'report',
+        component: Report,
+        meta: {
+            requiresAuth: true,
+            page_title: 'Тайлан',
+            bread_crumbs: [
+                {
+                    title: 'Мэдээ',
                     rname: ''
                 }
             ]

@@ -85,10 +85,6 @@ CRUD Edit, Create form
                             <div class="column is-12-mobile is-12-tablet">
                                 <a @click="addAnswer" class="button is-success" >Хариулт нэмэх</a>
                             </div>
-
-
-
-
                         </div>
                     </form>
                 </section>

@@ -75,7 +75,7 @@ CRUD Edit, Create form
                                 <div class="field">
                                     <label class="label">Онцлох мэдээ</label>
                                     <div class="control select">
-                                        <select  v-model="form.is_primary" >
+                                        <select  v-model="form.is_primary"  >
                                             <option value="0">үгүй</option>
                                             <option value="1">тийм</option>
                                         </select>
