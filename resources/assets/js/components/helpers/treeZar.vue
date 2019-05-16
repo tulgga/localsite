@@ -37,12 +37,9 @@
                 </div>
             </template>
             <div v-if="displayedChildren.length" class="tree-node-children">
-                <tree-node
-                        v-for="(child, idx) in displayedChildren"
-                        :data="child"
-                        :shared="shared"
-                        :vm-idx="idx">
-                </tree-node>
+                <template  v-for="(child, idx) in displayedChildren" >
+                    <tree-node :data="child" :shared="shared" :vm-idx="idx"></tree-node>
+                </template>
             </div>
         </div>
         <!-- Delete modal -->

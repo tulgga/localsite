@@ -40,15 +40,35 @@ CRUD Edit, Create form
                                     <div class="control">
                                         <div class="select">
                                             <select name="head_id" v-model="form.head_id"  >
-                                                <option value="1">засаг дарга</option>
-                                                <option value="2">хурлын дарга</option>
-                                                <option value="3">тамгийн дарга</option>
-                                                <option value="4">ХДТ</option>
-                                                <option value="5">Тэмүжин театр</option>
-                                                <option value="6">Баганат талбайд</option>
-                                                <option value="7">ЗДТГын зааланд</option>
-                                                <option value="8">Сумын ЗДТГын зааланд</option>
-                                                <option value="9">Бусад</option>
+                                                <template v-if="admin_type==0">
+                                                    <option value="1">засаг дарга</option>
+                                                    <option value="2">хурлын дарга</option>
+                                                    <option value="3">тамгийн дарга</option>
+                                                    <option value="4">ХДТ</option>
+                                                    <option value="5">Тэмүжин театр</option>
+                                                    <option value="8">Сумын ЗДТГын зааланд</option>
+                                                    <option value="6">Баганат талбайд</option>
+                                                    <option value="7">ЗДТГын зааланд</option>
+                                                    <option value="9">Бусад</option>
+                                                </template>
+                                                <template v-if="admin_type==15">
+                                                    <option value="1">засаг дарга</option>
+                                                </template>
+                                                <template v-if="admin_type==16">
+                                                    <option value="2">хурлын дарга</option>
+                                                </template>
+                                                <template v-if="admin_type==17">
+                                                    <option value="3">тамгийн дарга</option>
+                                                </template>
+                                                <template v-if="admin_type==18">
+                                                    <option value="4">ХДТ</option>
+                                                </template>
+                                                <template v-if="admin_type==19">
+                                                    <option value="5">Тэмүжин театр</option>
+                                                </template>
+                                                <template v-if="admin_type==20">
+                                                    <option value="8">Сумын ЗДТГын зааланд</option>
+                                                </template>
                                             </select>
                                         </div>
                                     </div>
@@ -122,7 +142,7 @@ CRUD Edit, Create form
         data() {
             return {
                 options: [],
-                siteUrl: window.surl,			// Edit үед id орж ирнэ
+                siteUrl: window.surl,
                 fetched: false,
 
                 is_loading: false,

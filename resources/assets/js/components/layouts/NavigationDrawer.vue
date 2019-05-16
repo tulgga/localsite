@@ -67,6 +67,19 @@
                             </div>
                         </li>
                     </template>
+                    <template v-for="n in 11">
+                        <template v-if="user.admin_type==n+9 && item.role==n+9">
+                            <p v-if="item.subheader" class="menu-label">{{item.subheader}}</p>
+                            <li v-else="" :class="{'is-active':item.path == $route.path}">
+                                <div :class="{'is-active':item.path == $route.path}" v-on:click="changeRoute(item.path)">
+                                    <span><i :class="item.icon" aria-hidden="true"></i></span>
+                                    <p>{{item.title}}</p>
+                                    <span v-if="item.badge" class="tag is-danger is-pulled-right">{{badge}}</span>
+                                </div>
+                            </li>
+                        </template>
+                    </template>
+
             </template>
             </ul>
         </div>
@@ -178,8 +191,48 @@
                     { title: 'Санал хүсэлт', icon: 'far fa-comments', path: '/urgudul',  role:3, badge:1, },
 
                     //dashboard
-                    // { subheader: 'Дашбоард', role:10,},
-                    // { title: "Цагдаа", icon: 'fas fa-code-branch', path: '/poll' ,  role:10},
+                    { subheader: 'Дашбоард', role:10,},
+                    { title: "Цагдаа", icon: 'fas fa-code-branch', path: '/dashboard_police' ,  role:10},
+                    { title: "Цаг үеийн асуудал", icon: 'fas fa-code-branch', path: '/dashboard_news' ,  role:10},
+
+
+                    { subheader: 'Дашбоард', role:11,},
+                    { title: "Эрүүл мэнд", icon: 'fas fa-code-branch', path: '/dashboard_hospital' ,  role:11},
+                    { title: "Цаг үеийн асуудал", icon: 'fas fa-code-branch', path: '/dashboard_news' ,  role:11},
+
+                    { subheader: 'Дашбоард', role:12,},
+                    { title: "Онцгой байдал", icon: 'fas fa-code-branch', path: '/dashboard_nema' ,  role:12},
+                    { title: "Цаг үеийн асуудал", icon: 'fas fa-code-branch', path: '/dashboard_news' ,  role:12},
+
+                    { subheader: 'Дашбоард', role:13,},
+                    { title: "Төсөв", icon: 'fas fa-code-branch', path: '/dashboard_budget' ,  role:13},
+
+
+                    { subheader: 'Дашбоард', role:14,},
+                    { title: "Төсөв", icon: 'fas fa-code-branch', path: '/dashboard_budget' ,  role:14},
+
+                    { subheader: 'Дашбоард', role:15,},
+                    { title: "Цагийн хуваарь", icon: 'fas fa-code-branch', path: '/dashboard_schedule' ,  role:15},
+
+                    { subheader: 'Дашбоард', role:16,},
+                    { title: "Цагийн хуваарь", icon: 'fas fa-code-branch', path: '/dashboard_schedule' ,  role:16},
+
+
+                    { subheader: 'Дашбоард', role:17,},
+                    { title: "Цагийн хуваарь", icon: 'fas fa-code-branch', path: '/dashboard_schedule' ,  role:17},
+
+
+                    { subheader: 'Дашбоард', role:18,},
+                    { title: "Цагийн хуваарь", icon: 'fas fa-code-branch', path: '/dashboard_schedule' ,  role:18},
+
+
+                    { subheader: 'Дашбоард', role:19,},
+                    { title: "Цагийн хуваарь", icon: 'fas fa-code-branch', path: '/dashboard_schedule' ,  role:19},
+
+
+                    { subheader: 'Дашбоард', role:20,},
+                    { title: "Цагийн хуваарь", icon: 'fas fa-code-branch', path: '/dashboard_schedule' ,  role:20},
+
                 ],
                 badge_show: false,
             }
@@ -202,24 +255,40 @@
                 axios.get('/webNotification/'+this.domain.id+'/'+this.user.heltes_id).then((response) => {
                     this.badge = response.data.success;
                 });
-                setInterval(()=>{
-                    axios.get('/webNotification/'+this.domain.id+'/'+this.user.heltes_id).then((response) => {
-                        this.badge = response.data.success;
-                        console.log(this.badge);
-                    })
-                }, 40000);
+                console.log(this.$store.getters.authUser);
+                if(this.$store.getters.authUser.admin_type<10){
+                    setInterval(()=>{
+                        axios.get('/webNotification/'+this.domain.id+'/'+this.user.heltes_id).then((response) => {
+                            this.badge = response.data.success;
+                        })
+                    }, 40000);
+                }
+
             },
             checkAdminType() {
                 var admin_type=this.$store.getters.authUser.admin_type;
-                // if(admin_type==0){
-                //     this.$router.push('/sites');
-                // } else if(admin_type==1){
-                //     this.$router.push('/news');
-                // } else if(admin_type==2){
-                //     this.$router.push('/config');
-                // } else if(admin_type==3){
-                //     this.$router.push('/sub_news');
-                // }
+                if(admin_type==0){
+                    this.$router.push('/sites');
+                } else if(admin_type==1){
+                    this.$router.push('/news');
+                } else if(admin_type==2){
+                    this.$router.push('/config');
+                } else if(admin_type==3){
+                    this.$router.push('/sub_news');
+                } else if(admin_type==10){
+                    this.$router.push('/dashboard_police');
+                } else if(admin_type==11){
+                    this.$router.push('/dashboard_hospital');
+                } else if(admin_type==12){
+                    this.$router.push('/dashboard_nema');
+                } else if(admin_type==13){
+                    this.$router.push('/dashboard_budget');
+                } else if(admin_type==14){
+                    this.$router.push('/dashboard_budget');
+                } else if(admin_type>14){
+                    this.$router.push('/dashboard_schedule');
+                }
+
             },
             drawerchange: function() {
                 if (this.$store.getters.drawer === true) {
@@ -247,7 +316,6 @@
                 this.$store.dispatch('saveDomain', {
                     domain: domain,
                 });
-
 
                 if(this.domain.id==0){
                     this.$router.push('/sites');

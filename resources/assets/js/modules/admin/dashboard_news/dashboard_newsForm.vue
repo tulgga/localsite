@@ -1,4 +1,4 @@
-<!--
+ <!--
 
 CRUD Edit, Create form
 
@@ -30,7 +30,7 @@ CRUD Edit, Create form
                                 </div>
                             </div>
 
-                            <div class="column is-12-mobile is-12-tablet">
+                            <div v-if="is_admin" class="column is-12-mobile is-12-tablet">
                                 <div class="field">
                                     <label class="label">Төрөл</label>
                                     <div class="control">
@@ -75,14 +75,13 @@ CRUD Edit, Create form
         data() {
             return {
                 options: [],
-                siteUrl: window.surl,			// Edit үед id орж ирнэ
+                siteUrl: window.surl,
                 fetched: false,
-
+                is_admin: true,
                 is_loading: false,
                 m_id: false,
                 file: [],
                 imageni: false,
-                admin_type: false,
                 form: {
                     desc: "",
                     created_type: 1,
@@ -98,24 +97,37 @@ CRUD Edit, Create form
         computed: {},
         methods: {
             fetchData() {
+
                 this.m_id = this.$route.params.id;
                 this.form.site_id= this.$store.getters.domain.id;
                 this.form.admin_id= this.$store.getters.authUser.id;
-                this.admin_type=this.$store.getters.authUser.admin_type;
+
+                if(this.$store.getters.authUser.admin_type>9){
+                    this.is_admin=false;
+                }
+
+                if(this.$store.getters.authUser.admin_type==10){
+                    this.form.created_type=1;
+                } else if(this.$store.getters.authUser.admin_type==11) {
+                    this.form.created_type=2;
+                } else if(this.$store.getters.authUser.admin_type==12){
+                    this.form.created_type=3;
+                }
+
+
                 axios.get('/site').then((response) => {
                     this.options = response.data.success;
-
                 });
 
                 if (this.m_id) {
                     axios.get('/dashboard_news/' + this.m_id).then((response) => {
                         this.form = response.data.success;
-                        console.log(this.form);
                         this.fetched = true;
                     })
                 } else {
                     this.fetched = true;
                 }
+
             },
             // Back
             butsah: function () {
@@ -124,6 +136,10 @@ CRUD Edit, Create form
             // Нэмэх, Засах
             nemeh: function () {
                 this.$validator.validateAll().then((result) => {
+                    if(this.form.site_id==0){
+                        alert('Та сумаа сонгоно уу');
+                        return;
+                    }
                     if (result) {
                         this.is_loading = true;
                         let formData = new FormData();

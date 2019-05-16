@@ -283,11 +283,11 @@ CRUD Edit, Create form
                 }
             },
             changeAdminType: function(){
-               if(this.form.admin_type>1){
-                   this.form.site_id='';
-               }  else {
+               // if(this.form.admin_type>1){
+               //     this.form.site_id='';
+               // }  else {
                    this.form.site_id=0;
-               }
+               // }
             },
             // Back
             butsah: function() {
@@ -340,15 +340,12 @@ CRUD Edit, Create form
             },
             onFileChange(fieldName, fileList){
                 const formData = new FormData();
-                // append the files to FormData
                 Array
                     .from(Array(fileList.length).keys())
                     .map(x => {
                         formData.append(fieldName, fileList[x], fileList[x].name);
                     });
-
                 this.image = formData.get(fieldName);
-
                 let reader = new FileReader();
                 reader.addEventListener("load", (e) => {
                     this.imageni = reader.result;

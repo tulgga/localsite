@@ -33,7 +33,6 @@ Route::middleware('auth:api')->namespace('Api')->group(function () {
     Route::get('userInfo', 'ApiUserController@userInfo');
     Route::get('urgudul_me', 'ApiUserController@urgudul');
 
-
     Route::post('userInfoUpdate', 'ApiUserController@userInfoUpdate');
     Route::post('verify', 'ApiUserController@verify');
 
@@ -44,15 +43,12 @@ Route::middleware('auth:api')->namespace('Api')->group(function () {
 
     Route::post('changeEmailRequest', 'ApiUserController@changeEmailRequest');
     Route::post('changeEmail', 'ApiUserController@changeEmail');
-
-
     Route::post('changePassword', 'ApiUserController@changePassword');
 
     Route::post('changePhoneRequest', 'ApiUserController@changePhoneRequest');
     Route::post('changePhone', 'ApiUserController@changePhone');
 
     Route::post('zarAdd','ApiZarController@zarAdd');
-
     Route::get('logOut', 'ApiUserController@logOut');
 
     //Volunteer
@@ -138,7 +134,6 @@ Route::namespace('Api')->group(function (){
     //Сайн дурыхан
     Route::get('eventslist','ApiVolunteerController@eventslist');
     Route::get('event/{id}/{user_id?}','ApiVolunteerController@event');
-    
     Route::get('dash_events/{id}','ApiEventController@index');
     Route::get('dash_events/going/{id}/{user_id}/{ip}/{device}','ApiEventController@going');
 });
@@ -267,11 +262,9 @@ Route::middleware('auth:admin-api')->namespace('Admin')->prefix('admin')->group(
     Route::resource('dashboard_nema','AdminDashboardNemaController');
     Route::post('dashboard_nema/{id}','AdminDashboardNemaController@update');
 
-
     //nema
     Route::resource('dashboard_budget','AdminDashboardBudgetController');
     Route::post('dashboard_budget/{id}','AdminDashboardBudgetController@update');
-
 
     //news
     Route::resource('dashboard_news','AdminDashboardNewsController');

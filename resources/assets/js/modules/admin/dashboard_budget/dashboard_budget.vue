@@ -161,6 +161,7 @@
             fetchData(){
                 axios.get('site').then((r) => {
                     this.options.listColumns.site_id=r.data.success;
+                    this.options.listColumns.site_id.push({'id':0, 'text':'Аймаг'});
                     this.fetched = true;
                 })
             },

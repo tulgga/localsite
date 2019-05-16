@@ -165,7 +165,6 @@ CRUD Edit, Create form
                 if (this.m_id) {
                     axios.get('/dashboard_hospital/' + this.m_id).then((response) => {
                         this.form = response.data.success;
-                        console.log(this.form);
                         this.fetched = true;
                     })
                 } else {
@@ -179,6 +178,10 @@ CRUD Edit, Create form
             // Нэмэх, Засах
             nemeh: function () {
                 this.$validator.validateAll().then((result) => {
+                    if(this.form.site_id==0){
+                        alert('Та сумаа сонгоно уу');
+                        return;
+                    }
                     if (result) {
                         this.is_loading = true;
                         let formData = new FormData();

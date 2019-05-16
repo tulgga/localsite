@@ -45,7 +45,6 @@ class ApiGroupController extends Controller
             if(!is_null($result->profile_pic)){
                 $results[$i]->profile_pic=url('/uploads/'.$result->profile_pic);
             }
-
         }
         return response()->json([ 'success' => $results ]);
     }

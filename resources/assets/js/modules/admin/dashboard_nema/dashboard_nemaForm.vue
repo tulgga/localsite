@@ -59,8 +59,7 @@ CRUD Edit, Create form
                                 <div class="field">
                                     <label class="label">аюул үзэгдэл ослын дуудлага</label>
                                     <div class="control">
-                                        <input type="number" name="sos" v-model="form.sos"
-                                               class="input"/>
+                                        <input type="number" name="sos" v-model="form.sos" class="input"/>
                                     </div>
                                 </div>
                             </div>
@@ -70,8 +69,6 @@ CRUD Edit, Create form
                                     <textarea name="sos_description"   v-model="form.sos_description"  :class="{'textarea': true }"></textarea>
                                 </div>
                             </div>
-
-
 
                         </div>
                     </form>
@@ -149,6 +146,10 @@ CRUD Edit, Create form
             // Нэмэх, Засах
             nemeh: function () {
                 this.$validator.validateAll().then((result) => {
+                    if(this.form.site_id==0){
+                        alert('Та сумаа сонгоно уу');
+                        return;
+                    }
                     if (result) {
                         this.is_loading = true;
                         let formData = new FormData();

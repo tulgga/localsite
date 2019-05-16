@@ -14,6 +14,18 @@
                 this.$router.push('/config');
             } else if(admin_type==3){
                 this.$router.push('/sub_news');
+            } else if(admin_type==10){
+                this.$router.push('/dashboard_police');
+            } else if(admin_type==11){
+                this.$router.push('/dashboard_hospital');
+            } else if(admin_type==12){
+                this.$router.push('/dashboard_nema');
+            } else if(admin_type==13){
+                this.$router.push('/dashboard_budget');
+            } else if(admin_type==14){
+                this.$router.push('/dashboard_budget');
+            } else if(admin_type>14){
+                this.$router.push('/dashboard_schedule');
             }
         },
     }

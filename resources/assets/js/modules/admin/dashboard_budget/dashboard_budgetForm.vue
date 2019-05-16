@@ -19,11 +19,11 @@ CRUD Edit, Create form
                     <form @submit.prevent="nemeh">
 
                         <div class="columns is-mobile is-multiline">
-                            <div  class="column is-12-mobile is-12-tablet">
+                            <div v-if="admin_type==0"  class="column is-12-mobile is-12-tablet">
                                 <div class="field">
                                     <label class="label">Сум <span class="has-text-danger">*</span></label>
                                     <div class="control">
-                                        <treeselect v-validate="'required'" v-model="form.site_id" name="site_id"
+                                        <treeselect   v-validate="'required'" v-model="form.site_id" name="site_id"
                                                     placeholder="Сум сонгох" :multiple="false" :options="options" :class="{ 'is-danger': errors.has('site_id') }" />
                                         <p v-show="errors.has('site_id')" class="help is-danger">Заавал сонго</p>
                                     </div>
@@ -36,10 +36,26 @@ CRUD Edit, Create form
                                     <div class="control">
                                         <div class="select">
                                             <select name="b_type" v-model="form.b_type"  >
-                                                <option value="1">Улсын төсөв</option>
-                                                <option value="2">ОНХ сангийн төсөв</option>
-                                                <option value="3">Замын төсөв</option>
-                                                <option value="4">ЗД ын нөөц хөрөнгө</option>
+                                                <template v-if="admin_type==0">
+                                                    <option value="1">Улсын төсөв</option>
+                                                    <option value="2">ОНХ сангийн төсөв</option>
+                                                    <option value="3">Замын төсөв</option>
+                                                    <option value="4">ЗД ын нөөц хөрөнгө</option>
+                                                </template>
+                                                <template v-if="admin_type==13 && form.site_id==0">
+                                                    <option value="1">Улсын төсөв</option>
+                                                    <option value="2">ОНХ сангийн төсөв</option>
+                                                    <option value="3">Замын төсөв</option>
+                                                </template>
+                                                <template v-if="admin_type==13 && form.site_id!=0">
+                                                    <option value="1">Улсын төсөв</option>
+                                                    <option value="2">ОНХ сангийн төсөв</option>
+                                                    <option value="4">ЗД ын нөөц хөрөнгө</option>
+                                                </template>
+                                                <template v-if="admin_type==14 && form.site_id==0">
+                                                    <option value="4">ЗД ын нөөц хөрөнгө</option>
+                                                </template>
+
                                             </select>
                                         </div>
                                     </div>
@@ -130,6 +146,7 @@ CRUD Edit, Create form
                 this.m_id = this.$route.params.id;
                 this.form.site_id= this.$store.getters.domain.id;
                 this.form.admin_id= this.$store.getters.authUser.id;
+
                 this.admin_type=this.$store.getters.authUser.admin_type;
                 axios.get('/site').then((response) => {
                     this.options = response.data.success;
@@ -145,6 +162,7 @@ CRUD Edit, Create form
                 } else {
                     this.fetched = true;
                 }
+                console.log(this.form.site_id);
             },
             // Back
             butsah: function () {
@@ -153,6 +171,11 @@ CRUD Edit, Create form
             // Нэмэх, Засах
             nemeh: function () {
                 this.$validator.validateAll().then((result) => {
+
+                    if(this.form.site_id==0 && this.admin_type==0){
+                        alert('Та сумаа сонгоно уу');
+                        return;
+                    }
                     if (result) {
                         this.is_loading = true;
                         let formData = new FormData();
