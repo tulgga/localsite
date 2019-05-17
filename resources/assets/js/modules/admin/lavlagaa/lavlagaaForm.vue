@@ -84,7 +84,7 @@ CRUD Edit, Create form
                                 <div class="field">
                                     <label class="label">Дэлгэрэнгүй мэдээлэл</label>
                                     <div class="control has-autoblock">
-                                        <ckeditor v-model="form.text" name="text" type="classic" :config="ck_config"  ></ckeditor>
+                                        <Tinymce v-model="form.text" height="400" ></Tinymce>
                                     </div>
                                 </div>
                         </div>
@@ -93,7 +93,6 @@ CRUD Edit, Create form
                 </form>
             </section>
             <div v-else class="main-bodoh is-loading"></div>
-            
             <footer class="modal-card-foot">
                 <a class="button is-text" v-on:click="butsah">{{$store.getters.lang.messages.is_back_button}}</a>
                 <button @click="nemeh" class="button is-primary add_button has-text-weight-semibold" :class="{'is-loading':is_loading}" :disabled="is_loading || fetched === false">
@@ -106,17 +105,9 @@ CRUD Edit, Create form
 </template>
 
 <script>
-    import Ckeditor from 'vue-ckeditor2'
     export default {
-        components: {
-            Ckeditor
-        },
         data(){
             return {
-                ck_config: {
-                    height: 500,
-                    filebrowserBrowseUrl: window.surl+'/elfinder/ckeditor',
-                },
                 siteUrl: window.surl,
                 m_id: false, 			// Edit үед id орж ирнэ
                 fetched: false,

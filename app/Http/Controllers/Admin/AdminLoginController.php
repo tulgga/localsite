@@ -55,4 +55,6 @@ class AdminLoginController extends Controller
 
         return response()->json($result);
     }
+
+
 }

@@ -94,7 +94,8 @@ CRUD Edit, Create form
                                 <div class="field">
                                     <label class="label">Дэлгэрэнгүй мэдээлэл</label>
                                     <div class="control has-autoblock">
-                                        <ckeditor v-model="form.text" name="text" type="classic" :config="ck_config"  ></ckeditor>
+                                        <Tinymce ref="editor" v-model="form.text" :height="400" />
+
                                     </div>
                                 </div>
                             </template>
@@ -157,17 +158,9 @@ CRUD Edit, Create form
 </template>
 
 <script>
-    import Ckeditor from 'vue-ckeditor2'
     export default {
-        components: {
-            Ckeditor
-        },
         data(){
             return {
-                ck_config: {
-                    height: 500,
-                    filebrowserBrowseUrl: window.surl+'/elfinder/ckeditor',
-                },
                 siteUrl: window.surl,
                 types: null,
                 site_id: 0,

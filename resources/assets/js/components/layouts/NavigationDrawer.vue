@@ -25,7 +25,7 @@
                         </li>
                     </template>
                     <!--admin ded site default-->
-                    <template v-else-if="user.admin_type==0 && domain.id!=0 && item.role>1">
+                    <template v-else-if="user.admin_type==0 && domain.id!=0 && item.role>1 && item.role<10">
                         <p v-if="item.subheader" class="menu-label">{{item.subheader}}</p>
                         <li v-else="" :class="{'is-active':item.path == $route.path}">
                             <div :class="{'is-active':item.path == $route.path}" v-on:click="changeRoute(item.path)">
@@ -35,7 +35,7 @@
                             </div>
                         </li>
                     </template>
-                    <!--admin ded niitlegch default-->
+                    <!-- niitlegch default-->
                     <template v-else-if="user.admin_type==1 && item.role==1">
                         <p v-if="item.subheader" class="menu-label">{{item.subheader}}</p>
                         <li v-else="" :class="{'is-active':item.path == $route.path}">
@@ -46,7 +46,7 @@
                         </li>
                     </template>
                     <!--ded admin default-->
-                    <template v-else-if="user.admin_type==2 && item.role>1">
+                    <template v-else-if="user.admin_type==2 && item.role>1 && item.role<10">
                         <p v-if="item.subheader" class="menu-label">{{item.subheader}}</p>
                         <li v-else="" :class="{'is-active':item.path == $route.path}">
                             <div :class="{'is-active':item.path == $route.path}" v-on:click="changeRoute(item.path)">
@@ -57,7 +57,7 @@
                         </li>
                     </template>
                     <!--ded niitlegch default-->
-                    <template v-else-if="user.admin_type==3 && item.role>2">
+                    <template v-else-if="user.admin_type==3 && item.role>2 && item.role<10">
                         <p v-if="item.subheader" class="menu-label">{{item.subheader}}</p>
                         <li v-else="" :class="{'is-active':item.path == $route.path}">
                             <div :class="{'is-active':item.path == $route.path}" v-on:click="changeRoute(item.path)">
@@ -67,6 +67,7 @@
                             </div>
                         </li>
                     </template>
+                    <!--dashboard default-->
                     <template v-for="n in 11">
                         <template v-if="user.admin_type==n+9 && item.role==n+9">
                             <p v-if="item.subheader" class="menu-label">{{item.subheader}}</p>

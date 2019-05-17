@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use App\Mail\SanalHuseltMail;
-
+use App\Img;
 use Illuminate\Support\Facades\Mail;
 class ApiUserController extends Controller
 {
@@ -403,5 +403,10 @@ class ApiUserController extends Controller
             Auth::user()->AauthAcessToken()->delete();
         }
         return response()->json(['success' => 1, 'message' => 'success']);
+    }
+
+    public function imageupload(Request $request){
+        $image=$request->file->store('news');
+        return response()->json(['location' => url('uploads/'.$image)]);
     }
 }

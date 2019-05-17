@@ -121,11 +121,11 @@ CRUD Edit, Create form
                                     <label class="label">Дэлгэрэнгүй мэдээлэл <span v-if="form.type!=2" class="has-text-danger">*</span></label>
                                     <div class="control has-autoblock">
                                         <template v-if="form.type!=2">
-                                            <ckeditor v-validate="{'required':true}"  v-model="form.content" name="content" :config="ck_config" ></ckeditor>
+                                            <Tinymce v-validate="{'required':true}"  v-model="form.content"  height="400" ></Tinymce>
                                             <p v-show="errors.has('content')" class="help is-danger">Заавал бөглө</p>
                                         </template>
                                         <template v-else>
-                                            <ckeditor v-model="form.content" name="content" :config="ck_config" ></ckeditor>
+                                            <Tinymce v-model="form.content"  height="400"  ></Tinymce>
                                         </template>
                                     </div>
                                 </div>
@@ -152,11 +152,8 @@ CRUD Edit, Create form
 </template>
 
 <script>
-    import Ckeditor from 'vue-ckeditor2'
+
     export default {
-        components: {
-            Ckeditor
-        },
         data(){
             return {
                 options: [],
@@ -169,10 +166,6 @@ CRUD Edit, Create form
                 imageni:false,
                 image: [],
                 file: [],
-                ck_config: {
-                    height: 400,
-                    filebrowserBrowseUrl: window.surl+'/elfinder/ckeditor',
-                },
                 form:{
                     title: '',
                     content: '',

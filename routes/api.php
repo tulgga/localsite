@@ -60,7 +60,7 @@ Route::middleware('auth:api')->namespace('Api')->group(function () {
 });
 
 Route::namespace('Api')->group(function (){
-
+    Route::post('imageupload','ApiUserController@imageupload');
     Route::get('ildot','ApiPageController@ildot');
     Route::get('lavlagaa','ApiPageController@Lavlagaa');
 
@@ -141,6 +141,8 @@ Route::namespace('Api')->group(function (){
 Route::middleware('auth:admin-api')->namespace('Admin')->prefix('admin')->group(function () {
 
     Route::get('user','AdminLoginController@index');
+
+
 
     //heltes
     Route::resource('heltes','AdminHeltesController');

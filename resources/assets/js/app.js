@@ -25,12 +25,12 @@ import * as VueGoogleMaps from 'vue2-google-maps';
 import VeeValidate from 'vee-validate';
 import attributesEn from './components/addons/en';
 import VueCroppie from 'vue-croppie';
-
+import Tinymce from './components/Tinymce'
 import ToggleButton from 'vue-js-toggle-button';
 import Treeselect from '@riophae/vue-treeselect'
 import '@riophae/vue-treeselect/dist/vue-treeselect.css'
 import  { Photoshop, Sketch }  from 'vue-color'
-
+import Element from 'element-ui'
 
 // import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 // import VueCkeditor from 'vue-ckeditor5'
@@ -44,6 +44,9 @@ import  { Photoshop, Sketch }  from 'vue-color'
 //     name: 'ckeditor'
 // }
 // Vue.use(VueCkeditor.plugin, options);
+
+Vue.use(Element)
+
 import VueSelect from 'vue-select'
 
 
@@ -177,6 +180,7 @@ Vue.component('SiteApp', require('./App.vue').default);
 Vue.component('Treeselect', Treeselect);
 Vue.component('v-select', VueSelect);
 Vue.component('sketch-picker', Sketch);
+Vue.component('Tinymce', Tinymce);
 
 
 
