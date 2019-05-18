@@ -14,6 +14,7 @@ html, body {
 .box{
     background: #1c2023;
     margin: 10px 0 0;
+    max-height: max-content;
 }
 .box h1.title{
     background: #ff7900;
@@ -46,13 +47,13 @@ html, body {
 }
 .box .grid-list-item > li > .item > .num{
     font-weight: 700;
-    font-size: 38px;
+    font-size: 34px;
     display: block;
     line-height: 40px;
 }
 .box .grid-list-item > li > .item > .title{
     font-weight: 400;
-    font-size: 17px;
+    font-size: 13px;
     display: block;
     line-height: 18px;
     word-break: break-word;
@@ -62,13 +63,13 @@ html, body {
 }
 .table{
     margin: 0;
-    font-size: 16px;
+    font-size: 14px;
 }
 .table thead th{
     border-bottom: 1px solid #666;
 }
 .table tr th, .table tr td{
-    padding: 5px 0;
+    padding: 5px 2px;
     border-top:0;
 }
 .event_list{
@@ -109,7 +110,10 @@ html, body {
     padding: 0 15px 15px;
 }
 .kt-timeline-v2 {
-    position: relative; }
+    position: relative;
+    height: 400px;
+    overflow: hidden;
+}
 .kt-timeline-v2:before {
     content: '';
     position: absolute;
@@ -121,8 +125,7 @@ html, body {
     background-color: #373c40;
 }
 .kt-timeline-v2 .kt-timeline-v2__items{
-    height: 400px;
-    overflow: hidden;
+
 }
 .kt-timeline-v2 .kt-timeline-v2__items .kt-timeline-v2__item {
     display: table;
@@ -178,6 +181,7 @@ html, body {
     padding: 10px 15px 10px 180px;
     font-size: 18px;
     position: relative;
+    min-height: 47px;
 }
 .shuurhai .head_title{
         text-transform: uppercase;
@@ -202,4 +206,201 @@ html, body {
 .shuurhai ul li .date{
     color: #fff;
     padding-right: 10px;
+}
+@media (min-width: 1024px){
+    .box{
+        background: #1c2023;
+        margin: 10px 0 0;
+        max-height: 475px;
+    }
+    .box h1.title{
+        background: #ff7900;
+        text-transform: uppercase;
+        font-size: 18px;
+        padding: 5px;
+        max-height: 40px;
+        margin: 0 0 10px;
+    }
+    .box .title img{
+        max-height: 40px;
+        margin-bottom: -10px;
+    }
+    .box .title .span{}
+    .box .grid-list-item{
+        list-style: none;
+        margin: 0;
+        padding: 10px;
+    }
+    .box .grid-list-item > li{
+        float: left;
+        padding: 5px;
+        width: 33.33333333%;
+    }
+    .box .grid-list-item > li > .item{
+        background: #2b2b2b;
+        color: #bababa;
+        padding: 5px 8px;
+        height: 90px;
+    }
+    .box .grid-list-item > li > .item > .num{
+        font-weight: 700;
+        font-size: 38px;
+        display: block;
+        line-height: 40px;
+    }
+    .box .grid-list-item > li > .item > .title{
+        font-weight: 400;
+        font-size: 17px;
+        display: block;
+        line-height: 18px;
+        word-break: break-word;
+        padding-left: 6px;
+        padding-top: 2px;
+        border-left: 4px solid transparent;
+    }
+    .table{
+        margin: 0;
+        font-size: 16px;
+    }
+    .table thead th{
+        border-bottom: 1px solid #666;
+    }
+    .table tr th, .table tr td{
+        padding: 5px 0;
+        border-top:0;
+    }
+    .event_list{
+        padding: 0 10px 10px;
+    }
+    .event_list i{
+        background: #ff7900;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+        text-align: center;
+        line-height: 40px;
+    }
+    .event_list .desc{
+        font-size: 14px;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+    .event_list .where{
+        font-size: 14px;
+        text-transform: uppercase;
+        color: #888;
+    }
+    .event_list .date{
+        font-size: 14px;
+    }
+    .event_list .time{
+        font-size: 14px;
+        text-transform: uppercase;
+        color: #888;
+    }
+    /** news **/
+    .kt-portlet__body {
+        -webkit-box-flex: 1;
+        -ms-flex-positive: 1;
+        flex-grow: 1;
+        padding: 0 15px 15px;
+    }
+    .kt-timeline-v2 {
+        position: relative;
+        height: 400px;
+        overflow: hidden;
+    }
+    .kt-timeline-v2:before {
+        content: '';
+        position: absolute;
+        left: 4.85rem;
+        width: 0.214rem;
+        top: 5px;
+        bottom: 5px;
+        height: calc(100% - 5px);
+        background-color: #373c40;
+    }
+    .kt-timeline-v2 .kt-timeline-v2__items{
+
+    }
+    .kt-timeline-v2 .kt-timeline-v2__items .kt-timeline-v2__item {
+        display: table;
+        position: relative;
+        margin-bottom: 15px;
+    }
+    .kt-timeline-v2 .kt-timeline-v2__items .kt-timeline-v2__item .kt-timeline-v2__item-time {
+        display: table-cell;
+        font-size: 16px;
+        font-weight: 500;
+        vertical-align: top;
+        position: absolute;
+        padding-top: 1px;
+        color: #bababa;
+    }
+    .kt-timeline-v2 .kt-timeline-v2__items .kt-timeline-v2__item .kt-timeline-v2__item-cricle {
+        border-radius: 50%;
+        border: 10px solid #1c2023;
+        z-index: 1;
+        top: 0.2rem;
+        left: 4.12rem;
+        position: relative;
+    }
+    .kt-timeline-v2 .kt-timeline-v2__items .kt-timeline-v2__item .kt-timeline-v2__item-cricle > i {
+        font-size: 22px;
+        top: -0.93rem;
+        left: -0.57rem;
+        position: absolute;
+    }
+    .kt-timeline-v2 .kt-timeline-v2__items .kt-timeline-v2__item .kt-timeline-v2__item-text {
+        display: table-cell;
+        vertical-align: top;
+        font-size: 16px;
+        padding: 1px 0 0 60px;
+        color: #bababa;
+    }
+    .kt-timeline-v2 .kt-timeline-v2__items .kt-timeline-v2__item .kt-timeline-v2__item-text.kt-timeline-v2__item-text--bold {
+        font-size: 1.2rem;
+        font-weight: 700;
+        padding-top: 0.21rem;
+        color: #a7abc3; }
+    .kt-timeline-v2 .kt-timeline-v2__items .kt-timeline-v2__item .kt-timeline-v2__item-text > span {
+        font-weight: 700; }
+    .kt-timeline-v2 .kt-timeline-v2__items .kt-timeline-v2__item .kt-list-pics {
+        display: table-cell;
+        vertical-align: top; }
+    .kt-timeline-v2 .kt-timeline-v2__items .kt-timeline-v2__item:last-child {
+        margin-bottom: 0; }
+    .shuurhai{
+        background: #841b1b;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding: 10px 15px 10px 180px;
+        font-size: 18px;
+        position: relative;
+    }
+    .shuurhai .head_title{
+        text-transform: uppercase;
+        background: #f31212;
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 10px 15px;
+    }
+    .shuurhai ul{
+        margin: 0;
+        position: relative;
+        overflow: hidden;
+        text-transform: uppercase;
+    }
+    .shuurhai ul li{
+        list-style: inside;
+        display: inline-block;
+        padding: 0 20px;
+        color: #fff;
+    }
+    .shuurhai ul li .date{
+        color: #fff;
+        padding-right: 10px;
+    }
 }

@@ -24,11 +24,8 @@
                     location.reload(true);
                 },600000);
                 $('.carousel').carousel({
-                    interval: 2000
+                    interval: 20000
                 });
-                if($(".kt-timeline-v2__items").height() == 400){
-                    $(".kt-timeline-v2").addClass('marquee-up');
-                }
             })
         </script>
         <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700&amp;subset=cyrillic,cyrillic-ext,latin-ext" rel="stylesheet">
@@ -36,25 +33,12 @@
     <body class="full-height">
         <div class="col-sm-12">
             <div class="row">
-                <div class="col-sm-2"></div>
-                <div class="col-sm-10" style="    font-size: 20px;
+                <div class="col-sm-12" style="    font-size: 20px;
     text-transform: uppercase;
     text-align: center;
     padding-top: 5px;">
                     Ухаалаг Баянхонгор хөтөлбөр - Шуурхай мэдээллийн самбар
                 </div>
-                    <div class="col-sm-2 text-white text-right" style="font-size: 16px;">
-                    @if($user->admin_type == 15)
-                        Засаг дарга
-                    @elseif($user->admin_type == 16)
-                        Тамгын газрын дарга
-                    @elseif($user->admin_type == 17)
-                        ИТХурлын дарга
-                    @endif
-
-                        <a href="{{asset('logout')}}"><i class="fa fa-power-off"></i></a>
-                    </div>
-
             </div>
             <div class="row">
                 <div class="col-sm-3">
@@ -68,7 +52,6 @@
                             <li><div class="item"><span class="num">{{$h!=null ?$h->call_remote : 0 }}</span><span class="title" style="border-color:#999">Холын дуудлага</span></div></li>
                             <li><div class="item"><span class="num">{{$h!=null ?$h->ytt: 0}}</span><span class="title" style="border-color:#8959a8">ЯТТусламж</span></div></li>
                         </ul>
-                        @if($hospitalChart)
                         <div id="hospital_chart_div" style="width: 100%; height: 200px; padding: 0 15px;"></div>
                         <script>
                             google.charts.load('current', {'packages':['corechart']});
@@ -100,7 +83,6 @@
                                 chart.draw(data, options);
                             }
                         </script>
-                            @endif
                     </div>
                 </div>
                 <div class="col-sm-6 p-sm-0">
@@ -115,7 +97,6 @@
                                     <li><div class="item"><span class="num">{{$p!=null ?$p->crime_movement: 0}}</span><span class="title" style="border-color:#3d9642">Хөдөлгөөний аюулгүй байдал</span></div></li>
                                     <li><div class="item"><span class="num">{{$p!=null ?$p->crime_other: 0}}</span><span class="title" style="border-color:#ffab2c">Бусад</span></div></li>
                                 </ul>
-                                @if($policeChart)
                                 <div id="policee1_chart_div" style="width: 100%; height: 200px; padding: 0 15px;"></div>
                                 <script>
                                     google.charts.load('current', {'packages':['corechart']});
@@ -147,7 +128,6 @@
                                         chart.draw(data, options);
                                     }
                                 </script>
-                                @endif
                             </div>
                             <div class="col-sm-6 pl-sm-0">
                                 <h6 style="padding: 0 15px;text-transform: uppercase;color: #ff7900;text-align: right;margin: 0 0 -13px;">Захиргааны зөрчил</h6>
@@ -158,7 +138,6 @@
                                     <li><div class="item"><span class="num">{{$p!=null ?$p->ac_fine: 0}}</span><span class="title" style="border-color:#ffab2c">Торгууль</span></div></li>
                                     <li><div class="item"><span class="num">{{$p!=null ?$p->ac_other: 0}}</span><span class="title" style="border-color:#999">Бусад</span></div></li>
                                 </ul>
-                                @if($policeChart)
                                 <div id="policee2_chart_div" style="width: 100%; height: 200px; padding: 0 15px;"></div>
                                 <script>
                                     google.charts.load('current', {'packages':['corechart']});
@@ -190,7 +169,6 @@
                                         chart.draw(data, options);
                                     }
                                 </script>
-                                    @endif
                             </div>
                         </div>
                     </div>
@@ -204,7 +182,6 @@
                             <li><div class="item"><span class="num">{{$n!=null ?$n->sos: 0}}</span><span class="title" style="border-color:#3d9642">Аюул ослын дуудлага</span></div></li>
                             <li><div class="item"><span class="num">{{$n!=null ?(int)$n->sos+(int)$n->ff+(int)$n->fo: 0}}</span><span class="title" style="border-color:#ffab2c">Нийт дуудлага</span></div></li>
                         </ul>
-                        @if($nemaChart)
                         <div id="nemas_chart_div" style="width: 100%; height: 200px; padding: 0 15px;"></div>
                         <script>
                             google.charts.load('current', {'packages':['corechart']});
@@ -215,7 +192,7 @@
                                 var data = google.visualization.arrayToDataTable([
                                     ['Month', 'Аюул ослын дуудлага', 'Ообъектын түймэр','Ойн хээрийн түймэр'],
                                         @foreach($nemaChart as $nn)
-                                    ['{{$p->month}} сарын {{$nn->day}}',{{(int)$nn->sos}},{{(int)$nn->ff}}, {{(int)$nn->fo}}],
+                                    ['{{$nn->month}} сарын {{$nn->day}}',{{(int)$nn->sos}},{{(int)$nn->ff}}, {{(int)$nn->fo}}],
                                     @endforeach
                                 ]);
 
@@ -236,24 +213,23 @@
                                 chart.draw(data, options);
                             }
                         </script>
-                        @endif
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-3">
                     @if($events)
-                    <div class="box" style="min-height: 475px;overflow: hidden;">
+                    <div class="box" style="max-height: 475px;min-height: 475px;overflow: hidden;">
                         <h1 class="title" style="margin-bottom: 20px;background-color: #ffab2c"><img src="{{asset('main/calendar.png')}}"/> <span>Эвент</span></h1>
                         @foreach($events as $event)
                             <div class="event_list">
                                 <div class="row">
-                                <div class="col-2 text-center"><i class="far fa-calendar-alt"></i></div>
-                                <div class="col-8">
+                                <div class="col-sm-2 text-center"><i class="far fa-calendar-alt"></i></div>
+                                <div class="col-sm-8">
                                 <div class="desc @if(strlen($event->description) > 45) marquee @endif">{{$event->description}}</div>
                                 <div class="where">Соёлын төв</div>
                                 </div>
-                                <div class="col-2 text-center">
+                                <div class="col-sm-2 text-center">
                                         <div class="date">{{date("m/d", strtotime($event->schedule_date))}}</div>
                                         <div class="time">{{date("H:i", strtotime($event->start_time))}}</div>
                                 </div>
@@ -282,177 +258,8 @@
                     @endif
                 </div>
                 <div class="col-sm-6 p-sm-0">
-                    <div class="box" style="min-height: 475px;overflow: hidden;">
-                        <h1 class="title" style="background-color: #999;"><img src="{{asset('main/finance_full.png')}}"/> <span>Төсөв, санхүү</span></h1>
-                        @if($budgets)
-                            <div id="tosovchart" class="carousel slide" data-ride="carousel">
-                                <div class="carousel-inner">
-                                    <?php $i=1; ?>
-                                    @foreach($budgets as $budget)
-                                        @if($i==1 || $i==3)
-                                            <div class="carousel-item @if($i==1) active @endif">
-                                                <div class="row">
-                                                    <div class="col-sm-6">
-                                                        @endif
-                                                        <div style="width:100%;height: 200px;" id="tusuvchart_{{$budget->id}}"></div>
-                                                        <script type="text/javascript">
-                                                            google.charts.load("current", {packages:["corechart"]});
-                                                            google.charts.setOnLoadCallback(drawChart_{{$budget->id}});
-                                                            function drawChart_{{$budget->id}}() {
-                                                                var data_{{$budget->id}} = google.visualization.arrayToDataTable([
-                                                                    ['Tesk', 'Amount'],
-                                                                    ['Өссөн /сар/', {{$budget->monthUp}}],
-                                                                    ['Үлдэгдэл',  {{$budget->b_do}}],
-                                                                    ['Хийгдсэн', {{$budget->b_done}}],
-                                                                    ['Гүйцэтгэл', {{$budget->b_doing}}]
-
-                                                                ]);
-                                                                var options_{{$budget->id}} = {
-                                                                    @if($budget->b_type==1)
-                                                                        title:'Улсын төсөв',
-                                                                    @elseif($budget->b_type==2)
-                                                                        title:'Орон нутгийн нөөц хөрөнгө',
-                                                                    @elseif($budget->b_type==3)
-                                                                        title:'Замын сан',
-                                                                    @elseif($budget->b_type==4)
-                                                                        title:'Засаг даргын нөөц хөрөнгө',
-                                                                    @endif
-                                                                    legend: 'none',
-                                                                    is3D:'true',
-                                                                    titleTextStyle:{color:'#fff',fontSize:16},
-                                                                    chartArea: {
-                                                                        left:20,
-                                                                        top:20,
-                                                                        width:'100%',
-                                                                        height:'100%'
-                                                                    },
-                                                                    width:'100%',
-                                                                    slices: {
-                                                                        0: { color: '#ffab2c'},
-                                                                        1: { color: '#dc5332' ,offset: '0.05'},
-                                                                        2: { color: '#3d9642' ,offset: '0.05'},
-                                                                        3: { color: '#567dcc' ,offset: '0.05'}
-                                                                    },
-                                                                    backgroundColor:'transparent'
-                                                                };
-
-                                                                var chart_{{$budget->id}} = new google.visualization.PieChart(document.getElementById('tusuvchart_{{$budget->id}}'));
-                                                                chart_{{$budget->id}}.draw(data_{{$budget->id}}, options_{{$budget->id}});
-                                                            }
-                                                        </script>
-                                                        @if($i==1 || $i==3)
-                                                    </div>
-                                                    <div class="col-sm-6">
-                                                        @endif
-                                                        @if($user->admin_type == 15)
-                                                            @if($i==2 || $i==4)
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            @endif
-                                                        @else
-                                                            @if($i==2 || $i==3)
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            @endif
-                                                        @endif
-                                        <?php $i++; ?>
-                                    @endforeach
-                                </div>
-                            </div>
-                                <div style="padding: 0 15px 15px;">
-                                <table class="table table-responsive">
-                                    <thead>
-                                    <tr>
-                                        <th></th>
-                                        @foreach($budgets as $budget)
-                                            @if($budget->b_type==1)
-                                                <th scope="col">Улсын</th>
-                                            @elseif($budget->b_type==2)
-                                                <th scope="col">ОНХС</th>
-                                            @elseif($budget->b_type==3)
-                                                <th scope="col">Замын сан</th>
-                                            @elseif($budget->b_type==4)
-                                                <th scope="col">ЗД-ын нөөц</th>
-                                            @endif
-                                        @endforeach
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr style="color: #ccc;">
-                                        <th scope="row">Батлагдсан /жил/</th>
-                                        @foreach($budgets as $budget)
-                                            <td>{{$budget->b_approved}}</td>
-                                        @endforeach
-                                    </tr>
-                                    <tr style="color: #ffab2c;"><th scope="row">Өссөн /сар/</th>
-                                        @foreach($budgets as $budget)
-                                            <td>{{$budget->monthUp}}</td>
-                                        @endforeach
-                                    </tr>
-                                    <tr style="color: #567dcc;"><th scope="row">Гүйцэтгэл</th>
-                                        @foreach($budgets as $budget)
-                                            <td>{{$budget->b_doing}}</td>
-                                        @endforeach
-                                    </tr>
-                                    <tr style="color:#3d9642;"><th scope="row">Хийгдсэн</th>
-                                        @foreach($budgets as $budget)
-                                            <td>{{$budget->b_done}}</td>
-                                        @endforeach</tr>
-                                    <tr style="color:#dc5332;"><th scope="row">Үлдэгдэл</th>
-                                        @foreach($budgets as $budget)
-                                            <td>{{$budget->b_do}}</td>
-                                        @endforeach
-                                    </tr>
-                                    </tbody>
-                                </table>
-                                </div>
-                            @endif
-                    </div>
                 </div>
                 <div class="col-sm-3">
-                    @if($news)
-                        <div class="box" style="min-height: 475px;overflow: hidden;">
-                            <h1 class="title" style="margin-bottom: 20px;background-color: #8959a8"><img src="{{asset('main/calendar.png')}}"/> <span>Ажлын төлөвлөгөө</span></h1>
-                            <div class="kt-portlet__body">
-                                <!--Begin::Timeline 3 -->
-                                <div class="kt-timeline-v2">
-                                    <div class="kt-timeline-v2__items">
-                                        @foreach($schedule as $sch)
-                                            <?php $rand = array('danger','primary','warning','info','secondary'); $random_keys=array_rand($rand,1) ?>
-                                        <div class="kt-timeline-v2__item">
-                                            <span class="kt-timeline-v2__item-time">{{date("H:i", strtotime($sch->start_time))}}</span>
-                                            <div class="kt-timeline-v2__item-cricle">
-                                                <i class="fa fa-genderless text-<?php echo $rand[$random_keys]; ?>"></i>
-                                            </div>
-                                            <div class="kt-timeline-v2__item-text  kt-padding-top-5">{{$sch->description}}</div>
-                                        </div>
-                                        @endforeach
-                                    </div>
-                                </div>
-                                <!--End::Timeline 3 -->
-                            </div>
-                        </div>
-                        <script>
-                            $(function() {
-                                $('.marquee-up').marquee({
-                                    allowCss3Support:true,
-                                    //speed in milliseconds of the marquee
-                                    speed: 10000,
-                                    //gap in pixels between the tickers
-                                    gap: 100,
-                                    //gap in pixels between the tickers
-                                    delayBeforeStart: 0,
-                                    //'left' or 'right'
-                                    direction: 'up',
-                                    //true or false - should the marquee be duplicated to show an effect of continues flow
-                                    duplicated: false
-
-                                });
-                            });
-                        </script>
-                    @endif
                 </div>
             </div>
             <div class="row">

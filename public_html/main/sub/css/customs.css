@@ -1,7 +1,6 @@
 *{
     margin: 0;
 	padding: 0;
-
 	font-weight: 400;
 }
 body{
@@ -209,7 +208,7 @@ body{
     width: 6px;
     height: 6px;
     right: 15px;
-    top: 17px;
+    top: 14px;
     border-width: 3px;
     border-style: solid;
     border-top-color: transparent;
@@ -218,7 +217,7 @@ body{
     border-bottom-color: var(--MainColor);
 }
 .dropdown-menu .dropdown:hover:after{
-    top:15px;
+    top:12px;
     transform: rotate(45deg);
 }
 /*** Толгой цэс ***/
@@ -1545,51 +1544,6 @@ h3.head.iltod span{
     color:#fff;
     padding-left: 10px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .timeline {
   display: flex;
   margin: 0 auto;
