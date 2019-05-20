@@ -68,13 +68,11 @@ Route::domain('zar.'.env('DOMAIN_NAME', 'bayankhongor.gov.mn'))->group(function 
 Route::domain('dashboard.'.env('DOMAIN_NAME', 'bayankhongor.gov.mn'))->group(function () {
     Route::get('/', 'Dashboard@index');
     Route::get('/{site_id}/{role}', 'Dashboard@index');
-    Route::get('/index/{site_id}/{role}', 'Dashboard@index');
     Route::get('/login', 'Dashboard@login');
-    Route::get('/police','Dashboard@police');
-    Route::get('/hospital','Dashboard@hospital');
-    Route::get('/nema','Dashboard@nema');
-    Route::get('/schedule','Dashboard@schedule');
-    Route::get('/budget','Dashboard@budgets');
+    Route::get('/logout', 'Dashboard@logout');
+    Route::post('/loginCheck', 'Dashboard@loginCheck');
+    Route::get('/public/', 'Dashboard@public');
+    Route::get('/public/{site_id}', 'Dashboard@public');
 });
 
 
