@@ -38,7 +38,7 @@
 
 <!-- Scripts -->
 <script>
-    console.log(window.location.hash);
+    // console.log(window.location.hash);
     window.surl = "{{ url('/') }}";
     window.appstore = "{{ env('APP_STORE') }}";
     window.playstore = "{{ env('PLAY_STORE') }}";

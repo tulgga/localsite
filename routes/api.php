@@ -232,6 +232,7 @@ Route::middleware('auth:admin-api')->namespace('Admin')->prefix('admin')->group(
     Route::post('news_primary','AdminNewsController@change_primary');
     Route::post('news_status','AdminNewsController@change_status');
     Route::post('main_site_publish','AdminNewsController@main_site_publish');
+    Route::post('report','AdminNewsController@report');
 
     //poll
     Route::resource('poll','AdminPollController');

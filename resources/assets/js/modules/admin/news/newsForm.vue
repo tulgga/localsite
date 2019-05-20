@@ -205,7 +205,7 @@ CRUD Edit, Create form
                 });
                 if (this.m_id) {
                     axios.get('/news/'+this.m_id).then((response) => {
-                        console.log( response.data.success);
+                        // console.log( response.data.success);
                         this.form.title = response.data.success.title;
                         this.form.content = response.data.success.content;
                         this.form.short_content = response.data.success.short_content;

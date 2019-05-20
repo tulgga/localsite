@@ -252,11 +252,11 @@ CRUD Edit, Create form
 
                 axios.get('/site').then((response) => {
                     this.sites = response.data.success;
-                    console.log(this.sites);
+                    // console.log(this.sites);
                 });
                 axios.get('/heltes').then((response) => {
                     this.heltes = response.data.success;
-                    console.log(this.heltes);
+                    // console.log(this.heltes);
                 });
                 this.m_id = this.$route.params.id;  // route дээр ирж байгаа id-г авч байна / edit үед
                 if (this.m_id) {

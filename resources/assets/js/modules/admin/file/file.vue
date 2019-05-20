@@ -201,7 +201,7 @@
                 this.site_id = this.$store.getters.domain.id;
                 axios.get('/file_category/' + this.site_id).then((response) => {
                     this.categories = response.data.success;
-                    console.log(this.categories);
+                    // console.log(this.categories);
                     this.categories.push({'name':'Ангилалгүй файл', 'label':'Ангилалгүй файл', 'id':-1});
                     this.fetched = true;
                 })

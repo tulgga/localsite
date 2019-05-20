@@ -42,7 +42,7 @@
                     defaultView: 'list',
                     getFileCallback: function (file) {
                         window.parent.processSelectedFile(file, '{{ $input_id }}');
-                        console.log(file);
+                        // console.log(file);
                     },
                     uiOptions : {
                         // toolbar configuration

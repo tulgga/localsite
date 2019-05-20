@@ -76,6 +76,20 @@
             </div>
 
 
+            <v-client-table v-if="fetched" :data="data" :columns="columns" :options="options">
+
+
+
+                <div slot="action" slot-scope="props" class="data-action">
+                    <router-link :to="'sites/'+props.row.id+'/update'">
+                        <i class="fas fa-pencil-alt"></i>
+                    </router-link>
+                    <div @click="deleting(props.row)">
+                        <i class="fas fa-trash"></i>
+                    </div>
+                </div>
+            </v-client-table>
+
         </div>
     </div>
 </template>
@@ -87,17 +101,67 @@
             return {
                 siteUrl: window.surl,
                 fetched: false,
-                is_loading: false,
+                is_loading: true,
                 sites: [],
                 heltes:[],
                 form: {
                     start_date: this.formatDate(),
                     finish_date: this.formatDate(),
-                    site_id: 0,
+                    site_id: -1,
                     heltes_id: 0,
 
                 },
+                data:[],
                 cssText: '',
+                columns: ['id', 'title', 'user_name', 'site_id', 'heltes_id', 'view_count',  'created_at'],
+                options: {
+                    filterable:false,
+                    perPage: 10000,
+                    perPageValues: [10000],
+                    pagination:{
+                        chunk: false,
+                        dropdown: false,
+                        nav: scroll,
+                        edge: false,
+
+                    } ,
+                    headings: {
+                        id: '№',
+                        title: "Гарчиг",
+                        user_name: "Нэр",
+                        site_id: "Сайт",
+                        heltes_id: "Хэлтэс",
+                        view_count: "Үзсэн",
+                        created_at: "Огноо",
+                    },
+                    sortable: [ 'view_count', 'created_at',],
+
+                    sortIcon: {
+                        base:'fas',
+                        up:'fa-sort-up',
+                        down:'fa-sort-down',
+                        is:'fa-sort'
+                    },
+                    texts:{
+                        count : this.$store.getters.lang.table.count,
+                        first : this.$store.getters.lang.table.first,
+                        last : this.$store.getters.lang.table.last,
+                        filter : this.$store.getters.lang.table.filter,
+                        filterPlaceholder: this.$store.getters.lang.table.search_query,
+                        limit : this.$store.getters.lang.table.records,
+                        page : this.$store.getters.lang.table.page,
+                        noResults: this.$store.getters.lang.table.no_results,
+                        filterBy : 'Хайх',
+                        loading : this.$store.getters.lang.table.loading,
+                        defaultOption : 'Бүгд',
+                        columns : this.$store.getters.lang.table.columns,
+                    },
+                    templates: {
+                        id: function (h, row, index) {
+                            return index;
+                        },
+                    },
+                }
             }
         },
         created: function () {
@@ -106,6 +170,7 @@
         methods: {
             fetchData() {
                 axios.get('/site').then((response) => {
+                    this.sites.push({id: -1, name: 'Бүх сайт', label: 'Бүх сайт', text: 'Бүх сайт'});
                     this.sites.push({id: 0, name: 'Үндсэн сайт', label: 'Үндсэн сайт', text: 'Үндсэн сайт'});
                     for (var i = 0; i < response.data.success.length; i++) {
                         this.sites.push(response.data.success[i]);
@@ -115,15 +180,25 @@
                     this.heltes.push({id: 0, name: 'Бүх хэлтэс'});
                     for (var i = 0; i < response.data.success.length; i++) {
                         this.heltes.push(response.data.success[i]);
-                        this.fetched=true;
                     }
                 });
 
 
+               this.nemeh();
+                this.fetched=true;
             },
             nemeh: function() {
                 this.$validator.validateAll().then((result) => {
                     if (result) {
+                        this.is_loading=true
+                        let formData = new FormData();
+                        formData.append('data', JSON.stringify(this.form));
+
+                        axios.post('/report', formData)
+                            .then((response) => {
+                                this.data=response.data.success;
+                                this.is_loading=false
+                            });
                     }
                 });
             },
@@ -146,6 +221,9 @@
     }
 </script>
 <style>
+    .VueTables__table th:nth-child(2){
+        width: 40%;
+    }
     @media print {
         .toolbar {
             display:none !important;
@@ -161,6 +239,19 @@
         }
         .boxed {
             box-shadow: none !important;
+        }
+        .boxed-title {
+            display: none !important;
+        }
+
+        .VueTables__table td, .VueTables__table th {
+            color:#000;
+            border-color: #000;
+            border-left: 1px solid #000;
+            padding: 3px;
+        }
+        .VueTables__table th {
+            font-weight: bold;
         }
     }
 </style>

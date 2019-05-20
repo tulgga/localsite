@@ -197,7 +197,7 @@
         var $container = $('#isotope-container');
         if ($container.length > 0) {
             var selector = $container.find('.isotope-classes-tab a.current').attr('data-filter');
-            console.log(selector);
+            // console.log(selector);
             // Isotope initialization
             var $isotope = $container.find('.featuredContainer').isotope({
                 filter: selector,

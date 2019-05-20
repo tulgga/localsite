@@ -334,7 +334,7 @@
                 this.site_id = this.$store.getters.domain.id;
                 axios.get('/news_category/' + this.site_id).then((response) => {
                     this.categories = response.data.success;
-                    console.log(this.categories);
+                    // console.log(this.categories);
                     this.categories.push({'name':'Ангилалгүй мэдээ', 'label':'Ангилалгүй мэдээ', 'id':-1});
                     this.fetched = true;
                 })
@@ -364,7 +364,7 @@
             deleting(row){
                 this.deleteid = row;
                 this.deletemodal = true;
-                console.log(this.deleteid)
+                // console.log(this.deleteid)
             },
 
             change_primary(row){

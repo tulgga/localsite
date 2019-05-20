@@ -76,7 +76,7 @@ CRUD Edit, Create form
                 this.user = this.$store.getters.authUser;
                 axios.get('/AllUsers').then((response) => {
                             this.users = response.data.success;
-                            console.log(this.users);
+                            // console.log(this.users);
                 });
                 if (this.m_id) {
                     axios.get('/group/'+this.m_id).then((response) => {

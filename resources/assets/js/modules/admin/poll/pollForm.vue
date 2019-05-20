@@ -139,7 +139,7 @@ CRUD Edit, Create form
                 this.m_id = this.$route.params.id;
                 if (this.m_id) {
                     axios.get('/poll/'+this.m_id).then((response) => {
-                        console.log(response.data.success);
+                        // console.log(response.data.success);
                         this.form.question = response.data.success.question;
                         this.form.site_id = response.data.success.site_id;
                         this.form.finish_date = response.data.success.finish_date;

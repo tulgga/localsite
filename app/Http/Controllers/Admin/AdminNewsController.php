@@ -22,6 +22,8 @@ class AdminNewsController extends Controller
         );
     }
 
+
+
     public function index1($site_id, $cat_id=null)
     {
         extract(request()->only(['query', 'limit', 'page', 'orderBy', 'ascending', 'byColumn']));
@@ -249,4 +251,28 @@ class AdminNewsController extends Controller
         News_to_category::where('post_id', $id)->delete();
     }
 
+
+    public function report(Request $request){
+        $data=json_decode($request->post('data'), true);
+        $data['start_date']=$data['start_date'].' 00:00:00';
+        $data['finish_date']=$data['finish_date'].' 23:59:59';
+
+
+        $posts=Post::Join('admin', 'admin.id', '=', 'posts.admin_id')
+            ->select('posts.id','posts.title', 'posts.admin_id', 'sites.name as site_id', 'posts.view_count', 'posts.created_at', 'admin.user_name', 'heltes.name as heltes_id')
+            ->whereBetween('posts.created_at', [$data['start_date'], $data['finish_date']])
+            ->join('sites', 'sites.id', '=', 'posts.site_id')
+            ->leftJoin('heltes',  'heltes.id', '=', 'admin.heltes_id' )
+            ->orderBy('posts.created_at', 'ASC');
+
+        if($data['site_id']!=-1){
+            $posts=$posts->where('posts.site_id',$data['site_id']);
+        }
+
+        if($data['site_id']==0 && $data['heltes_id']!=0){
+            $posts=$posts->where('admin.heltes_id',$data['heltes_id']);
+        }
+
+        return response()->json([ 'success' =>  $posts->get()]);
+    }
 }

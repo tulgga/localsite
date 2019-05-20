@@ -257,7 +257,7 @@
                 axios.get('/webNotification/'+this.domain.id+'/'+this.user.heltes_id).then((response) => {
                     this.badge = response.data.success;
                 });
-                console.log(this.$store.getters.authUser);
+
                 if(this.$store.getters.authUser.admin_type<10){
                     setInterval(()=>{
                         axios.get('/webNotification/'+this.domain.id+'/'+this.user.heltes_id).then((response) => {
