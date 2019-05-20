@@ -24,10 +24,11 @@ class Dashboard extends Controller
         return Auth::guard('admin');
     }
     public function index($site_id=0,$role=0){
-        if(is_null(Auth::guard('admin')->user())){
+        $user = Auth::guard('admin')->user();
+        if(is_null($user)){
             return redirect()->to('login');
         }else {
-            if ($role == Auth::guard('admin')->user()->admin_type || $site_id == Auth::guard('admin')->user()->site_id) {
+            if ($role == $user->admin_type || $site_id == $user->site_id) {
                 $data = $this->MainData();
                 $data['site'] = Site::find($site_id); // site
                 if ($site_id == 0) { // аймаг
@@ -147,7 +148,7 @@ class Dashboard extends Controller
                 $data['h'] = $hospital_data;
                 $data['p'] = $policeData;
                 $data['n'] = $nemaData;
-                if(Auth::guard('admin')->user()->admin_type == 15) {
+                if($user->admin_type == 15) {
                     if($site_id == 0) {
                         $data['budgets'] = Dashboard_budget::where('site_id', $site_id)->whereIn('b_type', [1,2,3,4])->orderBy('id', 'DESC')->get();
                     }else{
@@ -160,7 +161,7 @@ class Dashboard extends Controller
                         $data['budgets'] = Dashboard_budget::where('site_id', $site_id)->whereIn('b_type', [1,2])->orderBy('id', 'DESC')->get();
                     }
                 }
-                $data['user'] = Auth::guard('admin')->user();
+                $data['user'] = $user;
                 return view('dashboard/index', $data);
             }else{
                 return redirect()->to('logout');
