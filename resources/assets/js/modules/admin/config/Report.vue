@@ -91,8 +91,8 @@
                 sites: [],
                 heltes:[],
                 form: {
-                    start_date: '',
-                    finish_date: '',
+                    start_date: this.formatDate(),
+                    finish_date: this.formatDate(),
                     site_id: 0,
                     heltes_id: 0,
 
@@ -130,7 +130,18 @@
 
             print: function() {
                 window.print();
-            }
+            },
+            formatDate: function() {
+                let d = new Date(),
+                    month = '' + (d.getMonth() + 1),
+                    day = '' + d.getDate(),
+                    year = d.getFullYear();
+
+                if (month.length < 2) month = '0' + month;
+                if (day.length < 2) day = '0' + day;
+
+                return [year, month, day].join('-');
+            },
         }
     }
 </script>

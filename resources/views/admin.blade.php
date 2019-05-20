@@ -26,7 +26,7 @@
 </script>
 
 <script src="{{url('admin/js/app.js?id=1')}}"></script>
-<script src="{{url('ckeditor/ckeditor.js')}}"></script>
+<!-- <script src="{{url('ckeditor/ckeditor.js')}}"></script> -->
 <script src="{{url('main/tinymce/tinymce.min.js')}}"></script>
 
 
