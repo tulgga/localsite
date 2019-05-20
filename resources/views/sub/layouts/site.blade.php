@@ -193,7 +193,11 @@
                                                 <ul>
                                                     <?php foreach($child->children as $subchuld){ ?>
                                                     <li class="nav-item">
-                                                        <a class="dropdown-item" href="{{$subchuld->link}}" @if($subchuld->blank == 1) target="_blank" @endif><?php echo $subchuld->name; ?></a>
+                                                        @if($subchuld->type == 2)
+                                                            <a class="dropdown-item" href="{{asset('category/'.$subchuld->type_id)}}"><?php echo $subchuld->name; ?></a>
+                                                        @else
+                                                            <a class="dropdown-item" href="{{$subchuld->link}}" @if($subchuld->blank == 1) target="_blank" @endif><?php echo $subchuld->name; ?></a>
+                                                        @endif
                                                     </li>
                                                     <?php } ?>
                                                 </ul>
