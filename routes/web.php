@@ -98,3 +98,5 @@ Route::domain('{account}.'.env('SUB_DOMAIN'))->group(function () {
 Route::get('/', 'Controller@homePage');
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/saveAble', 'Controller@saveAble');

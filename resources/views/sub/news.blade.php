@@ -15,6 +15,7 @@
     <meta property="og:image" content="{{asset('uploads/'.$news->image)}}">
 @endsection
 @section('content')
+    <?php $news->content=str_replace('<img src="','<img src="/',$news->content); ?>
     <div class="row" style="background: #f9f9f9;">
         <div class="container">
             <nav aria-label="breadcrumb">

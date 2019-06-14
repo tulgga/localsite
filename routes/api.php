@@ -142,8 +142,6 @@ Route::middleware('auth:admin-api')->namespace('Admin')->prefix('admin')->group(
 
     Route::get('user','AdminLoginController@index');
 
-
-
     //heltes
     Route::resource('heltes','AdminHeltesController');
     Route::post('heltes/{id}','AdminHeltesController@update');

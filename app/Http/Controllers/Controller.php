@@ -14,6 +14,7 @@ use App\Settings;
 use App\Post;
 use App\Link;
 use App\Page;
+use App\Worker;
 
 class Controller extends BaseController
 {
@@ -52,6 +53,24 @@ class Controller extends BaseController
         $data['sumuud'] = Site::select('id','name','domain','favicon')->orderBy('name','ASC')->get();
         $data['links']=Link::where('cat_id', 3)->orderBy('name', 'asc')->where('site_id', 0)->get();
         return view('homePage', $data);
+    }
+
+    public function saveAble(){
+        $company=file_get_contents('https://intranet.gov.mn/insight.php?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1NTc4ODMxNjF9.ACl3LBLZhdX1rd3UYynrn6UhzoSEFoEqo-n_m0xsUqU&a=bayankhongor&getInfo=bayankhongor');
+        $data=json_decode($company, true);
+        Worker::query()->truncate();
+        foreach ($data as $i=>$d){
+            if($d['childrenCnt']>0){
+                foreach ($d['children'] as $children){
+                    if(isset($children['users'])){
+                        foreach ($children['users'] as $user){
+                            $worker= new Worker($user);
+                            $worker->save();
+                        }
+                    }
+                }
+            }
+        }
     }
 
     public function index(){
