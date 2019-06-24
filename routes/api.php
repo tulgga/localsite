@@ -19,6 +19,7 @@ Route::fallback(function(){
 
 Route::middleware('auth:api')->namespace('Api')->group(function () {
 
+    Route::get('notifications', 'ApiUserController@Notifications');
     Route::get('myGroupAdmin', 'ApiGroupController@myGroupAdmin');
     Route::get('groupUsers/{group_id}', 'ApiGroupController@groupUsers');
     Route::get('myGroup', 'ApiGroupController@myGroup');
@@ -60,6 +61,7 @@ Route::middleware('auth:api')->namespace('Api')->group(function () {
 });
 
 Route::namespace('Api')->group(function (){
+    Route::get('yv','ApiUserController@yv');
     Route::post('imageupload','ApiUserController@imageupload');
     Route::get('ildot','ApiPageController@ildot');
     Route::get('lavlagaa','ApiPageController@Lavlagaa');

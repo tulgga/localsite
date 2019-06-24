@@ -9,6 +9,8 @@ use App\Img;
 use App\Post;
 use App\News_to_category;
 use App\News_to_site;
+use OneSignal;
+use App\notification;
 
 
 
@@ -125,10 +127,6 @@ class AdminNewsController extends Controller
         );
     }
 
-
-
-
-
     public function store(Request $request){
         $data = $request->get('data');
         $data = json_decode($data, true);
@@ -143,9 +141,7 @@ class AdminNewsController extends Controller
             }
         }
 
-
         $post= new Post();
-
         $post->image=$data['image'];
         $post->site_id=$data['site_id'];
         $post->admin_id=$data['admin_id'];
@@ -160,6 +156,31 @@ class AdminNewsController extends Controller
 
         $this->save_to_category($data['cat_id'],$post->id);
         $this->save_to_sites($data['sites'],$post->id);
+        if($post->status==1){
+            if($post->site_id==0){
+                \OneSignal::sendNotificationToAll(
+                    $post->title,
+                    null,
+                    ['type'=>'news', 'id'=>$post->id]
+                );
+
+            } else {
+                \OneSignal::sendNotificationUsingTags(
+                    $post->title,
+                    [["field" => "tag", "key"=>"site_id", "relation" => "=", "value" => $post->site_id],],
+                    null,
+                    ['type'=>'news', 'id'=>$post->id]
+                );
+            }
+            $notification=new notification();
+            $notification->type="news";
+            $notification->site_id=$post->site_id;
+            $notification->news_id=$post->id;
+            $notification->data=$post->title;
+            $notification->save();
+
+        }
+
 
         return response()->json([ 'success' => 1 ]);
     }
