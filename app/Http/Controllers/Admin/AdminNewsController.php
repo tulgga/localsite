@@ -155,12 +155,12 @@ class AdminNewsController extends Controller
         $this->save_to_category($data['cat_id'],$post->id);
         $this->save_to_sites($data['sites'],$post->id);
         if($post->status==1){
-            $image=$data['image'];
-            if($image){ $image='https://bayankhongor.gov.mn/uploads/small/'.$image; }
+//            $image=$data['image'];
+//            if($image){ $image=str_replace('images/','https://bayankhongor.gov.mn/uploads/small/', $image); }
             if($post->site_id==0){
                 \OneSignal::sendNotificationToAll(
                     $post->title,
-                    $image,
+                    null,
                     ['type'=>'news', 'id'=>$post->id, 'site_id'=>0]
                 );
 
@@ -168,7 +168,7 @@ class AdminNewsController extends Controller
                 \OneSignal::sendNotificationUsingTags(
                     $post->title,
                     [["field" => "tag", "key"=>"site_id", "relation" => "=", "value" => $post->site_id]],
-                    $image,
+                    null,
                     ['type'=>'news', 'id'=>$post->id, 'site_id'=>$post->site_id]
                 );
             }
