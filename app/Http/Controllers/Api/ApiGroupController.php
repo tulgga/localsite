@@ -196,14 +196,14 @@ class ApiGroupController extends Controller
             }
 
             foreach ($users as $u){
-                // if($u->user_id!=$user->id) {
+                 if($u->user_id!=$user->id) {
                 \OneSignal::sendNotificationToExternalUser(
                     $data['message'],
                     $u->user_id,
                     $url = null,
-                    ['type'=>'chat', 'data'=>$results]
+                    ['type'=>'chat', 'data'=>$results[0]]
                 );
-                // }
+                 }
             }
 
 
