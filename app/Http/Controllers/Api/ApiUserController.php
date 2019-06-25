@@ -20,12 +20,17 @@ use App\notification;
 use Illuminate\Support\Facades\DB;
 class ApiUserController extends Controller
 {
-//    public function yv(){
-//        \OneSignal::sendNotificationUsingTags(
-//            "Some Message",
-//            [["field" => "tag", "key"=>"site_id", "relation" => "=", "value" => "49"],]
-//        );
-//    }
+    public function yv()
+    {
+        \OneSignal::sendNotificationToExternalUser(
+            "Some Message",
+            143,
+            $url = null,
+            $data = null,
+            $buttons = null,
+            $schedule = null
+        );
+    }
     public function register(Request $request)
     {
         $data = $request->post();
@@ -405,9 +410,9 @@ class ApiUserController extends Controller
 
         $user->save();
 
-        \OneSignal::sendNotificationUsingTags(
+        \OneSignal::sendNotificationToExternalUser(
             "Таны мэдээлэл шинэчлэгдлээ",
-            [["field" => "tag", "key"=>"id", "relation" => "=", "value" => $user->id],],
+            $user->id,
             null,
             ['type'=>'profile', 'id'=>$user->id]
         );

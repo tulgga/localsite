@@ -24,8 +24,6 @@ class AdminNewsController extends Controller
         );
     }
 
-
-
     public function index1($site_id, $cat_id=null)
     {
         extract(request()->only(['query', 'limit', 'page', 'orderBy', 'ascending', 'byColumn']));
@@ -157,19 +155,21 @@ class AdminNewsController extends Controller
         $this->save_to_category($data['cat_id'],$post->id);
         $this->save_to_sites($data['sites'],$post->id);
         if($post->status==1){
+            $image=$data['image'];
+            if($image){ $image='https://bayankhongor.gov.mn/uploads/small/'.$image; }
             if($post->site_id==0){
                 \OneSignal::sendNotificationToAll(
                     $post->title,
-                    null,
-                    ['type'=>'news', 'id'=>$post->id]
+                    $image,
+                    ['type'=>'news', 'id'=>$post->id, 'site_id'=>0]
                 );
 
             } else {
                 \OneSignal::sendNotificationUsingTags(
                     $post->title,
-                    [["field" => "tag", "key"=>"site_id", "relation" => "=", "value" => $post->site_id],],
-                    null,
-                    ['type'=>'news', 'id'=>$post->id]
+                    [["field" => "tag", "key"=>"site_id", "relation" => "=", "value" => $post->site_id]],
+                    $image,
+                    ['type'=>'news', 'id'=>$post->id, 'site_id'=>$post->site_id]
                 );
             }
             $notification=new notification();

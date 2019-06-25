@@ -47,6 +47,7 @@ Route::middleware('auth:api')->namespace('Api')->group(function () {
     Route::post('changePassword', 'ApiUserController@changePassword');
 
     Route::post('changePhoneRequest', 'ApiUserController@changePhoneRequest');
+
     Route::post('changePhone', 'ApiUserController@changePhone');
 
     Route::post('zarAdd','ApiZarController@zarAdd');
