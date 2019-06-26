@@ -118,8 +118,11 @@ class ApiGroupController extends Controller
             $Group_user=new Group_user();
             $Group_user->user_id=$data['user_id'];
             $Group_user->group_id=$data['group_id'];
+            $Group_user->status=1;
             $Group_user->save();
-
+        } else {
+            $find->status=1;
+            $find->save();
         }
         return response()->json([ 'success' => 1 ]);
     }
@@ -143,7 +146,9 @@ class ApiGroupController extends Controller
             $Group_user->user_id=$user->id;
             $Group_user->group_id=$data['group_id'];
             $Group_user->save();
-
+        } else {
+            $find->status=1;
+            $find->save();
         }
         return response()->json([ 'success' => 1 ]);
     }

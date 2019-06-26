@@ -421,7 +421,10 @@ class ApiUserController extends Controller
         $notification->type="profile";
         $notification->site_id=$user->site_id;
         $notification->user_id=$user->id;
+        $notification->data="Таны мэдээлэл шинэчлэгдлээ";
         $notification->save();
+
+
 
         return $this->userInfo();
     }
