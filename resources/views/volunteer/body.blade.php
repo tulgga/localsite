@@ -143,6 +143,9 @@
                         <label>Нууц үг:</label>
                         <input type="password" name="password" class="form-control" required>
                     </div>
+                    <div class="form-group">
+                        <a href="{{asset('forgotpassword')}}">Нууц үгээ сэргээх</a>
+                    </div>
                     <button type="submit" class="btn btn-primary w-100">Нэвтрэх</button>
                     {{--<div class="registerOr"><span>эсвэл</span></div>
                     <button type="button" class="facebookBTN"><i class="fab fa-facebook-square"></i> Фэйсбүүк</button>--}}

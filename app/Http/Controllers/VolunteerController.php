@@ -10,6 +10,8 @@ use App\Event_to_image;
 use App\Event_to_rating;
 use App\Event_to_like;
 use App\Event_to_user;
+use App\Mail\VolunteerEmail;
+use Illuminate\Support\Facades\Mail;
 
 use App\Organization;
 use App\User_to_organization;
@@ -106,7 +108,6 @@ class VolunteerController extends Controller{
         }else{
             $year = 1900+$year;
         }
-
         $user = New User();
         $pass = bcrypt($request->verify_password);
         $user->name = $request->name;
@@ -123,9 +124,53 @@ class VolunteerController extends Controller{
         $user->gender = $gender;
         $user->birth_date = $year."-".$month."-".$day;
         $user->save();
-        $request->session()->flash('successMsg', 'Бүртгэл амжилттай хадгалагдлаа!');
-        return redirect()->to('/register');
 
+        $token = User::select('id')->where('email',$request->email)->first();
+
+        if($token) {
+                $message = '<p>Та доорх товч дээр дарж бүртгэлээ баталгаажуулана уу.</p>';
+                $message .= '<a href="'.asset('userverify?token=').$token->id.'"></a>';
+                $valueArray = [
+                    'subject' => 'Баталгаажуулах холбоос',
+                    'message' => $message
+                ];
+                Mail::to($request->email)->send( new VolunteerEmail( $valueArray ));
+                $request->session()->flash('successMsg', 'Бүртгэл амжилттай хадгалагдлаа!');
+                return redirect()->to('/register');
+        }else{
+            return redirect()->to('/');
+        }
+    }
+    public function userverify(Request $request){
+        $user = User::find($request->token);
+        $user->status = 1;
+        $user->save();
+        $request->session()->flash('successMsg', 'Таны эрх баталгаажлаа!');
+        return redirect()->to('/login');
+    }
+    public function forgotpassword(Request $request){
+        if($request->email){
+            $token = User::select('id')->where('email',$request->email)->first();
+            if($token) {
+                $pass = rand(100000, 999999);
+                $user = User::find($token->id);
+                $user->password = bcrypt($pass);
+                $user->save();
+                $message = '<p>Таны шинэ нууц үг: ' . $pass . '</p>';
+                $valueArray = [
+                    'subject' => 'Нууц үг ссэргээх',
+                    'message' => $message
+                ];
+                Mail::to($request->email)->send(new VolunteerEmail($valueArray));
+                $request->session()->flash('successMsg', 'Бүртгэл амжилттай хадгалагдлаа!');
+                return redirect()->to('/forgotpassword');
+            }else{
+                $request->session()->flash('errorMsg', 'Имэйл хаяг бүртгэлгүй байна!');
+                return redirect()->to('/forgotpassword');
+            }
+
+        }
+        return view('volunteer.forgotpassword');
     }
     public function profile(){
         if(is_null(Auth::user())){

@@ -26,8 +26,10 @@ Route::domain('volunteer.'.env('DOMAIN_NAME', 'bayankhongor.gov.mn'))->group(fun
     Route::get('/c/{id}', 'VolunteerController@category');
     Route::get('/login', 'VolunteerController@login');
     Route::get('/register', 'VolunteerController@register');
+    Route::get('/userverify', 'VolunteerController@userverify');
     Route::post('/userRegister', 'VolunteerController@userRegister');
     Route::post('/loginUser', 'VolunteerController@loginUser');
+    Route::get('/forgotpassword', 'VolunteerController@forgotpassword');
     Route::get('/logout', 'VolunteerController@logoutUser');
     Route::get('/profile', 'VolunteerController@profile');
     Route::post('/profileUpdate', 'VolunteerController@profileUpdate');
