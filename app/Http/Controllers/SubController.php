@@ -89,9 +89,9 @@ class SubController extends BaseController
     }
 
     public function category($account, $id){
-        $data['info']=$this->getDomainInfo($account);
+        $data['info'] = $this->getDomainInfo($account);
         $week=['Ням', 'Даваа', 'Мягмар', 'Лхагва', 'Пүрэв', 'Баасан', 'Бямба'];
-        $data['date']=date('m сарын d, ').$week[date('w')];
+        $data['date'] = date('m сарын d, ').$week[date('w')];
         $data['home_url'] = Site::select('domain')->where('id',0)->first();
 
         $data['zar'] = Zar::select('zar.id','zar.title','zar.image','zar.created_at','zar_category.name','zar.cat_id')->where('zar.site_id',$data['info']->id)->Join('zar_category', 'zar_category.id','=','zar.cat_id')->orderBy('zar.created_at','DESC')->limit(20)->get();
