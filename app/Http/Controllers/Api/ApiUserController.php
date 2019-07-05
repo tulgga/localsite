@@ -15,8 +15,22 @@ use Illuminate\Validation\Rule;
 use App\Mail\SanalHuseltMail;
 use App\Img;
 use Illuminate\Support\Facades\Mail;
+use OneSignal;
+use App\notification;
+use Illuminate\Support\Facades\DB;
 class ApiUserController extends Controller
 {
+    public function yv()
+    {
+        \OneSignal::sendNotificationToExternalUser(
+            "Some Message",
+            143,
+            $url = null,
+            $data = null,
+            $buttons = null,
+            $schedule = null
+        );
+    }
     public function register(Request $request)
     {
         $data = $request->post();
@@ -395,9 +409,33 @@ class ApiUserController extends Controller
         }
 
         $user->save();
+
+        \OneSignal::sendNotificationToExternalUser(
+            "Таны мэдээлэл шинэчлэгдлээ",
+            $user->id,
+            null,
+            ['type'=>'profile', 'id'=>$user->id]
+        );
+
+        $notification=new notification();
+        $notification->type="profile";
+        $notification->site_id=$user->site_id;
+        $notification->user_id=$user->id;
+        $notification->data="Таны мэдээлэл шинэчлэгдлээ";
+        $notification->save();
+
+
+
         return $this->userInfo();
     }
 
+
+    public function Notifications(){
+        $user = Auth::user();
+        $notifications = \DB::select("SELECT * FROM notifications where (user_id=".$user->id." and type='profile') or (  type='news' and  site_id in(0, ".$user->site_id.") ) ORDER BY id DESC");
+        return response()->json(['success' => 1, 'message' => $notifications]);
+
+    }
     public function logOut(){
         if (Auth::check()) {
             Auth::user()->AauthAcessToken()->delete();
