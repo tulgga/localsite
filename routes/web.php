@@ -46,6 +46,7 @@ Route::domain('volunteer.'.env('DOMAIN_NAME', 'bayankhongor.gov.mn'))->group(fun
     Route::get('/event/{id}', 'VolunteerController@event');
     Route::get('/eventform/{id}', 'VolunteerController@eventform');
     Route::post('/saveEvent', 'VolunteerController@saveEvent');
+    Route::post('/searchPeople', 'VolunteerController@searchPeople');
     Route::get('/eventdelete/{id}', 'VolunteerController@eventdelete');
     Route::get('/deleteImg/{img_id}/{event}', 'VolunteerController@deleteImg');
     Route::get('/eventUpdateStatus/{id}/{stat}', 'VolunteerController@eventUpdateStatus');

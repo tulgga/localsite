@@ -552,4 +552,17 @@ class VolunteerController extends Controller{
         $comment->save();
         return redirect()->to($request->back_url);
     }
+    public function searchPeople(Request $request){
+        $result = array();
+        $findpeople = User::select('id','firstname','lastname','email')
+            ->where('status',1)
+            ->where('is_volunteer',1)
+            ->where('firstname','like','%'.$request->likeValue.'%')
+            ->get();
+        foreach ($findpeople as $peo){
+            $data = array('id'=>$peo->id,'firstname'=>$peo->lastname.' '.$peo->firstname, 'email'=>$peo->email);
+            array_push($result,$data);
+        }
+        return response()->json(['success' => 'true', '_token' => csrf_token(),'data'=>$result]);
+    }
 }

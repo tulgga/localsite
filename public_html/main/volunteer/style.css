@@ -625,6 +625,75 @@ footer{
     transform: translateY(0%);
 }
 /*End Team Section*/
+.resultPeople, .resultOrg{
+    position: relative;
+}
+.resultPeople .rePeoslist{
+    position: absolute;
+    list-style: none;
+    display: block;
+    margin: 0;
+    width: 100%;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    margin-top: -1px;
+    background: #fff;
+    z-index: 999;
+    display: none;
+}
+.resultPeople .rePeoslist .msg{
+    display: block;
+    color: #888;
+    font-size: 13px;
+    font-style: italic;
+    padding: 2px 8px;
+}
+.resultPeople .rePeoslist li{
+    position: relative;
+    display: block;
+    font-weight: 700;
+    font-size: 13px;
+    padding: 4px 10px 5px;
+    border-bottom: 1px dashed #ced4da;
+}
+.resultPeople .rePeoslist li span.email{
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: 400;
+    font-size: 12px;
+    font-style: italic;
+    color: #888;
+}
+.resultPeople .rePeoslist li:last-child{
+    border-bottom: 0;
+}
+.resultPeople .rePeoslist li:hover{
+    background: #eee;
+    cursor: pointer;
+}
+.tages{
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    padding: 2px 4px 4px;
+    display: block;
+}
+.tages .tag{
+    display: inline-block;
+    background: #007bff;
+    font-size: 12px;
+    color: #fff;
+    padding: 0 5px;
+    border-radius: 3px;
+    margin: 0 2px;
+}
+.tages .tag{}
+.tages .tag i{
+    cursor: pointer;
+    margin-left: 5px;
+}
+/** Footer **/
 footer .post{
     margin-bottom: 30px;
 }
