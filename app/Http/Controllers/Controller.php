@@ -57,18 +57,23 @@ class Controller extends BaseController
 
     public function saveAble(){
         $company=file_get_contents('https://intranet.gov.mn/insight.php?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1NTc4ODMxNjF9.ACl3LBLZhdX1rd3UYynrn6UhzoSEFoEqo-n_m0xsUqU&a=bayankhongor&getInfo=bayankhongor');
-        $data=json_decode($company, true);
-        Worker::query()->truncate();
-        foreach ($data as $i=>$d){
-            if($d['childrenCnt']>0){
-                foreach ($d['children'] as $children){
-                    if(isset($children['users'])){
-                        foreach ($children['users'] as $user){
-                            $worker= new Worker($user);
-                            $worker->save();
-                        }
-                    }
+        $data = json_decode($company, true);
+        foreach ($data as $dt){
+            if($dt['type'] == 2) {
+                $find = Worker::where('oid',$dt['id'])->first();
+                if(is_null($find)){
+                    $worker = New Worker();
+                }else{
+                    $worker = Worker::findOrFail($find->id);
                 }
+                $worker->oid = $dt['id'];
+                $worker->mid = $dt['mid'];
+                $worker->preid = $dt['preid'];
+                $worker->type = $dt['type'];
+                $worker->name = $dt['name'];
+                $worker->childrenCnt = $dt['childrenCnt'];
+                $worker->json_data = json_encode($dt['children']);
+                $worker->save();
             }
         }
     }

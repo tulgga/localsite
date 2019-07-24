@@ -91,6 +91,7 @@ Route::domain('{account}.'.env('SUB_DOMAIN'))->group(function () {
     Route::get('/category/{id}', 'SubController@category');
     Route::get('/files/{id}', 'SubController@files');
     Route::get('/feedback', 'SubController@feedback');
+    Route::get('/able', 'SubController@able');
     Route::get('/archive', 'SubController@archive');
     Route::post('/urgudul_save', 'SubController@urgudul_save');
     /*** Search ***/

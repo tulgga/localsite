@@ -72,7 +72,7 @@
                         <li><a href="http://archive.bayankhongor.gov.mn/{{$info['domain']}}" target="_blank"><i class="fab fa-internet-explorer"></i> Өмнөх хувилбар</a></li>
                         <li><a href="{{asset('feedback')}}"><i class="far fa-comments"></i> Санал хүсэлт, өргөдөл, гомдол</a></li>
 
-                    <a href="https://intranet.gov.mn/" target="_blank"><img style="height: 30px;margin: 9px 0 9px 15px;border-radius: 5px;" src="https://intranet.gov.mn/style/login/header/able.gif" /></a>
+                    <a href="{{asset('able')}}"><img style="height: 30px;margin: 9px 0 9px 15px;border-radius: 5px;" src="https://intranet.gov.mn/style/login/header/able.gif" /></a>
                     </ul>
                 </div>
             </div>
