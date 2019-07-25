@@ -310,6 +310,12 @@ class VolunteerController extends Controller{
                     }
 
                 }
+                foreach($request->user as $key => $value){
+                    $users = New Event_to_user();
+                    $users->user_id = $value;
+                    $users->event_id = $eid;
+                    $users->save();
+                }
             }else{
                 $event = Event::find($request->id);
                 $event->subject = $request->subject;

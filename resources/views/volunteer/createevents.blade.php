@@ -69,7 +69,6 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-6">
-                                <form method="post" action="" enctype="multipart/form-data">
                                     <div class="form-group">
                                         <label for="subject">Оролцсон хүмүүс тэмдэглэх:</label>
                                         <input type="text" id="searchPeople" class="form-control"/>
@@ -77,7 +76,6 @@
                                             <ul class="rePeoslist"></ul>
                                         </div>
                                     </div>
-                                </form>
                                 <div class="form-group tages" style="display: none;"></div>
                                 <div id="inputVal"></div>
                             </div>
@@ -151,7 +149,7 @@
             var rando = Math.floor((Math.random() * 1000) + 1);
             $(".tages").show();
             $(".tages").append('<span class="tag ' + rando + '">' + $(this).attr('data-title') + ' <i class="fa fa-times" id="' + rando + '"></i></span>');
-            $("#inputVal").append('<input id="input-'+rando+'" type="hidden" name="user[]" value="'+$(this).attr('data-value')+'">');
+            $("#inputVal").append('<input id="input-'+rando+'" type="text" name="user[]" value="'+$(this).attr('data-value')+'">');
             $("#searchPeople").val("");
             runDel();
             $(".rePeoslist").html("");
@@ -162,7 +160,7 @@
         var rando = Math.floor((Math.random() * 1000) + 1);
         $(".tages").show();
         $(".tages").append('<span class="tag '+rando+'">'+$("#searchPeople").val()+' <i class="fa fa-times" id="'+rando+'"></i></span>');
-        $("#inputVal").append('<input id="input-'+rando+'" type="hidden" name="user[]" value="'+$("#searchPeople").val()+'">');
+        $("#inputVal").append('<input id="input-'+rando+'" type="text" name="user[]" value="'+$("#searchPeople").val()+'">');
         $("#searchPeople").val("");
         runDel();
         $(".rePeoslist").html("");
