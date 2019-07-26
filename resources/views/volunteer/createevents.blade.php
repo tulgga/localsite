@@ -76,7 +76,19 @@
                                             <ul class="rePeoslist"></ul>
                                         </div>
                                     </div>
-                                <div class="form-group tages" style="display: none;"></div>
+                                @if($users == "" || $users == "[]")
+                                    <div class="form-group tages" style="display: none;"></div>
+                                @else
+                                <div class="form-group tages">
+                                    @foreach($users as $usr)
+                                        @if($usr->user_id == 0)
+                                            <span class="tag u_{{$usr->id}}">{{$usr->description}} <i class="fa fa-times" onclick="deleteUser({{$usr->id}}); return false;"></i></span>
+                                        @else
+                                            <span class="tag u_{{$usr->id}}">{{$usr->firstname.' '.$usr->lastname}} <i class="fa fa-times" onclick="deleteUser({{$usr->id}}); return false;"></i></span>
+                                        @endif
+                                    @endforeach
+                                </div>
+                                @endif
                                 <div id="inputVal"></div>
                             </div>
                             <div class="col-sm-6">
@@ -109,6 +121,25 @@
     </div>
 </div>
 <script>
+    deleteUser = function (idc){
+        var formData = {
+            _token: $("#_token").val(),
+            id: idc
+        };
+        $.ajax({
+            type:'POST',
+            url:'/usrDeleteFromEvent',
+            data: formData,
+            success:function(data) {
+                $("#_token").val(data._token);
+                    if(data.success == "true"){
+                        $(".u_"+idc).remove();
+                    }else{
+                        alert("Алдаа гарлаа! Дахин ачаалуулна уу.");
+                    }
+                }
+            });
+    };
     runDel = function(){
         $(".tag i").click(function() {
             $("."+$(this).attr('id')).remove();
@@ -149,7 +180,7 @@
             var rando = Math.floor((Math.random() * 1000) + 1);
             $(".tages").show();
             $(".tages").append('<span class="tag ' + rando + '">' + $(this).attr('data-title') + ' <i class="fa fa-times" id="' + rando + '"></i></span>');
-            $("#inputVal").append('<input id="input-'+rando+'" type="text" name="user[]" value="'+$(this).attr('data-value')+'">');
+            $("#inputVal").append('<input id="input-'+rando+'" type="hidden" name="user[]" value="'+$(this).attr('data-value')+'">');
             $("#searchPeople").val("");
             runDel();
             $(".rePeoslist").html("");
@@ -160,7 +191,7 @@
         var rando = Math.floor((Math.random() * 1000) + 1);
         $(".tages").show();
         $(".tages").append('<span class="tag '+rando+'">'+$("#searchPeople").val()+' <i class="fa fa-times" id="'+rando+'"></i></span>');
-        $("#inputVal").append('<input id="input-'+rando+'" type="text" name="user[]" value="'+$("#searchPeople").val()+'">');
+        $("#inputVal").append('<input id="input-'+rando+'" type="hidden" name="nouser[]" value="'+$("#searchPeople").val()+'">');
         $("#searchPeople").val("");
         runDel();
         $(".rePeoslist").html("");

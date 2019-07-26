@@ -47,12 +47,16 @@ class VolunteerController extends Controller{
     }
     public function event($id){
         $data['event'] = Event::select('*')->where('id', $id)->first();
+        $data['users'] = Event_to_user::select('event_to_users.id', 'event_to_users.user_id', 'event_to_users.description', 'users.firstname', 'users.lastname', 'users.profile_pic')
+            ->leftJoin('users','users.id','event_to_users.user_id')
+            ->where('event_to_users.event_id',$data['event']->eid)
+            ->get();
         $data['createUser'] = User::select('lastname','firstname','profile_pic')->where('id', $data['event']->created_user_id)->first();
         $data['likes'] = Event_to_like::select(DB::raw('COUNT(*) as counts'))->where('event_id',$id)->first();
         $data['rating'] = Event_to_rating::select(DB::raw('AVG(event_to_ratings.rating) as rate'))->where('event_id',$id)->first();
         $data['images'] = Event_to_image::select('image')->where('event_id',$data['event']->eid)->get();
         $data['comments'] = Event_to_comment::select('event_to_comments.ips','event_to_comments.created_at','event_to_comments.comment', 'users.firstname','users.profile_pic')->leftJoin('users','users.id','=','event_to_comments.user_id')->where('event_to_comments.event_id',$id)->orderBy('event_to_comments.created_at','DESC')->get();
-        //echo json_encode($data['comments']); die;
+        //echo json_encode($data['users']); die;
         return view('volunteer.single', $data);
     }
     public function login(){
@@ -274,6 +278,10 @@ class VolunteerController extends Controller{
                 $data['ended'] = $events->ended;
                 $data['content'] = $events->content;
                 $data['id'] = $id;
+                $data['users'] = Event_to_user::select('event_to_users.id', 'event_to_users.user_id', 'event_to_users.description', 'users.firstname', 'users.lastname')
+                    ->leftJoin('users','users.id','event_to_users.user_id')
+                    ->where('event_to_users.event_id',$events->eid)
+                    ->get();
             }else{
                 $data['id'] = $id;
                 $data['images'] = "";
@@ -281,6 +289,7 @@ class VolunteerController extends Controller{
                 $data['started'] = "";
                 $data['ended'] = "";
                 $data['content'] = "";
+                $data['users'] = "";
             }
             return view('volunteer.createevents',$data);
         }
@@ -310,11 +319,21 @@ class VolunteerController extends Controller{
                     }
 
                 }
-                foreach($request->user as $key => $value){
-                    $users = New Event_to_user();
-                    $users->user_id = $value;
-                    $users->event_id = $eid;
-                    $users->save();
+                if(isset($request->user)) {
+                    foreach ($request->user as $key => $value) {
+                        $users = New Event_to_user();
+                        $users->user_id = $value;
+                        $users->event_id = $eid;
+                        $users->save();
+                    }
+                }
+                if(isset($request->nouser)) {
+                    foreach ($request->nouser as $key => $value) {
+                        $users = New Event_to_user();
+                        $users->description = $value;
+                        $users->event_id = $event->eid;
+                        $users->save();
+                    }
                 }
             }else{
                 $event = Event::find($request->id);
@@ -333,9 +352,37 @@ class VolunteerController extends Controller{
                     }
 
                 }
+                if(isset($request->user)) {
+                    foreach ($request->user as $key => $value) {
+                        $users = New Event_to_user();
+                        $users->user_id = $value;
+                        $users->event_id = $event->eid;
+                        $users->save();
+                    }
+                }
+                if(isset($request->nouser)) {
+                    foreach ($request->nouser as $key => $value) {
+                        $users = New Event_to_user();
+                        $users->description = $value;
+                        $users->event_id = $event->eid;
+                        $users->save();
+                    }
+                }
             }
             $request->session()->flash('successMsg', 'Мэдээллийг амжилттай хадгаллаа!');
             return redirect()->to('/events');
+        }
+    }
+    public function usrDeleteFromEvent(Request $request){
+        if(is_null(Auth::user())){
+            return redirect()->to('/login');
+        } else {
+            $userDelete = Event_to_user::find($request->id);
+            if($userDelete->delete()){
+                return response()->json(['success' => 'true', '_token' => csrf_token()]);
+            }else{
+                return response()->json(['success' => 'false', '_token' => csrf_token()]);
+            }
         }
     }
     public function organization(){

@@ -693,6 +693,30 @@ footer{
     cursor: pointer;
     margin-left: 5px;
 }
+.userss{
+    padding-top: 20px;
+}
+.userss h4{
+    font-size: 16px;
+    font-weight: bold;
+}
+.userss ul{
+    list-style: none;
+    font-size: 13px;
+}
+.userss ul li{
+    display: block;
+    padding: 5px 0;
+}
+.userss ul li i{
+    width: 25px;
+    height: 25px;
+    background: #ddd;
+    color: #fff;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 25px;
+}
 /** Footer **/
 footer .post{
     margin-bottom: 30px;
