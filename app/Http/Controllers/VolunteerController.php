@@ -278,10 +278,11 @@ class VolunteerController extends Controller{
                 $data['ended'] = $events->ended;
                 $data['content'] = $events->content;
                 $data['id'] = $id;
-                $data['users'] = Event_to_user::select('event_to_users.id', 'event_to_users.user_id', 'event_to_users.description', 'users.firstname', 'users.lastname')
+                $data['users'] = Event_to_user::select('event_to_users.id', 'event_to_users.user_id', 'event_to_users.org_id', 'event_to_users.description', 'users.firstname', 'users.lastname')
                     ->leftJoin('users','users.id','event_to_users.user_id')
                     ->where('event_to_users.event_id',$events->eid)
                     ->get();
+                echo json_encode($data['users']); die;
             }else{
                 $data['id'] = $id;
                 $data['images'] = "";
@@ -290,6 +291,7 @@ class VolunteerController extends Controller{
                 $data['ended'] = "";
                 $data['content'] = "";
                 $data['users'] = "";
+                $data['org'] = "";
             }
             return view('volunteer.createevents',$data);
         }
