@@ -676,15 +676,14 @@ footer{
 .tages{
     border: 1px solid #ced4da;
     border-radius: 0.25rem;
-    padding: 2px 4px 4px;
+    padding: 5px 4px;
     display: block;
 }
 .tages .tag{
     display: inline-block;
-    background: #007bff;
     font-size: 12px;
     color: #fff;
-    padding: 0 5px;
+    padding: 3px 8px;
     border-radius: 3px;
     margin: 0 2px;
 }

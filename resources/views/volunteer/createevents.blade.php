@@ -68,9 +68,9 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-6">
+                            <div class="col-sm-12">
                                     <div class="form-group">
-                                        <label for="subject">Оролцсон хүмүүс тэмдэглэх:</label>
+                                        <label for="subject">Оролцогчид тэмдэглэх:</label>
                                         <input type="text" id="searchPeople" class="form-control"/>
                                         <div class="resultPeople">
                                             <ul class="rePeoslist"></ul>
@@ -82,23 +82,14 @@
                                 <div class="form-group tages">
                                     @foreach($users as $usr)
                                         @if($usr->user_id == 0)
-                                            <span class="tag u_{{$usr->id}}">{{$usr->description}} <i class="fa fa-times" onclick="deleteUser({{$usr->id}}); return false;"></i></span>
+                                            <span style="background: var(--gray)" class="tag u_{{$usr->id}}">{{$usr->description}} <i class="fa fa-times" onclick="deleteUser({{$usr->id}}); return false;"></i></span>
                                         @else
-                                            <span class="tag u_{{$usr->id}}">{{$usr->firstname.' '.$usr->lastname}} <i class="fa fa-times" onclick="deleteUser({{$usr->id}}); return false;"></i></span>
+                                            <span style="background: var(--blue)" class="tag u_{{$usr->id}}">{{$usr->firstname.' '.$usr->lastname}} <i class="fa fa-times" onclick="deleteUser({{$usr->id}}); return false;"></i></span>
                                         @endif
                                     @endforeach
                                 </div>
                                 @endif
                                 <div id="inputVal"></div>
-                            </div>
-                            <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="subject">Оролцсон байгууллага тэмдэглэх:</label>
-                                        <input type="text" id="searchOrg" class="form-control">
-                                        <div class="resultOrg">
-                                            <ul class="reOrgslist"></ul>
-                                        </div>
-                                    </div>
                             </div>
                         </div>
                         <div class="form-group">
@@ -149,38 +140,60 @@
             }
         });
     };
-    $("#searchPeople").keypress(function () {
-        $(".rePeoslist").html("");
-        var formData = {
-            _token: $("#_token").val(),
-            likeValue: $("#searchPeople").val()
-        };
-        $.ajax({
-            type:'POST',
-            url:'/searchPeople',
-            data: formData,
-            success:function(data){
-                if(data.success == "true"){
+    $("#searchPeople").keydown(function () {
+        if($("#searchPeople").val().length <= 1) {
+            $(".rePeoslist").hide();
+            $(".rePeoslist").html("");
+        }else if($("#searchPeople").val().length >= 1) {
+            var formData = {
+                _token: $("#_token").val(),
+                likeValue: $("#searchPeople").val()
+            };
+            $.ajax({
+                type: 'POST',
+                url: '/searchPeople',
+                data: formData,
+                success: function (data) {
                     $("#_token").val(data._token);
                     $(".rePeoslist").show();
-                    if(data.data == ""){
-                        $(".rePeoslist").html('<li><a href="javascript:newAdd();">Нэмэх</a></li>');
-                    }else{
-                    $.each(data.data, function(index,value){
-                        $(".rePeoslist").append('<li data-value="'+value.id+'" data-title="'+value.firstname+'">'+value.firstname+' <span class="email">'+value.email+'</span></li>');
-                    });
-                    findAdd();
+                    $(".rePeoslist").html("");
+                    if (data.success == "false") {
+                        if ($("#searchPeople").val() == "") {
+                            $(".rePeoslist").hide();
+                            $(".rePeoslist").html("");
+                        } else {
+                            $(".rePeoslist").html('<li><a href="javascript:newAdd();">Нэмэх</a></li>');
+                        }
+                    } else if (data.success == "true") {
+                        $.each(data.data, function (index, value) {
+                            if(value.type == 0) {
+                                $(".rePeoslist").append('<li class="peo" data-value="' + value.id + '" data-title="' + value.firstname + '">' + value.firstname + ' <span class="email">' + value.email + '</span></li>');
+                            } else {
+                                $(".rePeoslist").append('<li class="org" data-value="' + value.id + '" data-title="' + value.firstname + '">' + value.firstname + ' <span class="email">' + value.email + '</span></li>');
+                            }
+                        });
+                        findAdd();
                     }
                 }
-            }
-        });
+            });
+        }
     });
     findAdd = function(){
-        $(".rePeoslist li").click(function() {
+        $(".rePeoslist li.peo").click(function() {
             var rando = Math.floor((Math.random() * 1000) + 1);
             $(".tages").show();
-            $(".tages").append('<span class="tag ' + rando + '">' + $(this).attr('data-title') + ' <i class="fa fa-times" id="' + rando + '"></i></span>');
+            $(".tages").append('<span style="background: var(--blue)" class="tag ' + rando + '">' + $(this).attr('data-title') + ' <i class="fa fa-times" id="' + rando + '"></i></span>');
             $("#inputVal").append('<input id="input-'+rando+'" type="hidden" name="user[]" value="'+$(this).attr('data-value')+'">');
+            $("#searchPeople").val("");
+            runDel();
+            $(".rePeoslist").html("");
+            $(".rePeoslist").hide();
+        });
+        $(".rePeoslist li.org").click(function() {
+            var rando = Math.floor((Math.random() * 1000) + 1);
+            $(".tages").show();
+            $(".tages").append('<span style="background: var(--purple)" class="tag ' + rando + '">' + $(this).attr('data-title') + ' <i class="fa fa-times" id="' + rando + '"></i></span>');
+            $("#inputVal").append('<input id="input-'+rando+'" type="hidden" name="org[]" value="'+$(this).attr('data-value')+'">');
             $("#searchPeople").val("");
             runDel();
             $(".rePeoslist").html("");
@@ -190,7 +203,7 @@
     newAdd = function () {
         var rando = Math.floor((Math.random() * 1000) + 1);
         $(".tages").show();
-        $(".tages").append('<span class="tag '+rando+'">'+$("#searchPeople").val()+' <i class="fa fa-times" id="'+rando+'"></i></span>');
+        $(".tages").append('<span style="background: var(--gray)" class="tag '+rando+'">'+$("#searchPeople").val()+' <i class="fa fa-times" id="'+rando+'"></i></span>');
         $("#inputVal").append('<input id="input-'+rando+'" type="hidden" name="nouser[]" value="'+$("#searchPeople").val()+'">');
         $("#searchPeople").val("");
         runDel();

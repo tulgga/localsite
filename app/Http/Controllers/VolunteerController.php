@@ -327,6 +327,14 @@ class VolunteerController extends Controller{
                         $users->save();
                     }
                 }
+                if(isset($request->org)) {
+                    foreach ($request->org as $key => $value) {
+                        $users = New Event_to_user();
+                        $users->org_id = $value;
+                        $users->event_id = $eid;
+                        $users->save();
+                    }
+                }
                 if(isset($request->nouser)) {
                     foreach ($request->nouser as $key => $value) {
                         $users = New Event_to_user();
@@ -351,6 +359,14 @@ class VolunteerController extends Controller{
                         $image->save();
                     }
 
+                }
+                if(isset($request->org)) {
+                    foreach ($request->org as $key => $value) {
+                        $users = New Event_to_user();
+                        $users->org_id = $value;
+                        $users->event_id = $event->eid;
+                        $users->save();
+                    }
                 }
                 if(isset($request->user)) {
                     foreach ($request->user as $key => $value) {
@@ -607,15 +623,28 @@ class VolunteerController extends Controller{
     }
     public function searchPeople(Request $request){
         $result = array();
+        $findorg = Organization::select('id','name','email')
+            ->where('status',1)
+            ->where('name','like','%'.$request->likeValue.'%')
+            ->get();
+        foreach ($findorg as $org){
+            $data = array('id'=>$org->id, 'type'=>1,'firstname'=>$org->name, 'email'=>$org->email);
+            array_push($result,$data);
+        }
         $findpeople = User::select('id','firstname','lastname','email')
             ->where('status',1)
             ->where('is_volunteer',1)
             ->where('firstname','like','%'.$request->likeValue.'%')
             ->get();
         foreach ($findpeople as $peo){
-            $data = array('id'=>$peo->id,'firstname'=>$peo->lastname.' '.$peo->firstname, 'email'=>$peo->email);
+            $data = array('id'=>$peo->id, 'type'=>0, 'firstname'=>$peo->lastname.' '.$peo->firstname, 'email'=>$peo->email);
             array_push($result,$data);
         }
-        return response()->json(['success' => 'true', '_token' => csrf_token(),'data'=>$result]);
+        if($result){
+            return response()->json(['success' => 'true', '_token' => csrf_token(),'data'=>$result]);
+        }else{
+            return response()->json(['success' => 'false', '_token' => csrf_token()]);
+        }
+
     }
 }
