@@ -22,7 +22,7 @@
                 <div class="alert alert-danger font-14"><i class="fa fa-check"></i> {{ Session::get('errorMsg') }} </div>
             @endif
             <form class="font-14" method="post" action="{{asset('saveEvent')}}" enctype="multipart/form-data">
-                {{ csrf_field() }}
+                <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}"/>
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="row">
@@ -67,12 +67,39 @@
                                 @endif
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label for="subject">Оролцогчид тэмдэглэх:</label>
+                                        <input type="text" id="searchPeople" class="form-control"/>
+                                        <div class="resultPeople">
+                                            <ul class="rePeoslist"></ul>
+                                        </div>
+                                    </div>
+                                @if($users == "" || $users == "[]")
+                                    <div class="form-group tages" style="display: none;"></div>
+                                @else
+                                <div class="form-group tages">
+                                    @foreach($users as $usr)
+                                        @if($usr->user_id == 0)
+                                            <span style="background: var(--gray)" class="tag u_{{$usr->id}}">{{$usr->description}} <i class="fa fa-times" onclick="deleteUser({{$usr->id}}); return false;"></i></span>
+                                        @else
+                                            <span style="background: var(--blue)" class="tag u_{{$usr->id}}">{{$usr->firstname.' '.$usr->lastname}} <i class="fa fa-times" onclick="deleteUser({{$usr->id}}); return false;"></i></span>
+                                        @endif
+                                    @endforeach
+                                </div>
+                                @endif
+                                <div id="inputVal"></div>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label for="pagetext">Тайлбар:</label>
                             <textarea name="contentHTML" id="pagetext" rows="10">{{$content}}</textarea>
                         </div>
+
                     </div>
                 </div>
+                <hr/>
                 <div class="row">
                     <div class="col-sm-12">
                         <a class="btn btn-sm btn-light" href="{{asset('events')}}">Буцах</a>
@@ -84,4 +111,104 @@
         </div>
     </div>
 </div>
+<script>
+    deleteUser = function (idc){
+        var formData = {
+            _token: $("#_token").val(),
+            id: idc
+        };
+        $.ajax({
+            type:'POST',
+            url:'/usrDeleteFromEvent',
+            data: formData,
+            success:function(data) {
+                $("#_token").val(data._token);
+                    if(data.success == "true"){
+                        $(".u_"+idc).remove();
+                    }else{
+                        alert("Алдаа гарлаа! Дахин ачаалуулна уу.");
+                    }
+                }
+            });
+    };
+    runDel = function(){
+        $(".tag i").click(function() {
+            $("."+$(this).attr('id')).remove();
+            $("#input-"+$(this).attr('id')).remove();
+            if($(".tages").text() == ""){
+                $(".tages").hide();
+            }
+        });
+    };
+    $("#searchPeople").keydown(function () {
+        if($("#searchPeople").val().length <= 1) {
+            $(".rePeoslist").hide();
+            $(".rePeoslist").html("");
+        }else if($("#searchPeople").val().length >= 1) {
+            var formData = {
+                _token: $("#_token").val(),
+                likeValue: $("#searchPeople").val()
+            };
+            $.ajax({
+                type: 'POST',
+                url: '/searchPeople',
+                data: formData,
+                success: function (data) {
+                    $("#_token").val(data._token);
+                    $(".rePeoslist").show();
+                    $(".rePeoslist").html("");
+                    if (data.success == "false") {
+                        if ($("#searchPeople").val() == "") {
+                            $(".rePeoslist").hide();
+                            $(".rePeoslist").html("");
+                        } else {
+                            $(".rePeoslist").html('<li><a href="javascript:newAdd();">Нэмэх</a></li>');
+                        }
+                    } else if (data.success == "true") {
+                        $.each(data.data, function (index, value) {
+                            if(value.type == 0) {
+                                $(".rePeoslist").append('<li class="peo" data-value="' + value.id + '" data-title="' + value.firstname + '">' + value.firstname + ' <span class="email">' + value.email + '</span></li>');
+                            } else {
+                                $(".rePeoslist").append('<li class="org" data-value="' + value.id + '" data-title="' + value.firstname + '">' + value.firstname + ' <span class="email">' + value.email + '</span></li>');
+                            }
+                        });
+                        findAdd();
+                    }
+                }
+            });
+        }
+    });
+    findAdd = function(){
+        $(".rePeoslist li.peo").click(function() {
+            var rando = Math.floor((Math.random() * 1000) + 1);
+            $(".tages").show();
+            $(".tages").append('<span style="background: var(--blue)" class="tag ' + rando + '">' + $(this).attr('data-title') + ' <i class="fa fa-times" id="' + rando + '"></i></span>');
+            $("#inputVal").append('<input id="input-'+rando+'" type="hidden" name="user[]" value="'+$(this).attr('data-value')+'">');
+            $("#searchPeople").val("");
+            runDel();
+            $(".rePeoslist").html("");
+            $(".rePeoslist").hide();
+        });
+        $(".rePeoslist li.org").click(function() {
+            var rando = Math.floor((Math.random() * 1000) + 1);
+            $(".tages").show();
+            $(".tages").append('<span style="background: var(--purple)" class="tag ' + rando + '">' + $(this).attr('data-title') + ' <i class="fa fa-times" id="' + rando + '"></i></span>');
+            $("#inputVal").append('<input id="input-'+rando+'" type="hidden" name="org[]" value="'+$(this).attr('data-value')+'">');
+            $("#searchPeople").val("");
+            runDel();
+            $(".rePeoslist").html("");
+            $(".rePeoslist").hide();
+        });
+    };
+    newAdd = function () {
+        var rando = Math.floor((Math.random() * 1000) + 1);
+        $(".tages").show();
+        $(".tages").append('<span style="background: var(--gray)" class="tag '+rando+'">'+$("#searchPeople").val()+' <i class="fa fa-times" id="'+rando+'"></i></span>');
+        $("#inputVal").append('<input id="input-'+rando+'" type="hidden" name="nouser[]" value="'+$("#searchPeople").val()+'">');
+        $("#searchPeople").val("");
+        runDel();
+        $(".rePeoslist").html("");
+        $(".rePeoslist").hide();
+    };
+</script>
 @endsection

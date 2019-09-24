@@ -6,7 +6,7 @@ tinymce.init({
     height: 400,
     image_advtab: true,
     relative_urls: false,
-    content_css : $base_url+"css/editor.css",
+    content_css : $base_url+"main/volunteer/editor.css",
     remove_script_host: false,
     plugins: [
          "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",

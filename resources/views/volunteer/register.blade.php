@@ -33,9 +33,11 @@
                     <div class="form-group">
                         <select name="site_id" class="form-control" required>
                             <option value=""> Сум сонгох </option>
-                            <?php foreach($site as $st){ ?>
-                            <option value="<?php echo $st->id; ?>" @if(Session::get('site_id') == $st->id) selected @endif><?php echo $st->name; ?> </option>
-                            <?php } ?>
+                            @foreach($site as $st)
+                                @if($st->id !== 0)
+                                <option value="<?php echo $st->id; ?>"><?php echo $st->name; ?> </option>
+                                @endif
+                            @endforeach
                         </select>
                     </div>
                     <div class="form-group">

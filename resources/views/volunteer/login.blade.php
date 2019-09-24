@@ -14,6 +14,9 @@
                     @if(Session::has('loginMsg'))
                         <div class="alert alert-warning font-14"> {{ Session::get('loginMsg') }} </div>
                     @endif
+                        @if(Session::has('successMsg'))
+                            <div class="alert alert-success font-14"> {{ Session::get('successMsg') }} </div>
+                        @endif
                     {{ csrf_field() }}
                     <div class="form-group">
                         <label>Нэвтрэх нэр:</label>
@@ -22,6 +25,9 @@
                     <div class="form-group">
                         <label>Нууц үг:</label>
                         <input type="password" name="password" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <a href="{{asset('forgotpassword')}}">Нууц үгээ сэргээх</a>
                     </div>
                     <button type="submit" class="btn btn-primary w-100">Нэвтрэх</button>
                     {{--<div class="registerOr"><span>эсвэл</span></div>

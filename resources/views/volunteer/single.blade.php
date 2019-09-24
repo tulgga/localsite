@@ -81,10 +81,10 @@
             </div>
             <div class="col-sm-3">
                 <div class="font-14" style="min-height: 50px">
-                @if($createUser->profile_pic)
-                    <div class="profile_pic mr-2" style="float: left;width:50px;height:50px;background-image: url({{asset('uploads/'.$createUser->profile_pic)}}"></div>
+                @if(is_null($createUser->profile_pic))
+                        <img style="opacity: 0.5;border-radius: 50%" width="65" src="https://britz.mcmaster.ca/images/nouserimage.gif/image">
                 @else
-                    <img style="opacity: 0.5;border-radius: 50%" width="65" src="https://britz.mcmaster.ca/images/nouserimage.gif/image">
+                        <div class="profile_pic mr-2" style="float: left;width:50px;height:50px;background-image: url({{asset('uploads/'.$createUser->profile_pic)}}"></div>
                 @endif
                 <em style="color:var(--gray)">Нийтлэгч:</em>
                 <p>{{ $createUser->lastname }} {{ $createUser->firstname }}</p>
@@ -150,6 +150,29 @@
                         </div>
                     </div>
                 </div>
+                @if(is_null($users) || $users !== "[]")
+                <div class="row">
+                    <div class="col-sm-12 userss">
+                    <h4>Оролцогчид</h4>
+                    <ul>
+                        @foreach($users as $usr)
+                            @if($usr->user_id == 0)
+                                <li><i class="fa fa-user"></i> {{$usr->description}}</li>
+                            @else
+                                <li>
+                                    @if($usr->profile_usr)
+                                    <i class="fa fa-user"></i>
+                                    @else
+                                        <div class="profile_pic mr-2" style="width:25px;height:25px;background-image: url({{asset('uploads/'.$createUser->profile_pic)}}"></div>
+                                    @endif
+                                    {{$usr->lastname.' '.$usr->firstname}}
+                                </li>
+                            @endif
+                        @endforeach
+                    </ul>
+                    </div>
+                </div>
+                @endif
             </div>
         </div>
     </div>

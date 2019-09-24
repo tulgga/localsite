@@ -26,8 +26,10 @@ Route::domain('volunteer.'.env('DOMAIN_NAME', 'bayankhongor.gov.mn'))->group(fun
     Route::get('/c/{id}', 'VolunteerController@category');
     Route::get('/login', 'VolunteerController@login');
     Route::get('/register', 'VolunteerController@register');
+    Route::get('/userverify', 'VolunteerController@userverify');
     Route::post('/userRegister', 'VolunteerController@userRegister');
     Route::post('/loginUser', 'VolunteerController@loginUser');
+    Route::get('/forgotpassword', 'VolunteerController@forgotpassword');
     Route::get('/logout', 'VolunteerController@logoutUser');
     Route::get('/profile', 'VolunteerController@profile');
     Route::post('/profileUpdate', 'VolunteerController@profileUpdate');
@@ -44,6 +46,8 @@ Route::domain('volunteer.'.env('DOMAIN_NAME', 'bayankhongor.gov.mn'))->group(fun
     Route::get('/event/{id}', 'VolunteerController@event');
     Route::get('/eventform/{id}', 'VolunteerController@eventform');
     Route::post('/saveEvent', 'VolunteerController@saveEvent');
+    Route::post('/searchPeople', 'VolunteerController@searchPeople');
+    Route::post('/usrDeleteFromEvent', 'VolunteerController@usrDeleteFromEvent');
     Route::get('/eventdelete/{id}', 'VolunteerController@eventdelete');
     Route::get('/deleteImg/{img_id}/{event}', 'VolunteerController@deleteImg');
     Route::get('/eventUpdateStatus/{id}/{stat}', 'VolunteerController@eventUpdateStatus');
@@ -89,6 +93,7 @@ Route::domain('{account}.'.env('SUB_DOMAIN'))->group(function () {
     Route::get('/category/{id}', 'SubController@category');
     Route::get('/files/{id}', 'SubController@files');
     Route::get('/feedback', 'SubController@feedback');
+    Route::get('/able', 'SubController@able');
     Route::get('/archive', 'SubController@archive');
     Route::post('/urgudul_save', 'SubController@urgudul_save');
     /*** Search ***/

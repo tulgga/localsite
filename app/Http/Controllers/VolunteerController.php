@@ -10,6 +10,8 @@ use App\Event_to_image;
 use App\Event_to_rating;
 use App\Event_to_like;
 use App\Event_to_user;
+use App\Mail\VolunteerEmail;
+use Illuminate\Support\Facades\Mail;
 
 use App\Organization;
 use App\User_to_organization;
@@ -45,12 +47,16 @@ class VolunteerController extends Controller{
     }
     public function event($id){
         $data['event'] = Event::select('*')->where('id', $id)->first();
+        $data['users'] = Event_to_user::select('event_to_users.id', 'event_to_users.user_id', 'event_to_users.description', 'users.firstname', 'users.lastname', 'users.profile_pic')
+            ->leftJoin('users','users.id','event_to_users.user_id')
+            ->where('event_to_users.event_id',$data['event']->eid)
+            ->get();
         $data['createUser'] = User::select('lastname','firstname','profile_pic')->where('id', $data['event']->created_user_id)->first();
         $data['likes'] = Event_to_like::select(DB::raw('COUNT(*) as counts'))->where('event_id',$id)->first();
         $data['rating'] = Event_to_rating::select(DB::raw('AVG(event_to_ratings.rating) as rate'))->where('event_id',$id)->first();
         $data['images'] = Event_to_image::select('image')->where('event_id',$data['event']->eid)->get();
         $data['comments'] = Event_to_comment::select('event_to_comments.ips','event_to_comments.created_at','event_to_comments.comment', 'users.firstname','users.profile_pic')->leftJoin('users','users.id','=','event_to_comments.user_id')->where('event_to_comments.event_id',$id)->orderBy('event_to_comments.created_at','DESC')->get();
-        //echo json_encode($data['comments']); die;
+        //echo json_encode($data['users']); die;
         return view('volunteer.single', $data);
     }
     public function login(){
@@ -106,7 +112,6 @@ class VolunteerController extends Controller{
         }else{
             $year = 1900+$year;
         }
-
         $user = New User();
         $pass = bcrypt($request->verify_password);
         $user->name = $request->name;
@@ -123,9 +128,53 @@ class VolunteerController extends Controller{
         $user->gender = $gender;
         $user->birth_date = $year."-".$month."-".$day;
         $user->save();
-        $request->session()->flash('successMsg', 'Бүртгэл амжилттай хадгалагдлаа!');
-        return redirect()->to('/register');
 
+        $token = User::select('id')->where('email',$request->email)->first();
+
+        if($token) {
+                $message = '<p>Та доорх товч дээр дарж бүртгэлээ баталгаажуулана уу.</p>';
+                $message .= '<a href="'.asset('userverify?token=').$token->id.'"></a>';
+                $valueArray = [
+                    'subject' => 'Баталгаажуулах холбоос',
+                    'message' => $message
+                ];
+                Mail::to($request->email)->send( new VolunteerEmail( $valueArray ));
+                $request->session()->flash('successMsg', 'Бүртгэл амжилттай хадгалагдлаа!');
+                return redirect()->to('/register');
+        }else{
+            return redirect()->to('/');
+        }
+    }
+    public function userverify(Request $request){
+        $user = User::find($request->token);
+        $user->status = 1;
+        $user->save();
+        $request->session()->flash('successMsg', 'Таны эрх баталгаажлаа!');
+        return redirect()->to('/login');
+    }
+    public function forgotpassword(Request $request){
+        if($request->email){
+            $token = User::select('id')->where('email',$request->email)->first();
+            if($token) {
+                $pass = rand(100000, 999999);
+                $user = User::find($token->id);
+                $user->password = bcrypt($pass);
+                $user->save();
+                $message = '<p>Таны шинэ нууц үг: ' . $pass . '</p>';
+                $valueArray = [
+                    'subject' => 'Нууц үг ссэргээх',
+                    'message' => $message
+                ];
+                Mail::to($request->email)->send(new VolunteerEmail($valueArray));
+                $request->session()->flash('successMsg', 'Бүртгэл амжилттай хадгалагдлаа!');
+                return redirect()->to('/forgotpassword');
+            }else{
+                $request->session()->flash('errorMsg', 'Имэйл хаяг бүртгэлгүй байна!');
+                return redirect()->to('/forgotpassword');
+            }
+
+        }
+        return view('volunteer.forgotpassword');
     }
     public function profile(){
         if(is_null(Auth::user())){
@@ -229,6 +278,11 @@ class VolunteerController extends Controller{
                 $data['ended'] = $events->ended;
                 $data['content'] = $events->content;
                 $data['id'] = $id;
+                $data['users'] = Event_to_user::select('event_to_users.id', 'event_to_users.user_id', 'event_to_users.org_id', 'event_to_users.description', 'users.firstname', 'users.lastname')
+                    ->leftJoin('users','users.id','event_to_users.user_id')
+                    ->where('event_to_users.event_id',$events->eid)
+                    ->get();
+                echo json_encode($data['users']); die;
             }else{
                 $data['id'] = $id;
                 $data['images'] = "";
@@ -236,6 +290,8 @@ class VolunteerController extends Controller{
                 $data['started'] = "";
                 $data['ended'] = "";
                 $data['content'] = "";
+                $data['users'] = "";
+                $data['org'] = "";
             }
             return view('volunteer.createevents',$data);
         }
@@ -265,6 +321,30 @@ class VolunteerController extends Controller{
                     }
 
                 }
+                if(isset($request->user)) {
+                    foreach ($request->user as $key => $value) {
+                        $users = New Event_to_user();
+                        $users->user_id = $value;
+                        $users->event_id = $eid;
+                        $users->save();
+                    }
+                }
+                if(isset($request->org)) {
+                    foreach ($request->org as $key => $value) {
+                        $users = New Event_to_user();
+                        $users->org_id = $value;
+                        $users->event_id = $eid;
+                        $users->save();
+                    }
+                }
+                if(isset($request->nouser)) {
+                    foreach ($request->nouser as $key => $value) {
+                        $users = New Event_to_user();
+                        $users->description = $value;
+                        $users->event_id = $event->eid;
+                        $users->save();
+                    }
+                }
             }else{
                 $event = Event::find($request->id);
                 $event->subject = $request->subject;
@@ -282,9 +362,45 @@ class VolunteerController extends Controller{
                     }
 
                 }
+                if(isset($request->org)) {
+                    foreach ($request->org as $key => $value) {
+                        $users = New Event_to_user();
+                        $users->org_id = $value;
+                        $users->event_id = $event->eid;
+                        $users->save();
+                    }
+                }
+                if(isset($request->user)) {
+                    foreach ($request->user as $key => $value) {
+                        $users = New Event_to_user();
+                        $users->user_id = $value;
+                        $users->event_id = $event->eid;
+                        $users->save();
+                    }
+                }
+                if(isset($request->nouser)) {
+                    foreach ($request->nouser as $key => $value) {
+                        $users = New Event_to_user();
+                        $users->description = $value;
+                        $users->event_id = $event->eid;
+                        $users->save();
+                    }
+                }
             }
             $request->session()->flash('successMsg', 'Мэдээллийг амжилттай хадгаллаа!');
             return redirect()->to('/events');
+        }
+    }
+    public function usrDeleteFromEvent(Request $request){
+        if(is_null(Auth::user())){
+            return redirect()->to('/login');
+        } else {
+            $userDelete = Event_to_user::find($request->id);
+            if($userDelete->delete()){
+                return response()->json(['success' => 'true', '_token' => csrf_token()]);
+            }else{
+                return response()->json(['success' => 'false', '_token' => csrf_token()]);
+            }
         }
     }
     public function organization(){
@@ -506,5 +622,31 @@ class VolunteerController extends Controller{
         $request->session()->flash('successMsg', 'Таны сэтгэгдэл амжилттай илгээгдлээ!');
         $comment->save();
         return redirect()->to($request->back_url);
+    }
+    public function searchPeople(Request $request){
+        $result = array();
+        $findorg = Organization::select('id','name','email')
+            ->where('status',1)
+            ->where('name','like','%'.$request->likeValue.'%')
+            ->get();
+        foreach ($findorg as $org){
+            $data = array('id'=>$org->id, 'type'=>1,'firstname'=>$org->name, 'email'=>$org->email);
+            array_push($result,$data);
+        }
+        $findpeople = User::select('id','firstname','lastname','email')
+            ->where('status',1)
+            ->where('is_volunteer',1)
+            ->where('firstname','like','%'.$request->likeValue.'%')
+            ->get();
+        foreach ($findpeople as $peo){
+            $data = array('id'=>$peo->id, 'type'=>0, 'firstname'=>$peo->lastname.' '.$peo->firstname, 'email'=>$peo->email);
+            array_push($result,$data);
+        }
+        if($result){
+            return response()->json(['success' => 'true', '_token' => csrf_token(),'data'=>$result]);
+        }else{
+            return response()->json(['success' => 'false', '_token' => csrf_token()]);
+        }
+
     }
 }
