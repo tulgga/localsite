@@ -62,12 +62,14 @@ Route::middleware('auth:api')->namespace('Api')->group(function () {
 });
 
 Route::namespace('Api')->group(function (){
+
     Route::get('yv','ApiUserController@yv');
     Route::post('imageupload','ApiUserController@imageupload');
     Route::get('ildot','ApiPageController@ildot');
     Route::get('lavlagaa','ApiPageController@Lavlagaa');
 
     Route::get('service','ApiSiteController@service');
+    Route::get('workers', 'ApiSiteController@workers');
     //sites
     Route::get('sites','ApiSiteController@sites');
     Route::get('agentlag','ApiLinkController@agentlag');
@@ -282,6 +284,8 @@ Route::middleware('auth:admin-api')->namespace('Admin')->prefix('admin')->group(
     Route::resource('users','AdminUserController');
     Route::get('AllUsers','AdminUserController@AllUsers');
     Route::post('users/{id}','AdminUserController@update');
+
+
 
 });
 
