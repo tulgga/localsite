@@ -34,13 +34,21 @@
                                 <a class="button is-primary is-small is-pull-right" style="background: rgb(32, 104, 222)" :href="'https://twitter.com/intent/tweet?text='+content.title+' '+siteUrl+'/!#/news/'+content.id"  rel="nofollow" title="Twitter-д хуваалцах" target="_blank"><i class="fab fa-twitter"></i> Жиргэх</a>
 
                             </div>
+
+
                         </div>
+
+
 
                         <div class="bg-white p-15 mb-2 shadow">
                             <news-carousel :page="3" color="red" title="Шинэ мэдээ" ></news-carousel>
                         </div>
                         <div class="bg-white p-15 mb-2 shadow">
                             <oran-nutag-carousel :page="3" color="blue" title="Орон нутгийн мэдээ" ></oran-nutag-carousel>
+                        </div>
+                        <div class="bg-white p-15 mb-2 shadow shadow">
+                            <h3 class="bTitle mb-1">Сэтгэгдэл</h3>
+                            <iframe :src="'https://www.facebook.com/plugins/comments.php?href='+'https://bayankhongor.gov.mn/!?id='+content.id+'#/news/'+content.id" scrolling="no" frameborder="0" style="border:none; overflow:auto; width:100%; height:600px;" allowTransparency="true"></iframe>
                         </div>
 
                     </div>
