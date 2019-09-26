@@ -45,10 +45,6 @@ class Img extends Model
         }
 
         $img = $request->image->store('images');
-
-
-
-
         $save = Image::make('uploads/'.$img);
         $save->orientate();
 
