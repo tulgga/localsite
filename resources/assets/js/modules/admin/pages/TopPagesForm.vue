@@ -84,6 +84,7 @@ CRUD Edit, Create form
                                             <option value="3">Өөр хуудасны контент болох</option>
                                             <option value="4">Файлын ангилал</option>
                                             <option value="5">Холбоос ангилал</option>
+                                            <option value="6">Iframe</option>
                                         </select>
                                     </div>
                                 </div>
@@ -98,7 +99,7 @@ CRUD Edit, Create form
                                     </div>
                                 </div>
                             </template>
-                            <template v-else-if="form.type==1" >
+                            <template v-else-if="form.type==1 || form.type==6" >
                                 <div class="field">
                                     <label class="label">Линк</label>
                                     <div class="control">
