@@ -59,10 +59,10 @@
                         </li>
                         <li class="nav-item @if(Request::segment(1) == "eventlist") active @endif">
                             <a class="nav-link" href="{{asset("eventlist")}}">Сайн дурын ажлууд</a>
-                        </li>
+                        </li>{{--
                         <li class="nav-item @if(Request::segment(1) == "people") active @endif">
                             <a class="nav-link" href="{{asset("people")}}">Сайн дурынхан</a>
-                        </li>
+                        </li>--}}
                     </ul>
                 </div>
             </nav>

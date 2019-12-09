@@ -14,7 +14,6 @@ use App\Mail\VolunteerEmail;
 use Illuminate\Support\Facades\Mail;
 
 use App\Organization;
-use App\User_to_organization;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Site;
@@ -47,8 +46,9 @@ class VolunteerController extends Controller{
     }
     public function event($id){
         $data['event'] = Event::select('*')->where('id', $id)->first();
-        $data['users'] = Event_to_user::select('event_to_users.id', 'event_to_users.user_id', 'event_to_users.description', 'users.firstname', 'users.lastname', 'users.profile_pic')
+        $data['users'] = Event_to_user::select('event_to_users.id',  'event_to_users.org_id', 'event_to_users.user_id', 'event_to_users.description', 'users.firstname', 'users.lastname', 'users.profile_pic', 'organizations.name', 'organizations.logo')
             ->leftJoin('users','users.id','event_to_users.user_id')
+            ->leftJoin('organizations','organizations.id','event_to_users.org_id')
             ->where('event_to_users.event_id',$data['event']->eid)
             ->get();
         $data['createUser'] = User::select('lastname','firstname','profile_pic')->where('id', $data['event']->created_user_id)->first();
@@ -278,11 +278,12 @@ class VolunteerController extends Controller{
                 $data['ended'] = $events->ended;
                 $data['content'] = $events->content;
                 $data['id'] = $id;
-                $data['users'] = Event_to_user::select('event_to_users.id', 'event_to_users.user_id', 'event_to_users.org_id', 'event_to_users.description', 'users.firstname', 'users.lastname')
+                $data['users'] = Event_to_user::select('event_to_users.id', 'event_to_users.user_id', 'event_to_users.org_id', 'event_to_users.description', 'users.firstname', 'users.lastname','organizations.name')
                     ->leftJoin('users','users.id','event_to_users.user_id')
+                    ->leftJoin('organizations','organizations.id','event_to_users.org_id')
                     ->where('event_to_users.event_id',$events->eid)
                     ->get();
-                echo json_encode($data['users']); die;
+                //echo json_encode($data['users']); die;
             }else{
                 $data['id'] = $id;
                 $data['images'] = "";

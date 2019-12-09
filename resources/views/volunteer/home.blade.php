@@ -155,7 +155,7 @@
         </div>
         <input type="hidden" id="_token" value="{{ csrf_token() }}">
     </section>
-    <section class="four-column team-section">
+    {{--<section class="four-column team-section">
         <div class="container">
             <div class="sec-title">
                 <h2>Сайн дурын <strong>бүлгийхэн</strong></h2>
@@ -286,5 +286,5 @@
             </div>
         </div>
 
-    </section>
+    </section>--}}
 @endsection

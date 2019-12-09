@@ -81,10 +81,12 @@
                                 @else
                                 <div class="form-group tages">
                                     @foreach($users as $usr)
-                                        @if($usr->user_id == 0)
-                                            <span style="background: var(--gray)" class="tag u_{{$usr->id}}">{{$usr->description}} <i class="fa fa-times" onclick="deleteUser({{$usr->id}}); return false;"></i></span>
-                                        @else
-                                            <span style="background: var(--blue)" class="tag u_{{$usr->id}}">{{$usr->firstname.' '.$usr->lastname}} <i class="fa fa-times" onclick="deleteUser({{$usr->id}}); return false;"></i></span>
+                                        @if($usr->user_id == 0 && $usr->org_id == 0)
+                                            <span style="background: var(--gray)" class="tag u_{{$usr->id}}"><i class="fa fa-user"></i> {{$usr->description}} <i class="fa fa-times" onclick="deleteUser({{$usr->id}}); return false;"></i></span>
+                                        @elseif($usr->org_id == 0)
+                                            <span style="background: var(--blue)" class="tag u_{{$usr->id}}"><i class="fa fa-user"></i> {{$usr->firstname.' '.$usr->lastname}} <i class="fa fa-times" onclick="deleteUser({{$usr->id}}); return false;"></i></span>
+                                        @elseif($usr->user_id == 0)
+                                            <span style="background: var(--red)" class="tag u_{{$usr->id}}"><i class="fa fa-university"></i> {{$usr->name}} <i class="fa fa-times" onclick="deleteUser({{$usr->id}}); return false;"></i></span>
                                         @endif
                                     @endforeach
                                 </div>

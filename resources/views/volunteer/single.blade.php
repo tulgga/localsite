@@ -157,13 +157,24 @@
                     <ul>
                         @foreach($users as $usr)
                             @if($usr->user_id == 0)
-                                <li><i class="fa fa-user"></i> {{$usr->description}}</li>
+                                @if($usr->org_id == 0)
+                                    <li><i class="fa fa-user mr-2"></i> {{$usr->description}}</li>
+                                @else
+                                    <li>
+                                        @if(is_null($usr->logo))
+                                            <i class="fa fa-university mr-2"></i>
+                                        @else
+                                            <div class="profile_pic mr-2" style="width:25px;height:25px;background-image: url({{asset('uploads/'.$usr->logo)}}"></div>
+                                        @endif
+                                        {{$usr->name}}
+                                    </li>
+                                @endif
                             @else
                                 <li>
-                                    @if($usr->profile_usr)
-                                    <i class="fa fa-user"></i>
+                                    @if(is_null($usr->profile_pic))
+                                        <i class="fa fa-user mr-2"></i>
                                     @else
-                                        <div class="profile_pic mr-2" style="width:25px;height:25px;background-image: url({{asset('uploads/'.$createUser->profile_pic)}}"></div>
+                                        <div class="profile_pic mr-2" style="width:25px;height:25px;background-image: url({{asset('uploads/'.$usr->profile_pic)}}"></div>
                                     @endif
                                     {{$usr->lastname.' '.$usr->firstname}}
                                 </li>
