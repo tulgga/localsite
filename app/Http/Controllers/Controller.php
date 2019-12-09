@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use http\Env\Request;
+use http\Url;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -79,6 +80,9 @@ class Controller extends BaseController
     }
 
     public function index(){
+        if(isset($_GET['id'])){
+            return redirect('!#/news/'.$_GET['id']);
+        }
         $week=['Ням', 'Даваа', 'Мягмар', 'Лхагва', 'Пүрэв', 'Баасан', 'Бямба'];
         $data['date']=date('m сарын d, ').$week[date('w')];
 

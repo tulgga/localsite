@@ -9,6 +9,7 @@ use App\Weather;
 use App\Site;
 use App\Page;
 use App\Settings;
+use App\Worker;
 
 class ApiSiteController extends Controller
 {
@@ -19,6 +20,14 @@ class ApiSiteController extends Controller
     public function sidebar1($site_id){
         $site= Site::find($site_id);
         return response()->json([ 'success' => $site->sidebar1 ]);
+    }
+
+    public function workers(){
+        $worker=Worker::where('name', 'not like', '%сум%')->get();
+        foreach ($worker as $i=>$v){
+            $worker[$i]->json_data=json_decode($v->json_data);
+        }
+        return response()->json([ 'success' => $worker ]);
     }
 
     public function sites(){

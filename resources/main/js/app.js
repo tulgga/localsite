@@ -35,6 +35,14 @@ import VueCarousel from 'vue-carousel';
 import Meta from 'vue-meta';
 import VBar from 'v-bar';
 import  SocialSharing from 'vue-social-sharing';
+
+
+window.$ = require('jquery')
+window.JQuery = require('jquery')
+
+
+
+
 // import BCarousel from './components/helpers/carousel';
 
 Vue.use(VueRouter);
@@ -146,7 +154,6 @@ Vue.use(VeeValidate);
 // Vue.use(SlVueTree);
 
 Vue.config.productionTip = false;
-
 Vue.component('flatPickr', flatPickr);
 Vue.component('SiteApp', require('./App.vue').default);
 Vue.component('v-select', VueSelect);

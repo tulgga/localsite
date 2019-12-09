@@ -8,7 +8,18 @@
 
                         <div class="has-background-white p-15 mb-2" style="min-height: 400px;" >
                             <h1 class="is-size-4-tablet is-size-6-mobile mb-1">{{content.title}}</h1>
+                            <template v-if="content.type==6">
+                                <div @click="iframeH" >
+                                    <iframe ref="iframe"
+                                            width="100%"
+                                            :src="content.link"
+                                            :height="iframeHeight"
+                                            frameborder="0"
 
+                                            @load="iframeH"
+                                    ></iframe>
+                                </div>
+                            </template>
                             <template v-if="content.type==0">
                                 <figure v-if="content.image" class="image">
                                     <img :src="siteUrl+content.image.replace('images/', '/uploads/full/')">
@@ -72,6 +83,9 @@
     </div>
 </template>
 <script>
+
+    import JQuery from 'jquery'
+    let $ = JQuery
     import ZarList from '../../components/helpers/ZarList';
     import BoxNewsList from "../../components/helpers/BoxNewsList";
     import BoxFileList from "../../components/helpers/BoxFileList";
@@ -80,6 +94,7 @@
         components: {BoxNewsList, BoxFileList, ZarList, TimeLine},
         data() {
             return {
+                iframeHeight:0,
                 id: false,
                 fetched:false,
                 siteUrl: window.surl,
@@ -120,6 +135,9 @@
         mounted(){
         },
         methods: {
+            iframeH(){
+                this.iframeHeight=this.$refs.iframe.contentWindow.document.body.scrollHeight;
+            },
             fetchData: function () {
                 this.content=false;
                 this.id = this.$route.params.id;
@@ -215,4 +233,7 @@
             }
         },
     }
+
+
+
 </script>

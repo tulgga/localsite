@@ -109,7 +109,7 @@ class AdminPagesController extends Controller
         $Page->site_id=$data['site_id'];
         $Page->icon=$data['icon'];
 
-        if($data['type']==1){
+        if(in_array($data['type'], [1,6])){
             $Page->link=$data['link'];
         } else {
             $Page->link='/p/'.$id;
@@ -151,7 +151,7 @@ class AdminPagesController extends Controller
         $Page->icon=$data['icon'];
         $Page->save();
 
-        if($data['type']==1){
+        if(in_array($data['type'], [1,6])){
             $Page->link=$data['link'];
         } else {
             $Page->link='/p/'.$Page->id;

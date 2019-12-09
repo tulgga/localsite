@@ -12,6 +12,7 @@ import Files from  '../modules/site/Files'
 import News from  '../modules/site/news'
 import Page from  '../modules/site/page'
 import Report from  '../modules/site/report'
+import Able from '../modules/site/able';
 
 
 import Login from '../modules/auth/Login'
@@ -34,6 +35,11 @@ let routes = [
         path: '/',
         name: 'home',
         component: Home,
+    },
+    {
+        path: '/able',
+        name: 'able',
+        component: Able,
     },
     {
         path: '/report',
