@@ -19,7 +19,7 @@ Route::get('/adminPanel/{vue_capture?}',function(){
 
 //Route::get('/!#/news/{id}', 'Controller@index');
 Route::get('/!/{vue_capture?}', 'Controller@index')->where('vue_capture', '[\/\w\.-]*');
-
+Route::get('/news/{id}','Controller@fb_share_news');
 
 Route::domain('volunteer.'.env('DOMAIN_NAME', 'bayankhongor.gov.mn'))->group(function () {
     Route::get('/', 'VolunteerController@index');

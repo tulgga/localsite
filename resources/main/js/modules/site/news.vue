@@ -30,9 +30,8 @@
 
                             </div>
                             <div>
-                                <a class="button is-primary is-small is-pull-right" style="background: #1753B5" :href="'https://www.facebook.com/sharer/sharer.php?u='+siteUrl+'/!?id='+content.id+'#/news/'+content.id"  rel="nofollow" title="Facebook-д хуваалцах" target="_blank"><i class="fab fa-facebook"></i> Хуваалцах</a>
-                                <a class="button is-primary is-small is-pull-right" style="background: rgb(32, 104, 222)" :href="'https://twitter.com/intent/tweet?text='+content.title+' '+siteUrl+'/!#/news/'+content.id"  rel="nofollow" title="Twitter-д хуваалцах" target="_blank"><i class="fab fa-twitter"></i> Жиргэх</a>
-
+                                <a class="button is-primary is-small is-pull-right" style="background: #1753B5" :href="'https://www.facebook.com/sharer/sharer.php?u='+siteUrl+'/news/'+content.id"  rel="nofollow" title="Facebook-д хуваалцах" target="_blank"><i class="fab fa-facebook"></i> Хуваалцах</a>
+                                <a class="button is-primary is-small is-pull-right" style="background: rgb(32, 104, 222)" :href="'https://twitter.com/intent/tweet?text='+content.title+' '+siteUrl+'/!#/news/'+content.id"  rel="nofollow" title="Twitter-д жиргэх" target="_blank"><i class="fab fa-twitter"></i> Жиргэх</a>
                             </div>
 
 

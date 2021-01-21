@@ -120,4 +120,32 @@ class Controller extends BaseController
             return 'Файл олдсонгүй';
         }
     }
+    public function fb_share_news($id){
+        $news = Post::where('posts.site_id',0)->where('posts.id', $id)->where('posts.status', 1)
+            ->select('posts.*', 'sites.name as site', 'sites.domain')
+            ->Join('sites', 'sites.id', '=', 'posts.site_id')
+            ->with('Category')->first();
+//        dd($news);
+        $result ='<!DOCTYPE html>
+                    <html lang="mn">
+                    <head>
+                        <meta charset="utf-8">
+                        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                        <title>'.$news->title.'</title>
+                            <meta name="keywords" content="'.$news->short_content.'">
+                            <meta name="description" content="'.$news->short_content.'">
+                            <meta property="og:title" content="'.$news->title.'">
+                            <meta property="og:image" content="https://www.bayankhongor.gov.mn/uploads/'.$news->image.'">
+                            <meta property="og:url" content="'.$news->domain.'">
+                            <meta property="og:description" content="'.$news->short_content.'"> 
+                    </head>
+                    <body style="text-align: center">
+                    <h3>'.$news->title.'</h3>
+                    <p><strong>Нийтэлсэн:</strong> '.$news->created_at.'</p>
+                    <img src="https://www.bayankhongor.gov.mn/uploads/'.$news->image.'">
+                    '.$news->content.'
+                    </body>
+                    </html>';
+        return $result;
+    }
 }
