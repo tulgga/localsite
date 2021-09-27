@@ -90,6 +90,9 @@ Route::namespace('Api')->group(function (){
     Route::get('weather','ApiSiteController@weather');
     Route::get('menu/{id}/{is_main?}','ApiSiteController@page');
     Route::get('submenu/{id}','ApiSiteController@submenu');
+    Route::get('getCounter','ApiSiteController@getCounter');
+    Route::get('setCounter','ApiSiteController@setCounter');
+    Route::get('promptNews','ApiSiteController@promptNews');
 
     Route::get('site_news/{site_id}/{limit?}','ApiNewsController@site_news');
     Route::get('oronnutag/{limit?}','ApiNewsController@oronnutag');
@@ -97,6 +100,8 @@ Route::namespace('Api')->group(function (){
 
     Route::get('news_category/{site_id?}','ApiNewsController@news_category');
     Route::get('news/{site_id}/{id}','ApiNewsController@news');
+    Route::get('news_rates/{id}','ApiNewsController@news_rates');
+    Route::post('set_news_rate/{id}','ApiNewsController@set_news_rate');
     Route::get('newsListByCategoryBox/{site_id}/{limit}/{catId}','ApiNewsController@newsListByCategoryBox');
     Route::get('newsListByCategory/{site_id}/{catId}','ApiNewsController@newsListByCategory');
     Route::get('news_ontslokh/{id}','ApiNewsController@news_ontslokh');
@@ -236,6 +241,10 @@ Route::middleware('auth:admin-api')->namespace('Admin')->prefix('admin')->group(
     Route::post('news_status','AdminNewsController@change_status');
     Route::post('main_site_publish','AdminNewsController@main_site_publish');
     Route::post('report','AdminNewsController@report');
+
+    //Break news
+    Route::resource('break_news','AdminBreakNewsController');
+    Route::post('break_news/news_status','AdminBreakNewsController@change_status');
 
     //poll
     Route::resource('poll','AdminPollController');

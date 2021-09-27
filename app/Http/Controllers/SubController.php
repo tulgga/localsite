@@ -76,12 +76,14 @@ class SubController extends BaseController
         $data['home_url'] = Site::select('domain')->where('id',0)->first();
         $data['zar'] = Zar::select('zar.id','zar.title','zar.image','zar.created_at','zar_category.name','zar.cat_id')->where('zar.site_id',$data['info']->id)->Join('zar_category', 'zar_category.id','=','zar.cat_id')->orderBy('zar.created_at','DESC')->limit(20)->get();
 
-        $data['news']= Post::where('id', $id)-> where('status',1)->with('Category')->select('id', 'title', 'image', 'type','content','created_at','view_count')->first();
+        $data['news']= Post::where('id', $id)->where('status',1)->with('Category')->select('id', 'title', 'image', 'type','content','created_at','view_count')->first();
         $data['news']->view_count += 1;
         $data['news']->save();
         $data['category'] = Category::where('site_id',$data['info']->id)->where('id',$data['news']['category'][0]->id)->select('*')->first();
         $data['categories'] = Category::where('site_id',$data['info']->id)->orderBy('order_num')->select('*')->get();
         $data['category']->menu = $this->getCategoryID([['id'=>$data['category']->id, 'parent_id'=>$data['category']->parent_id, 'name'=>$data['category']->name]]);
+        
+        // echo json_encode($data); die;
         return view('sub.news', $data);
     }
 

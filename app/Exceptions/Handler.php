@@ -46,20 +46,26 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-
-        if ($this->isHttpException($exception)) {
-            if ($exception->getStatusCode() == 404) {
-                return response()->view('404', [], 404);
-            }
-        }
-
-
         if ($exception instanceof \Symfony\Component\HttpFoundation\File\Exception\FileException) {
             // create a validator and validate to throw a new ValidationException
             return Validator::make($request->all(), [
                 'upload' => 'mimes:jpeg,bmp,png,gif,jpg,ico,tiff,pdf,doc,docx,zip,rar,xls,xlsx,mp4,ppt,pptx',
             ])->validate();
         }
+
+        if ($this->isHttpException($exception)) {
+            if ($exception->getStatusCode() == 404) {
+                return response()->view('404', [], 404);
+            }
+            if ($exception instanceof \ErrorException) {
+                return response()->view('404', [], 404);
+            } else {
+                return parent::render($request, $exception);
+            }
+        }
+
+
+
 
 
 

@@ -1,5 +1,5 @@
 <template>
-    <div v-if="post"  class="columns " >
+    <div v-if="post"  class="columns video_news" >
         <div class="column is-8">
             <iframe width="100%" height="330" :src="'https://www.youtube.com/embed/'+selectPost.image" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             <div  class="date"><i class="far fa-clock"></i>  {{selectPost.created_at.substring(0,16)}}</div>

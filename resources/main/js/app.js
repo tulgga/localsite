@@ -37,8 +37,8 @@ import VBar from 'v-bar';
 import  SocialSharing from 'vue-social-sharing';
 
 
-window.$ = require('jquery')
-window.JQuery = require('jquery')
+window.$ = require('jquery');
+window.JQuery = require('jquery');
 
 
 

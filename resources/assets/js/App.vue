@@ -1,5 +1,4 @@
-
-<template >
+<template>
     <div class="app" v-bind:class="{'aside-mini':$store.getters.drawer}" v-if="$store.getters.authCheck">
         <navigation-drawer></navigation-drawer>
         <tool-bar></tool-bar>

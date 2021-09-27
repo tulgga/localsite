@@ -60,7 +60,7 @@
         <!-- content -->
         <div class="container">
             <div class="columns  is-multiline mb-0">
-                <div class="column  is-9">
+                <div class="column is-9">
                     <div class="bg-light p-15 mb-1 red shadow">
                         <h3 class="bTitle mb-1">Видео</h3>
                         <video-list></video-list>
@@ -75,7 +75,6 @@
             </div>
             <!--poll-->
             <b-poll></b-poll>
-
         </div>
     </div>
 </template>

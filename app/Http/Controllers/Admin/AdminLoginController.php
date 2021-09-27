@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Site;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AdminLoginController extends Controller
 {

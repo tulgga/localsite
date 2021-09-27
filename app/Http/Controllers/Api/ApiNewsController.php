@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Rate;
+use App\Rate_item;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Category;
@@ -29,8 +31,6 @@ class ApiNewsController extends Controller
             ->with('Category')->orderBy('created_at', 'desc')->paginate($limit);
         return response()->json(['success'=>$news]);
     }
-
-
 
     public function oronnutag($limit=20){
         $news=Post::where('site_id','!=',0)->where('main_site_publish', 2)->where('status', 1)
@@ -110,15 +110,13 @@ class ApiNewsController extends Controller
         return response()->json(['success'=>$news]);
     }
 
-
-
     public function news($site_id,$id){
         if($site_id>0){
             $news=Post::where('posts.site_id',$site_id)->where('posts.id', $id)->where('posts.status', 1)
             ->select('posts.*', 'sites.name as site', 'sites.domain')
             ->Join('sites', 'sites.id', '=', 'posts.site_id')
             ->with('Category')->first();
-        
+
             $news->view_count +=1;
             $news->save();
             return response()->json(['success'=>$news]);
@@ -127,13 +125,41 @@ class ApiNewsController extends Controller
             ->where('id', $id)
             ->where('status', 1)
             ->with('Category')->first();
-            
+
             $news->view_count +=1;
-            $news->save();    
+            $news->save();
             return response()->json(['success'=>$news]);
         }
     }
+    public function news_rates($id){
+        $items = Rate_item::orderBy('id','asc')->get();
+        foreach($items as $key => $item){
+            $count = Rate::where('post_id',$id)->where('item_id',$item->id)->count();
+            $items[$key]['count'] = $count;
+        }
+        return response()->json(['success'=>$items]);
+    }
+    public function set_news_rate(Request $req, $id){
 
+        if(isset($req->item_id)){
+            $check = Rate::where('post_id',$id)->where('ip',$_SERVER['REMOTE_ADDR'])->where('updated_at','>',date('Y-m-d H:i:s'))->orderBy('created_at','desc')->first();
+            if(is_null($check)){
+                $rate = new Rate();
+                $rate->item_id = $req->item_id;
+                $rate->post_id = $id;
+                $rate->ip = $_SERVER['REMOTE_ADDR'];
+                $rate->updated_at = date('Y-m-d H:i:s', strtotime('+1 hours'));
+                $rate->save();
+                return response()->json(['success'=>0, 'msg'=>'Баярлалаа. ']);
+            }else {
+                return response()->json(['success'=>1, 'msg'=>'Та үнэлгээ өгсөн байна']);
+            }
+
+        }else{
+            return response()->json(['success'=>1, 'msg'=>'Талбар дутуу']);
+        }
+
+    }
     public function news_ontslokh($id){
         $news=Post::orderBy('created_at', 'desc')->where('site_id', $id)->where('is_primary', 1)->where('status',1)->with('Category')
             ->select('title', 'id', 'image', 'type','created_at')

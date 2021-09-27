@@ -42,6 +42,8 @@ import fileForm from '../modules/admin/file/fileForm';
 import News from '../modules/admin/news/news';
 import newsForm from '../modules/admin/news/newsForm';
 
+import BreakNews from '../modules/admin/break_news/news';
+
 import subNewsPublish from '../modules/admin/news/sub_news_to_main';
 
 import subNews from '../modules/admin/news/sub_news';
@@ -578,6 +580,21 @@ let routes = [
                 }
             },
         ]
+    },
+    {
+        path: '/break_news',
+        name: 'break_news',
+        component: BreakNews,
+        meta: {
+            requiresAuth: true,
+            page_title: 'Шуурхай мэдээ',
+            bread_crumbs: [
+                {
+                    title: 'Шуурхай мэдээ',
+                    rname: ''
+                }
+            ]
+        }
     },
 
     {

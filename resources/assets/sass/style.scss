@@ -30,7 +30,7 @@ label.label {
 .table-responsive .category.table td, .table-responsive .category.table th {
 	height: auto;
     padding: 6px;
-	
+
 }
 .p-2 {
 	padding: 2em !important;
@@ -457,7 +457,7 @@ tr.is-grey {
 					font-weight: $weight-normal;
 				}
 			}
-			
+
 			.usericon {
 				width: 8rem;
 				height: 8rem;
@@ -531,7 +531,7 @@ tr.is-grey {
 		align-items: center;
 		justify-content: center;
 		min-height: 100vh;
-		
+
 		.auth-main {
 			padding: 3rem 1.5rem;
 
@@ -726,7 +726,7 @@ aside.menu {
 				padding-left: 0;
 				overflow: hidden;
 				transition: all $speed $easing;
-				
+
 
 				li {
 					position: relative;
@@ -772,11 +772,11 @@ aside.menu {
 					span:not(.tag) {
 						display: none;
 					}
-					
+
 					& > li.is-active {
 
 						& > div {
-							
+
 							&.is-active {
 								font-weight: $weight-normal;
 								background-color: rgba($primary, 0.8);
@@ -1311,7 +1311,7 @@ aside.menu {
 					background-color: $grey-lighter;
 
 					th {
-						
+
 						input {
 							width: 100%;
 							align-items: center;
@@ -1664,7 +1664,7 @@ aside.menu {
 
 .data-table-filtering {
 	padding: 1rem 1.5rem;
-	background-color: $white-ter; 
+	background-color: $white-ter;
 }
 
 // REPORT TABLE -------------------------------------------------------
@@ -1757,7 +1757,7 @@ aside.menu {
 			position: relative;
 
 			&.is-horizontal {
-	
+
 				.field-label {
 					display: flex;
 					align-items:center;
@@ -1794,7 +1794,7 @@ aside.menu {
 				}
 
 				.button {
-					
+
 					&:not(.button-add):not(.button-normal) {
 						height: 3.5rem;
 						padding-left: 1rem;
@@ -1965,7 +1965,7 @@ aside.menu {
 							position: absolute;
 							bottom: 20%;
 							left: 0;
-							right: 0; 
+							right: 0;
 							font-size: 0.75rem;
 							text-transform: uppercase;
 							color: $white;
@@ -2131,7 +2131,7 @@ aside.menu {
   	position: absolute;
   	left: -9999em;
   	top: -9999em;
-  
+
 	& + label {
 	    display: flex;
 	    padding: .5em 0.5em;
@@ -2147,17 +2147,17 @@ aside.menu {
 	    flex-grow: 1;
     	flex-shrink: 1;
     	border-sizing: border-box;
-	    
+
 	    &:first-of-type {
 	      	border-radius: $radius 0 0 $radius;
 	    }
-	    
+
 	    &:last-of-type {
 	      	border-radius: 0 $radius $radius 0;
 	      	border-right-width: 1px;
 	    }
 	}
-	  
+
 	&:checked + label {
 	    background-color: $primary;
 	    border-color: $primary;
@@ -2586,7 +2586,7 @@ aside.menu {
 					width: 100%;
 				}
 			}
-			
+
 		}
 	}
 
@@ -2594,7 +2594,7 @@ aside.menu {
 		position: relative;
 
 		.tsagalbar-day {
-			
+
 			.title {
 				border-bottom: 2px solid $grey-lighter;
 				padding: 1rem 2rem;
@@ -2665,12 +2665,12 @@ aside.menu {
 				    	overflow: hidden;
 				    	line-height: 1;
 				    	cursor: pointer;
-				    	margin-right: 1rem; 
+				    	margin-right: 1rem;
 				    	z-index: 1;
 				    	color: $black;
 				    	box-sizing: border-box;
 				    	flex: 1;
-						
+
 						&>* {
 							box-sizing: border-box;
 							display: block;
@@ -2714,7 +2714,7 @@ aside.menu {
 				    	}
 
 				    	.services {
-							
+
 				    		p {
 				    			display: inline-block;
 				    			padding-right: 0.5rem;
@@ -2846,7 +2846,7 @@ aside.menu {
 						position: relative;
 						height: 4rem;
 						text-align: right;
-						
+
     					span {
     						color: #0a0a0a;
 						    position: absolute;
@@ -2940,7 +2940,7 @@ aside.menu {
 	}
 
 	.nowTimeLine {
-		
+
 		&.nowTimeLine_day {
 			position: absolute;
 			top: 0;
@@ -3079,7 +3079,7 @@ aside.menu {
 				}
 			}
 		}
-	}	
+	}
 }
 
 .drop-order {
@@ -3179,7 +3179,7 @@ aside.menu {
 
 			    &:not(:last-child) {
 			    	margin-right: 0.25rem;
-			    } 
+			    }
 
 			    &.is_done {
 			    	border-width: 0;
@@ -3817,7 +3817,7 @@ aside.menu {
 				}
 
 				&:hover {
-					
+
 					.image {
 						background-color: rgba($black, 0.5);
 
@@ -4148,7 +4148,7 @@ aside.menu {
 }
 
 .info_inputs {
-	
+
 	.label {
 		line-height: 1;
 		text-transform: uppercase;
@@ -4311,7 +4311,7 @@ aside.menu {
 			&:not(:last-child) {
 				margin-bottom: 1rem;
 			}
-			
+
 			.input {
 				color: $black;
 				font-weight: $weight-bold;
@@ -4324,7 +4324,7 @@ aside.menu {
 
 				&:not(.fa) {
 					font-size: 1.5rem;
-				} 
+				}
 			}
 		}
 	}
@@ -4369,7 +4369,7 @@ aside.menu {
 						}
 					}
 				}
-				
+
 				.panel {
 					box-shadow: none;
 					border: 1px solid rgba($brown, 0.3);
@@ -4384,7 +4384,7 @@ aside.menu {
 					}
 
 					.panel-block {
-						
+
 						&:not(:last-child) {
 							border-bottom: 1px solid rgba($brown, 0.3);
 						}
@@ -4417,7 +4417,7 @@ aside.menu {
 		}
 
 		&.nested {
-			
+
 			.field {
 				border-top: 1px solid $grey-lighter;
 				margin-top: -1px;
@@ -4532,7 +4532,7 @@ aside.menu {
 			position: relative;
 
 			&.is-horizontal {
-	
+
 				.field-label {
 					display: flex;
 					align-items:center;
@@ -4569,7 +4569,7 @@ aside.menu {
 				}
 
 				.button {
-					
+
 					&:not(.button-add):not(.button-normal) {
 						height: 3.5rem;
 						padding-left: 1rem;
@@ -4739,7 +4739,7 @@ aside.menu {
 							position: absolute;
 							bottom: 20%;
 							left: 0;
-							right: 0; 
+							right: 0;
 							font-size: 0.75rem;
 							text-transform: uppercase;
 							color: $white;
@@ -4924,7 +4924,7 @@ aside.menu {
 	padding-left: calc(300px + 2rem);
 	background-color: $dark;
 	color: $white;
-	
+
 	p {
 		font-size: 1rem;
 		color: $white;
@@ -5333,7 +5333,7 @@ aside.menu {
 					}
 				}
 			}
-		}	
+		}
 	}
 }
 
@@ -5364,7 +5364,7 @@ aside.menu {
 			padding-top: 0;
 			font-weight: bold;
 			color: $black;
-			
+
 			&::before {
 				height: 1rem;
 				top: 50%;
@@ -5408,7 +5408,7 @@ aside.menu {
 		&[type="checkbox"] {
 
 			&+label {
-				
+
 				&::before {
 					height: 1rem;
 					top: 50%;
@@ -5529,7 +5529,7 @@ aside.menu {
 	align-items: center !important;
 
 	label {
-		
+
 		margin-right: 0 !important;
 		padding-right: 0 !important;
 		padding-top: 0 !important;
@@ -5693,7 +5693,7 @@ aside.menu {
 }
 
 @media (max-width: 1215px) {
-	
+
 	.has-colorpicker {
 		display: block !important;
 
@@ -5812,7 +5812,7 @@ aside.menu {
 				display: none;
 			    opacity: 0;
 			}
-		} 
+		}
 	}
 
 	.boxed {
@@ -5831,7 +5831,7 @@ aside.menu {
 
 @media (max-width: 768px) {
 
-	
+
 
 	.boxed-item-center {
 

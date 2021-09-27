@@ -120,7 +120,7 @@
                 </div>
             </header>
 
-            <header  id="header" :class="{'fixed':scrollPosition>215}" class="is-hidden-mobile" >
+            <header id="header" :class="{'fixed':scrollPosition>215}" class="is-hidden-mobile" >
                 <div id="header-top"  :style="{'background-color': !main.parent_color.hex}">
                     <div class="container">
                         <nav class="level mb-0">
@@ -212,13 +212,20 @@
                     </div>
                 </div>
             </header>
+            <div class="shuurhai">
+                <div class="container" style="padding: 8px 0;">
+                    <span class="subject">Шуурхай:</span>
+                    <marquee direction="left" onmouseover="stop();" onmouseout="start();">
+                        <span v-for="prompt in prompts">{{prompt.content}} ...</span>
+                    </marquee>
+                </div>
+            </div>
         </div>
         <loading v-else></loading>
 
         <!-- show modal -->
         <div class="modal is-active" v-if="SumModal">
             <div class="modal-background" v-on:click="SumModal = false"></div>
-
             <div class="modal-card" style="max-width: 610px">
                 <div class="has-text-white has-background-primary" style="padding:20px;">Сумдын холбоос</div>
                 <section class="modal-card-body pd0">
@@ -270,6 +277,7 @@
                 fetched: false,
                 menu: [],
                 topmenu:[],
+                prompts: []
     		}
     	},
         watch:{
@@ -308,7 +316,10 @@
                 axios.get('/menu/0/2').then((response) => {
                     this.topmenu=response.data.success
                     this.fetched = true;
-                })
+                });
+                axios.get('promptNews').then((response) => {
+                    this.prompts=response.data.success;
+                });
             },
 
             changeRoute: function(menu, i1,i2,i3,i4){

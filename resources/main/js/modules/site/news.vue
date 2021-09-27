@@ -1,5 +1,5 @@
 <template>
-    <div  class="container" >
+    <div class="container" >
         <template v-if="fetched">
             <div v-if="content">
                 <div class="columns pb-2">
@@ -20,38 +20,41 @@
                                 <img :src="siteUrl+content.image.replace('images/', '/uploads/full/')">
                             </figure>
 
-                            <div class="content mt-1 mb-1" v-html="content.content">
-                            </div>
+                            <div class="content mt-1 mb-1" v-html="content.content"></div>
 
-                            <div class="buttons mb-1">
+                            <div class="buttons">
                                 <template v-for="c in content.category">
                                     <a class="button is-light is-small" :href="'#/category/'+c.id" @click="scrollToTop()" ># {{c.name}}</a>
                                 </template>
-
+                            </div>
+                            <div class="mb-1 unelgee">
+                                <div class="unelgee_title">Энэ мэдээнд өгөх таны үнэлгээ?</div>
+                                <span class="unelgee_item" v-for="rate in rates">
+                                    <span class="count">{{rate.count}}</span>
+                                    <span @click="rateSet(rate.id)"><img width="32" :src="siteUrl+'/uploads/emoji/'+rate.image"></span>
+                                    <span class="title">{{rate.title}}</span>
+                                </span>
+                                <div v-if="rate_response == 'error'" class="notification is-danger is-light">
+                                    <button class="delete" @click="closeAlert"></button>
+                                    {{rate_response_msg}}
+                                </div>
+                                <div v-if="rate_response == 'success'" class="notification is-success">
+                                    <button class="delete"  @click="closeAlert"></button>
+                                    {{rate_response_msg}}
+                                </div>
                             </div>
                             <div>
-                                <a class="button is-primary is-small is-pull-right" style="background: #1753B5" :href="'https://www.facebook.com/sharer/sharer.php?u='+siteUrl+'/news/'+content.id"  rel="nofollow" title="Facebook-д хуваалцах" target="_blank"><i class="fab fa-facebook"></i> Хуваалцах</a>
+                                <a class="button is-primary is-small is-pull-right" style="background: #1753B5" :href="'https://www.facebook.com/sharer/sharer.php?u='+siteUrl+'/!#/news/'+content.id"  rel="nofollow" title="Facebook-д хуваалцах" target="_blank"><i class="fab fa-facebook"></i> Хуваалцах</a>
                                 <a class="button is-primary is-small is-pull-right" style="background: rgb(32, 104, 222)" :href="'https://twitter.com/intent/tweet?text='+content.title+' '+siteUrl+'/!#/news/'+content.id"  rel="nofollow" title="Twitter-д жиргэх" target="_blank"><i class="fab fa-twitter"></i> Жиргэх</a>
                             </div>
-
-
                         </div>
-
-
-
                         <div class="bg-white p-15 mb-2 shadow">
                             <news-carousel :page="3" color="red" title="Шинэ мэдээ" ></news-carousel>
                         </div>
                         <div class="bg-white p-15 mb-2 shadow">
                             <oran-nutag-carousel :page="3" color="blue" title="Орон нутгийн мэдээ" ></oran-nutag-carousel>
                         </div>
-                        <div class="bg-white p-15 mb-2 shadow shadow">
-                            <h3 class="bTitle mb-1">Сэтгэгдэл</h3>
-                            <iframe :src="'https://www.facebook.com/plugins/comments.php?href='+'https://bayankhongor.gov.mn/!?id='+content.id+'#/news/'+content.id" scrolling="no" frameborder="0" style="border:none; overflow:auto; width:100%; height:600px;" allowTransparency="true"></iframe>
-                        </div>
-
                     </div>
-
                     <div class="column is-3">
                         <side-bar-more></side-bar-more>
                         <div class="bg-white p-15 mt-1  shadow">
@@ -62,7 +65,7 @@
 
                 </div>
             </div>
-            <not-found v-else></not-found>
+            <!--<not-found v-else></not-found>-->
         </template>
         <loading v-else></loading>
     </div>
@@ -100,6 +103,9 @@
                         {itemprop: 'image', content: ''}
                     ],
                 },
+                rates: [],
+                rate_response: null,
+                rate_response_msg: null
             }
         },
         watch:{
@@ -112,6 +118,28 @@
             this.getCategory()
         },
         methods: {
+            rateSet: function(item_id){
+                let formData = {item_id: item_id};
+                axios.post('/set_news_rate/'+this.id, formData).then((res) => {
+                    if(res.data.success === 0){
+                        this.rate_response_msg = res.data.msg;
+                        this.rate_response = 'success';
+                        this.getEmoji();
+                        setTimeout(function () {
+                            console.log('UPDATEDDDDDDDDDDDDDDDDD');
+                            this.rate_response = null;
+                            this.rate_response_msg = null;
+                        },3000);
+                    }else{
+                        this.rate_response_msg = res.data.msg;
+                        this.rate_response = 'error';
+                    }
+                })
+            },
+            closeAlert: function(){
+                this.rate_response = null;
+                this.rate_response_msg = null;
+            },
             getCategory: function () {
                 axios.get('/news_category/0').then((response) => {
                     this.fetched=true;
@@ -122,7 +150,7 @@
                 this.fetched=false;
                 this.id = this.$route.params.id;
                 axios.get('/news/0/'+this.id).then((response) => {
-                    this.fetched=true;
+
                     this.content=response.data.success;
                     if(this.content){
                         this.metaInfo.title=this.content.title;
@@ -139,7 +167,14 @@
                         this.metaInfo.meta[13].content=this.content.short_content.substring(0, 160);
                         this.metaInfo.meta[14].content=this.siteUrl+this.content.image.replace('images/', '/uploads/medium/')
                     }
-                })
+                });
+                this.getEmoji();
+                this.fetched=true;
+            },
+            getEmoji: function() {
+                axios.get('/news_rates/'+this.id).then((response) => {
+                    this.rates = response.data.success;
+                });
             },
             scrollToTop() {
                 window.scrollTo(0,0);

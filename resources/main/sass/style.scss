@@ -36,11 +36,12 @@ a {
 }
 .searchform input[type="text"] {
   border: none;
-  color: #2371f1;
+  color: #5e86bb;
   text-shadow: 1.4px 1.4px 1px rgba(0, 0, 0, 0.15);
   font-size: 13px;
-  padding: 15px;
+  padding: 0 15px;
   height: 34px;
+  line-height: 34px;
   border-radius: 17px;
   -webkit-box-shadow: inset 1.4px 1.4px 1px 0 rgba(0, 0, 0, 0.1);
   box-shadow: inset 1.4px 1.4px 1px 0 rgba(0, 0, 0, 0.1);
@@ -57,13 +58,13 @@ a {
   height: 100%;
   width: 40px;
   border: 0;
-  color: rgb(32, 104, 222);
+  color: #5e86bb;
   background: none;
   text-shadow: 1.4px 1.4px 1px rgba(0, 0, 0, 0.15);
   outline: none;
 }
 .searchform input[type="text"]::placeholder {
-  color: #2371f1;
+  color: #5e86bb;
   text-shadow: 1.4px 1.4px 1px rgba(0, 0, 0, 0.15);
 }
 .searchform  input[type="text"]:focus::placeholder {
@@ -212,7 +213,7 @@ a {
   overflow:auto;
   transition: all 0.3s ease;
     .card-content {
-      border-top: 1px solid #dbdabdb;
+      border-top: 1px solid #dbdbdb;
     }
 
     .content ul {
@@ -233,17 +234,15 @@ a {
   z-index: 99998;
   background: rgba(0,0,0, 0.6);
 }
-
 #mobile-menu.active {
   left: 0;
 }
-
 #header-mobile {
   //border-bottom: 1px solid #e6e6e6;
   height: 60px;
    .image img {
      height: 54px;
-     margin:-5px auto 0px auto;
+     margin: -5px auto 0px auto;
      width: auto;
    }
   a {
@@ -317,7 +316,6 @@ a {
       #menu {
         position: relative;
         zoom:1;
-
         z-index: 10;
       }
 
@@ -331,42 +329,37 @@ a {
       color:#FFF;
     }
     #menu li.is-active li a {
-      background: #FFF;
-      color: #333;
+      background: #b52f2f;
+      color: #fff;
     }
-
-
-
-
     #menu a {
-      float: left;
-      padding: 11px 12px 10px 11px;
+      padding: 10px 12px 11px;
       text-transform: uppercase;
       text-decoration: none;
-      /*text-shadow: 0 1px 0 #000;*/
+      display: block;
     }
-
-
+    #menu a:hover {
+      background: #b52f2f;
+    }
     #menu ul {
       margin: 20px 0 0 0;
-      _margin: 0; /*IE6 only*/
       opacity: 0;
       visibility: hidden;
       position: absolute;
       top: 40px;
       left: 0;
       z-index: 1;
-      background: #FFF;
-      -moz-box-shadow: 0 -1px rgba(255,255,255,.3);
-      -webkit-box-shadow: 0 -1px 0 rgba(255,255,255,.3);
-      box-shadow: 0 -1px 0 rgba(255,255,255,.3);
+      background: #b52f2f;
       -webkit-transition: all .2s ease-in-out;
       -moz-transition: all .2s ease-in-out;
       -ms-transition: all .2s ease-in-out;
       -o-transition: all .2s ease-in-out;
       transition: all .2s ease-in-out;
+      box-shadow: 0 8px 10px rgba(226, 59, 59, 0.25);
     }
-
+    #menu li:hover{
+      background: #b52f2f;
+    }
     #menu li:hover > ul {
       opacity: 1;
       visibility: visible;
@@ -386,7 +379,7 @@ a {
     }
 
     #menu ul a {
-      color: #222222;
+      color: #fff;
       padding: 10px;
       width: 250px;
       _height: 10px; /*IE6 only*/
@@ -597,10 +590,6 @@ a {
   background: #1b3658;
   font-stretch: condensed;
   a { color: #FFF; }
-  .column.is-6-mobile div {
-    max-width: 130px;
-    margin: 0px auto;
-  }
 
   .column {
     cursor: pointer;
@@ -789,7 +778,7 @@ li.VueCarousel-dot{
 .bcarousel-list-ontslokh {
   position: relative;
   background-size: cover;
-  background-position: top center;
+  background-position: center center;
   height:500px;
   margin:0px 0.3em;
 }
@@ -1724,7 +1713,6 @@ label {
 }
 
 .timeline .timeline-item .timeline-content {
-  padding: 1em 0 0 .5em;
   padding: 1em 0 0 2em
 }
 
@@ -1964,4 +1952,119 @@ label {
   padding: 1em 2em 0 0;
   text-align: right
 }
-
+.unelgee{
+  padding: 15px;
+  text-align: center;
+  position: relative;
+}
+.unelgee_title{
+  font-weight: bold;
+  font-size: 18px;
+  color: #224e8a;
+  text-transform: uppercase;
+  margin: 0 0 20px;
+}
+.unelgee_item{
+  display: inline-block;
+  position: relative;
+  padding: 0 10px;
+  cursor: pointer;
+}
+.unelgee_item .title{
+  display: block;
+  color: white;
+  background: rgba(34, 78, 138, 0.75);
+  padding: 8px 15px 10px;
+  border-radius: 5px;
+  position: absolute;
+  width: max-content;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  visibility: hidden;
+  z-index: 999;
+}
+.unelgee_item:hover > .title{
+  opacity: 1;
+  visibility: visible;
+}
+.unelgee_item .count{
+  display: block;
+}
+.unelgee_item a{
+  display: block;
+}
+.unelgee_item a img{}
+.unelgee .notification{
+  opacity: 0.85;
+  min-height: auto;
+  border-radius: .375em;
+  padding: 7px 40px;
+}
+.content img {
+  border:1px solid #eee;
+}
+.fb_box > iframe{
+  height: 500px;
+}
+.video_news iframe{
+  min-height: 330px;
+}
+.counter{
+  padding: 15px 0;
+  background: #18304f;
+  color: white;
+}
+.counter .item{
+  position: relative;
+}
+.counter .item i{
+  font-size: 34px;
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  margin-top: -17px;
+  opacity: 0.45;
+}
+.counter .item .vc_box{
+  display: block;
+  border-right: 1px dashed rgba(255, 255, 255, 0.39);
+  padding: 0 20px;
+}
+.counter .item:last-child .vc_box{
+  border-right: 0;
+}
+.counter .item .vc_box .count{
+  display: block;
+  text-align: right;
+  font-weight: 600;
+  font-size: 20px;
+}
+.counter .item .vc_box .name{
+  display: block;
+  text-align: right;
+  font-weight: 300;
+  font-size: 16px;
+}
+.shuurhai{
+  background: #1e3f6c;
+  color:#fff;
+}
+.shuurhai .subject{
+  position: absolute;
+  background: #1b3658;
+  padding: 7px 20px;
+  top: 0;
+  z-index: 9;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+.shuurhai marquee{
+  display: block;
+}
+.shuurhai marquee span{
+  display: inline-block;
+  font-size: 14px;
+  padding: 0 10px;
+  font-weight: 300;
+}

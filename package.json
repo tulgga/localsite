@@ -12,7 +12,7 @@
     "devDependencies": {
         "@ckeditor/ckeditor5-alignment": "^10.0.3",
         "@ckeditor/ckeditor5-build-classic": "^11.2.0",
-        "axios": "^0.18",
+        "axios": "^0.21.1",
         "babel-core": "^6.22.1",
         "babel-helper-vue-jsx-merge-props": "^2.0.3",
         "babel-loader": "^7.1.1",
@@ -35,7 +35,7 @@
     "dependencies": {
         "@ckeditor/ckeditor5-vue": "^1.0.0-beta.2",
         "@fortawesome/fontawesome-free": "^5.4.1",
-        "@riophae/vue-treeselect": "0.0.37",
+        "@riophae/vue-treeselect": "^0.4.0",
         "@xkeshi/vue-countdown": "^0.6.0",
         "@xkeshi/vue-qrcode": "^0.3.0",
         "ajv": "^6.5.4",
