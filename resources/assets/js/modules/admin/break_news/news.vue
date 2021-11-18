@@ -2,6 +2,7 @@
     <div>
         <!-- Data table -->
         <div class="boxed">
+            asdsada
             <template v-if="fetched">
                 <v-server-table ref="tableni" :url="url"  :columns="columns" :options="options">
 

@@ -12,24 +12,23 @@ class AdminBreakNewsController extends Controller
     {
         extract(request()->only(['query', 'limit', 'page', 'orderBy', 'ascending', 'byColumn']));
         $result=Prompt::select('*');
+            if (isset($query) && $query) {
+                $result = $byColumn == 1 ?
+                    $this->filterByColumn($result, $query) :
+                    $this->filter($result, $query, ['content', 'public']);
+            }
 
-        if (isset($query) && $query) {
-            $result = $byColumn == 1 ?
-                $this->filterByColumn($result, $query) :
-                $this->filter($result, $query, ['content', 'public']);
-        }
+            if (isset($orderBy)) {
+                $direction = $ascending == 1 ? 'ASC' : 'DESC';
+                $result = $result->orderBy($orderBy, $direction);
+            } else {
+                $result = $result->orderBy('id', 'desc');
+            }
 
-        if (isset($orderBy)) {
-            $direction = $ascending == 1 ? 'ASC' : 'DESC';
-            $result = $result->orderBy($orderBy, $direction);
-        } else {
-            $result = $result->orderBy('id', 'desc');
-        }
-
-        $result = $result->paginate($limit);
-        return response()->json(
-            ['success'=>$result]
-        );
+            $result = $result->paginate($limit);
+            return response()->json(
+                ['success'=>$result]
+            );
     }
 
     public function store(Request $request){
